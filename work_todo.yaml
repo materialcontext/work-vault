@@ -1,0 +1,85 @@
+# BC DONGGUK HIGH SCHOOL
+job: "dongguk"
+client:  "bc"
+start: 2024-09-01
+end: 2024-12-31
+schedule: "TWRF"
+time:
+  start: 8:30
+  end: 13:20
+  break:
+    start: 11:20
+    end: 12:30
+rate: 50000
+todo:
+  - newspaper headline lesson g1
+  - book recommendation list g1
+comments: []
+
+# BC LINK NORTH KOREA PROGRAM
+job: "link"
+client: "bc"
+start: 2025-01-06
+end: 2025-02-21
+schedule:
+  - "MWF"
+  - include:
+    - 2024-02-27
+time:
+  start: 19:00
+  end: 22:00
+rate: 50000
+todo: 
+  - "concrete lesson plan for midpoint volunteer day"
+  - "organize according to book plan for MW"
+  - "organize presentation days for F"
+comments:
+  - "students are expected to complete all assignments and come in to class on time"
+  - "students have strong motivations and incentives so strong standards need to clear and maintained"
+  - "students need comprehensive feedback for presentations"
+  - "midpoint volunteer discussion day;"
+  - "end of course assessment with feedback; 10 mins per student on graduation 02/24"
+
+# BC SUBSTITUTE
+job: "supremecourt"
+client: "client"
+start: 2024-12-10
+end: 2024-12-17
+schedule:
+  - "special"
+  - include:
+    - 2024-12-10
+    - 2024-12-11
+    - 2024-12-12
+    - 2024-12-17
+time:
+  start: 13:00
+  end: 16:30
+  rate: 50000
+todo: []
+comments: []
+
+
+
+########## COMPLETE ##########
+
+# SUYOUNG KINDERGARTEN
+job: "syy"
+client: "syy"
+start: 2024-10-11
+end: 2024-12-09
+schedule:
+  - "MTWRF"
+time:
+  MF:
+    start: 14:30
+    end: 17:30
+  W:
+    start: 15:00
+    end: 17:30
+  TR:
+    start: 16:00
+    end: 17:30
+rate: 33000
+todo: []
+comments: []
