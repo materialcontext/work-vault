@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Territorial Empire & Encomienda Revolution</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .slide h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideInDown 1s ease-out;
+        }
+
+        .slide h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #ffd93d;
+            animation: slideInLeft 1s ease-out 0.2s both;
+        }
+
+        .slide h3 {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: slideInRight 1s ease-out 0.3s both;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .central-question {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .objective-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .objective-card h3 {
+            color: #ffd93d;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 1rem;
+        }
+
+        .objective-card p, .objective-card li {
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .objective-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .comparison-table th {
+            background: rgba(255, 255, 255, 0.2);
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .primary-source {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.3), rgba(254, 202, 87, 0.3));
+            border-left: 5px solid #ff6b6b;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 15px 15px 0;
+            font-style: italic;
+            position: relative;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .primary-source::before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            top: -1rem;
+            left: 1rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #6c5ce7);
+            transform: translateY(-50%);
+        }
+
+        .timeline-point {
+            background: white;
+            color: #333;
+            padding: 0.8rem 1.2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 3;
+        }
+
+        .key-concepts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .concept-bubble {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            color: #333;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .concept-bubble:hover {
+            transform: scale(1.05);
+        }
+
+        .map-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .emoji-large {
+            font-size: 3rem;
+            margin: 1rem 0;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+        }
+
+        li {
+            margin: 0.5rem 0;
+            padding-left: 1rem;
+        }
+
+        .question-highlight {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            color: #333;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            margin: 1rem 0;
+            font-weight: 600;
+            font-size: 1.4rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 12</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">‹</button>
+        <button class="nav-btn" onclick="nextSlide()">›</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>🏰 Spanish Territorial Empire & Encomienda Revolution</h1>
+            <h2>Week 2B: Revolutionary Solutions to Environmental Crisis</h2>
+            <div class="central-question">
+                <h3>Central Question</h3>
+                <p><em>"How did Spanish territorial empire and the encomienda system represent revolutionary economic and political solutions to environmental crisis?"</em></p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-point">1492</div>
+                <div class="timeline-point">1500</div>
+                <div class="timeline-point">1520</div>
+                <div class="timeline-point">1542</div>
+                <div class="timeline-point">1550</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Learning Objectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Learning Objectives</h2>
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <h3>🌍 Environmental Context</h3>
+                    <p>Analyze how Spanish territorial empire addressed the same environmental/economic pressures as Portuguese commercial innovations</p>
+                </div>
+                <div class="objective-card">
+                    <h3>⚖️ Encomienda System</h3>
+                    <p>Evaluate encomienda as revolutionary political and economic experimentation</p>
+                </div>
+                <div class="objective-card">
+                    <h3>🔄 Comparative Analysis</h3>
+                    <p>Compare Spanish territorial vs. Portuguese commercial approaches to imperial challenges</p>
+                </div>
+                <div class="objective-card">
+                    <h3>📊 Demographic Impact</h3>
+                    <p>Assess how demographic catastrophe shaped Spanish colonial economic systems</p>
+                </div>
+                <div class="objective-card">
+                    <h3>🗺️ Columbus Re-examined</h3>
+                    <p>Connect Columbus's proposals to specific Spanish economic problems rather than generic exploration</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Spanish Economic Crisis -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏰 Spanish Economic Crisis Context</h2>
+            <div class="key-concepts">
+                <div class="concept-bubble">Recent Unification (1479)</div>
+                <div class="concept-bubble">Reconquista Completion (1492)</div>
+                <div class="concept-bubble">Little Ice Age Pressures</div>
+                <div class="concept-bubble">Expensive Standing Army</div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+                <div>
+                    <h3>Spanish Constraints</h3>
+                    <ul>
+                        <li>Large territorial armies (expensive)</li>
+                        <li>Agricultural vulnerability to climate</li>
+                        <li>Limited access to African gold routes</li>
+                        <li>Recent unification creates instability</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Portuguese Comparison</h3>
+                    <ul>
+                        <li>Small maritime forces (cheaper)</li>
+                        <li>Commercial focus, less overhead</li>
+                        <li>Established African trading networks</li>
+                        <li>Political unity and focus</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="question-highlight">
+                How might Spain's recent unification and military commitments create different economic pressures than Portugal's smaller, focused kingdom?
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Columbus as Economic Problem-Solver -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🗺️ Columbus: Economic Problem-Solver, Not Explorer</h2>
+            
+            <div class="primary-source">
+                <strong>Columbus, Letter to Ferdinand and Isabella (1493):</strong><br>
+                "...the lands are very fertile, and filled with an infinite number of gold mines and precious stones, and spices... Your Highnesses will command cities and fortresses to be built, and the country subdued, and Your Highnesses will thus have vast states and dominions..."
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin: 2rem 0;">
+                <div>
+                    <h3>Columbus's Specific Solutions</h3>
+                    <ul>
+                        <li><strong>Gold extraction:</strong> Direct access without Portuguese middlemen</li>
+                        <li><strong>Territorial control:</strong> Land-based empire using Spanish military strengths</li>
+                        <li><strong>Agricultural production:</strong> New crops and tribute systems</li>
+                        <li><strong>Strategic position:</strong> Atlantic routes bypassing Ottoman control</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Why "Cities and Fortresses"?</h3>
+                    <ul>
+                        <li>Territorial approach matches Spanish capabilities</li>
+                        <li>Uses expensive army for productive purposes</li>
+                        <li>Creates permanent revenue sources</li>
+                        <li>Provides administrative control</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="question-highlight">
+                How does Columbus's territorial approach address Spanish capabilities and constraints differently than Portuguese commercial solutions?
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Demographic Catastrophe -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🦠 The Great Dying: Revolutionary Opportunity</h2>
+            <div class="emoji-large">📉</div>
+            
+            <div class="timeline">
+                <div class="timeline-point">50-100M<br>Pre-contact</div>
+                <div class="timeline-point">Disease<br>1500s</div>
+                <div class="timeline-point">90% Decline<br>1500-1650</div>
+                <div class="timeline-point">5-10M<br>Survivors</div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin: 2rem 0;">
+                <div>
+                    <h3>🌍 Economic Implications</h3>
+                    <ul>
+                        <li><strong>Land availability:</strong> Vast territories with minimal resistance</li>
+                        <li><strong>Labor scarcity:</strong> Need for new work organization</li>
+                        <li><strong>Political vacuum:</strong> Traditional systems disrupted</li>
+                        <li><strong>Resource access:</strong> Mining and agriculture open</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🏰 Spanish Advantages</h3>
+                    <ul>
+                        <li><strong>Military experience:</strong> Reconquista governance models</li>
+                        <li><strong>Administrative capability:</strong> Recent unification creates bureaucracy</li>
+                        <li><strong>Religious justification:</strong> Catholic conversion mission</li>
+                        <li><strong>Timing:</strong> Arrives during collapse when resistance minimal</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="question-highlight">
+                How does demographic catastrophe create opportunities for Spanish economic experimentation that wouldn't have existed with healthy indigenous populations?
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: The Encomienda System -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📜 Encomienda: Revolutionary Political-Economic Innovation</h2>
+            
+            <div class="primary-source">
+                <strong>Laws of the Indies (1542):</strong><br>
+                "We entrust to you [encomendero] the Indians of the village of X, so that you may teach them in matters of our holy Catholic faith and protect them... and they shall serve you with their persons and labor in your mines, farms, and other enterprises..."
+            </div>
+            
+            <div class="key-concepts">
+                <div class="concept-bubble">Political Control</div>
+                <div class="concept-bubble">Economic Extraction</div>
+                <div class="concept-bubble">Religious Justification</div>
+                <div class="concept-bubble">Administrative Efficiency</div>
+            </div>
+            
+            <h3>🔄 Revolutionary Features</h3>
+            <ul style="text-align: left; max-width: 800px; margin: 0 auto;">
+                <li><strong>Hybrid sovereignty:</strong> Combines European and indigenous political structures</li>
+                <li><strong>Private-public partnership:</strong> Crown grants authority, colonists provide administration</li>
+                <li><strong>Economic diversification:</strong> Agriculture, mining, and tribute collection</li>
+                <li><strong>Cultural integration:</strong> Spanish legal systems applied to indigenous populations</li>
+            </ul>
+            
+            <div class="question-highlight">
+                How does encomienda solve Spanish problems of territorial control, revenue generation, and administrative costs simultaneously?
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Spanish vs Portuguese Comparison -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚖️ Spanish vs Portuguese: Revolutionary Approaches</h2>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Challenge</th>
+                        <th>🇵🇹 Portuguese Commercial Solution</th>
+                        <th>🇪🇸 Spanish Territorial Solution</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Revenue Generation</strong></td>
+                        <td>Spice trade profits</td>
+                        <td>Silver extraction + tribute</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Administrative Costs</strong></td>
+                        <td>Minimal overhead, local partnerships</td>
+                        <td>Encomienda delegates governance</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Military Expenses</strong></td>
+                        <td>Naval protection, small garrisons</td>
+                        <td>Territorial armies, colonial militias</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Labor Control</strong></td>
+                        <td>Commercial partnerships</td>
+                        <td>Encomienda labor systems</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Geographic Scope</strong></td>
+                        <td>Coastal trading posts</td>
+                        <td>Continental territorial control</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0;">
+                <div class="question-highlight" style="font-size: 1.1rem;">
+                    Which system requires more initial investment but offers greater long-term returns?
+                </div>
+                <div class="question-highlight" style="font-size: 1.1rem;">
+                    How do different geographic opportunities shape these approaches?
+                </div>
+                <div class="question-highlight" style="font-size: 1.1rem;">
+                    What are the different risks and vulnerabilities of each system?
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Encomienda Contradictions -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚖️ Revolutionary Systems Create Contradictions</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 2rem 0;">
+                <div>
+                    <h3>🔄 System Contradictions</h3>
+                    <ul>
+                        <li><strong>Religious vs. economic goals:</strong> Catholic conversion vs. labor exploitation</li>
+                        <li><strong>Spanish law vs. colonial practice:</strong> Legal protections vs. actual treatment</li>
+                        <li><strong>Demographic reality:</strong> Continuing population decline reduces available labor</li>
+                        <li><strong>Economic efficiency:</strong> Tribute systems vs. direct production</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🛠️ Spanish Adaptations</h3>
+                    <ul>
+                        <li><strong>Legal reforms:</strong> New Laws of 1542 limiting encomienda abuses</li>
+                        <li><strong>Alternative labor:</strong> African slave importation as demographic replacement</li>
+                        <li><strong>Administrative evolution:</strong> Viceroyalties and expanded royal oversight</li>
+                        <li><strong>Economic diversification:</strong> Hacienda development and commercial agriculture</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="central-question">
+                <h3>Critical Analysis Question</h3>
+                <p>How do the contradictions within encomienda force Spanish colonial administration to continue evolving?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Global Impact -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌍 Global Revolutionary Implications</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 2rem 0;">
+                <div>
+                    <h3>🇪🇸 Spanish Territorial Innovations</h3>
+                    <ul>
+                        <li><strong>Territorial empire model:</strong> Template for British, French, Dutch colonial development</li>
+                        <li><strong>Silver circulation:</strong> American silver reshapes global monetary systems</li>
+                        <li><strong>Labor system precedents:</strong> Encomienda influences later plantation agriculture</li>
+                        <li><strong>Political-legal innovations:</strong> Colonial administration models for other European powers</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🇵🇹 Portuguese Commercial Impact</h3>
+                    <ul>
+                        <li><strong>Commercial networks:</strong> Global trade connections</li>
+                        <li><strong>Financial innovations:</strong> Banking and credit systems</li>
+                        <li><strong>Maritime technology:</strong> Navigation and shipbuilding advances</li>
+                        <li><strong>Diplomatic models:</strong> Commercial partnerships with local rulers</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="central-question">
+                <h3>Combined Revolutionary Effect</h3>
+                <p>Spanish and Portuguese experiments create <strong>alternative models</strong> for European overseas expansion, giving later powers (British, French, Dutch) different templates to choose from or combine.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Contingency Analysis -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🤔 What If: Alternative Outcomes</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 2rem 0;">
+                <div class="objective-card">
+                    <h3>Scenario 1</h3>
+                    <h4>"What if demographic catastrophe had been less severe?"</h4>
+                    <ul style="text-align: left; font-size: 1.1rem;">
+                        <li>Could Spanish territorial empire have developed with healthy indigenous populations?</li>
+                        <li>Might Spanish colonial organization have resembled Portuguese commercial model?</li>
+                        <li>How might indigenous political resistance have shaped alternative colonial systems?</li>
+                    </ul>
+                </div>
+                <div class="objective-card">
+                    <h3>Scenario 2</h3>
+                    <h4>"What if Portuguese had arrived first in the Americas?"</h4>
+                    <ul style="text-align: left; font-size: 1.1rem;">
+                        <li>Could commercial empire model have worked in American contexts?</li>
+                        <li>Might territorial control have been unnecessary with Portuguese coastal approach?</li>
+                        <li>How might different timing have affected colonial development?</li>
+                    </ul>
+                </div>
+                <div class="objective-card">
+                    <h3>Scenario 3</h3>
+                    <h4>"What if encomienda system had been rejected by Spanish Crown?"</h4>
+                    <ul style="text-align: left; font-size: 1.1rem;">
+                        <li>Could alternative colonial labor systems have emerged?</li>
+                        <li>Might different political arrangements have developed?</li>
+                        <li>How might colonial economic development have proceeded differently?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Analysis Questions -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Critical Analysis</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin: 2rem 0;">
+                <div class="question-highlight">
+                    Which factors were most essential for Spanish territorial empire success?
+                </div>
+                <div class="question-highlight">
+                    Could Portuguese commercial approaches have solved Spanish economic problems equally well?
+                </div>
+                <div class="question-highlight">
+                    How did demographic catastrophe enable revolutionary political and economic experimentation?
+                </div>
+            </div>
+            
+            <div class="central-question">
+                <h3>Synthesis Question</h3>
+                <p>How did Spanish territorial empire and the encomienda system represent revolutionary solutions to environmental crisis, and why did territorial control create different opportunities and challenges than Portuguese commercial networks?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Course Connection -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔗 Looking Forward</h2>
+            
+            <div class="timeline">
+                <div class="timeline-point">Week 2A<br>Portuguese Commercial</div>
+                <div class="timeline-point">Week 2B<br>Spanish Territorial</div>
+                <div class="timeline-point">Week 3<br>British Colonial</div>
+                <div class="timeline-point">Week 4<br>Constitutional Crisis</div>
+            </div>
+            
+            <div class="central-question">
+                <h3>Connecting Thread to Week 3</h3>
+                <p>Spanish territorial empire and encomienda system represent one revolutionary solution to environmental and economic crisis. Next week, we'll examine how these Spanish and Portuguese innovations influence British colonial experiments - and how different timing and circumstances lead to different revolutionary approaches in North America.</p>
+            </div>
+            
+            <div class="question-highlight">
+                Preview Question: British colonies develop 150 years after Spanish and Portuguese experiments. How might this later timing, combined with different environmental and demographic conditions, create opportunities for different types of revolutionary political and economic organization?
+            </div>
+            
+            <div class="key-concepts">
+                <div class="concept-bubble">Environmental Pressures</div>
+                <div class="concept-bubble">Revolutionary Solutions</div>
+                <div class="concept-bubble">Territorial vs. Commercial</div>
+                <div class="concept-bubble">Demographic Context</div>
+                <div class="concept-bubble">Global Implications</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            }
+        });
+
+        // Initialize
+        document.getElementById('slide-counter').textContent = `1 / ${totalSlides}`;
+    </script>
+</body>
+</html>

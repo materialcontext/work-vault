@@ -1,267 +1,256 @@
 # The United States in the Modern World 1: 14-Week Course
-
-## **Core Narrative**: _How economic and political revolution originated, spread, and reshaped the modern world (1450-1865)_
+## **Core Narrative**: *How economic and political revolution originated, spread, and reshaped the modern world (1450-1865)*
 
 ---
 
 ## **📍 FUNDAMENTAL COURSE QUESTIONS**
-
 1. **Origins**: What conditions in the 15th-16th centuries made economic and political revolution possible?
 2. **Implementation**: How were revolutionary ideas about government, economy, and society actually carried out in the 17th-18th centuries? What other outcomes might have been possible?
 3. **Global Impact**: How did these revolutions reshape the world in the 19th century, and what were their limits?
 
 ## **🔍 GUIDING ANALYTICAL QUESTIONS**
-
 - **Contingency**: What alternative outcomes were possible during key moments of change, and what factors made certain paths more likely?
-- **Parallel Transformation**: How did different societies respond to similar pressures, and why might some responses have had more lasting consequences?
+- **Comparative Imperial Systems**: How did Spanish and British approaches to empire create different revolutionary possibilities in the Americas?
 
 ---
 
-## **UNIT I: REVOLUTIONARY ORIGINS** _(Weeks 1-3)_
-
-### 🔗 **Narrative Thread**: _What destabilized the existing world order and created opportunities for revolutionary change?_
+## **UNIT I: REVOLUTIONARY ORIGINS** *(Weeks 1-4)*
+### 🔗 **Narrative Thread**: *What destabilized the existing world order and created opportunities for revolutionary change?*
 
 **Week 1: Multiple Centers of Power (1450)**
-
 - **Central Question**: If Ottoman, Chinese, and European empires were all expanding in 1450, why might European maritime ventures have had different long-term consequences?
 - **Key Concept**: Competing expansion models vs. inevitable European dominance
 - **Geographic Focus**: 🌍 Ottoman westward expansion vs. European maritime experiments vs. Ming consolidation
 - **Analytical Focus**: Environmental and geographic factors
+- **Content**: 
+  - Comparative imperial strategies and early Little Ice Age impacts
+  - Russian modernization under Peter the Great as established empire adaptation
+  - Environmental pressures affecting agricultural systems across regions
+- **Primary Source**: Peter the Great, "Decree on the Invitation of Foreigners" (1702)
+- **Historical Questions**: *Could Chinese maritime expansion have resumed? Might Ottoman expansion have continued into Western Europe?*
+- **Connecting Thread** → *Environmental pressures create opportunities for revolutionary experimentation*
+
+**Week 2: Environmental Crisis and Early Colonial Experiments (1492-1550)**
+- **Central Question**: How did environmental pressures drive revolutionary experimentation in overseas expansion and political organization?
+- **Key Concept**: Environmental crisis as catalyst for multiple revolutionary changes
+- **Geographic Focus**: 🌍 Little Ice Age impacts creating pressures for alternative revenue systems
+- **Analytical Focus**: Environmental factors and technological innovation
 - **Content**:
-    - Comparative imperial strategies and early Little Ice Age impacts
-    - Russian modernization under Peter the Great as established empire adaptation
-    - Environmental pressures affecting agricultural systems across regions
-- **Primary Source**: Peter the Great, "Decree on the Invitation of Foreigners"
-- **Historical Questions**: _Could Chinese maritime expansion have resumed? Might Ottoman expansion have continued into Western Europe?_
-- **Connecting Thread** → _Multiple expansion models create competitive pressures_
+  - Little Ice Age as catalyst for political and economic innovation
+  - Spanish Caribbean experiments and early territorial administration
+  - Portuguese trading post empire as alternative model
+  - Revolutionary convergence: political, economic, military, and geographic changes
+- **Primary Source**: Columbus, "Letter to Ferdinand and Isabella" (1493)
+- **Historical Questions**: *Could environmental crisis have prevented rather than enabled expansion? What alternative adaptation strategies were possible?*
+- **Connecting Thread** → *Environmental adaptation creates contact between imperial systems*
 
-**Week 2: Demographic and Environmental Disruption (1492-1550)**
-
-- **Central Question**: Was demographic catastrophe in the Americas more significant than political conquest in reshaping global systems?
-- **Key Concept**: Unintentional consequences vs. intended policies as historical drivers
-- **Geographic Focus**: 🌍 American demographic collapse alongside Eurasian population pressures
-- **Analytical Focus**: Demographic and class impacts
+**Week 3: Spanish Imperial Revolution in the Americas (1500-1600)**
+- **Central Question**: How did Spanish colonial administration create revolutionary new forms of political and economic organization?
+- **Key Concept**: Colonial systems as political and economic experiments
+- **Geographic Focus**: 🌍 Spanish territorial empire from Caribbean to Pacific coast
+- **Analytical Focus**: Institutional and administrative innovation
 - **Content**:
-    - Disease as primary factor in American conquest
-    - Ottoman-Safavid conflicts and Mughal establishment during same period
-    - How demographic catastrophes affect labor systems across societies
-- **Primary Source**: Bartolomé de las Casas, _Brief Account_
-- **Historical Questions**: _Could indigenous populations have developed disease immunity differently? How did environmental pressures affect multiple empires simultaneously?_
-- **Connecting Thread** → _Environmental and demographic factors may drive change more than political intentions_
+  - Encomienda and hacienda systems as revolutionary labor organization
+  - Viceroyalty administration and colonial bureaucracy development
+  - Silver economy and global trade network creation
+  - Indigenous responses and hybrid political systems
+- **Primary Source**: "Laws of the Indies" excerpts on colonial administration (1542)
+- **Historical Questions**: *Could Spanish colonial system have developed without indigenous demographic catastrophe? What alternative labor systems were possible?*
+- **Connecting Thread** → *Spanish territorial model creates one approach to revolutionary colonial organization*
 
-**Week 3: Institutional Adaptations (1550-1600)**
-
-- **Central Question**: How did different empires organize expansion, and which institutional approaches proved more adaptable?
-- **Key Concept**: Comparative institutional development and path dependency
-- **Geographic Focus**: 🌍 Spanish colonial administration vs. Ottoman millet system vs. Mughal mansabdari
-- **Analytical Focus**: Institutional and comparative analysis
+**Week 4: English Political Revolution and Colonial Beginnings (1600-1660)**
+- **Central Question**: How did English constitutional crisis create alternative models for colonial political and economic organization?
+- **Key Concept**: Parliamentary revolution and colonial experimentation
+- **Geographic Focus**: 🌍 English Civil War context and early North American settlements
+- **Analytical Focus**: Constitutional and political development
 - **Content**:
-    - Spanish encomienda and colonial bureaucracy development
-    - Ottoman devshirme system and Mughal religious accommodation policies
-    - Silver flows through multiple imperial networks
-- **Primary Source**: Spanish colonial regulations
-- **Historical Questions**: _Which institutional models were more sustainable? Could Spanish colonial system have developed alternatively?_
-- **Connecting Thread** → _Institutional choices create path dependencies shaping future possibilities_
-- **🎯 Research Project Introduced**
-
----
-
-## **UNIT II: REVOLUTIONARY IMPLEMENTATION** _(Weeks 4-7)_
-
-### 🔗 **Narrative Thread**: _How did new ideas about government and society develop and spread, and what alternatives were rejected?_
-
-**Week 4: Religious and Cultural Management (1550-1650)**
-
-- **Central Question**: Were Protestant Reformation dynamics fundamentally different from religious accommodation challenges facing Islamic empires?
-- **Key Concept**: Comparative approaches to diversity and integration
-- **Geographic Focus**: 🌍 European religious wars alongside Ottoman religious pluralism and Mughal syncretism
-- **Analytical Focus**: Gender and cultural systems
-- **Content**:
-    - Protestant Reformation and European religious conflicts
-    - Ottoman millet system and Mughal religious innovations under Akbar
-    - How religious systems organize family law and women's status differently
-- **Primary Source**: Martin Luther texts
-- **Historical Questions**: _Could European religious conflicts have been managed through Ottoman-style accommodation? What made some religious policies more sustainable?_
-- **Connecting Thread** → _Cultural management strategies shape economic and political possibilities_
-
-**Week 5: Economic Networks and Revolutionary Finance (1600-1700)**
-
-- **Central Question**: How did different monetary and trade policies create unintended global consequences?
-- **Key Concept**: Economic policy choices and their unforeseen effects
-- **Geographic Focus**: 🌍 Atlantic trade networks developing alongside Indian Ocean and Silk Road systems
-- **Analytical Focus**: Class and economic structures
-- **Content**:
-    - Spanish colonial silver and global monetary effects
-    - Ottoman currency policies, Chinese silver imports, Indian textile exports
-    - How merchant classes relate to political power in different systems
-- **Primary Source**: Spanish economic regulations
-- **Historical Questions**: _Could alternative monetary policies have developed? How did environmental factors constrain economic choices?_
-- **Connecting Thread** → _Economic policies create global consequences beyond original intentions_
-
-**Week 6: Military Innovation and Social Change (1650-1750)**
-
-- **Central Question**: Did military technology drive social transformation, or did social changes make military innovation possible?
-- **Key Concept**: Technology-society interaction and military revolution
-- **Geographic Focus**: 🌍 European military developments alongside Ottoman and Russian modernization programs
-- **Analytical Focus**: Technological and social change
-- **Content**:
-    - European standing armies and fiscal-military state development
-    - Russian Westernization under Peter the Great and Ottoman military reforms
-    - How military changes affect social hierarchies across different societies
-- **Primary Source**: European military manuals
-- **Historical Questions**: _Were military changes inevitable? Could alternative military models have succeeded?_
-- **Connecting Thread** → _Military and social changes interact in complex, unpredictable ways_
-
-**Week 7: Environmental Pressures and Political Crisis (1650-1750)**
-
-- **Central Question**: How did climate change and environmental stress test different political systems' adaptability?
-- **Key Concept**: Environmental constraints on political development
-- **Geographic Focus**: 🌍 European agricultural crises alongside Ottoman fiscal difficulties and Chinese administrative strain
-- **Analytical Focus**: Environmental determinism and adaptation
-- **Content**:
-    - Little Ice Age impacts across multiple regions
-    - Ottoman-Habsburg conflicts, Chinese population pressure, European subsistence crises
-    - How environmental stress affects political institutions differently
-- **Primary Source**: European harvest records
-- **Historical Questions**: _Could political institutions have adapted differently to environmental stress? What alternative responses were possible?_
-- **Connecting Thread** → _Environmental factors may constrain political choices more than institutional preferences_
+  - English Civil War and constitutional innovation (1640s-1650s)
+  - Virginia Company and joint-stock colonial organization
+  - Massachusetts Bay Colony and Puritan political experiments
+  - Comparative colonial charters and political structures
+- **Primary Source**: Virginia Company Charter (1606)
+- **Historical Questions**: *How did English political crisis affect colonial development? Could alternative constitutional arrangements have emerged?*
+- **Connecting Thread** → *English constitutional revolution creates different colonial possibilities than Spanish model*
 - **🎯 Research Bibliography Due**
 
 ---
 
-## **UNIT III: REVOLUTIONARY CONTAGION** _(Weeks 8-11)_
+## **UNIT II: REVOLUTIONARY IMPLEMENTATION** *(Weeks 5-8)*
+### 🔗 **Narrative Thread**: *How did revolutionary ideas about government and economy develop through imperial competition and colonial experimentation?*
 
-### 🔗 **Narrative Thread**: _How did revolutionary ideas spread globally, and why did some take root while others failed?_
-
-**Week 8: Multiple Revolutionary Models (1750-1800)**
-
-- **Central Question**: How do we account for the timing and variety of revolutionary movements across different societies?
-- **Key Concept**: Revolutionary contagion vs. independent development
-- **Geographic Focus**: 🌍 American Revolution alongside European movements and Islamic reform attempts
-- **Analytical Focus**: Comparative political development
+**Week 5: British Constitutional Development and Imperial Policy (1660-1750)**
+- **Central Question**: How did British constitutional monarchy and imperial administration create distinctive approaches to colonial governance?
+- **Key Concept**: Parliamentary sovereignty and imperial economic policy
+- **Geographic Focus**: 🌍 British Isles constitutional development and North American colonial administration
+- **Analytical Focus**: Comparative constitutional systems
 - **Content**:
-    - American Revolution within broader 18th-century political experimentation
-    - French Revolution, Ottoman reform attempts, Wahhabi movement in Arabia
-    - Which social groups drove different revolutionary movements
-- **Primary Source**: American revolutionary documents
-- **Historical Questions**: _Could the American Revolution have failed? Were European revolutionary wars inevitable?_
-- **Connecting Thread** → _Revolutionary ideology spreads but adapts to local conditions_
+  - Glorious Revolution (1688) and constitutional settlement
+  - Navigation Acts and imperial economic regulation
+  - Colonial governance: royal vs. proprietary vs. charter colonies
+  - Parliamentary authority vs. colonial political development
+- **Primary Source**: English Bill of Rights (1689) excerpts
+- **Historical Questions**: *How did British constitutional limits affect imperial authority? Could alternative imperial-colonial relationships have developed?*
+- **Connecting Thread** → *British constitutional system creates tensions with colonial political development*
+
+**Week 6: Atlantic Slave Trade as Revolutionary Economic System (1600-1750)**
+- **Central Question**: How did the Atlantic slave trade create revolutionary changes in global economic organization and colonial societies?
+- **Key Concept**: Slavery as economic revolution with global consequences
+- **Geographic Focus**: 🌍 Atlantic triangular trade networks connecting Africa, Americas, and Europe
+- **Analytical Focus**: Economic transformation and social systems
+- **Content**:
+  - African slave trade organization and European commercial networks
+  - Plantation agriculture revolution in Caribbean and North America
+  - Spanish vs. British slave systems and colonial labor organization
+  - Economic integration: slave labor, global markets, and industrial development
+- **Primary Source**: Royal African Company charter excerpts (1672)
+- **Historical Questions**: *Could colonial economies have developed without slave labor? How did different European approaches to slavery create different colonial societies?*
+- **Connecting Thread** → *Slave trade creates economic integration and social tensions across imperial systems*
+
+**Week 7: Comparative Colonial Development: Spanish vs. British Systems (1650-1750)**
+- **Central Question**: How did different imperial approaches create different revolutionary possibilities in American colonial societies?
+- **Key Concept**: Imperial systems and colonial political-economic development
+- **Geographic Focus**: 🌍 Comparative colonial territories and administrative systems
+- **Analytical Focus**: Comparative institutional development
+- **Content**:
+  - Spanish territorial administration vs. British commercial-political approach
+  - Colonial social structures: Spanish caste system vs. British racial hierarchy
+  - Economic organization: Spanish extraction vs. British commercial agriculture
+  - Political development: Spanish centralization vs. British colonial assemblies
+- **Primary Source**: Pennsylvania Frame of Government (1682) vs. Spanish colonial administrative letter
+- **Historical Questions**: *Why did British colonies develop more autonomous political institutions? Could Spanish colonial political development have followed different paths?*
+- **Connecting Thread** → *Different imperial approaches create different revolutionary potentials*
+
+**Week 8: Seven Years' War and Imperial Crisis (1754-1763)**
+- **Central Question**: How did global imperial competition create fiscal crisis that enabled revolutionary political change?
+- **Key Concept**: Imperial war and constitutional crisis
+- **Geographic Focus**: 🌍 Global conflict from North America to India affecting imperial relationships
+- **Analytical Focus**: Imperial competition and constitutional development
+- **Content**:
+  - Seven Years' War as first global conflict and its colonial implications
+  - British fiscal crisis and imperial reform attempts
+  - Colonial resistance to imperial taxation and political control
+  - Comparative imperial responses: Spanish, French, and British adaptation strategies
+- **Primary Source**: Stamp Act (1765) and colonial resistance documents
+- **Historical Questions**: *Could imperial crisis have been resolved without revolutionary change? How did global war create local constitutional conflicts?*
+- **Connecting Thread** → *Imperial fiscal crisis creates revolutionary opportunities*
 - **📝 Midterm Exam**
-
-**Week 9: Expansion and Independence Movements (1800-1825)**
-
-- **Central Question**: Why did some independence movements succeed while others failed during the same period?
-- **Key Concept**: Revolutionary diffusion and local adaptation
-- **Geographic Focus**: 🌍 Latin American independence alongside Greek independence and Balkan nationalisms
-- **Analytical Focus**: Nationalism and ethnic identity
-- **Content**:
-    - Latin American independence: competing revolutionary models of Bolívar and San Martín
-    - Greek independence from Ottomans, Serbian autonomy, Egyptian modernization
-    - How population changes contributed to revolutionary pressures
-- **Primary Source**: Simón Bolívar, "Jamaica Letter"
-- **Historical Questions**: _Could Latin American independence have been avoided? Why did some Ottoman territories modernize while others revolted?_
-- **Connecting Thread** → _Revolutionary success depends on local adaptation of universal principles_
-
-**Week 10: Industrial and Democratic Transformation (1800-1840)**
-
-- **Central Question**: Did industrialization drive democratic change, or did political changes enable industrialization?
-- **Key Concept**: Technology-politics interaction in economic transformation
-- **Geographic Focus**: 🌍 British industrialization alongside American market revolution and global economic integration
-- **Analytical Focus**: Economic and technological change
-- **Content**:
-    - British industrial development and global implications
-    - American transportation revolution, market expansion, and democratic politics
-    - European industrialization attempts and Ottoman modernization challenges
-- **Primary Source**: Factory worker testimonies
-- **Historical Questions**: _Could industrialization have developed differently? Were democratic changes inevitable consequences of economic change?_
-- **Connecting Thread** → _Economic and political transformations interact unpredictably_
-
-**Week 11: Labor Systems and Global Economics (1800-1850)**
-
-- **Central Question**: Why did some societies abolish slavery while others intensified unfree labor during the same period?
-- **Key Concept**: Comparative labor systems and economic development
-- **Geographic Focus**: 🌍 American slavery expansion alongside global patterns of unfree labor
-- **Analytical Focus**: Class and labor systems
-- **Content**:
-    - American slavery expansion in cotton-producing regions
-    - British Empire abolition, Russian serfdom persistence, Ottoman slavery continuation
-    - How different labor systems related to global market integration
-- **Primary Source**: Frederick Douglass, _Narrative_
-- **Historical Questions**: _Could slavery have been abolished earlier in America? Why did abolition succeed in some places but not others?_
-- **Connecting Thread** → _Global economic pressures create conflicting responses to labor systems_
-- **🎯 Research Draft Due**
 
 ---
 
-## **UNIT IV: REVOLUTIONARY LIMITS AND LEGACY** _(Weeks 12-14)_
+## **UNIT III: REVOLUTIONARY TRANSFORMATION** *(Weeks 9-12)*
+### 🔗 **Narrative Thread**: *How did revolutionary ideas spread and transform societies, and what were the unintended consequences?*
 
-### 🔗 **Narrative Thread**: _What were the boundaries and contradictions of revolutionary transformation?_
-
-**Week 12: Imperial Expansion and Global Competition (1840-1860)**
-
-- **Central Question**: Was American continental expansion fundamentally similar to or different from European imperialism?
-- **Key Concept**: Comparative imperialism and settler colonialism
-- **Geographic Focus**: 🌍 American Manifest Destiny alongside European "Scramble" beginnings and Russian expansion
-- **Analytical Focus**: Imperial strategies and indigenous responses
+**Week 9: American Revolution in Global Context (1775-1783)**
+- **Central Question**: How did American revolutionary experience both reflect and influence global patterns of political transformation?
+- **Key Concept**: Revolutionary war and constitutional innovation
+- **Geographic Focus**: 🌍 American Revolution within broader Atlantic revolutionary movements
+- **Analytical Focus**: Revolutionary political development
 - **Content**:
-    - American continental expansion and Mexican-American War
-    - British expansion in India and Southeast Asia, Russian expansion in Central Asia
-    - Comparative indigenous resistance strategies across imperial contexts
-- **Primary Source**: Manifest Destiny documents
-- **Historical Questions**: _Could American expansion have been less destructive to indigenous peoples? Were there alternative territorial models?_
-- **Connecting Thread** → _Imperial competition creates global instability and internal contradictions_
+  - American Revolution as constitutional and political innovation
+  - Global context: French financial involvement, Spanish and Dutch participation
+  - Revolutionary ideology and its appeal to other colonial and European movements
+  - Comparative revolutionary outcomes: American success vs. other contemporary movements
+- **Primary Source**: Declaration of Independence (1776) excerpts
+- **Historical Questions**: *Could American Revolution have failed? How did American constitutional innovations influence global political development?*
+- **Connecting Thread** → *American revolutionary success creates model for constitutional innovation*
 
-**Week 13: Constitutional Crisis and Global Context (1850-1861)**
-
-- **Central Question**: How did global economic integration create domestic political pressures that existing institutions couldn't manage?
-- **Key Concept**: Domestic crisis within global context
-- **Geographic Focus**: 🌍 American sectional geography alongside global cotton economy
-- **Analytical Focus**: Constitutional and federal systems
+**Week 10: Constitutional Innovation and Economic Transformation (1783-1820)**
+- **Central Question**: How did American constitutional experimentation and British industrial development create new models of political and economic organization?
+- **Key Concept**: Constitutional federalism and economic modernization
+- **Geographic Focus**: 🌍 American constitutional development alongside British industrial revolution
+- **Analytical Focus**: Political and economic innovation
 - **Content**:
-    - American sectional crisis within global cotton economy context
-    - European 1848 revolutions and Ottoman Tanzimat constitutional reforms
-    - How different societies managed questions of federal vs. central authority
-- **Primary Source**: Lincoln-Douglas debates
-- **Historical Questions**: _Could sectional crisis have been resolved through constitutional reform? How did global pressures constrain American choices?_
-- **Connecting Thread** → _Global integration creates domestic pressures existing institutions cannot manage_
+  - American federal constitutional system as political innovation
+  - British industrial revolution and factory system development
+  - American economic development: Hamilton's financial program and market revolution
+  - Comparative constitutional experiments: American federalism vs. European approaches
+- **Primary Source**: Federalist #10 (Madison) excerpts
+- **Historical Questions**: *Could alternative constitutional arrangements have succeeded? How did political and economic revolutions interact?*
+- **Connecting Thread** → *Constitutional and economic innovations create new social tensions*
+
+**Week 11: Industrial Revolution and Democratic Expansion (1820-1840)**
+- **Central Question**: How did industrial and democratic revolutions interact to create new social conflicts and political possibilities?
+- **Key Concept**: Technology, democracy, and social transformation
+- **Geographic Focus**: 🌍 American democratic expansion alongside British industrial development
+- **Analytical Focus**: Technological and social change
+- **Content**:
+  - American democratic expansion: suffrage extension and political participation
+  - Transportation revolution: canals, railroads, and market integration
+  - British industrial society and American industrial beginnings
+  - Social consequences: urbanization, class formation, and political mobilization
+- **Primary Source**: Andrew Jackson, "Veto of the Bank Bill" (1832)
+- **Historical Questions**: *Could industrial development have occurred without democratic political change? What alternative relationships between technology and democracy were possible?*
+- **Connecting Thread** → *Democratic and industrial revolutions create tensions over slavery and economic development*
+- **🎯 Research Draft Due**
+
+**Week 12: Slavery, Abolition, and Sectional Crisis (1820-1850)**
+- **Central Question**: How did revolutionary principles about freedom and equality create irreconcilable tensions over slavery and economic development?
+- **Key Concept**: Revolutionary ideology and slavery contradiction
+- **Geographic Focus**: 🌍 American sectional tensions within global abolition movements
+- **Analytical Focus**: Comparative labor systems and abolition
+- **Content**:
+  - Missouri Compromise and constitutional tensions over slavery expansion
+  - British Empire abolition (1833) and American slavery expansion comparison
+  - Economic arguments: free labor ideology vs. slave-based agricultural economy
+  - Political consequences: sectional party development and constitutional crisis
+- **Primary Source**: Frederick Douglass, "What to the Slave is the Fourth of July?" (1852) excerpts
+- **Historical Questions**: *Could slavery have been abolished without civil war? How did global abolition movements affect American sectional tensions?*
+- **Connecting Thread** → *Revolutionary contradictions create constitutional crisis*
+
+---
+
+## **UNIT IV: REVOLUTIONARY LIMITS AND LEGACY** *(Weeks 13-14)*
+### 🔗 **Narrative Thread**: *What were the boundaries and ultimate consequences of revolutionary transformation?*
+
+**Week 13: Manifest Destiny and Sectional Crisis (1845-1861)**
+- **Central Question**: How did territorial expansion intensify constitutional crisis and force resolution of revolutionary contradictions?
+- **Key Concept**: Expansion and constitutional breakdown
+- **Geographic Focus**: 🌍 American continental expansion and global imperial context
+- **Analytical Focus**: Territorial expansion and constitutional crisis
+- **Content**:
+  - Mexican-American War and territorial acquisition
+  - Compromise of 1850 and constitutional crisis intensification
+  - Kansas-Nebraska Act and popular sovereignty failure
+  - Lincoln-Douglas debates and sectional political breakdown
+- **Primary Source**: Lincoln-Douglas Debate excerpts (1858)
+- **Historical Questions**: *Could sectional crisis have been resolved through constitutional reform? How did territorial expansion make compromise impossible?*
+- **Connecting Thread** → *Constitutional system proves unable to resolve revolutionary contradictions*
 - **🎯 Research Presentations**
 
-**Week 14: Civil War as Global Phenomenon (1861-1865)**
-
-- **Central Question**: How did the American Civil War both reflect and influence global patterns of transformation?
-- **Key Concept**: Civil war within global context of political and economic change
-- **Geographic Focus**: 🌍 American Civil War geography alongside global cotton supply disruption
-- **Analytical Focus**: War, technology, and social transformation
+**Week 14: Civil War as Revolutionary Culmination (1861-1865)**
+- **Central Question**: How did the Civil War represent both the completion and transformation of American revolutionary principles?
+- **Key Concept**: Civil war as second American revolution
+- **Geographic Focus**: 🌍 American Civil War and global context of political transformation
+- **Analytical Focus**: War and revolutionary transformation
 - **Content**:
-    - American Civil War as culmination of sectional, constitutional, and economic pressures
-    - Global cotton supply disruption and international diplomatic responses
-    - How industrial warfare and geographic advantages affected outcomes
-- **Primary Source**: Emancipation Proclamation
-- **Historical Questions**: _Could civil war have been avoided? How did global integration make conflict more or less likely?_
-- **Synthesis**: Understanding American developments within global transformation patterns while recognizing particular characteristics
+  - Civil War as constitutional and social revolution
+  - Emancipation Proclamation and slavery abolition
+  - Industrial warfare and federal government expansion
+  - Global context: international responses and implications for democratic government
+- **Primary Source**: Gettysburg Address (1863)
+- **Historical Questions**: *Could civil war have been avoided? How did war transform American constitutional and social systems?*
+- **Synthesis**: Understanding American revolutionary development within global patterns while recognizing particular characteristics
 - **🎯 Final Papers Due**
 
 ---
 
 ## **🔄 CONNECTING THREADS THROUGHOUT**
-
-- **Economic**: Global trade → competing monetary systems → industrial development → labor system conflicts
-- **Political**: Divine right → popular sovereignty → constitutional experimentation → democratic expansion and limits
-- **Environmental**: Climate change → demographic shifts → resource competition → territorial expansion
-- **Social**: Hierarchy → mobility → revolutionary equality → inclusion/exclusion tensions
-- **Comparative**: Parallel developments → competing solutions → unintended consequences → contingent outcomes
+- **Economic**: Environmental adaptation → colonial experiments → slave trade → industrial revolution → sectional economic conflict
+- **Political**: Imperial competition → constitutional innovation → democratic expansion → sectional crisis → revolutionary war
+- **Social**: Colonial social systems → revolutionary ideology → democratic participation → slavery contradiction → civil war transformation
+- **Imperial**: Spanish territorial vs. British commercial models → constitutional crisis → independence → territorial expansion → global implications
+- **Environmental**: Little Ice Age → colonial adaptation → territorial expansion → resource competition → sectional geography
 
 ## **📚 RESEARCH PROJECT ARC**
-
-- **Week 3**: Topic selection emphasizing comparative analysis and contingency
-- **Week 7**: Annotated bibliography representing multiple historiographical perspectives
-- **Week 11**: Draft thesis examining alternative outcomes and competing explanations
-- **Week 13**: 15-minute presentation analyzing chosen theme with attention to contingency and comparison
-- **Week 14**: Final paper (10-12 pages) acknowledging uncertainty and alternative interpretations
+- **Week 4**: Topic selection emphasizing comparative revolutionary themes and American developments
+- **Week 8**: Annotated bibliography representing multiple historiographical perspectives on American revolutionary experience
+- **Week 12**: Draft thesis examining American developments within global revolutionary context
+- **Week 13**: 15-minute presentation analyzing chosen theme with attention to contingency and global comparison
+- **Week 14**: Final paper (10-12 pages) on American revolutionary experience acknowledging alternative interpretations
 
 ## **🌍 SKILLS DEVELOPMENT**
-
-- **Comparative Analysis**: Understanding how similar pressures produced different outcomes
-- **Contingency Thinking**: Recognizing historical outcomes were not inevitable
-- **Multiple Causation**: Analyzing interaction of environmental, economic, political, and social factors
-- **Global Perspective**: Seeing local developments within broader patterns while recognizing particularity
+- **Comparative Imperial Analysis**: Understanding Spanish vs. British colonial systems and their revolutionary implications
+- **Constitutional Thinking**: Analyzing how different political arrangements create different possibilities for development
+- **Economic Integration**: Connecting slave trade, industrial development, and sectional tensions
+- **Global Context**: Seeing American developments within broader patterns of political and economic revolution
+- **Primary Source Analysis**: Using contemporary documents to understand how historical actors understood revolutionary changes

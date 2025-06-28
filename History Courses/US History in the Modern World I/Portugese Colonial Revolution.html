@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portuguese Commercial Revolution & Environmental Crisis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0c4a6e 0%, #155e75 25%, #0891b2 50%, #06b6d4 75%, #67e8f9 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,20 Q25,10 50,20 T100,20 V100 H0 Z" fill="rgba(255,255,255,0.03)"/></svg>') repeat-x;
+            background-size: 200px 100px;
+            animation: wave 15s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-100px); }
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .slide h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fbbf24, #f59e0b, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: slideInDown 1.2s ease-out;
+        }
+
+        .slide h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            animation: slideInLeft 1s ease-out 0.3s both;
+        }
+
+        .slide h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: slideInRight 1s ease-out 0.4s both;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .central-question {
+            background: rgba(251, 191, 36, 0.15);
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(251, 191, 36, 0.4);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 12px 40px rgba(251, 191, 36, 0.2);
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question h3 {
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .objective-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(251, 191, 36, 0.3);
+            border-color: rgba(251, 191, 36, 0.6);
+        }
+
+        .objective-card:hover::before {
+            left: 100%;
+        }
+
+        .objective-card h3 {
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .climate-chart {
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid rgba(251, 191, 36, 0.4);
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .climate-chart h3 {
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1.5rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .comparison-table th {
+            background: rgba(251, 191, 36, 0.3);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .primary-source {
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.2), rgba(16, 185, 129, 0.3));
+            border-left: 6px solid #10b981;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            position: relative;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+        }
+
+        .primary-source::before {
+            content: '"';
+            font-size: 5rem;
+            position: absolute;
+            top: -1.5rem;
+            left: 1.5rem;
+            color: rgba(16, 185, 129, 0.4);
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #fbbf24, #10b981, #06b6d4);
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        .timeline-point {
+            background: linear-gradient(135deg, #ffffff, #f1f5f9);
+            color: #0c4a6e;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 3;
+            border: 2px solid rgba(251, 191, 36, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-point:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+        }
+
+        .key-concepts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .concept-bubble {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #ffffff;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .concept-bubble:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+        }
+
+        .navigation-system {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #ffffff;
+            padding: 1.5rem 2rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .network-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .network-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(6, 182, 212, 0.3);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .network-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(6, 182, 212, 0.3);
+            border-color: rgba(6, 182, 212, 0.6);
+        }
+
+        .network-card h4 {
+            color: #fbbf24;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .emoji-large {
+            font-size: 4rem;
+            margin: 1rem 0;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(251, 191, 36, 0.9);
+            border: none;
+            color: #0c4a6e;
+            padding: 1.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.4rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+        }
+
+        .nav-btn:hover {
+            background: rgba(251, 191, 36, 1);
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.6);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(251, 191, 36, 0.9);
+            color: #0c4a6e;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+        }
+
+        .question-highlight {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #0c4a6e;
+            padding: 1.5rem 2.5rem;
+            border-radius: 30px;
+            margin: 1.5rem 0;
+            font-weight: 700;
+            font-size: 1.4rem;
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+            text-shadow: none;
+        }
+
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .scenario-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(251, 191, 36, 0.4);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .scenario-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(251, 191, 36, 0.4);
+            border-color: rgba(251, 191, 36, 0.7);
+        }
+
+        .scenario-card h4 {
+            color: #fbbf24;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+            color: #ffffff;
+        }
+
+        li {
+            margin: 0.8rem 0;
+            padding-left: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        strong {
+            color: #fbbf24;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 11</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">‹</button>
+        <button class="nav-btn" onclick="nextSlide()">›</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>🌊 Portuguese Commercial Revolution</h1>
+            <h2>Environmental Crisis & Maritime Innovation (1415-1550)</h2>
+            <div class="central-question">
+                <h3>Central Question</h3>
+                <p><em>"How did environmental crisis drive Portuguese political and economic innovation, and why did their commercial experiments prove revolutionary?"</em></p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-point">1415<br>Ceuta</div>
+                <div class="timeline-point">1450<br>Little Ice Age</div>
+                <div class="timeline-point">1488<br>Cape Route</div>
+                <div class="timeline-point">1510<br>Goa</div>
+                <div class="timeline-point">1550<br>Global Network</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Learning Objectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Learning Objectives</h2>
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <h3>🌡️ Environmental Crisis</h3>
+                    <p>Explain how the Little Ice Age created economic and political pressures across Europe</p>
+                </div>
+                <div class="objective-card">
+                    <h3>🚢 Trading Post Empire</h3>
+                    <p>Analyze Portuguese trading post empire as revolutionary response to environmental crisis</p>
+                </div>
+                <div class="objective-card">
+                    <h3>💡 Innovation Analysis</h3>
+                    <p>Evaluate how environmental constraints led to innovative political and economic solutions</p>
+                </div>
+                <div class="objective-card">
+                    <h3>🌍 Global Impact</h3>
+                    <p>Assess the revolutionary nature of Portuguese global commercial networks</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: The Little Ice Age Crisis -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌡️ The Little Ice Age: Environmental Crisis</h2>
+            <div class="emoji-large">❄️</div>
+            
+            <div class="climate-chart">
+                <h3>Climate Crisis Timeline (1450-1700)</h3>
+                <div class="timeline">
+                    <div class="timeline-point">1450s<br>Cooling Begins</div>
+                    <div class="timeline-point">1500s<br>Crop Failures</div>
+                    <div class="timeline-point">1600s<br>Peak Cold</div>
+                    <div class="timeline-point">1700s<br>Gradual Recovery</div>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 2rem 0;">
+                <div>
+                    <h3>🌾 Environmental Evidence</h3>
+                    <ul>
+                        <li><strong>Temperature decline:</strong> 1-2°C drop across Europe</li>
+                        <li><strong>Shorter growing seasons:</strong> 2-3 weeks less per year</li>
+                        <li><strong>Harvest failures:</strong> 25-30% more frequent</li>
+                        <li><strong>Population pressure:</strong> Food shortages create migration</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>💰 Political-Economic Crisis</h3>
+                    <ul>
+                        <li><strong>Traditional taxation fails:</strong> Land-based revenues drop</li>
+                        <li><strong>Military costs increase:</strong> Expensive gunpowder armies</li>
+                        <li><strong>Social unrest grows:</strong> Food shortages create instability</li>
+                        <li><strong>International competition:</strong> Kingdoms compete for declining resources</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="question-highlight">
+                Why might environmental crisis make political leaders willing to experiment with revolutionary new approaches?
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Portuguese Constraints & Opportunities -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🇵🇹 Portuguese Geographic & Political Context</h2>
+            
+            <div class="key-concepts">
+                <div class="concept-bubble">Small Population (1M)</div>
+                <div class="concept-bubble">Limited Agricultural Base</div>
+                <div class="concept-bubble">Atlantic Coastal Position</div>
+                <div class="concept-bubble">Political Unity</div>
+            </div>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Factor</th>
+                        <th>🇵🇹 Portuguese Situation</th>
+                        <th>🇪🇸 Traditional European Response</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Population Size</strong></td>
+                        <td>Only ~1 million people</td>
+                        <td>Large territorial armies (France: 15M)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Agricultural Impact</strong></td>
+                        <td>Environmental crisis hits hard</td>
+                        <td>Increase taxation, territorial expansion</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Geographic Position</strong></td>
+                        <td>Atlantic coastal opportunities</td>
+                        <td>Continental land warfare focus</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Political Organization</strong></td>
+                        <td>Centralized monarchy enables coordination</td>
+                        <td>Fragmented authorities, conflicting policies</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="question-highlight">
+                How might Portugal's limitations actually force them toward more innovative solutions than larger, more powerful kingdoms?
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Commercial Empire as Revolution -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🚢 Commercial Empire: Political Revolution</h2>
+            
+            <div class="primary-source">
+                <strong>Portuguese Royal Trading Charter (1505):</strong><br>
+                "We grant exclusive rights to trade in spices, precious stones, and other merchandise in the lands beyond the Cape of Good Hope, in return for the establishment of fortified posts and naval protection of our commercial interests..."
+            </div>
+            
+            <div class="network-grid">
+                <div class="network-card">
+                    <h4>🏰 Trading Post Empire</h4>
+                    <p>Fortified coastal bases rather than territorial conquest and administration</p>
+                </div>
+                <div class="network-card">
+                    <h4>🤝 Commercial Partnerships</h4>
+                    <p>Work with existing local rulers rather than replacing them</p>
+                </div>
+                <div class="network-card">
+                    <h4>💰 Minimal Overhead</h4>
+                    <p>Small garrisons and limited bureaucracy reduce costs</p>
+                </div>
+                <div class="network-card">
+                    <h4>🌍 Global Integration</h4>
+                    <p>Connect Asian, African, American, and European economies</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight">
+                How does this commercial empire approach solve the specific problems created by environmental crisis?
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Portuguese Innovation Examples -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🗺️ Revolutionary Portuguese Networks</h2>
+            
+            <div class="timeline">
+                <div class="timeline-point">1440s-1480s<br>West Africa<br>Gold & Slaves</div>
+                <div class="timeline-point">1510<br>Goa, India<br>Spice Control</div>
+                <div class="timeline-point">1500s<br>Brazil<br>Sugar Production</div>
+                <div class="timeline-point">1557<br>Macau, China<br>Trade Partnership</div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 3rem 0;">
+                <div>
+                    <h3>📍 Strategic Innovations</h3>
+                    <ul>
+                        <li><strong>Goa (1510):</strong> Commercial base controlling spice trade without territorial administration</li>
+                        <li><strong>Brazil:</strong> Sugar plantation development with minimal territorial control</li>
+                        <li><strong>Macau (1557):</strong> Trading partnership with Chinese authorities</li>
+                        <li><strong>African Coast:</strong> Gold trade and slave networks via coastal posts</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>💡 How This Solves Crisis Problems</h3>
+                    <ul>
+                        <li><strong>Alternative revenue:</strong> Spice profits independent of European agriculture</li>
+                        <li><strong>Low military costs:</strong> Naval protection cheaper than territorial armies</li>
+                        <li><strong>Economic diversification:</strong> Multiple global revenue streams</li>
+                        <li><strong>Administrative efficiency:</strong> Commercial partnerships reduce governance costs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Economic Revolution Features -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>💰 Economic Revolution Through Global Networks</h2>
+            
+            <div class="key-concepts">
+                <div class="concept-bubble">Global Commodity Integration</div>
+                <div class="concept-bubble">Financial Innovation</div>
+                <div class="concept-bubble">Commercial Law</div>
+                <div class="concept-bubble">Public-Private Partnerships</div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; margin: 2rem 0;">
+                <div>
+                    <h3>🌍 Revolutionary Economic Features</h3>
+                    <ul>
+                        <li><strong>Global integration:</strong> Pepper, gold, slaves, sugar traded across continents</li>
+                        <li><strong>Financial systems:</strong> Credit, marine insurance, international banking</li>
+                        <li><strong>Commercial law:</strong> Legal frameworks for long-distance trade</li>
+                        <li><strong>State-merchant partnership:</strong> Government authority + merchant expertise</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>📈 Success Indicators</h3>
+                    <ul>
+                        <li><strong>Massive profits:</strong> Spice trade returns 1000%+ on successful voyages</li>
+                        <li><strong>Economic sustainability:</strong> Commercial empire operates profitably 150+ years</li>
+                        <li><strong>Political stability:</strong> Fewer rebellions than territorial conquest</li>
+                        <li><strong>Global influence:</strong> Networks connect all inhabited continents</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="navigation-system">
+                <h3>🧭 Revolutionary Navigation & Technology</h3>
+                <p>Portuguese develop revolutionary combination of <strong>maritime technology + commercial organization + global finance</strong> that enables sustained profit from intercontinental trade networks</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Global Revolutionary Impact -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌍 Global Impact of Portuguese Innovation</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 2rem 0;">
+                <div>
+                    <h3>🏛️ Political Revolutionary Implications</h3>
+                    <ul>
+                        <li><strong>Alternative to territorial empire:</strong> Commercial control as viable state strategy</li>
+                        <li><strong>Flexible sovereignty:</strong> New forms of political authority beyond territorial boundaries</li>
+                        <li><strong>International commercial law:</strong> Legal frameworks for global trade</li>
+                        <li><strong>Multi-ethnic governance:</strong> Commercial partnerships create new approaches to diversity</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>💼 Economic Revolutionary Implications</h3>
+                    <ul>
+                        <li><strong>First global market economy:</strong> Permanent connections between all continents</li>
+                        <li><strong>Commercial capitalism:</strong> Profit-driven expansion beyond tribute systems</li>
+                        <li><strong>Financial system innovation:</strong> Banking, credit, insurance for global commerce</li>
+                        <li><strong>Labor system transformation:</strong> Global slave trade as commercial enterprise</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="central-question">
+                <h3>Template for Future Development</h3>
+                <ul style="text-align: left; max-width: 800px; margin: 0 auto;">
+                    <li><strong>Dutch commercial empire:</strong> Adopts and improves Portuguese model</li>
+                    <li><strong>English commercial expansion:</strong> Learns from Portuguese successes and failures</li>
+                    <li><strong>Alternative to Spanish territorial model:</strong> Different template for overseas expansion</li>
+                    <li><strong>Modern multinational precedent:</strong> Early model for global commercial organization</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Contingency Analysis -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🤔 Contingency Analysis: Alternative Outcomes</h2>
+            
+            <div class="scenario-grid">
+                <div class="scenario-card">
+                    <h4>Scenario 1: More Severe Environmental Crisis</h4>
+                    <ul style="text-align: left; font-size: 1.2rem;">
+                        <li>Could extreme agricultural collapse have prevented overseas ventures?</li>
+                        <li>Might Portuguese resources have been insufficient for global networks?</li>
+                        <li>How might severe climate change have affected maritime safety?</li>
+                    </ul>
+                </div>
+                <div class="scenario-card">
+                    <h4>Scenario 2: Portuguese Commercial Failure</h4>
+                    <ul style="text-align: left; font-size: 1.2rem;">
+                        <li>Could territorial empire have remained the only viable model?</li>
+                        <li>Might environmental crisis have forced different innovations within Europe?</li>
+                        <li>How might global economic development have proceeded differently?</li>
+                    </ul>
+                </div>
+                <div class="scenario-card">
+                    <h4>Scenario 3: Multiple European Commercial Powers</h4>
+                    <ul style="text-align: left; font-size: 1.2rem;">
+                        <li>Could multiple small kingdoms have developed competing commercial empires?</li>
+                        <li>Might cooperation rather than competition have emerged?</li>
+                        <li>How might different political arrangements have affected innovation?</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="question-highlight">
+                Which factors were most essential for Portuguese commercial revolutionary success?
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Student Analysis Questions -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Critical Analysis Questions</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin: 2rem 0;">
+                <div class="question-highlight">
+                    Could alternative approaches have solved environmental crisis pressures equally well?
+                </div>
+                <div class="question-highlight">
+                    How did environmental necessity interact with Portuguese political and geographic advantages?
+                </div>
+                <div class="question-highlight">
+                    Why might Portuguese commercial innovation influence other European approaches to overseas expansion?
+                </div>
+            </div>
+            
+            <div class="central-question">
+                <h3>Synthesis Challenge</h3>
+                <p>How did environmental crisis drive Portuguese political and economic innovation, and why did their commercial experiments prove revolutionary for global development?</p>
+            </div>
+            
+            <div class="key-concepts">
+                <div class="concept-bubble">Environmental Adaptation</div>
+                <div class="concept-bubble">Commercial Innovation</div>
+                <div class="concept-bubble">Global Networks</div>
+                <div class="concept-bubble">Political Revolution</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Course Connection -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔗 Looking Ahead: Spanish Territorial Response</h2>
+            
+            <div class="timeline">
+                <div class="timeline-point">Week 2A<br>Portuguese<br>Commercial</div>
+                <div class="timeline-point">Week 2B<br>Spanish<br>Territorial</div>
+                <div class="timeline-point">Week 2C<br>Columbus &<br>Convergence</div>
+                <div class="timeline-point">Week 3<br>English<br>Constitutional</div>
+            </div>
+            
+            <div class="central-question">
+                <h3>Connecting Thread to Week 2B</h3>
+                <p>Portuguese commercial revolution succeeds because it matches their constraints and capabilities to environmental pressures. Next class, we'll examine how Spanish territorial experiments represent a completely different revolutionary response to the same environmental crisis - and how Spanish attempts to organize territorial control lead to the revolutionary encomienda system.</p>
+            </div>
+            
+            <div class="question-highlight">
+                Preview Question: Spain has larger population and military capabilities than Portugal, enabling territorial rather than commercial empire. What new political and economic challenges might territorial control create that commercial empire avoids?
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; margin: 2rem 0;">
+                <div>
+                    <h3>🇵🇹 Portuguese Solutions</h3>
+                    <ul>
+                        <li>Commercial partnerships</li>
+                        <li>Minimal territorial control</li>
+                        <li>Trading post networks</li>
+                        <li>Low administrative costs</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🇪🇸 Spanish Challenges Ahead</h3>
+                    <ul>
+                        <li>Territorial administration</li>
+                        <li>Labor system organization</li>
+                        <li>Indigenous population control</li>
+                        <li>Colonial governance innovation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            }
+        });
+
+        // Initialize
+        document.getElementById('slide-counter').textContent = `1 / ${totalSlides}`;
+    </script>
+</body>
+</html>

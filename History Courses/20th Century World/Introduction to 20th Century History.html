@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20th Century Historical Thinking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #2C5F2D 0%, #97BC62 50%, #F4E4C1 100%);
+            color: #2D3B2F;
+            overflow: hidden;
+            height: 100vh;
+            font-weight: 400;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 90%;
+            height: 85%;
+            background: linear-gradient(135deg, #FEFEFE 0%, #F8F6F3 100%);
+            border-radius: 12px;
+            padding: 60px;
+            position: relative;
+            overflow-y: auto;
+            box-shadow: 0 8px 32px rgba(45, 95, 45, 0.15);
+            border: 1px solid rgba(151, 188, 98, 0.3);
+        }
+
+        .slide.active {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Progressive disclosure animations */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .reveal-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-item.slide-in-left {
+            transform: translateX(-30px);
+        }
+
+        .reveal-item.slide-in-left.revealed {
+            transform: translateX(0);
+        }
+
+        .reveal-item.slide-in-right {
+            transform: translateX(30px);
+        }
+
+        .reveal-item.slide-in-right.revealed {
+            transform: translateX(0);
+        }
+
+        /* Typography with engaging colors */
+        h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2C5F2D 0%, #E67E22 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #2C5F2D;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #E67E22, #D35400);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 650;
+            color: #8B1538;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        h4 {
+            font-size: 1.3rem;
+            font-weight: 650;
+            color: #2C5F2D;
+            margin-bottom: 0.75rem;
+        }
+
+        p, li {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: #3D4A3E;
+            margin-bottom: 1rem;
+            max-width: 65ch;
+        }
+
+        .subtitle {
+            font-size: 1.6rem;
+            color: #7D8B7F;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        /* Enhanced slide number */
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: linear-gradient(135deg, #2C5F2D, #97BC62);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            box-shadow: 0 3px 12px rgba(45, 95, 45, 0.3);
+        }
+
+        /* Central question with visual impact */
+        .central-question {
+            background: linear-gradient(135deg, #FEF5E7 0%, #FDF2E9 100%);
+            border: 2px solid #E67E22;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            font-size: 1.5rem;
+            color: #8B4513;
+            font-weight: 600;
+            font-style: italic;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 6px 20px rgba(230, 126, 34, 0.15);
+        }
+
+        .central-question::before {
+            content: '🤔';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: #FEF5E7;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+
+        /* Image placeholders */
+        .image-placeholder {
+            background: linear-gradient(135deg, #E8F5E8 0%, #F0F8F0 100%);
+            border: 2px dashed #97BC62;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            color: #2C5F2D;
+            font-style: italic;
+            position: relative;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .image-placeholder::before {
+            content: '🖼️';
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .image-description {
+            font-weight: 600;
+            color: #2C5F2D;
+            margin-bottom: 0.5rem;
+        }
+
+        .image-details {
+            font-size: 0.95rem;
+            color: #5D6D5F;
+            max-width: 400px;
+        }
+
+        /* Enhanced comparison grids */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-item {
+            background: linear-gradient(135deg, #F8F6F3 0%, #FFFFFF 100%);
+            border-radius: 15px;
+            padding: 2.5rem;
+            border: 2px solid #E5E5E5;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #2C5F2D, #97BC62);
+        }
+
+        .comparison-item:hover {
+            border-color: #97BC62;
+            box-shadow: 0 8px 25px rgba(151, 188, 98, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .year-highlight {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #E67E22, #D35400);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        /* Enhanced tools grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
+
+        .tool-card {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8F6F3 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid #E5E5E5;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #8B1538, #E67E22);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .tool-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .tool-card:hover {
+            border-color: #8B1538;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(139, 21, 56, 0.15);
+        }
+
+        .tool-number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8B1538, #E67E22);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        /* Enhanced approach comparison */
+        .approach-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin: 2rem 0;
+        }
+
+        .approach-traditional {
+            background: linear-gradient(135deg, #FEF5F5 0%, #FDEDED 100%);
+            border: 2px solid #E74C3C;
+            border-radius: 15px;
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .approach-traditional::before {
+            content: '❌';
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: #FEF5F5;
+            padding: 8px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+
+        .approach-historical {
+            background: linear-gradient(135deg, #F0FDF4 0%, #ECFDF5 100%);
+            border: 2px solid #22C55E;
+            border-radius: 15px;
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .approach-historical::before {
+            content: '✅';
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: #F0FDF4;
+            padding: 8px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+
+        /* Enhanced themes grid */
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .theme-card {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8F6F3 100%);
+            border: 2px solid #E5E5E5;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(151, 188, 98, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .theme-card:hover::before {
+            left: 100%;
+        }
+
+        .theme-card:hover {
+            border-color: #97BC62;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(151, 188, 98, 0.2);
+        }
+
+        .theme-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.2rem;
+            display: block;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.1));
+        }
+
+        .theme-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #2C5F2D;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .theme-description {
+            font-size: 0.95rem;
+            color: #5D6D5F;
+            line-height: 1.5;
+        }
+
+        /* Enhanced facts grid */
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .fact-card {
+            background: linear-gradient(135deg, #2C5F2D 0%, #97BC62 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(45, 95, 45, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .fact-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(45, 95, 45, 0.35);
+        }
+
+        .fact-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            display: block;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .fact-description {
+            font-size: 0.95rem;
+            line-height: 1.4;
+            opacity: 0.95;
+        }
+
+        /* Enhanced source styling */
+        .source-container {
+            background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);
+            color: #E5E5E5;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border-left: 6px solid #E67E22;
+        }
+
+        .source-header {
+            font-weight: 700;
+            color: #F39C12;
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .source-text {
+            font-style: italic;
+            line-height: 1.7;
+            font-size: 1.2rem;
+            color: #F0F0F0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .source-container::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+            font-size: 4rem;
+            color: #E67E22;
+            font-family: Georgia, serif;
+            opacity: 0.7;
+        }
+
+        /* Enhanced navigation */
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #2C5F2D 0%, #97BC62 100%);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 44px;
+            min-height: 44px;
+            box-shadow: 0 4px 15px rgba(45, 95, 45, 0.3);
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(45, 95, 45, 0.4);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: linear-gradient(135deg, #CCCCCC 0%, #E0E0E0 100%);
+            color: #666666;
+        }
+
+        /* Progress indicator */
+        .progress-indicator {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2C5F2D;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Continue indicator */
+        .continue-indicator {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            background: linear-gradient(135deg, #E67E22, #D35400);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0;
+            animation: pulse 2s infinite;
+        }
+
+        .continue-indicator.show {
+            opacity: 1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                opacity: 0.7; 
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.05);
+            }
+        }
+
+        /* Enhanced slide indicators */
+        .slide-indicator {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .indicator-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .indicator-dot.active {
+            background: #E67E22;
+            transform: scale(1.3);
+            box-shadow: 0 2px 8px rgba(230, 126, 34, 0.4);
+        }
+
+        .indicator-dot:hover {
+            border-color: #97BC62;
+            background: rgba(151, 188, 98, 0.7);
+        }
+
+        /* Enhanced interactive prompts */
+        .interactive-prompt {
+            background: linear-gradient(135deg, #F0F8F0 0%, #E8F5E8 100%);
+            border: 2px solid #97BC62;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            font-weight: 600;
+            color: #2C5F2D;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(151, 188, 98, 0.2);
+        }
+
+        .interactive-prompt::before {
+            content: "💬";
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: #F0F8F0;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+
+        /* Enhanced homework styling */
+        .homework {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFF3C4 100%);
+            border: 2px solid #FFA726;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .homework::before {
+            content: "📝";
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: #FFF8E1;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+
+        /* Lists with enhanced styling */
+        ul, ol {
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        li::marker {
+            color: #E67E22;
+            font-weight: 700;
+        }
+
+        /* Strong emphasis with color */
+        strong {
+            color: #8B1538;
+            font-weight: 700;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .comparison-grid,
+            .approach-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .tools-grid,
+            .themes-grid,
+            .facts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* High contrast and reduced motion support */
+        @media (prefers-contrast: high) {
+            body {
+                background: #ffffff;
+            }
+            
+            .slide {
+                border: 3px solid #000000;
+                background: #ffffff;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active" data-reveal-count="3">
+            <div class="slide-number">1/8</div>
+            
+            <div class="reveal-item">
+                <h1>20th Century World History</h1>
+                <div class="subtitle">Power, Progress, and Global Transformation</div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="central-question">
+                    Why was the 20th century different from all previous centuries in human history?
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p>Welcome to your journey as historical detectives! Today we'll explore how to think like historians and understand the forces that shaped our modern world.</p>
+                
+                <div class="image-placeholder">
+                    <div class="image-description">Historical Timeline Visualization</div>
+                    <div class="image-details">An interactive timeline showing major 20th century events with visual icons representing technological, political, and social changes from 1900-2000</div>
+                </div>
+            </div>
+            
+            <div class="continue-indicator" id="continue-1">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 2: Time Travel Comparison -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">2/8</div>
+            
+            <div class="reveal-item">
+                <h2>A Century of Unprecedented Change</h2>
+            </div>
+            
+            <div class="comparison-grid">
+                <div class="comparison-item reveal-item slide-in-left">
+                    <div class="year-highlight">1900</div>
+                    <div class="image-placeholder" style="min-height: 150px; margin-bottom: 1rem;">
+                        <div class="image-description">Street Scene from 1900</div>
+                        <div class="image-details">Black and white photograph showing horse-drawn carriages, gas street lamps, people in formal Victorian dress</div>
+                    </div>
+                    <ul>
+                        <li>Horse-drawn transportation</li>
+                        <li>Gas lamps and candles</li>
+                        <li>Letters and telegrams</li>
+                        <li>Vast empires rule most of world</li>
+                    </ul>
+                </div>
+                <div class="comparison-item reveal-item slide-in-right">
+                    <div class="year-highlight">2000</div>
+                    <div class="image-placeholder" style="min-height: 150px; margin-bottom: 1rem;">
+                        <div class="image-description">Street Scene from 2000</div>
+                        <div class="image-details">Color photograph showing automobiles, electric streetlights, people with cell phones, modern casual clothing</div>
+                    </div>
+                    <ul>
+                        <li>Automobiles and airplanes</li>
+                        <li>Electric lighting everywhere</li>
+                        <li>Internet and mobile phones</li>
+                        <li>200+ independent nations</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    If someone from 1900 time-traveled to 2000, what would shock them most?
+                </div>
+            </div>
+            
+            <div class="continue-indicator" id="continue-2">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 3: Two Approaches to History -->
+        <div class="slide" data-reveal-count="3">
+            <div class="slide-number">3/8</div>
+            
+            <div class="reveal-item">
+                <h2>Historical Thinking vs. Memorization</h2>
+            </div>
+            
+            <div class="approach-grid reveal-item">
+                <div class="approach-traditional">
+                    <h3>Traditional Approach</h3>
+                    <ul>
+                        <li><strong>Memorize:</strong> "WWI started in 1914"</li>
+                        <li><strong>Accept:</strong> "This is what happened"</li>
+                        <li><strong>Goal:</strong> Remember facts for tests</li>
+                    </ul>
+                </div>
+                <div class="approach-historical">
+                    <h3>Historical Thinking</h3>
+                    <ul>
+                        <li><strong>Question:</strong> "Why did this war start when it did?"</li>
+                        <li><strong>Investigate:</strong> "Who says this happened, and why?"</li>
+                        <li><strong>Goal:</strong> Think like a detective</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p>In this course, you'll develop the skills to analyze evidence, question sources, and understand multiple perspectives on historical events.</p>
+                
+                <div class="image-placeholder">
+                    <div class="image-description">Detective vs. Student Comparison Infographic</div>
+                    <div class="image-details">Split-screen illustration showing a detective examining evidence with magnifying glass next to a historian analyzing primary sources with similar tools and methodology</div>
+                </div>
+            </div>
+            
+            <div class="continue-indicator" id="continue-3">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 4: Detective Tools -->
+        <div class="slide" data-reveal-count="3">
+            <div class="slide-number">4/8</div>
+            
+            <div class="reveal-item">
+                <h2>Your Historical Detective Toolkit</h2>
+            </div>
+            
+            <div class="tools-grid reveal-item">
+                <div class="tool-card">
+                    <span class="tool-number">1</span>
+                    <h4>Sourcing</h4>
+                    <p>Who wrote this and why?</p>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-number">2</span>
+                    <h4>Context</h4>
+                    <p>What was happening when this was created?</p>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-number">3</span>
+                    <h4>Corroboration</h4>
+                    <p>What do other sources say?</p>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-number">4</span>
+                    <h4>Close Reading</h4>
+                    <p>What exactly does this tell us?</p>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-number">5</span>
+                    <h4>Perspective</h4>
+                    <p>How does background shape viewpoint?</p>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    Think of a current news event. How might different people describe it differently?
+                </div>
+            </div>
+            
+            <div class="continue-indicator" id="continue-4">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 5: The 1900 World -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">5/8</div>
+            
+            <div class="reveal-item">
+                <h2>The Imperial World System in 1900</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="image-placeholder">
+                    <div class="image-description">World Map: Imperial Territories 1900</div>
+                    <div class="image-details">Color-coded world map showing European colonial empires - British (red), French (blue), German (yellow), with legend and territory percentages clearly labeled</div>
+                </div>
+            </div>
+            
+            <div class="facts-grid reveal-item">
+                <div class="fact-card">
+                    <span class="fact-number">84%</span>
+                    <div class="fact-description">of world's land controlled by European empires</div>
+                </div>
+                <div class="fact-card">
+                    <span class="fact-number">~30</span>
+                    <div class="fact-description">independent countries existed globally</div>
+                </div>
+                <div class="fact-card">
+                    <span class="fact-number">Most</span>
+                    <div class="fact-description">of Asia and Africa under imperial control</div>
+                </div>
+                <div class="fact-card">
+                    <span class="fact-number">Growing</span>
+                    <div class="fact-description">technology gap between industrialized and non-industrialized regions</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    Looking at this imperial system, what tensions or sources of change do you notice?
+                </div>
+            </div>
+            
+            <div class="continue-indicator" id="continue-5">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 6: Voices from 1900 -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">6/8</div>
+            
+            <div class="reveal-item">
+                <h2>Predictions About the New Century</h2>
+            </div>
+            
+            <div class="source-container reveal-item">
+                <div class="image-placeholder" style="float: right; width: 120px; height: 120px; margin: 0 0 1rem 1rem; min-height: auto;">
+                    <div class="image-description" style="font-size: 0.8rem;">H.G. Wells Portrait</div>
+                </div>
+                <div class="source-header">H.G. Wells, Anticipations (1901)</div>
+                <div class="source-text">Before the year 2000, flying machines will be universal... war will become impossibly destructive, so that nations will be forced to find peaceful solutions.</div>
+            </div>
+            
+            <div class="source-container reveal-item">
+                <div class="image-placeholder" style="float: right; width: 120px; height: 120px; margin: 0 0 1rem 1rem; min-height: auto;">
+                    <div class="image-description" style="font-size: 0.8rem;">Kaiser Wilhelm II Portrait</div>
+                </div>
+                <div class="source-header">Kaiser Wilhelm II of Germany (1900)</div>
+                <div class="source-text">The German Reich has become a world empire. We have fought for our place in the sun and have won it.</div>
+            </div>
+            
+            <div class="source-container reveal-item">
+                <div class="image-placeholder" style="float: right; width: 120px; height: 120px; margin: 0 0 1rem 1rem; min-height: auto;">
+                    <div class="image-description" style="font-size: 0.8rem;">W.E.B. Du Bois Portrait</div>
+                </div>
+                <div class="source-header">W.E.B. Du Bois, The Souls of Black Folk (1903)</div>
+                <div class="source-text">The problem of the twentieth century is the problem of the color line—the relation of the darker to the lighter races of men.</div>
+            </div>
+            
+            <div class="continue-indicator" id="continue-6">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 7: Five Forces -->
+        <div class="slide" data-reveal-count="6">
+            <div class="slide-number">7/8</div>
+            
+            <div class="reveal-item">
+                <h2>Five Forces That Shaped the 20th Century</h2>
+            </div>
+            
+            <div class="themes-grid">
+                <div class="theme-card reveal-item">
+                    <div class="theme-icon">🏛️</div>
+                    <div class="theme-title">Imperialism</div>
+                    <div class="theme-description">Competition between empires leading to global conflict</div>
+                </div>
+                <div class="theme-card reveal-item">
+                    <div class="theme-icon">🔬</div>
+                    <div class="theme-title">Scientific Progress</div>
+                    <div class="theme-description">Technology as both tool of control and liberation</div>
+                </div>
+                <div class="theme-card reveal-item">
+                    <div class="theme-icon">⚡</div>
+                    <div class="theme-title">Ideological Conflict</div>
+                    <div class="theme-description">Competing visions of government and society</div>
+                </div>
+                <div class="theme-card reveal-item">
+                    <div class="theme-icon">🌍</div>
+                    <div class="theme-title">Decolonization</div>
+                    <div class="theme-description">Transformation from imperial subjects to independent nations</div>
+                </div>
+                <div class="theme-card reveal-item">
+                    <div class="theme-icon">🤝</div>
+                    <div class="theme-title">Global Institutions</div>
+                    <div class="theme-description">Attempts to create international cooperation</div>
+                </div>
+            </div>
+            
+            <div class="continue-indicator" id="continue-7">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 8: Looking Forward -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">8/8</div>
+            
+            <div class="reveal-item">
+                <h2>From Past to Present</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <p>The five forces we've identified continue to shape our world today:</p>
+                
+                <ul>
+                    <li><strong>Economic relationships</strong> between developed and developing nations</li>
+                    <li><strong>Technological advancement</strong> in AI, genetics, and climate science</li>
+                    <li><strong>Political competition</strong> between democratic and authoritarian systems</li>
+                    <li><strong>Independence movements</strong> and struggles for self-determination</li>
+                    <li><strong>International organizations</strong> working on global challenges</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="image-placeholder">
+                    <div class="image-description">Modern World Connections Diagram</div>
+                    <div class="image-details">Infographic showing how the five historical forces manifest in current events - with arrows connecting 20th century examples to 21st century parallels</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="central-question">
+                    Next Session: How did imperial competition create the first global war?
+                </div>
+                
+                <div class="homework">
+                    <strong>Homework:</strong> Find a current news article that connects to one of our five themes. Write one paragraph explaining the connection and bring it to our next class.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousStep()" aria-label="Previous">← Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextStep()" aria-label="Next">Next →</button>
+    </div>
+
+    <!-- Progress indicator -->
+    <div class="progress-indicator" id="progressIndicator">
+        Step 1 of 3
+    </div>
+
+    <!-- Slide Indicators -->
+    <div class="slide-indicator" role="tablist" aria-label="Slide navigation">
+        <div class="indicator-dot active" onclick="goToSlide(1)" role="tab" aria-label="Slide 1"></div>
+        <div class="indicator-dot" onclick="goToSlide(2)" role="tab" aria-label="Slide 2"></div>
+        <div class="indicator-dot" onclick="goToSlide(3)" role="tab" aria-label="Slide 3"></div>
+        <div class="indicator-dot" onclick="goToSlide(4)" role="tab" aria-label="Slide 4"></div>
+        <div class="indicator-dot" onclick="goToSlide(5)" role="tab" aria-label="Slide 5"></div>
+        <div class="indicator-dot" onclick="goToSlide(6)" role="tab" aria-label="Slide 6"></div>
+        <div class="indicator-dot" onclick="goToSlide(7)" role="tab" aria-label="Slide 7"></div>
+        <div class="indicator-dot" onclick="goToSlide(8)" role="tab" aria-label="Slide 8"></div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        let currentStep = 1;
+        const totalSlides = 8;
+
+        // Get the number of reveal steps for current slide
+        function getRevealCount(slideNum) {
+            const slide = document.querySelector(`.slide:nth-child(${slideNum})`);
+            return parseInt(slide.getAttribute('data-reveal-count')) || 1;
+        }
+
+        // Update progress indicator
+        function updateProgress() {
+            const maxSteps = getRevealCount(currentSlide);
+            document.getElementById('progressIndicator').textContent = 
+                `Step ${currentStep} of ${maxSteps}`;
+        }
+
+        // Show/hide continue indicator
+        function updateContinueIndicator() {
+            const maxSteps = getRevealCount(currentSlide);
+            const continueEl = document.getElementById(`continue-${currentSlide}`);
+            
+            if (continueEl) {
+                if (currentStep < maxSteps) {
+                    continueEl.classList.add('show');
+                } else {
+                    continueEl.classList.remove('show');
+                }
+            }
+        }
+
+        // Reveal content progressively
+        function revealContent() {
+            const currentSlideEl = document.querySelector('.slide.active');
+            const revealItems = currentSlideEl.querySelectorAll('.reveal-item');
+            
+            // Hide all items first
+            revealItems.forEach(item => {
+                item.classList.remove('revealed');
+            });
+            
+            // Reveal items up to current step
+            for (let i = 0; i < currentStep; i++) {
+                if (revealItems[i]) {
+                    setTimeout(() => {
+                        revealItems[i].classList.add('revealed');
+                    }, i * 200); // Stagger the reveals
+                }
+            }
+        }
+
+        // Move to next step or slide
+        function nextStep() {
+            const maxSteps = getRevealCount(currentSlide);
+            
+            if (currentStep < maxSteps) {
+                currentStep++;
+                revealContent();
+                updateProgress();
+                updateContinueIndicator();
+            } else if (currentSlide < totalSlides) {
+                goToSlide(currentSlide + 1);
+            }
+        }
+
+        // Move to previous step or slide
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                revealContent();
+                updateProgress();
+                updateContinueIndicator();
+            } else if (currentSlide > 1) {
+                goToSlide(currentSlide - 1);
+                // Go to last step of previous slide
+                currentStep = getRevealCount(currentSlide);
+            }
+        }
+
+        // Go to specific slide
+        function goToSlide(n) {
+            // Hide current slide
+            document.querySelector('.slide.active').classList.remove('active');
+            
+            // Show new slide
+            currentSlide = n;
+            currentStep = 1;
+            document.querySelector(`.slide:nth-child(${n})`).classList.add('active');
+            
+            // Update indicators
+            document.querySelectorAll('.indicator-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === n - 1);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = (currentSlide === 1 && currentStep === 1);
+            document.getElementById('nextBtn').disabled = (currentSlide === totalSlides && currentStep === getRevealCount(totalSlides));
+            
+            // Reveal first step
+            revealContent();
+            updateProgress();
+            updateContinueIndicator();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'Space') {
+                e.preventDefault();
+                nextStep();
+            }
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                previousStep();
+            }
+            if (e.key >= '1' && e.key <= '8') {
+                e.preventDefault();
+                goToSlide(parseInt(e.key));
+            }
+            if (e.key === 'Home') {
+                e.preventDefault();
+                goToSlide(1);
+            }
+            if (e.key === 'End') {
+                e.preventDefault();
+                goToSlide(totalSlides);
+                currentStep = getRevealCount(totalSlides);
+                revealContent();
+                updateProgress();
+                updateContinueIndicator();
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            goToSlide(1);
+            
+            // Add click handlers for continue indicators
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('continue-indicator')) {
+                    nextStep();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

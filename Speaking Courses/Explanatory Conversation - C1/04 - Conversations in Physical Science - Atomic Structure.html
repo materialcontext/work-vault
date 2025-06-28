@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4 Planning: How Atoms and Elements Work</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Inter', system-ui, sans-serif;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 25%, #475569 50%, #64748b 75%, #94a3b8 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .slide h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            letter-spacing: -0.02em;
+        }
+
+        .slide h2 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide p, .slide li {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #e2e8f0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 2px solid #fbbf24;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 32px rgba(251, 191, 36, 0.3);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out 0.5s forwards;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .content-card {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .content-card.animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.2);
+            border-color: #fbbf24;
+        }
+
+        .content-card h3 {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .vocabulary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .vocabulary-table.animate-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .vocabulary-table th,
+        .vocabulary-table td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+        }
+
+        .vocabulary-table th {
+            background: rgba(251, 191, 36, 0.8);
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1e293b;
+        }
+
+        .vocabulary-table tr {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .vocabulary-table tr.animate-in {
+            animation: slideInLeft 0.5s ease-out forwards;
+        }
+
+        .frame-examples {
+            background: rgba(16, 185, 129, 0.2);
+            border-left: 4px solid #10b981;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 10px 10px 0;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .frame-examples.animate-in {
+            animation: slideInLeft 0.6s ease-out forwards;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #1e293b;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            font-weight: 600;
+            font-size: 1.4rem;
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .challenge-box.animate-in {
+            animation: scaleIn 0.8s ease-out forwards;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: #fbbf24;
+            border: none;
+            color: #1e293b;
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+        }
+
+        .nav-btn:hover {
+            background: #f59e0b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fbbf24;
+            padding: 0.8rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .emoji-large {
+            font-size: 3rem;
+            margin: 1rem 0;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        .emoji-large.animate-in {
+            animation: bounceIn 1s ease-out forwards;
+        }
+
+        .step-indicator {
+            display: inline-block;
+            background: #fbbf24;
+            color: #1e293b;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-right: 1rem;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .step-indicator.animate-in {
+            animation: slideInLeft 0.5s ease-out forwards;
+        }
+
+        .progressive-list li {
+            opacity: 0;
+            transform: translateX(-20px);
+            list-style: none;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .progressive-list li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #fbbf24;
+            font-weight: bold;
+        }
+
+        .progressive-list li.animate-in {
+            animation: slideInLeft 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+        }
+
+        li {
+            margin: 0.6rem 0;
+            padding-left: 0.5rem;
+        }
+
+        strong {
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
+        .analogy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .auto-reveal.show {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 8</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" onclick="revealAll()" style="margin-left: 1rem;">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <div class="step-indicator animate-in" style="animation-delay: 0.2s;">Lesson 4 Planning</div>
+            <h1>How Atoms and Elements Work</h1>
+            <div class="emoji-large animate-in" style="animation-delay: 0.8s;">⚛️</div>
+            <div class="central-question">
+                <h3>Building Hierarchical Explanation Skills</h3>
+                <p><em>From invisible building blocks to observable properties</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Core Topics -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>Core Topics to Cover</h2>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🧱 What Atoms Are</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Smallest building blocks of matter</li>
+                        <li class="auto-reveal">Invisible but observable effects</li>
+                        <li class="auto-reveal">Make up all substances</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🏗️ Atomic Structure</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Protons, neutrons, electrons</li>
+                        <li class="auto-reveal">Nucleus and electron arrangement</li>
+                        <li class="auto-reveal">Simplified but accurate model</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🔗 Elements vs. Compounds</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">How atoms combine</li>
+                        <li class="auto-reveal">Different properties from combinations</li>
+                        <li class="auto-reveal">Chemical behavior patterns</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>📊 Periodic Table Organization</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Patterns based on atomic structure</li>
+                        <li class="auto-reveal">Element families and properties</li>
+                        <li class="auto-reveal">Predictable behaviors</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Explanatory Fluency Focus -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>Explanatory Fluency Focus</h2>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <div class="step-indicator auto-reveal">Step 1</div>
+                    <h3>🏗️ Hierarchical Explanation</h3>
+                    <p>Atoms → Elements → Compounds → Materials</p>
+                </div>
+                <div class="content-card auto-reveal">
+                    <div class="step-indicator auto-reveal">Step 2</div>
+                    <h3>🔗 Abstract-to-Concrete</h3>
+                    <p>Invisible atoms → Observable properties</p>
+                </div>
+                <div class="content-card auto-reveal">
+                    <div class="step-indicator auto-reveal">Step 3</div>
+                    <h3>📝 Structural Language</h3>
+                    <p>Organization and arrangement vocabulary</p>
+                </div>
+                <div class="content-card auto-reveal">
+                    <div class="step-indicator auto-reveal">Step 4</div>
+                    <h3>🔄 Analogy Usage</h3>
+                    <p>Making invisible concepts understandable</p>
+                </div>
+            </div>
+            <div class="challenge-box auto-reveal">
+                Goal: 7-8 minute sustained explanation with hierarchical thinking
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Sentence Frames -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>Sentence Frames to Practice</h2>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🏗️ Hierarchical Explanation</h3>
+                    <div class="frame-examples auto-reveal">
+                        <div class="step-indicator auto-reveal">Frame 1</div>
+                        <p>"Matter is made up of _____, which combine to form _____, which create _____."</p>
+                    </div>
+                    <div class="frame-examples auto-reveal">
+                        <div class="step-indicator auto-reveal">Frame 2</div>
+                        <p>"At the smallest level, _____ contains _____."</p>
+                    </div>
+                    <div class="frame-examples auto-reveal">
+                        <div class="step-indicator auto-reveal">Frame 3</div>
+                        <p>"These tiny parts work together to _____."</p>
+                    </div>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🔗 Abstract-to-Concrete</h3>
+                    <div class="frame-examples auto-reveal">
+                        <div class="step-indicator auto-reveal">Frame 4</div>
+                        <p>"Even though you can't see _____, you can observe its effects when _____."</p>
+                    </div>
+                    <div class="frame-examples auto-reveal">
+                        <div class="step-indicator auto-reveal">Frame 5</div>
+                        <p>"Think of an atom like _____ because both have _____."</p>
+                    </div>
+                    <div class="frame-examples auto-reveal">
+                        <div class="step-indicator auto-reveal">Frame 6</div>
+                        <p>"This invisible structure explains why _____."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: More Sentence Frames -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>Advanced Sentence Frames</h2>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>⚡ Cause-and-Effect Structure</h3>
+                    <div class="frame-examples auto-reveal">
+                        <p>"Because atoms have _____, elements can _____."</p>
+                    </div>
+                    <div class="frame-examples auto-reveal">
+                        <p>"This arrangement causes _____ to behave differently than _____."</p>
+                    </div>
+                    <div class="frame-examples auto-reveal">
+                        <p>"The number of _____ determines _____."</p>
+                    </div>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🔄 Analogy Development</h3>
+                    <div class="frame-examples auto-reveal">
+                        <p>"An atom is similar to _____ because _____."</p>
+                    </div>
+                    <div class="frame-examples auto-reveal">
+                        <p>"Just like _____ has parts that work together, atoms _____."</p>
+                    </div>
+                    <div class="frame-examples auto-reveal">
+                        <p>"This works the same way as _____ when _____."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Essential Vocabulary -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>Essential Vocabulary</h2>
+            <table class="vocabulary-table auto-reveal">
+                <thead>
+                    <tr>
+                        <th>Core Atomic Terms</th>
+                        <th>Definition</th>
+                        <th>Usage in Explanation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="auto-reveal">
+                        <td><strong>ATOM</strong></td>
+                        <td>Smallest unit of matter with element properties</td>
+                        <td>"Everything is made of atoms that..."</td>
+                    </tr>
+                    <tr class="auto-reveal">
+                        <td><strong>ELEMENT</strong></td>
+                        <td>Matter made of only one type of atom</td>
+                        <td>"Each element has atoms with..."</td>
+                    </tr>
+                    <tr class="auto-reveal">
+                        <td><strong>PROTON</strong></td>
+                        <td>Positively charged particle in nucleus</td>
+                        <td>"The number of protons determines..."</td>
+                    </tr>
+                    <tr class="auto-reveal">
+                        <td><strong>ELECTRON</strong></td>
+                        <td>Negatively charged particle around nucleus</td>
+                        <td>"Electrons are responsible for..."</td>
+                    </tr>
+                    <tr class="auto-reveal">
+                        <td><strong>NUCLEUS</strong></td>
+                        <td>Center of atom with protons and neutrons</td>
+                        <td>"At the atom's center, the nucleus..."</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Slide 7: Analogies and Examples -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>Analogies and Examples</h2>
+            <div class="analogy-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🧱 Building/Architecture</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Atoms like LEGO blocks</strong> - different types combine in different ways</li>
+                        <li class="auto-reveal"><strong>Elements like building materials</strong> - wood, brick, steel have different properties</li>
+                        <li class="auto-reveal"><strong>Periodic table like filing system</strong> - organized by similar properties</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🍳 Recipe/Cooking</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Atoms like ingredients</strong> - salt, sugar, flour are different "elements"</li>
+                        <li class="auto-reveal"><strong>Compounds like recipes</strong> - different combinations create different results</li>
+                        <li class="auto-reveal"><strong>Properties like flavors</strong> - determined by ingredients used</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>👥 Family/Organization</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Element families</strong> - groups with similar behaviors</li>
+                        <li class="auto-reveal"><strong>Atomic structure like ID cards</strong> - protons determine identity</li>
+                        <li class="auto-reveal"><strong>Electron arrangement like personality</strong> - determines how atoms interact</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Core Challenge -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>Core Explanation Challenge</h2>
+            <div class="central-question auto-reveal">
+                <h3>Student's Ultimate Goal</h3>
+                <p><strong>"Explain what atoms are, how they make up elements, and why different elements have different properties. Use analogies to help someone understand these invisible building blocks."</strong></p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>✅ Success Criteria</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Use hierarchical language (atoms → elements → compounds)</li>
+                        <li class="auto-reveal">Include at least two analogies for atomic concepts</li>
+                        <li class="auto-reveal">Explain connection between structure and properties</li>
+                        <li class="auto-reveal">Demonstrate understanding of scale (invisible → visible)</li>
+                        <li class="auto-reveal"><strong>Speak for 7-8 minutes with confidence</strong></li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🧪 Practice Examples</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Carbon:</strong> pencils, diamonds, your body</li>
+                        <li class="auto-reveal"><strong>Iron:</strong> blood, tools, cars</li>
+                        <li class="auto-reveal"><strong>Oxygen:</strong> air, water, rust</li>
+                        <li class="auto-reveal"><strong>Water (H2O):</strong> hydrogen + oxygen = liquid</li>
+                        <li class="auto-reveal"><strong>Salt (NaCl):</strong> sodium + chlorine = edible</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            resetReveal();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show', 'animate-in');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+            }
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            // Reveal all remaining elements
+            for (let i = revealIndex; i < elements.length; i++) {
+                elements[i].classList.add('show');
+            }
+            revealIndex = elements.length;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+		nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'Enter') {
+		e.preventDefault();
+		revealNextElement();
+	    }
+        });
+
+        // Click anywhere to reveal next element
+        document.addEventListener('click', function(e) {
+            // Only if not clicking navigation buttons
+            if (!e.target.classList.contains('nav-btn')) {
+                revealNextElement();
+            }
+        });
+
+        // Initialize
+        document.getElementById('slide-counter').textContent = `1 / ${totalSlides}`;
+    </script>
+</body>
+</html>
