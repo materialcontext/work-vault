@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 1: American Essay Structure and Thesis Development Mastery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 25%, #4f46e5 50%, #6366f1 75%, #8b5cf6 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        @media (min-width: 1920px) {
+            .slide {
+                padding: 3rem 4rem;
+            }
+            
+            .slide-content {
+                max-width: 1600px;
+            }
+        }
+
+        @media (min-width: 2560px) {
+            .slide {
+                padding: 4rem 6rem;
+            }
+            
+            .slide-content {
+                max-width: 2000px;
+            }
+            
+            .objectives-grid {
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            }
+            
+            .essay-structure {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        @media (max-height: 800px) {
+            .slide {
+                padding: 1rem 2rem;
+                justify-content: flex-start;
+                padding-top: 2rem;
+            }
+            
+            .slide h1 {
+                font-size: clamp(2rem, 4vw, 3rem);
+                margin-bottom: 0.5rem;
+            }
+            
+            .slide h2 {
+                font-size: clamp(1.5rem, 3vw, 2.5rem);
+                margin-bottom: 1rem;
+            }
+            
+            .objectives-grid,
+            .essay-structure,
+            .comparison-grid {
+                gap: 1rem;
+                margin: 1rem 0;
+            }
+        }
+
+        .slide-content {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .slide h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fbbf24, #f59e0b, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.1;
+        }
+
+        .slide h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .slide h3 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide p, .slide li {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #e2e8f0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question {
+            background: rgba(251, 191, 36, 0.15);
+            backdrop-filter: blur(20px);
+            border: 3px solid rgba(251, 191, 36, 0.4);
+            border-radius: 30px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 15px 50px rgba(251, 191, 36, 0.2);
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question h3 {
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .objective-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.3);
+            border-color: rgba(251, 191, 36, 0.6);
+        }
+
+        .objective-card:hover::before {
+            left: 100%;
+        }
+
+        .objective-card h3 {
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .pattern-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .korean-pattern {
+            border-color: rgba(239, 68, 68, 0.4);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .american-pattern {
+            border-color: rgba(34, 197, 94, 0.4);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .pattern-card h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .korean-pattern h3 {
+            color: #fca5a5;
+        }
+
+        .american-pattern h3 {
+            color: #86efac;
+        }
+
+        .thesis-examples {
+            background: rgba(99, 102, 241, 0.2);
+            border-left: 6px solid #6366f1;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #ffffff;
+            padding: 2rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            font-weight: 600;
+            font-size: 1.4rem;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .essay-structure {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .structure-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 1.2rem;
+            border: 2px solid rgba(147, 51, 234, 0.3);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .structure-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.3);
+            border-color: rgba(147, 51, 234, 0.6);
+        }
+
+        .structure-card h4 {
+            color: #c084fc;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(251, 191, 36, 0.9);
+            border: none;
+            color: #1e3a8a;
+            padding: 1.2rem 1.8rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-btn:hover {
+            background: rgba(251, 191, 36, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.6);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(251, 191, 36, 0.9);
+            color: #1e3a8a;
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
+            z-index: 1000;
+        }
+
+        .wrong-example {
+            background: rgba(239, 68, 68, 0.2);
+            border-left: 6px solid #ef4444;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 15px 15px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .correct-example {
+            background: rgba(34, 197, 94, 0.2);
+            border-left: 6px solid #22c55e;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 15px 15px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .example-label {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .wrong-example .example-label {
+            color: #fca5a5;
+        }
+
+        .correct-example .example-label {
+            color: #86efac;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #fbbf24, #10b981, #6366f1);
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        .timeline-point {
+            background: linear-gradient(135deg, #ffffff, #f1f5f9);
+            color: #1e3a8a;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 3;
+            border: 3px solid rgba(251, 191, 36, 0.6);
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .timeline-point:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4);
+        }
+
+        .emoji-large {
+            font-size: 4rem;
+            margin: 1rem 0;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+            color: #e2e8f0;
+        }
+
+        li {
+            margin: 0.8rem 0;
+            padding-left: 1rem;
+            color: #e2e8f0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        strong {
+            color: #fbbf24;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .step-indicator {
+            display: inline-block;
+            background: #fbbf24;
+            color: #1e3a8a;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-right: 1rem;
+            text-shadow: none;
+        }
+
+        .practice-box {
+            background: rgba(147, 51, 234, 0.2);
+            border: 2px solid rgba(147, 51, 234, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+        }
+
+        .practice-box h4 {
+            color: #c084fc;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 12</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="reveal-btn" onclick="toggleRevealAll()">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1 class="auto-reveal">Week 1: American Essay Structure & Thesis Development</h1>
+            <div class="emoji-large auto-reveal">📝</div>
+            <div class="central-question auto-reveal">
+                <h3>Foundation Skills for Academic Writing Success</h3>
+                <p><em>Essential skills for Korean students entering American high schools</em></p>
+            </div>
+            <div class="timeline auto-reveal">
+                <div class="timeline-point">Essay Structure</div>
+                <div class="timeline-point">Thesis Development</div>
+                <div class="timeline-point">Korean → American</div>
+                <div class="timeline-point">Practice & Apply</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Learning Objectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Session Objectives</h2>
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h3>📋 Essay Structure</h3>
+                    <p>Master American five-paragraph essay organization and understand how it differs from Korean writing patterns</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>💡 Thesis Development</h3>
+                    <p>Write clear, arguable thesis statements that drive entire essays and preview supporting arguments</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>🔄 Pattern Recognition</h3>
+                    <p>Distinguish between Korean circular rhetoric and American linear argumentation for academic success</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>📚 Cross-Subject Transfer</h3>
+                    <p>Apply essay structure and thesis skills to history, English, science, and social studies writing</p>
+                </div>
+            </div>
+            <div class="central-question auto-reveal">
+                <h3>Central Question</h3>
+                <p><em>"How do we build powerful academic arguments using American essay structure and thesis-driven writing?"</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Korean vs American Patterns -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔄 Korean vs. American Essay Patterns</h2>
+            <div class="comparison-grid">
+                <div class="pattern-card korean-pattern auto-reveal">
+                    <h3>❌ Korean Pattern (기승전결)</h3>
+                    <ul>
+                        <li><strong>Beginning:</strong> Introduction to topic, background context</li>
+                        <li><strong>Development:</strong> Gradual exploration of ideas</li>
+                        <li><strong>Change:</strong> Shift in perspective or direction</li>
+                        <li><strong>Conclusion:</strong> Subtle conclusion, often implicit</li>
+                    </ul>
+                    <div class="auto-reveal" style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.2); border-radius: 10px;">
+                        <strong>Result:</strong> Indirect, circular, reader must infer meaning
+                    </div>
+                </div>
+                <div class="pattern-card american-pattern auto-reveal">
+                    <h3>✅ American Pattern (Linear Argument)</h3>
+                    <ul>
+                        <li><strong>Introduction:</strong> Clear thesis with preview</li>
+                        <li><strong>Body 1:</strong> First reason supporting thesis</li>
+                        <li><strong>Body 2:</strong> Second reason supporting thesis</li>
+                        <li><strong>Body 3:</strong> Third reason supporting thesis</li>
+                        <li><strong>Conclusion:</strong> Restatement and implications</li>
+                    </ul>
+                    <div class="auto-reveal" style="margin-top: 1rem; padding: 1rem; background: rgba(34, 197, 94, 0.2); border-radius: 10px;">
+                        <strong>Result:</strong> Direct, clear, argument stated upfront
+                    </div>
+                </div>
+            </div>
+            <div class="formula-box auto-reveal">
+                <strong>Why American Pattern Works:</strong> Busy teachers want clear arguments fast • Easy to follow logic • Better test performance • Prepares for professional writing
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Thesis vs Topic -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>💡 Thesis vs. Topic: The Fundamental Distinction</h2>
+            
+            <div class="wrong-example auto-reveal">
+                <div class="example-label">❌ Topics (Not Arguable)</div>
+                <ul>
+                    <li>"European exploration in the 15th century"</li>
+                    <li>"Christopher Columbus's voyages"</li>
+                    <li>"The effects of social media on teenagers"</li>
+                </ul>
+                <p><strong>Problem:</strong> These are just subjects, not arguments</p>
+            </div>
+
+            <div class="correct-example auto-reveal">
+                <div class="example-label">✅ Thesis Statements (Arguable Claims)</div>
+                <ul>
+                    <li>"European exploration began primarily due to <strong>economic pressures</strong> rather than scientific curiosity."</li>
+                    <li>"Columbus's voyages were <strong>calculated business plans</strong> designed to appeal to royal economic interests."</li>
+                    <li>"Social media <strong>negatively impacts</strong> teenage mental health through comparison and sleep disruption."</li>
+                </ul>
+                <p><strong>Success:</strong> Clear arguments that someone could disagree with</p>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <h3>🔑 Thesis Requirements</h3>
+                <p><span class="step-indicator">1</span><strong>Arguable:</strong> Reasonable people could disagree</p>
+                <p><span class="step-indicator">2</span><strong>Specific:</strong> Focused claim, not broad generalization</p>
+                <p><span class="step-indicator">3</span><strong>Provable:</strong> Evidence exists to support the claim</p>
+                <p><span class="step-indicator">4</span><strong>Clear:</strong> Reader understands immediately</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Basic Thesis Formula -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📝 Thesis Construction Formula</h2>
+            
+            <div class="formula-box auto-reveal">
+                <h3>Basic Thesis Formula</h3>
+                <p><strong>[Topic] [action/relationship] because of [reason 1], [reason 2], and [reason 3].</strong></p>
+            </div>
+
+            <div class="thesis-examples auto-reveal">
+                <h3>Step-by-Step Example Development</h3>
+                <p><span class="step-indicator">Step 1</span><strong>Topic:</strong> Columbus's expedition proposals</p>
+                <p><span class="step-indicator">Step 2</span><strong>Action:</strong> "...were primarily motivated by economic factors..."</p>
+                <p><span class="step-indicator">Step 3</span><strong>Reasons:</strong> "...because of European trade route problems, Spanish financial needs, and Columbus's personal debt."</p>
+            </div>
+
+            <div class="correct-example auto-reveal">
+                <div class="example-label">✅ Final Thesis</div>
+                <p><em>"Columbus's expedition proposals were primarily motivated by economic factors because European trade routes to Asia had become expensive and dangerous, Spain needed new revenue sources after the costly Reconquista, and Columbus himself required financial backing to escape personal debt."</em></p>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Your Turn: Practice Topics</h4>
+                <ul>
+                    <li>Social media and teenagers</li>
+                    <li>Climate change solutions</li>
+                    <li>Online vs. in-person learning</li>
+                </ul>
+                <p><strong>Challenge:</strong> Create thesis statements using the formula!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Advanced Thesis Patterns -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔧 Advanced Thesis Patterns</h2>
+            
+            <div class="thesis-examples auto-reveal">
+                <h3>Although/However Pattern</h3>
+                <p><strong>Formula:</strong> "Although [acknowledge opposing view], [main argument] because [reasons]."</p>
+                <div class="correct-example">
+                    <p><em>"Although Columbus portrayed his voyages as religious missions, his expeditions were primarily economic ventures because his proposals emphasized gold and spices, his contracts demanded significant financial rewards, and his letters focused on material benefits rather than spiritual goals."</em></p>
+                </div>
+            </div>
+
+            <div class="thesis-examples auto-reveal">
+                <h3>Cause and Effect Pattern</h3>
+                <p><strong>Formula:</strong> "[Cause] led to [effect] through [process/mechanism]."</p>
+                <div class="correct-example">
+                    <p><em>"Environmental pressures in 15th-century Europe led to overseas exploration through disrupted trade routes, agricultural challenges, and the need for alternative revenue sources."</em></p>
+                </div>
+            </div>
+
+            <div class="thesis-examples auto-reveal">
+                <h3>Comparative Pattern</h3>
+                <p><strong>Formula:</strong> "While [X] and [Y] shared [similarity], [X] differed from [Y] in [key difference], ultimately [significance]."</p>
+                <div class="correct-example">
+                    <p><em>"While both Spanish and Portuguese empires sought overseas wealth, Spain focused on territorial control while Portugal emphasized commercial networks, ultimately creating different colonial legacies."</em></p>
+                </div>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Advanced Practice</h4>
+                <p>Take your basic thesis from the previous slide and rewrite it using the "Although" pattern to add complexity and nuance!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Five-Paragraph Structure -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📋 Five-Paragraph Essay Structure</h2>
+            
+            <div class="essay-structure">
+                <div class="structure-card auto-reveal">
+                    <h4>1️⃣ Introduction</h4>
+                    <ul>
+                        <li><strong>Hook:</strong> Engage reader</li>
+                        <li><strong>Background:</strong> Brief context</li>
+                        <li><strong>Thesis:</strong> Clear argument</li>
+                        <li><strong>Preview:</strong> Supporting points</li>
+                    </ul>
+                </div>
+                <div class="structure-card auto-reveal">
+                    <h4>2️⃣ Body Paragraph 1</h4>
+                    <ul>
+                        <li><strong>Topic Sentence:</strong> First reason</li>
+                        <li><strong>Evidence:</strong> Examples, quotes</li>
+                        <li><strong>Analysis:</strong> Explain connection</li>
+                        <li><strong>Transition:</strong> Connect to next</li>
+                    </ul>
+                </div>
+                <div class="structure-card auto-reveal">
+                    <h4>3️⃣ Body Paragraph 2</h4>
+                    <ul>
+                        <li><strong>Topic Sentence:</strong> Second reason</li>
+                        <li><strong>Evidence:</strong> Examples, quotes</li>
+                        <li><strong>Analysis:</strong> Explain connection</li>
+                        <li><strong>Transition:</strong> Connect to next</li>
+                    </ul>
+                </div>
+                <div class="structure-card auto-reveal">
+                    <h4>4️⃣ Body Paragraph 3</h4>
+                    <ul>
+                        <li><strong>Topic Sentence:</strong> Third reason</li>
+                        <li><strong>Evidence:</strong> Examples, quotes</li>
+                        <li><strong>Analysis:</strong> Explain connection</li>
+                        <li><strong>Transition:</strong> Prepare conclusion</li>
+                    </ul>
+                </div>
+                <div class="structure-card auto-reveal">
+                    <h4>5️⃣ Conclusion</h4>
+                    <ul>
+                        <li><strong>Restatement:</strong> Thesis in new words</li>
+                        <li><strong>Synthesis:</strong> How evidence fits</li>
+                        <li><strong>Implications:</strong> Why it matters</li>
+                        <li><strong>Closure:</strong> Strong ending</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Key Success Factor:</strong> Each body paragraph must directly support your thesis statement. No surprises, no new arguments in conclusion!
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Introduction Formula -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🚀 Introduction Paragraph Formula</h2>
+            
+            <div class="thesis-examples auto-reveal">
+                <h3>Introduction Structure</h3>
+                <p><span class="step-indicator">1</span><strong>Hook:</strong> Interesting opening to engage reader</p>
+                <p><span class="step-indicator">2</span><strong>Background:</strong> Brief context for the topic</p>
+                <p><span class="step-indicator">3</span><strong>Thesis:</strong> Clear argument statement</p>
+                <p><span class="step-indicator">4</span><strong>Preview:</strong> Brief indication of supporting points</p>
+            </div>
+
+            <div class="correct-example auto-reveal">
+                <div class="example-label">✅ Example Introduction</div>
+                <p><em>"When Europeans first encountered the Americas in 1492, many historians have portrayed this as an age of discovery and exploration. </em><strong>[Hook]</strong></p>
+                <p><em>However, examining the economic and political context of 15th-century Europe reveals different motivations. </em><strong>[Background]</strong></p>
+                <p><em>Columbus's expedition proposals were primarily motivated by economic factors because European trade routes to Asia had become expensive and dangerous, Spain needed new revenue sources after the costly Reconquista, and Columbus himself required financial backing to escape personal debt. </em><strong>[Thesis]</strong></p>
+                <p><em>Understanding these economic pressures helps explain why European exploration accelerated when it did."</em> <strong>[Preview]</strong></p>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Introduction Practice</h4>
+                <p>Using your thesis from earlier slides, write a complete introduction paragraph following this four-part structure!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Body Paragraph Structure -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📝 Body Paragraph Structure</h2>
+            
+            <div class="formula-box auto-reveal">
+                <h3>Body Paragraph Formula</h3>
+                <p><span class="step-indicator">1</span><strong>Topic Sentence:</strong> States paragraph's main point supporting thesis</p>
+                <p><span class="step-indicator">2</span><strong>Evidence:</strong> Specific examples, quotes, data supporting topic sentence</p>
+                <p><span class="step-indicator">3</span><strong>Analysis:</strong> Explains how evidence proves the point</p>
+                <p><span class="step-indicator">4</span><strong>Transition:</strong> Connects to next paragraph</p>
+            </div>
+
+            <div class="correct-example auto-reveal">
+                <div class="example-label">✅ Example Body Paragraph</div>
+                <p><em>"First, European trade routes to Asia had become increasingly expensive and dangerous, creating urgent need for alternatives. </em><strong>[Topic Sentence]</strong></p>
+                <p><em>The Ottoman Empire's control of traditional land routes meant European merchants faced high taxes and frequent conflict. For example, Venetian records show spice prices doubled between 1450 and 1490 due to Ottoman trade restrictions. </em><strong>[Evidence]</strong></p>
+                <p><em>This economic pressure made Columbus's proposal for a western sea route extremely attractive to Spanish monarchs seeking competitive advantages in profitable Asian trade. The promise of bypassing Ottoman controls entirely offered Spain the possibility of dominating European spice markets. </em><strong>[Analysis]</strong></p>
+                <p><em>Beyond trade route problems, Spain also faced internal financial pressures that made new revenue sources essential."</em> <strong>[Transition]</strong></p>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Paragraph Practice</h4>
+                <p>Write one body paragraph supporting your thesis using this Topic Sentence + Evidence + Analysis + Transition structure!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Essay Planning Practice -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📋 Essay Planning Workshop</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>Practice Question</h3>
+                <p><em>"Why did European overseas exploration accelerate in the late 15th century?"</em></p>
+            </div>
+
+            <div class="timeline auto-reveal">
+                <div class="timeline-point">Brainstorm<br>Reasons</div>
+                <div class="timeline-point">Choose<br>Top 3</div>
+                <div class="timeline-point">Create<br>Thesis</div>
+                <div class="timeline-point">Plan<br>Body ¶s</div>
+                <div class="timeline-point">Intro &<br>Conclusion</div>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Step-by-Step Planning</h4>
+                <p><span class="step-indicator">1</span><strong>Brainstorm:</strong> Economic pressures, technology, religion, politics, geography...</p>
+                <p><span class="step-indicator">2</span><strong>Choose 3:</strong> Select your strongest, most provable reasons</p>
+                <p><span class="step-indicator">3</span><strong>Thesis:</strong> "European exploration accelerated because of [reason 1], [reason 2], and [reason 3]."</p>
+                <p><span class="step-indicator">4</span><strong>Body Paragraphs:</strong> Topic sentence + Evidence + Analysis for each reason</p>
+                <p><span class="step-indicator">5</span><strong>Introduction/Conclusion:</strong> Hook and implications</p>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Success Tip:</strong> Make sure each body paragraph directly supports your thesis. If a paragraph doesn't clearly advance your argument, cut it or revise it!
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Cross-Subject Applications -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔄 Cross-Subject Transfer</h2>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h3>🧪 Science Essays</h3>
+                    <ul>
+                        <li><strong>Thesis:</strong> "Renewable energy is essential because..."</li>
+                        <li><strong>Evidence:</strong> Studies, data, research</li>
+                        <li><strong>Structure:</strong> Same 5-paragraph format</li>
+                    </ul>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>📚 English Essays</h3>
+                    <ul>
+                        <li><strong>Thesis:</strong> "The character represents X because..."</li>
+                        <li><strong>Evidence:</strong> Quotes from text</li>
+                        <li><strong>Structure:</strong> Same analytical pattern</li>
+                    </ul>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>🌍 Social Studies</h3>
+                    <ul>
+                        <li><strong>Thesis:</strong> "This policy succeeded because..."</li>
+                        <li><strong>Evidence:</strong> Historical examples, statistics</li>
+                        <li><strong>Structure:</strong> Same argumentative framework</li>
+                    </ul>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>🗣️ Current Events</h3>
+                    <ul>
+                        <li><strong>Thesis:</strong> "This issue matters because..."</li>
+                        <li><strong>Evidence:</strong> News sources, expert opinions</li>
+                        <li><strong>Structure:</strong> Same persuasive organization</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Universal Truth:</strong> Whether you're writing about history, science, literature, or current events, American academic writing follows the same pattern: Clear thesis + Supporting evidence + Logical organization
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Transfer Practice</h4>
+                <p>Choose a topic from any subject and create a thesis statement using our formula. Remember: arguable, specific, provable, clear!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Assessment and Next Steps -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Assessment and Next Steps</h2>
+            
+            <div class="practice-box auto-reveal">
+                <h4>✍️ Exit Ticket Challenge</h4>
+                <p>Write a complete introduction paragraph for your planned historical essay including:</p>
+                <ul>
+                    <li>Engaging hook to grab reader attention</li>
+                    <li>Brief background context for your topic</li>
+                    <li>Clear thesis statement with three supporting reasons</li>
+                    <li>Preview of your argument structure</li>
+                </ul>
+            </div>
+
+            <div class="thesis-examples auto-reveal">
+                <h3>Self-Assessment Questions</h3>
+                <p><span class="step-indicator">✓</span>Does my thesis make an argument someone could disagree with?</p>
+                <p><span class="step-indicator">✓</span>Would a reader know my exact position from my introduction?</p>
+                <p><span class="step-indicator">✓</span>Did I follow American linear structure rather than Korean circular pattern?</p>
+                <p><span class="step-indicator">✓</span>Can I apply this structure to other subjects?</p>
+            </div>
+
+            <div class="timeline auto-reveal">
+                <div class="timeline-point">Week 1<br>Structure & Thesis</div>
+                <div class="timeline-point">Week 2<br>Research & Sources</div>
+                <div class="timeline-point">Week 3<br>Advanced Arguments</div>
+                <div class="timeline-point">Week 4<br>Academic Voice</div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>🚀 Next Week Preview</h3>
+                <p><em>"How do we find and use sources to support these thesis statements with evidence? We'll master research skills and source integration!"</em></p>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Week 1 Success:</strong> You now have the foundation for ALL high school academic writing. Master these thesis and structure skills, and you'll succeed in every class!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+        let allRevealed = false;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            allRevealed = false;
+            resetReveal();
+            updateRevealButton();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                
+                if (revealIndex >= elements.length) {
+                    allRevealed = true;
+                    updateRevealButton();
+                }
+                return true;
+            }
+            return false;
+        }
+
+        function toggleRevealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (!allRevealed) {
+                // Reveal all remaining elements
+                for (let i = revealIndex; i < elements.length; i++) {
+                    elements[i].classList.add('show');
+                }
+                revealIndex = elements.length;
+                allRevealed = true;
+            } else {
+                // Hide all elements
+                elements.forEach(el => {
+                    el.classList.remove('show');
+                });
+                revealIndex = 0;
+                allRevealed = false;
+            }
+            updateRevealButton();
+        }
+
+        function updateRevealButton() {
+            const btn = document.getElementById('reveal-btn');
+            btn.textContent = allRevealed ? 'Hide All' : 'Reveal All';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                const revealed = revealNextElement();
+                if (!revealed && allRevealed) {
+                    nextSlide();
+                }
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (revealIndex === 0) {
+                    previousSlide();
+                } else {
+                    // Go back one element
+                    const currentSlideElement = slides[currentSlide];
+                    const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+                    if (revealIndex > 0) {
+                        revealIndex--;
+                        elements[revealIndex].classList.remove('show');
+                        allRevealed = false;
+                        updateRevealButton();
+                    }
+                }
+            } else if (e.key === ' ') {
+                e.preventDefault();
+                revealNextElement();
+            }
+        });
+
+        // Click anywhere to reveal next element
+        document.addEventListener('click', function(e) {
+            // Skip navigation elements
+            if (e.target.closest('.navigation') || 
+                e.target.closest('.slide-indicator')) {
+                return;
+            }
+            
+            const currentSlideElement = slides[currentSlide];
+            if (currentSlideElement && !currentSlideElement.classList.contains('hidden')) {
+                revealNextElement();
+            }
+        });
+
+        // Initialize
+        document.getElementById('slide-counter').textContent = `1 / ${totalSlides}`;
+        updateRevealButton();
+    </script>
+</body>
+</html>

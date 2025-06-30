@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geography Shapes History: Ancient Egypt and Mesopotamia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2d1b69 0%, #4c1d95 25%, #7c3aed 50%, #a855f7 75%, #c084fc 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+            cursor: pointer;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,30 Q25,15 50,30 T100,30 V100 H0 Z" fill="rgba(255,255,255,0.03)"/></svg>') repeat-x;
+            background-size: 300px 100px;
+            animation: wave 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-150px); }
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .slide h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fbbf24, #f59e0b, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: slideInDown 1.2s ease-out;
+        }
+
+        .slide h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            animation: slideInLeft 1s ease-out 0.3s both;
+        }
+
+        .slide h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: slideInRight 1s ease-out 0.4s both;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .central-question {
+            background: rgba(251, 191, 36, 0.15);
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(251, 191, 36, 0.4);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 12px 40px rgba(251, 191, 36, 0.2);
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question h3 {
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(251, 191, 36, 0.3);
+            border-color: rgba(251, 191, 36, 0.6);
+        }
+
+        .comparison-card:hover::before {
+            left: 100%;
+        }
+
+        .comparison-card h3 {
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #fbbf24, #10b981, #06b6d4);
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        .timeline-point {
+            background: linear-gradient(135deg, #ffffff, #f1f5f9);
+            color: #2d1b69;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 3;
+            border: 2px solid rgba(251, 191, 36, 0.6);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .timeline-point:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+        }
+
+        .river-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .river-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .river-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3);
+            border-color: rgba(16, 185, 129, 0.6);
+        }
+
+        .river-card h4 {
+            color: #fbbf24;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .emoji-large {
+            font-size: 4rem;
+            margin: 1rem 0;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(251, 191, 36, 0.9);
+            border: none;
+            color: #2d1b69;
+            padding: 1.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.4rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+            pointer-events: auto;
+        }
+
+        .nav-btn:hover {
+            background: rgba(251, 191, 36, 1);
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.6);
+        }
+
+        .reveal-btn {
+            background: rgba(16, 185, 129, 0.9);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-left: 1rem;
+        }
+
+        .reveal-btn:hover {
+            background: rgba(16, 185, 129, 1);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(251, 191, 36, 0.9);
+            color: #2d1b69;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+        }
+
+        .key-concepts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .concept-bubble {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #ffffff;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .concept-bubble:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+        }
+
+        .evidence-box {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            border-left: 6px solid #fbbf24;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 20px 20px 0;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+        }
+
+        .evidence-box h4 {
+            color: #fbbf24;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+            color: #ffffff;
+        }
+
+        li {
+            margin: 0.8rem 0;
+            padding-left: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        strong {
+            color: #fbbf24;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Ensure navigation elements don't interfere with reveals */
+        .navigation, .slide-indicator {
+            pointer-events: auto;
+        }
+
+        .nav-btn, .reveal-btn {
+            pointer-events: auto;
+        }
+
+        /* Make sure slide content is clickable */
+        .slide-content {
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 12</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()" title="Previous Slide">‹</button>
+        <button class="nav-btn" onclick="nextSlide()" title="Next Slide">›</button>
+        <button class="nav-btn reveal-btn" onclick="toggleRevealAll()" title="Reveal All / Hide All" id="reveal-toggle">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>🏛️ Geography Shapes History</h1>
+            <h2 class="auto-reveal">Ancient Egypt vs. Mesopotamia</h2>
+            <div class="central-question auto-reveal">
+                <h3>Core Question</h3>
+                <p><em>"How did different river systems and geographic features create completely different civilizations in Egypt and Mesopotamia?"</em></p>
+            </div>
+            <div class="timeline auto-reveal">
+                <div class="timeline-point">3500 BCE<br>Birth of Civilization</div>
+                <div class="timeline-point">3100 BCE<br>Egyptian Unification</div>
+                <div class="timeline-point">2334 BCE<br>Sargon of Akkad</div>
+                <div class="timeline-point">1792 BCE<br>Hammurabi's Code</div>
+            </div>
+            <div class="emoji-large auto-reveal">🌊</div>
+        </div>
+    </div>
+
+    <!-- Slide 2: The Power of Geography -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌍 Why Geography Matters</h2>
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🗺️ Geographic Determinism</h3>
+                    <p class="auto-reveal">Environment shapes how societies develop, organize, and survive</p>
+                    <p class="auto-reveal">Rivers, deserts, mountains all influence politics and culture</p>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🏞️ Natural Resources</h3>
+                    <p class="auto-reveal">What's available determines economic possibilities</p>
+                    <p class="auto-reveal">Scarcity vs. abundance drives innovation differently</p>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🛡️ Natural Barriers</h3>
+                    <p class="auto-reveal">Protection enables stability and cultural development</p>
+                    <p class="auto-reveal">Vulnerability forces military innovation and competition</p>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🌾 Agricultural Potential</h3>
+                    <p class="auto-reveal">Reliable food supply supports complex civilization</p>
+                    <p class="auto-reveal">Environmental uncertainty creates different social values</p>
+                </div>
+            </div>
+            <div class="central-question auto-reveal">
+                <h3>The Fundamental Principle</h3>
+                <p>Two civilizations, same time period, different geography = <strong>completely different destinies</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Rivers of Destiny -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌊 Rivers of Destiny</h2>
+            <div class="emoji-large auto-reveal">⚖️</div>
+            
+            <div class="river-comparison">
+                <div class="river-card auto-reveal">
+                    <h4>🇪🇬 The Predictable Nile</h4>
+                    <ul>
+                        <li class="auto-reveal"><strong>Floods every year:</strong> June to September, like clockwork</li>
+                        <li class="auto-reveal"><strong>Rich silt deposits:</strong> Creates world's most fertile farmland</li>
+                        <li class="auto-reveal"><strong>Reliable calendar:</strong> Flood-Plant-Harvest seasons</li>
+                        <li class="auto-reveal"><strong>Agricultural surplus:</strong> Supports pyramids and monuments</li>
+                    </ul>
+                </div>
+                <div class="river-card auto-reveal">
+                    <h4>🏛️ The Unpredictable Tigris-Euphrates</h4>
+                    <ul>
+                        <li class="auto-reveal"><strong>Irregular flooding:</strong> Wrong times, destroys crops</li>
+                        <li class="auto-reveal"><strong>Rivers change course:</strong> Wipe out entire cities overnight</li>
+                        <li class="auto-reveal"><strong>Salinization:</strong> Irrigation ruins soil over time</li>
+                        <li class="auto-reveal"><strong>Constant uncertainty:</strong> Food insecurity shapes worldview</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>📊 Archaeological Evidence</h4>
+                <p class="auto-reveal">Crop yield records show Mesopotamian harvests failed 65% more often than Egyptian ones. River channel analysis proves the Euphrates changed course 14 times, destroying cities like Ur.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Natural Fortress vs Open Plains -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏔️ Natural Fortress vs. Open Plains</h2>
+            
+            <div class="river-comparison">
+                <div class="river-card auto-reveal">
+                    <h4>🇪🇬 Egypt: Protected Kingdom</h4>
+                    <div class="emoji-large auto-reveal">🛡️</div>
+                    <ul>
+                        <li class="auto-reveal"><strong>Western Desert:</strong> Sahara blocks invasion</li>
+                        <li class="auto-reveal"><strong>Eastern Desert + Red Sea:</strong> Natural eastern barrier</li>
+                        <li class="auto-reveal"><strong>Mediterranean Sea:</strong> Northern protection</li>
+                        <li class="auto-reveal"><strong>Nile Cataracts:</strong> Rapids prevent southern invasion</li>
+                    </ul>
+                    <p class="auto-reveal"><strong>Result:</strong> 3,000+ years of stable pharaonic rule</p>
+                </div>
+                <div class="river-card auto-reveal">
+                    <h4>🏛️ Mesopotamia: Crossroads of Invasion</h4>
+                    <div class="emoji-large auto-reveal">⚔️</div>
+                    <ul>
+                        <li class="auto-reveal"><strong>Flat plains:</strong> Easy invasion routes from all directions</li>
+                        <li class="auto-reveal"><strong>No natural barriers:</strong> Constant military pressure</li>
+                        <li class="auto-reveal"><strong>Trade crossroads:</strong> Everyone wants to control it</li>
+                        <li class="auto-reveal"><strong>Multiple conquerors:</strong> Akkadians, Babylonians, Assyrians, Persians</li>
+                    </ul>
+                    <p class="auto-reveal"><strong>Result:</strong> City-states, constant warfare, rapid innovation</p>
+                </div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>Geographic Impact on Government</h3>
+                <p>Egypt's protection enabled <strong>divine pharaoh system</strong><br>
+                Mesopotamia's vulnerability forced <strong>competitive city-states</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Resource Abundance vs Scarcity -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>💰 Resources Shape Economy</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🇪🇬 Egypt's Natural Wealth</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Gold mines:</strong> Especially in Nubia</li>
+                        <li class="auto-reveal"><strong>Building materials:</strong> Limestone, granite, copper</li>
+                        <li class="auto-reveal"><strong>Papyrus:</strong> World's first paper from Nile reeds</li>
+                        <li class="auto-reveal"><strong>Easy transport:</strong> Everything ships on the Nile</li>
+                    </ul>
+                    <p class="auto-reveal"><strong>Economic focus:</strong> Internal development, monuments, stability</p>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🏛️ Mesopotamia's Resource Challenge</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Great farmland</strong> but little else</li>
+                        <li class="auto-reveal"><strong>No metals, stone, or wood</strong> locally available</li>
+                        <li class="auto-reveal"><strong>Must trade</strong> for everything they need</li>
+                        <li class="auto-reveal"><strong>Creates massive trade networks</strong> across continents</li>
+                    </ul>
+                    <p class="auto-reveal"><strong>Economic focus:</strong> Innovation, commerce, international trade</p>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🗺️ Archaeological Trade Evidence</h4>
+                <p class="auto-reveal">Mesopotamian sites contain <strong>lapis lazuli from Afghanistan</strong>, <strong>gold from Egypt</strong>, and <strong>cedar wood from Lebanon</strong> - proving trade networks spanning 3,000+ miles!</p>
+            </div>
+
+            <div class="key-concepts auto-reveal">
+                <div class="concept-bubble">Banking Systems</div>
+                <div class="concept-bubble">Standardized Weights</div>
+                <div class="concept-bubble">Commercial Contracts</div>
+                <div class="concept-bubble">International Commerce</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Military Innovation -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚔️ Geographic Influence on Military</h2>
+            
+            <div class="river-comparison">
+                <div class="river-card auto-reveal">
+                    <h4>🇪🇬 Egypt: Defense-Oriented</h4>
+                    <ul>
+                        <li class="auto-reveal"><strong>Natural protection</strong> meant less military pressure</li>
+                        <li class="auto-reveal"><strong>Pyramid builders were paid workers</strong> - not military slaves</li>
+                        <li class="auto-reveal"><strong>Focus on cultural achievements</strong> over warfare</li>
+                        <li class="auto-reveal"><strong>Military expansion</strong> followed geographic corridors</li>
+                    </ul>
+                    <p class="auto-reveal">South to Nubia for gold, Northeast to Levant for buffers</p>
+                </div>
+                <div class="river-card auto-reveal">
+                    <h4>🏛️ Mesopotamia: Military Innovation Hub</h4>
+                    <ul>
+                        <li class="auto-reveal"><strong>Constant invasion</strong> demanded military excellence</li>
+                        <li class="auto-reveal"><strong>First chariots</strong> for flat terrain warfare</li>
+                        <li class="auto-reveal"><strong>Siege warfare technology</strong> - battering rams, towers</li>
+                        <li class="auto-reveal"><strong>Professional armies</strong> with intelligence networks</li>
+                    </ul>
+                    <p class="auto-reveal"><strong>Assyrians became ancient world's most feared military</strong></p>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🏰 Archaeological Military Evidence</h4>
+                <p class="auto-reveal">Recent excavations at <strong>Ur and Babylon</strong> reveal sophisticated fortification systems with multiple defensive walls, proving Mesopotamian cities compensated for lack of natural barriers with advanced military architecture.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Writing and Culture -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📝 Writing Systems Reflect Geography</h2>
+            
+            <div class="river-comparison">
+                <div class="river-card auto-reveal">
+                    <h4>🇪🇬 Egyptian Hieroglyphs</h4>
+                    <div class="auto-reveal">
+                        <p><strong>Purpose:</strong> Religious monuments and divine order</p>
+                        <p><strong>Materials:</strong> Stone for eternity, papyrus for daily use</p>
+                        <p><strong>Stability:</strong> Unchanged for 3,000+ years</p>
+                        <p><strong>Content:</strong> Book of the Dead - confident afterlife</p>
+                    </div>
+                </div>
+                <div class="river-card auto-reveal">
+                    <h4>🏛️ Mesopotamian Cuneiform</h4>
+                    <div class="auto-reveal">
+                        <p><strong>Purpose:</strong> Business records and legal contracts</p>
+                        <p><strong>Materials:</strong> Clay tablets - practical and durable</p>
+                        <p><strong>Adaptability:</strong> Used for multiple languages</p>
+                        <p><strong>Content:</strong> Epic of Gilgamesh - mortality and suffering</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>Literature Reflects Environment</h3>
+                <div class="auto-reveal">
+                    <p><strong>Egypt:</strong> Optimistic, focused on eternal life and cosmic order</p>
+                    <p><strong>Mesopotamia:</strong> Pessimistic, focused on mortality and uncertain fate</p>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>📚 World's Oldest Literature</h4>
+                <p class="auto-reveal">The <strong>Epic of Gilgamesh (2100 BCE)</strong> explores death and meaning in an unpredictable world, while Egyptian texts focus on successful navigation of the afterlife in a stable cosmic order.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Scientific Achievements -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔬 Science Driven by Geographic Needs</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🇪🇬 Egyptian Mathematics</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Geometry for land surveying</strong> after annual floods</li>
+                        <li class="auto-reveal"><strong>Accurate π calculations</strong> (3.16) for pyramid building</li>
+                        <li class="auto-reveal"><strong>Advanced medicine</strong> enabled by dry climate preservation</li>
+                        <li class="auto-reveal"><strong>Edwin Smith Papyrus:</strong> 48 surgical procedures</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🏛️ Mesopotamian Innovation</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Sexagesimal system</strong> (base-60) still used for time</li>
+                        <li class="auto-reveal"><strong>Astronomical calculations</strong> to predict environment</li>
+                        <li class="auto-reveal"><strong>Advanced mathematics</strong> - square root calculations</li>
+                        <li class="auto-reveal"><strong>Urban medicine</strong> for epidemic diseases</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🧮 Mathematical Evidence</h4>
+                <p class="auto-reveal">The Mesopotamian tablet <strong>YBC 7289</strong> shows square root calculations accurate to 5 decimal places, while Egyptian mathematical papyri focus on practical geometry for construction and land measurement.</p>
+            </div>
+
+            <div class="key-concepts auto-reveal">
+                <div class="concept-bubble">Practical Geometry</div>
+                <div class="concept-bubble">Astronomical Prediction</div>
+                <div class="concept-bubble">Medical Innovation</div>
+                <div class="concept-bubble">Urban Planning</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Interactions and Trade -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🤝 How They Interacted</h2>
+            
+            <div class="comparison-card auto-reveal" style="max-width: 800px; margin: 0 auto;">
+                <h3>🌍 Egypt-Mesopotamia Relations</h3>
+                <div class="auto-reveal">
+                    <p><strong>Early Contact (3500-3300 BCE):</strong> Mesopotamian cylinder seals found in Egypt</p>
+                    <p><strong>Cultural Exchange:</strong> Ideas flowed both directions but each maintained distinct identity</p>
+                    <p><strong>Trade Networks:</strong> Egypt provided gold, Mesopotamia provided manufactured goods</p>
+                    <p><strong>Diplomatic Relations:</strong> Treaties and royal correspondence in later periods</p>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🏺 Archaeological Interaction Evidence</h4>
+                <p class="auto-reveal">Recent discoveries of <strong>Mesopotamian seals in early Egyptian tombs</strong> and <strong>Egyptian gold in Mesopotamian royal burials</strong> prove extensive early contact between these civilizations.</p>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>Despite Contact, Geography Shaped Different Paths</h3>
+                <p>Both civilizations knew about each other and traded, but their <strong>environmental foundations</strong> created fundamentally different approaches to government, religion, and society.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Modern Legacy -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌟 Legacy in the Modern World</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🇪🇬 Egyptian Contributions</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Centralized government</strong> - models for unified states</li>
+                        <li class="auto-reveal"><strong>Monumental architecture</strong> - engineering principles</li>
+                        <li class="auto-reveal"><strong>Medical knowledge</strong> - surgical procedures</li>
+                        <li class="auto-reveal"><strong>Calendar system</strong> - 365-day year</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🏛️ Mesopotamian Contributions</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Written law codes</strong> - basis for modern legal systems</li>
+                        <li class="auto-reveal"><strong>Urban planning</strong> - city organization principles</li>
+                        <li class="auto-reveal"><strong>Banking and commerce</strong> - financial institutions</li>
+                        <li class="auto-reveal"><strong>Mathematical systems</strong> - time and angle measurements</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🏛️ 2025 Archaeological Discoveries</h4>
+                <p class="auto-reveal"><strong>Thutmose II's tomb discovery</strong> (biggest since Tutankhamun) emphasizes eternal preservation themes, while <strong>478 new Babylonian artifacts</strong> show continued emphasis on record-keeping and administration.</p>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>Geographic Patterns Persist Today</h3>
+                <p>Modern Egypt still shows centralization patterns, while Iraq demonstrates political fragmentation reflecting ancient Mesopotamian city-state traditions.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Key Lessons -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Key Historical Lessons</h2>
+            
+            <div class="key-concepts auto-reveal">
+                <div class="concept-bubble">Geography = Destiny</div>
+                <div class="concept-bubble">Environment Shapes Culture</div>
+                <div class="concept-bubble">Resources Drive Innovation</div>
+                <div class="concept-bubble">Barriers Create Stability</div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🔍 What We Learned</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Rivers matter:</strong> Predictable vs. unpredictable flooding</li>
+                        <li class="auto-reveal"><strong>Barriers work:</strong> Protection enables cultural development</li>
+                        <li class="auto-reveal"><strong>Scarcity drives innovation:</strong> Need creates solutions</li>
+                        <li class="auto-reveal"><strong>Environment shapes worldview:</strong> Optimism vs. pessimism</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🌍 Universal Principles</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Geographic determinism:</strong> Environment influences but doesn't control</li>
+                        <li class="auto-reveal"><strong>Adaptation strategies:</strong> Societies respond to challenges differently</li>
+                        <li class="auto-reveal"><strong>Innovation patterns:</strong> Pressure creates technological advance</li>
+                        <li class="auto-reveal"><strong>Cultural persistence:</strong> Geographic patterns endure across millennia</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>The Fundamental Truth</h3>
+                <p>Geography doesn't just provide the <strong>stage</strong> for history - it writes the <strong>script</strong>. Understanding geographic influences helps us analyze any civilization throughout human history.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Conclusion -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏁 Two Rivers, Two Destinies</h2>
+            
+            <div class="river-comparison">
+                <div class="river-card auto-reveal">
+                    <h4>🇪🇬 Egypt: Land of Eternal Order</h4>
+                    <div class="emoji-large auto-reveal">🔺</div>
+                    <ul>
+                        <li class="auto-reveal">Predictable Nile → Stable government</li>
+                        <li class="auto-reveal">Natural barriers → Cultural continuity</li>
+                        <li class="auto-reveal">Resource abundance → Monumental achievements</li>
+                        <li class="auto-reveal">Environmental security → Optimistic worldview</li>
+                    </ul>
+                </div>
+                <div class="river-card auto-reveal">
+                    <h4>🏛️ Mesopotamia: Crucible of Innovation</h4>
+                    <div class="emoji-large auto-reveal">⚡</div>
+                    <ul>
+                        <li class="auto-reveal">Unpredictable rivers → Competitive city-states</li>
+                        <li class="auto-reveal">Open geography → Military innovation</li>
+                        <li class="auto-reveal">Resource scarcity → Commercial networks</li>
+                        <li class="auto-reveal">Environmental uncertainty → Legal systems</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>Final Question for You</h3>
+                <p>Now that you understand how geography shaped these ancient civilizations, <strong>how might geographic factors influence the development of civilizations today?</strong></p>
+                <p class="auto-reveal">Think about island nations vs. continental powers, resource-rich vs. resource-poor countries, mountain barriers vs. flat plains...</p>
+            </div>
+
+            <div class="emoji-large auto-reveal">🌍</div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+        let allRevealed = false;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            allRevealed = false;
+            resetReveal();
+            updateRevealButton();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                
+                // Check if all elements are revealed
+                if (revealIndex >= elements.length) {
+                    allRevealed = true;
+                    updateRevealButton();
+                }
+                return true; // Successfully revealed an element
+            }
+            return false; // No more elements to reveal
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            // Reveal all remaining elements
+            for (let i = revealIndex; i < elements.length; i++) {
+                elements[i].classList.add('show');
+            }
+            revealIndex = elements.length;
+            allRevealed = true;
+            updateRevealButton();
+        }
+
+        function hideAll() {
+            resetReveal();
+            revealIndex = 0;
+            allRevealed = false;
+            updateRevealButton();
+        }
+
+        function toggleRevealAll() {
+            if (allRevealed) {
+                hideAll();
+            } else {
+                revealAll();
+            }
+        }
+
+        function updateRevealButton() {
+            const button = document.getElementById('reveal-toggle');
+            button.textContent = allRevealed ? 'Hide All' : 'Reveal All';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                // Try to reveal next element first
+                const revealed = revealNextElement();
+                if (!revealed) {
+                    // No more elements to reveal, go to next slide
+                    nextSlide();
+                }
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                // If no elements revealed on current slide, go to previous slide
+                if (revealIndex === 0) {
+                    previousSlide();
+                } else {
+                    // Otherwise, go to previous element (for now, just reset to start)
+                    hideAll();
+                }
+            }
+        });
+
+        // Click handling - more sophisticated to avoid conflicts with navigation
+        document.addEventListener('click', function(e) {
+            // Skip if clicking on navigation elements
+            if (e.target.closest('.navigation') || 
+                e.target.closest('.slide-indicator') ||
+                e.target.classList.contains('nav-btn') ||
+                e.target.classList.contains('reveal-btn')) {
+                return;
+            }
+            
+            // Only reveal next element, don't advance slides
+            revealNextElement();
+        });
+
+        // Initialize
+        document.getElementById('slide-counter').textContent = `1 / ${totalSlides}`;
+        updateRevealButton();
+    </script>
+</body>
+</html>
