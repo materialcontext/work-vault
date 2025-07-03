@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient China: The Middle Kingdom</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #8B0000 0%, #DC143C 25%, #FFD700 75%, #FFA500 100%);
+            min-height: 100vh;
+            color: white;
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .slide-content {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            animation: fadeInSlide 1s ease-out;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .reveal-btn {
+            background: rgba(255, 215, 0, 0.3);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+        }
+
+        .reveal-btn:hover {
+            background: rgba(255, 215, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #FFD700, #FF6347);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            animation: slideInDown 1s ease-out;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            animation: slideInLeft 1s ease-out 0.3s both;
+        }
+
+        h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        p, li {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question {
+            background: rgba(255, 215, 0, 0.15);
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(255, 215, 0, 0.4);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.2);
+        }
+
+        .central-question h3 {
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-point {
+            flex: 1;
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            margin: 0 0.5rem;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .timeline-point:hover {
+            background: rgba(255, 215, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .comparison-card:hover::before {
+            left: 100%;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .dynasty-card {
+            background: rgba(220, 20, 60, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(220, 20, 60, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .dynasty-card:hover {
+            background: rgba(220, 20, 60, 0.3);
+            transform: scale(1.05);
+        }
+
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .innovation-card {
+            background: rgba(255, 69, 0, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 69, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .innovation-card:hover {
+            background: rgba(255, 69, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        .evidence-box {
+            background: rgba(139, 0, 139, 0.15);
+            border: 3px solid rgba(139, 0, 139, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .evidence-box h4 {
+            color: #DA70D6;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .philosophy-card {
+            background: rgba(25, 25, 112, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(25, 25, 112, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .philosophy-card:hover {
+            background: rgba(25, 25, 112, 0.3);
+            transform: scale(1.05);
+        }
+
+        .legacy-section {
+            background: rgba(34, 139, 34, 0.15);
+            border: 3px solid rgba(34, 139, 34, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .legacy-section h4 {
+            color: #32CD32;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .emoji-large {
+            font-size: 4rem;
+            margin: 2rem 0;
+            display: block;
+            animation: bounce 2s infinite;
+        }
+
+        .connecting-thread {
+            background: rgba(255, 140, 0, 0.15);
+            border: 3px solid rgba(255, 140, 0, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .connecting-thread h3 {
+            color: #FF8C00;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+        }
+
+        li {
+            margin: 0.8rem 0;
+            padding-left: 1rem;
+        }
+
+        strong {
+            color: #FFD700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 12</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()" title="Previous Slide">‹</button>
+        <button class="nav-btn" onclick="nextSlide()" title="Next Slide">›</button>
+        <button class="nav-btn reveal-btn" onclick="toggleRevealAll()" title="Reveal All / Hide All" id="reveal-toggle">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>🐲 Ancient China: The Middle Kingdom</h1>
+            <h2 class="auto-reveal">Continuity, Innovation, and the Mandate of Heaven</h2>
+            <div class="central-question auto-reveal">
+                <h3>Central Question</h3>
+                <p><em>"How did China create the world's longest-lasting continuous civilization through dynastic cycles and cultural unity?"</em></p>
+            </div>
+            <div class="timeline auto-reveal">
+                <div class="timeline-point">2070 BCE<br>Xia Dynasty</div>
+                <div class="timeline-point">1600 BCE<br>Shang Dynasty</div>
+                <div class="timeline-point">1046 BCE<br>Zhou Dynasty</div>
+                <div class="timeline-point">221 BCE<br>Qin Unification</div>
+            </div>
+            <div class="emoji-large auto-reveal">🏯</div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Geographic Foundations -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌊 Two Rivers, One Civilization</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>China's Geographic Advantages</h3>
+                <p>Unlike other river valley civilizations that developed along single rivers, China developed along <strong>two major river systems</strong> - creating both diversity and unity.</p>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🌾 Yellow River (Huang He)</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Northern China:</strong> Dry climate, wheat and millet farming</li>
+                        <li class="auto-reveal"><strong>"China's Sorrow":</strong> Unpredictable flooding, frequent course changes</li>
+                        <li class="auto-reveal"><strong>Loess soil:</strong> Fertile yellow earth deposits</li>
+                        <li class="auto-reveal"><strong>Political center:</strong> Where major dynasties arose</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🌾 Yangtze River (Chang Jiang)</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Southern China:</strong> Warm, wet climate</li>
+                        <li class="auto-reveal"><strong>Rice cultivation:</strong> Higher population density</li>
+                        <li class="auto-reveal"><strong>Stable flow:</strong> More predictable than Yellow River</li>
+                        <li class="auto-reveal"><strong>Economic heartland:</strong> Agricultural and commercial center</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🏔️ Natural Barriers</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Himalayas (South):</strong> World's highest mountains</li>
+                        <li class="auto-reveal"><strong>Gobi Desert (North):</strong> Harsh, empty landscape</li>
+                        <li class="auto-reveal"><strong>Pacific Ocean (East):</strong> Maritime isolation</li>
+                        <li class="auto-reveal"><strong>Tibetan Plateau (West):</strong> High-altitude barrier</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🗺️ Geographic Impact on Culture</h4>
+                <p class="auto-reveal">China's barriers created a sense of being the <strong>"Middle Kingdom"</strong> (Zhongguo) - the center of civilization surrounded by "barbarians." This geography shaped Chinese identity for millennia.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: The Shang Dynasty -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>👑 The Shang Dynasty (1600-1046 BCE)</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>China's First Historically Confirmed Dynasty</h3>
+                <p>The Shang Dynasty provides our first clear evidence of Chinese civilization - with oracle bones, bronze technology, and royal tombs.</p>
+            </div>
+
+            <div class="innovation-grid">
+                <div class="dynasty-card auto-reveal">
+                    <h3>📜 Oracle Bones</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Divine communication:</strong> Kings asked gods questions</li>
+                        <li class="auto-reveal"><strong>Earliest Chinese writing:</strong> Ancestor of modern characters</li>
+                        <li class="auto-reveal"><strong>Historical records:</strong> Names, dates, events preserved</li>
+                        <li class="auto-reveal"><strong>Archaeological proof:</strong> Confirmed Shang existence</li>
+                    </ul>
+                </div>
+                <div class="dynasty-card auto-reveal">
+                    <h3>🥉 Bronze Technology</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Advanced metallurgy:</strong> Superior to contemporary civilizations</li>
+                        <li class="auto-reveal"><strong>Ritual vessels:</strong> Elaborate bronze containers for ceremonies</li>
+                        <li class="auto-reveal"><strong>Weapons and tools:</strong> Military and agricultural advantages</li>
+                        <li class="auto-reveal"><strong>Status symbols:</strong> Bronze showed wealth and power</li>
+                    </ul>
+                </div>
+                <div class="dynasty-card auto-reveal">
+                    <h3>⚱️ Royal Tombs</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Human sacrifice:</strong> Servants buried with kings</li>
+                        <li class="auto-reveal"><strong>Elaborate grave goods:</strong> Bronze vessels, jade, weapons</li>
+                        <li class="auto-reveal"><strong>Social hierarchy:</strong> Clear evidence of class structure</li>
+                        <li class="auto-reveal"><strong>Ancestor worship:</strong> Dead kings became divine</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🔍 Archaeological Discovery</h4>
+                <p class="auto-reveal">Shang dynasty was considered mythical until <strong>1928 excavations</strong> at Anyang uncovered oracle bones with king lists matching ancient Chinese records. Archaeology proved history!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Zhou Dynasty and Mandate of Heaven -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>☯️ Zhou Dynasty and the Mandate of Heaven</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>👑 Political Innovation</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Mandate of Heaven:</strong> Divine approval for rulers</li>
+                        <li class="auto-reveal"><strong>Dynastic cycle:</strong> Good rule blessed, bad rule punished</li>
+                        <li class="auto-reveal"><strong>Moral legitimacy:</strong> Kings must rule justly or lose mandate</li>
+                        <li class="auto-reveal"><strong>Revolution justified:</strong> Bad rulers can be overthrown</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🏰 Feudal System</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Decentralized rule:</strong> Zhou king granted land to nobles</li>
+                        <li class="auto-reveal"><strong>Military obligation:</strong> Lords provided troops to king</li>
+                        <li class="auto-reveal"><strong>Hereditary positions:</strong> Titles passed to sons</li>
+                        <li class="auto-reveal"><strong>Gradual weakening:</strong> Lords became independent over time</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>Comparing Political Systems</h3>
+                <p><strong>Egypt:</strong> Divine pharaoh rules by birthright<br>
+                <strong>Mesopotamia:</strong> Kings rule city-states by force<br>
+                <strong>Indus Valley:</strong> Unknown rulers (possibly collective)<br>
+                <strong>China:</strong> Kings rule by divine mandate but can lose it!</p>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🔄 The Dynastic Cycle Concept</h4>
+                <p class="auto-reveal">Chinese political theory: New dynasty receives mandate → Rules justly → Becomes corrupt → Natural disasters signal lost mandate → Revolution → New dynasty. This pattern justified political change for 3,000 years!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Chinese Innovations -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>💡 Chinese Technological Innovations</h2>
+            
+            <div class="innovation-grid">
+                <div class="innovation-card auto-reveal">
+                    <h3>📝 Writing System</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Logographic script:</strong> Characters represent ideas/words</li>
+                        <li class="auto-reveal"><strong>Continuity:</strong> Same basic system for 3,000+ years</li>
+                        <li class="auto-reveal"><strong>Cultural unity:</strong> All Chinese regions used same writing</li>
+                        <li class="auto-reveal"><strong>Literary tradition:</strong> Preserved philosophy and history</li>
+                    </ul>
+                </div>
+                <div class="innovation-card auto-reveal">
+                    <h3>🏹 Military Technology</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Crossbow:</strong> Superior to contemporary weapons</li>
+                        <li class="auto-reveal"><strong>Iron weapons:</strong> Stronger than bronze</li>
+                        <li class="auto-reveal"><strong>Gunpowder (later):</strong> Revolutionary warfare</li>
+                        <li class="auto-reveal"><strong>Military strategy:</strong> "Art of War" by Sun Tzu</li>
+                    </ul>
+                </div>
+                <div class="innovation-card auto-reveal">
+                    <h3>🧭 Scientific Advances</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Magnetic compass:</strong> Navigation revolution</li>
+                        <li class="auto-reveal"><strong>Paper invention:</strong> Cheaper than papyrus or parchment</li>
+                        <li class="auto-reveal"><strong>Printing press:</strong> Movable type centuries before Europe</li>
+                        <li class="auto-reveal"><strong>Seismograph:</strong> First earthquake detection device</li>
+                    </ul>
+                </div>
+                <div class="innovation-card auto-reveal">
+                    <h3>🎨 Cultural Achievements</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Silk production:</strong> Luxury textile monopoly</li>
+                        <li class="auto-reveal"><strong>Porcelain:</strong> "China" became synonymous with fine ceramics</li>
+                        <li class="auto-reveal"><strong>Acupuncture:</strong> Medical practice spreading worldwide</li>
+                        <li class="auto-reveal"><strong>Calendar system:</strong> Lunar-solar calendar still used</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>Innovation vs. Isolation</h3>
+                <p>China developed remarkable technologies but often kept them secret. How did geographic isolation both <strong>protect</strong> Chinese innovations and <strong>limit</strong> their global spread?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Philosophy and Ethics -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🧠 Chinese Philosophy: Three Great Schools</h2>
+            
+            <div class="philosophy-grid">
+                <div class="philosophy-card auto-reveal">
+                    <h3>☯️ Confucianism</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Founder:</strong> Confucius (Kong Qiu, 551-479 BCE)</li>
+                        <li class="auto-reveal"><strong>Core idea:</strong> Social harmony through proper relationships</li>
+                        <li class="auto-reveal"><strong>Key concepts:</strong> Filial piety, education, moral example</li>
+                        <li class="auto-reveal"><strong>Political impact:</strong> Bureaucracy based on merit, not birth</li>
+                    </ul>
+                </div>
+                <div class="philosophy-card auto-reveal">
+                    <h3>🌊 Daoism</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Founder:</strong> Laozi (possibly legendary figure)</li>
+                        <li class="auto-reveal"><strong>Core idea:</strong> Harmony with nature and the "Way" (Dao)</li>
+                        <li class="auto-reveal"><strong>Key concepts:</strong> Non-action (wu wei), balance, simplicity</li>
+                        <li class="auto-reveal"><strong>Cultural impact:</strong> Art, medicine, meditation practices</li>
+                    </ul>
+                </div>
+                <div class="philosophy-card auto-reveal">
+                    <h3>⚖️ Legalism</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Founder:</strong> Han Feizi (280-233 BCE)</li>
+                        <li class="auto-reveal"><strong>Core idea:</strong> Strict laws and harsh punishments</li>
+                        <li class="auto-reveal"><strong>Key concepts:</strong> Absolute ruler power, detailed regulations</li>
+                        <li class="auto-reveal"><strong>Political impact:</strong> Influenced authoritarian governments</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>💬 Confucius Quote</h4>
+                <p class="auto-reveal">"The superior man understands what is right; the inferior man understands what will sell." - This emphasis on <strong>moral behavior over profit</strong> shaped Chinese values for millennia.</p>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>Philosophy Meets Politics</h3>
+                <p>Each philosophy offered different solutions to social order: <strong>Confucianism</strong> (moral education), <strong>Daoism</strong> (natural harmony), <strong>Legalism</strong> (strict control). Which approach seems most effective? Most humane?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Warring States Period -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚔️ The Warring States Period (475-221 BCE)</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>💥 Political Fragmentation</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Zhou collapse:</strong> Central authority weakened</li>
+                        <li class="auto-reveal"><strong>Seven major states:</strong> Constant warfare for supremacy</li>
+                        <li class="auto-reveal"><strong>Technological race:</strong> Military innovations accelerated</li>
+                        <li class="auto-reveal"><strong>Social mobility:</strong> Merit sometimes trumped birth</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🧠 Intellectual Flowering</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>"Hundred Schools":</strong> Competing philosophical traditions</li>
+                        <li class="auto-reveal"><strong>Practical focus:</strong> How to restore order and unity?</li>
+                        <li class="auto-reveal"><strong>Traveling scholars:</strong> Ideas spread between states</li>
+                        <li class="auto-reveal"><strong>Written literature:</strong> Philosophy, history, poetry</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>Chaos Sparks Innovation</h3>
+                <p>Like Greece's competitive city-states, China's Warring States period drove <strong>technological innovation</strong> and <strong>philosophical creativity</strong>. Does political competition always encourage progress?</p>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🎯 The Art of War</h4>
+                <p class="auto-reveal">Sun Tzu's military manual emerged from this period: <strong>"All warfare is based on deception"</strong> and <strong>"Supreme excellence is breaking the enemy's resistance without fighting."</strong> Still studied in business schools today!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Qin Unification -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🐉 Qin Dynasty: China's First Emperor</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>👑 Emperor Qin Shi Huang</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Unified China (221 BCE):</strong> Ended Warring States</li>
+                        <li class="auto-reveal"><strong>"First Emperor":</strong> Created title and system</li>
+                        <li class="auto-reveal"><strong>Legalist policies:</strong> Harsh laws, centralized control</li>
+                        <li class="auto-reveal"><strong>Standardization:</strong> Currency, writing, measurements</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🧱 Great Wall Construction</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Connected existing walls:</strong> Unified border defense</li>
+                        <li class="auto-reveal"><strong>Massive labor force:</strong> Millions of workers, many died</li>
+                        <li class="auto-reveal"><strong>Strategic defense:</strong> Protection from northern nomads</li>
+                        <li class="auto-reveal"><strong>Symbol of unity:</strong> One China, one wall</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>📚 Cultural Policies</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Book burning:</strong> Destroyed Confucian and other texts</li>
+                        <li class="auto-reveal"><strong>Scholar persecution:</strong> Executed opposing intellectuals</li>
+                        <li class="auto-reveal"><strong>Cultural uniformity:</strong> Eliminated regional differences</li>
+                        <li class="auto-reveal"><strong>Short dynasty:</strong> Harsh rule caused quick collapse</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>⚱️ Terracotta Army</h4>
+                <p class="auto-reveal">Qin Shi Huang's tomb contains over <strong>8,000 life-sized clay soldiers</strong> - each with unique features. This massive project shows both the emperor's power and his fear of death. What does this reveal about Chinese beliefs?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Han Dynasty Golden Age -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌟 Han Dynasty: China's Golden Age</h2>
+            
+            <div class="innovation-grid">
+                <div class="dynasty-card auto-reveal">
+                    <h3>📋 Administrative System</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Civil service exams:</strong> Merit-based bureaucracy</li>
+                        <li class="auto-reveal"><strong>Confucian education:</strong> Officials trained in ethics</li>
+                        <li class="auto-reveal"><strong>Centralized government:</strong> Emperor's authority maintained</li>
+                        <li class="auto-reveal"><strong>Professional administrators:</strong> Skilled governance</li>
+                    </ul>
+                </div>
+                <div class="dynasty-card auto-reveal">
+                    <h3>🛣️ Silk Road Trade</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Transcontinental routes:</strong> China to Mediterranean</li>
+                        <li class="auto-reveal"><strong>Luxury goods:</strong> Silk, spices, precious stones</li>
+                        <li class="auto-reveal"><strong>Cultural exchange:</strong> Ideas, religions, technologies</li>
+                        <li class="auto-reveal"><strong>Economic prosperity:</strong> Trade wealth funded empire</li>
+                    </ul>
+                </div>
+                <div class="dynasty-card auto-reveal">
+                    <h3>🔬 Scientific Progress</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Paper invention:</strong> Cai Lun (105 CE)</li>
+                        <li class="auto-reveal"><strong>Historical records:</strong> Sima Qian's comprehensive history</li>
+                        <li class="auto-reveal"><strong>Medical advances:</strong> Pulse diagnosis, herbal medicine</li>
+                        <li class="auto-reveal"><strong>Astronomical observations:</strong> Solar eclipse prediction</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>Confucian Synthesis</h3>
+                <p>Han rulers combined <strong>Legalist organization</strong> with <strong>Confucian ideals</strong> - creating efficient government with moral legitimacy. This synthesis lasted 2,000+ years!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Chinese vs Other Civilizations -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌍 Comparing the Four River Valley Civilizations</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🇪🇬 Egypt</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Geographic advantage:</strong> Natural barriers</li>
+                        <li class="auto-reveal"><strong>Political system:</strong> Divine pharaoh</li>
+                        <li class="auto-reveal"><strong>Cultural focus:</strong> Afterlife, monuments</li>
+                        <li class="auto-reveal"><strong>Legacy:</strong> Influenced Mediterranean</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🏛️ Mesopotamia</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Geographic challenge:</strong> No natural barriers</li>
+                        <li class="auto-reveal"><strong>Political system:</strong> Competing city-states</li>
+                        <li class="auto-reveal"><strong>Cultural focus:</strong> Law, trade, writing</li>
+                        <li class="auto-reveal"><strong>Legacy:</strong> Legal and urban traditions</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🏺 Indus Valley</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Geographic advantage:</strong> Monsoon rivers</li>
+                        <li class="auto-reveal"><strong>Political system:</strong> Unknown (peaceful?)</li>
+                        <li class="auto-reveal"><strong>Cultural focus:</strong> Urban planning, equality</li>
+                        <li class="auto-reveal"><strong>Legacy:</strong> Mysterious disappearance</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🐲 China</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Geographic advantage:</strong> Multiple rivers + barriers</li>
+                        <li class="auto-reveal"><strong>Political system:</strong> Dynastic cycles</li>
+                        <li class="auto-reveal"><strong>Cultural focus:</strong> Continuity, harmony, innovation</li>
+                        <li class="auto-reveal"><strong>Legacy:</strong> Longest-lasting civilization</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>What Made China Different?</h3>
+                <p><strong>Cultural continuity:</strong> Same writing system, philosophical traditions, political concepts<br>
+                <strong>Geographic diversity:</strong> Multiple regions unified under one culture<br>
+                <strong>Adaptive resilience:</strong> Dynastic cycle allowed renewal without total collapse</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Legacy and Modern Connections -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌏 Ancient China's Modern Legacy</h2>
+            
+            <div class="innovation-grid">
+                <div class="legacy-section auto-reveal">
+                    <h4>🏛️ Political Concepts</h4>
+                    <ul>
+                        <li class="auto-reveal"><strong>Mandate of Heaven:</strong> Still influences Chinese political legitimacy</li>
+                        <li class="auto-reveal"><strong>Meritocracy:</strong> Civil service exams → modern educational systems</li>
+                        <li class="auto-reveal"><strong>Centralized bureaucracy:</strong> Model for efficient administration</li>
+                        <li class="auto-reveal"><strong>Cultural unity:</strong> "One China" concept persists</li>
+                    </ul>
+                </div>
+                <div class="legacy-section auto-reveal">
+                    <h4>💡 Technological Innovations</h4>
+                    <ul>
+                        <li class="auto-reveal"><strong>Paper:</strong> Foundation of literacy and knowledge preservation</li>
+                        <li class="auto-reveal"><strong>Printing:</strong> Information revolution centuries before Europe</li>
+                        <li class="auto-reveal"><strong>Compass:</strong> Enabled global navigation and exploration</li>
+                        <li class="auto-reveal"><strong>Gunpowder:</strong> Transformed military technology worldwide</li>
+                    </ul>
+                </div>
+                <div class="legacy-section auto-reveal">
+                    <h4>🧠 Philosophical Traditions</h4>
+                    <ul>
+                        <li class="auto-reveal"><strong>Confucianism:</strong> Influences East Asian education and values</li>
+                        <li class="auto-reveal"><strong>Daoism:</strong> Popular in Western alternative medicine/philosophy</li>
+                        <li class="auto-reveal"><strong>Balance concepts:</strong> Yin-yang, harmony ideals</li>
+                        <li class="auto-reveal"><strong>Practical ethics:</strong> Focus on social responsibility</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>Lessons for Today</h3>
+                <p>Ancient China shows how <strong>cultural continuity</strong> and <strong>adaptive governance</strong> can create lasting civilization. The dynastic cycle concept suggests that even the most powerful systems must <strong>renew themselves or risk collapse</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Unit Synthesis -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 River Valley Civilizations: Unit Synthesis</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>Four Rivers, Four Solutions</h3>
+                <p>Each river valley civilization faced similar challenges - food production, social organization, governance, cultural development - but geography shaped completely different solutions.</p>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🌊 Geographic Patterns</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>All dependent on rivers:</strong> Agriculture requires water</li>
+                        <li class="auto-reveal"><strong>Natural barriers important:</strong> Protection enables development</li>
+                        <li class="auto-reveal"><strong>River characteristics matter:</strong> Predictable vs. chaotic flooding</li>
+                        <li class="auto-reveal"><strong>Environment shapes worldview:</strong> Optimism vs. anxiety</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🏛️ Political Innovation</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Egypt:</strong> Divine kingship for stability</li>
+                        <li class="auto-reveal"><strong>Mesopotamia:</strong> Legal codes for conflict resolution</li>
+                        <li class="auto-reveal"><strong>Indus Valley:</strong> Urban planning for community welfare</li>
+                        <li class="auto-reveal"><strong>China:</strong> Mandate of Heaven for legitimate authority</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="connecting-thread auto-reveal">
+                <h3>🔗 Looking Ahead</h3>
+                <p>We've explored how the first civilizations emerged from agricultural surplus and geographic constraints. Next, we'll see how these early innovations spread and evolved as civilizations began interacting through <strong>trade, conquest, and cultural exchange</strong>.</p>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🤔 Essential Questions for Reflection</h4>
+                <p class="auto-reveal">Which river valley approach to civilization seems most successful? Most sustainable? Most innovative? What can modern societies learn from these ancient experiments in human organization?</p>
+            </div>
+
+            <div class="emoji-large auto-reveal">🌏</div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+        let allRevealed = false;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            allRevealed = false;
+            resetReveal();
+            updateRevealButton();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                
+                if (revealIndex >= elements.length) {
+                    allRevealed = true;
+                    updateRevealButton();
+                }
+                return true;
+            }
+            return false;
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            for (let i = revealIndex; i < elements.length; i++) {
+                elements[i].classList.add('show');
+            }
+            revealIndex = elements.length;
+            allRevealed = true;
+            updateRevealButton();
+        }
+
+        function hideAll() {
+            resetReveal();
+            revealIndex = 0;
+            allRevealed = false;
+            updateRevealButton();
+        }
+
+        function toggleRevealAll() {
+            if (allRevealed) {
+                hideAll();
+            } else {
+                revealAll();
+            }
+        }
+
+        function updateRevealButton() {
+            const button = document.getElementById('reveal-toggle');
+            button.textContent = allRevealed ? 'Hide All' : 'Reveal All';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowRight':
+                case ' ':
+                    e.preventDefault();
+                    if (!revealNextElement()) {
+                        nextSlide();
+                    }
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    previousSlide();
+                    break;
+                case 'r':
+                case 'R':
+                    e.preventDefault();
+                    toggleRevealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

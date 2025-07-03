@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Constitutional Revolution & Colonial Innovation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', 'Roboto', system-ui, sans-serif;
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 25%, #3730a3 50%, #1e40af 75%, #0ea5e9 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem 2%;
+            position: relative;
+        }
+
+        .slide-content {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .slide h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: #fbbf24;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .slide h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+        }
+
+        .slide h3 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            line-height: 1.3;
+        }
+
+        .slide p, .slide li {
+            font-size: 2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .central-question {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border: 3px solid #fbbf24;
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 15px 50px rgba(251, 191, 36, 0.3);
+        }
+
+        .central-question h3 {
+            color: #fbbf24;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .central-question p {
+            font-size: 2.3rem;
+            font-style: italic;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .connection-recap {
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid #10b981;
+            padding: 3rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.2);
+        }
+
+        .connection-recap h3 {
+            color: #10b981;
+            margin-bottom: 2rem;
+            font-size: 2.8rem;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .objective-card {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.3);
+            border-color: rgba(251, 191, 36, 0.6);
+        }
+
+        .objective-card:hover::before {
+            left: 100%;
+        }
+
+        .objective-card h4 {
+            color: #fbbf24;
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+            font-weight: 600;
+        }
+
+        .objective-card p {
+            font-size: 1.8rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .empire-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .empire-card.portuguese {
+            border-color: rgba(6, 182, 212, 0.5);
+        }
+
+        .empire-card.spanish {
+            border-color: rgba(239, 68, 68, 0.5);
+        }
+
+        .empire-card.english {
+            border-color: rgba(251, 191, 36, 0.5);
+        }
+
+        .empire-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(251, 191, 36, 0.3);
+        }
+
+        .empire-card h4 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .empire-card.portuguese h4 { color: #06b6d4; }
+        .empire-card.spanish h4 { color: #ef4444; }
+        .empire-card.english h4 { color: #fbbf24; }
+
+        .timeline-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #fbbf24, #10b981, #3b82f6);
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        .timeline-point {
+            background: linear-gradient(135deg, #ffffff, #f1f5f9);
+            color: #1e1b4b;
+            padding: 1.2rem 2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.6rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 3;
+            border: 2px solid rgba(251, 191, 36, 0.6);
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 200px;
+        }
+
+        .timeline-point:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(251, 191, 36, 0.4);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1.8rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            font-size: 1.8rem;
+        }
+
+        .comparison-table th {
+            background: rgba(251, 191, 36, 0.3);
+            font-weight: 700;
+            font-size: 2rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .primary-source {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(124, 58, 237, 0.3));
+            border-left: 6px solid #8b5cf6;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            position: relative;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 12px 30px rgba(139, 92, 246, 0.2);
+        }
+
+        .primary-source::before {
+            content: '"';
+            font-size: 6rem;
+            position: absolute;
+            top: -2rem;
+            left: 2rem;
+            color: rgba(139, 92, 246, 0.4);
+        }
+
+        .primary-source p {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .analysis-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .analysis-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.3);
+            border-color: rgba(59, 130, 246, 0.6);
+        }
+
+        .analysis-card h4 {
+            color: #3b82f6;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .analysis-card p {
+            font-size: 1.8rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .question-highlight {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #1e1b4b;
+            padding: 2rem 3rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            font-weight: 700;
+            font-size: 2rem;
+            box-shadow: 0 12px 30px rgba(251, 191, 36, 0.4);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: #fbbf24;
+            border: none;
+            color: #1e1b4b;
+            padding: 1.2rem 1.8rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.4rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+            min-width: 100px;
+        }
+
+        .nav-btn:hover {
+            background: #f59e0b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.5);
+        }
+
+        .nav-btn:disabled {
+            background: #64748b;
+            color: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fbbf24;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            font-size: 1.4rem;
+        }
+
+        .emoji-large {
+            font-size: 5rem;
+            margin: 1.5rem 0;
+            display: block;
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+
+        li {
+            margin: 1rem 0;
+            padding-left: 1rem;
+            font-size: 2rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        strong {
+            color: #fbbf24;
+            font-weight: 700;
+        }
+
+        em {
+            color: #a78bfa;
+            font-style: italic;
+        }
+
+        .constitution-highlight {
+            background: rgba(59, 130, 246, 0.2);
+            border: 2px solid #3b82f6;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .constitution-highlight h4 {
+            color: #60a5fa;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .slide h1 { font-size: 3.5rem; }
+            .slide h2 { font-size: 2.8rem; }
+            .slide h3 { font-size: 2.2rem; }
+            .slide p, .slide li { font-size: 1.8rem; }
+            .objectives-grid { grid-template-columns: 1fr; }
+            .comparison-grid { grid-template-columns: 1fr; }
+            .analysis-grid { grid-template-columns: 1fr; }
+            .slide { padding: 1rem 1%; }
+            .timeline { flex-direction: column; }
+            .timeline::before { display: none; }
+        }
+
+        @media (min-width: 1200px) {
+            .slide h1 { font-size: 5rem; }
+            .slide h2 { font-size: 4rem; }
+            .slide h3 { font-size: 3.2rem; }
+            .slide p, .slide li { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 12</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="revealBtn" onclick="toggleRevealAll()">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title & Context -->
+    <div class="slide">
+        <div class="slide-content">
+            <div class="emoji-large auto-reveal">🏛️</div>
+            <h1 class="auto-reveal">English Constitutional Revolution</h1>
+            <h2 class="auto-reveal">& Colonial Innovation (1600-1660)</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>Central Question</h3>
+                <p><em>"How did English constitutional crisis create alternative models for colonial political and economic organization?"</em></p>
+            </div>
+            
+            <div class="timeline auto-reveal">
+                <div class="timeline-point">1640s<br>Civil War</div>
+                <div class="timeline-point">1606<br>Virginia Company</div>
+                <div class="timeline-point">1630<br>Massachusetts Bay</div>
+                <div class="timeline-point">1688<br>Glorious Revolution</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Connecting to Previous Lessons -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔗 Building on Our Foundation</h2>
+            
+            <div class="connection-recap auto-reveal">
+                <h3>What We've Learned So Far</h3>
+                <p>Environmental crisis (Little Ice Age) drove European powers to revolutionary experiments in overseas expansion and political organization.</p>
+            </div>
+            
+            <div class="comparison-grid">
+                <div class="empire-card portuguese auto-reveal">
+                    <h4>🇵🇹 Portuguese Model</h4>
+                    <ul>
+                        <li><strong>Commercial empire:</strong> Trading post networks</li>
+                        <li><strong>Minimal overhead:</strong> Coastal bases, partnerships</li>
+                        <li><strong>Global integration:</strong> Spice trade profits</li>
+                        <li><strong>Timeline:</strong> 1415-1550</li>
+                    </ul>
+                </div>
+                
+                <div class="empire-card spanish auto-reveal">
+                    <h4>🇪🇸 Spanish Model</h4>
+                    <ul>
+                        <li><strong>Territorial empire:</strong> Continental control</li>
+                        <li><strong>Encomienda system:</strong> Labor organization</li>
+                        <li><strong>Demographic advantage:</strong> Disease catastrophe</li>
+                        <li><strong>Timeline:</strong> 1492-1550</li>
+                    </ul>
+                </div>
+                
+                <div class="empire-card english auto-reveal">
+                    <h4>🏴󠁧󠁢󠁥󠁮󠁧󠁿 English Model (?)</h4>
+                    <ul>
+                        <li><strong>Constitutional monarchy:</strong> Limited royal power</li>
+                        <li><strong>Different timing:</strong> 150 years later</li>
+                        <li><strong>Different conditions:</strong> No demographic collapse</li>
+                        <li><strong>Timeline:</strong> 1600-1660</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                Today's Challenge: How did English constitutional innovations create a THIRD model for colonial organization?
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Learning Objectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Learning Objectives</h2>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h4>⚖️ Constitutional Context</h4>
+                    <p>Analyze how English Civil War and constitutional monarchy affected colonial governance approaches</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🏢 Joint-Stock Innovation</h4>
+                    <p>Evaluate Virginia Company model as alternative to Spanish viceroyalties and Portuguese trading posts</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🔄 Comparative Analysis</h4>
+                    <p>Compare English constitutional approach with Spanish territorial and Portuguese commercial models</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>⏰ Timing Advantages</h4>
+                    <p>Assess how 150-year delay created different opportunities and constraints for English colonization</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: English Constitutional Crisis -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚔️ English Constitutional Crisis (1640s-1650s)</h2>
+            
+            <div class="timeline-container auto-reveal">
+                <h3>Constitutional Revolution Timeline</h3>
+                <div class="timeline">
+                    <div class="timeline-point">1640<br>Parliament vs<br>King Charles I</div>
+                    <div class="timeline-point">1649<br>King Charles I<br>Executed</div>
+                    <div class="timeline-point">1653<br>Oliver Cromwell<br>Commonwealth</div>
+                    <div class="timeline-point">1660<br>Restoration<br>Limited Monarchy</div>
+                </div>
+            </div>
+            
+            <div class="constitution-highlight auto-reveal">
+                <h4>Revolutionary Constitutional Changes</h4>
+                <ul>
+                    <li><strong>Parliamentary sovereignty:</strong> Parliament, not king, as ultimate authority</li>
+                    <li><strong>Limited monarchy:</strong> Royal power constrained by law and Parliament</li>
+                    <li><strong>Religious tolerance:</strong> Reduced persecution, more religious diversity</li>
+                    <li><strong>Commercial freedom:</strong> Trade and business less controlled by royal monopolies</li>
+                </ul>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How might constitutional limits on royal power affect approaches to colonial governance?
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Virginia Company Model -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏢 Virginia Company: Joint-Stock Innovation</h2>
+            
+            <div class="primary-source auto-reveal">
+                <strong>Virginia Company Charter (1606):</strong><br>
+                "We do grant and agree... that the said several colonies and plantations, and every of them, shall have and enjoy all liberties, franchises and immunities... to all intents and purposes as if they had been abiding and born within this our realm of England..."
+            </div>
+            
+            <div class="analysis-grid">
+                <div class="analysis-card auto-reveal">
+                    <h4>🏛️ Political Innovation</h4>
+                    <p><strong>Private colonial governance:</strong> Joint-stock company, not royal officials, manages colony. <strong>English law extension:</strong> Colonists retain English legal rights. <strong>Local assemblies:</strong> House of Burgesses (1619) creates colonial legislature.</p>
+                </div>
+                
+                <div class="analysis-card auto-reveal">
+                    <h4>💰 Economic Structure</h4>
+                    <p><strong>Investment model:</strong> Private shareholders fund colonization for profit. <strong>Tobacco economy:</strong> Cash crop agriculture, not silver extraction. <strong>Labor system:</strong> Indentured servants, then African slavery.</p>
+                </div>
+                
+                <div class="analysis-card auto-reveal">
+                    <h4>🌍 Geographic Advantages</h4>
+                    <p><strong>Healthy climate:</strong> No demographic catastrophe like Spanish Americas. <strong>Indigenous resistance:</strong> Organized confederations require negotiation. <strong>Agricultural potential:</strong> Tobacco and other cash crops.</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How does the Virginia Company model solve problems differently than Spanish encomienda or Portuguese trading posts?
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Massachusetts Bay Experiment -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⛪ Massachusetts Bay: Puritan Political Experiment</h2>
+            
+            <div class="auto-reveal">
+                <h3>🚢 The Great Migration (1630-1640)</h3>
+                <p>20,000 Puritans flee religious persecution in England, seeking to create "City upon a Hill" - model Christian community</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 3rem 0;">
+                <div class="auto-reveal">
+                    <h3>🏛️ Political Innovations</h3>
+                    <ul>
+                        <li><strong>Self-governance:</strong> Massachusetts Bay Company charter becomes colonial constitution</li>
+                        <li><strong>Town meetings:</strong> Local democratic participation</li>
+                        <li><strong>Religious qualification:</strong> Church membership required for voting</li>
+                        <li><strong>Legal code:</strong> "Body of Liberties" (1641) - written laws</li>
+                    </ul>
+                </div>
+                <div class="auto-reveal">
+                    <h3>⚖️ Constitutional Tensions</h3>
+                    <ul>
+                        <li><strong>Religious vs. civil authority:</strong> How much should church control government?</li>
+                        <li><strong>Democracy vs. hierarchy:</strong> Who should participate in governance?</li>
+                        <li><strong>Local vs. imperial:</strong> Massachusetts vs. English authority</li>
+                        <li><strong>Individual vs. community:</strong> Personal rights vs. collective good</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="primary-source auto-reveal">
+                <strong>John Winthrop, "A Model of Christian Charity" (1630):</strong><br>
+                "We shall be as a city upon a hill, the eyes of all people are upon us... we must consider that we shall be as a city upon a hill, the eyes of all people are upon us..."
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Comparative Colonial Systems -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚖️ Three Revolutionary Colonial Models</h2>
+            
+            <table class="comparison-table auto-reveal">
+                <thead>
+                    <tr>
+                        <th>Element</th>
+                        <th>🇵🇹 Portuguese Commercial</th>
+                        <th>🇪🇸 Spanish Territorial</th>
+                        <th>🏴󠁧󠁢󠁥󠁮󠁧󠁿 English Constitutional</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="auto-reveal">
+                        <td><strong>Governance</strong></td>
+                        <td>Commercial partnerships</td>
+                        <td>Royal viceroyalties</td>
+                        <td>Joint-stock companies</td>
+                    </tr>
+                    <tr class="auto-reveal">
+                        <td><strong>Control</strong></td>
+                        <td>Coastal trading posts</td>
+                        <td>Territorial administration</td>
+                        <td>Charter colonies with assemblies</td>
+                    </tr>
+                    <tr class="auto-reveal">
+                        <td><strong>Labor</strong></td>
+                        <td>Local trade partnerships</td>
+                        <td>Encomienda/tribute system</td>
+                        <td>Indentured servants + slavery</td>
+                    </tr>
+                    <tr class="auto-reveal">
+                        <td><strong>Economy</strong></td>
+                        <td>Spice trade profits</td>
+                        <td>Silver extraction + tribute</td>
+                        <td>Agricultural cash crops</td>
+                    </tr>
+                    <tr class="auto-reveal">
+                        <td><strong>Timing</strong></td>
+                        <td>1415-1550</td>
+                        <td>1492-1550</td>
+                        <td>1600-1660</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="question-highlight auto-reveal">
+                Which model creates the most autonomous colonial political institutions? Why?
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Constitutional Advantages & Constraints -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⏰ Timing & Constitutional Advantages</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 2rem 0;">
+                <div class="auto-reveal">
+                    <h3>🎯 English Advantages (1600s)</h3>
+                    <ul>
+                        <li><strong>Learning from others:</strong> Portuguese and Spanish models provide lessons</li>
+                        <li><strong>Constitutional limits:</strong> Parliament restricts royal colonial control</li>
+                        <li><strong>Religious refugees:</strong> Motivated colonists with political experience</li>
+                        <li><strong>Joint-stock capital:</strong> Private investment reduces royal costs</li>
+                        <li><strong>Healthy climate:</strong> North America doesn't have demographic catastrophe</li>
+                    </ul>
+                </div>
+                <div class="auto-reveal">
+                    <h3>⚠️ English Constraints</h3>
+                    <ul>
+                        <li><strong>Indigenous resistance:</strong> Organized confederations, no demographic collapse</li>
+                        <li><strong>No easy wealth:</strong> No silver mines or spice monopolies</li>
+                        <li><strong>Distance & cost:</strong> North Atlantic crossing expensive and dangerous</li>
+                        <li><strong>Religious conflicts:</strong> Puritans vs. Anglicans create tensions</li>
+                        <li><strong>Parliamentary oversight:</strong> Limited royal authority = complex governance</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="constitution-highlight auto-reveal">
+                <h4>⚖️ Constitutional Innovation Impact</h4>
+                <p>English constitutional monarchy creates <strong>divided sovereignty</strong> - colonists claim rights as Englishmen while developing autonomous institutions. This tension will drive future constitutional crises.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Glorious Revolution Effects -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>👑 Glorious Revolution & Colonial Impact (1688)</h2>
+            
+            <div class="primary-source auto-reveal">
+                <strong>English Bill of Rights (1689):</strong><br>
+                "That the pretended power of suspending laws or the execution of laws by regal authority without consent of Parliament is illegal... That it is the right of the subjects to petition the king..."
+            </div>
+            
+            <div class="analysis-grid">
+                <div class="analysis-card auto-reveal">
+                    <h4>🏛️ Constitutional Settlement</h4>
+                    <p><strong>Parliamentary supremacy:</strong> Parliament, not monarch, as final authority. <strong>Rule of law:</strong> Even kings bound by legal limits. <strong>Religious tolerance:</strong> Protestant succession, reduced persecution.</p>
+                </div>
+                
+                <div class="analysis-card auto-reveal">
+                    <h4>🌍 Colonial Implications</h4>
+                    <p><strong>Colonial assemblies empowered:</strong> If Parliament limits king, colonial legislatures can too. <strong>English rights extended:</strong> Colonists claim same constitutional protections. <strong>Imperial tensions:</strong> Who has ultimate authority in empire?</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                If English subjects have constitutional rights that limit royal power, do English colonists have the same rights? What happens when colonial and imperial interests conflict?
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Long-term Implications -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔮 Revolutionary Implications</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 2rem 0;">
+                <div class="auto-reveal">
+                    <h3>🏛️ Political Innovation Legacy</h3>
+                    <ul>
+                        <li><strong>Colonial assemblies:</strong> Template for representative government in America</li>
+                        <li><strong>Constitutional thinking:</strong> Written charters and limited government</li>
+                        <li><strong>Religious pluralism:</strong> Multiple Protestant denominations coexisting</li>
+                        <li><strong>Local self-governance:</strong> Town meetings and colonial legislation</li>
+                    </ul>
+                </div>
+                <div class="auto-reveal">
+                    <h3>⚖️ Constitutional Tensions Created</h3>
+                    <ul>
+                        <li><strong>Imperial vs. local authority:</strong> Who controls colonial affairs?</li>
+                        <li><strong>Taxation without representation:</strong> Parliament vs. colonial assemblies</li>
+                        <li><strong>English rights in America:</strong> Do constitutional protections cross oceans?</li>
+                        <li><strong>Economic regulation:</strong> Free trade vs. imperial control</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="central-question auto-reveal">
+                <h3>Seeds of Future Crisis</h3>
+                <p>English constitutional revolution creates colonial political institutions that will eventually challenge imperial authority. The same principles that limited royal power in England will be used to justify colonial independence.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Contingency Analysis -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🤔 What If: Alternative Outcomes</h2>
+            
+            <div class="comparison-grid">
+                <div class="empire-card portuguese auto-reveal">
+                    <h4>Scenario 1: No English Civil War</h4>
+                    <ul>
+                        <li>Could absolute monarchy have created different colonial systems?</li>
+                        <li>Might English colonies have resembled Spanish territorial model?</li>
+                        <li>How would royal authority have affected colonial assemblies?</li>
+                    </ul>
+                </div>
+                
+                <div class="empire-card spanish auto-reveal">
+                    <h4>Scenario 2: Earlier English Colonization</h4>
+                    <ul>
+                        <li>What if England had colonized before constitutional revolution?</li>
+                        <li>Could earlier timing have created territorial empire like Spain?</li>
+                        <li>How might demographic catastrophe have affected English approach?</li>
+                    </ul>
+                </div>
+                
+                <div class="empire-card english auto-reveal">
+                    <h4>Scenario 3: Different Geographic Conditions</h4>
+                    <ul>
+                        <li>What if English had found silver mines like Spanish?</li>
+                        <li>Could spice trade access have created Portuguese-style empire?</li>
+                        <li>How might different indigenous responses have shaped colonization?</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                Which factors were most essential for creating the English constitutional colonial model?
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Course Connection -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔗 Looking Forward: Crisis & Revolution</h2>
+            
+            <div class="timeline auto-reveal">
+                <div class="timeline-point">Week 2<br>Portuguese<br>Commercial</div>
+                <div class="timeline-point">Week 3<br>Spanish<br>Territorial</div>
+                <div class="timeline-point">Week 4<br>English<br>Constitutional</div>
+                <div class="timeline-point">Week 5<br>Imperial<br>Crisis</div>
+            </div>
+            
+            <div class="central-question auto-reveal">
+                <h3>Three Revolutionary Models Complete</h3>
+                <p>We now have three different approaches to solving environmental crisis through overseas expansion: Portuguese commercial empire, Spanish territorial empire, and English constitutional colonialism. Each creates different opportunities and tensions.</p>
+            </div>
+            
+            <div class="connection-recap auto-reveal">
+                <h3>Next Week: When Models Collide</h3>
+                <p>The Seven Years' War (1754-1763) will test all three imperial systems and create fiscal crisis that forces new experiments in taxation and governance. English constitutional principles will clash with imperial authority needs.</p>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                Preview Question: If colonists claim English constitutional rights, can Parliament tax them without colonial consent? How will the costs of global imperial war strain all three models?
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+        let allRevealed = false;
+
+        function updateSlideCounter() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentSlide === 0 && revealIndex === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1 && allRevealed;
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            allRevealed = false;
+            resetReveal();
+            updateSlideCounter();
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                
+                if (revealIndex === elements.length) {
+                    allRevealed = true;
+                }
+                
+                updateNavigationButtons();
+                updateRevealButton();
+                return true;
+            }
+            return false;
+        }
+
+        function revealAllElements() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            elements.forEach(el => {
+                el.classList.add('show');
+            });
+            
+            revealIndex = elements.length;
+            allRevealed = true;
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function hideAllElements() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+            
+            revealIndex = 0;
+            allRevealed = false;
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function toggleRevealAll() {
+            if (allRevealed) {
+                hideAllElements();
+            } else {
+                revealAllElements();
+            }
+        }
+
+        function updateRevealButton() {
+            const revealBtn = document.getElementById('revealBtn');
+            revealBtn.textContent = allRevealed ? 'Hide All' : 'Reveal All';
+        }
+
+        function nextSlide() {
+            if (!allRevealed) {
+                const revealed = revealNextElement();
+                if (!revealed && currentSlide < totalSlides - 1) {
+                    showSlide(currentSlide + 1);
+                }
+            } else if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (revealIndex > 0) {
+                // Go to previous element
+                const currentSlideElement = slides[currentSlide];
+                const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+                
+                elements[revealIndex - 1].classList.remove('show');
+                revealIndex--;
+                allRevealed = false;
+                updateNavigationButtons();
+                updateRevealButton();
+            } else if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+                // Auto-reveal all elements on previous slide
+                revealAllElements();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                revealNextElement();
+            }
+        });
+
+        // Initialize
+        updateSlideCounter();
+        updateNavigationButtons();
+        updateRevealButton();
+    </script>
+</body>
+</html>

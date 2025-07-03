@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Indus Valley Civilization</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #4CAF50 100%);
+            min-height: 100vh;
+            color: white;
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .slide-content {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            animation: fadeInSlide 1s ease-out;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .reveal-btn {
+            background: rgba(76, 175, 80, 0.3);
+            border: 2px solid rgba(76, 175, 80, 0.5);
+        }
+
+        .reveal-btn:hover {
+            background: rgba(76, 175, 80, 0.5);
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #4CAF50, #2196F3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            animation: slideInDown 1s ease-out;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #4CAF50;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            animation: slideInLeft 1s ease-out 0.3s both;
+        }
+
+        h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        p, li {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question {
+            background: rgba(76, 175, 80, 0.15);
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(76, 175, 80, 0.4);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 12px 40px rgba(76, 175, 80, 0.2);
+        }
+
+        .central-question h3 {
+            color: #4CAF50;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-point {
+            flex: 1;
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(76, 175, 80, 0.2);
+            border-radius: 15px;
+            margin: 0 0.5rem;
+            border: 2px solid rgba(76, 175, 80, 0.3);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .timeline-point:hover {
+            background: rgba(76, 175, 80, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .comparison-card:hover::before {
+            left: 100%;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-color: rgba(76, 175, 80, 0.5);
+        }
+
+        .mystery-box {
+            background: rgba(156, 39, 176, 0.15);
+            border: 3px solid rgba(156, 39, 176, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .mystery-box h4 {
+            color: #9C27B0;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .urban-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: rgba(33, 150, 243, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(33, 150, 243, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(33, 150, 243, 0.3);
+            transform: scale(1.05);
+        }
+
+        .evidence-box {
+            background: rgba(255, 193, 7, 0.15);
+            border: 3px solid rgba(255, 193, 7, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .evidence-box h4 {
+            color: #FFC107;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .decline-factors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .decline-card {
+            background: rgba(244, 67, 54, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(244, 67, 54, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .decline-card:hover {
+            background: rgba(244, 67, 54, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .legacy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .legacy-card {
+            background: rgba(103, 58, 183, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(103, 58, 183, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .legacy-card:hover {
+            background: rgba(103, 58, 183, 0.3);
+            transform: scale(1.05);
+        }
+
+        .emoji-large {
+            font-size: 4rem;
+            margin: 2rem 0;
+            display: block;
+            animation: bounce 2s infinite;
+        }
+
+        .connecting-thread {
+            background: rgba(255, 87, 34, 0.15);
+            border: 3px solid rgba(255, 87, 34, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .connecting-thread h3 {
+            color: #FF5722;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+        }
+
+        li {
+            margin: 0.8rem 0;
+            padding-left: 1rem;
+        }
+
+        strong {
+            color: #4CAF50;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 11</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()" title="Previous Slide">‹</button>
+        <button class="nav-btn" onclick="nextSlide()" title="Next Slide">›</button>
+        <button class="nav-btn reveal-btn" onclick="toggleRevealAll()" title="Reveal All / Hide All" id="reveal-toggle">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>🏛️ The Indus Valley Civilization</h1>
+            <h2 class="auto-reveal">History's Greatest Urban Mystery</h2>
+            <div class="central-question auto-reveal">
+                <h3>Central Question</h3>
+                <p><em>"How did the Indus Valley create the world's most advanced cities while leaving no temples, palaces, or deciphered writing?"</em></p>
+            </div>
+            <div class="timeline auto-reveal">
+                <div class="timeline-point">3300 BCE<br>Early Phase</div>
+                <div class="timeline-point">2600 BCE<br>Mature Cities</div>
+                <div class="timeline-point">1900 BCE<br>Decline Begins</div>
+                <div class="timeline-point">1300 BCE<br>Abandonment</div>
+            </div>
+            <div class="emoji-large auto-reveal">🔍</div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Geographic Context -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌍 The Third River Valley Civilization</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>Another River, Another Approach</h3>
+                <p>Like Egypt and Mesopotamia, the Indus Valley developed along river systems. But geography shaped a completely different type of civilization.</p>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🗺️ Geographic Extent</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Massive scale:</strong> Larger than Egypt and Mesopotamia combined</li>
+                        <li class="auto-reveal"><strong>Twin rivers:</strong> Indus River and Ghaggar-Hakra system</li>
+                        <li class="auto-reveal"><strong>Modern coverage:</strong> Pakistan, northwest India, Afghanistan</li>
+                        <li class="auto-reveal"><strong>1,500+ sites:</strong> From coastal ports to mountain foothills</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🌊 Environmental Advantages</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Monsoon agriculture:</strong> Predictable seasonal flooding</li>
+                        <li class="auto-reveal"><strong>Fertile plains:</strong> Rich alluvial soil deposits</li>
+                        <li class="auto-reveal"><strong>Natural resources:</strong> Copper, semi-precious stones</li>
+                        <li class="auto-reveal"><strong>Trade access:</strong> Rivers to sea, land routes to Asia</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🔍 Discovery Timeline</h4>
+                <p class="auto-reveal">First discovered in <strong>1829</strong> but not recognized as a major civilization until the <strong>1920s</strong> - long after Egyptian hieroglyphs and Mesopotamian cuneiform were decoded. We're still catching up to its significance!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Urban Planning Excellence -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏗️ Revolutionary Urban Planning</h2>
+            
+            <div class="urban-features">
+                <div class="feature-card auto-reveal">
+                    <h3>🛣️ Grid System</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Perfect grids:</strong> Streets at right angles</li>
+                        <li class="auto-reveal"><strong>Uniform width:</strong> Main streets 30 feet wide</li>
+                        <li class="auto-reveal"><strong>Traffic flow:</strong> Major arteries, side streets</li>
+                        <li class="auto-reveal"><strong>Consistent planning:</strong> Same design across all cities</li>
+                    </ul>
+                </div>
+                <div class="feature-card auto-reveal">
+                    <h3>🚰 Water Management</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Individual wells:</strong> Most houses had private water</li>
+                        <li class="auto-reveal"><strong>Covered drains:</strong> Sophisticated sewage system</li>
+                        <li class="auto-reveal"><strong>Public baths:</strong> Great Bath at Mohenjo-daro</li>
+                        <li class="auto-reveal"><strong>Flood protection:</strong> Raised platforms, drainage</li>
+                    </ul>
+                </div>
+                <div class="feature-card auto-reveal">
+                    <h3>🏠 Standardized Housing</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Brick construction:</strong> Fired, uniform-sized bricks</li>
+                        <li class="auto-reveal"><strong>Flat roofs:</strong> Practical and uniform appearance</li>
+                        <li class="auto-reveal"><strong>Private courtyards:</strong> Interior family spaces</li>
+                        <li class="auto-reveal"><strong>Multiple stories:</strong> Efficient use of space</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>Urban Planning Paradox</h3>
+                <p>Indus cities show more advanced <strong>urban planning</strong> than Egypt or Mesopotamia, but <strong>no massive monuments</strong>. What does this tell us about their priorities and political system?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Economic and Social Organization -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>💼 Economic and Social Structure</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🌾 Agriculture & Food</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Wheat and barley:</strong> Primary grain crops</li>
+                        <li class="auto-reveal"><strong>Cotton cultivation:</strong> World's first cotton farming</li>
+                        <li class="auto-reveal"><strong>Domesticated animals:</strong> Cattle, sheep, goats, chickens</li>
+                        <li class="auto-reveal"><strong>Granary storage:</strong> Large public storage facilities</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🎨 Craft Specialization</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Metallurgy:</strong> Bronze tools, copper, gold jewelry</li>
+                        <li class="auto-reveal"><strong>Pottery:</strong> Distinctive red-painted ceramics</li>
+                        <li class="auto-reveal"><strong>Bead making:</strong> Semi-precious stone jewelry</li>
+                        <li class="auto-reveal"><strong>Textile production:</strong> Sophisticated cotton and wool</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🚢 Trade Networks</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Mesopotamian contact:</strong> Indus goods found in Ur and Babylon</li>
+                        <li class="auto-reveal"><strong>Maritime trade:</strong> Coastal ports like Lothal</li>
+                        <li class="auto-reveal"><strong>Standardized weights:</strong> Uniform measurement system</li>
+                        <li class="auto-reveal"><strong>Long-distance goods:</strong> Lapis lazuli, silver, gold</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🔢 Measurement Standards</h4>
+                <p class="auto-reveal">Indus civilization used incredibly <strong>standardized measurements</strong> - identical brick sizes, weights, and measures across 1,500+ sites spanning 500,000 square miles. This suggests remarkable political unity or cultural conformity.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: The Script Mystery -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📜 The Undeciphered Script</h2>
+            
+            <div class="mystery-box auto-reveal">
+                <h4>🔐 History's Greatest Puzzle</h4>
+                <p class="auto-reveal">Over <strong>4,000 inscriptions</strong> found, but the Indus script remains undeciphered despite 150+ years of attempts. We can see their cities but cannot hear their voices.</p>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>📊 What We Know</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>400+ symbols:</strong> Too many for alphabet, too few for syllabic</li>
+                        <li class="auto-reveal"><strong>Short inscriptions:</strong> Average only 4-5 symbols</li>
+                        <li class="auto-reveal"><strong>Seal stamps:</strong> Most text appears on square seals</li>
+                        <li class="auto-reveal"><strong>Animal imagery:</strong> Bulls, elephants, rhinoceros, tigers</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>❓ Decipherment Problems</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>No Rosetta Stone:</strong> No bilingual texts found</li>
+                        <li class="auto-reveal"><strong>Unknown language:</strong> What language did they speak?</li>
+                        <li class="auto-reveal"><strong>Brief texts:</strong> Too short to identify patterns</li>
+                        <li class="auto-reveal"><strong>No continuation:</strong> No later scripts evolved from it</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>What This Means for History</h3>
+                <p>The undeciphered script means we cannot know their <strong>politics, religion, literature, or personal thoughts</strong>. We see their material culture but miss their intellectual world. How does this limit our understanding?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Political Organization Mystery -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>👑 Political Structure: The Missing Kings</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🏛️ What's Missing</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>No palaces:</strong> Unlike Egypt and Mesopotamia</li>
+                        <li class="auto-reveal"><strong>No royal tombs:</strong> No evidence of individual rulers</li>
+                        <li class="auto-reveal"><strong>No military imagery:</strong> Seals show animals, not warfare</li>
+                        <li class="auto-reveal"><strong>No temples:</strong> No clear religious monuments</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🤔 Possible Explanations</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Merchant oligarchy:</strong> Rule by wealthy traders</li>
+                        <li class="auto-reveal"><strong>Priest-kings:</strong> Religious leaders (like "Priest-King" statue)</li>
+                        <li class="auto-reveal"><strong>Democratic councils:</strong> Collective decision-making</li>
+                        <li class="auto-reveal"><strong>Federated cities:</strong> Independent but cooperating</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🗿 The "Priest-King" Statue</h4>
+                <p class="auto-reveal">Famous limestone sculpture from Mohenjo-daro shows a bearded man in decorated robe. But was he really a king? Or priest? Or merchant? Without writing, we're just guessing about political structure.</p>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>Comparing Political Systems</h3>
+                <p><strong>Egypt:</strong> Divine pharaohs with massive monuments<br>
+                <strong>Mesopotamia:</strong> City-state kings with ziggurat temples<br>
+                <strong>Indus Valley:</strong> ??? - Uniform cities but no clear rulers</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Religion and Culture -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🕉️ Religious and Cultural Life</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🛁 The Great Bath</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Mohenjo-daro centerpiece:</strong> 40x23 foot public bath</li>
+                        <li class="auto-reveal"><strong>Waterproof construction:</strong> Bitumen-sealed bricks</li>
+                        <li class="auto-reveal"><strong>Ritual purpose?:</strong> Possibly religious purification</li>
+                        <li class="auto-reveal"><strong>Community focus:</strong> Public rather than elite architecture</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🐂 Animal Worship</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Bull imagery:</strong> Zebu bulls on many seals</li>
+                        <li class="auto-reveal"><strong>Animal processions:</strong> Religious ceremonies?</li>
+                        <li class="auto-reveal"><strong>Proto-Shiva figure:</strong> Seated figure surrounded by animals</li>
+                        <li class="auto-reveal"><strong>Tree worship:</strong> Sacred pipal tree representations</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🎯 Daily Life</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Children's toys:</strong> Whistles, toy carts, dice</li>
+                        <li class="auto-reveal"><strong>Personal ornaments:</strong> Jewelry, combs, mirrors</li>
+                        <li class="auto-reveal"><strong>Board games:</strong> Similar to modern chess/checkers</li>
+                        <li class="auto-reveal"><strong>Musical instruments:</strong> Drums and stringed instruments</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🔗 Proto-Hindu Connections?</h4>
+                <p class="auto-reveal">Some scholars see connections to later Hinduism: the "Pashupati" seal (lord of animals), bull worship, ritual bathing, tree veneration. But without deciphered texts, these remain <strong>intriguing possibilities, not proven facts</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Technological Achievements -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚙️ Technological Innovations</h2>
+            
+            <div class="urban-features">
+                <div class="feature-card auto-reveal">
+                    <h3>🏗️ Engineering Marvels</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Fired brick technology:</strong> Uniform, durable construction</li>
+                        <li class="auto-reveal"><strong>Advanced drainage:</strong> Covered sewers with manholes</li>
+                        <li class="auto-reveal"><strong>Dock construction:</strong> Tidal dock at Lothal port</li>
+                        <li class="auto-reveal"><strong>Precision measurement:</strong> Decimal-based weights</li>
+                    </ul>
+                </div>
+                <div class="feature-card auto-reveal">
+                    <h3>🔧 Metallurgy & Crafts</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Bronze working:</strong> Tools, weapons, vessels</li>
+                        <li class="auto-reveal"><strong>Lost-wax casting:</strong> Complex bronze figurines</li>
+                        <li class="auto-reveal"><strong>Bead drilling:</strong> Microscopic holes in semi-precious stones</li>
+                        <li class="auto-reveal"><strong>Cotton textiles:</strong> World's first cotton cultivation</li>
+                    </ul>
+                </div>
+                <div class="feature-card auto-reveal">
+                    <h3>📐 Mathematics & Measurement</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Decimal system:</strong> Weights in ratios of 1:2:4:8:16</li>
+                        <li class="auto-reveal"><strong>Linear measurement:</strong> Ivory/shell rulers found</li>
+                        <li class="auto-reveal"><strong>Geometric planning:</strong> Perfect city grid layouts</li>
+                        <li class="auto-reveal"><strong>Standardization:</strong> Uniform across vast territory</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>Innovation Without Monuments</h3>
+                <p>While Egypt built pyramids and Mesopotamia constructed ziggurats, the Indus Valley perfected <strong>practical urban technology</strong>. What does this reveal about their values and priorities?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Decline and Disappearance -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📉 The Great Disappearance</h2>
+            
+            <div class="decline-factors">
+                <div class="decline-card auto-reveal">
+                    <h3>🌡️ Climate Change</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Weakening monsoons:</strong> Reduced rainfall after 1800 BCE</li>
+                        <li class="auto-reveal"><strong>River changes:</strong> Ghaggar-Hakra system dried up</li>
+                        <li class="auto-reveal"><strong>Agricultural failure:</strong> Insufficient water for irrigation</li>
+                        <li class="auto-reveal"><strong>Population decline:</strong> Cities gradually abandoned</li>
+                    </ul>
+                </div>
+                <div class="decline-card auto-reveal">
+                    <h3>🌊 Geographic Disasters</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Earthquake damage:</strong> Evidence of seismic destruction</li>
+                        <li class="auto-reveal"><strong>Flooding cycles:</strong> Disrupted urban planning</li>
+                        <li class="auto-reveal"><strong>River course changes:</strong> Lost water access</li>
+                        <li class="auto-reveal"><strong>Coastal changes:</strong> Trade route disruption</li>
+                    </ul>
+                </div>
+                <div class="decline-card auto-reveal">
+                    <h3>📉 Economic Collapse</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Trade disruption:</strong> Lost connections with Mesopotamia</li>
+                        <li class="auto-reveal"><strong>Urban maintenance:</strong> Couldn't maintain complex infrastructure</li>
+                        <li class="auto-reveal"><strong>Migration patterns:</strong> Population moved east and south</li>
+                        <li class="auto-reveal"><strong>Gradual abandonment:</strong> Slow decline, not sudden destruction</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🏔️ 4,200-Year Climate Event</h4>
+                <p class="auto-reveal">Around 2200 BCE, a <strong>global climate shift</strong> caused droughts across many civilizations. The Indus Valley, dependent on monsoon rains, was particularly vulnerable. This climate event also affected Egypt and Mesopotamia.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Legacy and Influence -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌟 Legacy and Modern Relevance</h2>
+            
+            <div class="legacy-grid">
+                <div class="legacy-card auto-reveal">
+                    <h3>🏙️ Urban Planning Legacy</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Grid city design:</strong> Model for modern urban planning</li>
+                        <li class="auto-reveal"><strong>Sanitation systems:</strong> Advanced sewage and drainage</li>
+                        <li class="auto-reveal"><strong>Standardization:</strong> Uniform building codes and measurements</li>
+                        <li class="auto-reveal"><strong>Public amenities:</strong> Community baths and shared spaces</li>
+                    </ul>
+                </div>
+                <div class="legacy-card auto-reveal">
+                    <h3>🌾 Agricultural Contributions</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Cotton cultivation:</strong> First cotton farming in world</li>
+                        <li class="auto-reveal"><strong>Crop domestication:</strong> Improved wheat and barley varieties</li>
+                        <li class="auto-reveal"><strong>Water management:</strong> Irrigation and flood control techniques</li>
+                        <li class="auto-reveal"><strong>Agricultural surplus:</strong> Foundation for urban civilization</li>
+                    </ul>
+                </div>
+                <div class="legacy-card auto-reveal">
+                    <h3>🔄 Cultural Continuity?</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Population migration:</strong> People moved into India proper</li>
+                        <li class="auto-reveal"><strong>Cultural elements:</strong> Possible influences on later Indian culture</li>
+                        <li class="auto-reveal"><strong>Archaeological evidence:</strong> Some sites show continuity</li>
+                        <li class="auto-reveal"><strong>Religious practices:</strong> Potential proto-Hindu connections</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>Lessons for Today</h3>
+                <p>The Indus Valley shows that <strong>advanced urban civilization</strong> can exist without massive inequality or monumental architecture. They prioritized <strong>practical infrastructure over elite display</strong>. What can modern cities learn from this approach?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Historical Significance and Next Steps -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Historical Significance</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🔍 What Indus Valley Teaches Us</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Alternative models:</strong> Urban civilization without kings/temples</li>
+                        <li class="auto-reveal"><strong>Environmental limits:</strong> Even advanced societies vulnerable to climate</li>
+                        <li class="auto-reveal"><strong>Historical silence:</strong> Civilizations can vanish from historical record</li>
+                        <li class="auto-reveal"><strong>Archaeological importance:</strong> Material culture vs. written sources</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🌍 Comparing the Three River Valleys</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Egypt:</strong> Divine kingship + monumental architecture</li>
+                        <li class="auto-reveal"><strong>Mesopotamia:</strong> City-states + legal innovation</li>
+                        <li class="auto-reveal"><strong>Indus Valley:</strong> Urban planning + peaceful society</li>
+                        <li class="auto-reveal"><strong>All three:</strong> River agriculture + specialized labor</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="connecting-thread auto-reveal">
+                <h3>🔗 Looking Ahead: Ancient China</h3>
+                <p>We've seen how three different river systems created three different approaches to civilization. Next, we'll explore how the <strong>Yellow and Yangtze Rivers</strong> shaped Chinese civilization - with yet another unique solution to the challenges of complex society. What innovations will geography inspire in China?</p>
+            </div>
+
+            <div class="mystery-box auto-reveal">
+                <h4>🔮 The Ongoing Mystery</h4>
+                <p class="auto-reveal">The Indus Valley script remains undeciphered. <strong>What secrets might it reveal?</strong> Their political system? Religious beliefs? Literature? Personal thoughts? Until we crack the code, one of history's greatest civilizations remains tantalizingly silent.</p>
+            </div>
+
+            <div class="emoji-large auto-reveal">🏺</div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+        let allRevealed = false;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            allRevealed = false;
+            resetReveal();
+            updateRevealButton();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                
+                if (revealIndex >= elements.length) {
+                    allRevealed = true;
+                    updateRevealButton();
+                }
+                return true;
+            }
+            return false;
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            for (let i = revealIndex; i < elements.length; i++) {
+                elements[i].classList.add('show');
+            }
+            revealIndex = elements.length;
+            allRevealed = true;
+            updateRevealButton();
+        }
+
+        function hideAll() {
+            resetReveal();
+            revealIndex = 0;
+            allRevealed = false;
+            updateRevealButton();
+        }
+
+        function toggleRevealAll() {
+            if (allRevealed) {
+                hideAll();
+            } else {
+                revealAll();
+            }
+        }
+
+        function updateRevealButton() {
+            const button = document.getElementById('reveal-toggle');
+            button.textContent = allRevealed ? 'Hide All' : 'Reveal All';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowRight':
+                case ' ':
+                    e.preventDefault();
+                    if (!revealNextElement()) {
+                        nextSlide();
+                    }
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    previousSlide();
+                    break;
+                case 'r':
+                case 'R':
+                    e.preventDefault();
+                    toggleRevealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
