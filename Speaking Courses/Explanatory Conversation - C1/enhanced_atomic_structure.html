@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Atoms and Elements Work - Enhanced</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .slide h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #4ade80;
+            animation: slideInDown 0.4s ease-out;
+        }
+
+        .slide h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #4ade80;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            animation: slideInLeft 0.3s ease-out;
+        }
+
+        .slide h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 0.2s ease-out;
+        }
+
+        .central-question {
+            background: rgba(74, 222, 128, 0.15);
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(74, 222, 128, 0.4);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 12px 40px rgba(74, 222, 128, 0.2);
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question h3 {
+            color: #4ade80;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(74, 222, 128, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(74, 222, 128, 0.3);
+            border-color: rgba(74, 222, 128, 0.6);
+        }
+
+        .content-card:hover::before {
+            left: 100%;
+        }
+
+        .content-card h3 {
+            color: #4ade80;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .step-indicator {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: #0f0f23;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(74, 222, 128, 0.4);
+        }
+
+        .emoji-large {
+            font-size: 4rem;
+            margin: 1rem 0;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(74, 222, 128, 0.9);
+            border: none;
+            color: #0f0f23;
+            padding: 1.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.4rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(74, 222, 128, 0.4);
+        }
+
+        .nav-btn:hover {
+            background: rgba(74, 222, 128, 1);
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(74, 222, 128, 0.6);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(74, 222, 128, 0.9);
+            color: #0f0f23;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(74, 222, 128, 0.4);
+        }
+
+        .vocab-frame {
+            background: rgba(168, 85, 247, 0.2);
+            border-left: 6px solid #a855f7;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 20px 20px 0;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.2);
+        }
+
+        .vocab-frame h4 {
+            color: #a855f7;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: #0f0f23;
+            padding: 2rem;
+            border-radius: 30px;
+            margin: 2rem 0;
+            font-weight: 700;
+            font-size: 1.4rem;
+            box-shadow: 0 8px 25px rgba(74, 222, 128, 0.4);
+        }
+
+        .atom-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+            position: relative;
+            height: 300px;
+        }
+
+        .nucleus {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #ef4444, #dc2626);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+        }
+
+        .electron-shell {
+            position: absolute;
+            border: 2px dashed rgba(74, 222, 128, 0.6);
+            border-radius: 50%;
+            animation: rotate 10s linear infinite;
+        }
+
+        .shell-1 {
+            width: 120px;
+            height: 120px;
+        }
+
+        .shell-2 {
+            width: 200px;
+            height: 200px;
+        }
+
+        .shell-3 {
+            width: 280px;
+            height: 280px;
+        }
+
+        .electron {
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #3b82f6, #1d4ed8);
+            border-radius: 50%;
+            position: absolute;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .comparison-table th {
+            background: rgba(74, 222, 128, 0.3);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+            pointer-events: auto;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide, .slide-content, .content-grid, .comparison-table, 
+        .atom-diagram, .vocab-frame, .challenge-box,
+        .central-question, .content-card {
+            pointer-events: auto;
+        }
+
+        .navigation, .slide-indicator, .nav-btn {
+            pointer-events: auto;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+            color: #ffffff;
+        }
+
+        li {
+            margin: 0.8rem 0;
+            padding-left: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        strong {
+            color: #4ade80;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .progressive-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .progressive-list li::before {
+            content: "▶ ";
+            color: #4ade80;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .frame-examples {
+            background: rgba(168, 85, 247, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 1rem;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+
+        .frame-examples p {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: #e2e8f0;
+            font-style: italic;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .analogy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .size-comparison {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .size-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            min-width: 150px;
+        }
+
+        .size-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        .marble { background: #8b5cf6; }
+        .stadium { background: #f59e0b; }
+        .earth { background: #3b82f6; }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 15</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">‹</button>
+        <button class="nav-btn" onclick="nextSlide()">›</button>
+        <button class="nav-btn" onclick="revealAll()" style="margin-left: 1rem; font-size: 1rem; padding: 1rem 1.5rem; border-radius: 25px;">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <div class="step-indicator auto-reveal">Enhanced Science Lesson</div>
+            <h1>⚛️ How Atoms and Elements Work</h1>
+            <h2 class="auto-reveal">From Invisible Building Blocks to Observable Properties</h2>
+            <div class="central-question auto-reveal">
+                <h3>Core Explanation Challenge</h3>
+                <p class="auto-reveal"><em>"Explain what atoms are, how they make up elements, and why different elements have different properties. Use analogies to help someone understand these invisible concepts."</em></p>
+            </div>
+            <div class="challenge-box auto-reveal">
+                Target: 7-8 minute sustained scientific explanation
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: What You'll Learn to Explain -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 What You'll Learn to Explain</h2>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🔬 Basic Atomic Structure</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">What are the three main parts of an atom?</li>
+                        <li class="auto-reveal">Where is each part located?</li>
+                        <li class="auto-reveal">What does each part do?</li>
+                        <li class="auto-reveal">How do they work together?</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>📊 The Periodic Table</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">How elements are organized</li>
+                        <li class="auto-reveal">Why element families have similar properties</li>
+                        <li class="auto-reveal">What makes each element unique</li>
+                        <li class="auto-reveal">How to predict element behavior</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🧱 Atoms to Materials</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">How atoms combine to form compounds</li>
+                        <li class="auto-reveal">Why different combinations have different properties</li>
+                        <li class="auto-reveal">How atomic structure determines material properties</li>
+                        <li class="auto-reveal">Examples from everyday materials</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Size and Scale Understanding -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📏 Understanding Atomic Size</h2>
+            <p class="auto-reveal" style="font-size: 1.6rem; margin-bottom: 2rem;">Atoms are incredibly small. Let's understand just how small:</p>
+            
+            <div class="size-comparison">
+                <div class="size-item auto-reveal">
+                    <div class="size-circle marble">•</div>
+                    <h4>Marble</h4>
+                    <p>If an atom were this size...</p>
+                </div>
+                <div class="size-item auto-reveal">
+                    <div class="size-circle stadium">🏟️</div>
+                    <h4>Stadium</h4>
+                    <p>...a marble would be this size</p>
+                </div>
+                <div class="size-item auto-reveal">
+                    <div class="size-circle earth">🌍</div>
+                    <h4>Earth</h4>
+                    <p>...and Earth would be this size</p>
+                </div>
+            </div>
+
+            <div class="vocab-frame auto-reveal">
+                <h4>Size Vocabulary for Explanations</h4>
+                <p class="auto-reveal"><strong>"Atoms are incredibly tiny"</strong> - Use when explaining scale</p>
+                <p class="auto-reveal"><strong>"To give you an idea of the size..."</strong> - Use before analogies</p>
+                <p class="auto-reveal"><strong>"Even though we can't see them..."</strong> - Use to connect invisible to observable</p>
+                <p class="auto-reveal"><strong>"Billions of atoms fit in..."</strong> - Use for concrete comparisons</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Atomic Structure Diagram -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚛️ Parts of an Atom</h2>
+            
+            <div class="atom-diagram auto-reveal">
+                <div class="nucleus auto-reveal">
+                    <span>Nucleus</span>
+                </div>
+                <div class="electron-shell shell-1 auto-reveal">
+                    <div class="electron" style="top: -10px; left: 50px;"></div>
+                </div>
+                <div class="electron-shell shell-2 auto-reveal">
+                    <div class="electron" style="top: -10px; left: 90px;"></div>
+                    <div class="electron" style="bottom: -10px; right: 90px;"></div>
+                </div>
+                <div class="electron-shell shell-3 auto-reveal">
+                    <div class="electron" style="top: -10px; right: 130px;"></div>
+                    <div class="electron" style="left: -10px; top: 130px;"></div>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🔴 Nucleus (Center)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Contains:</strong> Protons + Neutrons</li>
+                        <li class="auto-reveal"><strong>Size:</strong> Extremely tiny but very dense</li>
+                        <li class="auto-reveal"><strong>Function:</strong> Determines what element it is</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🔵 Electrons (Moving Around)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Location:</strong> In shells around nucleus</li>
+                        <li class="auto-reveal"><strong>Movement:</strong> Constantly moving in orbital patterns</li>
+                        <li class="auto-reveal"><strong>Function:</strong> Determine chemical behavior</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Protons, Neutrons, Electrons Detail -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🧩 The Three Main Particles</h2>
+            
+            <table class="comparison-table auto-reveal">
+                <thead>
+                    <tr>
+                        <th>Particle</th>
+                        <th>Location</th>
+                        <th>Charge</th>
+                        <th>What It Does</th>
+                        <th>Remember It Like...</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="auto-reveal">
+                        <td><strong>PROTON</strong></td>
+                        <td>Inside nucleus</td>
+                        <td>Positive (+)</td>
+                        <td>Determines element identity</td>
+                        <td>🏠 "Address number" - tells you which element</td>
+                    </tr>
+                    <tr class="auto-reveal">
+                        <td><strong>NEUTRON</strong></td>
+                        <td>Inside nucleus</td>
+                        <td>Neutral (0)</td>
+                        <td>Adds mass, stability</td>
+                        <td>⚖️ "Glue" - holds nucleus together</td>
+                    </tr>
+                    <tr class="auto-reveal">
+                        <td><strong>ELECTRON</strong></td>
+                        <td>Outside nucleus</td>
+                        <td>Negative (-)</td>
+                        <td>Chemical bonding</td>
+                        <td>🤝 "Social behavior" - how atoms interact</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="vocab-frame auto-reveal">
+                <h4>Essential Sentence Frames</h4>
+                <p class="auto-reveal"><strong>"The proton determines..."</strong> - Use when explaining element identity</p>
+                <p class="auto-reveal"><strong>"Neutrons provide..."</strong> - Use when explaining atomic mass</p>
+                <p class="auto-reveal"><strong>"Electrons are responsible for..."</strong> - Use when explaining chemical behavior</p>
+                <p class="auto-reveal"><strong>"At the atom's center, the nucleus..."</strong> - Use when describing structure</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Simple Sentence Frames -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🗣️ Sentence Frames for Atomic Structure</h2>
+            
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🏗️ Basic Structure Frames</h3>
+                    <div class="frame-examples">
+                        <p class="auto-reveal">"An atom consists of _____ in the center and _____ moving around it."</p>
+                        <p class="auto-reveal">"The nucleus contains _____ and _____, while _____ orbit outside."</p>
+                        <p class="auto-reveal">"Think of an atom like _____ with _____ at the center and _____ circling around."</p>
+                        <p class="auto-reveal">"The structure is organized with _____ providing _____ and _____ determining _____."</p>
+                    </div>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🔍 Function Explanation Frames</h3>
+                    <div class="frame-examples">
+                        <p class="auto-reveal">"Protons are important because they _____."</p>
+                        <p class="auto-reveal">"The number of protons tells us _____."</p>
+                        <p class="auto-reveal">"Electrons determine _____ by _____."</p>
+                        <p class="auto-reveal">"When electrons _____, the atom can _____."</p>
+                    </div>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>📊 Comparison Frames</h3>
+                    <div class="frame-examples">
+                        <p class="auto-reveal">"Unlike _____, _____ have a different _____."</p>
+                        <p class="auto-reveal">"All elements share _____, but they differ in _____."</p>
+                        <p class="auto-reveal">"While _____ stays the same, _____ can vary."</p>
+                        <p class="auto-reveal">"The difference between _____ and _____ is _____."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Analogies for Understanding -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔗 Analogies to Explain Atomic Structure</h2>
+            
+            <div class="analogy-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🏠 Building/Architecture</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Atom like a house:</strong> nucleus = foundation, electrons = rooms</li>
+                        <li class="auto-reveal"><strong>Protons like address numbers:</strong> tell you which house (element) it is</li>
+                        <li class="auto-reveal"><strong>Electrons like windows/doors:</strong> how the house interacts with neighbors</li>
+                        <li class="auto-reveal"><strong>Neutrons like support beams:</strong> provide stability and weight</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🏫 School/Organization</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Atom like a school:</strong> nucleus = main office, electrons = students</li>
+                        <li class="auto-reveal"><strong>Protons like principal:</strong> determines school identity</li>
+                        <li class="auto-reveal"><strong>Electrons like students:</strong> create activity and interactions</li>
+                        <li class="auto-reveal"><strong>Electron shells like grade levels:</strong> organized in different levels</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>☀️ Solar System</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Nucleus like sun:</strong> central, massive, controls system</li>
+                        <li class="auto-reveal"><strong>Electrons like planets:</strong> orbit at different distances</li>
+                        <li class="auto-reveal"><strong>Electron shells like orbital rings:</strong> different energy levels</li>
+                        <li class="auto-reveal"><strong>BUT:</strong> electrons move much faster and more randomly</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: What Makes Elements Different -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🧪 What Makes Each Element Unique</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>The Key Principle</h3>
+                <p class="auto-reveal"><strong>The number of protons determines the element</strong></p>
+                <p class="auto-reveal">Change the protons = different element entirely</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>1️⃣ Hydrogen</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Protons:</strong> 1</li>
+                        <li class="auto-reveal"><strong>Properties:</strong> Lightest element, gas</li>
+                        <li class="auto-reveal"><strong>Common in:</strong> Water (H₂O)</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>6️⃣ Carbon</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Protons:</strong> 6</li>
+                        <li class="auto-reveal"><strong>Properties:</strong> Forms many bonds</li>
+                        <li class="auto-reveal"><strong>Common in:</strong> All living things</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>7️⃣9️⃣ Gold</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Protons:</strong> 79</li>
+                        <li class="auto-reveal"><strong>Properties:</strong> Doesn't rust, valuable</li>
+                        <li class="auto-reveal"><strong>Common in:</strong> Jewelry, electronics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="vocab-frame auto-reveal">
+                <h4>Element Identity Frames</h4>
+                <p class="auto-reveal"><strong>"Each element is defined by its number of _____."</strong></p>
+                <p class="auto-reveal"><strong>"If you change the number of protons, you get a completely different _____."</strong></p>
+                <p class="auto-reveal"><strong>"Elements with similar numbers of _____ often have similar _____."</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: How Electrons Determine Properties -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚡ How Electrons Determine Chemical Behavior</h2>
+            
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🏠 Electron Shells</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Shell 1:</strong> Holds up to 2 electrons (closest to nucleus)</li>
+                        <li class="auto-reveal"><strong>Shell 2:</strong> Holds up to 8 electrons</li>
+                        <li class="auto-reveal"><strong>Shell 3:</strong> Holds up to 8 electrons (simplified)</li>
+                        <li class="auto-reveal"><strong>Outer shell:</strong> Determines how atoms bond</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🤝 Bonding Behavior</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Full outer shell:</strong> Stable, doesn't react easily</li>
+                        <li class="auto-reveal"><strong>Almost full:</strong> Wants to gain electrons</li>
+                        <li class="auto-reveal"><strong>Almost empty:</strong> Wants to lose electrons</li>
+                        <li class="auto-reveal"><strong>Half full:</strong> Can share electrons</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>👥 Real Examples</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Neon:</strong> Full outer shell → doesn't react</li>
+                        <li class="auto-reveal"><strong>Sodium:</strong> 1 outer electron → loses it easily</li>
+                        <li class="auto-reveal"><strong>Chlorine:</strong> 7 outer electrons → wants 1 more</li>
+                        <li class="auto-reveal"><strong>Result:</strong> Sodium + Chlorine = Salt!</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                Key Insight: Chemical properties come from electron arrangement, not proton number!
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Periodic Table Organization -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📊 Why the Periodic Table is Organized This Way</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>The Pattern</h3>
+                <p class="auto-reveal">Elements are arranged by increasing proton number</p>
+                <p class="auto-reveal">Elements in the same column have similar electron arrangements</p>
+                <p class="auto-reveal">Similar electron arrangements = similar properties</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>📍 Columns (Groups)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Same number of outer electrons</strong></li>
+                        <li class="auto-reveal"><strong>Similar chemical behavior</strong></li>
+                        <li class="auto-reveal"><strong>Example:</strong> All Group 1 metals react with water</li>
+                        <li class="auto-reveal"><strong>Pattern:</strong> Predictable properties</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>➡️ Rows (Periods)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Same number of electron shells</strong></li>
+                        <li class="auto-reveal"><strong>Size gradually changes across row</strong></li>
+                        <li class="auto-reveal"><strong>Properties change systematically</strong></li>
+                        <li class="auto-reveal"><strong>Pattern:</strong> Left side = metals, right side = non-metals</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>👨‍👩‍👧‍👦 Element Families</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Alkali metals:</strong> 1 outer electron, very reactive</li>
+                        <li class="auto-reveal"><strong>Noble gases:</strong> Full outer shell, very stable</li>
+                        <li class="auto-reveal"><strong>Halogens:</strong> 7 outer electrons, want 1 more</li>
+                        <li class="auto-reveal"><strong>Pattern:</strong> Family behavior is predictable</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Advanced Sentence Frames -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🗣️ Advanced Explanation Frames</h2>
+            
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🔗 Connecting Structure to Properties</h3>
+                    <div class="frame-examples">
+                        <p class="auto-reveal">"Because this element has _____ outer electrons, it tends to _____."</p>
+                        <p class="auto-reveal">"The atomic structure explains why _____ behaves differently from _____."</p>
+                        <p class="auto-reveal">"You can predict that _____ will _____ because its electron arrangement is _____."</p>
+                        <p class="auto-reveal">"The pattern shows that when _____, then _____ usually happens."</p>
+                    </div>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🔄 Explaining Bonding</h3>
+                    <div class="frame-examples">
+                        <p class="auto-reveal">"Atoms bond together because _____."</p>
+                        <p class="auto-reveal">"This element wants to _____ electrons to achieve _____."</p>
+                        <p class="auto-reveal">"When _____ meets _____, they _____ because _____."</p>
+                        <p class="auto-reveal">"The resulting compound has _____ properties because _____."</p>
+                    </div>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>📊 Using Analogies Effectively</h3>
+                    <div class="frame-examples">
+                        <p class="auto-reveal">"To understand this concept, imagine _____."</p>
+                        <p class="auto-reveal">"This is similar to _____ in that both _____."</p>
+                        <p class="auto-reveal">"Just like _____, atoms _____ when _____."</p>
+                        <p class="auto-reveal">"However, unlike _____, atoms also _____."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: From Atoms to Everyday Materials -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🧱 From Atoms to Materials You Know</h2>
+            
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>💧 Water (H₂O)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Components:</strong> 2 Hydrogen + 1 Oxygen</li>
+                        <li class="auto-reveal"><strong>Why this combination:</strong> Oxygen wants 2 electrons, each H provides 1</li>
+                        <li class="auto-reveal"><strong>Result:</strong> Liquid at room temperature, essential for life</li>
+                        <li class="auto-reveal"><strong>Properties:</strong> Different from pure hydrogen or oxygen gas</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🧂 Salt (NaCl)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Components:</strong> Sodium + Chlorine</li>
+                        <li class="auto-reveal"><strong>Why this combination:</strong> Na wants to lose 1 electron, Cl wants to gain 1</li>
+                        <li class="auto-reveal"><strong>Result:</strong> Crystalline solid, makes food taste better</li>
+                        <li class="auto-reveal"><strong>Properties:</strong> Neither sodium (explosive) nor chlorine (poisonous)</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>💎 Diamond (Carbon)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Components:</strong> Pure carbon atoms</li>
+                        <li class="auto-reveal"><strong>Structure:</strong> Each carbon bonded to 4 others in 3D network</li>
+                        <li class="auto-reveal"><strong>Result:</strong> Extremely hard, brilliant when cut</li>
+                        <li class="auto-reveal"><strong>Same atoms, different arrangement:</strong> Graphite (pencil lead) is soft</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                Key Principle: Same atoms in different arrangements = completely different materials!
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Practice Putting It All Together -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Practice: Putting It All Together</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>Your Explanation Challenge</h3>
+                <p class="auto-reveal">Choose one of these examples and explain it completely:</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🔥 Oxygen (O₂)</h3>
+                    <p class="auto-reveal"><strong>Your task:</strong> Explain why oxygen atoms form pairs and why this makes oxygen gas reactive</p>
+                    <div class="frame-examples auto-reveal">
+                        <p>Include: Atomic structure, electron needs, bonding behavior, everyday examples</p>
+                    </div>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>⚪ Helium (He)</h3>
+                    <p class="auto-reveal"><strong>Your task:</strong> Explain why helium doesn't react with anything and why balloons float</p>
+                    <div class="frame-examples auto-reveal">
+                        <p>Include: Electron arrangement, chemical stability, physical properties</p>
+                    </div>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🔬 Carbon (C)</h3>
+                    <p class="auto-reveal"><strong>Your task:</strong> Explain why carbon can form so many different compounds</p>
+                    <div class="frame-examples auto-reveal">
+                        <p>Include: Bonding capacity, different structures (diamond vs. graphite), organic molecules</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-frame auto-reveal">
+                <h4>Remember to use:</h4>
+                <p class="auto-reveal">• Structure-to-property connections</p>
+                <p class="auto-reveal">• Analogies that help understanding</p>
+                <p class="auto-reveal">• Specific examples from everyday life</p>
+                <p class="auto-reveal">• Clear cause-and-effect relationships</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Common Misconceptions to Address -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚠️ Common Misconceptions to Address</h2>
+            
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>❌ Misconception 1</h3>
+                    <p class="auto-reveal"><strong>"Electrons orbit like planets"</strong></p>
+                    <div class="frame-examples auto-reveal">
+                        <p><strong>Better explanation:</strong> "Electrons exist in probability clouds around the nucleus"</p>
+                        <p><strong>Analogy:</strong> "Like a swarm of bees around a hive - you know they're there but can't predict exactly where"</p>
+                    </div>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>❌ Misconception 2</h3>
+                    <p class="auto-reveal"><strong>"Atoms are mostly solid matter"</strong></p>
+                    <div class="frame-examples auto-reveal">
+                        <p><strong>Better explanation:</strong> "Atoms are mostly empty space with tiny particles"</p>
+                        <p><strong>Analogy:</strong> "Like a stadium with a marble at the center and gnats flying around"</p>
+                    </div>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>❌ Misconception 3</h3>
+                    <p class="auto-reveal"><strong>"You can see atoms with regular microscopes"</strong></p>
+                    <div class="frame-examples auto-reveal">
+                        <p><strong>Better explanation:</strong> "Atoms are smaller than light waves, so we need special techniques"</p>
+                        <p><strong>Evidence:</strong> "We know they exist from their effects and special microscopy"</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                Always address misconceptions by giving better explanations, not just saying "that's wrong"
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 15: Final Challenge -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏆 Your Complete Explanation Challenge</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>The Ultimate Test</h3>
+                <p class="auto-reveal"><strong>"Explain what atoms are, how they make up elements, and why different elements have different properties. Use analogies and specific examples to help someone understand these invisible concepts."</strong></p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>✅ Your Explanation Must Include</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Three main parts of atoms and their functions</li>
+                        <li class="auto-reveal">How proton number determines element identity</li>
+                        <li class="auto-reveal">How electron arrangement determines properties</li>
+                        <li class="auto-reveal">At least two analogies that aid understanding</li>
+                        <li class="auto-reveal">Examples of how atoms form familiar materials</li>
+                        <li class="auto-reveal">Clear cause-and-effect relationships</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🎯 Success Criteria</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Duration:</strong> 7-8 minutes sustained explanation</li>
+                        <li class="auto-reveal"><strong>Structure:</strong> Clear introduction, development, conclusion</li>
+                        <li class="auto-reveal"><strong>Language:</strong> Appropriate scientific vocabulary</li>
+                        <li class="auto-reveal"><strong>Clarity:</strong> Uses analogies effectively</li>
+                        <li class="auto-reveal"><strong>Examples:</strong> Connects abstract concepts to concrete reality</li>
+                        <li class="auto-reveal"><strong>Flow:</strong> Logical progression from simple to complex</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                Remember: Your goal is to make invisible atomic concepts understandable and memorable!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            resetReveal();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                return true; // Successfully revealed an element
+            }
+            return false; // No more elements to reveal
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            // Reveal all remaining elements
+            for (let i = revealIndex; i < elements.length; i++) {
+                elements[i].classList.add('show');
+            }
+            revealIndex = elements.length;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                // Try to reveal next element first, only advance slide if no more to reveal
+                const revealed = revealNextElement();
+                if (!revealed) {
+                    nextSlide(); // No more elements to reveal, go to next slide
+                }
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide(); // Left arrow always goes to previous slide
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                revealNextElement(); // Enter just reveals, doesn't advance slides
+            }
+        });
+
+        // Initialize after DOM is ready
+        document.getElementById('slide-counter').textContent = `1 / ${totalSlides}`;
+
+        // Add comprehensive click handling using event capture
+        document.addEventListener('click', function(e) {
+            // Skip navigation elements completely
+            if (e.target.closest('.navigation') || 
+                e.target.closest('.slide-indicator')) {
+                return;
+            }
+            
+            // Only reveal on current visible slide
+            const currentSlideElement = slides[currentSlide];
+            if (currentSlideElement && !currentSlideElement.classList.contains('hidden')) {
+                revealNextElement(); // Click always just reveals, doesn't advance slides
+            }
+        }, true); // Use capture phase for better event catching
+    </script>
+</body>
+</html>

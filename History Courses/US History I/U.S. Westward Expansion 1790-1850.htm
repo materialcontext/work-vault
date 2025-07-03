@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <link href='http://fonts.googleapis.com/css?family=Actor' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="wgbh/interact/lib/bootstrap/css/bootstrap.min.css" type="text/css" media="screen" title="no title">
+        <link rel="stylesheet" href="wgbh/interact/lib/bootstrap/css/bootstrap-responsive.css" type="text/css" media="screen" title="no title">
+        <link rel="stylesheet" href="wgbh/interact/css/tmpl_base.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="wgbh/css/base.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="wgbh/css/labels.css" type="text/css" media="screen">
+        
+        <script>
+                browser_met = false;
+        </script>
+        <script src="wgbh/js/config.js" type="text/javascript" charset="utf-8"></script>        
+        <script src="wgbh/interact/lib/modernizr.js" type="text/javascript" charset="utf-8"></script>
+        <script src="wgbh/interact/lib/jq/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+        <script src="wgbh/interact/lib/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="wgbh/interact/lib/touchpunch.js"></script>
+        <script src="wgbh/interact/lib/underscore-min.js" type="text/javascript" charset="utf-8"></script>       
+        <script src="wgbh/interact/lib/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+        <script src="wgbh/interact/lib/PreloadJS/preloadjs-0.3.0.min.js" type="text/javascript"></script>
+            
+        <script src="wgbh/js/base.js" type="text/javascript" charset="utf-8"></script>
+              
+        <script>
+                
+                $('.dropdown-toggle').dropdown();
+                browser_met = false;
+                    var BrowserDetect = 
+                    {
+                            browser: null,
+                            version: null,
+                        init: function () 
+                        {
+                            this.browser = this.searchString(this.dataBrowser) || "Other";
+                            this.version = this.searchVersion(navigator.userAgent) ||       this.searchVersion(navigator.appVersion) || "Unknown";
+                            return this.version >= this.versionMin[this.browser];
+                        },
+
+                        searchString: function (data) 
+                        {
+                            for (var i=0 ; i < data.length ; i++)   
+                            {
+                                var dataString = data[i].string;
+                                this.versionSearchString = data[i].subString;
+
+                                if (dataString.indexOf(data[i].subString) != -1)
+                                {
+                                    return data[i].identity;
+                                }
+                            }
+                        },
+
+                        searchVersion: function (dataString) 
+                        {
+                            var index = dataString.indexOf(this.versionSearchString);
+                            if (index == -1) return;
+                            return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
+                        },
+
+                        dataBrowser: 
+                        [
+                            { string: navigator.userAgent, subString: "Chrome",  identity: "Chrome"},
+                            { string: navigator.userAgent, subString: "MSIE",    identity: "Explorer"},
+                            { string: navigator.userAgent, subString: "Firefox", identity: "Firefox"},
+                            { string: navigator.userAgent, subString: "Safari",  identity: "Safari"},
+                            { string: navigator.userAgent, subString: "Opera",   identity: "Opera"}
+                        ],
+
+                        versionMin: {"Chrome": 22, "Explorer": 8, "Firefox": 12 , "Safari": 5.1  , "Opera" : 11.1 }
+                    };
+
+                browser_met = BrowserDetect.init();
+                
+
+        </script>
+        <script type="text/javascript">
+    		// Activate touch events for mobile, so mobile correctly displays :active styles
+    		function touchStart(event) { }			// Empty function for triggering touch event
+    		document.ontouchstart = touchStart;		// Globally trigger touch event.
+    	</script>
+        <title>U.S. Westward Expansion 1790-1850</title>
+</head>
+<body>
+        <div id="no_js_main_body_contain" style="height:100px;width:100%;background-color:#FFF">
+        <!-- no javascript -->
+        <p>Please use a browser with Javascript enabled.</p>
+        </div>
+        <div id="no_browser_main_body_contain" style="height:2000px;width:100%;background-color:#FFF">
+        <!-- no javascript -->
+        <p>Please use a more recent browser.</p>
+        </div>
+        <!--
+        <div id="fouc_screen" style="height:2000px;width:100%;background-color:red">
+                unrendered content
+                <p style="font-size:100px">LOADING ...</p>
+        </div>
+        -->
+        <div id="main_body_contain" class="body_contain" style="display:none">
+                
+                <div class="container-fluid" id="main_content_contain">
+                        
+                        <div id="map_super_layer_base" class="map_super_layer">
+    
+                                <img id="bg_map-png" data-src="media/img/bg_map.png" class="dse sli_fullwidth decade_1 decade_2  decade_3 decade_4 decade_5 decade_6 decade_7 preloadIMG super_layer_img"  src="media/img/preload.gif" alt="temporary paceholder image">
+
+                        </div>
+                        <div id="map_super_layer_1" class="map_super_layer" data-cId="territories">
+                                
+                                <img  data-src="media/img/ST_1790.png" class="dse sli_partialwidth decade_1 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                
+                                <img data-src="media/img/ST_1800.png" class="dse sli_partialwidth s_t_img decade_2 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/ST_1810.png" class="dse sli_partialwidth s_t_img decade_3 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/ST_1820.png" class="dse sli_partialwidth s_t_img decade_4 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/ST_1830.png" class="dse sli_partialwidth s_t_img decade_5 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/ST_1840.png" class="dse sli_partialwidth s_t_img decade_6 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/ST_1850.png" class="dse sli_partialwidth s_t_img decade_7 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <!-- labels decade 1 -->
+                                <div class="labels">
+                                        <div id="territories_labels_1" class="label_set sublayer_type1 dse decade_1">
+                                                <div class="tdrag lbl2 Unclaimed" data-id="Unclaimed">Unclaimed</div>
+                                                <div class="tdrag lbl2 Spain" data-id="Spain">Spain</div>
+                                                <div class="tdrag lbl2 NorthwestTerritory" data-id="NorthwestTerritory">Northwest<br />Territory</div>
+                                                <div class="tdrag lbl2 SouthwestTerritory" data-id="SouthwestTerritory">Southwest<br />Territory</div>
+                                                <div class="tdrag lbl2 VermontRepublic" data-id="VermontRepublic">Vermont<br />Republic</div>
+                                                <div class="tdrag lbl2 Disputed" data-id="Disputed">Disputed</div>
+                                        </div>
+                                        <div id="territories_labels_2" class="label_set sublayer_type1 dse decade_2">
+                                                <div class="tdrag lbl2 NorthwestTerritory" data-id="NorthwestTerritory">Northwest<br />Territory</div>
+                                                <div class="tdrag lbl2 IndianTerritory" data-id="IndianTerritory">Indiana<br />Territory</div>
+                                                <div class="tdrag lbl2 MississippiTerritory" data-id="MississippiTerritory">Mississippi<br />Territory</div>
+                                                <div class="tdrag lbl2 Spain" data-id="Spain">Spain</div>
+                                                <div class="tdrag lbl2 France" data-id="France">France</div>
+                                                <div class="tdrag lbl2 Unclaimed" data-id="Unclaimed">Unclaimed</div>
+                                        </div>
+                                        <div id="territories_labels_3" class="label_set sublayer_type1 dse decade_3">
+                                                <div class="tdrag lbl2 IndianTerritory" data-id="IndianTerritory">Indiana<br />Territory</div>
+                                                <div class="tdrag lbl2 MississippiTerritory" data-id="MississippiTerritory">Mississippi<br />Territory</div>
+                                                <div class="tdrag lbl2 LouisianaTerritory" data-id="LouisianaTerritory">Louisiana<br />Territory</div>
+                                                <div class="tdrag lbl2 IllinoisTerritory" data-id="IllinoisTerritory">Illinois<br />Territory</div>
+                                                <div class="tdrag lbl2 MichiganTerritory" data-id="MichiganTerritory">Michigan<br />Territory</div>
+                                                <div class="tdrag lbl2 OrleansTerritory" data-id="OrleansTerritory">Orleans<br />Territory</div>
+                                                <div class="tdrag lbl2 Spain" data-id="Spain">Spain</div>
+                                                <div class="tdrag lbl2 Disputed" data-id="Disputed">Disputed</div>
+                                                <div class="tdrag lbl2 Disputed2" data-id="Disputed2">Disputed</div>
+                                        </div>
+                                        <div id="territories_labels_4" class="label_set sublayer_type1 dse decade_4">
+                                                <div class="tdrag lbl2 MissouriTerritory" data-id="MissouriTerritory">Missouri Territory</div>
+                                                <div class="tdrag lbl2 ArkansasTerritory" data-id="ArkansasTerritory">Arkansas Territory</div>
+                                                <div class="tdrag lbl2 MichiganTerritory" data-id="MichiganTerritory">Michigan<br />Territory</div>
+                                                <div class="tdrag lbl2 Spain" data-id="Spain">Spain</div>
+                                                <div class="tdrag lbl2 Disputed" data-id="Disputed">Disputed</div>
+                                                <div class="tdrag lbl2 Disputed2" data-id="Disputed2">Disputed</div>
+                                                <div class="tdrag lbl2 Disputed3" data-id="Disputed2">Disputed</div>
+                                        </div>
+                                        <div id="territories_labels_5" class="label_set sublayer_type1 dse decade_5">
+                                                <div class="tdrag lbl2 FloridaTerritory" data-id="FloridaTerritory">Florida Territory</div>
+                                                <div class="tdrag lbl2 ArkansasTerritory" data-id="ArkansasTerritory">Arkansas<br />Territory</div>
+                                                <div class="tdrag lbl2 MichiganTerritory" data-id="MichiganTerritory">Michigan<br />Territory</div>
+                                                <div class="tdrag lbl2 Mexico" data-id="Mexico">Mexico</div>
+                                                <div class="tdrag lbl2 Disputed" data-id="Disputed">Disputed</div>     
+                                        </div>
+                                        <div id="territories_labels_6" class="label_set sublayer_type1 dse decade_6">
+                                                <div class="tdrag lbl2 FloridaTerritory" data-id="FloridaTerritory">Florida Territory</div>
+                                                <div class="tdrag lbl2 WisconsinTerritory" data-id="WisconsinTerritory">Wisconsin Territory</div>
+                                                <div class="tdrag lbl2 IowaTerritory" data-id="IowaTerritory">Iowa Territory</div>
+                                                <div class="tdrag lbl2 Mexico" data-id="Mexico">Mexico</div>
+                                                <div class="tdrag lbl2 RepublicofTexas" data-id="RepublicofTexas">Republic of Texas</div>
+                                                <div class="tdrag lbl2 Disputed" data-id="Disputed">Disputed</div>
+                                                <div class="tdrag lbl2 Disputed2" data-id="Disputed2">Disputed</div>
+                                                <div class="tdrag lbl2 IndianTerritory" data-id="IndianTerritory">Indian Territory</div>
+                                        </div>
+                                        <div id="territories_labels_7" class="label_set sublayer_type1 dse decade_7">
+                                                <div class="tdrag lbl2 MinnesotaTerritory" data-id="MinnesotaTerritory">Minnesota Territory</div>
+                                                <div class="tdrag lbl2 OregonTerritory" data-id="OregonTerritory">Oregon Territory</div>
+                                                <div class="tdrag lbl2 NewMexicoTerritory" data-id="NewMexicoTerritory">New Mexico Territory</div>
+                                                <div class="tdrag lbl2 UtahTerritory" data-id="UtahTerritory">Utah Territory</div>
+                                                <div class="tdrag lbl2 Mexico" data-id="Mexico">Mexico</div>
+                                                <div class="tdrag lbl2 IndianTerritory" data-id="IndianTerritory">Indian Territory</div>  
+                                        </div>
+                                </div>  
+                        </div>
+                        
+                        <div id="map_super_layer_8" class="map_super_layer" data-cId="present_day">
+                                         <img data-src="media/img/states.png" class="dse sli_present_day sli_partialwidth s_t_img decade_1 decade_2 decade_3 decade_4 decade_5 decade_6 decade_7  preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                        </div>
+                       
+                        <div id="map_super_layer_3" class="map_super_layer" data-cId="native_lands">
+                                <img data-src="media/img/Tribes_1790.png" class="dse sli_native_lands s_t_img decade_1 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/Tribes_1800.png" class="dse sli_native_lands s_t_img decade_2 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/Tribes_1810.png" class="dse sli_native_lands s_t_img decade_3 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/Tribes_1820.png" class="dse sli_native_lands s_t_img decade_4 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/Tribes_1830.png" class="dse sli_native_lands s_t_img decade_5 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/Tribes_1840.png" class="dse sli_native_lands s_t_img decade_6 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/Tribes_1850.png" class="dse sli_native_lands s_t_img decade_7 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                
+                                
+                                <div class="labels">
+                                        <div id="native_lands_labels_1" class="label_set sublayer_type1 dse decade_1">
+                                                <div class="tdrag lbl2 Caddo" data-id="Caddo">Caddo</div>
+                                                <div class="tdrag lbl2 Cherokee" data-id="Cherokee">Cherokee</div>
+                                                <div class="tdrag lbl2 Chickasaw" data-id="Chickasaw">Chickasaw</div>
+                                                <div class="tdrag lbl2 Chippewa" data-id="Chippewa">Chippewa</div>
+                                                <div class="tdrag lbl2 Chippewa2" data-id="Chippewa2">Chippewa</div>
+                                                <div class="tdrag lbl2 Choctaw" data-id="Choctaw">Choctaw</div>
+                                                <div class="tdrag lbl2 Creek" data-id="Creek">Creek</div>
+                                                <div class="tdrag lbl2 Kansa" data-id="Kansa">Kansa</div>
+                                                <div class="tdrag lbl2 Menominee" data-id="Menominee">Menominee</div>
+                                                <div class="tdrag lbl2 Miami" data-id="Miami">Miami</div>
+                                                <div class="tdrag lbl2 Omaha" data-id="Omaha">Omaha</div>
+                                                <div class="tdrag lbl2 Osage" data-id="Osage">Osage</div>
+                                                <div class="tdrag lbl2 OtoMissouri" data-id="OtoMissouri">Oto & Missouri</div>
+                                                <div class="tdrag lbl2 Ottawa" data-id="Ottawa">Ottawa </div>
+                                                <div class="tdrag lbl2 Pawnee" data-id="Pawnee">Pawnee</div>
+                                                <div class="tdrag lbl2 Potawatomi" data-id="Potawatomi">Potawatomi</div>
+                                                <div class="tdrag lbl2 Quapaw" data-id="Quapaw">Quapaw</div>
+                                                <div class="tdrag lbl2 SaukFox" data-id="SaukFox">Sauk & Fox</div>
+                                                <div class="tdrag lbl2 Seminole" data-id="Seminole">Seminole</div>
+                                                <div class="tdrag lbl2 Seneca" data-id="Seneca">Seneca</div>
+                                                <div class="tdrag lbl2 Shawnee" data-id="Shawnee">Shawnee</div>
+                                                <div class="tdrag lbl2 Sioux" data-id="Sioux">Sioux</div>
+                                                <div class="tdrag lbl2 Winnebago" data-id="Winnebago">Winnebago</div>
+                                                <div class="tdrag lbl2 Wyandot" data-id="Wyandot">Wyandot</div>
+                                        </div>
+                                
+                                        <div id="native_lands_labels_2" class="label_set sublayer_type1 dse decade_2">
+                                                <div class="tdrag lbl2 Caddo" data-id="Caddo">Caddo</div>
+                                                <div class="tdrag lbl2 Cherokee" data-id="Cherokee">Cherokee</div>
+                                                <div class="tdrag lbl2 Chickasaw" data-id="Chickasaw">Chickasaw</div>
+                                                <div class="tdrag lbl2 Chippewa" data-id="Chippewa">Chippewa</div>
+                                                <div class="tdrag lbl2 Chippewa2" data-id="Chippewa2">Chippewa</div>
+                                                <div class="tdrag lbl2 Choctaw" data-id="Choctaw">Choctaw</div>
+                                                <div class="tdrag lbl2 Creek" data-id="Creek">Creek</div>
+                                                <div class="tdrag lbl2 Kansa" data-id="Kansa">Kansa</div>
+                                                <div class="tdrag lbl2 Menominee" data-id="Menominee">Menominee</div>
+                                                <div class="tdrag lbl2 Miami" data-id="Miami">Miami</div>
+                                                <div class="tdrag lbl2 Omaha" data-id="Omaha">Omaha</div>
+                                                <div class="tdrag lbl2 Osage" data-id="Osage">Osage</div>
+                                                <div class="tdrag lbl2 OtoMissouri" data-id="OtoMissouri">Oto & Missouri</div>
+                                                <div class="tdrag lbl2 Ottawa" data-id="Ottawa">Ottawa </div>
+                                                <div class="tdrag lbl2 Pawnee" data-id="Pawnee">Pawnee</div>
+                                                <div class="tdrag lbl2 Potawatomi" data-id="Potawatomi">Potawatomi</div>
+                                                <div class="tdrag lbl2 Quapaw" data-id="Quapaw">Quapaw</div>
+                                                <div class="tdrag lbl2 SaukFox" data-id="SaukFox">Sauk & Fox</div>
+                                                <div class="tdrag lbl2 Seminole" data-id="Seminole">Seminole</div>
+                                                <div class="tdrag lbl2 Seneca" data-id="Seneca">Seneca</div>
+                                                <div class="tdrag lbl2 Shawnee" data-id="Shawnee">Shawnee</div>
+                                                <div class="tdrag lbl2 Sioux" data-id="Sioux">Sioux</div>
+                                                <div class="tdrag lbl2 Winnebago" data-id="Winnebago">Winnebago</div>
+                                                <div class="tdrag lbl2 Wyandot" data-id="Wyandot">Wyandot</div>
+                                        </div>
+                                        <div id="native_lands_labels_3" class="label_set sublayer_type1 dse decade_3">
+                                                <div class="tdrag lbl2 Caddo" data-id="Caddo">Caddo</div>
+                                                <div class="tdrag lbl2 Cherokee" data-id="Cherokee">Cherokee</div>
+                                                <div class="tdrag lbl2 Chickasaw" data-id="Chickasaw">Chickasaw</div>
+                                                <div class="tdrag lbl2 Chippewa" data-id="Chippewa">Chippewa</div>
+                                                <div class="tdrag lbl2 Chippewa2" data-id="Chippewa2">Chippewa</div>
+                                                <div class="tdrag lbl2 Choctaw" data-id="Choctaw">Choctaw</div>
+                                                <div class="tdrag lbl2 Creek" data-id="Creek">Creek</div>
+                                                <div class="tdrag lbl2 Kansa" data-id="Kansa">Kansa</div>
+                                               <div class="tdrag lbl2 Menominee" data-id="Menominee"> Menominee</div>
+                                                <div class="tdrag lbl2 Miami" data-id="Miami">Miami</div>
+                                                <div class="tdrag lbl2 Omaha" data-id="Omaha">Omaha</div>
+                                                <div class="tdrag lbl2 Osage" data-id="Osage">Osage</div>
+                                                <div class="tdrag lbl2 OtoMissouri" data-id="OtoMissouri">Oto & Missouri</div>
+                                               <div class="tdrag lbl2 Ottawa" data-id="Ottawa"> Ottawa</div>
+                                                <div class="tdrag lbl2 Pawnee" data-id="Pawnee">Pawnee</div>
+                                                <div class="tdrag lbl2 Potawatomi" data-id="Potawatomi">Potawatomi</div>
+                                                <div class="tdrag lbl2 Quapaw" data-id="Quapaw">Quapaw</div>
+                                                <div class="tdrag lbl2 SaukFox" data-id="SaukFox">Sauk & Fox</div>
+                                                <div class="tdrag lbl2 Seminole" data-id="Seminole">Seminole</div>
+                                                <div class="tdrag lbl2 Seneca" data-id="Seneca">Seneca</div>
+
+                                                <div class="tdrag lbl2 Sioux" data-id="Sioux">Sioux</div>
+                                                <div class="tdrag lbl2 Winnebago" data-id="Winnebago">Winnebago</div>
+                                               <div class="tdrag lbl2 Wyandot" data-id="Wyandot">Wyandot</div>
+                                        
+                                        </div>
+                                        <div id="native_lands_labels_4" class="label_set sublayer_type1 dse decade_4">
+                                                <div class="tdrag lbl2 Shawnee" data-id="Shawnee">Shawnee</div>
+                                                <div class="tdrag lbl2 Caddo" data-id="Caddo">Caddo</div>
+                                                <div class="tdrag lbl2 Cherokee" data-id="Cherokee">Cherokee</div>
+                                                <div class="tdrag lbl2 Chickasaw" data-id="Chickasaw">Chickasaw</div>
+                                                <div class="tdrag lbl2 Chippewa" data-id="Chippewa">Chippewa</div>
+                                                <div class="tdrag lbl2 Chippewa2" data-id="Chippewa2">Chippewa</div>
+                                                <div class="tdrag lbl2 Choctaw" data-id="Choctaw">Choctaw</div>
+                                                <div class="tdrag lbl2 Creek" data-id="Creek">Creek</div>
+                                                <div class="tdrag lbl2 Kansa" data-id="Kansa">Kansa</div>
+                                                <div class="tdrag lbl2 Menominee" data-id="Menominee">Menominee</div>
+                                                <div class="tdrag lbl2 Miami" data-id="Miami">Miami</div>
+                                                <div class="tdrag lbl2 Omaha" data-id="Omaha">Omaha</div>
+                                                <div class="tdrag lbl2 Osage" data-id="Osage">Osage</div>
+                                                <div class="tdrag lbl2 OtoMissouri" data-id="OtoMissouri">Oto & Missouri</div>
+                                                <div class="tdrag lbl2 Ottawa" data-id="Ottawa">Ottawa </div>
+                                                <div class="tdrag lbl2 Pawnee" data-id="Pawnee">Pawnee</div>
+                                                <div class="tdrag lbl2 Potawatomi" data-id="Potawatomi">Potawatomi</div>
+                                                <div class="tdrag lbl2 Quapaw" data-id="Quapaw">Quapaw</div>
+                                                <div class="tdrag lbl2 SaukFox" data-id="SaukFox">Sauk & Fox</div>
+                                                <div class="tdrag lbl2 Seminole" data-id="Seminole">Seminole</div>
+                                                <div class="tdrag lbl2 Seneca" data-id="Seneca">Seneca</div>
+                                                <div class="tdrag lbl2 Shawnee" data-id="Shawnee">Shawnee</div>
+                                                <div class="tdrag lbl2 Sioux" data-id="Sioux">Sioux</div>
+                                                <div class="tdrag lbl2 Winnebago" data-id="Winnebago">Winnebago</div>
+                                                <div class="tdrag lbl2 Wyandot" data-id="Wyandot">Wyandot</div>
+                                        
+                                        </div>
+                                        <div id="native_lands_labels_5" class="label_set sublayer_type1 dse decade_5">
+                                                <div class="tdrag lbl2 Caddo" data-id="Caddo">Caddo</div>
+                                                <div class="tdrag lbl2 Cherokee" data-id="Cherokee">Cherokee</div>
+                                                <div class="tdrag lbl2 Chickasaw" data-id="Chickasaw">Chickasaw</div>
+                                                <div class="tdrag lbl2 Chippewa" data-id="Chippewa">Chippewa</div>
+                                                <div class="tdrag lbl2 Chippewa2" data-id="Chippewa2">Chippewa</div>
+                                                <div class="tdrag lbl2 Choctaw" data-id="Choctaw">Choctaw</div>
+                                                <div class="tdrag lbl2 Creek" data-id="Creek">Creek</div>
+                                                <div class="tdrag lbl2 Kansa" data-id="Kansa">Kansa</div>
+                                                <div class="tdrag lbl2 Menominee" data-id="Menominee">Menominee</div>
+                                                <div class="tdrag lbl2 Miami" data-id="Miami">Miami</div>
+                                                <div class="tdrag lbl2 Omaha" data-id="Omaha">Omaha</div>
+                                                <div class="tdrag lbl2 Osage" data-id="Osage">Osage</div>
+                                                <div class="tdrag lbl2 OtoMissouri" data-id="OtoMissouri">Oto & Missouri</div>
+                                                <div class="tdrag lbl2 Ottawa" data-id="Ottawa">Ottawa </div>
+                                                <div class="tdrag lbl2 Pawnee" data-id="Pawnee">Pawnee</div>
+                                                <div class="tdrag lbl2 Potawatomi" data-id="Potawatomi">Potawatomi</div>
+                                                <div class="tdrag lbl2 SaukFox" data-id="SaukFox">Sauk & Fox</div>
+                                                <div class="tdrag lbl2 Seminole" data-id="Seminole">Seminole</div>
+                                                <div class="tdrag lbl2 Seneca" data-id="Seneca">Seneca</div>
+                                                <div class="tdrag lbl2 Sioux" data-id="Sioux">Sioux</div>
+                                                <div class="tdrag lbl2 Winnebago" data-id="Winnebago">Winnebago</div>
+                                                <div class="tdrag lbl2 Wyandot" data-id="Wyandot">Wyandot</div>
+                                        </div>
+                                        <div id="native_lands_labels_6" class="label_set sublayer_type1 dse decade_6">
+                                                <div class="tdrag lbl2 Cherokee" data-id="Cherokee">&mdash; Cherokee</div>
+                                                <div class="tdrag lbl2 Cherokee2" data-id="Cherokee2">Cherokee</div>
+                                                <div class="tdrag lbl2 Chickasaw" data-id="Chickasaw">Chickasaw</div>
+                                                <div class="tdrag lbl2 Chippewa" data-id="Chippewa">Chippewa</div>
+                                                <div class="tdrag lbl2 Chippewa2" data-id="Chippewa2">Chippewa</div>
+                                                <div class="tdrag lbl2 Choctaw" data-id="Choctaw">Choctaw</div>
+                                                <div class="tdrag lbl2 CreekSeminole" data-id="CreekSeminole">Creek & Seminole</div>
+                                                <div class="tdrag lbl2 Delaware" data-id="Delaware">Delaware</div>
+                                                <div class="tdrag lbl2 Kansa" data-id="Kansa">Kansa</div>
+                                                <div class="tdrag lbl2 Menominee" data-id="Menominee">Menominee</div>
+                                                <div class="tdrag lbl2 Miami" data-id="Miami">Miami</div>
+                                                <div class="tdrag lbl2 Omaha" data-id="Omaha">Omaha</div>
+                                                <div class="tdrag lbl2 Osage" data-id="Osage">Osage</div>
+                                                <div class="tdrag lbl2 OtoMissouri" data-id="OtoMissouri">Oto & Missouri</div>
+                                                <div class="tdrag lbl2 Ottawa" data-id="Ottawa">Ottawa </div>
+                                                <div class="tdrag lbl2 Pawnee" data-id="Pawnee">Pawnee</div>
+                                                <div class="tdrag lbl2 Potawatomi" data-id="Potawatomi">Potawatomi</div>
+                                                <div class="tdrag lbl2 Quapaw" data-id="Quapaw">&mdash; Quapaw</div>
+                                                <div class="tdrag lbl2 SaukFox" data-id="SaukFox">Sauk & Fox</div>
+                                                <div class="tdrag lbl2 SenecaShawnee" data-id="SenecaShawnee">&mdash; Seneca & Shawnee</div>
+                                                <div class="tdrag lbl2 Seneca" data-id="Seneca">Seneca</div>
+                                                <div class="tdrag lbl2 Sioux" data-id="Sioux">Sioux</div>
+                                                <div class="tdrag lbl2 Winnebago" data-id="Winnebago">Winnebago</div>
+                                                <div class="tdrag lbl2 Wyandot" data-id="Wyandot">Wyandot</div>
+                                        </div>
+                                        <div id="native_lands_labels_7" class="label_set sublayer_type1 dse decade_7">
+                                                <div class="tdrag lbl2 Cherokee" data-id="Cherokee">&mdash; Cherokee</div>
+                                                <div class="tdrag lbl2 Cherokee2" data-id="Cherokee2">Cherokee</div>
+                                                <div class="tdrag lbl2 Chickasaw" data-id="Chickasaw">Chickasaw</div>
+                                                <div class="tdrag lbl2 Chippewa" data-id="Chippewa">Chippewa</div>
+                                                <div class="tdrag lbl2 Choctaw" data-id="Choctaw">Choctaw</div>
+                                                <div class="tdrag lbl2 CreekSeminole" data-id="CreekSeminole">Creek & Seminole</div>
+                                                <div class="tdrag lbl2 Delaware" data-id="Delaware">Delaware</div>
+                                                <div class="tdrag lbl2 Kansa" data-id="Kansa">Kansa</div>
+                                                <div class="tdrag lbl2 Miami" data-id="Miami">&mdash; Miami</div>
+                                                <div class="tdrag lbl2 Omaha" data-id="Omaha">Omaha</div>
+                                                <div class="tdrag lbl2 Osage" data-id="Osage">Osage</div>
+                                                <div class="tdrag lbl2 OtoMissouri" data-id="OtoMissouri">Oto & Missouri</div>
+                                                <div class="tdrag lbl2 Ottawa" data-id="Ottawa">&mdash; Ottawa </div>
+                                                <div class="tdrag lbl2 Pawnee" data-id="Pawnee">Pawnee</div>
+                                                <div class="tdrag lbl2 Quapaw" data-id="Quapaw">&mdash; Quapaw</div>
+                                                <div class="tdrag lbl2 SenecaShawnee" data-id="SenecaShawnee">&mdash; Seneca & Shawnee</div>
+                                                <div class="tdrag lbl2 Shawnee" data-id="Shawnee">&mdash; Shawnee</div>
+                                                <div class="tdrag lbl2 Sioux" data-id="Sioux">Sioux</div>
+                                                <div class="tdrag lbl2 Wyandot" data-id="Wyandot">&mdash; Wyandot</div>
+                                        
+                                        </div>
+                                </div>
+                        </div>
+
+                        <div id="map_super_layer_5" class="map_super_layer" data-cId="canals">
+                                <img data-src="media/img/canals_1810_20.png" class="dse sli_canals s_t_img decade_3 decade_4 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/canals_1830.png" class="dse sli_canals s_t_img decade_5 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/canals_1840.png" class="dse sli_canals s_t_img decade_6 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/canals_1850.png" class="dse sli_canals s_t_img decade_7 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <div class="labels">
+                                        <div id="canals_labels_set" class="label_set sublayer_type1 dse decade_5">
+                                                <div class="tdrag lbl2 ErieCanal" data-id="ErieCanal"><img src="media/img/erie_label.png" width="77" height="43" alt="Erie Label"></div>
+                                        </div>
+                                </div>
+                        </div>
+                        <div id="map_super_layer_6" class="map_super_layer" data-cId="railroads">
+                                <img data-src="media/img/RR_1830.png" class="dse sli_railroads s_t_img decade_5 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/RR_1840.png" class="dse sli_railroads s_t_img decade_6 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/RR_1850.png" class="dse sli_railroads s_t_img decade_7 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                        </div>
+
+                        <div id="map_super_layer_4" class="map_super_layer" data-cId="trail_routes">
+                                <img data-src="media/img/Trails_1790_1800.png" class="dse sli_trail_routes s_t_img decade_1 decade_2 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/Trails_1810.png" class="dse sli_trail_routes s_t_img decade_3 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/Trails_1820.png" class="dse sli_trail_routes s_t_img decade_4 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/Trails_1830.png" class="dse sli_trail_routes s_t_img decade_5 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/Trails_1840.png" class="dse sli_trail_routes s_t_img decade_6 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <img data-src="media/img/Trails_1850.png" class="dse sli_trail_routes s_t_img decade_7 preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                                <div class="labels">
+                                        <div id="trail_routes_labels_set" class="label_set sublayer_type1">
+                                                <div id="rail_routes_labels_6" class="label_set sublayer_type1 dse decade_6">
+                                                        <div class="tdrag lbl2 CherokeeTrailofTears" data-id="CherokeeTrailofTears"><img src="media/img/trail_tears_label.png" width="95" height="43" alt="Trail Tears Label"></div>
+                                                       
+                                                </div>
+                                                <div id="rail_routes_labels_3" class="label_set sublayer_type1 dse decade_3">
+                                                        <div class="tdrag lbl2 LewisClarkExpedition" data-id="LewisClarkExpedition"><img src="media/img/lewis_clark_label.png" width="156" height="43" alt="Lewis Clark Label"></div>
+                                                </div>
+                                        </div>
+
+                                </div>
+                        </div>
+                        
+                        <div id="map_super_layer_7" class="map_super_layer" data-cId="geologic">
+                                 <img data-src="media/img/geo_features.png" class="dse sli_geologic sli_partialwidth decade_1 decade_2 decade_3 decade_4 decade_5 decade_6 decade_7  preloadIMG super_layer_img" src="media/img/preload.gif" alt="temporary paceholder image">
+                        </div>                                  
+                        
+                        <div id="map_super_layer_2" class="map_super_layer" data-cId="cities">
+                               <div class="city_dot_layer sublayer_type1">
+                                       <div id="city_labels_dec1" class="dse decade_1 sublayer_type1">
+                                               <img src="media/img/city3.png" alt="city location" class="city_dot newyork">
+                                               <img src="media/img/city3.png" alt="city location" class="city_dot philadelphia">
+                                               <img src="media/img/cntr_pop.png" class="city_dot cop" width="16" height="11" alt="Center of Population">
+                                       </div>
+                                        <div id="city_labels_dec2" class="dse decade_2 sublayer_type1">
+                                                <img src="media/img/city2.png" alt="city location" class="city_dot newyork">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot philadelphia">
+
+                                                <img src="media/img/cntr_pop.png" class="city_dot cop" width="16" height="11" alt="Center of Population">
+                                                                                                <img src="media/img/city3.png" alt="city location" class="city_dot baltimore">
+                                        </div>
+                                        <div id="city_labels_dec3" class="dse decade_3 sublayer_type1">
+                                                <img src="media/img/city2.png" alt="city location" class="city_dot newyork">
+                                                <img src="media/img/city2.png" alt="city location" class="city_dot philadelphia">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot baltimore">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot boston">
+                                                <img src="media/img/cntr_pop.png" class="city_dot cop" width="16" height="11" alt="Center of Population">
+                                        </div>
+                                        <div id="city_labels_dec4" class="dse decade_4 sublayer_type1">
+                                                <img src="media/img/city1.png" alt="city location" class="city_dot newyork">
+                                                <img src="media/img/city2.png" alt="city location" class="city_dot philadelphia">
+                                                <img src="media/img/city2.png" alt="city location" class="city_dot baltimore">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot boston">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot neworleans">
+                                                <img src="media/img/cntr_pop.png" class="city_dot cop" width="16" height="11" alt="Center of Population">
+                                        </div>
+                                        <div id="city_labels_dec5" class="dse decade_5 sublayer_type1">
+                                                <img src="media/img/city1.png" alt="city location" class="city_dot newyork">
+                                                <img src="media/img/city2.png" alt="city location" class="city_dot philadelphia">
+                                                <img src="media/img/city2.png" alt="city location" class="city_dot baltimore">
+                                                <img src="media/img/city2.png" alt="city location" class="city_dot boston">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot neworleans">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot charlestown">
+                                                <img src="media/img/cntr_pop.png" class="city_dot cop" width="16" height="11" alt="Center of Population">
+                                        </div>
+                                        <div id="city_labels_dec6" class="dse decade_6 sublayer_type1">
+                                                <img src="media/img/city1.png" alt="city location" class="city_dot newyork">
+                                                <img src="media/img/city2.png" alt="city location" class="city_dot philadelphia">
+                                                <img src="media/img/city1.png" alt="city location" class="city_dot baltimore">
+                                                <img src="media/img/city2.png" alt="city location" class="city_dot boston">
+                                                <img src="media/img/city1.png" alt="city location" class="city_dot neworleans">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot charlestown">
+                                                
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot albany">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot brooklyn">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot cincinnati">
+                                                <img src="media/img/cntr_pop.png" class="city_dot cop" width="16" height="11" alt="Center of Population">
+                                        </div>
+                                        <div id="city_labels_dec7" class="dse decade_7 sublayer_type1">
+                                                <img src="media/img/city1.png" alt="city location" class="city_dot newyork">
+                                                <img src="media/img/city1.png" alt="city location" class="city_dot philadelphia">
+                                                <img src="media/img/city1.png" alt="city location" class="city_dot baltimore">
+                                                <img src="media/img/city1.png" alt="city location" class="city_dot boston">
+                                                <img src="media/img/city1.png" alt="city location" class="city_dot neworleans">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot charlestown">
+                                                <img src="media/img/city2.png" alt="city location" class="city_dot albany">
+                                                <img src="media/img/city2.png" alt="city location" class="city_dot brooklyn">
+                                                <img src="media/img/city1.png" alt="city location" class="city_dot cincinnati">
+                                                
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot troy">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot lowell">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot rochester">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot providence">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot buffalo">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot newark">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot washington">
+                                                <img src="media/img/city2.png" alt="city location" class="city_dot stlouis">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot louisville">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot pittsburg">
+                                                <img src="media/img/city3.png" alt="city location" class="city_dot chicago">     
+                                                <img src="media/img/cntr_pop.png" class="city_dot cop" width="16" height="11" alt="Center of Population">
+                                        </div>
+                                 </div>
+                                 
+                                 <div  class="labels ">
+                                          <div id="city_labels_1" class="label_set sublayer_type1 dse decade_1 decade_2 decade_3 decade_4 decade_5 decade_6 decade_7">
+                                                   <div class="tdrag lbl2 newyork" data-id="newyork">New York City</div>
+                                                  <div class="tdrag lbl2 philadelphia" data-id="philadelphia">Philadelphia</div>
+                                          </div>
+                                         <div id="city_labels_2" class="label_set sublayer_type1 dse decade_2 decade_3 decade_4 decade_5 decade_6 decade_7">
+                                                 <div class="tdrag lbl2 baltimore" data-id="baltimore">Baltimore</div>
+                                        </div>
+                                         <div id="city_labels_3" class="label_set sublayer_type1 dse decade_3 decade_4 decade_5 decade_6 decade_7">
+                                                 <div class="tdrag lbl2 boston" data-id="boston">Boston</div>
+                                        </div>
+                                        <div id="city_labels_4" class="label_set sublayer_type1 dse decade_4 decade_5 decade_6 decade_7">
+                                                <div class="tdrag lbl2 neworleans" data-id="neworleans">New Orleans</div>
+                                        </div>
+                                         <div id="city_labels_5" class="label_set sublayer_type1 dse decade_5 decade_6 decade_7">
+                                                 <div class="tdrag lbl2 charlestown" data-id="charlestown">Charleston</div>
+                                        </div>
+                                        <div id="city_labels_6" class="label_set sublayer_type1 dse decade_6 decade_7">
+                                                <div class="tdrag lbl2 albany" data-id="albany">Albany</div>
+                                                <div class="tdrag lbl2 brooklyn" data-id="brooklyn">Brooklyn</div>
+                                                <div class="tdrag lbl2 cincinnati" data-id="cincinnati">Cincinnati</div>
+                                        </div>
+                                        <div id="city_labels_7" class="label_set sublayer_type1 dse decade_7">
+                                                <div class="tdrag lbl2 troy" data-id="troy">Troy</div>
+                                                <div class="tdrag lbl2 lowell" data-id="lowell">Lowell</div>
+                                                <div class="tdrag lbl2 rochester" data-id="rochester">Rochester</div>
+                                                <div class="tdrag lbl2 providence" data-id="providence">Providence</div>
+                                                <div class="tdrag lbl2 buffalo" data-id="buffalo">Buffalo</div>
+                                                <div class="tdrag lbl2 newark" data-id="newark">Newark</div>
+                                                <div class="tdrag lbl2 washington" data-id="washington">Washington DC</div>
+                                                <div class="tdrag lbl2 stlouis" data-id="stlouis">St. Louis</div>
+                                                <div class="tdrag lbl2 louisville" data-id="louisville">Louisville</div>
+                                                <div class="tdrag lbl2 pittsburg" data-id="pittsburg">Pittsburgh</div>
+                                                <div class="tdrag lbl2 chicago" data-id="chicago">Chicago</div>
+                                        </div>
+                                 </div>
+                        </div>
+
+                        <!-- right hand collumn -->
+                        <div id="controls_column">
+                                <div id="layers_pallets">
+                                        <div class="pallet">
+                                                <fieldset>
+                                                        <p class="pallet_legend">Select one or more features:</p>
+
+                                                        <ul id="layer_selects">
+                                                                <li class="top-most">
+                                                                        <input id="slct_states_and_territories" type="checkbox" name="superlayer_selection" value="states_and_territories" /> 
+                                                                        <a class="" data-layer_id="states_and_territories">
+                                                                        <label for="slct_states_and_territories">States &amp; Territories</label></a>
+                                                                        
+                                                                        <div class="show_labels" data-id="states_and_territories">
+                                                                                <input id="lbl_states_and_territories" type="checkbox" name="superlayer_showlabel" value="states_and_territories" /> 
+                                                                                <a href="#"><label for="lbl_states_and_territories">show labels</label></a>
+                                                                                
+                                                                        </div>
+                                                                </li>
+                                                
+                                                                <li>    
+                                                                        <input id="slct_major_cities" type="checkbox" name="superlayer_selection" value="major_cities" />
+                                                                        <a class="" data-layer_id="major_cities" >
+                                                                        <label for="slct_major_cities">Major Cities</label></a>
+                                                                        
+                                                                        <div class="show_labels" data-id="major_cities">
+                                                                                <input id="lbl_major_cities" type="checkbox" name="superlayer_showlabel" value="major_cities" /> 
+                                                                                <a href="#"><label for="lbl_major_cities">show labels</label></a>
+                                                                                
+                                                                        </div>
+                                                                </li>
+                                                
+                                                                <li>
+                                                                        <input id="slct_native_lands" type="checkbox" name="superlayer_selection" value="native_lands" />
+                                                                        <a class="" data-layer_id="native_lands" ><img class="pallet_legend_icon" src="media/img/native_land.png" width="25" height="12" alt="Native Land">
+                                                                        <label for="slct_native_lands">Native Lands</label></a>
+                                                                        <div class="show_labels" data-id="native_lands">
+                                                                                <input id="lbl_native_lands" type="checkbox" name="superlayer_showlabel" value="native_lands" /> 
+                                                                                <a href="#"><label for="lbl_native_lands">show labels</label></a>
+                                                                        </div>
+                                                                </li>
+                                                
+                                                                <li>
+                                                                        <input id="slct_trail_routes" type="checkbox" name="superlayer_selection" value="trail_routes" />
+                                                                        <a class="" data-layer_id="trail_routes" >
+                                                                        <label for="slct_trail_routes">Trail Routes</label></a>
+                                                                </li>
+                                                
+                                                                <li>
+                                                                        <input id="slct_major_canals" type="checkbox" name="superlayer_selection" value="major_canals" />
+                                                                        <a class="" data-layer_id="major_canals" ><img class="pallet_legend_icon" src="media/img/key_canal.png" width="26" height="3" alt="Key Canal">
+                                                                        <label for="slct_major_canals">Major Canals</label></a>
+                                                                </li>
+                                                
+                                                                <li>
+                                                                        <input id="slct_railroad_networks" type="checkbox" name="superlayer_selection" value="railroad_networks" />
+                                                                        <a class="" data-layer_id="railroad_networks" ><img class="pallet_legend_icon" src="media/img/key_RR.png" width="26" height="3" alt="Key RR">
+                                                                        <label for="slct_railroad_networks">Railroad Networks</label></a>
+                                                                </li>
+                                                        </ul>
+                                                
+                                                </fieldset>
+                                        </div>
+                                        
+                                        <div class="pallet">
+                                                <ul>
+                                                <p class="pallet_legend">Show:</p>
+                                                <li class="top-most">
+                                                        <input id="slct_geologic" type="checkbox" name="superlayer_selection" value="geologic" />
+                                                        <a class="super_layer_select" data-layer_id="geologic">
+                                                                <label for="slct_geologic">
+                                                                        Geologic Features
+                                                                </label>
+                                                        </a>
+                                                </li>
+                                                <li>
+                                                        <input id="slct_present_day" type="checkbox" name="superlayer_selection" value="present_day" />
+                                                        <a class="super_layer_select" data-layer_id="present_day">
+                                                                <label for="slct_present_day">
+                                                                        Present-day States
+                                                                </label>
+                                                        </a>
+                                                </li>
+                                                </ul>
+                                        </div>
+                                </div>
+                                <div id="keys_pallet">
+                                        <div class="pallet">
+                                                <ul>
+                                                        <p class="pallet_legend">Keys:</p>
+                                                        <li class="top-most"><a href="#" data-id="1"><label>States &amp; Territories</label></a></li>
+                                                        <li><a href="#" data-id="2"><label>Major Cities</label></a></li>
+                                                        <li><a href="#" data-id="3"><label>Trail Routes</label></a></li>
+                                                </ul>
+                                        </div>
+                                </div>
+                        </div>
+
+                        
+                        <!--  <div id="key_draggables" class="map_super_layer"> -->
+                                <div id="key_1" class="key_box" data-id="1">
+                                        <h1>States &amp; Territories<a class="close_key" href="#"><div>X</div></a></h1>
+                                        <div class="key_body">
+                                                <ul>
+                                                        <li class="no-bordered"><div class="key_icon_box st"></div><p>States</p></li>
+                                                        <li><div class="key_icon_box te"></div><p>Territories</p></li>
+                                                        <li><div class="key_icon_box un"></div><p>Unorganized Territories</p></li>
+                                                        <li><div class="key_icon_box us"></div><p>U.S. Claims</p></li>
+                                                        <li><div class="key_icon_box fo"></div><p>Foreign Claims</p></li>
+                                                </ul>
+                                        </div>
+                                </div>
+                                <div id="key_2" class="key_box" data-id="2">
+                                        <h1>Major Cities<a class="close_key" href="#"><div>X</div></a></h1>
+                                        <div class="key_body">
+                                                <ul>
+                                                        <li class="no-bordered"><img src="media/img/Keys/city1.png" alt="&gt; 100,000"><p>&gt; 100,000 people</p></li>
+                                                        <li><img src="media/img/Keys/city2.png"  alt="50,000 &mdash; 100,000"><p>50,000 &mdash; 100,000 people</p></li>
+                                                        <li><img src="media/img/Keys/city3.png"  alt="25,000 &mdash; 50,000"><p>25,000 &mdash; 50,000 people</p></li>
+                                                        <li><img src="media/img/Keys/cntr_pop.png"  alt="Center of Population"><p>Center of Population</p></li>
+                                                </ul>
+                                        </div>
+                                </div>
+                                <div id="key_3" class="key_box" data-id="3">
+                                        <h1>Trail Routes<a class="close_key" href="#"><div>X</div></a></h1>
+                                        <div class="key_body">
+                                                <ul>
+                                                        <li class="no-bordered"><img src="media/img/Keys/Trails/santafe.png" width="34" height="4" alt="Santafe"><p>Great Valley Road (1744–present)</p></li>
+                                                        <li><img src="media/img/Keys/Trails/wilderness.png" width="34" height="4" alt="Wilderness"><p>Wilderness Road (1755–1840)</p></li>
+                                                        <li><img src="media/img/Keys/Trails/natchez.png" width="34" height="4" alt="Natchez"><p>Natchez Trace (1801–1816)</p></li>
+                                                        <li><img src="media/img/Keys/Trails/oregon.png" width="34" height="4" alt="Oregon"><p>Oregon Trail (1811–1869)</p></li>
+                                                        <li><img src="media/img/Keys/Trails/national.png" width="34" height="4" alt="National"><p>National Road (1811–present)</p></li>
+                                                        <li><img src="media/img/Keys/Trails/grt_valley.png" width="34" height="4" alt="Grt Valley"><p>Santa Fe Trail (1821–1880)</p></li>
+                                                        <li><img src="media/img/Keys/Trails/old_spanish.png" width="34" height="4" alt="Old Spanish"><p>Old Spanish Trail (1829–1850)</p></li>
+                                                        <li><img src="media/img/Keys/Trails/california.png" width="34" height="4" alt="California"><p>California Trail (1841–1869)</p></li>
+                                                        <li><img src="media/img/Keys/Trails/mormon.png" width="34" height="4" alt="Mormon"><p>Mormon Trail (1846–1868)</p></li>
+                                                </ul>
+                                        </div>  
+                                </div>
+                        <!--  </div> -->
+
+                        <div id="timeline_container">
+                                <h1>Westward Expansion 1790-1850</h1>
+                                <div id="timeline">
+                                        <ul style="list-style-type:none;display:inline;color:#fff">
+                                                <li><div class="lbl_box decade_button" data-id="1"><img src="media/img/tl_circ_off.png" width="23" height="23" alt="click target for the year 1790"><p>1790</p></div></li>
+                                               <li><div class="lbl_box decade_button" data-id="2"><img src="media/img/tl_circ_off.png" width="23" height="23" alt="click target for the year 1790"><p>1800</p></div></li>
+                                                <li><div class="lbl_box decade_button" data-id="3"><img src="media/img/tl_circ_off.png" width="23" height="23" alt="click target for the year 1790"><p>1810</p></div></li>
+                                                <li><div class="lbl_box decade_button" data-id="4"><img src="media/img/tl_circ_off.png" width="23" height="23" alt="click target for the year 1790"><p>1820</p></div></li>
+                                                <li><div class="lbl_box decade_button" data-id="5"><img src="media/img/tl_circ_off.png" width="23" height="23" alt="click target for the year 1790"><p>1830</p></div></li>
+                                                <li><div class="lbl_box decade_button" data-id="6"><img src="media/img/tl_circ_off.png" width="23" height="23" alt="click target for the year 1790"><p>1840</p></div></li>
+                                                <li><div class="lbl_box decade_button" data-id="7"><img src="media/img/tl_circ_off.png" width="23" height="23" alt="click target for the year 1790"><p>1850</p></div></li>
+                                        </ul>
+                                </div>
+                        </div>
+
+                        <div id="fouc_screen" style="background-color:#145569;text-align:center">
+                                <img src="media/img/loader_anim.gif" alt="Animation indicating loading of the application" style="height:302px;width:416px;margin-left:auto;margin-right:auto;margin-top:120px">
+                        </div>
+                
+
+                </div>
+
+                <!-- TEMPLATE BOTTOM NAV -->
+
+                <div class="container-fluid tmpl_bot_nav_contain" style="display:none">
+                        <div class="row-fluid tmpl_bot_nav_row">
+                                <div class="span12 single_bar">
+                                    <img src="wgbh/interact/media/img/logo2.png" class="logo_img" height="40" alt="Logo2">
+                                    <div class="btn-group dropup pull-right">
+                                        <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">ABOUT <span class="caret inverse"></span></button>
+                                        <ul class="dropdown-menu bottom-up">
+                                            <li><a href="#">About this cool thing</a></li>
+                                            <li><a href="#">Find more like this</a></li>
+                                            <li><a href="#">Legal information</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Contact</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                        </div>
+                </div>
+
+        </div> <!-- END #main_body_contain -->
+</body>
+</html>
