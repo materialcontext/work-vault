@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atoms, Elements, and Chemical Bonding</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 25%, #3730a3 50%, #1e40af 75%, #1d4ed8 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .slide h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #60a5fa;
+            animation: slideInDown 0.4s ease-out;
+        }
+
+        .slide h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #60a5fa;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            animation: slideInLeft 0.3s ease-out;
+        }
+
+        .slide h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 0.2s ease-out;
+        }
+
+        .central-question {
+            background: rgba(96, 165, 250, 0.15);
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(96, 165, 250, 0.4);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 12px 40px rgba(96, 165, 250, 0.2);
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question h3 {
+            color: #60a5fa;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(96, 165, 250, 0.3);
+            border-color: rgba(96, 165, 250, 0.6);
+        }
+
+        .content-card:hover::before {
+            left: 100%;
+        }
+
+        .content-card h3 {
+            color: #60a5fa;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .emoji-large {
+            font-size: 4rem;
+            margin: 1rem 0;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(96, 165, 250, 0.9);
+            border: none;
+            color: #1e1b4b;
+            padding: 1.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.4rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(96, 165, 250, 0.4);
+        }
+
+        .nav-btn:hover {
+            background: rgba(96, 165, 250, 1);
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(96, 165, 250, 0.6);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(96, 165, 250, 0.9);
+            color: #1e1b4b;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(96, 165, 250, 0.4);
+        }
+
+        .vocab-frame {
+            background: rgba(168, 85, 247, 0.2);
+            border-left: 6px solid #a855f7;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 20px 20px 0;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.2);
+        }
+
+        .vocab-frame h4 {
+            color: #a855f7;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            color: #1e1b4b;
+            padding: 2rem;
+            border-radius: 30px;
+            margin: 2rem 0;
+            font-weight: 700;
+            font-size: 1.4rem;
+            box-shadow: 0 8px 25px rgba(96, 165, 250, 0.4);
+        }
+
+        .atom-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+            position: relative;
+            height: 250px;
+        }
+
+        .nucleus {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #ef4444, #dc2626);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+            font-size: 0.9rem;
+        }
+
+        .electron-shell {
+            position: absolute;
+            border: 2px dashed rgba(96, 165, 250, 0.6);
+            border-radius: 50%;
+        }
+
+        .shell-1 {
+            width: 100px;
+            height: 100px;
+        }
+
+        .shell-2 {
+            width: 160px;
+            height: 160px;
+        }
+
+        .shell-3 {
+            width: 220px;
+            height: 220px;
+        }
+
+        .electron {
+            width: 16px;
+            height: 16px;
+            background: radial-gradient(circle, #60a5fa, #3b82f6);
+            border-radius: 50%;
+            position: absolute;
+            box-shadow: 0 0 10px rgba(96, 165, 250, 0.7);
+        }
+
+        .periodic-table-simple {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 0.5rem;
+            margin: 2rem 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .element-box {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.8rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .element-box:hover {
+            background: rgba(96, 165, 250, 0.3);
+            transform: scale(1.05);
+        }
+
+        .element-symbol {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #60a5fa;
+        }
+
+        .element-number {
+            font-size: 0.7rem;
+            color: #cbd5e1;
+        }
+
+        .bonding-example {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .atom-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2rem;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .sodium { background: #f59e0b; }
+        .chlorine { background: #10b981; }
+        .bond-arrow {
+            font-size: 2rem;
+            color: #60a5fa;
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+            pointer-events: auto;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide, .slide-content, .content-grid, .atom-diagram, 
+        .vocab-frame, .challenge-box, .central-question, .content-card {
+            pointer-events: auto;
+        }
+
+        .navigation, .slide-indicator, .nav-btn {
+            pointer-events: auto;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+            color: #ffffff;
+        }
+
+        li {
+            margin: 0.8rem 0;
+            padding-left: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        strong {
+            color: #60a5fa;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 9</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">‹</button>
+        <button class="nav-btn" onclick="nextSlide()">›</button>
+        <button class="nav-btn" onclick="revealAll()" style="margin-left: 1rem; font-size: 1rem; padding: 1rem 1.5rem; border-radius: 25px;">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>⚛️ Atoms, Elements, and Chemical Bonding</h1>
+            <h2 class="auto-reveal">The Building Blocks of Everything</h2>
+            <div class="emoji-large auto-reveal">🧱</div>
+            <div class="central-question auto-reveal">
+                <h3>Essential Question</h3>
+                <p class="auto-reveal"><em>"How do invisible atoms combine to create all the materials we see around us?"</em></p>
+            </div>
+            <div class="challenge-box auto-reveal">
+                Today you'll understand the structure of atoms and how they bond to form compounds
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: What is an Atom? -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔬 What is an Atom?</h2>
+            
+            <div class="atom-diagram auto-reveal">
+                <div class="nucleus auto-reveal">+</div>
+                <div class="electron-shell shell-1 auto-reveal">
+                    <div class="electron" style="top: -8px; left: 42px;"></div>
+                    <div class="electron" style="bottom: -8px; right: 42px;"></div>
+                </div>
+                <div class="electron-shell shell-2 auto-reveal">
+                    <div class="electron" style="top: -8px; left: 72px;"></div>
+                    <div class="electron" style="bottom: -8px; right: 72px;"></div>
+                    <div class="electron" style="left: -8px; top: 72px;"></div>
+                    <div class="electron" style="right: -8px; bottom: 72px;"></div>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🔴 Nucleus (Center)</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Contains:</strong> Protons (+) and Neutrons (neutral)</li>
+                        <li class="auto-reveal"><strong>Size:</strong> Extremely tiny but very heavy</li>
+                        <li class="auto-reveal"><strong>Job:</strong> Determines what element it is</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🔵 Electrons (Outside)</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Charge:</strong> Negative (-)</li>
+                        <li class="auto-reveal"><strong>Location:</strong> Moving around nucleus in "shells"</li>
+                        <li class="auto-reveal"><strong>Job:</strong> Determine how atoms bond together</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="vocab-frame auto-reveal">
+                <h4>Think of it Like...</h4>
+                <p class="auto-reveal"><strong>Solar System:</strong> Nucleus = Sun, Electrons = Planets orbiting</p>
+                <p class="auto-reveal"><strong>School:</strong> Nucleus = Main Office, Electrons = Students in different grades</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: The Three Particles -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🧩 The Three Main Particles</h2>
+            
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>⚡ PROTONS</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Charge:</strong> Positive (+)</li>
+                        <li class="auto-reveal"><strong>Location:</strong> In the nucleus</li>
+                        <li class="auto-reveal"><strong>Key Fact:</strong> Number of protons = Element identity</li>
+                        <li class="auto-reveal"><strong>Remember:</strong> Like an ID number for elements</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>⚪ NEUTRONS</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Charge:</strong> Neutral (0)</li>
+                        <li class="auto-reveal"><strong>Location:</strong> In the nucleus with protons</li>
+                        <li class="auto-reveal"><strong>Key Fact:</strong> Add mass and stability</li>
+                        <li class="auto-reveal"><strong>Remember:</strong> Like glue holding nucleus together</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>⚡ ELECTRONS</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Charge:</strong> Negative (-)</li>
+                        <li class="auto-reveal"><strong>Location:</strong> Moving around nucleus</li>
+                        <li class="auto-reveal"><strong>Key Fact:</strong> Determine chemical behavior</li>
+                        <li class="auto-reveal"><strong>Remember:</strong> Like hands that grab onto other atoms</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                Key Rule: Normal atoms have equal numbers of protons and electrons (neutral overall)
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: What Makes Elements Different -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏷️ What Makes Each Element Unique</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>The Big Idea</h3>
+                <p class="auto-reveal"><strong>The number of protons determines the element</strong></p>
+                <p class="auto-reveal">Change protons = completely different element</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>1️⃣ Hydrogen</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Protons:</strong> 1</li>
+                        <li class="auto-reveal"><strong>Properties:</strong> Lightest gas</li>
+                        <li class="auto-reveal"><strong>Found in:</strong> Water (H₂O)</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>6️⃣ Carbon</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Protons:</strong> 6</li>
+                        <li class="auto-reveal"><strong>Properties:</strong> Forms many bonds</li>
+                        <li class="auto-reveal"><strong>Found in:</strong> All living things</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🅾️ Oxygen</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Protons:</strong> 8</li>
+                        <li class="auto-reveal"><strong>Properties:</strong> Very reactive</li>
+                        <li class="auto-reveal"><strong>Found in:</strong> Air we breathe</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: The Periodic Table -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📊 The Periodic Table Organization</h2>
+            
+            <div class="periodic-table-simple auto-reveal">
+                <div class="element-box auto-reveal">
+                    <div class="element-number">1</div>
+                    <div class="element-symbol">H</div>
+                </div>
+                <div style="grid-column: span 6;"></div>
+                <div class="element-box auto-reveal">
+                    <div class="element-number">2</div>
+                    <div class="element-symbol">He</div>
+                </div>
+                <div class="element-box auto-reveal">
+                    <div class="element-number">3</div>
+                    <div class="element-symbol">Li</div>
+                </div>
+                <div class="element-box auto-reveal">
+                    <div class="element-number">4</div>
+                    <div class="element-symbol">Be</div>
+                </div>
+                <div style="grid-column: span 4;"></div>
+                <div class="element-box auto-reveal">
+                    <div class="element-number">5</div>
+                    <div class="element-symbol">B</div>
+                </div>
+                <div class="element-box auto-reveal">
+                    <div class="element-number">6</div>
+                    <div class="element-symbol">C</div>
+                </div>
+                <div class="element-box auto-reveal">
+                    <div class="element-number">7</div>
+                    <div class="element-symbol">N</div>
+                </div>
+                <div class="element-box auto-reveal">
+                    <div class="element-number">8</div>
+                    <div class="element-symbol">O</div>
+                </div>
+                <div class="element-box auto-reveal">
+                    <div class="element-number">9</div>
+                    <div class="element-symbol">F</div>
+                </div>
+                <div class="element-box auto-reveal">
+                    <div class="element-number">10</div>
+                    <div class="element-symbol">Ne</div>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>📝 How It's Organized</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Order:</strong> By number of protons (atomic number)</li>
+                        <li class="auto-reveal"><strong>Rows:</strong> Same number of electron shells</li>
+                        <li class="auto-reveal"><strong>Columns:</strong> Similar chemical behavior</li>
+                        <li class="auto-reveal"><strong>Pattern:</strong> Properties repeat in patterns</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>👨‍👩‍👧‍👦 Element Families</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Noble gases:</strong> Don't react (full outer shell)</li>
+                        <li class="auto-reveal"><strong>Alkali metals:</strong> Very reactive metals</li>
+                        <li class="auto-reveal"><strong>Halogens:</strong> Very reactive non-metals</li>
+                        <li class="auto-reveal"><strong>Pattern:</strong> Same column = similar behavior</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Electron Shells and Bonding -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏠 Electron Shells and Chemical Bonding</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>The Bonding Rule</h3>
+                <p class="auto-reveal">Atoms want their outermost shell to be <strong>full</strong></p>
+                <p class="auto-reveal">They'll share, give, or take electrons to achieve this</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🔢 Shell Capacity</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>1st shell:</strong> Holds 2 electrons maximum</li>
+                        <li class="auto-reveal"><strong>2nd shell:</strong> Holds 8 electrons maximum</li>
+                        <li class="auto-reveal"><strong>3rd shell:</strong> Holds 8 electrons (simplified)</li>
+                        <li class="auto-reveal"><strong>Outer shell:</strong> Determines bonding behavior</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🎯 What Atoms Want</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Full outer shell:</strong> Stable, happy atoms</li>
+                        <li class="auto-reveal"><strong>Almost full:</strong> Want to gain electrons</li>
+                        <li class="auto-reveal"><strong>Almost empty:</strong> Want to lose electrons</li>
+                        <li class="auto-reveal"><strong>Half full:</strong> Want to share electrons</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🤝 How They Bond</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Give/Take:</strong> Ionic bonding (opposites attract)</li>
+                        <li class="auto-reveal"><strong>Share:</strong> Covalent bonding (sharing is caring)</li>
+                        <li class="auto-reveal"><strong>Result:</strong> Both atoms get full outer shells</li>
+                        <li class="auto-reveal"><strong>Outcome:</strong> New compound with new properties</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Ionic Bonding Example -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚡ Ionic Bonding: Give and Take</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>Example: Making Salt (NaCl)</h3>
+            </div>
+
+            <div class="bonding-example auto-reveal">
+                <div class="atom-circle sodium auto-reveal">Na<br><small>11 e⁻</small></div>
+                <span class="bond-arrow auto-reveal">+</span>
+                <div class="atom-circle chlorine auto-reveal">Cl<br><small>17 e⁻</small></div>
+                <span class="bond-arrow auto-reveal">→</span>
+                <div class="atom-circle auto-reveal" style="background: #8b5cf6;">Salt<br><small>NaCl</small></div>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🟡 Sodium's Story</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Has:</strong> 11 electrons (2, 8, 1)</li>
+                        <li class="auto-reveal"><strong>Wants:</strong> To lose 1 electron from outer shell</li>
+                        <li class="auto-reveal"><strong>Becomes:</strong> Na⁺ ion (positive charge)</li>
+                        <li class="auto-reveal"><strong>Result:</strong> Full outer shell with 8 electrons</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🟢 Chlorine's Story</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Has:</strong> 17 electrons (2, 8, 7)</li>
+                        <li class="auto-reveal"><strong>Wants:</strong> To gain 1 electron for outer shell</li>
+                        <li class="auto-reveal"><strong>Becomes:</strong> Cl⁻ ion (negative charge)</li>
+                        <li class="auto-reveal"><strong>Result:</strong> Full outer shell with 8 electrons</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                Opposites Attract: Na⁺ and Cl⁻ stick together to form salt crystals!
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Covalent Bonding Example -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🤝 Covalent Bonding: Sharing</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>Example: Making Water (H₂O)</h3>
+            </div>
+
+            <div class="bonding-example auto-reveal">
+                <div class="atom-circle auto-reveal" style="background: #f59e0b;">H</div>
+                <span class="bond-arrow auto-reveal">+</span>
+                <div class="atom-circle auto-reveal" style="background: #ef4444;">O</div>
+                <span class="bond-arrow auto-reveal">+</span>
+                <div class="atom-circle auto-reveal" style="background: #f59e0b;">H</div>
+                <span class="bond-arrow auto-reveal">→</span>
+                <div class="atom-circle auto-reveal" style="background: #06b6d4;">H₂O</div>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🌊 How Water Forms</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Oxygen:</strong> Has 6 outer electrons, wants 2 more</li>
+                        <li class="auto-reveal"><strong>Hydrogen:</strong> Has 1 electron, wants 1 more</li>
+                        <li class="auto-reveal"><strong>Solution:</strong> Share electrons between atoms</li>
+                        <li class="auto-reveal"><strong>Result:</strong> O gets 8, each H gets 2 (full shells!)</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>✨ Why Sharing Works</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Shared electrons:</strong> Count for both atoms</li>
+                        <li class="auto-reveal"><strong>No charges:</strong> Atoms stay neutral</li>
+                        <li class="auto-reveal"><strong>Strong bonds:</strong> Atoms hold tightly together</li>
+                        <li class="auto-reveal"><strong>New properties:</strong> Water is liquid, not gas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="vocab-frame auto-reveal">
+                <h4>Remember the Difference</h4>
+                <p class="auto-reveal"><strong>Ionic:</strong> "I'll give you my electron" (metals + non-metals)</p>
+                <p class="auto-reveal"><strong>Covalent:</strong> "Let's share electrons" (non-metals + non-metals)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Summary and Applications -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Putting It All Together</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>The Big Picture</h3>
+                <p class="auto-reveal">Atoms combine in predictable ways to form all materials around us</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🔑 Key Concepts</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Atomic structure:</strong> Protons determine element identity</li>
+                        <li class="auto-reveal"><strong>Periodic table:</strong> Organized by atomic number</li>
+                        <li class="auto-reveal"><strong>Electron shells:</strong> Outer shell determines bonding</li>
+                        <li class="auto-reveal"><strong>Chemical bonds:</strong> Ionic (give/take) or covalent (share)</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🌟 Real Examples</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Salt (NaCl):</strong> Ionic bonding creates table salt</li>
+                        <li class="auto-reveal"><strong>Water (H₂O):</strong> Covalent bonding creates liquid water</li>
+                        <li class="auto-reveal"><strong>Carbon dioxide (CO₂):</strong> Covalent bonds in gas we exhale</li>
+                        <li class="auto-reveal"><strong>Calcium chloride:</strong> Ionic compound used to melt ice</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🔬 Why This Matters</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Predicting properties:</strong> Structure determines behavior</li>
+                        <li class="auto-reveal"><strong>Making new materials:</strong> Engineers design compounds</li>
+                        <li class="auto-reveal"><strong>Understanding reactions:</strong> Why chemicals react</li>
+                        <li class="auto-reveal"><strong>Medicine:</strong> How drugs work in our bodies</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                Now you can explain how invisible atoms create everything you see, touch, and breathe!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            resetReveal();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                return true; // Successfully revealed an element
+            }
+            return false; // No more elements to reveal
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            // Reveal all remaining elements
+            for (let i = revealIndex; i < elements.length; i++) {
+                elements[i].classList.add('show');
+            }
+            revealIndex = elements.length;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                // Try to reveal next element first, only advance slide if no more to reveal
+                const revealed = revealNextElement();
+                if (!revealed) {
+                    nextSlide(); // No more elements to reveal, go to next slide
+                }
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide(); // Left arrow always goes to previous slide
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                revealNextElement(); // Enter just reveals, doesn't advance slides
+            }
+        });
+
+        // Initialize after DOM is ready
+        document.getElementById('slide-counter').textContent = `1 / ${totalSlides}`;
+
+        // Add comprehensive click handling using event capture
+        document.addEventListener('click', function(e) {
+            // Skip navigation elements completely
+            if (e.target.closest('.navigation') || 
+                e.target.closest('.slide-indicator')) {
+                return;
+            }
+            
+            // Only reveal on current visible slide
+            const currentSlideElement = slides[currentSlide];
+            if (currentSlideElement && !currentSlideElement.classList.contains('hidden')) {
+                revealNextElement(); // Click always just reveals, doesn't advance slides
+            }
+        }, true); // Use capture phase for better event catching
+    </script>
+</body>
+</html>

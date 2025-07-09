@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Explanation Language Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #92400e 0%, #b45309 25%, #d97706 50%, #f59e0b 75%, #fbbf24 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .slide h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #fbbf24;
+            animation: slideInDown 0.4s ease-out;
+        }
+
+        .slide h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            animation: slideInLeft 0.3s ease-out;
+        }
+
+        .slide h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 0.2s ease-out;
+        }
+
+        .central-question {
+            background: rgba(251, 191, 36, 0.15);
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(251, 191, 36, 0.4);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 12px 40px rgba(251, 191, 36, 0.2);
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question h3 {
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .frame-box {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 3px solid rgba(251, 191, 36, 0.4);
+            margin: 1.5rem 0;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .frame-box:hover {
+            border-color: rgba(251, 191, 36, 0.8);
+            box-shadow: 0 15px 35px rgba(251, 191, 36, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .frame-text {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #fbbf24;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .frame-example {
+            font-size: 1.3rem;
+            color: #e5e7eb;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            border-left: 4px solid #fbbf24;
+        }
+
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .practice-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .practice-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(251, 191, 36, 0.3);
+            border-color: rgba(251, 191, 36, 0.6);
+        }
+
+        .practice-card h3 {
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .step-indicator {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #92400e;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+        }
+
+        .emoji-large {
+            font-size: 4rem;
+            margin: 1rem 0;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(251, 191, 36, 0.9);
+            border: none;
+            color: #92400e;
+            padding: 1.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.4rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+        }
+
+        .nav-btn:hover {
+            background: rgba(251, 191, 36, 1);
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.6);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(251, 191, 36, 0.9);
+            color: #92400e;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #92400e;
+            padding: 2rem;
+            border-radius: 30px;
+            margin: 2rem 0;
+            font-weight: 700;
+            font-size: 1.4rem;
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+        }
+
+        .frame-blanks {
+            background: rgba(251, 191, 36, 0.1);
+            border: 2px dashed rgba(251, 191, 36, 0.5);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            font-size: 1.4rem;
+            line-height: 1.8;
+        }
+
+        .blank {
+            background: rgba(251, 191, 36, 0.3);
+            color: #92400e;
+            padding: 0.3rem 0.8rem;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 0 0.2rem;
+            display: inline-block;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .assembly-section {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .lego-block {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #92400e;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            margin: 0.5rem;
+            display: inline-block;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .lego-block:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+            pointer-events: auto;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide, .slide-content, .practice-grid, .frame-box, 
+        .challenge-box, .central-question, .practice-card {
+            pointer-events: auto;
+        }
+
+        .navigation, .slide-indicator, .nav-btn {
+            pointer-events: auto;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+            color: #ffffff;
+        }
+
+        li {
+            margin: 0.8rem 0;
+            padding-left: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        strong {
+            color: #fbbf24;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 12</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">‹</button>
+        <button class="nav-btn" onclick="nextSlide()">›</button>
+        <button class="nav-btn" onclick="revealAll()" style="margin-left: 1rem; font-size: 1rem; padding: 1rem 1.5rem; border-radius: 25px;">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>📚 Historical Explanation Language Practice</h1>
+            <h2 class="auto-reveal">Building Progressive Era Analysis</h2>
+            <div class="emoji-large auto-reveal">🏛️</div>
+            <div class="central-question auto-reveal">
+                <h3>Learning Goal</h3>
+                <p class="auto-reveal"><em>Master sentence frames to analyze historical causes, effects, and significance clearly</em></p>
+            </div>
+            <div class="challenge-box auto-reveal">
+                Practice individual frames → Combine like building blocks → Create complete historical arguments
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Cause and Effect Frames -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔄 Cause and Effect Frames</h2>
+            <div class="step-indicator auto-reveal">Frame Set 1: Explaining Why Things Happened</div>
+            
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"_____ caused _____ because _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "<span class="blank">Industrialization</span> caused <span class="blank">urban overcrowding</span> because <span class="blank">factory jobs attracted workers to cities</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"As a result of _____, _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "As a result of <span class="blank">unsafe factory conditions</span>, <span class="blank">workers demanded government regulation</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"_____ led to _____, which then caused _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "<span class="blank">Muckraker investigations</span> led to <span class="blank">public outrage</span>, which then caused <span class="blank">Congress to pass reform laws</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"The main reason _____ happened was _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "The main reason <span class="blank">Progressive reforms succeeded</span> was <span class="blank">strong public pressure for change</span>."
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Before/After Comparison Frames -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚖️ Before/After Comparison Frames</h2>
+            <div class="step-indicator auto-reveal">Frame Set 2: Showing Historical Change</div>
+            
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"Before _____, _____. After _____, _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "Before <span class="blank">Progressive reforms</span>, <span class="blank">government rarely regulated business</span>. After <span class="blank">the reforms</span>, <span class="blank">federal agencies monitored working conditions</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"In the 1890s, _____. By 1920, _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "In the 1890s, <span class="blank">women could not vote</span>. By 1920, <span class="blank">the 19th Amendment gave women voting rights</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"_____ transformed _____ from _____ to _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "<span class="blank">Progressive reforms</span> transformed <span class="blank">American government</span> from <span class="blank">laissez-faire</span> to <span class="blank">regulatory state</span>."
+                </div>
+            </div>
+
+            <div class="frame-blanks auto-reveal">
+                <strong>Your turn:</strong> Compare working conditions before and after reforms<br>
+                "Before _____, workers faced _____. After _____, conditions _____."
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Evidence Analysis Frames -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📄 Evidence Analysis Frames</h2>
+            <div class="step-indicator auto-reveal">Frame Set 3: Using Historical Evidence</div>
+            
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"Evidence of _____ can be seen in _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "Evidence of <span class="blank">poor working conditions</span> can be seen in <span class="blank">Upton Sinclair's description of meatpacking plants</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"_____ shows that _____ because _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "<span class="blank">The Pure Food and Drug Act</span> shows that <span class="blank">muckrakers were effective</span> because <span class="blank">it was passed right after 'The Jungle' was published</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"According to _____, _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "According to <span class="blank">Jacob Riis's photographs</span>, <span class="blank">tenement conditions were overcrowded and unsanitary</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"This demonstrates _____ because _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "This demonstrates <span class="blank">Progressive faith in government solutions</span> because <span class="blank">they created so many new federal agencies</span>."
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Evaluation and Assessment Frames -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⭐ Evaluation and Assessment Frames</h2>
+            <div class="step-indicator auto-reveal">Frame Set 4: Making Historical Judgments</div>
+            
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"_____ was successful because _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "<span class="blank">The women's suffrage movement</span> was successful because <span class="blank">it achieved its main goal of voting rights</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"_____ had limited success because _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "<span class="blank">Progressive labor reforms</span> had limited success because <span class="blank">workers still faced opposition from business owners</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"The most important _____ was _____ because _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "The most important <span class="blank">Progressive reform</span> was <span class="blank">government regulation of business</span> because <span class="blank">it protected consumers and workers</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"Overall, _____ can be considered _____ because _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "Overall, <span class="blank">the Progressive Era</span> can be considered <span class="blank">partially successful</span> because <span class="blank">it solved some problems but left others unaddressed</span>."
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Chronological Sequence Frames -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📅 Chronological Sequence Frames</h2>
+            <div class="step-indicator auto-reveal">Frame Set 5: Organizing Historical Events</div>
+            
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"First, _____. Then, _____. Finally, _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "First, <span class="blank">muckrakers exposed problems</span>. Then, <span class="blank">public pressure built</span>. Finally, <span class="blank">Congress passed reform laws</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"During the _____, _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "During the <span class="blank">Progressive Era</span>, <span class="blank">Americans focused on solving social problems through government action</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"By _____, _____ had _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "By <span class="blank">1920</span>, <span class="blank">the federal government</span> had <span class="blank">created many new regulatory agencies</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"The period from _____ to _____ was characterized by _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "The period from <span class="blank">1890</span> to <span class="blank">1920</span> was characterized by <span class="blank">efforts to reform industrial society</span>."
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Connection and Significance Frames -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔗 Connection and Significance Frames</h2>
+            <div class="step-indicator auto-reveal">Frame Set 6: Linking Events and Ideas</div>
+            
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"_____ is connected to _____ because _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "<span class="blank">Industrialization</span> is connected to <span class="blank">Progressive reform</span> because <span class="blank">industrial problems created the need for government solutions</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"_____ is significant because _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "<span class="blank">The Progressive Era</span> is significant because <span class="blank">it established the principle that government should solve social problems</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"The legacy of _____ can be seen in _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "The legacy of <span class="blank">Progressive reforms</span> can be seen in <span class="blank">modern government agencies like the FDA</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"_____ continues to influence _____ today because _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "<span class="blank">Progressive Era reforms</span> continue to influence <span class="blank">American politics</span> today because <span class="blank">we still debate the role of government in solving problems</span>."
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Perspective and Context Frames -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>👁️ Perspective and Context Frames</h2>
+            <div class="step-indicator auto-reveal">Frame Set 7: Understanding Different Viewpoints</div>
+            
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"_____ believed _____ because _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "<span class="blank">Progressives</span> believed <span class="blank">government should regulate business</span> because <span class="blank">they saw how unregulated industry harmed workers</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"From the perspective of _____, _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "From the perspective of <span class="blank">factory owners</span>, <span class="blank">regulations were unnecessary government interference</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"While _____ supported _____, _____ opposed it because _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "While <span class="blank">workers</span> supported <span class="blank">safety regulations</span>, <span class="blank">business owners</span> opposed it because <span class="blank">it increased their costs</span>."
+                </div>
+            </div>
+
+            <div class="frame-blanks auto-reveal">
+                <strong>Your turn:</strong> Explain different views on women's suffrage<br>
+                "_____ believed women should vote because _____. However, _____ argued against it because _____."
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Assembly Practice Level 1 -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🧱 Assembly Practice: Level 1</h2>
+            <div class="step-indicator auto-reveal">Combining 2-3 Historical Frames</div>
+            
+            <div class="assembly-section auto-reveal">
+                <h3>Topic: How Muckrakers Created Change</h3>
+                <div class="auto-reveal">
+                    <div class="lego-block">"Muckrakers exposed problems in American society."</div>
+                    <span style="font-size: 2rem; color: #fbbf24;">+</span>
+                    <div class="lego-block">"Evidence of this can be seen in Upton Sinclair's 'The Jungle.'"</div>
+                    <span style="font-size: 2rem; color: #fbbf24;">=</span>
+                </div>
+                <div class="frame-example auto-reveal">
+                    <strong>Combined:</strong> "Muckrakers exposed problems in American society. Evidence of this can be seen in Upton Sinclair's 'The Jungle,' which revealed horrible conditions in meatpacking plants."
+                </div>
+            </div>
+
+            <div class="assembly-section auto-reveal">
+                <h3>Topic: Progressive Reform Success</h3>
+                <div class="auto-reveal">
+                    <div class="lego-block">"The women's suffrage movement was successful."</div>
+                    <span style="font-size: 2rem; color: #fbbf24;">+</span>
+                    <div class="lego-block">"By 1920, women had gained the right to vote."</div>
+                    <span style="font-size: 2rem; color: #fbbf24;">=</span>
+                </div>
+                <div class="frame-example auto-reveal">
+                    <strong>Combined:</strong> "The women's suffrage movement was successful because by 1920, women had gained the right to vote through the 19th Amendment."
+                </div>
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                Your Turn: Combine frames to explain why Theodore Roosevelt was called a "trust-buster"
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Assembly Practice Level 2 -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏗️ Assembly Practice: Level 2</h2>
+            <div class="step-indicator auto-reveal">Building Complete Historical Arguments</div>
+            
+            <div class="assembly-section auto-reveal">
+                <h3>Topic: Why Progressive Reforms Had Limited Success</h3>
+                <div class="auto-reveal">
+                    <div class="lego-block">"Progressive reforms had limited success."</div>
+                    <div class="lego-block">"Evidence of this can be seen in racial exclusion."</div>
+                    <div class="lego-block">"Most reforms helped white Americans but not African Americans."</div>
+                    <div class="lego-block">"This demonstrates that Progressives focused on some problems while ignoring others."</div>
+                    <div class="lego-block">"Overall, the era can be considered partially successful."</div>
+                </div>
+                <div class="frame-example auto-reveal">
+                    <strong>Full Argument:</strong> "Progressive reforms had limited success because they only addressed certain problems. Evidence of this can be seen in racial exclusion - most reforms helped white Americans but not African Americans. This demonstrates that Progressives focused on some problems while ignoring others. Overall, the era can be considered partially successful because it solved some industrial problems but failed to address racial inequality."
+                </div>
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                Practice: Build a 4-5 sentence argument about why industrialization led to Progressive reforms
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Full Historical Analysis Challenge -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Full Historical Analysis Challenge</h2>
+            <div class="step-indicator auto-reveal">Complete Historical Arguments</div>
+            
+            <div class="central-question auto-reveal">
+                <h3>Your Historical Analysis Mission</h3>
+                <p class="auto-reveal">Build a complete historical argument using at least 6 different frame types</p>
+            </div>
+
+            <div class="practice-grid">
+                <div class="practice-card auto-reveal">
+                    <h3>🎯 Option A: Progressive Success</h3>
+                    <p class="auto-reveal">Evaluate: How successful were Progressive reforms in solving industrial problems?</p>
+                    <div class="frame-example auto-reveal">
+                        <strong>Must include:</strong>
+                        <ul>
+                            <li>Cause/effect frames (why reforms happened)</li>
+                            <li>Evidence frames (specific examples)</li>
+                            <li>Evaluation frames (success/failure)</li>
+                            <li>Before/after frames (changes)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="practice-card auto-reveal">
+                    <h3>🎯 Option B: Historical Connections</h3>
+                    <p class="auto-reveal">Analyze: How did industrialization lead to Progressive reforms?</p>
+                    <div class="frame-example auto-reveal">
+                        <strong>Must include:</strong>
+                        <ul>
+                            <li>Connection frames (linking events)</li>
+                            <li>Sequence frames (chronological order)</li>
+                            <li>Cause/effect frames (relationships)</li>
+                            <li>Significance frames (importance)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="practice-card auto-reveal">
+                    <h3>🎯 Option C: Historical Perspectives</h3>
+                    <p class="auto-reveal">Compare: How did different groups view Progressive reforms?</p>
+                    <div class="frame-example auto-reveal">
+                        <strong>Must include:</strong>
+                        <ul>
+                            <li>Perspective frames (different viewpoints)</li>
+                            <li>Evidence frames (supporting examples)</li>
+                            <li>Comparison frames (similarities/differences)</li>
+                            <li>Assessment frames (overall judgment)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                Target: 8-10 sentences using smooth historical reasoning and evidence
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Master Historical Argument -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏆 Master Historical Argument</h2>
+            <div class="step-indicator auto-reveal">Complete Historical Analysis</div>
+            
+            <div class="central-question auto-reveal">
+                <h3>Ultimate Challenge</h3>
+                <p class="auto-reveal"><strong>"How successful were Progressive reforms in solving the problems created by industrialization? Use specific evidence and consider multiple perspectives."</strong></p>
+            </div>
+
+            <div class="assembly-section auto-reveal">
+                <h3>📋 Historical Analysis Checklist</h3>
+                <div class="practice-grid">
+                    <div class="practice-card auto-reveal">
+                        <h3>✅ Structure Requirements</h3>
+                        <ul>
+                            <li class="auto-reveal">Clear thesis statement</li>
+                            <li class="auto-reveal">Body with 6-8 supporting sentences</li>
+                            <li class="auto-reveal">Conclusion that assesses significance</li>
+                            <li class="auto-reveal">Logical flow between ideas</li>
+                        </ul>
+                    </div>
+                    <div class="practice-card auto-reveal">
+                        <h3>🗣️ Language Requirements</h3>
+                        <ul>
+                            <li class="auto-reveal">Use 6+ different frame types</li>
+                            <li class="auto-reveal">Include specific historical evidence</li>
+                            <li class="auto-reveal">Show cause-and-effect relationships</li>
+                            <li class="auto-reveal">Address multiple perspectives</li>
+                        </ul>
+                    </div>
+                    <div class="practice-card auto-reveal">
+                        <h3>🎯 Content Requirements</h3>
+                        <ul>
+                            <li class="auto-reveal">Connect industrialization to reforms</li>
+                            <li class="auto-reveal">Evaluate reform successes and failures</li>
+                            <li class="auto-reveal">Use specific examples (muckrakers, laws, etc.)</li>
+                            <li class="auto-reveal">Assess historical significance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="frame-blanks auto-reveal">
+                <strong>Frame Bank - Choose and Combine:</strong><br>
+                • "Industrialization caused..."<br>
+                • "Evidence of this can be seen in..."<br>
+                • "As a result of..."<br>
+                • "_____ was successful because..."<br>
+                • "However, _____ had limited success because..."<br>
+                • "This demonstrates..."<br>
+                • "The legacy of _____ can be seen in..."
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                Goal: Fluent 3-4 minute historical analysis that demonstrates sophisticated understanding
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            resetReveal();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                return true; // Successfully revealed an element
+            }
+            return false; // No more elements to reveal
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            // Reveal all remaining elements
+            for (let i = revealIndex; i < elements.length; i++) {
+                elements[i].classList.add('show');
+            }
+            revealIndex = elements.length;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                // Try to reveal next element first, only advance slide if no more to reveal
+                const revealed = revealNextElement();
+                if (!revealed) {
+                    nextSlide(); // No more elements to reveal, go to next slide
+                }
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide(); // Left arrow always goes to previous slide
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                revealNextElement(); // Enter just reveals, doesn't advance slides
+            }
+        });
+
+        // Initialize after DOM is ready
+        document.getElementById('slide-counter').textContent = `1 / ${totalSlides}`;
+
+        // Add comprehensive click handling using event capture
+        document.addEventListener('click', function(e) {
+            // Skip navigation elements completely
+            if (e.target.closest('.navigation') || 
+                e.target.closest('.slide-indicator')) {
+                return;
+            }
+            
+            // Only reveal on current visible slide
+            const currentSlideElement = slides[currentSlide];
+            if (currentSlideElement && !currentSlideElement.classList.contains('hidden')) {
+                revealNextElement(); // Click always just reveals, doesn't advance slides
+            }
+        }, true); // Use capture phase for better event catching
+    </script>
+</body>
+</html>

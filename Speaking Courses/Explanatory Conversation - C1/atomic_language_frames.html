@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Explanation Language Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #065f46 0%, #047857 25%, #059669 50%, #10b981 75%, #34d399 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .slide h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #10b981;
+            animation: slideInDown 0.4s ease-out;
+        }
+
+        .slide h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #10b981;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            animation: slideInLeft 0.3s ease-out;
+        }
+
+        .slide h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 0.2s ease-out;
+        }
+
+        .central-question {
+            background: rgba(16, 185, 129, 0.15);
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(16, 185, 129, 0.4);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.2);
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question h3 {
+            color: #10b981;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .frame-box {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 3px solid rgba(16, 185, 129, 0.4);
+            margin: 1.5rem 0;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .frame-box:hover {
+            border-color: rgba(16, 185, 129, 0.8);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .frame-text {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #34d399;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .frame-example {
+            font-size: 1.3rem;
+            color: #e5e7eb;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            border-left: 4px solid #10b981;
+        }
+
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .practice-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .practice-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3);
+            border-color: rgba(16, 185, 129, 0.6);
+        }
+
+        .practice-card h3 {
+            color: #10b981;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .step-indicator {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #065f46;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        .emoji-large {
+            font-size: 4rem;
+            margin: 1rem 0;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(16, 185, 129, 0.9);
+            border: none;
+            color: #065f46;
+            padding: 1.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.4rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        .nav-btn:hover {
+            background: rgba(16, 185, 129, 1);
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(16, 185, 129, 0.9);
+            color: #065f46;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #065f46;
+            padding: 2rem;
+            border-radius: 30px;
+            margin: 2rem 0;
+            font-weight: 700;
+            font-size: 1.4rem;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .frame-blanks {
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px dashed rgba(16, 185, 129, 0.5);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            font-size: 1.4rem;
+            line-height: 1.8;
+        }
+
+        .blank {
+            background: rgba(16, 185, 129, 0.3);
+            color: #065f46;
+            padding: 0.3rem 0.8rem;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 0 0.2rem;
+            display: inline-block;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .assembly-section {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .lego-block {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            color: #065f46;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            margin: 0.5rem;
+            display: inline-block;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .lego-block:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+            pointer-events: auto;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide, .slide-content, .practice-grid, .frame-box, 
+        .challenge-box, .central-question, .practice-card {
+            pointer-events: auto;
+        }
+
+        .navigation, .slide-indicator, .nav-btn {
+            pointer-events: auto;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+            color: #ffffff;
+        }
+
+        li {
+            margin: 0.8rem 0;
+            padding-left: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        strong {
+            color: #10b981;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 12</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">‹</button>
+        <button class="nav-btn" onclick="nextSlide()">›</button>
+        <button class="nav-btn" onclick="revealAll()" style="margin-left: 1rem; font-size: 1rem; padding: 1rem 1.5rem; border-radius: 25px;">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>🗣️ Scientific Explanation Language Practice</h1>
+            <h2 class="auto-reveal">Building Atomic Structure Explanations</h2>
+            <div class="emoji-large auto-reveal">🧱</div>
+            <div class="central-question auto-reveal">
+                <h3>Learning Goal</h3>
+                <p class="auto-reveal"><em>Master sentence frames to explain atomic structure clearly and confidently</em></p>
+            </div>
+            <div class="challenge-box auto-reveal">
+                Practice individual frames → Combine like LEGO blocks → Build complete explanations
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Basic Description Frames -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📝 Basic Description Frames</h2>
+            <div class="step-indicator auto-reveal">Frame Set 1: Describing Structure</div>
+            
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"An atom consists of _____ and _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "An atom consists of a <span class="blank">nucleus</span> and <span class="blank">electrons</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"The _____ contains _____ and _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "The <span class="blank">nucleus</span> contains <span class="blank">protons</span> and <span class="blank">neutrons</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"_____ are located _____ the nucleus."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "<span class="blank">Electrons</span> are located <span class="blank">around</span> the nucleus."
+                </div>
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                Practice Task: Use each frame to describe a different part of atomic structure
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Property Description Frames -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚡ Property Description Frames</h2>
+            <div class="step-indicator auto-reveal">Frame Set 2: Describing Characteristics</div>
+            
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"_____ have a _____ charge."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "<span class="blank">Protons</span> have a <span class="blank">positive</span> charge."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"The _____ is extremely _____ but very _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "The <span class="blank">nucleus</span> is extremely <span class="blank">small</span> but very <span class="blank">heavy</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"_____ move around the nucleus in _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "<span class="blank">Electrons</span> move around the nucleus in <span class="blank">shells</span>."
+                </div>
+            </div>
+
+            <div class="frame-blanks auto-reveal">
+                <strong>Your turn:</strong> Fill in the blanks<br>
+                "_____ are _____ particles that determine _____."<br>
+                <small>(Hint: Talk about neutrons)</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Function Explanation Frames -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔧 Function Explanation Frames</h2>
+            <div class="step-indicator auto-reveal">Frame Set 3: Explaining What Things Do</div>
+            
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"The number of _____ determines _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "The number of <span class="blank">protons</span> determines <span class="blank">what element it is</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"_____ are responsible for _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "<span class="blank">Electrons</span> are responsible for <span class="blank">chemical bonding</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"_____ provide _____ to the atom."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "<span class="blank">Neutrons</span> provide <span class="blank">mass and stability</span> to the atom."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"The _____ controls _____ because _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "The <span class="blank">outer shell</span> controls <span class="blank">bonding behavior</span> because <span class="blank">atoms want full shells</span>."
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Comparison Frames -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚖️ Comparison Frames</h2>
+            <div class="step-indicator auto-reveal">Frame Set 4: Comparing and Contrasting</div>
+            
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"Unlike _____, _____ have _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "Unlike <span class="blank">protons</span>, <span class="blank">neutrons</span> have <span class="blank">no charge</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"Both _____ and _____ are _____, but _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "Both <span class="blank">protons</span> and <span class="blank">neutrons</span> are <span class="blank">in the nucleus</span>, but <span class="blank">only protons have charge</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"While _____ are _____, _____ are _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "While <span class="blank">protons</span> are <span class="blank">positive</span>, <span class="blank">electrons</span> are <span class="blank">negative</span>."
+                </div>
+            </div>
+
+            <div class="frame-blanks auto-reveal">
+                <strong>Your turn:</strong> Compare ionic and covalent bonding<br>
+                "_____ bonding involves _____, while _____ bonding involves _____."
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Cause and Effect Frames -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔄 Cause and Effect Frames</h2>
+            <div class="step-indicator auto-reveal">Frame Set 5: Explaining Why Things Happen</div>
+            
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"Because _____, _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "Because <span class="blank">atoms want full outer shells</span>, <span class="blank">they form chemical bonds</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"When _____, _____ happens."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "When <span class="blank">sodium loses an electron</span>, <span class="blank">it becomes positively charged</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"_____ results in _____ because _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "<span class="blank">Sharing electrons</span> results in <span class="blank">covalent bonds</span> because <span class="blank">both atoms get full shells</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"The reason _____ is that _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "The reason <span class="blank">noble gases don't react</span> is that <span class="blank">they already have full outer shells</span>."
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Analogy Frames -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔗 Analogy Frames</h2>
+            <div class="step-indicator auto-reveal">Frame Set 6: Making Comparisons to Familiar Things</div>
+            
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"Think of _____ like _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "Think of <span class="blank">an atom</span> like <span class="blank">a solar system</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"_____ is similar to _____ because both _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "<span class="blank">The nucleus</span> is similar to <span class="blank">the sun</span> because both <span class="blank">are at the center</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"Just like _____, _____ also _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "Just like <span class="blank">planets orbit the sun</span>, <span class="blank">electrons</span> also <span class="blank">move around the nucleus</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"You can imagine _____ as _____ that _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "You can imagine <span class="blank">chemical bonding</span> as <span class="blank">friendship</span> that <span class="blank">makes both atoms happy</span>."
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Sequence Frames -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>➡️ Sequence Frames</h2>
+            <div class="step-indicator auto-reveal">Frame Set 7: Explaining Steps and Processes</div>
+            
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"First, _____. Then, _____. Finally, _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "First, <span class="blank">sodium loses an electron</span>. Then, <span class="blank">chlorine gains that electron</span>. Finally, <span class="blank">they stick together as salt</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"The process begins when _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "The process begins when <span class="blank">atoms with incomplete outer shells meet</span>."
+                </div>
+            </div>
+
+            <div class="frame-box auto-reveal">
+                <div class="frame-text">"After _____, the next step is _____."</div>
+                <div class="frame-example auto-reveal">
+                    <strong>Example:</strong> "After <span class="blank">electrons are shared</span>, the next step is <span class="blank">forming a stable molecule</span>."
+                </div>
+            </div>
+
+            <div class="frame-blanks auto-reveal">
+                <strong>Your turn:</strong> Describe how water forms<br>
+                "First, _____. Then, _____. As a result, _____."
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Practice Assembly Level 1 -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🧱 Assembly Practice: Level 1</h2>
+            <div class="step-indicator auto-reveal">Combining 2-3 Frames</div>
+            
+            <div class="assembly-section auto-reveal">
+                <h3>Topic: Describe a Proton</h3>
+                <div class="auto-reveal">
+                    <div class="lego-block">"Protons have a positive charge."</div>
+                    <span style="font-size: 2rem; color: #10b981;">+</span>
+                    <div class="lego-block">"Protons are located in the nucleus."</div>
+                    <span style="font-size: 2rem; color: #10b981;">=</span>
+                </div>
+                <div class="frame-example auto-reveal">
+                    <strong>Combined:</strong> "Protons have a positive charge and are located in the nucleus."
+                </div>
+            </div>
+
+            <div class="assembly-section auto-reveal">
+                <h3>Topic: Explain Electron Shells</h3>
+                <div class="auto-reveal">
+                    <div class="lego-block">"Electrons move around the nucleus in shells."</div>
+                    <span style="font-size: 2rem; color: #10b981;">+</span>
+                    <div class="lego-block">"The outer shell determines bonding behavior."</div>
+                    <span style="font-size: 2rem; color: #10b981;">=</span>
+                </div>
+                <div class="frame-example auto-reveal">
+                    <strong>Combined:</strong> "Electrons move around the nucleus in shells, and the outer shell determines bonding behavior."
+                </div>
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                Your Turn: Combine frames to explain what neutrons do
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Practice Assembly Level 2 -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏗️ Assembly Practice: Level 2</h2>
+            <div class="step-indicator auto-reveal">Combining 4-5 Frames with Transitions</div>
+            
+            <div class="assembly-section auto-reveal">
+                <h3>Topic: How Ionic Bonding Works</h3>
+                <div class="auto-reveal">
+                    <div class="lego-block">"Atoms want full outer shells."</div>
+                    <div class="lego-block">"Sodium has 1 outer electron."</div>
+                    <div class="lego-block">"Because of this, sodium loses an electron."</div>
+                    <div class="lego-block">"Chlorine needs 1 electron."</div>
+                    <div class="lego-block">"Therefore, they form an ionic bond."</div>
+                </div>
+                <div class="frame-example auto-reveal">
+                    <strong>Full Explanation:</strong> "Atoms want full outer shells. Sodium has 1 outer electron, so because of this, sodium loses an electron. Chlorine needs 1 electron to complete its shell. Therefore, when they meet, they form an ionic bond that makes both atoms stable."
+                </div>
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                Practice: Build a 4-5 sentence explanation of covalent bonding using frames
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Assembly Challenge -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Full Assembly Challenge</h2>
+            <div class="step-indicator auto-reveal">Building Complete Explanations</div>
+            
+            <div class="central-question auto-reveal">
+                <h3>Your Mission</h3>
+                <p class="auto-reveal">Build a complete explanation using at least 6 different frame types</p>
+            </div>
+
+            <div class="practice-grid">
+                <div class="practice-card auto-reveal">
+                    <h3>🎯 Option A: Atomic Structure</h3>
+                    <p class="auto-reveal">Explain what atoms are and how they're organized</p>
+                    <div class="frame-example auto-reveal">
+                        <strong>Must include:</strong>
+                        <ul>
+                            <li>Description frames (structure)</li>
+                            <li>Function frames (what parts do)</li>
+                            <li>Comparison frames (differences)</li>
+                            <li>Analogy frames (like what?)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="practice-card auto-reveal">
+                    <h3>🎯 Option B: Chemical Bonding</h3>
+                    <p class="auto-reveal">Explain how and why atoms bond together</p>
+                    <div class="frame-example auto-reveal">
+                        <strong>Must include:</strong>
+                        <ul>
+                            <li>Cause/effect frames (why bonding?)</li>
+                            <li>Sequence frames (how it happens)</li>
+                            <li>Comparison frames (ionic vs covalent)</li>
+                            <li>Function frames (what bonding does)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="practice-card auto-reveal">
+                    <h3>🎯 Option C: Element Identity</h3>
+                    <p class="auto-reveal">Explain what makes elements different</p>
+                    <div class="frame-example auto-reveal">
+                        <strong>Must include:</strong>
+                        <ul>
+                            <li>Description frames (what determines identity)</li>
+                            <li>Cause/effect frames (why properties differ)</li>
+                            <li>Comparison frames (element differences)</li>
+                            <li>Analogy frames (helpful comparisons)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                Target: 8-10 sentences using smooth transitions between frame types
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Master Challenge -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏆 Master Challenge</h2>
+            <div class="step-indicator auto-reveal">Complete Scientific Explanation</div>
+            
+            <div class="central-question auto-reveal">
+                <h3>Ultimate Goal</h3>
+                <p class="auto-reveal"><strong>"Explain how atoms work and why they bond together. Use analogies and examples to make it clear."</strong></p>
+            </div>
+
+            <div class="assembly-section auto-reveal">
+                <h3>📋 Success Checklist</h3>
+                <div class="practice-grid">
+                    <div class="practice-card auto-reveal">
+                        <h3>✅ Structure Requirements</h3>
+                        <ul>
+                            <li class="auto-reveal">Clear introduction sentence</li>
+                            <li class="auto-reveal">Body with 6-8 detailed sentences</li>
+                            <li class="auto-reveal">Conclusion that summarizes</li>
+                            <li class="auto-reveal">Smooth transitions between ideas</li>
+                        </ul>
+                    </div>
+                    <div class="practice-card auto-reveal">
+                        <h3>🗣️ Language Requirements</h3>
+                        <ul>
+                            <li class="auto-reveal">Use 6+ different frame types</li>
+                            <li class="auto-reveal">Include at least 2 analogies</li>
+                            <li class="auto-reveal">Give specific examples</li>
+                            <li class="auto-reveal">Show cause-and-effect relationships</li>
+                        </ul>
+                    </div>
+                    <div class="practice-card auto-reveal">
+                        <h3>🎯 Content Requirements</h3>
+                        <ul>
+                            <li class="auto-reveal">Describe atomic structure</li>
+                            <li class="auto-reveal">Explain particle functions</li>
+                            <li class="auto-reveal">Describe bonding process</li>
+                            <li class="auto-reveal">Connect to real examples</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="frame-blanks auto-reveal">
+                <strong>Frame Bank - Choose and Combine:</strong><br>
+                • "An atom consists of..."<br>
+                • "Think of this like..."<br>
+                • "Because atoms want..."<br>
+                • "Unlike ___, ___ have..."<br>
+                • "When this happens..."<br>
+                • "The result is..."<br>
+                • "For example..."
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                Goal: Fluent 2-3 minute explanation that teaches someone else about atoms and bonding
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            resetReveal();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                return true; // Successfully revealed an element
+            }
+            return false; // No more elements to reveal
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            // Reveal all remaining elements
+            for (let i = revealIndex; i < elements.length; i++) {
+                elements[i].classList.add('show');
+            }
+            revealIndex = elements.length;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                // Try to reveal next element first, only advance slide if no more to reveal
+                const revealed = revealNextElement();
+                if (!revealed) {
+                    nextSlide(); // No more elements to reveal, go to next slide
+                }
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide(); // Left arrow always goes to previous slide
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                revealNextElement(); // Enter just reveals, doesn't advance slides
+            }
+        });
+
+        // Initialize after DOM is ready
+        document.getElementById('slide-counter').textContent = `1 / ${totalSlides}`;
+
+        // Add comprehensive click handling using event capture
+        document.addEventListener('click', function(e) {
+            // Skip navigation elements completely
+            if (e.target.closest('.navigation') || 
+                e.target.closest('.slide-indicator')) {
+                return;
+            }
+            
+            // Only reveal on current visible slide
+            const currentSlideElement = slides[currentSlide];
+            if (currentSlideElement && !currentSlideElement.classList.contains('hidden')) {
+                revealNextElement(); // Click always just reveals, doesn't advance slides
+            }
+        }, true); // Use capture phase for better event catching
+    </script>
+</body>
+</html>

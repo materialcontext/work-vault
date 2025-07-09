@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2: Research Strategy and Source Integration Mastery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0c4a6e 0%, #075985 25%, #0369a1 50%, #0284c7 75%, #0ea5e9 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .slide-content {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .slide h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #06b6d4, #0891b2, #0e7490);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.1;
+        }
+
+        .slide h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #06b6d4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .slide h3 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide p, .slide li {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #e2e8f0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question {
+            background: rgba(6, 182, 212, 0.15);
+            backdrop-filter: blur(20px);
+            border: 3px solid rgba(6, 182, 212, 0.4);
+            border-radius: 30px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 15px 50px rgba(6, 182, 212, 0.2);
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question h3 {
+            color: #06b6d4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .objective-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.3);
+            border-color: rgba(6, 182, 212, 0.6);
+        }
+
+        .objective-card:hover::before {
+            left: 100%;
+        }
+
+        .objective-card h3 {
+            color: #06b6d4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .research-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .research-flow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #06b6d4, #10b981, #8b5cf6);
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        .flow-step {
+            background: linear-gradient(135deg, #ffffff, #f1f5f9);
+            color: #0c4a6e;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 3;
+            border: 3px solid rgba(6, 182, 212, 0.6);
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .flow-step:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
+        }
+
+        .source-hierarchy {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .source-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .primary-source {
+            border-color: rgba(34, 197, 94, 0.4);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .secondary-source {
+            border-color: rgba(6, 182, 212, 0.4);
+            background: rgba(6, 182, 212, 0.1);
+        }
+
+        .tertiary-source {
+            border-color: rgba(168, 85, 247, 0.4);
+            background: rgba(168, 85, 247, 0.1);
+        }
+
+        .avoid-source {
+            border-color: rgba(239, 68, 68, 0.4);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .primary-source h4 {
+            color: #86efac;
+        }
+
+        .secondary-source h4 {
+            color: #67e8f9;
+        }
+
+        .tertiary-source h4 {
+            color: #c4b5fd;
+        }
+
+        .avoid-source h4 {
+            color: #fca5a5;
+        }
+
+        .source-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #ffffff;
+            padding: 2rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            font-weight: 600;
+            font-size: 1.4rem;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .integration-example {
+            background: rgba(99, 102, 241, 0.2);
+            border-left: 6px solid #6366f1;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .wrong-example {
+            background: rgba(239, 68, 68, 0.2);
+            border-left: 6px solid #ef4444;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 15px 15px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .correct-example {
+            background: rgba(34, 197, 94, 0.2);
+            border-left: 6px solid #22c55e;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 15px 15px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .example-label {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .wrong-example .example-label {
+            color: #fca5a5;
+        }
+
+        .correct-example .example-label {
+            color: #86efac;
+        }
+
+        .signal-phrase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .phrase-level {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 2px solid rgba(147, 51, 234, 0.3);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .phrase-level:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.3);
+            border-color: rgba(147, 51, 234, 0.6);
+        }
+
+        .phrase-level h4 {
+            color: #c084fc;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(6, 182, 212, 0.9);
+            border: none;
+            color: #0c4a6e;
+            padding: 1.2rem 1.8rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-btn:hover {
+            background: rgba(6, 182, 212, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.6);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(6, 182, 212, 0.9);
+            color: #0c4a6e;
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+            z-index: 1000;
+        }
+
+        .emoji-large {
+            font-size: 4rem;
+            margin: 1rem 0;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+            color: #e2e8f0;
+        }
+
+        li {
+            margin: 0.8rem 0;
+            padding-left: 1rem;
+            color: #e2e8f0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        strong {
+            color: #06b6d4;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .step-indicator {
+            display: inline-block;
+            background: #06b6d4;
+            color: #0c4a6e;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-right: 1rem;
+            text-shadow: none;
+        }
+
+        .practice-box {
+            background: rgba(147, 51, 234, 0.2);
+            border: 2px solid rgba(147, 51, 234, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+        }
+
+        .practice-box h4 {
+            color: #c084fc;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .criteria-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 15px;
+            border: 2px solid rgba(6, 182, 212, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .criteria-item:hover {
+            border-color: rgba(6, 182, 212, 0.6);
+            transform: translateY(-3px);
+        }
+
+        .criteria-item h5 {
+            color: #06b6d4;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .analysis-steps {
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid rgba(16, 185, 129, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+        }
+
+        .analysis-steps h4 {
+            color: #10b981;
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 1920px) {
+            .slide {
+                padding: 3rem 4rem;
+            }
+            
+            .slide-content {
+                max-width: 1600px;
+            }
+        }
+
+        @media (min-width: 2560px) {
+            .slide {
+                padding: 4rem 6rem;
+            }
+            
+            .slide-content {
+                max-width: 2000px;
+            }
+            
+            .objectives-grid {
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            }
+            
+            .source-hierarchy {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-height: 800px) {
+            .slide {
+                padding: 1rem 2rem;
+                justify-content: flex-start;
+                padding-top: 2rem;
+            }
+            
+            .slide h1 {
+                font-size: clamp(2rem, 4vw, 3rem);
+                margin-bottom: 0.5rem;
+            }
+            
+            .slide h2 {
+                font-size: clamp(1.5rem, 3vw, 2.5rem);
+                margin-bottom: 1rem;
+            }
+            
+            .objectives-grid,
+            .source-hierarchy,
+            .signal-phrase-grid {
+                gap: 1rem;
+                margin: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 14</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="reveal-btn" onclick="toggleRevealAll()">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1 class="auto-reveal">Week 2: Research Strategy & Source Integration</h1>
+            <div class="emoji-large auto-reveal">🔍</div>
+            <div class="central-question auto-reveal">
+                <h3>Building Evidence for Your Arguments</h3>
+                <p><em>Transform your Week 1 thesis statements into research-supported academic essays</em></p>
+            </div>
+            <div class="research-flow auto-reveal">
+                <div class="flow-step">Thesis → Research</div>
+                <div class="flow-step">Find Sources</div>
+                <div class="flow-step">Integrate Quotes</div>
+                <div class="flow-step">Build Paragraphs</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Learning Objectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Session Objectives</h2>
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h3>🔎 Research Strategy</h3>
+                    <p>Develop systematic approaches to find credible sources that support your specific thesis arguments</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>✅ Source Evaluation</h3>
+                    <p>Apply academic criteria to distinguish reliable from unreliable sources for scholarly writing</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>📝 Quote Integration</h3>
+                    <p>Master seamless quote integration using signal phrases, context, and analytical interpretation</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>📋 Body Paragraphs</h3>
+                    <p>Combine Week 1 structure skills with Week 2 evidence skills to write complete research paragraphs</p>
+                </div>
+            </div>
+            <div class="central-question auto-reveal">
+                <h3>Central Question</h3>
+                <p><em>"How do we find strong evidence and use it effectively to prove the arguments we made in our thesis statements?"</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Thesis to Evidence Connection -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔗 From Thesis to Evidence</h2>
+            
+            <div class="formula-box auto-reveal">
+                <h3>📋 Evidence Mapping Activity</h3>
+                <p>For your Week 1 thesis statement, identify the 3 types of evidence you need to prove your argument</p>
+            </div>
+
+            <div class="integration-example auto-reveal">
+                <h4>Example Thesis Breakdown</h4>
+                <p><strong>Thesis:</strong> "Columbus's expeditions were primarily economic ventures because European trade routes had become expensive, Spain needed new revenue, and Columbus required personal financing."</p>
+                
+                <div style="margin-top: 1.5rem;">
+                    <p><span class="step-indicator">Evidence 1</span><strong>Trade route costs:</strong> Economic data, merchant records, price increases</p>
+                    <p><span class="step-indicator">Evidence 2</span><strong>Spanish finances:</strong> Royal treasury records, post-Reconquista debts</p>
+                    <p><span class="step-indicator">Evidence 3</span><strong>Columbus's debt:</strong> Personal contracts, loan documents, financial agreements</p>
+                </div>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Your Turn</h4>
+                <p>Using your Week 1 thesis statement, list the specific types of evidence you need to find to prove each supporting point. Be specific about what kind of sources would strengthen your argument.</p>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Today's Goal:</strong> Learn exactly how to find this evidence and integrate it professionally into your writing!
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Research Question Development -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔍 From Thesis to Research Questions</h2>
+            
+            <div class="formula-box auto-reveal">
+                <h3>Research Question Formula</h3>
+                <p>Transform each thesis supporting point into a specific, searchable research question</p>
+            </div>
+
+            <div class="research-flow auto-reveal">
+                <div class="flow-step">Break Down<br>Thesis</div>
+                <div class="flow-step">Identify<br>Evidence Needs</div>
+                <div class="flow-step">Create Research<br>Questions</div>
+                <div class="flow-step">Plan Search<br>Strategy</div>
+            </div>
+
+            <div class="integration-example auto-reveal">
+                <h4>Step-by-Step Example</h4>
+                <p><span class="step-indicator">1</span><strong>Thesis Point:</strong> "European trade routes had become expensive"</p>
+                <p><span class="step-indicator">2</span><strong>Evidence Needed:</strong> Economic data showing cost increases</p>
+                <p><span class="step-indicator">3</span><strong>Research Question:</strong> "What evidence exists of European trade route costs increasing between 1450-1492?"</p>
+                <p><span class="step-indicator">4</span><strong>Search Strategy:</strong> Keywords like "Ottoman trade taxes," "Venetian merchant records," "15th century spice prices"</p>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Practice Round</h4>
+                <p>Convert your thesis supporting points into 3 specific, searchable research questions. Make them focused enough that you know exactly what evidence to look for.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Source Hierarchy -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📚 Academic Source Hierarchy</h2>
+            
+            <div class="source-hierarchy">
+                <div class="source-card primary-source auto-reveal">
+                    <h4>🥇 Primary Sources</h4>
+                    <p><strong>Definition:</strong> Documents created during the time period being studied</p>
+                    <ul>
+                        <li>Columbus's letters to royalty</li>
+                        <li>Royal contracts and charters</li>
+                        <li>Contemporary chronicles</li>
+                        <li>Ship manifests and records</li>
+                    </ul>
+                    <p><strong>Academic Value:</strong> Direct evidence from people who experienced events</p>
+                </div>
+                
+                <div class="source-card secondary-source auto-reveal">
+                    <h4>🥈 Secondary Sources</h4>
+                    <p><strong>Definition:</strong> Scholarly analysis by experts using primary sources</p>
+                    <ul>
+                        <li>Peer-reviewed history articles</li>
+                        <li>University press books</li>
+                        <li>Academic conference papers</li>
+                        <li>Expert dissertations</li>
+                    </ul>
+                    <p><strong>Academic Value:</strong> Expert interpretation and historical context</p>
+                </div>
+                
+                <div class="source-card tertiary-source auto-reveal">
+                    <h4>🥉 Tertiary Sources</h4>
+                    <p><strong>Definition:</strong> General reference works synthesizing multiple sources</p>
+                    <ul>
+                        <li>Encyclopedia entries</li>
+                        <li>Textbook summaries</li>
+                        <li>Reference compilations</li>
+                        <li>General overviews</li>
+                    </ul>
+                    <p><strong>Academic Usage:</strong> Background information only, not main evidence</p>
+                </div>
+                
+                <div class="source-card avoid-source auto-reveal">
+                    <h4>🚫 Sources to Avoid</h4>
+                    <p><strong>Warning:</strong> These undermine your academic credibility</p>
+                    <ul>
+                        <li>Wikipedia (background only)</li>
+                        <li>Websites without author credentials</li>
+                        <li>Sources with obvious bias</li>
+                        <li>Personal blogs or social media</li>
+                    </ul>
+                    <p><strong>Problem:</strong> Lack academic standards and reliability</p>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Research Strategy:</strong> Use tertiary sources for background → Find secondary sources for expert analysis → Locate primary sources for direct evidence
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Source Evaluation Criteria -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>✅ Source Credibility Evaluation</h2>
+            
+            <div class="criteria-grid">
+                <div class="criteria-item auto-reveal">
+                    <h5>👤 Author Credentials</h5>
+                    <ul>
+                        <li>University professor?</li>
+                        <li>PhD in relevant field?</li>
+                        <li>Recognized expert?</li>
+                        <li>Other credible publications?</li>
+                    </ul>
+                </div>
+                
+                <div class="criteria-item auto-reveal">
+                    <h5>📖 Publication Quality</h5>
+                    <ul>
+                        <li>Peer-reviewed journal?</li>
+                        <li>University press?</li>
+                        <li>Reputable institution?</li>
+                        <li>Editorial standards?</li>
+                    </ul>
+                </div>
+                
+                <div class="criteria-item auto-reveal">
+                    <h5>📊 Evidence & Citations</h5>
+                    <ul>
+                        <li>Claims supported with evidence?</li>
+                        <li>Sources cited properly?</li>
+                        <li>Different perspectives acknowledged?</li>
+                        <li>Bibliography included?</li>
+                    </ul>
+                </div>
+                
+                <div class="criteria-item auto-reveal">
+                    <h5>📅 Currency & Relevance</h5>
+                    <ul>
+                        <li>Information current enough?</li>
+                        <li>Directly addresses research question?</li>
+                        <li>Appropriate scope for topic?</li>
+                        <li>Recent enough scholarship?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Evaluation Practice</h4>
+                <p>We'll evaluate 3 sources about European trade routes:</p>
+                <ul>
+                    <li>Academic journal article by history professor</li>
+                    <li>BBC History article with expert interviews</li>
+                    <li>Personal blog about medieval trade</li>
+                </ul>
+                <p><strong>Your task:</strong> Rank them by credibility and explain your reasoning using our criteria!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Quote Integration Formula -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📝 Quote Integration Formula</h2>
+            
+            <div class="formula-box auto-reveal">
+                <h3>Three-Part Integration Pattern</h3>
+                <p><span class="step-indicator">1</span><strong>Context:</strong> Signal phrase explaining why this quote matters</p>
+                <p><span class="step-indicator">2</span><strong>Quote:</strong> Exact words with proper citation</p>
+                <p><span class="step-indicator">3</span><strong>Analysis:</strong> Your interpretation connecting to thesis</p>
+            </div>
+
+            <div class="wrong-example auto-reveal">
+                <div class="example-label">❌ Poor Integration</div>
+                <p><em>"Trade routes were expensive. 'Venetian merchants paid enormous taxes to Ottoman authorities' (Smith 45). This shows trade was costly."</em></p>
+                <p><strong>Problems:</strong> No context, quote sits alone, weak analysis that just repeats quote</p>
+            </div>
+
+            <div class="correct-example auto-reveal">
+                <div class="example-label">✅ Strong Integration</div>
+                <p><em>"European merchants faced unprecedented financial pressures that made alternative routes essential for economic survival. </em><strong>[Context]</strong></p>
+                <p><em>Contemporary records reveal that 'Venetian merchants paid enormous taxes to Ottoman authorities, often doubling the final cost of Asian goods sold in European markets' (Smith 45). </em><strong>[Quote]</strong></p>
+                <p><em>These crushing financial burdens explain why Spanish monarchs found Columbus's western route proposal economically attractive despite its risks—the potential savings justified the expedition investment."</em> <strong>[Analysis]</strong></p>
+            </div>
+
+            <div class="integration-example auto-reveal">
+                <h4>What Makes Strong Integration Work</h4>
+                <p>✓ <strong>Context:</strong> Explains why this evidence matters for the argument</p>
+                <p>✓ <strong>Signal phrase:</strong> "Contemporary records reveal that..."</p>
+                <p>✓ <strong>Analysis:</strong> Connects evidence to larger thesis argument about Columbus's appeal</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Signal Phrase Mastery -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔧 Signal Phrase Progression</h2>
+            
+            <div class="signal-phrase-grid">
+                <div class="phrase-level auto-reveal">
+                    <h4>📝 Basic Academic</h4>
+                    <ul>
+                        <li>According to [author]...</li>
+                        <li>[Author] states that...</li>
+                        <li>As [author] explains...</li>
+                        <li>[Author] argues that...</li>
+                    </ul>
+                </div>
+                
+                <div class="phrase-level auto-reveal">
+                    <h4>🎓 Advanced Academic</h4>
+                    <ul>
+                        <li>To illustrate the pressures, [author] notes...</li>
+                        <li>Demonstrating the severity, [author] reveals...</li>
+                        <li>In support of this view, [author] contends...</li>
+                        <li>Challenging traditional views, [author] argues...</li>
+                    </ul>
+                </div>
+                
+                <div class="phrase-level auto-reveal">
+                    <h4>📜 Historical Specific</h4>
+                    <ul>
+                        <li>Contemporary records indicate...</li>
+                        <li>Historical evidence suggests...</li>
+                        <li>Primary sources reveal...</li>
+                        <li>Archival documents demonstrate...</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Signal Phrase Practice</h4>
+                <p><strong>Practice Quote:</strong> "The lands are very fertile, filled with gold mines and precious stones and spices."</p>
+                <p><strong>Your Task:</strong> Write three different integrations using:</p>
+                <ul>
+                    <li>One basic signal phrase</li>
+                    <li>One advanced signal phrase</li>
+                    <li>One historical-specific signal phrase</li>
+                </ul>
+                <p>Remember to add context and analysis for each!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Analysis After Quotes -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>💡 The "So What?" Factor</h2>
+            
+            <div class="analysis-steps auto-reveal">
+                <h4>Three-Step Analysis Process</h4>
+                <p><span class="step-indicator">1</span><strong>Interpretation:</strong> What does this quote mean in your own words?</p>
+                <p><span class="step-indicator">2</span><strong>Connection:</strong> How does this evidence support your thesis?</p>
+                <p><span class="step-indicator">3</span><strong>Significance:</strong> Why does this matter for your larger argument?</p>
+            </div>
+
+            <div class="integration-example auto-reveal">
+                <h4>Analysis Example Breakdown</h4>
+                <p><strong>Quote:</strong> "The lands are very fertile, filled with gold mines and precious stones and spices."</p>
+                
+                <div style="margin-top: 1.5rem;">
+                    <p><span class="step-indicator">1</span><strong>Interpretation:</strong> "This inventory of valuable resources shows Columbus prioritized material wealth over exploration."</p>
+                    
+                    <p><span class="step-indicator">2</span><strong>Connection:</strong> "This focus on economic benefits proves Columbus designed his proposals as business investments rather than scientific expeditions."</p>
+                    
+                    <p><span class="step-indicator">3</span><strong>Significance:</strong> "Understanding Columbus's economic motivation helps explain why European exploration accelerated when traditional trade routes became unsustainable."</p>
+                </div>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Analysis Practice</h4>
+                <p>Take your signal phrase practice quotes from the previous slide and add complete analysis using the three-step process:</p>
+                <ul>
+                    <li>What does the quote mean?</li>
+                    <li>How does it support your thesis?</li>
+                    <li>Why is this significant?</li>
+                </ul>
+                <p><strong>Goal:</strong> Make your quotes work hard to prove your arguments!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Body Paragraph Construction -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📋 Complete Body Paragraph Formula</h2>
+            
+            <div class="formula-box auto-reveal">
+                <h3>Paragraph Building Blocks</h3>
+                <p><strong>[Topic Sentence] + [Context] + [Quote] + [Analysis] + [Transition]</strong></p>
+            </div>
+
+            <div class="research-flow auto-reveal">
+                <div class="flow-step">Topic Sentence<br>(Week 1 Skill)</div>
+                <div class="flow-step">Evidence Integration<br>(Week 2 Skill)</div>
+                <div class="flow-step">Analysis<br>(Week 2 Skill)</div>
+                <div class="flow-step">Transition<br>(Week 1 Skill)</div>
+            </div>
+
+            <div class="correct-example auto-reveal">
+                <div class="example-label">✅ Complete Body Paragraph Example</div>
+                <p><strong>Topic Sentence:</strong> <em>"First, European trade routes to Asia had become prohibitively expensive by the 1490s, creating urgent demand for alternative commercial pathways."</em></p>
+                
+                <p><strong>Evidence Integration:</strong> <em>"Contemporary merchant records demonstrate the severity of these economic pressures. Venetian trade documents reveal that 'Ottoman taxes and tribute demands increased spice costs by 150% between 1450 and 1490, making Asian goods unaffordable for most European consumers' (Johnson 78)."</em></p>
+                
+                <p><strong>Analysis:</strong> <em>"This dramatic cost increase explains why Columbus's promise of a western route to Asia appeared economically revolutionary rather than merely adventurous—Spanish monarchs saw direct access to Asian markets as essential for maintaining European competitive advantage."</em></p>
+                
+                <p><strong>Transition:</strong> <em>"Beyond external trade route problems, Spain also faced internal financial pressures that made new revenue sources essential."</em></p>
+            </div>
+
+            <div class="integration-example auto-reveal">
+                <h4>Success Factors</h4>
+                <p>✓ Topic sentence directly supports thesis</p>
+                <p>✓ Quote integrated with signal phrase and analysis</p>
+                <p>✓ Analysis explains how evidence proves the point</p>
+                <p>✓ Transition connects smoothly to next paragraph</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Writing Workshop -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>✍️ Body Paragraph Writing Lab</h2>
+            
+            <div class="practice-box auto-reveal">
+                <h4>Individual Writing Task</h4>
+                <p>Write one complete body paragraph supporting your Week 1 thesis statement</p>
+                
+                <div style="margin-top: 1.5rem;">
+                    <h5>Requirements Checklist:</h5>
+                    <ul>
+                        <li>✓ Clear topic sentence advancing thesis argument</li>
+                        <li>✓ At least one integrated quote with signal phrase</li>
+                        <li>✓ Complete analysis explaining how evidence supports your point</li>
+                        <li>✓ Smooth transition to next paragraph</li>
+                        <li>✓ Academic vocabulary from Week 1 and Week 2</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <h3>Teacher Conference Focus Areas</h3>
+                <p>While you write, I'll meet with each of you individually to discuss:</p>
+                <ul>
+                    <li><strong>Quote integration quality:</strong> Are signal phrases and analysis effective?</li>
+                    <li><strong>Analysis depth:</strong> Do you explain why evidence proves your point?</li>
+                    <li><strong>Thesis connection:</strong> Does this paragraph clearly advance your argument?</li>
+                    <li><strong>Academic voice:</strong> Is your formal register consistent and natural?</li>
+                </ul>
+            </div>
+
+            <div class="integration-example auto-reveal">
+                <h4>🕐 Time Management</h4>
+                <p><span class="step-indicator">Minutes 1-3</span>Review your thesis and plan your paragraph structure</p>
+                <p><span class="step-indicator">Minutes 4-8</span>Write your complete paragraph with evidence integration</p>
+                <p><span class="step-indicator">Minutes 9-10</span>Review and revise for clarity and academic voice</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Peer Review -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔍 Peer Review Workshop</h2>
+            
+            <div class="criteria-grid">
+                <div class="criteria-item auto-reveal">
+                    <h5>📋 Topic Sentence</h5>
+                    <p>Does it clearly support the thesis?</p>
+                    <p>Is the argument specific and focused?</p>
+                </div>
+                
+                <div class="criteria-item auto-reveal">
+                    <h5>📝 Quote Integration</h5>
+                    <p>Is the quote introduced with a signal phrase?</p>
+                    <p>Does it flow smoothly into the paragraph?</p>
+                </div>
+                
+                <div class="criteria-item auto-reveal">
+                    <h5>💡 Analysis Quality</h5>
+                    <p>Does analysis explain how evidence proves the point?</p>
+                    <p>Is there interpretation beyond summary?</p>
+                </div>
+                
+                <div class="criteria-item auto-reveal">
+                    <h5>🔗 Academic Voice</h5>
+                    <p>Is sophisticated vocabulary used appropriately?</p>
+                    <p>Is the tone consistently academic?</p>
+                </div>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Peer Review Process</h4>
+                <p><span class="step-indicator">1</span>Exchange paragraphs with your partner</p>
+                <p><span class="step-indicator">2</span>Read carefully and evaluate using our criteria</p>
+                <p><span class="step-indicator">3</span>Identify one strength and one area for improvement</p>
+                <p><span class="step-indicator">4</span>Discuss feedback constructively with your partner</p>
+                <p><span class="step-indicator">5</span>Make one revision based on the feedback</p>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Peer Review Goal:</strong> Help each other write stronger, more persuasive academic paragraphs that effectively use evidence to support arguments!
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Cross-Subject Transfer -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔄 Universal Research Skills</h2>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h3>🧪 Science Research</h3>
+                    <ul>
+                        <li><strong>Thesis:</strong> Hypothesis statements work like thesis statements</li>
+                        <li><strong>Sources:</strong> Scientific studies and data work like historical documents</li>
+                        <li><strong>Integration:</strong> Same signal phrase + analysis for study results</li>
+                    </ul>
+                </div>
+                
+                <div class="objective-card auto-reveal">
+                    <h3>📚 English Literature</h3>
+                    <ul>
+                        <li><strong>Thesis:</strong> Literary analysis arguments use same structure</li>
+                        <li><strong>Sources:</strong> Text passages work like historical quotes</li>
+                        <li><strong>Integration:</strong> Same context + quote + analysis for literary evidence</li>
+                    </ul>
+                </div>
+                
+                <div class="objective-card auto-reveal">
+                    <h3>🌍 Social Studies</h3>
+                    <ul>
+                        <li><strong>Thesis:</strong> Position papers on current issues</li>
+                        <li><strong>Sources:</strong> News articles, expert opinions, reports</li>
+                        <li><strong>Integration:</strong> Same credibility evaluation and quote integration</li>
+                    </ul>
+                </div>
+                
+                <div class="objective-card auto-reveal">
+                    <h3>💼 Any Subject</h3>
+                    <ul>
+                        <li><strong>Research Strategy:</strong> Same source evaluation criteria</li>
+                        <li><strong>Integration Skills:</strong> Context + Quote + Analysis pattern</li>
+                        <li><strong>Academic Voice:</strong> Same professional tone across subjects</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Universal Research Truth:</strong> Academic writing across ALL subjects requires finding credible sources and integrating them smoothly to support clear arguments. Master these skills once, use them everywhere!
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Assessment and Next Steps -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Assessment and Next Steps</h2>
+            
+            <div class="practice-box auto-reveal">
+                <h4>✍️ Exit Assessment</h4>
+                <p>Complete body paragraph demonstrating mastery of:</p>
+                <ul>
+                    <li>✓ Clear topic sentence supporting your Week 1 thesis</li>
+                    <li>✓ Properly integrated quote with signal phrase and analysis</li>
+                    <li>✓ Academic vocabulary from both Week 1 and Week 2</li>
+                    <li>✓ Logical transition to next paragraph</li>
+                </ul>
+            </div>
+
+            <div class="analysis-steps auto-reveal">
+                <h4>Self-Assessment Questions</h4>
+                <p><span class="step-indicator">✓</span>Can I find credible sources that support my specific arguments?</p>
+                <p><span class="step-indicator">✓</span>Do I integrate quotes smoothly with signal phrases and analysis?</p>
+                <p><span class="step-indicator">✓</span>Does my evidence clearly prove the points I'm making?</p>
+                <p><span class="step-indicator">✓</span>Can I apply these research skills to other academic subjects?</p>
+            </div>
+
+            <div class="research-flow auto-reveal">
+                <div class="flow-step">Week 1<br>Structure & Thesis</div>
+                <div class="flow-step">Week 2<br>Research & Sources</div>
+                <div class="flow-step">Week 3<br>Complex Arguments</div>
+                <div class="flow-step">Week 4<br>Academic Voice</div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>🚀 Week 3 Preview</h3>
+                <p><em>"How do we organize multiple research paragraphs into complete arguments with counterarguments and advanced thesis patterns? We'll combine all your skills to write full analytical essays!"</em></p>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Week 2 Success:</strong> You now have the research and evidence integration skills essential for ALL academic writing. Combined with Week 1's structure skills, you're ready for advanced argumentation!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+        let allRevealed = false;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            allRevealed = false;
+            resetReveal();
+            updateRevealButton();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                
+                if (revealIndex >= elements.length) {
+                    allRevealed = true;
+                    updateRevealButton();
+                }
+                return true;
+            }
+            return false;
+        }
+
+        function toggleRevealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (!allRevealed) {
+                // Reveal all remaining elements
+                for (let i = revealIndex; i < elements.length; i++) {
+                    elements[i].classList.add('show');
+                }
+                revealIndex = elements.length;
+                allRevealed = true;
+            } else {
+                // Hide all elements
+                elements.forEach(el => {
+                    el.classList.remove('show');
+                });
+                revealIndex = 0;
+                allRevealed = false;
+            }
+            updateRevealButton();
+        }
+
+        function updateRevealButton() {
+            const btn = document.getElementById('reveal-btn');
+            btn.textContent = allRevealed ? 'Hide All' : 'Reveal All';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                const revealed = revealNextElement();
+                if (!revealed && allRevealed) {
+                    nextSlide();
+                }
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (revealIndex === 0) {
+                    previousSlide();
+                } else {
+                    // Go back one element
+                    const currentSlideElement = slides[currentSlide];
+                    const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+                    if (revealIndex > 0) {
+                        revealIndex--;
+                        elements[revealIndex].classList.remove('show');
+                        allRevealed = false;
+                        updateRevealButton();
+                    }
+                }
+            } else if (e.key === ' ') {
+                e.preventDefault();
+                revealNextElement();
+            }
+        });
+
+        // Click anywhere to reveal next element
+        document.addEventListener('click', function(e) {
+            // Skip navigation elements
+            if (e.target.closest('.navigation') || 
+                e.target.closest('.slide-indicator')) {
+                return;
+            }
+            
+            const currentSlideElement = slides[currentSlide];
+            if (currentSlideElement && !currentSlideElement.classList.contains('hidden')) {
+                revealNextElement();
+            }
+        });
+
+        // Initialize
+        document.getElementById('slide-counter').textContent = `1 / ${totalSlides}`;
+        updateRevealButton();
+    </script>
+</body>
+</html>

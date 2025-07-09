@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colonial Encounters in the Americas - Multiple Perspectives</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', 'Roboto', system-ui, sans-serif;
+            background: linear-gradient(135deg, #7c2d12 0%, #991b1b 25%, #b91c1c 50%, #dc2626 75%, #ef4444 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 4%;
+            position: relative;
+        }
+
+        .slide-content {
+            max-width: 1300px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .slide h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: #fbbf24;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .slide h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+        }
+
+        .slide h3 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            line-height: 1.3;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .lesson-focus {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border: 3px solid #fbbf24;
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 15px 50px rgba(251, 191, 36, 0.3);
+        }
+
+        .lesson-focus h3 {
+            color: #fbbf24;
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+        }
+
+        .lesson-focus p {
+            font-size: 2.2rem;
+            font-style: italic;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .objective-card {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.3);
+            border-color: rgba(251, 191, 36, 0.6);
+        }
+
+        .objective-card:hover::before {
+            left: 100%;
+        }
+
+        .objective-card h4 {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .columbus-section {
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid #10b981;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .columbus-section h4 {
+            color: #fbbf24;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .las-casas-section {
+            background: rgba(220, 38, 38, 0.3);
+            border-left: 6px solid #dc2626;
+            padding: 2.5rem;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.2);
+            margin: 2rem 0;
+        }
+
+        .las-casas-section h4 {
+            color: #fbbf24;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .perspective-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .perspective-card {
+            background: rgba(16, 185, 129, 0.2);
+            border-left: 6px solid #10b981;
+            padding: 2rem;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .perspective-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.3);
+        }
+
+        .perspective-card h4 {
+            color: #fbbf24;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .perspective-card p {
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+            font-size: 1.6rem;
+        }
+
+        .quote-highlight {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #0f172a;
+            padding: 2.5rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            font-weight: 600;
+            font-size: 2rem;
+            box-shadow: 0 15px 35px rgba(251, 191, 36, 0.4);
+            font-style: italic;
+        }
+
+        .powhatan-section {
+            background: rgba(168, 85, 247, 0.2);
+            border: 2px solid #a855f7;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .powhatan-section h4 {
+            color: #fbbf24;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .analysis-framework {
+            background: linear-gradient(135deg, #059669, #047857);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            box-shadow: 0 15px 35px rgba(5, 150, 105, 0.4);
+        }
+
+        .analysis-framework h4 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: #fbbf24;
+            border: none;
+            color: #0f172a;
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+            min-width: 80px;
+        }
+
+        .nav-btn:hover {
+            background: #f59e0b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.5);
+        }
+
+        .nav-btn:disabled {
+            background: #64748b;
+            color: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fbbf24;
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            font-size: 1.1rem;
+        }
+
+        .emoji-large {
+            font-size: 5rem;
+            margin: 1.5rem 0;
+            display: block;
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+
+        li {
+            margin: 1rem 0;
+            padding-left: 0.5rem;
+            font-size: 1.8rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        strong {
+            color: #fbbf24;
+            font-weight: 700;
+        }
+
+        em {
+            color: #fbbf24;
+            font-style: italic;
+        }
+
+        .connection-bridge {
+            background: rgba(99, 102, 241, 0.2);
+            border: 2px solid #6366f1;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .connection-bridge h4 {
+            color: #fbbf24;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .historical-impact {
+            background: rgba(139, 69, 19, 0.2);
+            border: 2px solid #8b4513;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .historical-impact h4 {
+            color: #fbbf24;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .slide h1 { font-size: 3rem; }
+            .slide h2 { font-size: 2.5rem; }
+            .slide h3 { font-size: 2rem; }
+            .slide p, .slide li { font-size: 1.4rem; }
+            .objectives-grid { grid-template-columns: 1fr; }
+            .perspective-examples { grid-template-columns: 1fr; }
+            .slide { padding: 1rem 2%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 12</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="revealBtn" onclick="toggleRevealAll()">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title & Unit Transition -->
+    <div class="slide">
+        <div class="slide-content">
+            <div class="emoji-large auto-reveal">⚔️🌍</div>
+            <h1 class="auto-reveal">Colonial Encounters in the Americas</h1>
+            <h2 class="auto-reveal">When Worlds Collide - Multiple Perspectives</h2>
+            
+            <div class="lesson-focus auto-reveal">
+                <h3>Week 3 Essential Question</h3>
+                <p><em>"How did European colonization transform societies in the Americas, and what were the lasting effects?"</em></p>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>From Identity to Historical Impact</h4>
+                <p>We've studied how <strong>personal identity</strong> forms through name, language, and place. Now we examine how <strong>entire societies' identities</strong> were transformed through the most significant cultural collision in human history.</p>
+            </div>
+            
+            <div class="auto-reveal" style="margin-top: 3rem;">
+                <p style="font-size: 2.2rem; color: #ffffff;"><strong>Week 3, Lesson 1</strong> • European Colonization from Three Perspectives</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Learning Objectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Historical Analysis Goals</h2>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h4>📜 Analyze Primary Sources</h4>
+                    <p>Examine Columbus's 1493 letter, Las Casas's account, and Powhatan's speech as evidence of different perspectives</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>⚖️ Compare Viewpoints</h4>
+                    <p>Understand how the same events appear completely different depending on the observer's position and interests</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🔍 Identify Bias</h4>
+                    <p>Recognize how each author's background, audience, and purpose shapes what they emphasize and omit</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🌍 Assess Historical Impact</h4>
+                    <p>Evaluate the long-term consequences of European colonization for all involved societies</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Assignment Bridge & Context -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🗺️ Setting the Stage - 1492 to 1609</h2>
+            
+            <div class="columbus-section auto-reveal">
+                <h4>Historical Context</h4>
+                <p><strong>117 years of contact</strong> separate our three documents. Columbus writes in 1493 about "discovery." Las Casas writes in 1542 about systematic destruction. Powhatan speaks in 1609 about survival.</p>
+            </div>
+            
+            <div class="perspective-examples">
+                <div class="perspective-card auto-reveal">
+                    <h4>📅 1493: Columbus's Optimism</h4>
+                    <p><strong>First contact narrative</strong> - everything seems possible, indigenous people appear compliant, wealth seems accessible</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>📅 1542: Las Casas's Horror</h4>
+                    <p><strong>50 years of atrocities documented</strong> - mass death, systematic exploitation, cultural destruction across multiple islands</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>📅 1609: Powhatan's Diplomacy</h4>
+                    <p><strong>Indigenous leader's strategic response</strong> - having survived multiple waves of death, seeking peaceful coexistence</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Critical Framework</h3>
+                <p style="font-size: 2rem;">We'll analyze each document by asking: <strong>Who wrote this? Why? What do they emphasize? What do they leave out? How does their position shape their perspective?</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Columbus's Letter (1493) -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🧭 Christopher Columbus: Discovery and Justification</h2>
+            
+            <div class="columbus-section auto-reveal">
+                <h4>Document Context</h4>
+                <p><strong>Letter to King Ferdinand and Queen Isabella, February 1493</strong> - Columbus announces his "discovery" to justify continued funding and colonization efforts.</p>
+            </div>
+            
+            <div class="quote-highlight auto-reveal">
+                "I discovered many islands inhabited by numerous people. I took possession of all of them for our most fortunate King by making public proclamation and unfurling his standard, no one making any resistance."
+            </div>
+            
+            <div class="perspective-examples">
+                <div class="perspective-card auto-reveal">
+                    <h4>🏝️ Land Description</h4>
+                    <p><strong>"Exceedingly fertile... numerous harbors... very safe and wide... full of the greatest variety of trees"</strong> - emphasizing economic potential</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>👥 People Description</h4>
+                    <p><strong>"Go always naked... very well-formed people with handsome bodies"</strong> - othering indigenous people while noting their physical capacity for labor</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>⛪ Religious Justification</h4>
+                    <p><strong>"They are very ready to be converted to our holy Catholic faith"</strong> - providing moral justification for colonization</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Critical Analysis Questions</h3>
+                <ul style="font-size: 1.8rem;">
+                    <li>What does Columbus emphasize to convince his royal sponsors?</li>
+                    <li>How does he justify claiming land where people already live?</li>
+                    <li>What assumptions does he make about indigenous people?</li>
+                    <li>What might he be leaving out of his account?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Las Casas's Account (1542) -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⛪ Bartolomé de las Casas: Witness to Destruction</h2>
+            
+            <div class="las-casas-section auto-reveal">
+                <h4>Author Background</h4>
+                <p><strong>Dominican friar and former colonist</strong> - Las Casas initially participated in the encomienda system, then spent 50 years fighting against colonial abuses as "Protector of the Indians."</p>
+            </div>
+            
+            <div class="quote-highlight auto-reveal">
+                "These two Isles containing six hundred thousand at least, though at this day there are scarce two hundred men to be found in either of them."
+            </div>
+            
+            <div class="perspective-examples">
+                <div class="perspective-card auto-reveal">
+                    <h4>📊 Demographic Catastrophe</h4>
+                    <p><strong>Population collapse from 600,000 to 200</strong> on Puerto Rico and Jamaica - systematic documentation of mass death</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>😢 Psychological Trauma</h4>
+                    <p><strong>"Above Two Hundred Indians hang'd themselves of their own accord"</strong> - showing how Spanish cruelty drove people to suicide</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>👶 Targeting Children</h4>
+                    <p><strong>"Six Thousand Children and upward were murder'd because they had lost their Parents"</strong> - systematic family destruction</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Las Casas's Purpose</h3>
+                <p style="font-size: 1.9rem;">Writing to <strong>Prince Philip II</strong> to convince the Spanish Crown to reform colonial policies and treat indigenous people as fully human with basic rights.</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Critical Analysis Questions</h3>
+                <ul style="font-size: 1.8rem;">
+                    <li>Why might Las Casas emphasize the most extreme atrocities?</li>
+                    <li>How does his personal experience as a former colonist affect his credibility?</li>
+                    <li>What is he trying to accomplish with this shocking account?</li>
+                    <li>How does this contrast with Columbus's optimistic predictions?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Powhatan's Speech (1609) -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🦅 Chief Powhatan: Indigenous Diplomatic Strategy</h2>
+            
+            <div class="powhatan-section auto-reveal">
+                <h4>Speaker Context</h4>
+                <p><strong>Paramount chief of 30 Algonquian tribes</strong> - Powhatan led the Powhatan Confederacy of 8,000 people and had extensive experience managing relationships with the Jamestown colonists.</p>
+            </div>
+            
+            <div class="quote-highlight auto-reveal">
+                "I having seen the death of all my people thrice, and not any one living of these three generations but myself; I know the difference of Peace and War better than any in my Country."
+            </div>
+            
+            <div class="perspective-examples">
+                <div class="perspective-card auto-reveal">
+                    <h4>🧠 Strategic Wisdom</h4>
+                    <p><strong>"Why should you take by force that from us which you can have by love?"</strong> - proposing mutual benefit over conflict</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>👴 Elder Authority</h4>
+                    <p><strong>"Now I am old and ere long must die"</strong> - establishing his experience and concern for future generations</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>😰 Community Fear</h4>
+                    <p><strong>"This bruit... that you are come to destroy my Country, so much affrighteth all my people"</strong> - showing how colonization threatens indigenous security</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Powhatan's Diplomatic Strategy</h3>
+                <p style="font-size: 1.9rem;">Attempting to <strong>establish peaceful coexistence</strong> while asserting indigenous rights and demonstrating that Native Americans were sophisticated political leaders, not the "simple" people Columbus described.</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Critical Analysis Questions</h3>
+                <ul style="font-size: 1.8rem;">
+                    <li>How does Powhatan establish his authority and credibility?</li>
+                    <li>What does his speech reveal about indigenous political sophistication?</li>
+                    <li>How does his perspective on colonization differ from European accounts?</li>
+                    <li>What does "having seen the death of all my people thrice" suggest about pre-colonial history?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Comparing the Three Perspectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚖️ Three Views of the Same History</h2>
+            
+            <div class="perspective-examples">
+                <div class="perspective-card auto-reveal">
+                    <h4>🧭 Columbus: Optimistic Justification</h4>
+                    <p><strong>Purpose:</strong> Secure funding<br>
+                    <strong>Audience:</strong> Spanish monarchs<br>
+                    <strong>Emphasis:</strong> Wealth, easy conversion, no resistance<br>
+                    <strong>Omits:</strong> Indigenous perspectives, future problems</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>⛪ Las Casas: Moral Outrage</h4>
+                    <p><strong>Purpose:</strong> Reform colonial policy<br>
+                    <strong>Audience:</strong> Spanish prince/crown<br>
+                    <strong>Emphasis:</strong> Atrocities, mass death, moral failure<br>
+                    <strong>Omits:</strong> Indigenous agency, successful resistance</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>🦅 Powhatan: Strategic Diplomacy</h4>
+                    <p><strong>Purpose:</strong> Negotiate peaceful coexistence<br>
+                    <strong>Audience:</strong> English colonists<br>
+                    <strong>Emphasis:</strong> Indigenous wisdom, mutual benefit<br>
+                    <strong>Omits:</strong> Past conflicts, military capability</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>What None of Them Fully Capture</h3>
+                <ul style="font-size: 1.8rem;">
+                    <li><strong>Disease impact:</strong> Epidemics that killed 90% of indigenous populations</li>
+                    <li><strong>Indigenous diversity:</strong> Hundreds of distinct cultures and political systems</li>
+                    <li><strong>Economic complexity:</strong> Sophisticated indigenous trade networks</li>
+                    <li><strong>Environmental knowledge:</strong> Indigenous agricultural and ecological expertise</li>
+                    <li><strong>Gender dynamics:</strong> How colonization affected indigenous women specifically</li>
+                </ul>
+            </div>
+            
+            <div class="analysis-framework auto-reveal">
+                <h4>🏠 Tonight's Assignment</h4>
+                <p><strong>Perspective Analysis:</strong> Write 2 paragraphs comparing European and Indigenous perspectives on colonization. First paragraph: How do Columbus and Las Casas differ in their views of colonization? Second paragraph: How does Powhatan's perspective challenge both European accounts? Use specific evidence from the documents.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Understanding Bias in Historical Sources -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔍 Bias Analysis Framework</h2>
+            
+            <div class="analysis-framework auto-reveal">
+                <h4>Every Historical Source Has a Perspective</h4>
+                <p><strong>Bias isn't necessarily "bad" - it's inevitable.</strong> Understanding bias helps us read sources more critically and construct fuller historical narratives.</p>
+            </div>
+            
+            <div class="perspective-examples">
+                <div class="perspective-card auto-reveal">
+                    <h4>📝 Author's Position</h4>
+                    <p><strong>Who wrote this?</strong> Their social class, occupation, nationality, and personal experiences shape what they see and prioritize</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>🎯 Purpose & Audience</h4>
+                    <p><strong>Why was this written?</strong> Documents meant to persuade, inform, or justify have different emphases than private records</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>⏰ Historical Context</h4>
+                    <p><strong>When was this written?</strong> Events look different immediately after they happen vs. years later with more information</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Connecting to "Single Story" Analysis</h3>
+                <p style="font-size: 2rem;">Like Adichie's warning about single stories, <strong>historical understanding requires multiple perspectives</strong>. Columbus's letter alone would give us a very incomplete picture of what colonization meant.</p>
+            </div>
+            
+            <div class="historical-impact auto-reveal">
+                <h4>Why This Matters for Global Citizens</h4>
+                <p>Learning to analyze bias in historical sources <strong>develops critical thinking skills</strong> for evaluating contemporary information, understanding current conflicts, and recognizing when important perspectives are missing from public discussions.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Long-term Consequences -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📈 Lasting Impact of Colonial Encounters</h2>
+            
+            <div class="historical-impact auto-reveal">
+                <h4>Transformations That Shaped the Modern World</h4>
+                <p>The colonial encounters we've studied <strong>fundamentally altered human civilization</strong> - from population distributions to global economics to cultural mixing.</p>
+            </div>
+            
+            <div class="perspective-examples">
+                <div class="perspective-card auto-reveal">
+                    <h4>🌍 Demographic Revolution</h4>
+                    <p><strong>90% indigenous population loss</strong> in the Americas, millions of Africans enslaved and transported, European global migration patterns established</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>💰 Economic Transformation</h4>
+                    <p><strong>Global capitalism emerged</strong> from colonial extraction - silver, sugar, tobacco, and forced labor created international markets</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>🗣️ Cultural Exchange & Loss</h4>
+                    <p><strong>Languages disappeared</strong> while new ones emerged, religions mixed, foods and technologies spread globally</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Contemporary Connections</h3>
+                <ul style="font-size: 1.8rem;">
+                    <li><strong>Modern immigration patterns</strong> often follow colonial-era connections</li>
+                    <li><strong>Economic inequality</strong> between regions reflects colonial resource extraction</li>
+                    <li><strong>Cultural conflicts</strong> over land, language, and identity continue today</li>
+                    <li><strong>International law</strong> developed partly to address colonial abuses</li>
+                </ul>
+            </div>
+            
+            <div class="quote-highlight auto-reveal">
+                "Understanding colonial encounters helps explain why the world looks the way it does today - from global wealth distribution to cultural diversity to ongoing struggles for indigenous rights."
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Connecting to Your Experience -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🪞 Colonialism and Identity Formation</h2>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>From Personal to Historical Identity</h4>
+                <p>The colonial encounters we've studied <strong>forced entire societies to navigate between cultures</strong> - similar to, but far more dramatic than, the multicultural identity formation you experience.</p>
+            </div>
+            
+            <div class="perspective-examples">
+                <div class="perspective-card auto-reveal">
+                    <h4>🔄 Cultural Code-Switching</h4>
+                    <p><strong>Like your language switching</strong> between Korean and English, colonized peoples developed strategies for navigating multiple cultural systems</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>⚡ Power Dynamics</h4>
+                    <p><strong>Unlike your voluntary multicultural experience</strong>, colonial cultural mixing involved force, survival, and resistance to oppression</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>🌍 Global Soul Legacy</h4>
+                    <p><strong>Modern "global souls" like Pico Iyer</strong> exist partly because colonialism created worldwide migration and cultural mixing patterns</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Critical Thinking Questions</h3>
+                <ul style="font-size: 1.8rem;">
+                    <li>How does understanding colonial history change your perspective on modern immigration?</li>
+                    <li>What can Powhatan's diplomatic strategy teach about navigating cultural differences?</li>
+                    <li>How might your multicultural identity help you understand historical experiences?</li>
+                    <li>What responsibilities do global citizens have regarding colonial legacies?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Research and Analysis Skills -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔬 Historical Research Methods</h2>
+            
+            <div class="analysis-framework auto-reveal">
+                <h4>What We've Learned About Historical Analysis</h4>
+                <p><strong>Multiple sources provide fuller understanding</strong> than any single account. Professional historians use these same methods to reconstruct past events.</p>
+            </div>
+            
+            <div class="perspective-examples">
+                <div class="perspective-card auto-reveal">
+                    <h4>📊 Source Triangulation</h4>
+                    <p><strong>Compare multiple accounts</strong> of the same events to identify patterns, contradictions, and gaps</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>🎭 Perspective Analysis</h4>
+                    <p><strong>Understand each author's position</strong> to evaluate why they emphasize certain information</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>🕵️ Evidence Evaluation</h4>
+                    <p><strong>Distinguish between facts and interpretations</strong> while recognizing that all sources have limitations</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Skills for Global Citizenship</h3>
+                <p style="font-size: 2rem;">These <strong>critical analysis skills</strong> help you evaluate contemporary news, political claims, and cultural narratives with the same rigor historians apply to past events.</p>
+            </div>
+            
+            <div class="historical-impact auto-reveal">
+                <h4>Preparation for Complex Topics Ahead</h4>
+                <p>We'll use these same analytical approaches when studying the <strong>Iranian Revolution, Chinese development, and diverse political systems</strong> - always seeking multiple perspectives and questioning single narratives.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Looking Forward -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔮 Colonial Legacies and Modern World</h2>
+            
+            <div class="auto-reveal">
+                <h3>How This Prepares Us for Upcoming Studies</h3>
+                <p style="font-size: 2rem;">Understanding European colonialism provides context for:</p>
+            </div>
+            
+            <div class="perspective-examples">
+                <div class="perspective-card auto-reveal">
+                    <h4>🌍 African Colonial Experience</h4>
+                    <p>Next week: How the "Scramble for Africa" created modern political boundaries and ongoing conflicts</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>🕌 Iranian Revolution</h4>
+                    <p>How Western intervention in Iran created conditions for 1979 revolution against foreign influence</p>
+                </div>
+                
+                <div class="perspective-card auto-reveal">
+                    <h4>🏮 Modern China</h4>
+                    <p>How Chinese leaders responded to Western colonialism by developing alternative development models</p>
+                </div>
+            </div>
+            
+            <div class="quote-highlight auto-reveal">
+                Tomorrow: African resistance to colonialism - reading Chinua Achebe's <em>Things Fall Apart</em> and examining the Berlin Conference that divided Africa among European powers.
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Essential Course Question Revisited</h3>
+                <p style="font-size: 1.8rem;"><em>"How do I find my voice while understanding the complexities of our global community?"</em></p>
+                <p style="font-size: 1.6rem;">Understanding colonial encounters helps us recognize that <strong>cultural conflicts and power imbalances</strong> have shaped the modern world, while multiple perspectives and diplomatic strategies like Powhatan's remain relevant for navigating complex global relationships.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+        let allRevealed = false;
+
+        function updateSlideCounter() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentSlide === 0 && revealIndex === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1 && allRevealed;
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            allRevealed = false;
+            resetReveal();
+            updateSlideCounter();
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                
+                if (revealIndex === elements.length) {
+                    allRevealed = true;
+                }
+                
+                updateNavigationButtons();
+                updateRevealButton();
+                return true;
+            }
+            return false;
+        }
+
+        function revealAllElements() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            elements.forEach(el => {
+                el.classList.add('show');
+            });
+            
+            revealIndex = elements.length;
+            allRevealed = true;
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function hideAllElements() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+            
+            revealIndex = 0;
+            allRevealed = false;
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function toggleRevealAll() {
+            if (allRevealed) {
+                hideAllElements();
+            } else {
+                revealAllElements();
+            }
+        }
+
+        function updateRevealButton() {
+            const revealBtn = document.getElementById('revealBtn');
+            revealBtn.textContent = allRevealed ? 'Hide All' : 'Reveal All';
+        }
+
+        function nextSlide() {
+            if (!allRevealed) {
+                const revealed = revealNextElement();
+                if (!revealed && currentSlide < totalSlides - 1) {
+                    showSlide(currentSlide + 1);
+                }
+            } else if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (revealIndex > 0) {
+                // Go to previous element
+                const currentSlideElement = slides[currentSlide];
+                const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+                
+                elements[revealIndex - 1].classList.remove('show');
+                revealIndex--;
+                allRevealed = false;
+                updateNavigationButtons();
+                updateRevealButton();
+            } else if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+                // Auto-reveal all elements on previous slide
+                revealAllElements();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                revealNextElement();
+            }
+        });
+
+        // Initialize
+        updateSlideCounter();
+        updateNavigationButtons();
+        updateRevealButton();
+    </script>
+</body>
+</html>

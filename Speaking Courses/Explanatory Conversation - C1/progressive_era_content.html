@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progressive Era: Solving Industrial America's Problems (1890s-1920)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #7c2d12 0%, #92400e 25%, #b45309 50%, #d97706 75%, #f59e0b 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .slide h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #f59e0b;
+            animation: slideInDown 0.4s ease-out;
+        }
+
+        .slide h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #f59e0b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            animation: slideInLeft 0.3s ease-out;
+        }
+
+        .slide h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 0.2s ease-out;
+        }
+
+        .central-question {
+            background: rgba(245, 158, 11, 0.15);
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(245, 158, 11, 0.4);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 12px 40px rgba(245, 158, 11, 0.2);
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question h3 {
+            color: #f59e0b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.3);
+            border-color: rgba(245, 158, 11, 0.6);
+        }
+
+        .content-card:hover::before {
+            left: 100%;
+        }
+
+        .content-card h3 {
+            color: #f59e0b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f59e0b, #dc2626, #7c3aed);
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        .timeline-point {
+            background: linear-gradient(135deg, #ffffff, #f1f5f9);
+            color: #7c2d12;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 3;
+            border: 2px solid rgba(245, 158, 11, 0.6);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .timeline-point:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .comparison-table th {
+            background: rgba(245, 158, 11, 0.3);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .emoji-large {
+            font-size: 4rem;
+            margin: 1rem 0;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(245, 158, 11, 0.9);
+            border: none;
+            color: #7c2d12;
+            padding: 1.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.4rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+        }
+
+        .nav-btn:hover {
+            background: rgba(245, 158, 11, 1);
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.6);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(245, 158, 11, 0.9);
+            color: #7c2d12;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+        }
+
+        .vocab-frame {
+            background: rgba(168, 85, 247, 0.2);
+            border-left: 6px solid #a855f7;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 20px 20px 0;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.2);
+        }
+
+        .vocab-frame h4 {
+            color: #a855f7;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #7c2d12;
+            padding: 2rem;
+            border-radius: 30px;
+            margin: 2rem 0;
+            font-weight: 700;
+            font-size: 1.4rem;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+        }
+
+        .problem-solution {
+            display: grid;
+            grid-template-columns: 1fr 2rem 1fr;
+            gap: 1rem;
+            align-items: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+        }
+
+        .problem-box {
+            background: rgba(220, 38, 38, 0.3);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(220, 38, 38, 0.5);
+        }
+
+        .solution-box {
+            background: rgba(34, 197, 94, 0.3);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(34, 197, 94, 0.5);
+        }
+
+        .arrow {
+            font-size: 2rem;
+            color: #f59e0b;
+            text-align: center;
+        }
+
+        .reform-examples {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .reform-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            font-size: 0.9rem;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .reform-circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+        }
+
+        .political { background: #3b82f6; }
+        .social { background: #10b981; }
+        .economic { background: #8b5cf6; }
+        .moral { background: #ef4444; }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+            pointer-events: auto;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide, .slide-content, .content-grid, .comparison-table, 
+        .vocab-frame, .challenge-box, .central-question, .content-card {
+            pointer-events: auto;
+        }
+
+        .navigation, .slide-indicator, .nav-btn {
+            pointer-events: auto;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+            color: #ffffff;
+        }
+
+        li {
+            margin: 0.8rem 0;
+            padding-left: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        strong {
+            color: #f59e0b;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 10</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">‹</button>
+        <button class="nav-btn" onclick="nextSlide()">›</button>
+        <button class="nav-btn" onclick="revealAll()" style="margin-left: 1rem; font-size: 1rem; padding: 1rem 1.5rem; border-radius: 25px;">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>⚖️ Progressive Era Reforms</h1>
+            <h2 class="auto-reveal">Solving Industrial America's Problems (1890s-1920)</h2>
+            <div class="emoji-large auto-reveal">🏭➡️🏛️</div>
+            <div class="central-question auto-reveal">
+                <h3>Essential Question</h3>
+                <p class="auto-reveal"><em>"How did Americans respond to the problems created by rapid industrialization? Were Progressive reforms successful in solving these problems?"</em></p>
+            </div>
+            <div class="timeline auto-reveal">
+                <div class="timeline-point">1890s<br>Problems Emerge</div>
+                <div class="timeline-point">1900s<br>Reform Movements</div>
+                <div class="timeline-point">1910s<br>Government Action</div>
+                <div class="timeline-point">1920<br>Results & Limits</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Connection to Industrial Changes -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔗 Building on Industrialization</h2>
+            <p class="auto-reveal" style="font-size: 1.6rem; margin-bottom: 2rem;">Last lesson: Industrialization changed how Americans lived and worked. This lesson: How Americans tried to solve the problems this created.</p>
+            
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🏭 Industrial Changes Created...</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Crowded cities</strong> with poor living conditions</li>
+                        <li class="auto-reveal"><strong>Dangerous factories</strong> with unsafe working conditions</li>
+                        <li class="auto-reveal"><strong>Powerful corporations</strong> controlling markets</li>
+                        <li class="auto-reveal"><strong>Wide gap</strong> between rich and poor</li>
+                        <li class="auto-reveal"><strong>Political corruption</strong> from business influence</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>⚖️ Progressive Response...</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Reform movements</strong> to improve conditions</li>
+                        <li class="auto-reveal"><strong>New laws</strong> to regulate business</li>
+                        <li class="auto-reveal"><strong>Government expansion</strong> to protect citizens</li>
+                        <li class="auto-reveal"><strong>Social programs</strong> to help the poor</li>
+                        <li class="auto-reveal"><strong>Democratic reforms</strong> to reduce corruption</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                Key Idea: The Progressive Era was America's attempt to keep the benefits of industrialization while solving its problems
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: What Made This Era "Progressive"? -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📈 What Made This Era "Progressive"?</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>Progressive Mindset</h3>
+                <p class="auto-reveal">"Problems can be solved through careful study, scientific methods, and government action"</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🔬 Scientific Approach</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Study problems:</strong> Research conditions in factories, slums</li>
+                        <li class="auto-reveal"><strong>Gather evidence:</strong> Photography, statistics, surveys</li>
+                        <li class="auto-reveal"><strong>Test solutions:</strong> Pilot programs, experiments</li>
+                        <li class="auto-reveal"><strong>Expert knowledge:</strong> Trust trained professionals</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🏛️ Government Solutions</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Regulation:</strong> Laws to control business behavior</li>
+                        <li class="auto-reveal"><strong>Inspection:</strong> Government oversight of conditions</li>
+                        <li class="auto-reveal"><strong>Services:</strong> Public programs for health, education</li>
+                        <li class="auto-reveal"><strong>Democracy:</strong> More citizen participation in government</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🤝 Citizen Activism</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Reform organizations:</strong> Groups working for change</li>
+                        <li class="auto-reveal"><strong>Investigative journalism:</strong> "Muckrakers" exposing problems</li>
+                        <li class="auto-reveal"><strong>Social work:</strong> Helping people directly</li>
+                        <li class="auto-reveal"><strong>Political pressure:</strong> Demanding government action</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: The Problems Progressives Tackled -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🚨 The Problems Progressives Tackled</h2>
+            
+            <div class="problem-solution auto-reveal">
+                <div class="problem-box">
+                    <h4>🏭 Industrial Problems</h4>
+                    <ul>
+                        <li class="auto-reveal">Unsafe working conditions</li>
+                        <li class="auto-reveal">Child labor in factories</li>
+                        <li class="auto-reveal">12-16 hour workdays</li>
+                        <li class="auto-reveal">No protection for workers</li>
+                    </ul>
+                </div>
+                <div class="arrow auto-reveal">➡️</div>
+                <div class="solution-box">
+                    <h4>⚖️ Progressive Solutions</h4>
+                    <ul>
+                        <li class="auto-reveal">Safety inspections and regulations</li>
+                        <li class="auto-reveal">Child labor laws</li>
+                        <li class="auto-reveal">8-hour workday campaigns</li>
+                        <li class="auto-reveal">Workers' compensation laws</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="problem-solution auto-reveal">
+                <div class="problem-box">
+                    <h4>🏙️ Urban Problems</h4>
+                    <ul>
+                        <li class="auto-reveal">Overcrowded tenements</li>
+                        <li class="auto-reveal">Poor sanitation</li>
+                        <li class="auto-reveal">Disease outbreaks</li>
+                        <li class="auto-reveal">Lack of public services</li>
+                    </ul>
+                </div>
+                <div class="arrow auto-reveal">➡️</div>
+                <div class="solution-box">
+                    <h4>🏛️ Progressive Solutions</h4>
+                    <ul>
+                        <li class="auto-reveal">Housing codes and inspections</li>
+                        <li class="auto-reveal">Public health departments</li>
+                        <li class="auto-reveal">Clean water and sewage systems</li>
+                        <li class="auto-reveal">Parks and public facilities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="problem-solution auto-reveal">
+                <div class="problem-box">
+                    <h4>💰 Political Problems</h4>
+                    <ul>
+                        <li class="auto-reveal">Government corruption</li>
+                        <li class="auto-reveal">Big business controlling politics</li>
+                        <li class="auto-reveal">Limited voting rights</li>
+                        <li class="auto-reveal">Unresponsive government</li>
+                    </ul>
+                </div>
+                <div class="arrow auto-reveal">➡️</div>
+                <div class="solution-box">
+                    <h4>🗳️ Progressive Solutions</h4>
+                    <ul>
+                        <li class="auto-reveal">Civil service reform</li>
+                        <li class="auto-reveal">Business regulation laws</li>
+                        <li class="auto-reveal">Voting rights expansion</li>
+                        <li class="auto-reveal">Direct democracy initiatives</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Key Progressive Reforms -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏆 Key Progressive Reforms</h2>
+            
+            <div class="reform-examples auto-reveal">
+                <div class="reform-circle political auto-reveal">
+                    <div>
+                        <strong>Political</strong><br>
+                        Direct Election<br>
+                        17th Amendment
+                    </div>
+                </div>
+                <div class="reform-circle social auto-reveal">
+                    <div>
+                        <strong>Social</strong><br>
+                        Women's Suffrage<br>
+                        19th Amendment
+                    </div>
+                </div>
+                <div class="reform-circle economic auto-reveal">
+                    <div>
+                        <strong>Economic</strong><br>
+                        Income Tax<br>
+                        16th Amendment
+                    </div>
+                </div>
+                <div class="reform-circle moral auto-reveal">
+                    <div>
+                        <strong>Moral</strong><br>
+                        Prohibition<br>
+                        18th Amendment
+                    </div>
+                </div>
+            </div>
+
+            <table class="comparison-table auto-reveal">
+                <thead>
+                    <tr>
+                        <th>Reform Area</th>
+                        <th>Problem</th>
+                        <th>Progressive Solution</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="auto-reveal">
+                        <td><strong>Business Regulation</strong></td>
+                        <td>Monopolies controlling markets</td>
+                        <td>Antitrust laws, trust-busting</td>
+                        <td>Some competition restored</td>
+                    </tr>
+                    <tr class="auto-reveal">
+                        <td><strong>Food Safety</strong></td>
+                        <td>Contaminated, unsafe food</td>
+                        <td>Pure Food and Drug Act (1906)</td>
+                        <td>Government inspection required</td>
+                    </tr>
+                    <tr class="auto-reveal">
+                        <td><strong>Conservation</strong></td>
+                        <td>Natural resources being destroyed</td>
+                        <td>National parks and forests</td>
+                        <td>Millions of acres protected</td>
+                    </tr>
+                    <tr class="auto-reveal">
+                        <td><strong>Labor Rights</strong></td>
+                        <td>Dangerous working conditions</td>
+                        <td>State labor laws, workplace safety</td>
+                        <td>Gradual improvements in safety</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Slide 6: Progressive Presidents -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎩 Progressive Presidents</h2>
+            
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🐻 Theodore Roosevelt (1901-1909)</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>"Trust Buster":</strong> Broke up monopolies</li>
+                        <li class="auto-reveal"><strong>Consumer Protection:</strong> Pure Food and Drug Act</li>
+                        <li class="auto-reveal"><strong>Conservation:</strong> Created national parks</li>
+                        <li class="auto-reveal"><strong>"Square Deal":</strong> Fair treatment for all Americans</li>
+                    </ul>
+                    <div class="vocab-frame auto-reveal">
+                        <p><strong>Famous Quote:</strong> "Speak softly and carry a big stick"</p>
+                    </div>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>📚 Woodrow Wilson (1913-1921)</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Federal Reserve:</strong> Reformed banking system</li>
+                        <li class="auto-reveal"><strong>Clayton Act:</strong> Strengthened antitrust laws</li>
+                        <li class="auto-reveal"><strong>Federal Trade Commission:</strong> Business oversight</li>
+                        <li class="auto-reveal"><strong>Income Tax:</strong> 16th Amendment passed</li>
+                    </ul>
+                    <div class="vocab-frame auto-reveal">
+                        <p><strong>Progressive Belief:</strong> Government should actively protect citizens</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                Both presidents expanded federal government power to regulate business and protect consumers
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: The Muckrakers -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📰 The Muckrakers: Investigative Journalists</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>What were Muckrakers?</h3>
+                <p class="auto-reveal">Journalists who "raked up the muck" (exposed corruption and problems) to create pressure for reform</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>📖 Upton Sinclair</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Book:</strong> "The Jungle" (1906)</li>
+                        <li class="auto-reveal"><strong>Exposed:</strong> Horrific conditions in meatpacking plants</li>
+                        <li class="auto-reveal"><strong>Impact:</strong> Led to Pure Food and Drug Act</li>
+                        <li class="auto-reveal"><strong>Quote:</strong> "I aimed at the public's heart, and hit it in the stomach"</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>📰 Ida Tarbell</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Investigation:</strong> Standard Oil Company</li>
+                        <li class="auto-reveal"><strong>Exposed:</strong> Rockefeller's monopoly tactics</li>
+                        <li class="auto-reveal"><strong>Impact:</strong> Antitrust action against Standard Oil</li>
+                        <li class="auto-reveal"><strong>Method:</strong> Detailed research and documentation</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>📸 Jacob Riis</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Method:</strong> Photography of slum conditions</li>
+                        <li class="auto-reveal"><strong>Book:</strong> "How the Other Half Lives"</li>
+                        <li class="auto-reveal"><strong>Exposed:</strong> Poverty in New York tenements</li>
+                        <li class="auto-reveal"><strong>Impact:</strong> Housing reform laws</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="vocab-frame auto-reveal">
+                <h4>Muckraker Impact Formula</h4>
+                <p class="auto-reveal"><strong>Investigation → Public Outrage → Political Pressure → Reform Laws</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Women's Rights and Social Reform -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>👩‍⚖️ Women Leading Progressive Reform</h2>
+            
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🗳️ Women's Suffrage Movement</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Goal:</strong> Right to vote for women</li>
+                        <li class="auto-reveal"><strong>Leaders:</strong> Susan B. Anthony, Elizabeth Cady Stanton</li>
+                        <li class="auto-reveal"><strong>Strategies:</strong> Parades, protests, lobbying</li>
+                        <li class="auto-reveal"><strong>Success:</strong> 19th Amendment (1920)</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🏠 Settlement House Movement</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Leader:</strong> Jane Addams (Hull House)</li>
+                        <li class="auto-reveal"><strong>Purpose:</strong> Help poor immigrants in cities</li>
+                        <li class="auto-reveal"><strong>Services:</strong> Education, childcare, job training</li>
+                        <li class="auto-reveal"><strong>Impact:</strong> Model for social services</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🍷 Temperance Movement</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Goal:</strong> Ban alcohol sales</li>
+                        <li class="auto-reveal"><strong>Leader:</strong> Frances Willard (WCTU)</li>
+                        <li class="auto-reveal"><strong>Argument:</strong> Alcohol causes family problems</li>
+                        <li class="auto-reveal"><strong>Result:</strong> 18th Amendment - Prohibition</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                Women were often excluded from political power but became leaders in social reform movements
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Successes and Limitations -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚖️ Progressive Era: Successes and Limitations</h2>
+            
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>✅ Major Successes</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Worker Protection:</strong> Safer working conditions, shorter hours</li>
+                        <li class="auto-reveal"><strong>Consumer Safety:</strong> Food and drug regulation</li>
+                        <li class="auto-reveal"><strong>Political Reform:</strong> Direct election of senators, women's voting</li>
+                        <li class="auto-reveal"><strong>Conservation:</strong> National parks and forest protection</li>
+                        <li class="auto-reveal"><strong>Business Regulation:</strong> Antitrust laws, fair competition</li>
+                        <li class="auto-reveal"><strong>Urban Improvement:</strong> Better housing, sanitation, public services</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>❌ Important Limitations</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Racial Exclusion:</strong> Few reforms helped African Americans</li>
+                        <li class="auto-reveal"><strong>Immigration Restrictions:</strong> Increased discrimination against immigrants</li>
+                        <li class="auto-reveal"><strong>Economic Inequality:</strong> Wealth gap remained large</li>
+                        <li class="auto-reveal"><strong>Limited Labor Rights:</strong> Unions still faced opposition</li>
+                        <li class="auto-reveal"><strong>Prohibition Failure:</strong> Created more problems than it solved</li>
+                        <li class="auto-reveal"><strong>Rural Neglect:</strong> Most reforms focused on cities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="vocab-frame auto-reveal">
+                <h4>Key Question to Consider</h4>
+                <p class="auto-reveal">Did Progressive reforms create lasting change, or just address symptoms of larger problems?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Legacy and Historical Significance -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Progressive Era Legacy</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>Essential Assessment</h3>
+                <p class="auto-reveal">How successful were Progressive reforms in solving the problems created by industrialization?</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🏛️ Expanded Government Role</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Before:</strong> Government rarely regulated business</li>
+                        <li class="auto-reveal"><strong>After:</strong> Federal agencies monitor business practices</li>
+                        <li class="auto-reveal"><strong>Legacy:</strong> Modern regulatory state begins here</li>
+                        <li class="auto-reveal"><strong>Examples:</strong> FDA, FTC, national parks system</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🗳️ Democratic Participation</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Voting Rights:</strong> Women gained the vote</li>
+                        <li class="auto-reveal"><strong>Direct Democracy:</strong> Initiative, referendum, recall</li>
+                        <li class="auto-reveal"><strong>Political Reform:</strong> Direct election of senators</li>
+                        <li class="auto-reveal"><strong>Continuing Issues:</strong> Many groups still excluded</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🔄 Ongoing Challenges</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Economic Inequality:</strong> Still a major issue</li>
+                        <li class="auto-reveal"><strong>Business Power:</strong> Corporations found new ways to influence politics</li>
+                        <li class="auto-reveal"><strong>Racial Justice:</strong> Civil rights movement needed for real progress</li>
+                        <li class="auto-reveal"><strong>Workers' Rights:</strong> Labor struggles continued</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="challenge-box auto-reveal">
+                The Progressive Era established the principle that government should actively work to solve social and economic problems - a debate that continues today
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            resetReveal();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                return true; // Successfully revealed an element
+            }
+            return false; // No more elements to reveal
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            // Reveal all remaining elements
+            for (let i = revealIndex; i < elements.length; i++) {
+                elements[i].classList.add('show');
+            }
+            revealIndex = elements.length;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                // Try to reveal next element first, only advance slide if no more to reveal
+                const revealed = revealNextElement();
+                if (!revealed) {
+                    nextSlide(); // No more elements to reveal, go to next slide
+                }
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide(); // Left arrow always goes to previous slide
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                revealNextElement(); // Enter just reveals, doesn't advance slides
+            }
+        });
+
+        // Initialize after DOM is ready
+        document.getElementById('slide-counter').textContent = `1 / ${totalSlides}`;
+
+        // Add comprehensive click handling using event capture
+        document.addEventListener('click', function(e) {
+            // Skip navigation elements completely
+            if (e.target.closest('.navigation') || 
+                e.target.closest('.slide-indicator')) {
+                return;
+            }
+            
+            // Only reveal on current visible slide
+            const currentSlideElement = slides[currentSlide];
+            if (currentSlideElement && !currentSlideElement.classList.contains('hidden')) {
+                revealNextElement(); // Click always just reveals, doesn't advance slides
+            }
+        }, true); // Use capture phase for better event catching
+    </script>
+</body>
+</html>

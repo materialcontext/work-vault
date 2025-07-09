@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Ice Age Environmental Crisis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', 'Roboto', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem 2%;
+            position: relative;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,50 Q25,40 50,50 T100,50 L100,0 L0,0 Z" fill="rgba(255,255,255,0.02)"/><path d="M0,80 Q25,70 50,80 T100,80 L100,100 L0,100 Z" fill="rgba(255,255,255,0.02)"/></svg>') repeat-x;
+            background-size: 300px 100px;
+            animation: frost 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes frost {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            50% { transform: translateX(-150px) rotate(0.5deg); }
+        }
+
+        .slide-content {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .slide h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #e0f2fe, #81d4fa, #29b6f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .slide h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #e0f2fe;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            line-height: 1.2;
+        }
+
+        .slide h3 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            line-height: 1.3;
+        }
+
+        .slide p, .slide li {
+            font-size: 2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .central-question {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            border: 3px solid #29b6f6;
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 15px 50px rgba(41, 182, 246, 0.3);
+        }
+
+        .central-question h3 {
+            color: #29b6f6;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .central-question p {
+            font-size: 2.3rem;
+            font-style: italic;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .climate-data {
+            background: rgba(239, 68, 68, 0.15);
+            border: 2px solid #ef4444;
+            padding: 3rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 12px 35px rgba(239, 68, 68, 0.2);
+        }
+
+        .climate-data h3 {
+            color: #fca5a5;
+            margin-bottom: 2rem;
+            font-size: 2.8rem;
+        }
+
+        .country-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .country-card {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .country-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(224, 242, 254, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .country-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(224, 242, 254, 0.3);
+            border-color: rgba(224, 242, 254, 0.6);
+        }
+
+        .country-card:hover::before {
+            left: 100%;
+        }
+
+        .country-card.portugal {
+            border-color: rgba(34, 197, 94, 0.5);
+        }
+
+        .country-card.spain {
+            border-color: rgba(251, 191, 36, 0.5);
+        }
+
+        .country-card.england {
+            border-color: rgba(168, 85, 247, 0.5);
+        }
+
+        .country-card h4 {
+            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .country-card.portugal h4 { color: #22c55e; }
+        .country-card.spain h4 { color: #fbbf24; }
+        .country-card.england h4 { color: #a855f7; }
+
+        .timeline-container {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            position: relative;
+            border: 2px solid rgba(224, 242, 254, 0.3);
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #22c55e, #fbbf24, #a855f7, #29b6f6);
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        .timeline-point {
+            background: linear-gradient(135deg, #ffffff, #f1f5f9);
+            color: #0f172a;
+            padding: 1.2rem 2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.6rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            position: relative;
+            z-index: 3;
+            border: 2px solid rgba(41, 182, 246, 0.6);
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 180px;
+        }
+
+        .timeline-point:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(41, 182, 246, 0.5);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 1.8rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+            font-size: 1.8rem;
+        }
+
+        .data-table th {
+            background: rgba(29, 78, 216, 0.3);
+            font-weight: 700;
+            font-size: 2rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .data-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .primary-source {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(67, 56, 202, 0.3));
+            border-left: 6px solid #6366f1;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            position: relative;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .primary-source::before {
+            content: '"';
+            font-size: 6rem;
+            position: absolute;
+            top: -2rem;
+            left: 2rem;
+            color: rgba(99, 102, 241, 0.4);
+        }
+
+        .primary-source p {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .frost-event {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(29, 78, 216, 0.3));
+            border: 2px solid #3b82f6;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .frost-event h4 {
+            color: #93c5fd;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .crisis-year {
+            background: rgba(220, 38, 38, 0.2);
+            border: 2px solid #dc2626;
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            backdrop-filter: blur(10px);
+            display: inline-block;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .crisis-year.severe {
+            background: rgba(185, 28, 28, 0.3);
+            border-color: #b91c1c;
+            color: #fecaca;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: #29b6f6;
+            border: none;
+            color: #0f172a;
+            padding: 1.2rem 1.8rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.4rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(41, 182, 246, 0.4);
+            min-width: 100px;
+        }
+
+        .nav-btn:hover {
+            background: #0288d1;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(41, 182, 246, 0.6);
+        }
+
+        .nav-btn:disabled {
+            background: #64748b;
+            color: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: #29b6f6;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(41, 182, 246, 0.3);
+            font-size: 1.4rem;
+        }
+
+        .emoji-large {
+            font-size: 5rem;
+            margin: 1.5rem 0;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+
+        li {
+            margin: 1rem 0;
+            padding-left: 1rem;
+            font-size: 2rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        strong {
+            color: #81d4fa;
+            font-weight: 700;
+        }
+
+        em {
+            color: #b39ddb;
+            font-style: italic;
+        }
+
+        .question-highlight {
+            background: linear-gradient(135deg, #29b6f6, #1976d2);
+            color: #ffffff;
+            padding: 2rem 3rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            font-weight: 700;
+            font-size: 2rem;
+            box-shadow: 0 12px 30px rgba(41, 182, 246, 0.4);
+        }
+
+        .sporer-highlight {
+            background: rgba(156, 163, 175, 0.2);
+            border: 2px solid #9ca3af;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .sporer-highlight h4 {
+            color: #d1d5db;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .slide h1 { font-size: 3.5rem; }
+            .slide h2 { font-size: 2.8rem; }
+            .slide h3 { font-size: 2.2rem; }
+            .slide p, .slide li { font-size: 1.8rem; }
+            .country-grid { grid-template-columns: 1fr; }
+            .slide { padding: 1rem 1%; }
+            .timeline { flex-direction: column; }
+            .timeline::before { display: none; }
+        }
+
+        @media (min-width: 1200px) {
+            .slide h1 { font-size: 5rem; }
+            .slide h2 { font-size: 4rem; }
+            .slide h3 { font-size: 3.2rem; }
+            .slide p, .slide li { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 14</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="revealBtn" onclick="toggleRevealAll()">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <div class="emoji-large auto-reveal">❄️</div>
+            <h1 class="auto-reveal">Little Ice Age Environmental Crisis</h1>
+            <h2 class="auto-reveal">Portugal, Spain & England (1450-1660)</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>Central Question</h3>
+                <p><em>"How did the same environmental crisis create different pressures and drive different solutions in Portugal, Spain, and England?"</em></p>
+            </div>
+            
+            <div class="timeline auto-reveal">
+                <div class="timeline-point">1450-1540<br>Spörer Minimum</div>
+                <div class="timeline-point">1480s-1490s<br>Crisis Decades</div>
+                <div class="timeline-point">1540-1640<br>Continued Stress</div>
+                <div class="timeline-point">1607-1608<br>Great Frost</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: The Spörer Minimum Foundation -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌑 The Spörer Minimum (1450-1540)</h2>
+            
+            <div class="sporer-highlight auto-reveal">
+                <h4>Solar Activity Collapse</h4>
+                <p>90-year period of exceptionally low solar activity identified through carbon-14 analysis in tree rings. Temperature depressions of approximately <strong>1°C across the Iberian Peninsula</strong> and similar cooling in England.</p>
+            </div>
+            
+            <div class="climate-data auto-reveal">
+                <h3>📊 Climate Foundation Data</h3>
+                <ul>
+                    <li><strong>1431-1440 CE:</strong> Coldest decade in Central Europe during 15th century</li>
+                    <li><strong>1453 & 1458:</strong> Major volcanic eruptions (including massive Kuwae eruption)</li>
+                    <li><strong>Temperature impact:</strong> Average cooling of 1-2°C across affected regions</li>
+                    <li><strong>Seasonal disruption:</strong> Extremely cold winters followed by wet summers</li>
+                </ul>
+            </div>
+            
+            <div class="frost-event auto-reveal">
+                <h4>🌡️ Environmental Baseline</h4>
+                <p>The Spörer Minimum created the climatic foundation for agricultural disasters across Western Europe. This solar minimum, combined with volcanic forcing, established the environmental context that would drive political and economic crisis in all three kingdoms.</p>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How did this shared environmental foundation create different pressures in kingdoms with different geographic and political characteristics?
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Portugal's Agricultural Catastrophe -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🇵🇹 Portugal: Agricultural Catastrophe (1450-1550)</h2>
+            
+            <div class="timeline-container auto-reveal">
+                <h3>Critical Crisis Years</h3>
+                <div class="timeline">
+                    <div class="timeline-point">1473<br>Extreme Drought</div>
+                    <div class="timeline-point">1480s-1490s<br>Two Decades Crisis</div>
+                    <div class="timeline-point">King Afonso V<br>1438-1481</div>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 2rem 0;">
+                <div class="auto-reveal">
+                    <h3>🍇 Specific Agricultural Impacts</h3>
+                    <ul>
+                        <li><strong>Douro Valley wine:</strong> Severe stress led to fortified wine development</li>
+                        <li><strong>Wheat and rye:</strong> Primary grains highly vulnerable to temperature changes</li>
+                        <li><strong>1473 crisis:</strong> Extreme drought and heatwave preceded two decades of instability</li>
+                        <li><strong>FAD events:</strong> "Food availability decline" across Western Europe</li>
+                    </ul>
+                </div>
+                <div class="auto-reveal">
+                    <h3>💰 Economic & Fiscal Crisis</h3>
+                    <ul>
+                        <li><strong>Royal finances:</strong> "Very serious issues" with extraordinary expenses</li>
+                        <li><strong>Tax system failure:</strong> Heavy reliance on agricultural productivity</li>
+                        <li><strong>Maritime disruption:</strong> Cod migration patterns shifted north</li>
+                        <li><strong>Sardine populations:</strong> Distribution changes along Portuguese coast</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="primary-source auto-reveal">
+                <strong>Portuguese Tax Records (mid-15th century):</strong><br>
+                Show strain on royal finances as the tax system relied heavily on agricultural productivity precisely when harvests were failing during King Afonso V's reign.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Spain's Regional Crisis -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🇪🇸 Spain: Regional Environmental Crisis (1450-1550)</h2>
+            
+            <div class="country-grid">
+                <div class="country-card spain auto-reveal">
+                    <h4>🏰 Andalusia</h4>
+                    <p><strong>Colder and wetter conditions</strong> with great variability. Provided military personnel for Granada War while facing severe climate-induced agricultural stress.</p>
+                </div>
+                
+                <div class="country-card spain auto-reveal">
+                    <h4>🌾 Castile</h4>
+                    <p><strong>Severe continental climate extremes</strong> protected from marine influence. Primary source of royal revenues during environmental crisis.</p>
+                </div>
+                
+                <div class="country-card spain auto-reveal">
+                    <h4>⛰️ Catalonia & Aragon</h4>
+                    <p><strong>Documented subsistence crises</strong> during 1480s-1490s, coinciding with Catalan Civil War (1462-1472).</p>
+                </div>
+            </div>
+            
+            <div class="crisis-year auto-reveal severe">1430s: Extreme cold winters with recurrent frost in April-May</div>
+            <div class="crisis-year auto-reveal severe">1473: Extremely hot and dry year with drought and early harvest</div>
+            <div class="crisis-year auto-reveal severe">1480s-1490s: Continuous subsistence crisis with documented famine</div>
+            
+            <div class="frost-event auto-reveal">
+                <h4>⛪ Toledo Cathedral Records (1506 onwards)</h4>
+                <p><strong>341 documented prayers for rain (rogativas)</strong> correlate with drought patterns and positive phases of North Atlantic Oscillation, establishing quantitative baseline for climate extremes.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Granada War Environmental Correlation -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚔️ Granada War & Environmental Stress (1482-1492)</h2>
+            
+            <div class="primary-source auto-reveal">
+                <strong>Critical Correlation:</strong><br>
+                The Granada War required enormous resources from Castile precisely when agricultural disruption reduced tax revenue and created competing demands for conscripted populations.
+            </div>
+            
+            <table class="data-table auto-reveal">
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Military Campaign</th>
+                        <th>Environmental Stress</th>
+                        <th>Economic Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1482</strong></td>
+                        <td>Granada War begins</td>
+                        <td>Subsistence crisis ongoing</td>
+                        <td>Competing resource demands</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1485-1490</strong></td>
+                        <td>Intensive siege campaigns</td>
+                        <td>Peak agricultural stress</td>
+                        <td>Tax revenue decline</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1491-1492</strong></td>
+                        <td>Final siege of Granada</td>
+                        <td>Continued harvest failures</td>
+                        <td>Royal debt accumulation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1492-1493</strong></td>
+                        <td>Columbus funding decision</td>
+                        <td>Post-war domestic shortages</td>
+                        <td>Overseas expansion necessity</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="question-highlight auto-reveal">
+                How did environmental crisis make Spanish territorial expansion both more necessary and more feasible than alternative approaches?
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: England's Great Frost -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏴󠁧󠁢󠁥󠁮󠁧󠁿 The Great Frost of 1607-1608</h2>
+            
+            <div class="frost-event auto-reveal">
+                <h4>❄️ Edmund Howes' Contemporary Documentation</h4>
+                <p><strong>"Continuation of the Abridgement of Stowe's English Chronicle"</strong> provides detailed day-by-day records of England's most severe documented Little Ice Age event.</p>
+            </div>
+            
+            <div class="timeline-container auto-reveal">
+                <h3>Detailed Frost Timeline</h3>
+                <div class="timeline">
+                    <div class="timeline-point">Dec 8-15, 1607<br>"Hard, violent frosts"</div>
+                    <div class="timeline-point">Dec 30, 1607<br>River "passable by foot"</div>
+                    <div class="timeline-point">Jan 1608<br>Ice firm entire month</div>
+                    <div class="timeline-point">6 weeks total<br>First Frost Fair</div>
+                </div>
+            </div>
+            
+            <div class="primary-source auto-reveal">
+                <strong>Thomas Dekker, "The Great Frost: Cold Doings in London" (1608):</strong><br>
+                "the City by this means is cut off from all commerce...the price of victail must of necessity be enhanced."
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 2rem 0;">
+                <div class="auto-reveal">
+                    <h3>🌡️ Climate Benchmarks</h3>
+                    <ul>
+                        <li><strong>Duration:</strong> Thames frozen for 6 weeks solid</li>
+                        <li><strong>Commercial impact:</strong> All river commerce halted</li>
+                        <li><strong>Social response:</strong> First organized Frost Fair</li>
+                        <li><strong>Price inflation:</strong> Food costs "enhanced" significantly</li>
+                    </ul>
+                </div>
+                <div class="auto-reveal">
+                    <h3>📈 Economic Disruption</h3>
+                    <ul>
+                        <li><strong>Supply chains:</strong> London cut off from commerce</li>
+                        <li><strong>Food security:</strong> Victual prices increased</li>
+                        <li><strong>Transportation:</strong> River traffic impossible</li>
+                        <li><strong>Social adaptation:</strong> Ice-based economic activities</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: English Harvest Crises -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌾 England: Documented Harvest Failures</h2>
+            
+            <div class="crisis-year auto-reveal severe">1596-1597: Major harvest crisis with widespread food riots</div>
+            <div class="crisis-year auto-reveal">1622-1623: Combined harvest failure and industrial depression</div>
+            <div class="crisis-year auto-reveal">1630-1631: Environmental stress during constitutional crisis</div>
+            <div class="crisis-year auto-reveal severe">1647-1648: Civil War period harvest failures</div>
+            
+            <div class="frost-event auto-reveal">
+                <h4>💰 Grain Price Volatility Data</h4>
+                <p><strong>Baseline (1766):</strong> Wheat at £1 14s 11d per quarter-hundredweight<br>
+                <strong>Crisis years:</strong> Prices reaching £2 15s or higher - representing <strong>severe economic stress</strong></p>
+            </div>
+            
+            <table class="data-table auto-reveal">
+                <thead>
+                    <tr>
+                        <th>Crisis Period</th>
+                        <th>Environmental Impact</th>
+                        <th>Social Response</th>
+                        <th>Political Correlation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1594-1597</strong></td>
+                        <td>Major harvest failures</td>
+                        <td>Widespread food riots</td>
+                        <td>First "dearth orders" (1587)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1622-1623</strong></td>
+                        <td>Harvest + industrial crisis</td>
+                        <td>Social unrest</td>
+                        <td>Parliamentary tensions</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1629-1640</strong></td>
+                        <td>Peak environmental crisis</td>
+                        <td>Great Migration begins</td>
+                        <td>Parliament dissolved (1629)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1647-1648</strong></td>
+                        <td>Continued harvest stress</td>
+                        <td>Civil War period riots</td>
+                        <td>Constitutional breakdown</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Slide 8: Constitutional Crisis Connection -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚖️ Environment-Constitution Crisis Convergence</h2>
+            
+            <div class="climate-data auto-reveal">
+                <h3>Geoffrey Parker's "Global Crisis" Analysis</h3>
+                <p>Clear correlations between Little Ice Age impacts and English Civil War demonstrate how environmental stress amplified constitutional tensions.</p>
+            </div>
+            
+            <div class="timeline-container auto-reveal">
+                <h3>Environmental-Political Timeline</h3>
+                <div class="timeline">
+                    <div class="timeline-point">1629<br>Parliament Dissolved<br>Environmental stress</div>
+                    <div class="timeline-point">1630s<br>Peak Crisis<br>Constitutional tensions</div>
+                    <div class="timeline-point">1640-1642<br>Parliament Reconvenes<br>Harvest pressures</div>
+                    <div class="timeline-point">1642-1651<br>Civil War<br>Ongoing crisis</div>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 2rem 0;">
+                <div class="auto-reveal">
+                    <h3>🏛️ Constitutional Pressure Points</h3>
+                    <ul>
+                        <li><strong>Taxation disputes:</strong> Royal requests for crisis funding</li>
+                        <li><strong>Parliamentary resistance:</strong> Reluctance to grant extraordinary revenues</li>
+                        <li><strong>Religious division:</strong> Anglican vs. Puritan responses to crisis</li>
+                        <li><strong>Crisis response limits:</strong> Constitutional monarchy constraints</li>
+                    </ul>
+                </div>
+                <div class="auto-reveal">
+                    <h3>🌾 Environmental Amplification</h3>
+                    <ul>
+                        <li><strong>1596 Crisis:</strong> Elizabeth I requests crisis taxation - Parliament resists</li>
+                        <li><strong>1608 Conflict:</strong> James I forced loans for grain imports</li>
+                        <li><strong>1621 Crisis:</strong> Charles I dissolves Parliament over crisis taxation</li>
+                        <li><strong>1640s:</strong> Civil War during continued agricultural difficulties</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Puritan Great Migration -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🚢 The Great Migration Environmental Connection</h2>
+            
+            <div class="frost-event auto-reveal">
+                <h4>🌊 Migration Timing Correlation</h4>
+                <p>The <strong>Great Migration (1629-1640)</strong> peaked precisely during the worst environmental crisis, demonstrating how English hardships made American frontier risks more acceptable.</p>
+            </div>
+            
+            <table class="data-table auto-reveal">
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Environmental Event</th>
+                        <th>Political Event</th>
+                        <th>Migration Response</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1629</strong></td>
+                        <td>Environmental stress peaks</td>
+                        <td>Parliament dissolved permanently</td>
+                        <td>Migration begins</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1630</strong></td>
+                        <td>Harvest difficulties continue</td>
+                        <td>Constitutional crisis deepens</td>
+                        <td>Winthrop Fleet: 700 passengers</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1630s</strong></td>
+                        <td>Decade of environmental crisis</td>
+                        <td>Religious persecution increases</td>
+                        <td><strong>Over 20,000 Puritans</strong> emigrate</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1640</strong></td>
+                        <td>Crisis continues</td>
+                        <td>Parliament reconvened</td>
+                        <td>Migration drops sharply</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="primary-source auto-reveal">
+                <strong>Emigrant Choice Logic:</strong><br>
+                Environmental hardships in England made American frontier risks more acceptable, with emigrants choosing New World uncertainty over continuing English environmental and religious pressures.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Documented Social Unrest -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔥 Documented Food Riots & Social Unrest</h2>
+            
+            <div class="country-grid">
+                <div class="country-card portugal auto-reveal">
+                    <h4>🇵🇹 Portuguese Urban Unrest</h4>
+                    <p><strong>Lisbon bread riots:</strong> 1461, 1474, 1481 during agricultural crisis years. Royal finances strained by reduced agricultural tax revenues.</p>
+                </div>
+                
+                <div class="country-card spain auto-reveal">
+                    <h4>🇪🇸 Spanish Urban Food Crises</h4>
+                    <p><strong>Major cities affected:</strong> Seville, Córdoba, Toledo experience bread riots in 1461, 1473, 1481. Rising food prices and social tensions.</p>
+                </div>
+                
+                <div class="country-card england auto-reveal">
+                    <h4>🏴󠁧󠁢󠁥󠁮󠁧󠁿 English Systematic Documentation</h4>
+                    <p><strong>Extensive riot records:</strong> 1587 "dearth orders," 1594-1597 widespread riots, Western Rising (1628-1632), Fenland Riots (1630s onwards).</p>
+                </div>
+            </div>
+            
+            <div class="frost-event auto-reveal">
+                <h4>📋 English Food Riot Chronology</h4>
+                <ul>
+                    <li><strong>1587:</strong> First "dearth orders" for local food supply regulation</li>
+                    <li><strong>1594-1597:</strong> Widespread food riots during major harvest crisis</li>
+                    <li><strong>1622-1623:</strong> Social unrest during combined harvest failure and industrial depression</li>
+                    <li><strong>1628-1632:</strong> "Western Rising" combined environmental and enclosure grievances</li>
+                    <li><strong>1630s onwards:</strong> "Fenland Riots" persisted for over 30 years</li>
+                    <li><strong>1647-1648:</strong> Civil War period riots related to food shortages</li>
+                </ul>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How did systematic documentation of social unrest in England contrast with less detailed records in Portugal and Spain?
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Primary Source Evidence -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📜 Primary Source Documentation</h2>
+            
+            <div class="country-grid">
+                <div class="country-card portugal auto-reveal">
+                    <h4>🇵🇹 Portuguese Sources</h4>
+                    <ul style="text-align: left;">
+                        <li><strong>Chronicles:</strong> Fernão Lopes royal records</li>
+                        <li><strong>Fiscal records:</strong> King Afonso V's reign documentation</li>
+                        <li><strong>Dendrochronological:</strong> Tree ring evidence</li>
+                        <li><strong>Paleoclimatic:</strong> Climate reconstructions</li>
+                    </ul>
+                </div>
+                
+                <div class="country-card spain auto-reveal">
+                    <h4>🇪🇸 Spanish Sources</h4>
+                    <ul style="text-align: left;">
+                        <li><strong>Royal chronicles:</strong> Hernando del Pulgar's accounts</li>
+                        <li><strong>Contemporary records:</strong> Andrés Bernáldez's documentation</li>
+                        <li><strong>Toledo Cathedral:</strong> 341 documented rogativas</li>
+                        <li><strong>Scientific data:</strong> Tree ring and speleothem analysis</li>
+                    </ul>
+                </div>
+                
+                <div class="country-card england auto-reveal">
+                    <h4>🏴󠁧󠁢󠁥󠁮󠁧󠁿 English Sources</h4>
+                    <ul style="text-align: left;">
+                        <li><strong>Chronicles:</strong> Edmund Howes' detailed records</li>
+                        <li><strong>Pamphlets:</strong> Thomas Dekker's "Great Frost"</li>
+                        <li><strong>Administrative:</strong> Parish and government records</li>
+                        <li><strong>Personal accounts:</strong> John Evelyn's Diary</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="primary-source auto-reveal">
+                <strong>Educational Value:</strong><br>
+                This extensive primary source documentation provides concrete evidence suitable for educational lesson planning, moving beyond generalities to specific dates, events, and contemporary observations.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Comparative Vulnerability Analysis -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📊 Comparative Environmental Vulnerability</h2>
+            
+            <table class="data-table auto-reveal">
+                <thead>
+                    <tr>
+                        <th>Vulnerability Factor</th>
+                        <th>🇵🇹 Portugal</th>
+                        <th>🇪🇸 Spain</th>
+                        <th>🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Population Size</strong></td>
+                        <td>~1M (most vulnerable)</td>
+                        <td>~7-8M (moderate)</td>
+                        <td>~4-5M (moderate)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Geographic Diversity</strong></td>
+                        <td>Limited (most vulnerable)</td>
+                        <td>High (least vulnerable)</td>
+                        <td>Moderate (some protection)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Political Constraints</strong></td>
+                        <td>Monarchy (fast response)</td>
+                        <td>Recent unification (complex)</td>
+                        <td>Constitutional limits (slow)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Military Commitments</strong></td>
+                        <td>Low (maritime focus)</td>
+                        <td>High (Reconquista completion)</td>
+                        <td>Moderate (European wars)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Crisis Timeline</strong></td>
+                        <td>1450-1500 (early, severe)</td>
+                        <td>1450-1520 (early, moderate)</td>
+                        <td>1580-1660 (late, severe)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="climate-data auto-reveal">
+                <h3>🔄 Revolutionary Solutions Correlation</h3>
+                <ul>
+                    <li><strong>Portugal:</strong> Environmental crisis + small size = commercial innovation necessity</li>
+                    <li><strong>Spain:</strong> Environmental crisis + military strength + timing = territorial empire opportunity</li>
+                    <li><strong>England:</strong> Environmental crisis + constitutional limits + population pressure = colonial constitutional experimentation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Historical Catalyst Analysis -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚡ Environmental Crisis as Historical Catalyst</h2>
+            
+            <div class="frost-event auto-reveal">
+                <h4>🔄 Cascading Crisis Model</h4>
+                <p>Little Ice Age environmental impacts created <strong>cascading crises</strong> that reshaped European political, economic, and social structures from 1450-1660.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 2rem 0;">
+                <div class="auto-reveal">
+                    <h3>🇵🇹 Portuguese Response</h3>
+                    <ul>
+                        <li><strong>Maritime expansion</strong> as survival strategy</li>
+                        <li><strong>Commercial innovation</strong> replacing agricultural dependence</li>
+                        <li><strong>Global trading networks</strong> as diversification</li>
+                    </ul>
+                </div>
+                <div class="auto-reveal">
+                    <h3>🇪🇸 Spanish Response</h3>
+                    <ul>
+                        <li><strong>Reconquista completion</strong> under financial stress</li>
+                        <li><strong>American territorial empire</strong> as revenue solution</li>
+                        <li><strong>Encomienda system</strong> as administrative innovation</li>
+                    </ul>
+                </div>
+                <div class="auto-reveal">
+                    <h3>🏴󠁧󠁢󠁥󠁮󠁧󠁿 English Response</h3>
+                    <ul>
+                        <li><strong>Constitutional crisis</strong> culminating in civil war</li>
+                        <li><strong>Puritan emigration</strong> as population pressure relief</li>
+                        <li><strong>Colonial experimentation</strong> as institutional innovation</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="central-question auto-reveal">
+                <h3>Environmental History as Active Catalyst</h3>
+                <p>The documented evidence reveals environmental history not as backdrop but as <strong>active catalyst</strong>, with specific dates, quantitative data, and regional variations providing precise frameworks for understanding how climate change shaped European political development.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Educational Applications -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎓 Educational Applications & Implications</h2>
+            
+            <div class="climate-data auto-reveal">
+                <h3>📚 Lesson Planning Value</h3>
+                <p>This comprehensive analysis provides <strong>specific dates, quantitative data, and primary source evidence</strong> that moves beyond generalizations to concrete historical documentation.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 2rem 0;">
+                <div class="auto-reveal">
+                    <h3>🔍 Research Methodology</h3>
+                    <ul>
+                        <li><strong>Primary source integration:</strong> Contemporary chronicles and records</li>
+                        <li><strong>Scientific evidence:</strong> Dendrochronology and paleoclimatology</li>
+                        <li><strong>Quantitative analysis:</strong> Specific dates and measurements</li>
+                        <li><strong>Regional comparison:</strong> Different geographic vulnerabilities</li>
+                    </ul>
+                </div>
+                <div class="auto-reveal">
+                    <h3>💡 Historical Understanding</h3>
+                    <ul>
+                        <li><strong>Environmental causation:</strong> Climate as active historical force</li>
+                        <li><strong>Comparative analysis:</strong> Different responses to same pressures</li>
+                        <li><strong>Contingency thinking:</strong> How circumstances shape outcomes</li>
+                        <li><strong>Evidence-based reasoning:</strong> Supporting claims with documentation</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How can specific environmental data enhance student understanding of historical causation and the relationship between climate change and political transformation?
+            </div>
+            
+            <div class="timeline auto-reveal">
+                <div class="timeline-point">Portugal<br>Commercial<br>Innovation</div>
+                <div class="timeline-point">Spain<br>Territorial<br>Expansion</div>
+                <div class="timeline-point">England<br>Constitutional<br>Crisis</div>
+                <div class="timeline-point">Modern<br>Climate<br>Lessons</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+        let allRevealed = false;
+
+        function updateSlideCounter() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentSlide === 0 && revealIndex === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1 && allRevealed;
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            allRevealed = false;
+            resetReveal();
+            updateSlideCounter();
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                
+                if (revealIndex === elements.length) {
+                    allRevealed = true;
+                }
+                
+                updateNavigationButtons();
+                updateRevealButton();
+                return true;
+            }
+            return false;
+        }
+
+        function revealAllElements() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            elements.forEach(el => {
+                el.classList.add('show');
+            });
+            
+            revealIndex = elements.length;
+            allRevealed = true;
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function hideAllElements() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+            
+            revealIndex = 0;
+            allRevealed = false;
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function toggleRevealAll() {
+            if (allRevealed) {
+                hideAllElements();
+            } else {
+                revealAllElements();
+            }
+        }
+
+        function updateRevealButton() {
+            const revealBtn = document.getElementById('revealBtn');
+            revealBtn.textContent = allRevealed ? 'Hide All' : 'Reveal All';
+        }
+
+        function nextSlide() {
+            if (!allRevealed) {
+                const revealed = revealNextElement();
+                if (!revealed && currentSlide < totalSlides - 1) {
+                    showSlide(currentSlide + 1);
+                }
+            } else if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (revealIndex > 0) {
+                // Go to previous element
+                const currentSlideElement = slides[currentSlide];
+                const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+                
+                elements[revealIndex - 1].classList.remove('show');
+                revealIndex--;
+                allRevealed = false;
+                updateNavigationButtons();
+                updateRevealButton();
+            } else if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+                // Auto-reveal all elements on previous slide
+                revealAllElements();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                revealNextElement();
+            }
+        });
+
+        // Initialize
+        updateSlideCounter();
+        updateNavigationButtons();
+        updateRevealButton();
+    </script>
+</body>
+</html>

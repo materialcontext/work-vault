@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Crisis to Global War: July 1914 to Versailles 1919</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #8B0000 0%, #CD853F 50%, #2F4F4F 100%);
+            color: #2D2D2D;
+            overflow: hidden;
+            height: 100vh;
+            font-weight: 400;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 90%;
+            height: 85%;
+            background: linear-gradient(135deg, #FEFEFE 0%, #F5F3F0 100%);
+            border-radius: 12px;
+            padding: 60px;
+            position: relative;
+            overflow-y: auto;
+            box-shadow: 0 12px 40px rgba(139, 0, 0, 0.2);
+            border: 1px solid rgba(205, 133, 63, 0.3);
+        }
+
+        .slide.active {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Progressive disclosure animations */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .reveal-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-item.slide-in-left {
+            transform: translateX(-30px);
+        }
+
+        .reveal-item.slide-in-left.revealed {
+            transform: translateX(0);
+        }
+
+        .reveal-item.slide-in-right {
+            transform: translateX(30px);
+        }
+
+        .reveal-item.slide-in-right.revealed {
+            transform: translateX(0);
+        }
+
+        /* Typography with war-themed colors */
+        h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8B0000 0%, #B22222 50%, #DC143C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #8B0000;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #CD853F, #D2691E);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 650;
+            color: #2F4F4F;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        h4 {
+            font-size: 1.3rem;
+            font-weight: 650;
+            color: #8B0000;
+            margin-bottom: 0.75rem;
+        }
+
+        p, li {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: #3D3D3D;
+            margin-bottom: 1rem;
+            max-width: 65ch;
+        }
+
+        .subtitle {
+            font-size: 1.6rem;
+            color: #696969;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        /* Enhanced slide number */
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: linear-gradient(135deg, #8B0000, #B22222);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            box-shadow: 0 3px 12px rgba(139, 0, 0, 0.4);
+        }
+
+        /* Central question with war theme */
+        .central-question {
+            background: linear-gradient(135deg, #FFF8DC 0%, #FFFACD 100%);
+            border: 3px solid #CD853F;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            font-size: 1.5rem;
+            color: #8B4513;
+            font-weight: 600;
+            font-style: italic;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(205, 133, 63, 0.2);
+        }
+
+        .central-question::before {
+            content: '⚔️';
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            background: #FFF8DC;
+            padding: 12px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+        }
+
+        /* Image placeholders with war theme */
+        .image-placeholder {
+            background: linear-gradient(135deg, #F5F5DC 0%, #FAEBD7 100%);
+            border: 2px dashed #CD853F;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            color: #8B0000;
+            font-style: italic;
+            position: relative;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .image-placeholder::before {
+            content: '📸';
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .image-description {
+            font-weight: 700;
+            color: #8B0000;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .image-details {
+            font-size: 0.95rem;
+            color: #5D5D5D;
+            max-width: 400px;
+            line-height: 1.4;
+        }
+
+        /* Timeline styling */
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #8B0000, #CD853F);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            background: #FFFFFF;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #8B0000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 1.5rem;
+            width: 12px;
+            height: 12px;
+            background: #8B0000;
+            border-radius: 50%;
+            border: 3px solid #FFFFFF;
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: #8B0000;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-event {
+            color: #3D3D3D;
+            line-height: 1.6;
+        }
+
+        /* Enhanced comparison grids */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-item {
+            background: linear-gradient(135deg, #F8F6F3 0%, #FFFFFF 100%);
+            border-radius: 15px;
+            padding: 2.5rem;
+            border: 2px solid #E5E5E5;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-item.before-war::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #228B22, #32CD32);
+        }
+
+        .comparison-item.after-war::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #8B0000, #DC143C);
+        }
+
+        .comparison-item:hover {
+            border-color: #CD853F;
+            box-shadow: 0 8px 25px rgba(205, 133, 63, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Primary source styling with aged paper effect */
+        .source-container {
+            background: linear-gradient(135deg, #2F2F2F 0%, #1A1A1A 100%);
+            color: #E5E5E5;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            border-left: 6px solid #CD853F;
+        }
+
+        .source-container.document {
+            background: linear-gradient(135deg, #F5F5DC 0%, #FAEBD7 100%);
+            color: #2D2D2D;
+            border-left: 6px solid #8B0000;
+            box-shadow: 0 8px 25px rgba(139, 0, 0, 0.2);
+        }
+
+        .source-header {
+            font-weight: 700;
+            color: #DAA520;
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .source-container.document .source-header {
+            color: #8B0000;
+        }
+
+        .source-text {
+            font-style: italic;
+            line-height: 1.7;
+            font-size: 1.2rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .source-container::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+            font-size: 4rem;
+            color: #CD853F;
+            font-family: Georgia, serif;
+            opacity: 0.7;
+        }
+
+        .source-container.document::before {
+            content: '📜';
+            font-size: 2rem;
+            top: 1rem;
+            left: 1rem;
+        }
+
+        /* Crisis escalation cards */
+        .crisis-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .crisis-card {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8F6F3 100%);
+            border: 2px solid #CD853F;
+            border-radius: 12px;
+            padding: 1.8rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .crisis-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(205, 133, 63, 0.25);
+            border-color: #8B0000;
+        }
+
+        .crisis-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: linear-gradient(135deg, #8B0000, #B22222);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .crisis-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #8B0000;
+            margin-bottom: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .crisis-description {
+            color: #3D3D3D;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        /* Key figures grid */
+        .figures-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .figure-card {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8F6F3 100%);
+            border: 2px solid #E5E5E5;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .figure-card:hover {
+            border-color: #8B0000;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.15);
+        }
+
+        .figure-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #8B0000;
+            margin-bottom: 0.5rem;
+        }
+
+        .figure-role {
+            font-size: 0.9rem;
+            color: #2F4F4F;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .figure-description {
+            font-size: 0.85rem;
+            color: #5D5D5D;
+            line-height: 1.4;
+        }
+
+        /* Treaty terms styling */
+        .treaty-section {
+            background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
+            border: 2px solid #4682B4;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .treaty-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2F4F4F;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .treaty-terms {
+            columns: 2;
+            column-gap: 2rem;
+            column-rule: 1px solid #4682B4;
+        }
+
+        .treaty-terms li {
+            break-inside: avoid;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+
+        /* Enhanced navigation */
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #8B0000 0%, #B22222 100%);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 44px;
+            min-height: 44px;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 0, 0, 0.4);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: linear-gradient(135deg, #CCCCCC 0%, #E0E0E0 100%);
+            color: #666666;
+        }
+
+        /* Progress indicator */
+        .progress-indicator {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #8B0000;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+        }
+
+
+
+        /* Enhanced slide indicators */
+        .slide-indicator {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .indicator-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .indicator-dot.active {
+            background: #CD853F;
+            transform: scale(1.3);
+            box-shadow: 0 2px 8px rgba(205, 133, 63, 0.4);
+        }
+
+        .indicator-dot:hover {
+            border-color: #8B0000;
+            background: rgba(139, 0, 0, 0.7);
+        }
+
+        /* Enhanced interactive prompts */
+        .interactive-prompt {
+            background: linear-gradient(135deg, #F0F8F0 0%, #E8F5E8 100%);
+            border: 2px solid #CD853F;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            font-weight: 600;
+            color: #2F4F4F;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(205, 133, 63, 0.2);
+        }
+
+        .interactive-prompt::before {
+            content: "🤔";
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: #F0F8F0;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+
+        /* Lists with enhanced styling */
+        ul, ol {
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        li::marker {
+            color: #8B0000;
+            font-weight: 700;
+        }
+
+        /* Strong emphasis with color */
+        strong {
+            color: #8B0000;
+            font-weight: 700;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .comparison-grid,
+            .crisis-steps,
+            .figures-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .treaty-terms {
+                columns: 1;
+            }
+        }
+
+        /* High contrast and reduced motion support */
+        @media (prefers-contrast: high) {
+            body {
+                background: #ffffff;
+            }
+            
+            .slide {
+                border: 3px solid #000000;
+                background: #ffffff;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active" data-reveal-count="3">
+            <div class="slide-number">1/8</div>
+            
+            <div class="reveal-item">
+                <h1>From Crisis to Global War</h1>
+                <div class="subtitle">July 1914 to Versailles 1919</div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="central-question">
+                    How did a single assassination in Sarajevo lead to a global war that reshaped the world order?
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p>Today we'll trace the chain of events from the July Crisis through America's entry and the peace settlement that ended the Great War.</p>
+                
+                <div class="image-placeholder">
+                    <div class="image-description">Archduke Franz Ferdinand and Sophie in Sarajevo</div>
+                    <div class="image-details">Photograph of the Archduke and his wife in their car moments before the assassination, showing the vulnerability that changed history</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: The July Crisis -->
+        <div class="slide" data-reveal-count="5">
+            <div class="slide-number">2/8</div>
+            
+            <div class="reveal-item">
+                <h2>The July Crisis: 28 Days to War</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="image-placeholder">
+                    <div class="image-description">Map of Austria-Hungary and the Balkans</div>
+                    <div class="image-details">Political map showing ethnic tensions, Serbian nationalism, and the powder keg of competing nationalisms in southeastern Europe</div>
+                </div>
+            </div>
+            
+            <div class="crisis-steps reveal-item">
+                <div class="crisis-card">
+                    <div class="crisis-number">1</div>
+                    <div class="crisis-title">June 28: Assassination</div>
+                    <div class="crisis-description">Gavrilo Princip shoots Archduke Franz Ferdinand and Sophie in Sarajevo. Austria-Hungary blames Serbia.</div>
+                </div>
+                <div class="crisis-card">
+                    <div class="crisis-number">2</div>
+                    <div class="crisis-title">July 5: "Blank Check"</div>
+                    <div class="crisis-description">Germany promises unconditional support to Austria-Hungary against Serbia.</div>
+                </div>
+                <div class="crisis-card">
+                    <div class="crisis-number">3</div>
+                    <div class="crisis-title">July 23: Ultimatum</div>
+                    <div class="crisis-description">Austria sends harsh ultimatum to Serbia, designed to be rejected.</div>
+                </div>
+            </div>
+            
+            <div class="crisis-steps reveal-item">
+                <div class="crisis-card">
+                    <div class="crisis-number">4</div>
+                    <div class="crisis-title">July 28: War Declaration</div>
+                    <div class="crisis-description">Austria-Hungary declares war on Serbia. Russia begins mobilization to support Serbia.</div>
+                </div>
+                <div class="crisis-card">
+                    <div class="crisis-number">5</div>
+                    <div class="crisis-title">August 1-3: Mobilization</div>
+                    <div class="crisis-description">Germany declares war on Russia and France. Britain enters when Germany invades Belgium.</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    Why did each country believe they had no choice but to escalate the crisis?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Key Documents from July Crisis -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">3/8</div>
+            
+            <div class="reveal-item">
+                <h2>Voices from the July Crisis</h2>
+            </div>
+            
+            <div class="source-container document reveal-item">
+                <div class="source-header">Austria-Hungary's Ultimatum to Serbia, July 23, 1914</div>
+                <div class="source-text">The Royal Serbian Government shall undertake... to suppress any publication which incites to hatred and contempt of the Austro-Hungarian Monarchy and to eliminate without delay from public instruction... everything that serves... to foment the propaganda against Austria-Hungary.</div>
+            </div>
+            
+            <div class="source-container reveal-item">
+                <div class="source-header">Kaiser Wilhelm II to Tsar Nicholas II, July 29, 1914 (Willy-Nicky Telegrams)</div>
+                <div class="source-text">I therefore suggest that it would be quite possible for Russia to remain a spectator of the Austro-Serbian conflict without involving Europe in the most horrible war she ever witnessed.</div>
+            </div>
+            
+            <div class="source-container document reveal-item">
+                <div class="source-header">British Foreign Secretary Sir Edward Grey, August 3, 1914</div>
+                <div class="source-text">The lamps are going out all over Europe; we shall not see them lit again in our lifetime.</div>
+            </div>
+        </div>
+
+        <!-- Slide 4: The First Month of War -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">4/8</div>
+            
+            <div class="reveal-item">
+                <h2>The First Month: Plans Collide with Reality</h2>
+            </div>
+            
+            <div class="comparison-grid reveal-item">
+                <div class="comparison-item before-war">
+                    <h3>The Plans</h3>
+                    <div class="image-placeholder" style="min-height: 120px; margin-bottom: 1rem;">
+                        <div class="image-description">Schlieffen Plan Diagram</div>
+                        <div class="image-details">Military map showing German plan to quickly defeat France through Belgium</div>
+                    </div>
+                    <ul>
+                        <li><strong>Germany:</strong> Schlieffen Plan - quick victory in West</li>
+                        <li><strong>France:</strong> Plan XVII - offensive into Alsace-Lorraine</li>
+                        <li><strong>Russia:</strong> Mobilization would take 6 weeks</li>
+                        <li>All expected <strong>short war</strong> "home by Christmas"</li>
+                    </ul>
+                </div>
+                <div class="comparison-item after-war">
+                    <h3>The Reality</h3>
+                    <div class="image-placeholder" style="min-height: 120px; margin-bottom: 1rem;">
+                        <div class="image-description">Battle of the Marne Map</div>
+                        <div class="image-details">Map showing how French and British forces stopped German advance at the Marne River</div>
+                    </div>
+                    <ul>
+                        <li><strong>Belgium:</strong> Unexpected resistance slowed Germans</li>
+                        <li><strong>Battle of the Marne:</strong> German advance stopped</li>
+                        <li><strong>Race to the Sea:</strong> Both sides tried to outflank</li>
+                        <li><strong>November 1914:</strong> Trench warfare established</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline reveal-item">
+                <div class="timeline-item">
+                    <div class="timeline-date">August 4, 1914</div>
+                    <div class="timeline-event">Germany invades Belgium. Britain declares war citing Belgian neutrality.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">August 20-24, 1914</div>
+                    <div class="timeline-event">Battle of the Frontiers - massive casualties as both sides attack.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">September 6-12, 1914</div>
+                    <div class="timeline-event">Battle of the Marne halts German advance toward Paris.</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    How did technology and tactics create a military stalemate by late 1914?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: American Neutrality to War -->
+        <div class="slide" data-reveal-count="5">
+            <div class="slide-number">5/8</div>
+            
+            <div class="reveal-item">
+                <h2>America: From Neutrality to War (1914-1917)</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="image-placeholder">
+                    <div class="image-description">Lusitania Sinking Newspaper Headlines</div>
+                    <div class="image-details">Collection of American newspaper front pages reporting the sinking of the Lusitania with American casualties</div>
+                </div>
+            </div>
+            
+            <div class="timeline reveal-item">
+                <div class="timeline-item">
+                    <div class="timeline-date">May 7, 1915</div>
+                    <div class="timeline-event"><strong>Lusitania Sinking:</strong> German U-boat torpedoes passenger liner, killing 1,198 including 128 Americans.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">January 1917</div>
+                    <div class="timeline-event"><strong>Zimmermann Telegram:</strong> British intercept German proposal for Mexican alliance against US.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">February 1917</div>
+                    <div class="timeline-event"><strong>Unrestricted Submarine Warfare:</strong> Germany resumes attacks on all ships, including American.</div>
+                </div>
+            </div>
+            
+            <div class="source-container reveal-item">
+                <div class="source-header">President Wilson's War Message to Congress, April 2, 1917</div>
+                <div class="source-text">The world must be made safe for democracy. Its peace must be planted upon the tested foundations of political liberty. We have no selfish ends to serve. We desire no conquest, no dominion.</div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    What factors pushed Wilson from "too proud to fight" to declaring war?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Key Figures in the War -->
+        <div class="slide" data-reveal-count="3">
+            <div class="slide-number">6/8</div>
+            
+            <div class="reveal-item">
+                <h2>Key Decision Makers</h2>
+            </div>
+            
+            <div class="figures-grid reveal-item">
+                <div class="figure-card">
+                    <div class="image-placeholder" style="min-height: 100px; margin-bottom: 1rem;">
+                        <div class="image-description" style="font-size: 0.8rem;">Kaiser Wilhelm II</div>
+                    </div>
+                    <div class="figure-name">Kaiser Wilhelm II</div>
+                    <div class="figure-role">German Emperor</div>
+                    <div class="figure-description">Gave Austria-Hungary the "blank check" that emboldened them to attack Serbia</div>
+                </div>
+                <div class="figure-card">
+                    <div class="image-placeholder" style="min-height: 100px; margin-bottom: 1rem;">
+                        <div class="image-description" style="font-size: 0.8rem;">Woodrow Wilson</div>
+                    </div>
+                    <div class="figure-name">Woodrow Wilson</div>
+                    <div class="figure-role">US President</div>
+                    <div class="figure-description">Led America from neutrality to war, promoted democratic idealism</div>
+                </div>
+                <div class="figure-card">
+                    <div class="image-placeholder" style="min-height: 100px; margin-bottom: 1rem;">
+                        <div class="image-description" style="font-size: 0.8rem;">Georges Clemenceau</div>
+                    </div>
+                    <div class="figure-name">Georges Clemenceau</div>
+                    <div class="figure-role">French Premier</div>
+                    <div class="figure-description">Demanded harsh peace terms to permanently weaken Germany</div>
+                </div>
+                <div class="figure-card">
+                    <div class="image-placeholder" style="min-height: 100px; margin-bottom: 1rem;">
+                        <div class="image-description" style="font-size: 0.8rem;">David Lloyd George</div>
+                    </div>
+                    <div class="figure-name">David Lloyd George</div>
+                    <div class="figure-role">British Prime Minister</div>
+                    <div class="figure-description">Balanced between Wilson's idealism and Clemenceau's vindictiveness</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    How did different national experiences shape each leader's approach to peace?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: The Treaty of Versailles -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">7/8</div>
+            
+            <div class="reveal-item">
+                <h2>The Peace to End All Peace?</h2>
+            </div>
+            
+            <div class="comparison-grid reveal-item">
+                <div class="comparison-item before-war">
+                    <h3>Wilson's 14 Points</h3>
+                    <ul>
+                        <li>Open diplomacy</li>
+                        <li>Freedom of the seas</li>
+                        <li>Free trade</li>
+                        <li>Self-determination</li>
+                        <li>League of Nations</li>
+                        <li><strong>"Peace without victory"</strong></li>
+                    </ul>
+                </div>
+                <div class="comparison-item after-war">
+                    <h3>Allied Demands</h3>
+                    <ul>
+                        <li>German war guilt</li>
+                        <li>Massive reparations</li>
+                        <li>Military restrictions</li>
+                        <li>Territorial losses</li>
+                        <li>No German League membership</li>
+                        <li><strong>"Make Germany pay"</strong></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="treaty-section reveal-item">
+                <div class="treaty-title">Major Terms of the Treaty of Versailles</div>
+                <div class="treaty-terms">
+                    <ul>
+                        <li><strong>Article 231 (War Guilt):</strong> Germany accepts full responsibility for the war</li>
+                        <li><strong>Reparations:</strong> Germany must pay for all civilian damage</li>
+                        <li><strong>Military:</strong> Army limited to 100,000 men, no tanks, planes, or submarines</li>
+                        <li><strong>Rhineland:</strong> Demilitarized buffer zone</li>
+                        <li><strong>Territorial:</strong> Alsace-Lorraine to France, Polish Corridor created</li>
+                        <li><strong>Colonies:</strong> All German colonies redistributed as League mandates</li>
+                        <li><strong>League:</strong> Created but Germany initially excluded</li>
+                        <li><strong>Enforcement:</strong> Allied occupation of German territory until compliance</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="image-placeholder">
+                    <div class="image-description">Map of Post-War Europe</div>
+                    <div class="image-details">Political map showing new borders, mandates, and territorial changes created by the peace treaties</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Consequences and Legacy -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">8/8</div>
+            
+            <div class="reveal-item">
+                <h2>The War That Changed Everything</h2>
+            </div>
+            
+            <div class="source-container reveal-item">
+                <div class="source-header">John Maynard Keynes, The Economic Consequences of the Peace (1919)</div>
+                <div class="source-text">The treaty includes no provisions for the economic rehabilitation of Europe—nothing to make the defeated Central Powers into good neighbors, nothing to stabilize the new states of Europe... nothing to promote in any way a compact of economic solidarity among the Allies themselves.</div>
+            </div>
+            
+            <div class="comparison-grid reveal-item">
+                <div class="comparison-item before-war">
+                    <h3>World Before 1914</h3>
+                    <ul>
+                        <li>European-dominated global order</li>
+                        <li>Monarchical governments</li>
+                        <li>Limited democracy</li>
+                        <li>Optimism about progress</li>
+                        <li>International trade and stability</li>
+                    </ul>
+                </div>
+                <div class="comparison-item after-war">
+                    <h3>World After 1919</h3>
+                    <ul>
+                        <li>American and Soviet emergence</li>
+                        <li>Democratic revolutions</li>
+                        <li>Women's suffrage expansion</li>
+                        <li>Disillusionment and trauma</li>
+                        <li>Economic instability and debt</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="central-question">
+                    Did the Treaty of Versailles create the conditions for World War II?
+                </div>
+                
+                <p><strong>Next Session:</strong> We'll explore how the "peace to end all peace" created new conflicts and examine the rise of revolutionary movements in Russia, Germany, and around the world.</p>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousStep()" aria-label="Previous">← Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextStep()" aria-label="Next">Next →</button>
+    </div>
+
+    <!-- Progress indicator -->
+    <div class="progress-indicator" id="progressIndicator">
+        Step 1 of 3
+    </div>
+
+    <!-- Slide Indicators -->
+    <div class="slide-indicator" role="tablist" aria-label="Slide navigation">
+        <div class="indicator-dot active" onclick="goToSlide(1)" role="tab" aria-label="Slide 1"></div>
+        <div class="indicator-dot" onclick="goToSlide(2)" role="tab" aria-label="Slide 2"></div>
+        <div class="indicator-dot" onclick="goToSlide(3)" role="tab" aria-label="Slide 3"></div>
+        <div class="indicator-dot" onclick="goToSlide(4)" role="tab" aria-label="Slide 4"></div>
+        <div class="indicator-dot" onclick="goToSlide(5)" role="tab" aria-label="Slide 5"></div>
+        <div class="indicator-dot" onclick="goToSlide(6)" role="tab" aria-label="Slide 6"></div>
+        <div class="indicator-dot" onclick="goToSlide(7)" role="tab" aria-label="Slide 7"></div>
+        <div class="indicator-dot" onclick="goToSlide(8)" role="tab" aria-label="Slide 8"></div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        let currentStep = 1;
+        const totalSlides = 8;
+
+        // Get the number of reveal steps for current slide
+        function getRevealCount(slideNum) {
+            const slide = document.querySelector(`.slide:nth-child(${slideNum})`);
+            return parseInt(slide.getAttribute('data-reveal-count')) || 1;
+        }
+
+        // Update progress indicator
+        function updateProgress() {
+            const maxSteps = getRevealCount(currentSlide);
+            document.getElementById('progressIndicator').textContent = 
+                `Step ${currentStep} of ${maxSteps}`;
+        }
+
+        // Show/hide continue indicator
+        function updateContinueIndicator() {
+            // No longer needed - removed continue indicators
+        }
+
+        // Reveal content progressively
+        function revealContent() {
+            const currentSlideEl = document.querySelector('.slide.active');
+            const revealItems = currentSlideEl.querySelectorAll('.reveal-item');
+            
+            // Reveal items up to current step
+            for (let i = 0; i < currentStep; i++) {
+                if (revealItems[i] && !revealItems[i].classList.contains('revealed')) {
+                    revealItems[i].classList.add('revealed');
+                }
+            }
+            
+            // Hide items beyond current step
+            for (let i = currentStep; i < revealItems.length; i++) {
+                if (revealItems[i]) {
+                    revealItems[i].classList.remove('revealed');
+                }
+            }
+        }
+
+        // Move to next step or slide
+        function nextStep() {
+            const maxSteps = getRevealCount(currentSlide);
+            
+            if (currentStep < maxSteps) {
+                currentStep++;
+                revealContent();
+                updateProgress();
+            } else if (currentSlide < totalSlides) {
+                currentSlide++;
+                currentStep = 1;
+                
+                // Update slide display
+                document.querySelector('.slide.active').classList.remove('active');
+                document.querySelector(`.slide:nth-child(${currentSlide})`).classList.add('active');
+                
+                // Update indicators
+                document.querySelectorAll('.indicator-dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide - 1);
+                });
+                
+                // Update navigation buttons
+                document.getElementById('prevBtn').disabled = (currentSlide === 1 && currentStep === 1);
+                document.getElementById('nextBtn').disabled = (currentSlide === totalSlides && currentStep === getRevealCount(totalSlides));
+                
+                revealContent();
+                updateProgress();
+            }
+        }
+
+        // Move to previous step or slide
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                revealContent();
+                updateProgress();
+            } else if (currentSlide > 1) {
+                currentSlide--;
+                currentStep = getRevealCount(currentSlide);
+                
+                // Update slide display
+                document.querySelector('.slide.active').classList.remove('active');
+                document.querySelector(`.slide:nth-child(${currentSlide})`).classList.add('active');
+                
+                // Update indicators
+                document.querySelectorAll('.indicator-dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide - 1);
+                });
+                
+                // Update navigation buttons
+                document.getElementById('prevBtn').disabled = (currentSlide === 1 && currentStep === 1);
+                document.getElementById('nextBtn').disabled = (currentSlide === totalSlides && currentStep === getRevealCount(totalSlides));
+                
+                revealContent();
+                updateProgress();
+            }
+        }
+
+        // Go to specific slide
+        function goToSlide(n) {
+            // Hide current slide
+            document.querySelector('.slide.active').classList.remove('active');
+            
+            // Show new slide
+            currentSlide = n;
+            currentStep = 1;
+            document.querySelector(`.slide:nth-child(${n})`).classList.add('active');
+            
+            // Update indicators
+            document.querySelectorAll('.indicator-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === n - 1);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = (currentSlide === 1 && currentStep === 1);
+            document.getElementById('nextBtn').disabled = (currentSlide === totalSlides && currentStep === getRevealCount(totalSlides));
+            
+            // Reveal first step
+            revealContent();
+            updateProgress();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'Space') {
+                e.preventDefault();
+                nextStep();
+            }
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                previousStep();
+            }
+            if (e.key >= '1' && e.key <= '8') {
+                e.preventDefault();
+                goToSlide(parseInt(e.key));
+            }
+            if (e.key === 'Home') {
+                e.preventDefault();
+                goToSlide(1);
+            }
+            if (e.key === 'End') {
+                e.preventDefault();
+                goToSlide(totalSlides);
+                currentStep = getRevealCount(totalSlides);
+                revealContent();
+                updateProgress();
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            goToSlide(1);
+        });
+    </script>
+</body>
+</html>
