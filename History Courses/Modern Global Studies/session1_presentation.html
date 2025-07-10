@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 1: Early Contact in the Americas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', 'Roboto', system-ui, sans-serif;
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 25%, #cd853f 50%, #daa520 75%, #b8860b 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 4%;
+            position: relative;
+        }
+
+        .slide-content {
+            max-width: 1300px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .slide h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: #ffd700;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .slide h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+        }
+
+        .slide h3 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            line-height: 1.3;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .lesson-focus {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border: 3px solid #ffd700;
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 15px 50px rgba(255, 215, 0, 0.3);
+        }
+
+        .lesson-focus h3 {
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+        }
+
+        .lesson-focus p {
+            font-size: 2.2rem;
+            font-style: italic;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .objective-card {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+            border-color: rgba(255, 215, 0, 0.6);
+        }
+
+        .objective-card:hover::before {
+            left: 100%;
+        }
+
+        .objective-card h4 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .escape-method {
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid #10b981;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .escape-method h4 {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .source-card {
+            background: rgba(139, 69, 19, 0.3);
+            border-left: 6px solid #8b4513;
+            padding: 2.5rem;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.2);
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .source-card h4 {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .source-excerpt {
+            background: rgba(245, 245, 220, 0.9);
+            color: #2d1810;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            font-style: italic;
+            font-size: 1.7rem;
+            line-height: 1.5;
+            border-left: 4px solid #8b4513;
+        }
+
+        .station-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .station-card {
+            background: rgba(16, 185, 129, 0.2);
+            border-left: 6px solid #10b981;
+            padding: 2rem;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .station-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.3);
+        }
+
+        .station-card h4 {
+            color: #ffd700;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .station-card p {
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+            font-size: 1.6rem;
+        }
+
+        .quote-highlight {
+            background: linear-gradient(135deg, #ffd700, #daa520);
+            color: #2d1810;
+            padding: 2.5rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            font-weight: 600;
+            font-size: 2rem;
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.4);
+            font-style: italic;
+        }
+
+        .perspective-mapping {
+            background: rgba(168, 85, 247, 0.2);
+            border: 2px solid #a855f7;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .perspective-mapping h4 {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .timer-display {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(220, 38, 38, 0.8);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 3rem;
+            font-weight: 700;
+            display: none;
+            z-index: 1000;
+        }
+
+        .content-warning {
+            background: rgba(220, 38, 38, 0.3);
+            border: 2px solid #dc2626;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .content-warning h4 {
+            color: #ffd700;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: #ffd700;
+            border: none;
+            color: #2d1810;
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            min-width: 80px;
+        }
+
+        .nav-btn:hover {
+            background: #daa520;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .nav-btn:disabled {
+            background: #64748b;
+            color: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.6);
+            color: #ffd700;
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            font-size: 1.1rem;
+        }
+
+        .emoji-large {
+            font-size: 5rem;
+            margin: 1.5rem 0;
+            display: block;
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+
+        li {
+            margin: 1rem 0;
+            padding-left: 0.5rem;
+            font-size: 1.8rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        strong {
+            color: #ffd700;
+            font-weight: 700;
+        }
+
+        em {
+            color: #ffd700;
+            font-style: italic;
+        }
+
+        .escape-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .escape-step {
+            background: rgba(16, 185, 129, 0.3);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #10b981;
+            text-align: left;
+        }
+
+        .escape-step h5 {
+            color: #ffd700;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .escape-step p {
+            font-size: 1.4rem;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .slide h1 { font-size: 3rem; }
+            .slide h2 { font-size: 2.5rem; }
+            .slide h3 { font-size: 2rem; }
+            .slide p, .slide li { font-size: 1.4rem; }
+            .objectives-grid { grid-template-columns: 1fr; }
+            .station-examples { grid-template-columns: 1fr; }
+            .slide { padding: 1rem 2%; }
+            .escape-steps { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 16</span>
+    </div>
+
+    <div class="timer-display" id="timer">5:00</div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="revealBtn" onclick="toggleRevealAll()">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title & Welcome -->
+    <div class="slide">
+        <div class="slide-content">
+            <div class="emoji-large auto-reveal">⚔️🌍</div>
+            <h1 class="auto-reveal">Early Contact in the Americas</h1>
+            <h2 class="auto-reveal">European-Indigenous Encounters (1492-1550)</h2>
+            
+            <div class="lesson-focus auto-reveal">
+                <h3>Session 1: Foundation Building</h3>
+                <p><em>"Multiple Perspectives on the World's Most Consequential Cultural Collision"</em></p>
+            </div>
+            
+            <div class="auto-reveal" style="margin-top: 3rem;">
+                <p style="font-size: 2.2rem; color: #ffffff;"><strong>50 Minutes</strong> • Building Skills for Historical Analysis</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Learning Objectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 What We'll Accomplish Today</h2>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h4>📜 Master Source Analysis</h4>
+                    <p>Learn the ESCAPE method for analyzing primary historical documents like professional historians</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>👥 Compare Multiple Perspectives</h4>
+                    <p>Examine the same historical events through European and Indigenous viewpoints</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🔍 Identify Bias vs. Perspective</h4>
+                    <p>Distinguish between natural perspective and problematic bias in historical sources</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🌍 Recognize Global Patterns</h4>
+                    <p>Identify patterns that will help us understand colonial encounters worldwide</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Opening Hook -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🤔 Let's Start with a Question</h2>
+            
+            <div class="quote-highlight auto-reveal">
+                "I discovered many islands inhabited by numerous people. I took possession of all of them for our most fortunate King by making public proclamation and unfurling his standard, no one making any resistance."
+                <br><br>— Christopher Columbus, 1493
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Discussion Questions</h3>
+                <ul style="font-size: 2rem;">
+                    <li>What does Columbus mean by <strong>"discovered"</strong>? What might be problematic about this word choice?</li>
+                    <li>He says <strong>"no one making any resistance"</strong> - what questions does this raise?</li>
+                    <li>Who is his audience for this letter? How might that affect what he emphasizes?</li>
+                </ul>
+            </div>
+            
+            <div class="auto-reveal" style="margin-top: 3rem;">
+                <p style="font-size: 1.8rem;">Today we'll read <strong>four different accounts</strong> of these early encounters and learn to analyze them like historians.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Context & Content Warning -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📖 Setting the Context</h2>
+            
+            <div class="escape-method auto-reveal">
+                <h4>What We're Studying</h4>
+                <p>Today we begin studying <strong>European colonialism</strong> by examining the very first encounters between Europeans and Indigenous Americans. We'll read four different accounts of these meetings and practice analyzing historical sources.</p>
+            </div>
+            
+            <div class="content-warning auto-reveal">
+                <h4>⚠️ Content Awareness</h4>
+                <p>We'll be reading about cultural conflicts and some violence. These are real historical events that affected millions of people. If any content makes you uncomfortable, please let me know privately, and we have alternative assignments available.</p>
+            </div>
+            
+            <div class="perspective-mapping auto-reveal">
+                <h4>🌏 Global Connections Preview</h4>
+                <p>As we study these early colonial encounters, we'll be building skills to later examine how Japan approached colonialism in Asia, including Korea. The patterns we identify today will help us understand colonial strategies worldwide.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: ESCAPE Method Introduction -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔍 The ESCAPE Method</h2>
+            
+            <div class="escape-method auto-reveal">
+                <h4>Professional Historical Analysis Framework</h4>
+                <p>Historians use systematic methods to analyze primary sources. Today you'll learn the <strong>ESCAPE method</strong> - a six-step process for understanding historical documents.</p>
+            </div>
+            
+            <div class="escape-steps">
+                <div class="escape-step auto-reveal">
+                    <h5>E - Evidence</h5>
+                    <p>What specific information does the source provide? What doesn't it provide?</p>
+                </div>
+                <div class="escape-step auto-reveal">
+                    <h5>S - Source</h5>
+                    <p>Who created this source and what type of source is it? How might this shape the point of view?</p>
+                </div>
+                <div class="escape-step auto-reveal">
+                    <h5>C - Context</h5>
+                    <p>What were the historical circumstances surrounding the source's creation that might influence its content?</p>
+                </div>
+                <div class="escape-step auto-reveal">
+                    <h5>A - Audience</h5>
+                    <p>Who was this written for and how might that shape the tone and conent? Was it public or private</p>
+                </div>
+                <div class="escape-step auto-reveal">
+                    <h5>P - Purpose</h5>
+                    <p>Why was this written? What did the author want to accomplish?</p>
+                </div>
+                <div class="escape-step auto-reveal">
+                    <h5>E - Evaluate</h5>
+                    <p>How reliable and useful is this source for understanding the historical period or event in question?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: ESCAPE Practice -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Let's Practice ESCAPE</h2>
+            
+            <div class="source-excerpt auto-reveal">
+                "All students must wear school ID badges while on campus. This policy begins Monday, October 15th. Questions should be directed to the main office."
+                <br><br>— School Principal, October 10th announcement
+            </div>
+            
+            <div class="escape-method auto-reveal">
+                <h4>Quick ESCAPE Analysis</h4>
+                <ul>
+                    <li><strong>E - Evidence:</strong> Specific start date, clear directive</li>
+                    <li><strong>S - Source:</strong> School announcement from principal</li>
+                    <li><strong>C - Context:</strong> New security policy, mid-October timing</li>
+                    <li><strong>A - Audience:</strong> Students, parents, staff</li>
+                    <li><strong>P - Purpose:</strong> Inform about new rule, ensure compliance</li>
+                    <li><strong>E - Evaluate:</strong> Missing - why this policy? What consequences?</li>
+                </ul>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Now let's apply this to 500-year-old documents!</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Bias vs Perspective -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔍 Bias vs. Perspective Analysis</h2>
+            
+            <div class="escape-method auto-reveal">
+                <h4>Understanding the Difference</h4>
+                <p><strong>All historical sources have perspective</strong> - that's normal and expected. <strong>Bias becomes problematic</strong> when it involves unfair prejudice or deliberate distortion.</p>
+            </div>
+            
+            <div class="station-examples">
+                <div class="station-card auto-reveal">
+                    <h4>✅ Normal Perspective</h4>
+                    <p><strong>Columbus writes to his sponsors,</strong> so he emphasizes potential profits and downplays risks - this makes sense given his audience and purpose</p>
+                </div>
+                
+                <div class="station-card auto-reveal">
+                    <h4>⚠️ Problematic Bias</h4>
+                    <p><strong>Columbus assumes Indigenous people have "no religion"</strong> because it's different from Christianity - this shows cultural prejudice</p>
+                </div>
+                
+                <div class="station-card auto-reveal">
+                    <h4>✅ Strategic Perspective</h4>
+                    <p><strong>Las Casas emphasizes worst abuses</strong> to reform Spanish policy - his goal explains his emphasis</p>
+                </div>
+                
+                <div class="station-card auto-reveal">
+                    <h4>⚠️ Potential Bias</h4>
+                    <p><strong>Las Casas might exaggerate numbers</strong> to strengthen his argument - we'd need other sources to verify</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Synthesis Discussion -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🤔 Putting It All Together</h2>
+            
+            <div class="auto-reveal">
+                <h3>Discussion Question 1</h3>
+                <p style="font-size: 2.2rem;">What <strong>patterns</strong> do you notice across these different accounts of European-Indigenous contact?</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Discussion Question 2</h3>
+                <p style="font-size: 2.2rem;">If you were a historian studying this period, why would you need to read <strong>multiple sources</strong> like these?</p>
+            </div>
+            
+            <div class="perspective-mapping auto-reveal">
+                <h4>🌏 Global Connection Preview</h4>
+                <p>These patterns of contact, control, and resistance that we see in the Americas will appear again when we study European colonialism in Africa and Asia. Next class, we'll see how colonial strategies evolved over time.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+        let allRevealed = false;
+        let timerInterval;
+
+        function updateSlideCounter() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentSlide === 0 && revealIndex === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1 && allRevealed;
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            allRevealed = false;
+            resetReveal();
+            updateSlideCounter();
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                
+                if (revealIndex === elements.length) {
+                    allRevealed = true;
+                }
+                
+                updateNavigationButtons();
+                updateRevealButton();
+                return true;
+            }
+            return false;
+        }
+
+        function revealAllElements() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            elements.forEach(el => {
+                el.classList.add('show');
+            });
+            
+            revealIndex = elements.length;
+            allRevealed = true;
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function hideAllElements() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+            
+            revealIndex = 0;
+            allRevealed = false;
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function toggleRevealAll() {
+            if (allRevealed) {
+                hideAllElements();
+            } else {
+                revealAllElements();
+            }
+        }
+
+        function updateRevealButton() {
+            const revealBtn = document.getElementById('revealBtn');
+            revealBtn.textContent = allRevealed ? 'Hide All' : 'Reveal All';
+        }
+
+        function nextSlide() {
+            if (!allRevealed) {
+                const revealed = revealNextElement();
+                if (!revealed && currentSlide < totalSlides - 1) {
+                    showSlide(currentSlide + 1);
+                }
+            } else if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (revealIndex > 0) {
+                // Go to previous element
+                const currentSlideElement = slides[currentSlide];
+                const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+                
+                elements[revealIndex - 1].classList.remove('show');
+                revealIndex--;
+                allRevealed = false;
+                updateNavigationButtons();
+                updateRevealButton();
+            } else if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+                // Auto-reveal all elements on previous slide
+                revealAllElements();
+            }
+        }
+
+        // Timer functionality
+        function startTimer(minutes) {
+            stopTimer(); // Clear any existing timer
+            let timeLeft = minutes * 60;
+            const timerDisplay = document.getElementById('timer');
+            timerDisplay.style.display = 'block';
+            
+            function updateTimer() {
+                const mins = Math.floor(timeLeft / 60);
+                const secs = timeLeft % 60;
+                timerDisplay.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    timerDisplay.textContent = "TIME!";
+                    timerDisplay.style.background = 'rgba(220, 38, 38, 1)';
+                    setTimeout(() => {
+                        timerDisplay.style.display = 'none';
+                        timerDisplay.style.background = 'rgba(220, 38, 38, 0.8)';
+                    }, 3000);
+                    clearInterval(timerInterval);
+                    return;
+                }
+                
+                timeLeft--;
+            }
+            
+            updateTimer();
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            document.getElementById('timer').style.display = 'none';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                revealNextElement();
+            } else if (e.key === 't') {
+                e.preventDefault();
+                startTimer(5); // Default 5-minute timer with 't' key
+            } else if (e.key === 's') {
+                e.preventDefault();
+                stopTimer();
+            }
+        });
+
+        // Initialize
+        updateSlideCounter();
+        updateNavigationButtons();
+        updateRevealButton();
+    </script>
+</body>
+</html>

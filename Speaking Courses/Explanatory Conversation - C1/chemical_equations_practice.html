@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemical Equations - Language Practice Session</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .practice-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .title-slide {
+            text-align: center;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+        }
+        
+        .title-slide h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .lesson-info {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+        
+        .slide h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .slide h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+        
+        .goal-box {
+            background: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px solid #ffd700;
+        }
+        
+        .goal-text {
+            font-size: 1.4rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .success-criteria {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .success-criteria ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .success-criteria li {
+            margin: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .success-criteria li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .frame-practice {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #ffd700;
+        }
+        
+        .frame-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        
+        .frame-example {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px dashed rgba(255, 255, 255, 0.4);
+            font-size: 1.1rem;
+        }
+        
+        .blank {
+            color: #ffd700;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        
+        .practice-scenario {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px solid #ffd700;
+        }
+        
+        .scenario-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+        
+        .equation-focus {
+            font-family: 'Courier New', monospace;
+            font-size: 1.8rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 2px solid #ffd700;
+        }
+        
+        .speaking-task {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px solid #87ceeb;
+        }
+        
+        .task-title {
+            color: #87ceeb;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+        
+        .content-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .progressive-list li {
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 1.1rem;
+        }
+        
+        .progressive-list li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+        }
+        
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .assessment-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .assessment-title {
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .checklist li {
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .checklist li::before {
+            content: "□";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+        
+        .timer-box {
+            background: #ff6b6b;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .assessment-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .slide h2 {
+                font-size: 2rem;
+            }
+            
+            .title-slide h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="practice-container">
+        <!-- Slide 1: Title -->
+        <div class="slide title-slide">
+            <h1>🗣️ Chemical Equations Language Practice</h1>
+            <p class="subtitle">Speaking and Explanation Skills</p>
+            <p class="lesson-info">Practice Session | 25 minutes</p>
+        </div>
+
+        <!-- Slide 2: Today's Challenge -->
+        <div class="slide">
+            <h2>🎯 Your Speaking Challenge</h2>
+            <div class="goal-box">
+                <h3>Main Question:</h3>
+                <p class="goal-text">"Explain what a chemical equation tells us and why the number of atoms must be the same on both sides."</p>
+                <div class="success-criteria">
+                    <h4>Your Goal:</h4>
+                    <ul>
+                        <li>Speak for 8-9 minutes</li>
+                        <li>Use mathematical language in scientific contexts</li>
+                        <li>Give specific examples with equations</li>
+                        <li>Explain conservation principles clearly</li>
+                        <li>Connect symbols to real meaning</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Mathematical Language Frames -->
+        <div class="slide">
+            <h2>🔢 Mathematical Language for Equations</h2>
+            <div class="frame-practice">
+                <div class="frame-title">Describing What Equations Show</div>
+                <div class="frame-example">
+                    "The equation shows that <span class="blank">two hydrogen molecules</span> react with <span class="blank">one oxygen molecule</span> to produce <span class="blank">two water molecules</span>."
+                </div>
+                <div class="frame-example">
+                    "The coefficient <span class="blank">2</span> indicates that <span class="blank">we need exactly two hydrogen molecules</span>."
+                </div>
+                <div class="frame-example">
+                    "The numbers tell us the <span class="blank">precise ratio</span> of <span class="blank">reactants to products</span>."
+                </div>
+            </div>
+            
+            <div class="frame-practice">
+                <div class="frame-title">Explaining Quantitative Relationships</div>
+                <div class="frame-example">
+                    "For every <span class="blank">one oxygen molecule</span>, we need <span class="blank">exactly two hydrogen molecules</span>."
+                </div>
+                <div class="frame-example">
+                    "The ratio between <span class="blank">hydrogen and oxygen</span> is always <span class="blank">2 to 1</span>."
+                </div>
+                <div class="frame-example">
+                    "This proportion must be <span class="blank">exact</span> because <span class="blank">atoms combine in fixed ratios</span>."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Conservation Language Frames -->
+        <div class="slide">
+            <h2>⚖️ Explaining Why Balance is Required</h2>
+            <div class="frame-practice">
+                <div class="frame-title">Conservation Principle</div>
+                <div class="frame-example">
+                    "Balance is achieved when <span class="blank">the number of each type of atom is equal on both sides</span>."
+                </div>
+                <div class="frame-example">
+                    "This must be equal because <span class="blank">atoms cannot be created or destroyed in chemical reactions</span>."
+                </div>
+                <div class="frame-example">
+                    "Conservation of mass means that <span class="blank">the total amount of matter remains constant</span>."
+                </div>
+            </div>
+            
+            <div class="frame-practice">
+                <div class="frame-title">Mathematical Equality</div>
+                <div class="frame-example">
+                    "Just like in mathematics, <span class="blank">both sides of the equation must be equal</span>."
+                </div>
+                <div class="frame-example">
+                    "We adjust the coefficients until <span class="blank">the atom count matches on both sides</span>."
+                </div>
+                <div class="frame-example">
+                    "An unbalanced equation is <span class="blank">scientifically incorrect</span> because it violates <span class="blank">the law of conservation</span>."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Practice with Specific Examples -->
+        <div class="slide">
+            <h2>🧪 Practice Scenarios</h2>
+            <div class="practice-scenario">
+                <div class="scenario-title">Scenario 1: Water Formation</div>
+                <div class="equation-focus">2H₂ + O₂ → 2H₂O</div>
+                <div class="speaking-task">
+                    <div class="task-title">Speaking Task (3 minutes):</div>
+                    <p>Explain this equation to someone who has never seen chemical symbols before. Include:</p>
+                    <ul class="progressive-list">
+                        <li>What each symbol means</li>
+                        <li>How many atoms are involved</li>
+                        <li>Why the numbers are necessary</li>
+                        <li>How you know it's balanced</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="practice-scenario">
+                <div class="scenario-title">Scenario 2: Rust Formation</div>
+                <div class="equation-focus">4Fe + 3O₂ → 2Fe₂O₃</div>
+                <div class="speaking-task">
+                    <div class="task-title">Speaking Task (3 minutes):</div>
+                    <p>Explain why this equation needs these specific numbers. Address:</p>
+                    <ul class="progressive-list">
+                        <li>What happens to iron atoms</li>
+                        <li>Role of oxygen molecules</li>
+                        <li>Why we need 4, 3, and 2</li>
+                        <li>How conservation works here</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Extended Explanation Structure -->
+        <div class="slide">
+            <h2>📋 Structure Your 8-9 Minute Explanation</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>🎯 Opening (2 minutes)</h3>
+                    <ul class="progressive-list">
+                        <li>Define what chemical equations are</li>
+                        <li>Compare to recipes or math equations</li>
+                        <li>State what they tell us</li>
+                    </ul>
+                </div>
+                <div class="content-card">
+                    <h3>🔍 Information Section (3 minutes)</h3>
+                    <ul class="progressive-list">
+                        <li>Explain reactants vs. products</li>
+                        <li>Describe role of coefficients</li>
+                        <li>Give specific example with numbers</li>
+                    </ul>
+                </div>
+                <div class="content-card">
+                    <h3>⚖️ Balance Section (3 minutes)</h3>
+                    <ul class="progressive-list">
+                        <li>Explain conservation of mass</li>
+                        <li>Show why atoms must be equal</li>
+                        <li>Demonstrate with atom counting</li>
+                    </ul>
+                </div>
+                <div class="content-card">
+                    <h3>🎯 Conclusion (1 minute)</h3>
+                    <ul class="progressive-list">
+                        <li>Summarize key points</li>
+                        <li>Connect to bigger picture</li>
+                        <li>Explain why this matters</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timer-box">
+                Total Target: 8-9 minutes of sustained explanation
+            </div>
+        </div>
+
+        <!-- Slide 7: Quick Practice Round -->
+        <div class="slide">
+            <h2>⚡ Quick Practice Round</h2>
+            <div class="speaking-task">
+                <div class="task-title">1-Minute Explanations</div>
+                <p>Practice explaining each concept in exactly 1 minute:</p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>🎯 Task 1</h3>
+                    <p><strong>Explain:</strong> "What information does a chemical equation give us?"</p>
+                    <div class="timer-box">1 minute</div>
+                </div>
+                <div class="content-card">
+                    <h3>🎯 Task 2</h3>
+                    <p><strong>Explain:</strong> "Why must chemical equations be balanced?"</p>
+                    <div class="timer-box">1 minute</div>
+                </div>
+                <div class="content-card">
+                    <h3>🎯 Task 3</h3>
+                    <p><strong>Explain:</strong> "How do you check if an equation is balanced?"</p>
+                    <div class="timer-box">1 minute</div>
+                </div>
+                <div class="content-card">
+                    <h3>🎯 Task 4</h3>
+                    <p><strong>Explain:</strong> "What does conservation of mass mean in chemistry?"</p>
+                    <div class="timer-box">1 minute</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Full Challenge -->
+        <div class="slide">
+            <h2>🏆 Main Speaking Challenge</h2>
+            <div class="goal-box">
+                <h3>The Complete Challenge</h3>
+                <p class="goal-text">"Explain what a chemical equation tells us and why the number of atoms must be the same on both sides."</p>
+            </div>
+            
+            <div class="speaking-task">
+                <div class="task-title">Requirements for Success:</div>
+                <ul class="progressive-list">
+                    <li>Use at least 6 different sentence frames from today</li>
+                    <li>Include 2 specific chemical equations as examples</li>
+                    <li>Demonstrate atom counting for balance</li>
+                    <li>Connect to conservation of mass principle</li>
+                    <li>Maintain clear, logical organization</li>
+                </ul>
+                <div class="timer-box">Target: 8-9 minutes</div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Self-Assessment -->
+        <div class="slide">
+            <h2>✅ Self-Assessment</h2>
+            <div class="assessment-grid">
+                <div class="assessment-box">
+                    <div class="assessment-title">🎯 Language Use</div>
+                    <ul class="checklist">
+                        <li>Used mathematical language correctly</li>
+                        <li>Explained symbolic representation clearly</li>
+                        <li>Used quantitative vocabulary (ratios, coefficients)</li>
+                        <li>Connected abstract symbols to concrete meaning</li>
+                        <li>Spoke fluently for target time</li>
+                    </ul>
+                </div>
+                <div class="assessment-box">
+                    <div class="assessment-title">🧪 Content Understanding</div>
+                    <ul class="checklist">
+                        <li>Explained what equations show us</li>
+                        <li>Described conservation of mass correctly</li>
+                        <li>Demonstrated how to check balance</li>
+                        <li>Used specific examples effectively</li>
+                        <li>Connected to bigger scientific principles</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="goal-box" style="margin-top: 30px;">
+                <h3>🎓 Reflection Questions</h3>
+                <div style="text-align: left; margin-top: 15px;">
+                    <p><strong>Which mathematical language felt most natural to use?</strong></p>
+                    <p><strong>What part of chemical equations is still challenging to explain?</strong></p>
+                    <p><strong>How confident do you feel explaining conservation of mass?</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Next Steps -->
+        <div class="slide">
+            <h2>🔮 Looking Ahead</h2>
+            <div class="goal-box">
+                <h3>Class 6 Preview: "How Energy Changes in Reactions"</h3>
+                <p>Next, you'll learn why some reactions release heat while others absorb energy!</p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>🔥 Coming Up</h3>
+                    <ul class="progressive-list">
+                        <li>Endothermic vs. exothermic reactions</li>
+                        <li>Energy flow in chemical systems</li>
+                        <li>Observable energy changes</li>
+                        <li>Real-world applications</li>
+                    </ul>
+                </div>
+                <div class="content-card">
+                    <h3>🗣️ New Language Skills</h3>
+                    <ul class="progressive-list">
+                        <li>Energy flow descriptions</li>
+                        <li>Comparative language for reaction types</li>
+                        <li>Cause-and-effect for energy changes</li>
+                        <li>Temperature and heat vocabulary</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="speaking-task">
+                <div class="task-title">Today's Success!</div>
+                <p>You can now explain the mathematical language of chemistry and understand why chemical equations must follow strict rules of conservation!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
