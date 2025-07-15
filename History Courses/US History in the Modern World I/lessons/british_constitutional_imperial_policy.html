@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>British Constitutional Development and Imperial Policy (1660-1750)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 50%, #283593 100%);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .slide {
+            width: 95vw;
+            height: 90vh;
+            padding: 1.5rem;
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide h1 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            font-weight: 700;
+        }
+
+        .slide h2 {
+            font-size: 2.4rem;
+            margin-bottom: 1.2rem;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            font-weight: 600;
+        }
+
+        .slide h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+            color: #bbdefb;
+            font-weight: 500;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            margin-bottom: 0.6rem;
+            color: #e3f2fd;
+        }
+
+        .central-question {
+            background: rgba(255, 215, 0, 0.15);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 1.8rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+
+        .central-question h2 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .central-question p {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .constitutional-development {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 1.8rem;
+            margin: 1.2rem 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+
+        .constitutional-development h3 {
+            color: #ffd700;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .constitutional-development h4 {
+            color: #bbdefb;
+            font-size: 1.4rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .comparison-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .comparison-card h4 {
+            color: #ffd700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .comparison-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .comparison-card li {
+            margin-bottom: 0.6rem;
+            padding-left: 1rem;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .comparison-card li::before {
+            content: "👑";
+            position: absolute;
+            left: 0;
+            font-size: 1rem;
+        }
+
+        .navigation-acts {
+            background: linear-gradient(135deg, #1565c0, #42a5f5);
+            border-radius: 15px;
+            padding: 1.8rem;
+            margin: 1.2rem 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+
+        .navigation-acts h3 {
+            color: #ffffff;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .innovation-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 1.3rem;
+            border-left: 4px solid #ffd700;
+            backdrop-filter: blur(5px);
+        }
+
+        .innovation-card h4 {
+            color: #bbdefb;
+            margin-bottom: 0.6rem;
+            font-size: 1.3rem;
+        }
+
+        .innovation-card p {
+            font-size: 1rem;
+            color: #e3f2fd;
+            line-height: 1.4;
+        }
+
+        .colonial-governance {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .governance-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 1.3rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .governance-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .governance-card h4 {
+            color: #ffd700;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .timeline-constitutional {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1.5rem 0;
+            padding: 1.2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-point {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255,215,0,0.2);
+            border-radius: 12px;
+            border: 2px solid #ffd700;
+            font-weight: bold;
+            font-size: 0.9rem;
+            min-width: 120px;
+        }
+
+        .primary-source {
+            background: linear-gradient(135deg, #6a1b9a, #ab47bc);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+
+        .primary-source h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+
+        .primary-source blockquote {
+            font-style: italic;
+            font-size: 1.1rem;
+            background: rgba(0,0,0,0.3);
+            padding: 1.2rem;
+            border-left: 4px solid #ffd700;
+            margin: 1rem 0;
+            color: #ffffff;
+        }
+
+        .tension-analysis {
+            background: rgba(255, 193, 7, 0.15);
+            border: 2px solid #ffc107;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+
+        .tension-analysis h3 {
+            color: #ffc107;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            text-align: center;
+        }
+
+        .connecting-thread {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+
+        .connecting-thread h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .connecting-thread p {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .question-highlight {
+            background: rgba(255,215,0,0.2);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            text-align: center;
+        }
+
+        .question-highlight p {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ffd700;
+            font-style: italic;
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .progressive-list li {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .progressive-list li.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255,215,0,0.9);
+            color: #1a237e;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Progress indicator */
+        .progress-indicator {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,215,0,0.9);
+            color: #1a237e;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        /* Slide Indicators */
+        .slide-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 1000;
+        }
+
+        .indicator-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator-dot.active {
+            background: #ffd700;
+            transform: scale(1.2);
+        }
+
+        /* Image tab */
+        .image-tab {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,215,0,0.9);
+            color: #1a237e;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: none;
+        }
+
+        .image-tab.visible {
+            display: block;
+        }
+
+        .modal-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-image img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Slide 1: Title and Central Question -->
+        <div class="slide active" data-reveal-count="3">
+            <div class="auto-reveal">
+                <h1>British Constitutional Development and Imperial Policy</h1>
+                <p style="text-align: center; font-size: 1.6rem; margin-bottom: 2rem; color: #bbdefb;">(1660-1750)</p>
+            </div>
+            
+            <div class="central-question auto-reveal">
+                <h2>🎯 Central Question</h2>
+                <p>"How did British constitutional monarchy and imperial administration create distinctive approaches to colonial governance—and why did constitutional limits on royal power paradoxically create new tensions with colonial claims to English rights?"</p>
+            </div>
+            
+            <div class="timeline-constitutional auto-reveal">
+                <div class="timeline-point">1660<br>Restoration</div>
+                <div class="timeline-point">1688<br>Glorious Revolution</div>
+                <div class="timeline-point">1689<br>Bill of Rights</div>
+                <div class="timeline-point">1750<br>Imperial Tensions</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Building on Previous Lessons -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>🔗 Constitutional Foundations Meet Capitalist Innovation</h2>
+            
+            <div class="auto-reveal">
+                <p style="text-align: center; font-size: 1.3rem; margin-bottom: 1.5rem;">How do the financial innovations and colonial experiments you studied interact with British constitutional development to create new imperial relationships?</p>
+            </div>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h4>📊 Previous Lessons Established</h4>
+                    <ul class="progressive-list">
+                        <li><strong>Capitalist innovations:</strong> Joint-stock companies, banking, insurance systems</li>
+                        <li><strong>Colonial experiments:</strong> Virginia joint-stock, Massachusetts charter, Pennsylvania proprietary</li>
+                        <li><strong>Economic power:</strong> Merchant bourgeoisie gaining political influence</li>
+                        <li><strong>Global integration:</strong> Spanish silver, Dutch trade networks</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card auto-reveal">
+                    <h4>🏛️ Now We Add Constitutional Framework</h4>
+                    <ul class="progressive-list">
+                        <li><strong>Parliamentary sovereignty:</strong> Limits on royal power, merchant protection</li>
+                        <li><strong>Imperial regulation:</strong> Navigation Acts systematize trade control</li>
+                        <li><strong>Colonial governance:</strong> Three models reflecting constitutional principles</li>
+                        <li><strong>Legal tensions:</strong> Colonial rights vs. imperial authority</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <p>How do constitutional limits on royal power affect imperial governance of colonial societies?</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Glorious Revolution (1688) -->
+        <div class="slide hidden" data-reveal-count="5">
+            <h2>👑 The Glorious Revolution: Constitutional Monarchy Established</h2>
+            
+            <div class="constitutional-development auto-reveal">
+                <h3>1688: The Bloodless Revolution That Changed Everything</h3>
+                <p>Parliament invited Protestant William of Orange to replace Catholic James II, establishing the principle that <strong>Parliament, not divine right, determines royal legitimacy</strong></p>
+            </div>
+            
+            <div class="innovation-grid">
+                <div class="innovation-card auto-reveal">
+                    <h4>👑 Royal Power Limited</h4>
+                    <p><strong>No standing armies:</strong> King cannot maintain military without Parliament's consent<br>
+                    <strong>No taxation:</strong> "No taxation without representation" applies to the king himself<br>
+                    <strong>No Catholic succession:</strong> Protestant succession guaranteed by law</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>🏛️ Parliamentary Sovereignty</h4>
+                    <p><strong>Legislative supremacy:</strong> Parliament becomes supreme law-making authority<br>
+                    <strong>Annual sessions:</strong> Parliament must meet regularly, not at royal whim<br>
+                    <strong>Free elections:</strong> Parliamentary seats cannot be interfered with by crown</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>⚖️ Constitutional Guarantees</h4>
+                    <p><strong>Due process:</strong> Subjects cannot be imprisoned without legal cause<br>
+                    <strong>Property rights:</strong> Private property protected from arbitrary seizure<br>
+                    <strong>Petition rights:</strong> Subjects can petition government for redress of grievances</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>💼 Merchant Interest Protection</h4>
+                    <p><strong>Commercial law:</strong> Parliamentary protection of trade and contracts<br>
+                    <strong>Financial stability:</strong> Government debt secured by parliamentary taxation<br>
+                    <strong>Imperial policy:</strong> Trade regulation serves merchant interests</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <p>If Parliament limits royal power in Britain, what authority does Parliament have over American colonists who have no representation?</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Primary Source - English Bill of Rights (1689) -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>📜 Primary Source: English Bill of Rights (1689)</h2>
+            
+            <div class="primary-source auto-reveal">
+                <h3>Constitutional Foundation of Parliamentary Monarchy</h3>
+                <blockquote>
+                "That the pretended power of suspending of laws or the execution of laws by regal authority without consent of Parliament is illegal... That levying money for or to the use of the Crown by pretence of prerogative, without grant of Parliament, for longer time or in other manner than the same is or shall be granted, is illegal... That it is the right of the subjects to petition the king, and all commitments and prosecutions for such petitioning are illegal..."
+                </blockquote>
+            </div>
+            
+            <div class="innovation-grid">
+                <div class="innovation-card auto-reveal">
+                    <h4>🏛️ Parliamentary Supremacy</h4>
+                    <p><strong>Legal authority:</strong> King cannot suspend laws or raise taxes without Parliament<br>
+                    <strong>Financial control:</strong> All government revenue must be approved by Parliament<br>
+                    <strong>Imperial implications:</strong> Colonial taxes require parliamentary approval</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>⚖️ Subject Rights</h4>
+                    <p><strong>Petition rights:</strong> Subjects can challenge government actions legally<br>
+                    <strong>Due process:</strong> Protection from arbitrary imprisonment<br>
+                    <strong>Colonial question:</strong> Do colonists possess these same rights as subjects?</p>
+                </div>
+            </div>
+            
+            <div class="tension-analysis auto-reveal">
+                <h3>⚡ Constitutional Tension Created</h3>
+                <p>If colonists claim rights as English subjects under this Bill of Rights, but have no representation in Parliament, how can Parliament legally tax or govern them? The constitutional settlement that solved royal tyranny creates new problems for imperial authority.</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Navigation Acts - Imperial Economic Policy -->
+        <div class="slide hidden" data-reveal-count="5">
+            <h2>🚢 Navigation Acts: Parliamentary Mercantilism</h2>
+            
+            <div class="navigation-acts auto-reveal">
+                <h3>Systematic Imperial Trade Regulation (1651-1696)</h3>
+                <p>Parliament applies capitalist economic logic and constitutional authority to create the first <strong>systematic imperial trade policy</strong> protecting English merchant interests</p>
+            </div>
+            
+            <div class="innovation-grid">
+                <div class="innovation-card auto-reveal">
+                    <h4>🏴󠁧󠁢󠁥󠁮󠁧󠁿 English Ships Only</h4>
+                    <p><strong>Shipping monopoly:</strong> All colonial trade must use English or colonial ships with English crews<br>
+                    <strong>Shipbuilding stimulus:</strong> Creates massive demand for English maritime industry<br>
+                    <strong>Strategic control:</strong> Ensures England controls colonial commerce</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>📦 Enumerated Goods</h4>
+                    <p><strong>Colonial exports:</strong> Tobacco, sugar, cotton, indigo must be shipped to England first<br>
+                    <strong>Re-export profits:</strong> English merchants profit from processing and re-shipping<br>
+                    <strong>Market control:</strong> England becomes entrepôt for colonial products</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>🏭 Manufacturing Restrictions</h4>
+                    <p><strong>Woolen Act (1699):</strong> Colonies cannot export woolen goods<br>
+                    <strong>Hat Act (1732):</strong> Colonial hat-making limited to local markets<br>
+                    <strong>Iron Act (1750):</strong> Colonial iron production restricted to raw materials</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>💰 Revenue Generation</h4>
+                    <p><strong>Customs duties:</strong> Navigation Acts generate significant government revenue<br>
+                    <strong>Enforcement costs:</strong> Requires expensive customs service and naval patrols<br>
+                    <strong>Compliance issues:</strong> Colonial smuggling undermines enforcement</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <p>How do the Navigation Acts demonstrate Parliament's application of constitutional authority to protect merchant capitalist interests?</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Three Models of Colonial Governance -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>🏛️ Colonial Governance: Constitutional Principles Applied</h2>
+            
+            <div class="auto-reveal">
+                <p style="text-align: center; font-size: 1.3rem; margin-bottom: 1.5rem;">British constitutional principles create three distinct models of colonial governance, each reflecting different approaches to balancing imperial control with local autonomy.</p>
+            </div>
+            
+            <div class="colonial-governance">
+                <div class="governance-card auto-reveal">
+                    <h4>👑 Royal Colonies</h4>
+                    <ul class="progressive-list">
+                        <li><strong>Direct control:</strong> King appoints governor and council</li>
+                        <li><strong>Parliamentary model:</strong> Elected assembly with limited powers</li>
+                        <li><strong>Imperial authority:</strong> Governor has veto over colonial legislation</li>
+                        <li><strong>Examples:</strong> Virginia (after 1624), Massachusetts (after 1691)</li>
+                        <li><strong>Constitutional basis:</strong> Royal prerogative under parliamentary oversight</li>
+                    </ul>
+                </div>
+                
+                <div class="governance-card auto-reveal">
+                    <h4>📜 Charter Colonies</h4>
+                    <ul class="progressive-list">
+                        <li><strong>Corporate model:</strong> Based on joint-stock company charters</li>
+                        <li><strong>Self-governance:</strong> Elect own governors and assemblies</li>
+                        <li><strong>Constitutional rights:</strong> Claim full English legal protections</li>
+                        <li><strong>Examples:</strong> Connecticut, Rhode Island</li>
+                        <li><strong>Tension point:</strong> Greatest autonomy, least imperial control</li>
+                    </ul>
+                </div>
+                
+                <div class="governance-card auto-reveal">
+                    <h4>🏰 Proprietary Colonies</h4>
+                    <ul class="progressive-list">
+                        <li><strong>Private ownership:</strong> Individual proprietors own colony</li>
+                        <li><strong>Feudal elements:</strong> Combines medieval lordship with modern governance</li>
+                        <li><strong>Balanced authority:</strong> Proprietor appoints governor, settlers elect assembly</li>
+                        <li><strong>Examples:</strong> Pennsylvania, Maryland, Carolina</li>
+                        <li><strong>Compromise model:</strong> Private control with settler representation</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="tension-analysis auto-reveal">
+                <h3>⚡ Governance Tensions Emerging</h3>
+                <p>Each model creates different relationships between imperial authority and colonial autonomy. Charter colonies claim the most English constitutional rights, while royal colonies face the most direct imperial control. These different experiences will create varying colonial responses to future imperial policies.</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Constitutional Tensions in Imperial Relations -->
+        <div class="slide hidden" data-reveal-count="5">
+            <h2>⚡ Constitutional Paradox: Rights vs. Authority</h2>
+            
+            <div class="auto-reveal">
+                <p style="text-align: center; font-size: 1.3rem; margin-bottom: 1.5rem;">The very constitutional principles that limited royal tyranny in England create new problems for governing American colonies.</p>
+            </div>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h4>🏴󠁧󠁢󠁥󠁮󠁧󠁿 English Constitutional Settlement</h4>
+                    <ul class="progressive-list">
+                        <li><strong>Parliamentary sovereignty:</strong> Parliament supreme law-making authority</li>
+                        <li><strong>No taxation without representation:</strong> MPs represent taxpayers' interests</li>
+                        <li><strong>Subject rights:</strong> Due process, petition, property protection</li>
+                        <li><strong>Merchant protection:</strong> Commercial interests represented in Parliament</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card auto-reveal">
+                    <h4>🇺🇸 Colonial Constitutional Claims</h4>
+                    <ul class="progressive-list">
+                        <li><strong>English subjects:</strong> Colonists claim same constitutional rights</li>
+                        <li><strong>No representation:</strong> No colonial MPs in Parliament</li>
+                        <li><strong>Local assemblies:</strong> Colonial legislatures model Parliament</li>
+                        <li><strong>Economic interests:</strong> Colonial merchants seek same protections</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="innovation-grid">
+                <div class="innovation-card auto-reveal">
+                    <h4>❓ The Representation Problem</h4>
+                    <p><strong>Constitutional question:</strong> Can Parliament tax colonists who have no representatives?<br>
+                    <strong>English answer:</strong> "Virtual representation" - MPs represent all English subjects<br>
+                    <strong>Colonial response:</strong> Only actual representation validates taxation</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>⚖️ The Authority Problem</h4>
+                    <p><strong>Imperial need:</strong> Coordinate colonial policy across diverse societies<br>
+                    <strong>Constitutional limit:</strong> Royal authority restricted by Parliament<br>
+                    <strong>Colonial resistance:</strong> Local assemblies claim parliamentary-style powers</p>
+                </div>
+            </div>
+            
+            <div class="tension-analysis auto-reveal">
+                <h3>🎯 Seeds of Future Conflict</h3>
+                <p>The constitutional settlement that protected English merchants from royal tyranny creates an unsolvable dilemma: How can Parliament govern colonists who claim English constitutional rights but have no parliamentary representation? This paradox will drive the imperial crisis when Britain needs colonial revenue after 1763.</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Economic Integration and Political Tensions -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>💰 Economic Success Creates Political Problems</h2>
+            
+            <div class="auto-reveal">
+                <p style="text-align: center; font-size: 1.3rem; margin-bottom: 1.5rem;">The very success of British constitutional-capitalist imperial policy creates the conditions for future crisis.</p>
+            </div>
+            
+            <div class="innovation-grid">
+                <div class="innovation-card auto-reveal">
+                    <h4>📈 Colonial Economic Growth</h4>
+                    <p><strong>Population explosion:</strong> 250,000 (1700) to 1.2 million (1750)<br>
+                    <strong>Trade expansion:</strong> Colonial commerce becomes vital to British economy<br>
+                    <strong>Wealth accumulation:</strong> Colonial merchants develop independent economic interests</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>🏛️ Political Sophistication</h4>
+                    <p><strong>Assembly power:</strong> Colonial legislatures control local taxation and spending<br>
+                    <strong>Legal development:</strong> Colonial courts apply English common law<br>
+                    <strong>Constitutional literacy:</strong> Colonists study English political theory</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>🤝 Salutary Neglect</h4>
+                    <p><strong>Practical autonomy:</strong> Britain allows colonial self-governance when convenient<br>
+                    <strong>Economic focus:</strong> Trade regulation matters more than political control<br>
+                    <strong>Imperial complacency:</strong> System works well until Britain needs revenue</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>⚡ Future Crisis Conditions</h4>
+                    <p><strong>Fiscal pressure:</strong> Wars create need for colonial revenue<br>
+                    <strong>Constitutional expectations:</strong> Colonists expect continued autonomy<br>
+                    <strong>Imperial necessity:</strong> Britain needs systematic colonial governance</p>
+                </div>
+            </div>
+            
+            <div class="connecting-thread auto-reveal">
+                <h3>Setting the Stage for Revolutionary Crisis</h3>
+                <p>British constitutional development created a successful imperial system that protected merchant interests and enabled colonial growth—but the very success of this system created economically powerful and politically sophisticated colonial societies that will challenge imperial authority when Britain tries to systematize colonial governance after 1763.</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Connecting Thread and Next Steps -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>🔗 From Constitutional Success to Imperial Crisis</h2>
+            
+            <div class="connecting-thread auto-reveal">
+                <h3>The Constitutional-Capitalist Imperial System</h3>
+                <p>British constitutional monarchy created the first systematic approach to imperial governance that protected merchant capitalist interests while enabling colonial economic and political development—but this very success created the conditions for future revolutionary conflict.</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="text-align: center; color: #ffd700; margin: 1.5rem 0;">Key Insights for Understanding Revolutionary Development:</h3>
+                <div class="innovation-grid">
+                    <div class="innovation-card">
+                        <h4>🏛️ Constitutional Framework</h4>
+                        <p>Parliamentary sovereignty and constitutional rights create legal frameworks that both protect and constrain imperial authority</p>
+                    </div>
+                    <div class="innovation-card">
+                        <h4>💼 Merchant Interests</h4>
+                        <p>Capitalist economic relationships drive imperial policy through Navigation Acts and colonial trade regulation</p>
+                    </div>
+                    <div class="innovation-card">
+                        <h4>⚖️ Legal Tensions</h4>
+                        <p>Colonial claims to English constitutional rights create unresolvable conflicts with imperial governance needs</p>
+                    </div>
+                    <div class="innovation-card">
+                        <h4>🌍 Global Context</h4>
+                        <p>British success creates economically integrated but politically autonomous colonial societies across North America</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <p><strong>Next Session:</strong> How did the Atlantic slave trade as a revolutionary economic system integrate with these constitutional and imperial frameworks to create new forms of global economic organization?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousStep()" aria-label="Previous">← Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextStep()" aria-label="Next">Next →</button>
+    </div>
+
+    <!-- Progress indicator -->
+    <div class="progress-indicator" id="progressIndicator">
+        Step 1 of 3
+    </div>
+
+    <!-- Slide Indicators -->
+    <div class="slide-indicator" role="tablist" aria-label="Slide navigation">
+        <div class="indicator-dot active" onclick="goToSlide(1)" role="tab" aria-label="Slide 1"></div>
+        <div class="indicator-dot" onclick="goToSlide(2)" role="tab" aria-label="Slide 2"></div>
+        <div class="indicator-dot" onclick="goToSlide(3)" role="tab" aria-label="Slide 3"></div>
+        <div class="indicator-dot" onclick="goToSlide(4)" role="tab" aria-label="Slide 4"></div>
+        <div class="indicator-dot" onclick="goToSlide(5)" role="tab" aria-label="Slide 5"></div>
+        <div class="indicator-dot" onclick="goToSlide(6)" role="tab" aria-label="Slide 6"></div>
+        <div class="indicator-dot" onclick="goToSlide(7)" role="tab" aria-label="Slide 7"></div>
+        <div class="indicator-dot" onclick="goToSlide(8)" role="tab" aria-label="Slide 8"></div>
+        <div class="indicator-dot" onclick="goToSlide(9)" role="tab" aria-label="Slide 9"></div>
+    </div>
+
+    <!-- Image tab (hidden by default, appears when relevant) -->
+    <button class="image-tab" id="imageTab" onclick="toggleImage()">🗺️ Colonial Map</button>
+
+    <!-- Modal for images -->
+    <div class="modal-image" id="modalImage" onclick="toggleImage()">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjMWEyMzdlIi8+Cjx0ZXh0IHg9IjQwMCIgeT0iMzAwIiBmaWxsPSIjZmZkNzAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QnJpdGlzaCBDb2xvbmlhbCBHb3Zlcm5hbmNlPC90ZXh0Pgo8dGV4dCB4PSI0MDAiIHk9IjMzMCIgZmlsbD0iI2ZmZDcwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE2NjAtMTc1MDwvdGV4dD4KPHN2ZyB4PSIxMDAiIHk9IjEwMCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIj4KPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMjUiIGZpbGw9IiNmZmQ3MDAiLz4KPHN2ZyB4PSI2MDAiIHk9IjQwMCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIj4KPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMjUiIGZpbGw9IiNmZmQ3MDAiLz4KPC9zdmc+" alt="British Colonial Governance Map" />
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        let currentStep = 1;
+        const totalSlides = 9;
+
+        // Get the number of reveal steps for current slide
+        function getRevealCount(slideNum) {
+            const slide = document.querySelector(`.slide:nth-child(${slideNum})`);
+            return parseInt(slide.getAttribute('data-reveal-count')) || 1;
+        }
+
+        // Reveal content progressively
+        function revealContent() {
+            const slide = document.querySelector('.slide.active');
+            const autoRevealElements = slide.querySelectorAll('.auto-reveal');
+            const progressiveLists = slide.querySelectorAll('.progressive-list');
+            
+            // Reveal auto-reveal elements
+            autoRevealElements.forEach((element, index) => {
+                if (index < currentStep) {
+                    element.classList.add('revealed');
+                }
+            });
+            
+            // Reveal progressive list items
+            progressiveLists.forEach(list => {
+                const items = list.querySelectorAll('li');
+                const itemsPerStep = Math.ceil(items.length / getRevealCount(currentSlide));
+                const itemsToShow = (currentStep - 1) * itemsPerStep + itemsPerStep;
+                
+                items.forEach((item, index) => {
+                    if (index < itemsToShow) {
+                        setTimeout(() => {
+                            item.classList.add('revealed');
+                        }, index * 100);
+                    }
+                });
+            });
+        }
+
+        // Update progress indicator
+        function updateProgress() {
+            const maxSteps = getRevealCount(currentSlide);
+            document.getElementById('progressIndicator').textContent = `Step ${currentStep} of ${maxSteps}`;
+        }
+
+        // Update continue indicator based on content state
+        function updateContinueIndicator() {
+            const nextBtn = document.getElementById('nextBtn');
+            const maxSteps = getRevealCount(currentSlide);
+            
+            if (currentStep < maxSteps) {
+                nextBtn.textContent = 'Continue →';
+            } else if (currentSlide < totalSlides) {
+                nextBtn.textContent = 'Next Slide →';
+            } else {
+                nextBtn.textContent = 'Complete';
+            }
+        }
+
+        // Move to next step or slide
+        function nextStep() {
+            const maxSteps = getRevealCount(currentSlide);
+            
+            if (currentStep < maxSteps) {
+                currentStep++;
+                revealContent();
+                updateProgress();
+                updateContinueIndicator();
+            } else if (currentSlide < totalSlides) {
+                goToSlide(currentSlide + 1);
+            }
+        }
+
+        // Move to previous step or slide
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                revealContent();
+                updateProgress();
+                updateContinueIndicator();
+            } else if (currentSlide > 1) {
+                goToSlide(currentSlide - 1);
+                // Go to last step of previous slide
+                currentStep = getRevealCount(currentSlide);
+            }
+        }
+
+        // Go to specific slide
+        function goToSlide(n) {
+            // Hide current slide
+            document.querySelector('.slide.active').classList.remove('active');
+            
+            // Show new slide
+            currentSlide = n;
+            currentStep = 1;
+            document.querySelector(`.slide:nth-child(${n})`).classList.add('active');
+            
+            // Update indicators
+            document.querySelectorAll('.indicator-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === n - 1);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = (currentSlide === 1 && currentStep === 1);
+            document.getElementById('nextBtn').disabled = (currentSlide === totalSlides && currentStep === getRevealCount(currentSlide));
+            
+            // Show/hide image tab based on slide
+            const imageTab = document.getElementById('imageTab');
+            if (currentSlide === 6 || currentSlide === 8) {
+                imageTab.classList.add('visible');
+            } else {
+                imageTab.classList.remove('visible');
+            }
+            
+            // Reset content and reveal first step
+            resetSlideContent();
+            revealContent();
+            updateProgress();
+            updateContinueIndicator();
+        }
+
+        // Reset slide content to hidden state
+        function resetSlideContent() {
+            const slide = document.querySelector('.slide.active');
+            const autoRevealElements = slide.querySelectorAll('.auto-reveal');
+            const progressiveItems = slide.querySelectorAll('.progressive-list li');
+            
+            autoRevealElements.forEach(element => {
+                element.classList.remove('revealed');
+            });
+            
+            progressiveItems.forEach(item => {
+                item.classList.remove('revealed');
+            });
+        }
+
+        // Toggle image modal
+        function toggleImage() {
+            const modal = document.getElementById('modalImage');
+            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                    e.preventDefault();
+                    const maxSteps = getRevealCount(currentSlide);
+                    if (currentStep >= maxSteps && currentSlide < totalSlides) {
+                        goToSlide(currentSlide + 1);
+                    } else {
+                        nextStep();
+                    }
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    if (currentStep <= 1 && currentSlide > 1) {
+                        goToSlide(currentSlide - 1);
+                    } else {
+                        previousStep();
+                    }
+                    break;
+                case '.':
+                case '>':
+                    e.preventDefault();
+                    if (currentSlide < totalSlides) {
+                        goToSlide(currentSlide + 1);
+                    }
+                    break;
+                case ',':
+                case '<':
+                    e.preventDefault();
+                    if (currentSlide > 1) {
+                        goToSlide(currentSlide - 1);
+                    }
+                    break;
+                case 'Enter':
+                    e.preventDefault();
+                    // Reveal all content on current slide
+                    currentStep = getRevealCount(currentSlide);
+                    revealContent();
+                    updateProgress();
+                    updateContinueIndicator();
+                    break;
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            revealContent();
+            updateProgress();
+            updateContinueIndicator();
+        });
+    </script>
+</body>
+</html>

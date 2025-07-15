@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Columbian Exchange - Global Transformation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .slide {
+            min-height: 100vh;
+            padding: 2rem 4%;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            display: block;
+        }
+
+        .slide.hidden {
+            display: none;
+        }
+
+        .slide-content {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+            margin: 0 auto;
+            min-height: calc(100vh - 4rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .slide h1 {
+            font-size: 4.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .slide h2 {
+            font-size: 3.5rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .slide h3 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
+        .slide p, .slide li {
+            font-size: 2rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .slide ul {
+            text-align: left;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 600;
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(251, 191, 36, 0.8);
+            border-color: rgba(251, 191, 36, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
+        }
+
+        .image-tab {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 2rem 1rem;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 600;
+            backdrop-filter: blur(15px);
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: none;
+        }
+
+        .image-tab:hover {
+            background: rgba(251, 191, 36, 0.8);
+            transform: translateY(-50%) translateX(-5px);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .emoji-large {
+            font-size: 8rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 30px rgba(255,255,255,0.5);
+        }
+
+        .lesson-focus {
+            background: rgba(251, 191, 36, 0.2);
+            border: 3px solid #fbbf24;
+            padding: 3rem;
+            border-radius: 25px;
+            margin: 3rem 0;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 15px 50px rgba(251, 191, 36, 0.3);
+        }
+
+        .lesson-focus h3 {
+            color: #fbbf24;
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+        }
+
+        .lesson-focus p {
+            font-size: 2.2rem;
+            font-style: italic;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .objective-card {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.3);
+            border-color: rgba(251, 191, 36, 0.6);
+        }
+
+        .objective-card:hover::before {
+            left: 100%;
+        }
+
+        .objective-card h4 {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .exchange-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .exchange-card {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exchange-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(76, 175, 80, 0.3);
+            border-color: rgba(76, 175, 80, 0.6);
+        }
+
+        .exchange-card h4 {
+            color: #4caf50;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .impact-section {
+            background: rgba(220, 38, 38, 0.2);
+            border: 2px solid #dc2626;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .impact-section h4 {
+            color: #fbbf24;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .data-highlight {
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid #10b981;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .data-highlight h4 {
+            color: #fbbf24;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .quote-highlight {
+            background: rgba(99, 102, 241, 0.3);
+            border-left: 6px solid #6366f1;
+            padding: 2.5rem;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            font-size: 2.4rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+        }
+
+        .connection-bridge {
+            background: rgba(99, 102, 241, 0.2);
+            border: 2px solid #6366f1;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .connection-bridge h4 {
+            color: #fbbf24;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .analysis-framework {
+            background: rgba(139, 69, 19, 0.2);
+            border: 2px solid #8b4513;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .analysis-framework h4 {
+            color: #fbbf24;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .slide h1 { font-size: 3rem; }
+            .slide h2 { font-size: 2.5rem; }
+            .slide h3 { font-size: 2rem; }
+            .slide p, .slide li { font-size: 1.4rem; }
+            .objectives-grid { grid-template-columns: 1fr; }
+            .exchange-examples { grid-template-columns: 1fr; }
+            .slide { padding: 1rem 2%; }
+            .slide-content { 
+                padding: 1rem 0; 
+                min-height: calc(100vh - 2rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 14</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="revealBtn" onclick="toggleRevealAll()">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title & Session Focus -->
+    <div class="slide">
+        <div class="slide-content">
+            <div class="emoji-large auto-reveal">🌍⚖️</div>
+            <h1 class="auto-reveal">The Columbian Exchange</h1>
+            <h2 class="auto-reveal">Analyzing Global Transformation</h2>
+            
+            <div class="lesson-focus auto-reveal">
+                <h3>Session 2: Cause & Effect Analysis</h3>
+                <p><em>"From Personal Encounters to Global Systems"</em></p>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Building on Session 1</h4>
+                <p>You've analyzed <strong>who said what</strong> and <strong>why they said it</strong>. Now we examine <strong>what actually happened</strong> and <strong>why it mattered globally</strong>.</p>
+            </div>
+            
+            <div class="auto-reveal" style="margin-top: 3rem;">
+                <p style="font-size: 2.2rem; color: #ffffff;"><strong>50 Minutes</strong> • Developing Analytical Thinking Skills</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Learning Objectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Analytical Skills We're Building</h2>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h4>🔗 Cause & Effect Analysis</h4>
+                    <p>Identify how specific changes in one area created cascading effects across multiple systems</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>📊 Quantitative Evidence</h4>
+                    <p>Analyze numerical data to understand the scale and significance of historical changes</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🌐 Systems Thinking</h4>
+                    <p>Understand how biological, economic, and social systems interconnect on a global scale</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>📈 Historical Significance</h4>
+                    <p>Evaluate which changes had the most profound and lasting impact on human societies</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Session 1 Bridge -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔗 Connecting Our Analysis</h2>
+            
+            <div class="quote-highlight auto-reveal">
+                "Columbus wrote about gold and spices. Powhatan spoke about land and sovereignty. Las Casas documented violence and exploitation."
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>But What Were The Actual Consequences?</h3>
+                <p style="font-size: 2.2rem;">Today we move beyond <strong>what people said</strong> to examine <strong>what systems changed</strong> and <strong>why those changes reshaped the world</strong>.</p>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>New Analytical Framework</h4>
+                <p>We'll use <strong>cause-and-effect analysis</strong> to understand how biological exchanges, economic transformations, and demographic catastrophes created the modern world system.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: The Scale of Change -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📊 Understanding the Scale</h2>
+            
+            <div class="data-highlight auto-reveal">
+                <h4>Demographic Catastrophe</h4>
+                <p><strong>1491 Americas Population:</strong> 50-100 million people</p>
+                <p><strong>1600 Americas Population:</strong> 5-10 million people</p>
+                <p><strong>Population Loss:</strong> 90% decrease in just over a century</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Critical Analysis Question</h3>
+                <p style="font-size: 2.2rem;">Was this population collapse an <strong>unintended consequence</strong> of biological exchange, or a <strong>predictable result</strong> of colonial policies?</p>
+            </div>
+            
+            <div class="analysis-framework auto-reveal">
+                <h4>Analyzing Complex Causation</h4>
+                <p>We'll examine how <strong>disease, warfare, labor systems, and social disruption</strong> worked together to create this demographic catastrophe.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Biological Exchange Analysis -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🦠 Biological Exchange: Unequal Impact</h2>
+            
+            <div class="exchange-examples">
+                <div class="exchange-card auto-reveal">
+                    <h4>🌾 From Americas to Europe</h4>
+                    <p><strong>Crops:</strong> Potatoes, maize, tomatoes, beans, squash, tobacco</p>
+                    <p><strong>Result:</strong> European population boom, new economic opportunities</p>
+                </div>
+                
+                <div class="exchange-card auto-reveal">
+                    <h4>🐄 From Europe to Americas</h4>
+                    <p><strong>Animals:</strong> Horses, cattle, pigs, sheep</p>
+                    <p><strong>Diseases:</strong> Smallpox, typhus, measles, influenza</p>
+                    <p><strong>Result:</strong> Environmental transformation, demographic collapse</p>
+                </div>
+            </div>
+            
+            <div class="impact-section auto-reveal">
+                <h4>Cause & Effect Analysis</h4>
+                <p><strong>Why was the exchange so unequal?</strong> Indigenous Americans had no immunity to Old World diseases, while Europeans had been exposed to animal-borne pathogens for millennia through close contact with domesticated animals.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Economic Transformation -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>💰 Economic Revolution</h2>
+            
+            <div class="data-highlight auto-reveal">
+                <h4>Silver Production Scale</h4>
+                <p><strong>Potosí silver mine (Bolivia):</strong> Produced more silver 1545-1650 than existed in all of Europe before 1492</p>
+                <p><strong>Global Impact:</strong> Created the first truly global currency system</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Analytical Question</h3>
+                <p style="font-size: 2rem;">How did massive silver extraction from the Americas transform global trade relationships?</p>
+            </div>
+            
+            <div class="exchange-examples">
+                <div class="exchange-card auto-reveal">
+                    <h4>🔗 Economic Chain Reaction</h4>
+                    <p><strong>Cause:</strong> American silver flows to Europe and Asia</p>
+                    <p><strong>Effect 1:</strong> Inflation in Spain and Europe</p>
+                    <p><strong>Effect 2:</strong> Increased demand for Asian luxury goods</p>
+                    <p><strong>Effect 3:</strong> Growth of global trading networks</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Labor Systems Analysis -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚖️ Labor Systems and Human Cost</h2>
+            
+            <div class="analysis-framework auto-reveal">
+                <h4>Cause & Effect: Labor Crisis</h4>
+                <p><strong>Problem:</strong> Indigenous population collapse left labor shortage</p>
+                <p><strong>Spanish Solution:</strong> Encomienda system forcing Indigenous labor</p>
+                <p><strong>Ultimate Solution:</strong> Atlantic slave trade bringing African labor</p>
+            </div>
+            
+            <div class="impact-section auto-reveal">
+                <h4>Scale of Atlantic Slave Trade</h4>
+                <p><strong>12.5 million Africans</strong> forcibly transported to the Americas (1500-1866)</p>
+                <p><strong>Critical Analysis:</strong> How did labor shortages from disease create conditions for the expansion of African slavery?</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Systems Connection</h3>
+                <p style="font-size: 2rem;">The biological exchange (disease → population collapse) directly caused the expansion of forced labor systems that would define centuries of American development.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Environmental Transformation -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌱 Environmental Revolution</h2>
+            
+            <div class="exchange-examples">
+                <div class="exchange-card auto-reveal">
+                    <h4>🌾 Agricultural Revolution in Europe</h4>
+                    <p><strong>American crops</strong> (potatoes, maize) could grow in poor soil and cold climates</p>
+                    <p><strong>Result:</strong> European population doubled 1650-1850</p>
+                </div>
+                
+                <div class="exchange-card auto-reveal">
+                    <h4>🐎 Ecological Transformation in Americas</h4>
+                    <p><strong>European animals</strong> transformed landscapes and Indigenous ways of life</p>
+                    <p><strong>Example:</strong> Plains Indians adopted horses, revolutionizing hunting and warfare</p>
+                </div>
+            </div>
+            
+            <div class="data-highlight auto-reveal">
+                <h4>Cause & Effect Analysis</h4>
+                <p><strong>Question:</strong> Why did some environmental changes benefit societies while others disrupted them? Consider the difference between voluntary adoption of new crops versus forced agricultural systems.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Charles Mann's Evidence -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📖 Analyzing Mann's Argument</h2>
+            
+            <div class="quote-highlight auto-reveal">
+                "The Columbian Exchange was not merely an exchange of goods, but the creation of the world's first global economic system, built on the exploitation of the Americas' biological and mineral wealth."
+                <br><br>— Charles Mann, <em>1491</em>
+            </div>
+            
+            <div class="analysis-framework auto-reveal">
+                <h4>Evaluating Historical Arguments</h4>
+                <p><strong>Mann's Claim:</strong> The Columbian Exchange created the first global economic system</p>
+                <p><strong>Evidence:</strong> Silver connecting Americas-Europe-Asia, crop exchanges supporting population growth, labor systems linking three continents</p>
+                <p><strong>Your Analysis:</strong> What evidence supports or challenges this claim?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Cause & Effect Practice -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🧩 Analyzing Complex Causation</h2>
+            
+            <div class="auto-reveal">
+                <h3>Practice: Sugar Plantation System</h3>
+                <p style="font-size: 2rem;">Trace the cause-and-effect chain that led to sugar becoming a global commodity:</p>
+            </div>
+            
+            <div class="exchange-examples">
+                <div class="exchange-card auto-reveal">
+                    <h4>🔗 Chain of Causation</h4>
+                    <p><strong>1.</strong> Caribbean climate perfect for sugar cane</p>
+                    <p><strong>2.</strong> European demand for sugar increases</p>
+                    <p><strong>3.</strong> Indigenous population collapse from disease</p>
+                    <p><strong>4.</strong> African slave labor imported for plantations</p>
+                    <p><strong>5.</strong> Massive profits fund further expansion</p>
+                </div>
+            </div>
+            
+            <div class="analysis-framework auto-reveal">
+                <h4>Your Turn</h4>
+                <p>Choose another aspect of the Columbian Exchange and trace the cause-and-effect relationships. Consider unintended consequences and multiple causation.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Comparing Perspectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔍 Multiple Perspectives on Consequences</h2>
+            
+            <div class="exchange-examples">
+                <div class="exchange-card auto-reveal">
+                    <h4>📈 European Perspective</h4>
+                    <p><strong>Benefits:</strong> New crops, wealth from silver/gold, expanded trade networks</p>
+                    <p><strong>Challenges:</strong> Inflation, competition for colonial resources</p>
+                </div>
+                
+                <div class="exchange-card auto-reveal">
+                    <h4>🏛️ Indigenous American Perspective</h4>
+                    <p><strong>Catastrophes:</strong> Demographic collapse, loss of sovereignty, cultural disruption</p>
+                    <p><strong>Adaptations:</strong> Adopting European animals/crops, resistance strategies</p>
+                </div>
+                
+                <div class="exchange-card auto-reveal">
+                    <h4>⛓️ African Perspective</h4>
+                    <p><strong>Impact:</strong> Forced migration, family destruction, cultural preservation under slavery</p>
+                    <p><strong>Consequence:</strong> Demographic impact on African societies</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Critical Analysis</h3>
+                <p style="font-size: 2rem;">Why did the same biological and economic exchanges produce such different outcomes for different groups?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Historical Significance Assessment -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⭐ Assessing Historical Significance</h2>
+            
+            <div class="data-highlight auto-reveal">
+                <h4>Criteria for Historical Significance</h4>
+                <p><strong>Scale:</strong> How many people were affected?</p>
+                <p><strong>Duration:</strong> How long did the impacts last?</p>
+                <p><strong>Consequence:</strong> How profoundly did it change societies?</p>
+                <p><strong>Contemporary Relevance:</strong> How does it help us understand today's world?</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Your Assessment</h3>
+                <p style="font-size: 2rem;">Which aspect of the Columbian Exchange was most historically significant: the demographic catastrophe, the economic transformation, or the environmental changes? Defend your answer using evidence.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Contemporary Connections -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌍 Connecting Past to Present</h2>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Modern Global Systems</h4>
+                <p>The Columbian Exchange established patterns we still see today: global trade networks, economic inequality between regions, and environmental transformation through human activity.</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Think About Today</h3>
+                <p style="font-size: 2rem;">How do modern examples like climate change, global supply chains, or pandemic spread show similar patterns of unequal global impacts?</p>
+            </div>
+            
+            <div class="analysis-framework auto-reveal">
+                <h4>Skills Transfer</h4>
+                <p>The cause-and-effect analysis tools you're developing help us understand any complex global system, past or present.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Session Synthesis & Next Steps -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 What We've Accomplished</h2>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h4>✅ Cause & Effect Analysis</h4>
+                    <p>You can now trace how changes in one system created cascading effects across multiple systems</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>✅ Scale Assessment</h4>
+                    <p>You understand how to use quantitative evidence to evaluate the significance of historical changes</p>
+                </div>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Looking Ahead to Session 3</h4>
+                <p>Now that we understand <strong>what changed</strong> and <strong>why it mattered</strong>, we'll examine <strong>how colonial systems were organized</strong> and <strong>how people responded to them</strong>.</p>
+            </div>
+            
+            <div class="auto-reveal" style="margin-top: 3rem;">
+                <p style="font-size: 2.2rem; color: #ffffff;"><strong>You're building the analytical skills to understand any complex historical process!</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentRevealIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlideIndicator() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.add('hidden'));
+            slides[n].classList.remove('hidden');
+            
+            // Reset all reveals for new slide
+            const reveals = slides[n].querySelectorAll('.auto-reveal');
+            reveals.forEach(element => {
+                element.classList.remove('revealed');
+            });
+            
+            currentRevealIndex = 0;
+            updateSlideIndicator();
+        }
+
+        function revealNext() {
+            const currentSlideEl = slides[currentSlide];
+            const reveals = currentSlideEl.querySelectorAll('.auto-reveal');
+            
+            if (currentRevealIndex < reveals.length) {
+                reveals[currentRevealIndex].classList.add('revealed');
+                currentRevealIndex++;
+                return true; // More reveals available
+            }
+            return false; // No more reveals
+        }
+
+        function nextSlide() {
+            // Try to reveal next element first
+            if (revealNext()) {
+                return; // Revealed an element, stay on slide
+            }
+            
+            // All elements revealed, move to next slide
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            // If no elements revealed, go to previous slide
+            if (currentRevealIndex === 0 && currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+                // Reveal all elements on previous slide
+                toggleRevealAll();
+            } else if (currentRevealIndex > 0) {
+                // Hide last revealed element
+                const reveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+                currentRevealIndex--;
+                reveals[currentRevealIndex].classList.remove('revealed');
+            }
+        }
+
+        function toggleRevealAll() {
+            const reveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            reveals.forEach(element => {
+                element.classList.add('revealed');
+            });
+            currentRevealIndex = reveals.length;
+        }
+
+        function nextPage() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousPage() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    previousSlide();
+                    break;
+                case '.':
+                case '>':
+                    nextPage();
+                    break;
+                case ',':
+                case '<':
+                    previousPage();
+                    break;
+                case 'Enter':
+                    toggleRevealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

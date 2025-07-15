@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Colonial Settlement and Regional Development (1607-1700)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .slide {
+            width: 95vw;
+            height: 90vh;
+            padding: 2rem;
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide h1 {
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: 700;
+        }
+
+        .slide h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: 600;
+        }
+
+        .slide h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #ffeb99;
+            font-weight: 500;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+            color: #e8f4fd;
+        }
+
+        .central-question {
+            background: rgba(255, 215, 0, 0.15);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .central-question h2 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 2.2rem;
+        }
+
+        .central-question p {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .empire-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .empire-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .empire-card h4 {
+            color: #ffd700;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .empire-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .empire-card li {
+            margin-bottom: 0.8rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .empire-card li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .colony-detail {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .colony-detail h3 {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .colony-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .feature-box {
+            background: rgba(0,0,0,0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+        }
+
+        .feature-box h4 {
+            color: #ffeb99;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-point {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255,215,0,0.2);
+            border-radius: 10px;
+            border: 2px solid #ffd700;
+            font-weight: bold;
+            font-size: 1.1rem;
+            min-width: 150px;
+        }
+
+        .connecting-thread {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .connecting-thread h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+
+        .connecting-thread p {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .question-highlight {
+            background: rgba(255,215,0,0.2);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .question-highlight p {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #ffd700;
+            font-style: italic;
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .progressive-list li {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .progressive-list li.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255,215,0,0.8);
+            color: #1e3c72;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Progress indicator */
+        .progress-indicator {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,215,0,0.8);
+            color: #1e3c72;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        /* Slide Indicators */
+        .slide-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .indicator-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator-dot.active {
+            background: #ffd700;
+            transform: scale(1.2);
+        }
+
+        /* Image tab */
+        .image-tab {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,215,0,0.8);
+            color: #1e3c72;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: none;
+        }
+
+        .image-tab.visible {
+            display: block;
+        }
+
+        .modal-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-image img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Slide 1: Title and Central Question -->
+        <div class="slide active" data-reveal-count="3">
+            <div class="auto-reveal">
+                <h1>English Colonial Settlement and Regional Development</h1>
+                <p style="text-align: center; font-size: 1.8rem; margin-bottom: 3rem; color: #ffeb99;">(1607-1700)</p>
+            </div>
+            
+            <div class="central-question auto-reveal">
+                <h2>🎯 Central Question</h2>
+                <p>"How did different English colonial experiments create diverse regional societies, and what made English colonization different from Spanish and Portuguese models?"</p>
+            </div>
+            
+            <div class="timeline auto-reveal">
+                <div class="timeline-point">1607<br>Jamestown</div>
+                <div class="timeline-point">1630<br>Massachusetts Bay</div>
+                <div class="timeline-point">1682<br>Pennsylvania</div>
+                <div class="timeline-point">1700<br>Regional Patterns</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Connecting to Previous Lessons -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>🔗 Building on Our Comparative Framework</h2>
+            
+            <div class="auto-reveal">
+                <p style="text-align: center; font-size: 1.5rem; margin-bottom: 2rem;">We've studied two revolutionary responses to environmental crisis. Now let's see how English constitutional innovations played out in actual colonial settlements.</p>
+            </div>
+            
+            <div class="comparison-grid">
+                <div class="empire-card auto-reveal">
+                    <h4>🇵🇹 Portuguese</h4>
+                    <ul>
+                        <li><strong>Commercial empire:</strong> Trading post networks</li>
+                        <li><strong>Minimal territorial control</strong></li>
+                        <li><strong>Partnership approach</strong></li>
+                        <li><strong>Spice trade focus</strong></li>
+                    </ul>
+                </div>
+                
+                <div class="empire-card auto-reveal">
+                    <h4>🇪🇸 Spanish</h4>
+                    <ul>
+                        <li><strong>Territorial empire:</strong> Continental control</li>
+                        <li><strong>Centralized administration</strong></li>
+                        <li><strong>Encomienda labor system</strong></li>
+                        <li><strong>Silver extraction economy</strong></li>
+                    </ul>
+                </div>
+                
+                <div class="empire-card auto-reveal">
+                    <h4>🏴󠁧󠁢󠁥󠁮󠁧󠁿 English (?)</h4>
+                    <ul>
+                        <li><strong>Constitutional experiments:</strong> Multiple models</li>
+                        <li><strong>Regional diversity</strong></li>
+                        <li><strong>Different labor systems</strong></li>
+                        <li><strong>Agricultural + commercial focus</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Virginia - The Joint-Stock Experiment -->
+        <div class="slide hidden" data-reveal-count="5">
+            <h2>🏛️ Virginia (1607): The Joint-Stock Colonial Experiment</h2>
+            
+            <div class="colony-detail auto-reveal">
+                <h3>Jamestown - Corporate Colonization</h3>
+                <p><strong>Innovation:</strong> Virginia Company charter (1606) creates first successful joint-stock colonial venture</p>
+            </div>
+            
+            <div class="colony-features">
+                <div class="feature-box auto-reveal">
+                    <h4>🏢 Corporate Structure</h4>
+                    <p>Private investors fund colonization expecting profits from gold, trade, or land sales</p>
+                </div>
+                
+                <div class="feature-box auto-reveal">
+                    <h4>🌿 Tobacco Revolution</h4>
+                    <p>John Rolfe's tobacco cultivation (1612) creates profitable cash crop economy</p>
+                </div>
+                
+                <div class="feature-box auto-reveal">
+                    <h4>🗳️ House of Burgesses (1619)</h4>
+                    <p>First representative assembly in English America - colonial political innovation</p>
+                </div>
+                
+                <div class="feature-box auto-reveal">
+                    <h4>👥 Labor Evolution</h4>
+                    <p>Indentured servants → African slavery as tobacco economy expands</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Massachusetts Bay - The Puritan Constitutional Experiment -->
+        <div class="slide hidden" data-reveal-count="5">
+            <h2>⛪ Massachusetts Bay (1630): Puritan Constitutional Experiment</h2>
+            
+            <div class="colony-detail auto-reveal">
+                <h3>"City Upon a Hill" - Religious Political Innovation</h3>
+                <p><strong>Innovation:</strong> Massachusetts Bay Company charter (1629) creates religious-political community</p>
+            </div>
+            
+            <div class="colony-features">
+                <div class="feature-box auto-reveal">
+                    <h4>📜 Charter Government</h4>
+                    <p>Company charter becomes colonial constitution with governor, council, and general court</p>
+                </div>
+                
+                <div class="feature-box auto-reveal">
+                    <h4>🏘️ Town Meetings</h4>
+                    <p>Local democracy through town assemblies - participatory government innovation</p>
+                </div>
+                
+                <div class="feature-box auto-reveal">
+                    <h4>⚖️ Religious Law</h4>
+                    <p>Biblical principles guide civil law - church membership affects political participation</p>
+                </div>
+                
+                <div class="feature-box auto-reveal">
+                    <h4>📚 Education & Literacy</h4>
+                    <p>Harvard College (1636) and public schools - educated citizenry for religious society</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Pennsylvania - The Proprietary Experiment -->
+        <div class="slide hidden" data-reveal-count="5">
+            <h2>🕊️ Pennsylvania (1682): The Proprietary Tolerance Experiment</h2>
+            
+            <div class="colony-detail auto-reveal">
+                <h3>"Holy Experiment" - Religious Freedom Innovation</h3>
+                <p><strong>Innovation:</strong> William Penn's "Frame of Government" creates religious tolerance and ethnic diversity</p>
+            </div>
+            
+            <div class="colony-features">
+                <div class="feature-box auto-reveal">
+                    <h4>👑 Proprietary Authority</h4>
+                    <p>Penn owns colony but shares power with elected assembly - balanced government</p>
+                </div>
+                
+                <div class="feature-box auto-reveal">
+                    <h4>🤝 Religious Tolerance</h4>
+                    <p>Quaker principles welcome all Christians - first religiously diverse colony</p>
+                </div>
+                
+                <div class="feature-box auto-reveal">
+                    <h4>🌍 Ethnic Diversity</h4>
+                    <p>Germans, Scots-Irish, Dutch, and others create multi-ethnic society</p>
+                </div>
+                
+                <div class="feature-box auto-reveal">
+                    <h4>☮️ Peaceful Relations</h4>
+                    <p>Fair treatment of Native Americans through treaties and land purchases</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Regional Patterns Emerge -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>🗺️ Three Regional Patterns Emerge (1650-1700)</h2>
+            
+            <div class="comparison-grid auto-reveal">
+                <div class="empire-card">
+                    <h4>🏔️ New England</h4>
+                    <ul class="progressive-list">
+                        <li><strong>Town-based society:</strong> Religious communities</li>
+                        <li><strong>Mixed economy:</strong> Agriculture, trade, fishing</li>
+                        <li><strong>Educated population:</strong> Schools and literacy</li>
+                        <li><strong>Participatory politics:</strong> Town meetings</li>
+                    </ul>
+                </div>
+                
+                <div class="empire-card">
+                    <h4>🏙️ Middle Colonies</h4>
+                    <ul class="progressive-list">
+                        <li><strong>Commercial diversity:</strong> Trade and crafts</li>
+                        <li><strong>Ethnic variety:</strong> Multiple European groups</li>
+                        <li><strong>Religious tolerance:</strong> Multiple denominations</li>
+                        <li><strong>Balanced agriculture:</strong> Food crops and livestock</li>
+                    </ul>
+                </div>
+                
+                <div class="empire-card">
+                    <h4>🌾 Southern Colonies</h4>
+                    <ul class="progressive-list">
+                        <li><strong>Plantation economy:</strong> Tobacco and rice</li>
+                        <li><strong>Slave labor system:</strong> African agricultural workers</li>
+                        <li><strong>Elite politics:</strong> Planter-dominated assemblies</li>
+                        <li><strong>Rural society:</strong> Dispersed settlements</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <p>How do these three patterns reflect different aspects of English constitutional thinking?</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Comparative Analysis - English vs Spanish/Portuguese -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>⚖️ English Innovation: What Made It Different?</h2>
+            
+            <div class="auto-reveal">
+                <h3 style="text-align: center; margin-bottom: 2rem;">Constitutional Principles Create Colonial Diversity</h3>
+            </div>
+            
+            <div class="colony-features">
+                <div class="feature-box auto-reveal">
+                    <h4>🏛️ Multiple Governance Models</h4>
+                    <p><strong>English:</strong> Joint-stock, charter, proprietary colonies<br>
+                    <strong>Spanish:</strong> Uniform viceroyalty system<br>
+                    <strong>Portuguese:</strong> Commercial partnerships</p>
+                </div>
+                
+                <div class="feature-box auto-reveal">
+                    <h4>🗳️ Representative Assemblies</h4>
+                    <p><strong>English:</strong> Colonial legislatures with local authority<br>
+                    <strong>Spanish:</strong> Centralized imperial administration<br>
+                    <strong>Portuguese:</strong> Minimal political structure</p>
+                </div>
+                
+                <div class="feature-box auto-reveal">
+                    <h4>⛪ Religious Approaches</h4>
+                    <p><strong>English:</strong> Protestant diversity and experimentation<br>
+                    <strong>Spanish:</strong> Catholic conversion required<br>
+                    <strong>Portuguese:</strong> Catholic missions but flexible</p>
+                </div>
+                
+                <div class="feature-box auto-reveal">
+                    <h4>💼 Economic Systems</h4>
+                    <p><strong>English:</strong> Agricultural + commercial diversity<br>
+                    <strong>Spanish:</strong> Silver extraction + tribute<br>
+                    <strong>Portuguese:</strong> Spice trade monopolies</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Connecting Thread and Next Steps -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>🔗 Looking Forward: Seeds of Future Conflict</h2>
+            
+            <div class="connecting-thread auto-reveal">
+                <h3>Constitutional Innovation Creates Imperial Tensions</h3>
+                <p>English colonial experiments in self-governance and religious diversity establish expectations of local autonomy that will eventually conflict with imperial authority.</p>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <p><strong>Next Session Preview:</strong> How did the Glorious Revolution (1688) and British constitutional limits affect these colonial societies? What happens when parliamentary sovereignty meets colonial claims to English rights?</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="text-align: center; color: #ffd700; margin-top: 2rem;">Key Questions for Reflection:</h3>
+                <ul style="font-size: 1.3rem; margin-top: 1rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <li>Which English colonial model created the most autonomous political institutions?</li>
+                    <li>How might Spanish or Portuguese approaches have developed differently with English constitutional principles?</li>
+                    <li>What advantages and disadvantages did the 150-year delay give English colonization?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousStep()" aria-label="Previous">← Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextStep()" aria-label="Next">Next →</button>
+    </div>
+
+    <!-- Progress indicator -->
+    <div class="progress-indicator" id="progressIndicator">
+        Step 1 of 3
+    </div>
+
+    <!-- Slide Indicators -->
+    <div class="slide-indicator" role="tablist" aria-label="Slide navigation">
+        <div class="indicator-dot active" onclick="goToSlide(1)" role="tab" aria-label="Slide 1"></div>
+        <div class="indicator-dot" onclick="goToSlide(2)" role="tab" aria-label="Slide 2"></div>
+        <div class="indicator-dot" onclick="goToSlide(3)" role="tab" aria-label="Slide 3"></div>
+        <div class="indicator-dot" onclick="goToSlide(4)" role="tab" aria-label="Slide 4"></div>
+        <div class="indicator-dot" onclick="goToSlide(5)" role="tab" aria-label="Slide 5"></div>
+        <div class="indicator-dot" onclick="goToSlide(6)" role="tab" aria-label="Slide 6"></div>
+        <div class="indicator-dot" onclick="goToSlide(7)" role="tab" aria-label="Slide 7"></div>
+        <div class="indicator-dot" onclick="goToSlide(8)" role="tab" aria-label="Slide 8"></div>
+    </div>
+
+    <!-- Image tab (hidden by default, appears when relevant) -->
+    <button class="image-tab" id="imageTab" onclick="toggleImage()">📍 Map</button>
+
+    <!-- Modal for images -->
+    <div class="modal-image" id="modalImage" onclick="toggleImage()">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjMTM0ZTRhIi8+Cjx0ZXh0IHg9IjQwMCIgeT0iMzAwIiBmaWxsPSIjZmZmIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Q29sb25pYWwgU2V0dGxlbWVudCBNYXA8L3RleHQ+Cjx0ZXh0IHg9IjQwMCIgeT0iMzMwIiBmaWxsPSIjZmZmIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTYwNy0xNzAwPC90ZXh0Pgo8L3N2Zz4=" alt="Colonial Settlement Map" />
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        let currentStep = 1;
+        const totalSlides = 8;
+
+        // Get the number of reveal steps for current slide
+        function getRevealCount(slideNum) {
+            const slide = document.querySelector(`.slide:nth-child(${slideNum})`);
+            return parseInt(slide.getAttribute('data-reveal-count')) || 1;
+        }
+
+        // Reveal content progressively
+        function revealContent() {
+            const slide = document.querySelector('.slide.active');
+            const autoRevealElements = slide.querySelectorAll('.auto-reveal');
+            const progressiveLists = slide.querySelectorAll('.progressive-list');
+            
+            // Reveal auto-reveal elements
+            autoRevealElements.forEach((element, index) => {
+                if (index < currentStep) {
+                    element.classList.add('revealed');
+                }
+            });
+            
+            // Reveal progressive list items
+            progressiveLists.forEach(list => {
+                const items = list.querySelectorAll('li');
+                const itemsPerStep = Math.ceil(items.length / getRevealCount(currentSlide));
+                const itemsToShow = (currentStep - 1) * itemsPerStep + itemsPerStep;
+                
+                items.forEach((item, index) => {
+                    if (index < itemsToShow) {
+                        setTimeout(() => {
+                            item.classList.add('revealed');
+                        }, index * 100);
+                    }
+                });
+            });
+        }
+
+        // Update progress indicator
+        function updateProgress() {
+            const maxSteps = getRevealCount(currentSlide);
+            document.getElementById('progressIndicator').textContent = `Step ${currentStep} of ${maxSteps}`;
+        }
+
+        // Update continue indicator based on content state
+        function updateContinueIndicator() {
+            const nextBtn = document.getElementById('nextBtn');
+            const maxSteps = getRevealCount(currentSlide);
+            
+            if (currentStep < maxSteps) {
+                nextBtn.textContent = 'Continue →';
+            } else if (currentSlide < totalSlides) {
+                nextBtn.textContent = 'Next Slide →';
+            } else {
+                nextBtn.textContent = 'Complete';
+            }
+        }
+
+        // Move to next step or slide
+        function nextStep() {
+            const maxSteps = getRevealCount(currentSlide);
+            
+            if (currentStep < maxSteps) {
+                currentStep++;
+                revealContent();
+                updateProgress();
+                updateContinueIndicator();
+            } else if (currentSlide < totalSlides) {
+                goToSlide(currentSlide + 1);
+            }
+        }
+
+        // Move to previous step or slide
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                revealContent();
+                updateProgress();
+                updateContinueIndicator();
+            } else if (currentSlide > 1) {
+                goToSlide(currentSlide - 1);
+                // Go to last step of previous slide
+                currentStep = getRevealCount(currentSlide);
+            }
+        }
+
+        // Go to specific slide
+        function goToSlide(n) {
+            // Hide current slide
+            document.querySelector('.slide.active').classList.remove('active');
+            
+            // Show new slide
+            currentSlide = n;
+            currentStep = 1;
+            document.querySelector(`.slide:nth-child(${n})`).classList.add('active');
+            
+            // Update indicators
+            document.querySelectorAll('.indicator-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === n - 1);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = (currentSlide === 1 && currentStep === 1);
+            document.getElementById('nextBtn').disabled = (currentSlide === totalSlides && currentStep === getRevealCount(currentSlide));
+            
+            // Show/hide image tab based on slide
+            const imageTab = document.getElementById('imageTab');
+            if (currentSlide === 2 || currentSlide === 6 || currentSlide === 7) {
+                imageTab.classList.add('visible');
+            } else {
+                imageTab.classList.remove('visible');
+            }
+            
+            // Reset content and reveal first step
+            resetSlideContent();
+            revealContent();
+            updateProgress();
+            updateContinueIndicator();
+        }
+
+        // Reset slide content to hidden state
+        function resetSlideContent() {
+            const slide = document.querySelector('.slide.active');
+            const autoRevealElements = slide.querySelectorAll('.auto-reveal');
+            const progressiveItems = slide.querySelectorAll('.progressive-list li');
+            
+            autoRevealElements.forEach(element => {
+                element.classList.remove('revealed');
+            });
+            
+            progressiveItems.forEach(item => {
+                item.classList.remove('revealed');
+            });
+        }
+
+        // Toggle image modal
+        function toggleImage() {
+            const modal = document.getElementById('modalImage');
+            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                    e.preventDefault();
+                    const maxSteps = getRevealCount(currentSlide);
+                    if (currentStep >= maxSteps && currentSlide < totalSlides) {
+                        goToSlide(currentSlide + 1);
+                    } else {
+                        nextStep();
+                    }
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    if (currentStep <= 1 && currentSlide > 1) {
+                        goToSlide(currentSlide - 1);
+                    } else {
+                        previousStep();
+                    }
+                    break;
+                case '.':
+                case '>':
+                    e.preventDefault();
+                    if (currentSlide < totalSlides) {
+                        goToSlide(currentSlide + 1);
+                    }
+                    break;
+                case ',':
+                case '<':
+                    e.preventDefault();
+                    if (currentSlide > 1) {
+                        goToSlide(currentSlide - 1);
+                    }
+                    break;
+                case 'Enter':
+                    e.preventDefault();
+                    // Reveal all content on current slide
+                    currentStep = getRevealCount(currentSlide);
+                    revealContent();
+                    updateProgress();
+                    updateContinueIndicator();
+                    break;
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            revealContent();
+            updateProgress();
+            updateContinueIndicator();
+        });
+    </script>
+</body>
+</html>

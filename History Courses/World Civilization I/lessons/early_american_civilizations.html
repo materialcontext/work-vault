@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Early American Civilizations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 25%, #228B22 50%, #32CD32 75%, #FF8C00 100%);
+            min-height: 100vh;
+            color: white;
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .slide-content {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            animation: fadeInSlide 1s ease-out;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .reveal-btn {
+            background: rgba(255, 140, 0, 0.3);
+            border: 2px solid rgba(255, 140, 0, 0.5);
+        }
+
+        .reveal-btn:hover {
+            background: rgba(255, 140, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #FF8C00, #32CD32);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            animation: slideInDown 1s ease-out;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #FF8C00;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            animation: slideInLeft 1s ease-out 0.3s both;
+        }
+
+        h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        p, li {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question {
+            background: rgba(255, 140, 0, 0.15);
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(255, 140, 0, 0.4);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 12px 40px rgba(255, 140, 0, 0.2);
+        }
+
+        .central-question h3 {
+            color: #FF8C00;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-point {
+            flex: 1;
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 140, 0, 0.2);
+            border-radius: 15px;
+            margin: 0 0.5rem;
+            border: 2px solid rgba(255, 140, 0, 0.3);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .timeline-point:hover {
+            background: rgba(255, 140, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .comparison-card:hover::before {
+            left: 100%;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 140, 0, 0.5);
+        }
+
+        .civilization-card {
+            background: rgba(139, 69, 19, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(139, 69, 19, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .civilization-card:hover {
+            background: rgba(139, 69, 19, 0.3);
+            transform: scale(1.05);
+        }
+
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .innovation-card {
+            background: rgba(34, 139, 34, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(34, 139, 34, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .innovation-card:hover {
+            background: rgba(34, 139, 34, 0.3);
+            transform: scale(1.05);
+        }
+
+        .evidence-box {
+            background: rgba(128, 0, 128, 0.15);
+            border: 3px solid rgba(128, 0, 128, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .evidence-box h4 {
+            color: #DA70D6;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .challenge-card {
+            background: rgba(220, 20, 60, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(220, 20, 60, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .challenge-card:hover {
+            background: rgba(220, 20, 60, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .legacy-section {
+            background: rgba(72, 61, 139, 0.15);
+            border: 3px solid rgba(72, 61, 139, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .legacy-section h4 {
+            color: #9370DB;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .emoji-large {
+            font-size: 4rem;
+            margin: 2rem 0;
+            display: block;
+            animation: bounce 2s infinite;
+        }
+
+        .connecting-thread {
+            background: rgba(255, 69, 0, 0.15);
+            border: 3px solid rgba(255, 69, 0, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .connecting-thread h3 {
+            color: #FF4500;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+        }
+
+        li {
+            margin: 0.8rem 0;
+            padding-left: 1rem;
+        }
+
+        strong {
+            color: #FF8C00;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 14</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()" title="Previous Slide">‹</button>
+        <button class="nav-btn" onclick="nextSlide()" title="Next Slide">›</button>
+        <button class="nav-btn reveal-btn" onclick="toggleRevealAll()" title="Reveal All / Hide All" id="reveal-toggle">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1>🏺 Early American Civilizations</h1>
+            <h2 class="auto-reveal">Independent Innovation in the New World</h2>
+            <div class="central-question auto-reveal">
+                <h3>Central Question</h3>
+                <p><em>"How did American civilizations develop independently with completely different geographic constraints and resources than the Old World?"</em></p>
+            </div>
+            <div class="timeline auto-reveal">
+                <div class="timeline-point">3500 BCE<br>Norte Chico</div>
+                <div class="timeline-point">1500 BCE<br>Olmec Rise</div>
+                <div class="timeline-point">900 BCE<br>Chavin Culture</div>
+                <div class="timeline-point">200 CE<br>Mayan Cities</div>
+            </div>
+            <div class="emoji-large auto-reveal">🌽</div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Geographic Isolation and Independence -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌊 Isolated Innovation</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>The Great Separation</h3>
+                <p>American civilizations developed <strong>completely independently</strong> from Old World civilizations. No contact, no borrowing - pure independent invention of complex society.</p>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🗺️ Geographic Isolation</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Ocean barriers:</strong> Pacific and Atlantic separation</li>
+                        <li class="auto-reveal"><strong>Ice Age migration:</strong> Americas populated 15,000+ years ago</li>
+                        <li class="auto-reveal"><strong>No contact:</strong> Completely separate development</li>
+                        <li class="auto-reveal"><strong>Independent invention:</strong> Cities, writing, agriculture, government</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🌾 Different Resources</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>No large animals:</strong> No horses, cattle, or oxen to domesticate</li>
+                        <li class="auto-reveal"><strong>Different crops:</strong> Corn, beans, squash (not wheat/rice)</li>
+                        <li class="auto-reveal"><strong>Limited metals:</strong> Gold, silver, copper - but no iron widely used</li>
+                        <li class="auto-reveal"><strong>No wheels for transport:</strong> Used for toys, but not transportation</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🏔️ Diverse Environments</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Tropical rainforests:</strong> Maya in Central America</li>
+                        <li class="auto-reveal"><strong>High mountains:</strong> Andes civilizations in Peru</li>
+                        <li class="auto-reveal"><strong>Desert coasts:</strong> Norte Chico in Peru</li>
+                        <li class="auto-reveal"><strong>River valleys:</strong> Some, but less dominant than Old World</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🧬 Why This Matters</h4>
+                <p class="auto-reveal">American civilizations prove that complex society isn't just one path. <strong>Different environments can create totally different but equally sophisticated solutions</strong> to human organization.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Norte Chico/Caral-Supe Civilization -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏺 Norte Chico: America's First Cities</h2>
+            
+            <div class="innovation-grid">
+                <div class="civilization-card auto-reveal">
+                    <h3>📍 Basic Facts</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Location:</strong> Pacific coast of Peru</li>
+                        <li class="auto-reveal"><strong>Timeline:</strong> 3500-1800 BCE</li>
+                        <li class="auto-reveal"><strong>Contemporary with:</strong> Early Egyptian dynasties</li>
+                        <li class="auto-reveal"><strong>Discovery:</strong> Only recognized as major civilization in 1990s</li>
+                    </ul>
+                </div>
+                <div class="civilization-card auto-reveal">
+                    <h3>🏗️ Urban Innovations</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Monumental architecture:</strong> Massive pyramid complexes</li>
+                        <li class="auto-reveal"><strong>Caral site:</strong> 60+ pyramids, plazas, residential areas</li>
+                        <li class="auto-reveal"><strong>No warfare evidence:</strong> No weapons or fortifications found</li>
+                        <li class="auto-reveal"><strong>Sophisticated planning:</strong> Coordinated construction across sites</li>
+                    </ul>
+                </div>
+                <div class="civilization-card auto-reveal">
+                    <h3>🌊 Maritime Economy</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Ocean resources:</strong> Fish, shellfish, seaweed</li>
+                        <li class="auto-reveal"><strong>Trade networks:</strong> Cotton for fish with coastal peoples</li>
+                        <li class="auto-reveal"><strong>Agriculture:</strong> Irrigated cotton, squash, beans</li>
+                        <li class="auto-reveal"><strong>Unique foundation:</strong> Civilization without cereal grains</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>Revolutionary Insight</h3>
+                <p>Norte Chico challenges the idea that agriculture must be based on grains. They built cities using <strong>marine resources + cotton cultivation</strong> - showing another path to complex society.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: The Olmec Civilization -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🗿 The Olmec: Mesoamerica's Mother Culture</h2>
+            
+            <div class="innovation-grid">
+                <div class="civilization-card auto-reveal">
+                    <h3>📍 Geographic Setting</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Location:</strong> Gulf Coast Mexico (Veracruz, Tabasco)</li>
+                        <li class="auto-reveal"><strong>Timeline:</strong> 1500-400 BCE</li>
+                        <li class="auto-reveal"><strong>Environment:</strong> Tropical lowlands, rivers, swamps</li>
+                        <li class="auto-reveal"><strong>Major sites:</strong> San Lorenzo, La Venta, Tres Zapotes</li>
+                    </ul>
+                </div>
+                <div class="civilization-card auto-reveal">
+                    <h3>🎨 Cultural Innovations</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Colossal heads:</strong> Massive basalt sculptures (up to 40 tons)</li>
+                        <li class="auto-reveal"><strong>Jade working:</strong> Sophisticated carving and trade</li>
+                        <li class="auto-reveal"><strong>Rubber technology:</strong> First people to process rubber</li>
+                        <li class="auto-reveal"><strong>Calendar system:</strong> Early time-keeping innovations</li>
+                    </ul>
+                </div>
+                <div class="civilization-card auto-reveal">
+                    <h3>🏛️ Political Organization</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Elite centers:</strong> Ceremonial complexes for rulers</li>
+                        <li class="auto-reveal"><strong>Long-distance trade:</strong> Goods from Mexico to Costa Rica</li>
+                        <li class="auto-reveal"><strong>Social hierarchy:</strong> Elite vs. commoner burials</li>
+                        <li class="auto-reveal"><strong>Cultural influence:</strong> Spread across Mesoamerica</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🗿 Colossal Head Mystery</h4>
+                <p class="auto-reveal">Olmec carved 17 massive stone heads, each unique. Were they <strong>rulers? Athletes? Gods?</strong> Moving 40-ton stones 60+ miles without wheels or large animals shows remarkable organization.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Chavin Culture -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⛰️ Chavin Culture: Andean Innovation</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🏔️ Mountain Adaptation</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Location:</strong> Peruvian Andes, 10,000+ feet elevation</li>
+                        <li class="auto-reveal"><strong>Timeline:</strong> 900-200 BCE</li>
+                        <li class="auto-reveal"><strong>Challenge:</strong> Thin air, extreme climate, steep terrain</li>
+                        <li class="auto-reveal"><strong>Solution:</strong> Vertical agriculture across altitude zones</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🌾 Agricultural Innovation</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Terraced farming:</strong> Carved fields into mountainsides</li>
+                        <li class="auto-reveal"><strong>Potato cultivation:</strong> Domesticated 100+ potato varieties</li>
+                        <li class="auto-reveal"><strong>Llama domestication:</strong> Pack animals for mountain transport</li>
+                        <li class="auto-reveal"><strong>Vertical archipelago:</strong> Communities at multiple altitudes</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🎭 Religious Influence</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Chavin de Huantar:</strong> Major pilgrimage center</li>
+                        <li class="auto-reveal"><strong>Jaguar imagery:</strong> Powerful jungle cat symbols</li>
+                        <li class="auto-reveal"><strong>Stone carving:</strong> Sophisticated religious art</li>
+                        <li class="auto-reveal"><strong>Cultural spread:</strong> Influence across Peru</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>Mountain Mastery</h3>
+                <p>Chavin culture shows how civilizations can thrive in <strong>extreme environments</strong> by developing specialized technologies. Their potato cultivation fed millions and spread worldwide.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Early Maya -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌳 Early Maya: Jungle Cities</h2>
+            
+            <div class="innovation-grid">
+                <div class="civilization-card auto-reveal">
+                    <h3>🌴 Rainforest Challenges</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Location:</strong> Southern Mexico, Guatemala, Belize</li>
+                        <li class="auto-reveal"><strong>Environment:</strong> Dense tropical rainforest</li>
+                        <li class="auto-reveal"><strong>Problems:</strong> No rivers, seasonal droughts, thin soil</li>
+                        <li class="auto-reveal"><strong>Early period:</strong> 2000 BCE - 250 CE</li>
+                    </ul>
+                </div>
+                <div class="civilization-card auto-reveal">
+                    <h3>💧 Water Management</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Reservoir systems:</strong> Collected rainwater in plaster-lined tanks</li>
+                        <li class="auto-reveal"><strong>Cenote access:</strong> Used natural sinkholes</li>
+                        <li class="auto-reveal"><strong>Canal networks:</strong> Managed seasonal flooding</li>
+                        <li class="auto-reveal"><strong>Sacred wells:</strong> Water sources became religious centers</li>
+                    </ul>
+                </div>
+                <div class="civilization-card auto-reveal">
+                    <h3>🌽 Agricultural Innovation</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Raised fields:</strong> Built soil up in swampy areas</li>
+                        <li class="auto-reveal"><strong>Forest gardens:</strong> Multi-layer farming systems</li>
+                        <li class="auto-reveal"><strong>Maize cultivation:</strong> Developed from wild teosinte</li>
+                        <li class="auto-reveal"><strong>Cacao production:</strong> Chocolate cultivation and trade</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>📚 Early Writing Systems</h4>
+                <p class="auto-reveal">Maya developed <strong>America's most sophisticated writing system</strong> - hieroglyphic script that recorded history, astronomy, and mathematics. Only American civilization to develop full writing independently.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Norte Chico Details -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏺 Norte Chico: The First American Civilization</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>A Revolutionary Discovery</h3>
+                <p>Norte Chico was building cities when <strong>Stonehenge was just getting started</strong>. But it was almost completely unknown until the 1990s - rewriting American history.</p>
+            </div>
+
+            <div class="innovation-grid">
+                <div class="civilization-card auto-reveal">
+                    <h3>🌊 Maritime Foundation</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Ocean bounty:</strong> Anchovies, sardines, shellfish</li>
+                        <li class="auto-reveal"><strong>Fishing technology:</strong> Nets made from cotton fiber</li>
+                        <li class="auto-reveal"><strong>Trade system:</strong> Fish exchanged for cotton inland</li>
+                        <li class="auto-reveal"><strong>No grains needed:</strong> Marine protein replaced cereal agriculture</li>
+                    </ul>
+                </div>
+                <div class="civilization-card auto-reveal">
+                    <h3>🏗️ Monumental Architecture</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Caral's Great Pyramid:</strong> 60 feet tall, older than Egyptian pyramids</li>
+                        <li class="auto-reveal"><strong>18 urban centers:</strong> Coordinated construction across region</li>
+                        <li class="auto-reveal"><strong>Amphitheaters:</strong> Circular plazas for public gatherings</li>
+                        <li class="auto-reveal"><strong>No fortifications:</strong> Evidence suggests peaceful society</li>
+                    </ul>
+                </div>
+                <div class="civilization-card auto-reveal">
+                    <h3>🎵 Cultural Sophistication</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Musical instruments:</strong> 38 bone flutes found at Caral</li>
+                        <li class="auto-reveal"><strong>Quipu system:</strong> Knotted strings for record-keeping</li>
+                        <li class="auto-reveal"><strong>Textiles:</strong> Sophisticated cotton weaving techniques</li>
+                        <li class="auto-reveal"><strong>Artistic traditions:</strong> Carved gourds, decorative objects</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🔍 Why Was It Hidden?</h4>
+                <p class="auto-reveal">Norte Chico sites look like <strong>natural hills covered in brush</strong>. No gold, no pottery, no obvious artifacts. Only radiocarbon dating in the 1990s revealed their true age and significance.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Olmec Details -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🗿 The Olmec: Masters of Stone and Jade</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>"Mother Culture" of Mesoamerica</h3>
+                <p>The Olmec influenced <strong>every later Mesoamerican civilization</strong> - Maya, Aztec, Zapotec all show Olmec traits. They created the cultural template for the region.</p>
+            </div>
+
+            <div class="innovation-grid">
+                <div class="civilization-card auto-reveal">
+                    <h3>🗿 Colossal Head Mystery</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>17 heads found:</strong> Each 6-10 feet tall, weighing up to 40 tons</li>
+                        <li class="auto-reveal"><strong>Unique faces:</strong> Each head has distinct individual features</li>
+                        <li class="auto-reveal"><strong>Helmet design:</strong> All wear close-fitting caps or helmets</li>
+                        <li class="auto-reveal"><strong>Transport feat:</strong> Basalt quarried 60+ miles away, no wheels or animals</li>
+                    </ul>
+                </div>
+                <div class="civilization-card auto-reveal">
+                    <h3>💎 Jade Obsession</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Sacred green stone:</strong> More valuable than gold to Mesoamericans</li>
+                        <li class="auto-reveal"><strong>Masterful carving:</strong> Incredibly detailed figurines and masks</li>
+                        <li class="auto-reveal"><strong>La Venta offerings:</strong> Massive jade caches buried ceremonially</li>
+                        <li class="auto-reveal"><strong>Trade networks:</strong> Jade from Guatemala mountains</li>
+                    </ul>
+                </div>
+                <div class="civilization-card auto-reveal">
+                    <h3>🏛️ Religious Innovation</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Were-jaguar motif:</strong> Half-human, half-jaguar beings</li>
+                        <li class="auto-reveal"><strong>Ball game:</strong> Ritual sport played across Mesoamerica</li>
+                        <li class="auto-reveal"><strong>Bloodletting rituals:</strong> Elite self-sacrifice practices</li>
+                        <li class="auto-reveal"><strong>Calendar beginnings:</strong> Early development of time systems</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🎾 The First Rubber People</h4>
+                <p class="auto-reveal">The word "Olmec" means <strong>"rubber people"</strong> in Aztec. They were the first to process rubber from latex, creating balls for their ritual ball game that spread across all of Mesoamerica.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Chavin Details -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⛰️ Chavin: Mountain Masters</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>Conquering the Andes</h3>
+                <p>At 10,000+ feet elevation, Chavin culture faced challenges no other early civilization encountered: <strong>thin air, extreme cold, vertical terrain</strong>. Their solutions changed world history.</p>
+            </div>
+
+            <div class="innovation-grid">
+                <div class="civilization-card auto-reveal">
+                    <h3>🥔 The Potato Revolution</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>3,000+ varieties:</strong> Chavin domesticated more potato types than exist today</li>
+                        <li class="auto-reveal"><strong>Freeze-drying technique:</strong> Chuño process preserved potatoes for years</li>
+                        <li class="auto-reveal"><strong>High-altitude adaptation:</strong> Crops that thrive in thin air and cold</li>
+                        <li class="auto-reveal"><strong>Global impact:</strong> Potatoes later fed European population growth</li>
+                    </ul>
+                </div>
+                <div class="civilization-card auto-reveal">
+                    <h3>🌾 Vertical Agriculture</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Terraced fields:</strong> Carved mountainsides into stepped farms</li>
+                        <li class="auto-reveal"><strong>Micro-climates:</strong> Different crops at different altitudes</li>
+                        <li class="auto-reveal"><strong>Irrigation systems:</strong> Stone-lined channels directing mountain streams</li>
+                        <li class="auto-reveal"><strong>Llama integration:</strong> Pack animals providing transport and fertilizer</li>
+                    </ul>
+                </div>
+                <div class="civilization-card auto-reveal">
+                    <h3>🏛️ Chavin de Huantar</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Pilgrimage center:</strong> People traveled hundreds of miles to visit</li>
+                        <li class="auto-reveal"><strong>Underground galleries:</strong> Stone-lined tunnels with acoustic properties</li>
+                        <li class="auto-reveal"><strong>Lanzon sculpture:</strong> 15-foot granite monolith with fearsome deity</li>
+                        <li class="auto-reveal"><strong>Jaguar symbolism:</strong> Jungle cats in mountain culture (trade connections)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🔊 Ancient Sound Engineering</h4>
+                <p class="auto-reveal">Chavin architects designed <strong>acoustic chambers</strong> where priests could speak and seem like gods were talking. Water channels created roaring sounds, and shell trumpets amplified voices through stone galleries.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Early Maya Details -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌳 Early Maya: Rainforest Genius</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>Impossible Cities</h3>
+                <p>Building cities in dense rainforest seemed impossible - no rivers, seasonal droughts, thin soil. The Maya not only succeeded but created <strong>America's most sophisticated civilization</strong>.</p>
+            </div>
+
+            <div class="innovation-grid">
+                <div class="civilization-card auto-reveal">
+                    <h3>💧 Water Wizardry</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Massive reservoirs:</strong> Tikal stored 900,000 gallons of rainwater</li>
+                        <li class="auto-reveal"><strong>Plaster technology:</strong> Waterproof lime concrete lined storage tanks</li>
+                        <li class="auto-reveal"><strong>Canal systems:</strong> Redirected seasonal floods for agriculture</li>
+                        <li class="auto-reveal"><strong>Sacred cenotes:</strong> Natural sinkholes became religious centers</li>
+                    </ul>
+                </div>
+                <div class="civilization-card auto-reveal">
+                    <h3>🌽 Forest Farming</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Raised fields:</strong> Built up soil in swampy areas (chinampas)</li>
+                        <li class="auto-reveal"><strong>Forest gardens:</strong> Multi-story farming using canopy levels</li>
+                        <li class="auto-reveal"><strong>Maize miracle:</strong> Transformed tiny teosinte into modern corn</li>
+                        <li class="auto-reveal"><strong>Cacao cultivation:</strong> Chocolate as currency and sacred drink</li>
+                    </ul>
+                </div>
+                <div class="civilization-card auto-reveal">
+                    <h3>📚 Intellectual Achievements</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Hieroglyphic writing:</strong> Only fully developed writing system in America</li>
+                        <li class="auto-reveal"><strong>Mathematical precision:</strong> Independent invention of zero concept</li>
+                        <li class="auto-reveal"><strong>Calendar accuracy:</strong> More precise than European calendar</li>
+                        <li class="auto-reveal"><strong>Astronomical observations:</strong> Predicted eclipses, tracked Venus cycles</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>📖 The Dresden Codex</h4>
+                <p class="auto-reveal">Only 4 Maya books survived Spanish burning. The Dresden Codex shows their <strong>astronomical calculations were more accurate than European ones</strong> - they calculated Venus's cycle to within 2 hours over 500 years!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: North American Summary -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏹 North American Civilizations Overview</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>Diverse Environmental Solutions</h3>
+                <p>North American cultures developed sophisticated societies adapted to <strong>dramatically different environments</strong> - from deserts to forests to great plains.</p>
+            </div>
+
+            <div class="innovation-grid">
+                <div class="civilization-card auto-reveal">
+                    <h3>🏜️ Southwest: Ancestral Puebloans</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Cliff dwellings:</strong> Mesa Verde, Canyon de Chelly architectural marvels</li>
+                        <li class="auto-reveal"><strong>Desert agriculture:</strong> Sophisticated irrigation in arid environments</li>
+                        <li class="auto-reveal"><strong>Astronomical alignments:</strong> Buildings oriented to solstices</li>
+                        <li class="auto-reveal"><strong>Timeline:</strong> 100-1300 CE</li>
+                    </ul>
+                </div>
+                <div class="civilization-card auto-reveal">
+                    <h3>🌳 Eastern Woodlands: Mound Builders</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Adena & Hopewell:</strong> Massive earthwork complexes (1000 BCE-400 CE)</li>
+                        <li class="auto-reveal"><strong>Trade networks:</strong> Goods from Rocky Mountains to Atlantic coast</li>
+                        <li class="auto-reveal"><strong>Serpent Mound:</strong> 1,300-foot-long effigy in Ohio</li>
+                        <li class="auto-reveal"><strong>Astronomical knowledge:</strong> Mounds aligned to celestial events</li>
+                    </ul>
+                </div>
+                <div class="civilization-card auto-reveal">
+                    <h3>🌾 Mississippi Valley: Cahokia</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Urban center:</strong> 15,000+ people (larger than medieval London)</li>
+                        <li class="auto-reveal"><strong>Monks Mound:</strong> Largest prehistoric structure north of Mexico</li>
+                        <li class="auto-reveal"><strong>Maize agriculture:</strong> Supported dense population</li>
+                        <li class="auto-reveal"><strong>Timeline:</strong> 1050-1400 CE</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🌽 The Maize Revolution</h4>
+                <p class="auto-reveal">Around 900 CE, improved corn varieties from Mexico reached North America, triggering <strong>population booms and urban development</strong>. Cahokia's rise directly followed this agricultural revolution.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: American Innovations vs Old World -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚡ American Innovations vs. Old World Solutions</h2>
+            
+            <div class="challenge-grid">
+                <div class="challenge-card auto-reveal">
+                    <h3>🚫 What Americans Lacked</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Large domesticated animals:</strong> No horses, cattle, oxen</li>
+                        <li class="auto-reveal"><strong>Iron metallurgy:</strong> Copper and bronze, but iron rare</li>
+                        <li class="auto-reveal"><strong>Cereal grains:</strong> Corn less efficient than wheat/rice</li>
+                        <li class="auto-reveal"><strong>Wheeled transport:</strong> Wheels existed but not for transport</li>
+                    </ul>
+                </div>
+                <div class="challenge-card auto-reveal">
+                    <h3>✨ Creative Solutions</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Human labor organization:</strong> Massive projects without animals</li>
+                        <li class="auto-reveal"><strong>Sophisticated metallurgy:</strong> Gold, silver, copper alloys</li>
+                        <li class="auto-reveal"><strong>Three Sisters agriculture:</strong> Corn, beans, squash together</li>
+                        <li class="auto-reveal"><strong>Water transport:</strong> Canoes and rafts for heavy goods</li>
+                    </ul>
+                </div>
+                <div class="challenge-card auto-reveal">
+                    <h3>🌟 Unique Achievements</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Astronomy:</strong> Maya calendar more accurate than European</li>
+                        <li class="auto-reveal"><strong>Mathematics:</strong> Independent invention of zero</li>
+                        <li class="auto-reveal"><strong>Architecture:</strong> Earthquake-resistant building techniques</li>
+                        <li class="auto-reveal"><strong>Medicine:</strong> Advanced surgical procedures</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🤯 The Zero Concept</h4>
+                <p class="auto-reveal">Maya independently invented the mathematical concept of <strong>zero</strong> - one of humanity's greatest intellectual achievements. Only developed independently in 3 places: India, Maya, and Babylon.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Lessons About Human Creativity -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🧠 Lessons About Human Creativity</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🌍 Universal Patterns</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Agriculture first:</strong> Surplus food enables complex society</li>
+                        <li class="auto-reveal"><strong>Cities develop:</strong> Permanent settlements with specialization</li>
+                        <li class="auto-reveal"><strong>Social hierarchy:</strong> Elite classes emerge everywhere</li>
+                        <li class="auto-reveal"><strong>Monumental architecture:</strong> Pyramids, mounds, temples appear</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🎨 Creative Diversity</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Different crops:</strong> Corn vs. wheat vs. rice</li>
+                        <li class="auto-reveal"><strong>Different animals:</strong> Llamas vs. horses vs. cattle</li>
+                        <li class="auto-reveal"><strong>Different materials:</strong> Stone vs. bronze vs. iron</li>
+                        <li class="auto-reveal"><strong>Different writing:</strong> Hieroglyphic vs. alphabetic vs. logographic</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🔍 What This Proves</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Multiple paths:</strong> No single "correct" way to build civilization</li>
+                        <li class="auto-reveal"><strong>Human adaptability:</strong> People solve problems with available resources</li>
+                        <li class="auto-reveal"><strong>Geographic influence:</strong> Environment shapes but doesn't determine culture</li>
+                        <li class="auto-reveal"><strong>Independent genius:</strong> Similar achievements arise separately</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>Geography as Toolkit, Not Destiny</h3>
+                <p>American civilizations prove that humans are <strong>creative problem-solvers</strong>. Geography provides tools and constraints, but <strong>human ingenuity determines how those tools are used</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Global Perspective and Looking Forward -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌏 Completing the Global Picture</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🗺️ Six Cradles of Civilization</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Mesopotamia:</strong> First cities, legal codes</li>
+                        <li class="auto-reveal"><strong>Egypt:</strong> Divine kingship, monumental architecture</li>
+                        <li class="auto-reveal"><strong>Indus Valley:</strong> Urban planning, peaceful society</li>
+                        <li class="auto-reveal"><strong>China:</strong> Cultural continuity, technological innovation</li>
+                        <li class="auto-reveal"><strong>Peru:</strong> Mountain agriculture, administrative systems</li>
+                        <li class="auto-reveal"><strong>Mesoamerica:</strong> Mathematics, astronomy, writing</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🌟 Common Achievements</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Agriculture:</strong> All based on surplus food production</li>
+                        <li class="auto-reveal"><strong>Cities:</strong> Permanent settlements with specialization</li>
+                        <li class="auto-reveal"><strong>Government:</strong> Complex political organization</li>
+                        <li class="auto-reveal"><strong>Culture:</strong> Art, religion, intellectual traditions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="connecting-thread auto-reveal">
+                <h3>🔗 Looking Ahead: Cultural Exchange</h3>
+                <p>Now that we understand how civilizations developed independently around the world, we can explore what happened when they began to interact. Next, we'll see how <strong>trade, conquest, and cultural exchange</strong> spread innovations and created new hybrid civilizations during the Classical Period.</p>
+            </div>
+
+            <div class="legacy-section auto-reveal">
+                <h4>🎯 Key Takeaways</h4>
+                <ul>
+                    <li class="auto-reveal"><strong>Independent development:</strong> Proves civilization isn't accidental</li>
+                    <li class="auto-reveal"><strong>Creative adaptation:</strong> Humans solve similar problems differently</li>
+                    <li class="auto-reveal"><strong>Geographic influence:</strong> Environment shapes possibilities, not outcomes</li>
+                    <li class="auto-reveal"><strong>Cultural diversity:</strong> Many paths to complex society</li>
+                </ul>
+            </div>
+
+            <div class="emoji-large auto-reveal">🌎</div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+        let allRevealed = false;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            allRevealed = false;
+            resetReveal();
+            updateRevealButton();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                
+                if (revealIndex >= elements.length) {
+                    allRevealed = true;
+                    updateRevealButton();
+                }
+                return true;
+            }
+            return false;
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            for (let i = revealIndex; i < elements.length; i++) {
+                elements[i].classList.add('show');
+            }
+            revealIndex = elements.length;
+            allRevealed = true;
+            updateRevealButton();
+        }
+
+        function hideAll() {
+            resetReveal();
+            revealIndex = 0;
+            allRevealed = false;
+            updateRevealButton();
+        }
+
+        function toggleRevealAll() {
+            if (allRevealed) {
+                hideAll();
+            } else {
+                revealAll();
+            }
+        }
+
+        function updateRevealButton() {
+            const button = document.getElementById('reveal-toggle');
+            button.textContent = allRevealed ? 'Hide All' : 'Reveal All';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowRight':
+                case ' ':
+                    e.preventDefault();
+                    if (!revealNextElement()) {
+                        nextSlide();
+                    }
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    previousSlide();
+                    break;
+                case 'r':
+                case 'R':
+                    e.preventDefault();
+                    toggleRevealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

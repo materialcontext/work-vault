@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forces and Their Effects - Language Practice Worksheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 10pt;
+            line-height: 1.2;
+            background: white;
+            color: black;
+            padding: 0.4in;
+        }
+        
+        .page {
+            width: 100%;
+            max-width: 7.7in;
+            margin: 0 auto;
+            page-break-after: always;
+        }
+        
+        .page:last-child {
+            page-break-after: auto;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 2px solid black;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .header h1 {
+            font-size: 16pt;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .header p {
+            font-size: 9pt;
+            font-style: italic;
+        }
+        
+        .student-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 9pt;
+        }
+        
+        .info-line {
+            border-bottom: 1px solid black;
+            min-width: 100px;
+            display: inline-block;
+        }
+        
+        .section {
+            margin-bottom: 14px;
+        }
+        
+        .section h2 {
+            font-size: 12pt;
+            font-weight: bold;
+            margin-bottom: 6px;
+            border-bottom: 1px solid black;
+            padding-bottom: 2px;
+        }
+        
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .vocab-item {
+            border: 1px solid black;
+            padding: 5px;
+            font-size: 8pt;
+            text-align: center;
+        }
+        
+        .vocab-term {
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        
+        .frame-box {
+            border: 1px solid black;
+            padding: 8px;
+            margin: 8px 0;
+        }
+        
+        .frame-title {
+            font-weight: bold;
+            font-size: 9pt;
+            margin-bottom: 5px;
+        }
+        
+        .example {
+            font-style: italic;
+            margin-bottom: 5px;
+            padding: 3px;
+            border: 1px dashed black;
+            font-size: 9pt;
+        }
+        
+        .blank {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        
+        .practice-line {
+            border-bottom: 1px solid black;
+            width: 100%;
+            height: 14px;
+            margin: 3px 0;
+        }
+        
+        .short-line {
+            width: 120px;
+            display: inline-block;
+            border-bottom: 1px solid black;
+            height: 12px;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        
+        .effects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 5px;
+            margin: 8px 0;
+            font-size: 8pt;
+        }
+        
+        .effect-card {
+            border: 1px solid black;
+            padding: 4px;
+            text-align: center;
+        }
+        
+        .effect-title {
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        
+        .dialogue-box {
+            border: 1px solid black;
+            padding: 6px;
+            margin: 6px 0;
+            font-size: 9pt;
+        }
+        
+        .prompt {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        
+        .response-line {
+            border-bottom: 1px solid black;
+            height: 12px;
+            margin: 2px 0;
+        }
+        
+        .checklist {
+            font-size: 8pt;
+            margin: 6px 0;
+        }
+        
+        .checklist li {
+            margin: 2px 0;
+            list-style: none;
+        }
+        
+        .checkbox {
+            width: 10px;
+            height: 10px;
+            border: 1px solid black;
+            display: inline-block;
+            margin-right: 4px;
+        }
+        
+        @media print {
+            body {
+                padding: 0.3in;
+                font-size: 9pt;
+            }
+
+        }
+        
+        @media (max-width: 768px) {
+            .two-column, .vocab-grid, .effects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .student-info {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- PAGE 1 (FRONT) -->
+    <div class="page">
+        <div class="header">
+            <h1>Forces and Their Effects Language Practice</h1>
+            <p>Scientific Explanation Frames | ESL C1 Level</p>
+        </div>
+        
+        <div class="student-info">
+            <div>Name: <span class="info-line"></span></div>
+            <div>Date: <span class="info-line"></span></div>
+            <div>Period: <span class="info-line"></span></div>
+        </div>
+
+        <!-- Vocabulary -->
+        <div class="section">
+            <h2>I. Forces Vocabulary</h2>
+            <div class="vocab-grid">
+                <div class="vocab-item">
+                    <div class="vocab-term">Force</div>
+                    <div>Push or pull</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Gravity</div>
+                    <div>Pulls toward Earth</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Friction</div>
+                    <div>Opposes motion</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Applied Force</div>
+                    <div>Muscle power</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Motion</div>
+                    <div>Movement</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="vocab-term">Newton</div>
+                    <div>Force unit</div>
+                </div>
+            </div>
+            
+            <div style="font-size: 9pt;">
+                Complete: A _________ is a push or pull. _________ pulls objects down. _________ slows motion.
+            </div>
+        </div>
+
+        <!-- Effects of Forces -->
+        <div class="section">
+            <h2>II. What Forces Do</h2>
+            <div class="effects-grid">
+                <div class="effect-card">
+                    <div class="effect-title">Start Motion</div>
+                    <div>Make things move</div>
+                </div>
+                <div class="effect-card">
+                    <div class="effect-title">Stop Motion</div>
+                    <div>Make things stop</div>
+                </div>
+                <div class="effect-card">
+                    <div class="effect-title">Change Speed</div>
+                    <div>Faster/slower</div>
+                </div>
+                <div class="effect-card">
+                    <div class="effect-title">Change Direction</div>
+                    <div>Turn/curve</div>
+                </div>
+                <div class="effect-card">
+                    <div class="effect-title">Change Shape</div>
+                    <div>Bend/break</div>
+                </div>
+                <div class="effect-card">
+                    <div class="effect-title">Balance</div>
+                    <div>Stay in place</div>
+                </div>
+            </div>
+        </div>
+</div>
+<!-- PAGE 2 (BACK) -->
+    <div class="page">
+        <!-- Language Frames -->
+        <div class="section">
+            <h2>III. Force Language Frames</h2>
+            <div class="frame-box">
+                <div class="frame-title">Cause-and-Effect</div>
+                <div class="example">When you <span class="blank">push harder</span>, the object <span class="blank">moves faster</span>.</div>
+                <div style="margin: 4px 0;">1. When _______, the ball starts rolling.</div>
+                <div style="margin: 4px 0;">2. Because _______, the object stops.</div>
+                <div style="margin: 4px 0;">3. As a result of _______, it changes direction.</div>
+            </div>
+            
+            <div class="frame-box">
+                <div class="frame-title">Observable Effects</div>
+                <div class="example">You can see this when <span class="blank">the ball speeds up after you kick it</span>.</div>
+                <div style="margin: 4px 0;">1. This force creates _______ because _______</div>
+                <div style="margin: 4px 0;">2. You can observe this when _______</div>
+            </div>
+        
+
+        <!-- Real-World Examples -->
+        <div class="section">
+            <h2>IV. Forces in Action</h2>
+            <div class="two-column">
+                <div>
+                    <strong>Bicycle:</strong> Your muscles create _______ force. _______ helps tires grip. Air resistance _______ you down.
+                </div>
+                <div>
+                    <strong>Basketball:</strong> You apply _______ to dribble. _______ pulls ball down. Floor provides _______ force back.
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Extended Practice -->
+        <div class="section">
+            <h2>V. Explanation Practice</h2>
+            <div class="frame-box">
+                <div class="frame-title">Question: "Explain how forces affect objects and give examples."</div>
+                <div style="margin: 6px 0;">
+                    <strong>Opening:</strong> Forces are <span class="short-line"></span> that can <span class="short-line"></span>
+                </div>
+                <div style="margin: 6px 0;">
+                    <strong>Effects:</strong> When you apply force, objects can <span class="short-line"></span>
+                </div>
+                <div class="practice-line"></div>
+                <div style="margin: 6px 0;">
+                    <strong>Examples:</strong> For instance, when <span class="short-line"></span>, the result is <span class="short-line"></span>
+                </div>
+                <div class="practice-line"></div>
+                <div style="margin: 6px 0;">
+                    <strong>Conclusion:</strong> Forces are important because <span class="short-line"></span>
+                </div>
+                <div class="practice-line"></div>
+            </div>
+        </div>
+
+        <!-- Dialogue Practice -->
+        <div class="section">
+            <h2>VI. Speaking Practice</h2>
+            <div class="dialogue-box">
+                <div class="prompt">Friend: "Why do things fall when you drop them?"</div>
+                <div>You: Things fall because</div>
+                <div class="response-line"></div>
+                <div>This force is called</div>
+                <div class="response-line"></div>
+            </div>
+            
+            <div class="dialogue-box">
+                <div class="prompt">Teacher: "How do forces change motion?"</div>
+                <div>You: Forces change motion by</div>
+                <div class="response-line"></div>
+                <div>For example, when you</div>
+                <div class="response-line"></div>
+            </div>
+        </div>
+        <!-- Quick Quiz -->
+        <div class="section">
+            <h2>IX. Quick Check</h2>
+            <div style="font-size: 9pt;">
+                <div>1. Name 3 effects forces can have: _______, _______, _______</div>
+                <div>2. When you push a shopping cart, you apply _______ force.</div>
+                <div>3. _______ is the force that makes objects fall down.</div>
+                <div>4. Complete: "When you kick a ball harder, _______"</div>
+                <div class="practice-line"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

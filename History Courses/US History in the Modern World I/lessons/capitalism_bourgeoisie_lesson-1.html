@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Rise of Capitalism and the Merchant Bourgeoisie (1400-1700)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+	    font-size: 22px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c5530 0%, #3e7b3e 50%, #1a4b1a 100%);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .slide {
+            width: 95vw;
+            height: 90vh;
+            padding: 1.5rem;
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide h1 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            font-weight: 700;
+        }
+
+        .slide h2 {
+            font-size: 2.4rem;
+            margin-bottom: 1.2rem;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            font-weight: 600;
+        }
+
+        .slide h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+            color: #ccff99;
+            font-weight: 500;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            margin-bottom: 0.6rem;
+            color: #e8f5e8;
+        }
+
+        .central-question {
+            background: rgba(255, 215, 0, 0.15);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 1.8rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+
+        .central-question h2 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .central-question p {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .innovation-detail {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 1.8rem;
+            margin: 1.2rem 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+
+        .innovation-detail h3 {
+            color: #ffd700;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .innovation-detail h4 {
+            color: #ccff99;
+            font-size: 1.4rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .system-comparison {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .system-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .system-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .system-card h4 {
+            color: #ffd700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .system-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .system-card li {
+            margin-bottom: 0.6rem;
+            padding-left: 1rem;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .system-card li::before {
+            content: "💰";
+            position: absolute;
+            left: 0;
+            font-size: 1rem;
+        }
+
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .innovation-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 1.3rem;
+            border-left: 4px solid #ffd700;
+            backdrop-filter: blur(5px);
+        }
+
+        .innovation-card h4 {
+            color: #ccff99;
+            margin-bottom: 0.6rem;
+            font-size: 1.3rem;
+        }
+
+        .innovation-card p {
+            font-size: 1rem;
+            color: #e8f5e8;
+            line-height: 1.4;
+        }
+
+        .detail-box {
+            background: rgba(0,0,0,0.4);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            border-left: 3px solid #ffd700;
+        }
+
+        .timeline-revolution {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1.5rem 0;
+            padding: 1.2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-point {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255,215,0,0.2);
+            border-radius: 12px;
+            border: 2px solid #ffd700;
+            font-weight: bold;
+            font-size: 0.9rem;
+            min-width: 120px;
+        }
+
+        .primary-source {
+            background: linear-gradient(135deg, #8b4513, #daa520);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+
+        .primary-source h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+
+        .primary-source blockquote {
+            font-style: italic;
+            font-size: 1.1rem;
+            background: rgba(0,0,0,0.3);
+            padding: 1.2rem;
+            border-left: 4px solid #ffd700;
+            margin: 1rem 0;
+            color: #ffffff;
+        }
+
+        .connecting-thread {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+
+        .connecting-thread h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .connecting-thread p {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .question-highlight {
+            background: rgba(255,215,0,0.2);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            text-align: center;
+        }
+
+        .question-highlight p {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ffd700;
+            font-style: italic;
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .progressive-list li {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .progressive-list li.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255,215,0,0.9);
+            color: #2c5530;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Progress indicator */
+        .progress-indicator {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,215,0,0.9);
+            color: #2c5530;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        /* Slide Indicators */
+        .slide-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 1000;
+        }
+
+        .indicator-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator-dot.active {
+            background: #ffd700;
+            transform: scale(1.2);
+        }
+
+        /* Image tab */
+        .image-tab {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,215,0,0.9);
+            color: #2c5530;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: none;
+        }
+
+        .image-tab.visible {
+            display: block;
+        }
+
+        .modal-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-image img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Slide 1: Title and Central Question -->
+        <div class="slide active" data-reveal-count="3">
+            <div class="auto-reveal">
+                <h1>Financial Innovations That Built Modern Capitalism</h1>
+                <p style="text-align: center; font-size: 1.6rem; margin-bottom: 2rem; color: #ccff99;">(1400-1700)</p>
+            </div>
+            
+            <div class="central-question auto-reveal">
+                <h2>🎯 Central Question</h2>
+                <p>"How did revolutionary financial innovations solve critical problems in organizing large-scale commerce, managing risk, and mobilizing capital—and why were these changes genuinely revolutionary rather than mere improvements?"</p>
+            </div>
+            
+            <div class="timeline-revolution auto-reveal">
+                <div class="timeline-point">1397<br>Medici Bank</div>
+                <div class="timeline-point">1602<br>Stock Exchange</div>
+                <div class="timeline-point">1688<br>Lloyd's Insurance</div>
+                <div class="timeline-point">1700<br>Global System</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Medieval to Capitalist Transition -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>⚖️ Revolutionary Economic Transformation</h2>
+            
+            <div class="auto-reveal">
+                <p style="text-align: center; font-size: 1.3rem; margin-bottom: 1.5rem;">These weren't improvements on existing systems—they were entirely new mechanisms that solved fundamental problems constraining medieval commerce.</p>
+            </div>
+            
+            <div class="system-comparison">
+                <div class="system-card auto-reveal">
+                    <h4>🏰 Medieval Constraints</h4>
+                    <ul class="progressive-list">
+                        <li><strong>Risk concentration:</strong> Individual merchants absorb all losses</li>
+                        <li><strong>Capital limitations:</strong> Family wealth restricts business scale</li>
+                        <li><strong>Communication barriers:</strong> No instant coordination across distances</li>
+                        <li><strong>Legal frameworks:</strong> Personal relationships, not market contracts</li>
+                        <li><strong>Religious restrictions:</strong> Usury prohibitions limit credit</li>
+                    </ul>
+                </div>
+                
+                <div class="system-card auto-reveal">
+                    <h4>💰 Capitalist Solutions</h4>
+                    <ul class="progressive-list">
+                        <li><strong>Risk distribution:</strong> Multiple parties share commercial losses</li>
+                        <li><strong>Capital pooling:</strong> Joint-stock enables unprecedented scales</li>
+                        <li><strong>Global coordination:</strong> Standardized systems manage distance</li>
+                        <li><strong>Commercial law:</strong> Market-based legal protections</li>
+                        <li><strong>Financial innovation:</strong> Credit systems avoid usury restrictions</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <p>What specific problems did each innovation solve that couldn't be solved before?</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Italian Banking Revolution -->
+        <div class="slide hidden" data-reveal-count="6">
+            <h2>🏦 Italian Banking: The First Multinational Corporation</h2>
+            
+            <div class="innovation-detail auto-reveal">
+                <h3>Medici Bank (1397-1494): Revolutionary Organizational Structure</h3>
+                <p>Created the world's first <strong>multinational holding company</strong> with Florence headquarters controlling legally separate branch partnerships across Europe</p>
+            </div>
+            
+            <div class="innovation-grid">
+                <div class="innovation-card auto-reveal">
+                    <h4>🏛️ Holding Company Innovation</h4>
+                    <p><strong>Problem solved:</strong> Managing international business without instant communication<br>
+                    <strong>Solution:</strong> Each branch operated as independent partnership while sharing standardized practices—risks isolated but strategy coordinated</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>📊 Double-Entry Bookkeeping</h4>
+                    <p><strong>Revolutionary concept:</strong> Three integrated books (memoriale, giornale, libro grande) created the fundamental equation: Assets = Liabilities + Equity<br>
+                    <strong>Impact:</strong> The books literally <em>were</em> the business entity</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>💎 Letters of Credit</h4>
+                    <p><strong>Dual solution:</strong> Eliminated physical money transport danger while disguising interest in exchange rates to avoid usury laws<br>
+                    <strong>Result:</strong> Europe's first systematic international credit network</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>📈 Unprecedented Scale</h4>
+                    <p><strong>Financial power:</strong> Medici assets were 4.5 times larger than English crown revenues<br>
+                    <strong>Professional management:</strong> Created managerial classes separate from ownership</p>
+                </div>
+            </div>
+            
+            <div class="detail-box auto-reveal">
+                <p><strong>Why genuinely revolutionary:</strong> Contemporary usage shows "ragione" meant both "firm" and "account books"—the mathematical records defined the business itself, not traditional family relationships.</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Insurance Revolution -->
+        <div class="slide hidden" data-reveal-count="5">
+            <h2>🛡️ Insurance: Distributing Risk Across Society</h2>
+            
+            <div class="innovation-detail auto-reveal">
+                <h3>Lloyd's of London (1688): Scientific Risk Management</h3>
+                <p>Created the first <strong>subscription underwriting system</strong> where multiple parties shared proportionate liability for major commercial ventures</p>
+            </div>
+            
+            <div class="innovation-grid">
+                <div class="innovation-card auto-reveal">
+                    <h4>☕ Coffeehouse Innovation</h4>
+                    <p><strong>Information network:</strong> Lloyd's List newspaper and systematic loss records enabled scientific risk assessment based on actual experience rather than intuition</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>🤝 Subscription Underwriting</h4>
+                    <p><strong>Problem solved:</strong> Individual merchants couldn't absorb total loss of major ventures<br>
+                    <strong>Solution:</strong> Multiple underwriters "subscribe" to policies, each liable only for their share</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>⚖️ General Average Principle</h4>
+                    <p><strong>Revolutionary solidarity:</strong> When ships jettisoned cargo in emergencies, all parties (ship owners, cargo owners, underwriters) shared losses proportionally based on mathematical calculation</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>🌍 Global Commerce Enabler</h4>
+                    <p><strong>Colonial expansion:</strong> Insurance transformed catastrophic individual risks into manageable, distributed costs—making global trade systematically possible</p>
+                </div>
+            </div>
+            
+            <div class="detail-box auto-reveal">
+                <p><strong>Economic transformation:</strong> Enabled merchants to operate with limited capital exposure while attracting investment from those without maritime expertise—breaking the family-based limitations of medieval commerce.</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Stock Exchange Innovation -->
+        <div class="slide hidden" data-reveal-count="5">
+            <h2>📈 Amsterdam Stock Exchange: Liquid Capital Markets</h2>
+            
+            <div class="innovation-detail auto-reveal">
+                <h3>World's First Secondary Market (1602)</h3>
+                <p>The Amsterdam Stock Exchange created <strong>transferable shares</strong> in permanent companies, solving the tension between long-term capital needs and investor liquidity preferences</p>
+            </div>
+            
+            <div class="innovation-grid">
+                <div class="innovation-card auto-reveal">
+                    <h4>🔄 Secondary Market Revolution</h4>
+                    <p><strong>Innovation:</strong> Unlike temporary voyage partnerships, the Dutch East India Company (VOC) issued shares that could be continuously traded while maintaining perpetual existence<br>
+                    <strong>Impact:</strong> Investors could recover capital without waiting for voyage completion</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>💰 Price Discovery Process</h4>
+                    <p><strong>Market mechanism:</strong> Continuous trading revealed real-time valuations of corporate enterprises<br>
+                    <strong>Information:</strong> Share prices reflected collective assessment of business prospects</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>📊 Financial Derivatives (1688)</h4>
+                    <p><strong>Sophisticated instruments:</strong> Options, futures, forward contracts, and margin buying developed within 86 years<br>
+                    <strong>Contemporary analysis:</strong> Joseph de la Vega's "Confusion of Confusions" documented complex speculative strategies</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>🏛️ Democratic Investment</h4>
+                    <p><strong>Social transformation:</strong> VOC's open subscription allowed ordinary citizens to participate in international trade previously restricted to wealthy merchant elites</p>
+                </div>
+            </div>
+            
+            <div class="detail-box auto-reveal">
+                <p><strong>New social classes created:</strong> Professional traders, institutional investors, and financial intermediaries fundamentally altered the social structure of commercial cities like Amsterdam.</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Joint-Stock Company Revolution -->
+        <div class="slide hidden" data-reveal-count="5">
+            <h2>🏢 Joint-Stock Companies: Corporate Revolution</h2>
+            
+            <div class="innovation-detail auto-reveal">
+                <h3>Dutch East India Company (1602): The First Modern Corporation</h3>
+                <p>Created entirely new business organization solving medieval partnership limitations through <strong>limited liability</strong>, <strong>transferable shares</strong>, and <strong>perpetual existence</strong></p>
+            </div>
+            
+            <div class="innovation-grid">
+                <div class="innovation-card auto-reveal">
+                    <h4>📋 Professional Management</h4>
+                    <p><strong>Separation innovation:</strong> "Heeren XVII" (Gentlemen of Seventeen) board separated ownership from operational control<br>
+                    <strong>Scale achieved:</strong> VOC employed nearly 1 million Europeans across 4,785 ships (1602-1796)</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>👑 Sovereign Powers</h4>
+                    <p><strong>Unprecedented authority:</strong> VOC received power to wage war, make treaties, establish colonies—essentially creating private states<br>
+                    <strong>Problem solved:</strong> European states lacked resources for global operations</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>💼 Limited Liability Innovation</h4>
+                    <p><strong>Risk revolution:</strong> Shareholders only liable for investment amount, not company debts<br>
+                    <strong>Capital mobilization:</strong> Enabled investment from those unwilling to risk total personal wealth</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>🌐 Global Coordination</h4>
+                    <p><strong>Organizational capability:</strong> Maintained strategic coherence across multiple continents while operating at unprecedented scales<br>
+                    <strong>Economic relationships:</strong> Created permanent, large-scale enterprises with investor confidence</p>
+                </div>
+            </div>
+            
+            <div class="detail-box auto-reveal">
+                <p><strong>Revolutionary impact:</strong> Joint-stock companies enabled risk distribution across hundreds of investors, capital accumulation on unprecedented scales, and global coordination of commercial activities—solving the fundamental problem of organizing permanent, large-scale enterprises.</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Spanish Silver Global Currency -->
+        <div class="slide hidden" data-reveal-count="5">
+            <h2>🪙 Spanish Silver: The First Global Currency</h2>
+            
+            <div class="innovation-detail auto-reveal">
+                <h3>Industrial-Scale Precious Metals Revolution (1545-1800)</h3>
+                <p>Created the world's first truly global monetary system through <strong>mercury amalgamation</strong> technology that multiplied silver output by six times</p>
+            </div>
+            
+            <div class="innovation-grid">
+                <div class="innovation-card auto-reveal">
+                    <h4>⚖️ Universal Currency Standard</h4>
+                    <p><strong>Spanish peso de ocho:</strong> 25.561 grams fine silver, accepted from London to Beijing<br>
+                    <strong>Problem solved:</strong> Monetary fragmentation that limited international trade to barter systems</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>🌍 Global Production Scale</h4>
+                    <p><strong>Output revolution:</strong> 150,000 tons of silver (1500-1800), 80% of world production<br>
+                    <strong>Geographic integration:</strong> 30% ended up in China, creating unprecedented global economic integration</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>🚢 Manila Galleon Trade</h4>
+                    <p><strong>Trade networks:</strong> Connected Americas, Europe, and Asia through standardized currency<br>
+                    <strong>Economic integration:</strong> Enabled international capital flows and integrated global pricing</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>🏮 Chinese Monetary Crisis Solution</h4>
+                    <p><strong>Global impact:</strong> Provided stable currency when China's paper currency system collapsed<br>
+                    <strong>Scale:</strong> Enabled tax system serving one-quarter of world's population</p>
+                </div>
+            </div>
+            
+            <div class="detail-box auto-reveal">
+                <p><strong>Revolutionary significance:</strong> Spanish silver created the monetary infrastructure that made systematic global commerce possible, establishing standardized exchange rates and enabling international capital flows for the first time in human history.</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Commercial Law and Integration -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>⚖️ Commercial Law: Legal Infrastructure for Capitalism</h2>
+            
+            <div class="innovation-detail auto-reveal">
+                <h3>Legal Frameworks for Market Relationships</h3>
+                <p>Commercial law innovations created the legal infrastructure necessary for capitalist economic relationships to function reliably within feudal political systems</p>
+            </div>
+            
+            <div class="innovation-grid">
+                <div class="innovation-card auto-reveal">
+                    <h4>📜 Negotiable Instruments</h4>
+                    <p><strong>Legal innovation:</strong> Bills of exchange became transferable obligations with "holder in due course" rights<br>
+                    <strong>Impact:</strong> Enabled long-distance trade without physical money transport</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>🏛️ Corporate Legal Personality</h4>
+                    <p><strong>Revolutionary concept:</strong> Companies could sue/be sued as separate entities with perpetual existence<br>
+                    <strong>Capital mobilization:</strong> Limited liability enabled risk-pooling while protecting investors</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>🏡 Private Property Rights</h4>
+                    <p><strong>Enclosure Movement:</strong> Converted communal lands into private property for commercial use<br>
+                    <strong>Mobilization:</strong> Land became capital within market-based legal frameworks</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>🤝 Contract Enforcement</h4>
+                    <p><strong>Market security:</strong> Standardized legal procedures across jurisdictions<br>
+                    <strong>Investment protection:</strong> Reliable frameworks for market relationships</p>
+                </div>
+            </div>
+            
+            <div class="connecting-thread auto-reveal">
+                <h3>The Commercial Revolution Complete</h3>
+                <p>These innovations together created the "Commercial Revolution"—transforming European society from feudal agricultural systems to market-based capitalist economies that enabled colonial expansion, global trade networks, and the institutional foundations for the Industrial Revolution.</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Revolutionary Impact and Colonial Connections -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>🔗 Revolutionary Impact: Building the Modern World</h2>
+            
+            <div class="auto-reveal">
+                <h3 style="text-align: center; color: #ffd700; margin: 1.5rem 0;">How These Innovations Enabled Global Transformation:</h3>
+                <div class="innovation-grid">
+                    <div class="innovation-card">
+                        <h4>📊 Colonial Expansion</h4>
+                        <p>Joint-stock companies provided organizational structures; insurance enabled global risk management; capital markets financed overseas ventures</p>
+                    </div>
+                    <div class="innovation-card">
+                        <h4>💰 Capital Accumulation</h4>
+                        <p>Stock exchanges democratized investment; banking systems mobilized savings; legal frameworks protected property rights</p>
+                    </div>
+                    <div class="innovation-card">
+                        <h4>🌍 Global Integration</h4>
+                        <p>Spanish silver created universal currency; commercial law standardized contracts; insurance distributed global risks</p>
+                    </div>
+                    <div class="innovation-card">
+                        <h4>🏭 Industrial Foundation</h4>
+                        <p>Corporate organization enabled large-scale manufacturing; capital markets funded technological innovation; global trade created mass markets</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="primary-source auto-reveal">
+                <h3>🎯 Connecting to Your Colonial Studies</h3>
+                <p style="color: #ffffff; font-size: 1.2rem;">The Virginia Company (1606), Massachusetts Bay Company (1629), and other colonial ventures were direct applications of these financial innovations. Joint-stock organization, risk distribution through investment, and legal frameworks for corporate governance made English colonial experiments possible—and created the economic tensions that will drive imperial crisis.</p>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <p><strong>Next Session:</strong> How did these capitalist economic relationships and constitutional political limits shape British imperial policy toward the American colonies?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousStep()" aria-label="Previous">← Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextStep()" aria-label="Next">Next →</button>
+    </div>
+
+    <!-- Progress indicator -->
+    <div class="progress-indicator" id="progressIndicator">
+        Step 1 of 3
+    </div>
+
+    <!-- Slide Indicators -->
+    <div class="slide-indicator" role="tablist" aria-label="Slide navigation">
+        <div class="indicator-dot active" onclick="goToSlide(1)" role="tab" aria-label="Slide 1"></div>
+        <div class="indicator-dot" onclick="goToSlide(2)" role="tab" aria-label="Slide 2"></div>
+        <div class="indicator-dot" onclick="goToSlide(3)" role="tab" aria-label="Slide 3"></div>
+        <div class="indicator-dot" onclick="goToSlide(4)" role="tab" aria-label="Slide 4"></div>
+        <div class="indicator-dot" onclick="goToSlide(5)" role="tab" aria-label="Slide 5"></div>
+        <div class="indicator-dot" onclick="goToSlide(6)" role="tab" aria-label="Slide 6"></div>
+        <div class="indicator-dot" onclick="goToSlide(7)" role="tab" aria-label="Slide 7"></div>
+        <div class="indicator-dot" onclick="goToSlide(8)" role="tab" aria-label="Slide 8"></div>
+        <div class="indicator-dot" onclick="goToSlide(9)" role="tab" aria-label="Slide 9"></div>
+    </div>
+
+    <!-- Image tab (hidden by default, appears when relevant) -->
+    <button class="image-tab" id="imageTab" onclick="toggleImage()">💰 Trade Networks</button>
+
+    <!-- Modal for images -->
+    <div class="modal-image" id="modalImage" onclick="toggleImage()">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjMmM1NTMwIi8+Cjx0ZXh0IHg9IjQwMCIgeT0iMzAwIiBmaWxsPSIjZmZkNzAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+R2xvYmFsIFRyYWRlIE5ldHdvcmtzPC90ZXh0Pgo8dGV4dCB4PSI0MDAiIHk9IjMzMCIgZmlsbD0iI2ZmZDcwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE0MDAtMTcwMDwvdGV4dD4KPHN2ZyB4PSIxMDAiIHk9IjEwMCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIj4KPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMjUiIGZpbGw9IiNmZmQ3MDAiLz4KPHN2ZyB4PSI2MDAiIHk9IjQwMCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIj4KPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMjUiIGZpbGw9IiNmZmQ3MDAiLz4KPC9zdmc+" alt="Global Trade Networks Map" />
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        let currentStep = 1;
+        const totalSlides = 9;
+
+        // Get the number of reveal steps for current slide
+        function getRevealCount(slideNum) {
+            const slide = document.querySelector(`.slide:nth-child(${slideNum})`);
+            return parseInt(slide.getAttribute('data-reveal-count')) || 1;
+        }
+
+        // Reveal content progressively
+        function revealContent() {
+            const slide = document.querySelector('.slide.active');
+            const autoRevealElements = slide.querySelectorAll('.auto-reveal');
+            const progressiveLists = slide.querySelectorAll('.progressive-list');
+            
+            // Reveal auto-reveal elements
+            autoRevealElements.forEach((element, index) => {
+                if (index < currentStep) {
+                    element.classList.add('revealed');
+                }
+            });
+            
+            // Reveal progressive list items
+            progressiveLists.forEach(list => {
+                const items = list.querySelectorAll('li');
+                const itemsPerStep = Math.ceil(items.length / getRevealCount(currentSlide));
+                const itemsToShow = (currentStep - 1) * itemsPerStep + itemsPerStep;
+                
+                items.forEach((item, index) => {
+                    if (index < itemsToShow) {
+                        setTimeout(() => {
+                            item.classList.add('revealed');
+                        }, index * 100);
+                    }
+                });
+            });
+        }
+
+        // Update progress indicator
+        function updateProgress() {
+            const maxSteps = getRevealCount(currentSlide);
+            document.getElementById('progressIndicator').textContent = `Step ${currentStep} of ${maxSteps}`;
+        }
+
+        // Update continue indicator based on content state
+        function updateContinueIndicator() {
+            const nextBtn = document.getElementById('nextBtn');
+            const maxSteps = getRevealCount(currentSlide);
+            
+            if (currentStep < maxSteps) {
+                nextBtn.textContent = 'Continue →';
+            } else if (currentSlide < totalSlides) {
+                nextBtn.textContent = 'Next Slide →';
+            } else {
+                nextBtn.textContent = 'Complete';
+            }
+        }
+
+        // Move to next step or slide
+        function nextStep() {
+            const maxSteps = getRevealCount(currentSlide);
+            
+            if (currentStep < maxSteps) {
+                currentStep++;
+                revealContent();
+                updateProgress();
+                updateContinueIndicator();
+            } else if (currentSlide < totalSlides) {
+                goToSlide(currentSlide + 1);
+            }
+        }
+
+        // Move to previous step or slide
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                revealContent();
+                updateProgress();
+                updateContinueIndicator();
+            } else if (currentSlide > 1) {
+                goToSlide(currentSlide - 1);
+                // Go to last step of previous slide
+                currentStep = getRevealCount(currentSlide);
+            }
+        }
+
+        // Go to specific slide
+        function goToSlide(n) {
+            // Hide current slide
+            document.querySelector('.slide.active').classList.remove('active');
+            
+            // Show new slide
+            currentSlide = n;
+            currentStep = 1;
+            document.querySelector(`.slide:nth-child(${n})`).classList.add('active');
+            
+            // Update indicators
+            document.querySelectorAll('.indicator-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === n - 1);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = (currentSlide === 1 && currentStep === 1);
+            document.getElementById('nextBtn').disabled = (currentSlide === totalSlides && currentStep === getRevealCount(currentSlide));
+            
+            // Show/hide image tab based on slide
+            const imageTab = document.getElementById('imageTab');
+            if (currentSlide === 7 || currentSlide === 9) {
+                imageTab.classList.add('visible');
+            } else {
+                imageTab.classList.remove('visible');
+            }
+            
+            // Reset content and reveal first step
+            resetSlideContent();
+            revealContent();
+            updateProgress();
+            updateContinueIndicator();
+        }
+
+        // Reset slide content to hidden state
+        function resetSlideContent() {
+            const slide = document.querySelector('.slide.active');
+            const autoRevealElements = slide.querySelectorAll('.auto-reveal');
+            const progressiveItems = slide.querySelectorAll('.progressive-list li');
+            
+            autoRevealElements.forEach(element => {
+                element.classList.remove('revealed');
+            });
+            
+            progressiveItems.forEach(item => {
+                item.classList.remove('revealed');
+            });
+        }
+
+        // Toggle image modal
+        function toggleImage() {
+            const modal = document.getElementById('modalImage');
+            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                    e.preventDefault();
+                    const maxSteps = getRevealCount(currentSlide);
+                    if (currentStep >= maxSteps && currentSlide < totalSlides) {
+                        goToSlide(currentSlide + 1);
+                    } else {
+                        nextStep();
+                    }
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    if (currentStep <= 1 && currentSlide > 1) {
+                        goToSlide(currentSlide - 1);
+                    } else {
+                        previousStep();
+                    }
+                    break;
+                case '.':
+                case '>':
+                    e.preventDefault();
+                    if (currentSlide < totalSlides) {
+                        goToSlide(currentSlide + 1);
+                    }
+                    break;
+                case ',':
+                case '<':
+                    e.preventDefault();
+                    if (currentSlide > 1) {
+                        goToSlide(currentSlide - 1);
+                    }
+                    break;
+                case 'Enter':
+                    e.preventDefault();
+                    // Reveal all content on current slide
+                    currentStep = getRevealCount(currentSlide);
+                    revealContent();
+                    updateProgress();
+                    updateContinueIndicator();
+                    break;
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            revealContent();
+            updateProgress();
+            updateContinueIndicator();
+        });
+    </script>
+</body>
+</html>
