@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 3: Advanced Argumentation and Counterargument Mastery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #064e3b 0%, #065f46 25%, #047857 50%, #059669 75%, #10b981 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .slide-content {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .slide h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #10b981, #059669, #047857);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.1;
+        }
+
+        .slide h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #10b981;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .slide h3 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide p, .slide li {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #e2e8f0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question {
+            background: rgba(16, 185, 129, 0.15);
+            backdrop-filter: blur(20px);
+            border: 3px solid rgba(16, 185, 129, 0.4);
+            border-radius: 30px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 15px 50px rgba(16, 185, 129, 0.2);
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question h3 {
+            color: #10b981;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .objective-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3);
+            border-color: rgba(16, 185, 129, 0.6);
+        }
+
+        .objective-card:hover::before {
+            left: 100%;
+        }
+
+        .objective-card h3 {
+            color: #10b981;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .argument-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .argument-flow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #10b981, #f59e0b, #ef4444);
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        .flow-step {
+            background: linear-gradient(135deg, #ffffff, #f1f5f9);
+            color: #064e3b;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 3;
+            border: 3px solid rgba(16, 185, 129, 0.6);
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .flow-step:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .argument-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .weak-argument {
+            border-color: rgba(239, 68, 68, 0.4);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .strong-argument {
+            border-color: rgba(34, 197, 94, 0.4);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .weak-argument h3 {
+            color: #fca5a5;
+        }
+
+        .strong-argument h3 {
+            color: #86efac;
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            color: #ffffff;
+            padding: 2rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            font-weight: 600;
+            font-size: 1.4rem;
+            box-shadow: 0 10px 30px rgba(22, 163, 74, 0.4);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .thesis-examples {
+            background: rgba(99, 102, 241, 0.2);
+            border-left: 6px solid #6366f1;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .wrong-example {
+            background: rgba(239, 68, 68, 0.2);
+            border-left: 6px solid #ef4444;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 15px 15px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .correct-example {
+            background: rgba(34, 197, 94, 0.2);
+            border-left: 6px solid #22c55e;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 15px 15px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .example-label {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .wrong-example .example-label {
+            color: #fca5a5;
+        }
+
+        .correct-example .example-label {
+            color: #86efac;
+        }
+
+        .thesis-patterns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .pattern-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 2px solid rgba(147, 51, 234, 0.3);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .pattern-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.3);
+            border-color: rgba(147, 51, 234, 0.6);
+        }
+
+        .pattern-card h4 {
+            color: #c084fc;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .essay-structure {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .structure-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 1.2rem;
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .structure-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3);
+            border-color: rgba(16, 185, 129, 0.6);
+        }
+
+        .structure-card h4 {
+            color: #6ee7b7;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .refutation-strategies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .strategy-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3);
+            border-color: rgba(16, 185, 129, 0.6);
+        }
+
+        .strategy-card h4 {
+            color: #10b981;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(16, 185, 129, 0.9);
+            border: none;
+            color: #064e3b;
+            padding: 1.2rem 1.8rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-btn:hover {
+            background: rgba(16, 185, 129, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.6);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(16, 185, 129, 0.9);
+            color: #064e3b;
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+            z-index: 1000;
+        }
+
+        .emoji-large {
+            font-size: 4rem;
+            margin: 1rem 0;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+            color: #e2e8f0;
+        }
+
+        li {
+            margin: 0.8rem 0;
+            padding-left: 1rem;
+            color: #e2e8f0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        strong {
+            color: #10b981;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .step-indicator {
+            display: inline-block;
+            background: #10b981;
+            color: #064e3b;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-right: 1rem;
+            text-shadow: none;
+        }
+
+        .practice-box {
+            background: rgba(147, 51, 234, 0.2);
+            border: 2px solid rgba(147, 51, 234, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+        }
+
+        .practice-box h4 {
+            color: #c084fc;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .transition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .transition-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .transition-card:hover {
+            border-color: rgba(16, 185, 129, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2);
+        }
+
+        .transition-card h5 {
+            color: #10b981;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 1920px) {
+            .slide {
+                padding: 3rem 4rem;
+            }
+            
+            .slide-content {
+                max-width: 1600px;
+            }
+        }
+
+        @media (min-width: 2560px) {
+            .slide {
+                padding: 4rem 6rem;
+            }
+            
+            .slide-content {
+                max-width: 2000px;
+            }
+            
+            .objectives-grid {
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            }
+            
+            .essay-structure {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        @media (max-height: 800px) {
+            .slide {
+                padding: 1rem 2rem;
+                justify-content: flex-start;
+                padding-top: 2rem;
+            }
+            
+            .slide h1 {
+                font-size: clamp(2rem, 4vw, 3rem);
+                margin-bottom: 0.5rem;
+            }
+            
+            .slide h2 {
+                font-size: clamp(1.5rem, 3vw, 2.5rem);
+                margin-bottom: 1rem;
+            }
+            
+            .objectives-grid,
+            .essay-structure,
+            .comparison-grid {
+                gap: 1rem;
+                margin: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 13</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="reveal-btn" onclick="toggleRevealAll()">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1 class="auto-reveal">Week 3: Advanced Argumentation & Counterargument Mastery</h1>
+            <div class="emoji-large auto-reveal">⚖️</div>
+            <div class="central-question auto-reveal">
+                <h3>Building Sophisticated Academic Arguments</h3>
+                <p><em>Strengthen your arguments by acknowledging and responding to opposing viewpoints</em></p>
+            </div>
+            <div class="argument-flow auto-reveal">
+                <div class="flow-step">Identify Opposition</div>
+                <div class="flow-step">Present Fairly</div>
+                <div class="flow-step">Refute with Evidence</div>
+                <div class="flow-step">Strengthen Argument</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Learning Objectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Session Objectives</h2>
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h3>🔍 Identify Counterarguments</h3>
+                    <p>Find and present opposing viewpoints professionally and accurately using credible sources</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>💪 Refute with Evidence</h3>
+                    <p>Respond to opposing views using logical reasoning and stronger evidence rather than dismissal</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>📝 Advanced Thesis Patterns</h3>
+                    <p>Write sophisticated thesis statements that acknowledge complexity and multiple perspectives</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>📋 Multi-Paragraph Essays</h3>
+                    <p>Organize complex arguments with counterargument integration across 6+ paragraph essays</p>
+                </div>
+            </div>
+            <div class="central-question auto-reveal">
+                <h3>Central Question</h3>
+                <p><em>"How do we strengthen our arguments by acknowledging and responding to opposing viewpoints?"</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Simple vs Complex Arguments -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>💪 What Makes Arguments Stronger?</h2>
+            
+            <div class="comparison-grid">
+                <div class="argument-card weak-argument auto-reveal">
+                    <h3>❌ Weak Academic Arguments</h3>
+                    <ul>
+                        <li>Only present one perspective</li>
+                        <li>Ignore obvious objections</li>
+                        <li>Assume everyone agrees</li>
+                        <li>Appear naive or uninformed</li>
+                    </ul>
+                    <div class="auto-reveal" style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.2); border-radius: 10px;">
+                        <strong>Example:</strong> "Schools should require uniforms because they reduce distractions."
+                    </div>
+                </div>
+                
+                <div class="argument-card strong-argument auto-reveal">
+                    <h3>✅ Strong Academic Arguments</h3>
+                    <ul>
+                        <li>Acknowledge multiple perspectives</li>
+                        <li>Address reasonable objections</li>
+                        <li>Show awareness of complexity</li>
+                        <li>Appear sophisticated and credible</li>
+                    </ul>
+                    <div class="auto-reveal" style="margin-top: 1rem; padding: 1rem; background: rgba(34, 197, 94, 0.2); border-radius: 10px;">
+                        <strong>Example:</strong> "Although critics argue uniforms limit self-expression, schools should require them because they reduce socioeconomic distractions, improve focus, and create safer environments that outweigh concerns about individual expression."
+                    </div>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Academic Truth:</strong> Acknowledging opposing views makes your argument MORE convincing, not weaker. It shows you understand the complexity and have considered alternatives.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Finding Counterarguments -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔍 Counterargument Research Strategy</h2>
+            
+            <div class="formula-box auto-reveal">
+                <h3>Where to Find Opposing Views</h3>
+                <p><span class="step-indicator">1</span><strong>Academic sources:</strong> Scholarly articles with different interpretations</p>
+                <p><span class="step-indicator">2</span><strong>Primary sources:</strong> Documents suggesting alternative motivations</p>
+                <p><span class="step-indicator">3</span><strong>Expert opinions:</strong> Credible authorities who disagree</p>
+                <p><span class="step-indicator">4</span><strong>Historical evidence:</strong> Facts supporting different conclusions</p>
+            </div>
+
+            <div class="thesis-examples auto-reveal">
+                <h4>Columbus Example: Finding Counter-Evidence</h4>
+                <p><strong>Your Thesis:</strong> "Columbus was primarily motivated by economic factors"</p>
+                
+                <div style="margin-top: 1.5rem;">
+                    <p><strong>Potential Counter-Evidence:</strong></p>
+                    <ul>
+                        <li>Columbus's letters emphasizing Christian conversion</li>
+                        <li>References to spreading faith in royal contracts</li>
+                        <li>Geographic curiosity in his writings</li>
+                        <li>Scientific interests in navigation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="wrong-example auto-reveal">
+                <div class="example-label">🚫 Counterarguments to Avoid</div>
+                <ul>
+                    <li><strong>Straw man arguments:</strong> Deliberately weak versions</li>
+                    <li><strong>Extreme positions:</strong> Fringe or unreasonable views</li>
+                    <li><strong>Unsupported claims:</strong> Arguments without credible evidence</li>
+                    <li><strong>Personal attacks:</strong> Emotional rather than logical responses</li>
+                </ul>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Practice Task</h4>
+                <p>Using your Week 2 thesis statement, identify the strongest potential counterargument with credible evidence. Choose opposition that reasonable people might actually believe!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Professional Presentation -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📝 Professional Counterargument Presentation</h2>
+            
+            <div class="formula-box auto-reveal">
+                <h3>Three-Step Presentation Formula</h3>
+                <p><span class="step-indicator">1</span><strong>Acknowledge Respectfully:</strong> "Critics argue that..." / "Some historians contend..."</p>
+                <p><span class="step-indicator">2</span><strong>Present Fairly:</strong> State opposing view accurately with their strongest evidence</p>
+                <p><span class="step-indicator">3</span><strong>Transition to Response:</strong> "However, this interpretation overlooks..."</p>
+            </div>
+
+            <div class="correct-example auto-reveal">
+                <div class="example-label">✅ Professional Counterargument Example</div>
+                <p><em>"Some historians argue that Columbus was primarily motivated by religious mission rather than economic gain, pointing to his frequent references to spreading Christianity and converting indigenous peoples in his letters to the Spanish crown. This interpretation finds support in Columbus's own writings, where he describes his desire to 'bring the Gospel to unknown lands' and his belief that God had chosen him for this sacred purpose. However, this religious interpretation overlooks the predominant focus on material wealth throughout Columbus's correspondence..."</em></p>
+            </div>
+
+            <div class="wrong-example auto-reveal">
+                <div class="example-label">❌ Unprofessional Approaches</div>
+                <ul>
+                    <li><strong>Dismissive:</strong> "Opponents wrongly believe..."</li>
+                    <li><strong>Insulting:</strong> "Some people stupidly think..."</li>
+                    <li><strong>Straw man:</strong> Presenting weak version of opposing view</li>
+                    <li><strong>Emotional:</strong> Using feelings rather than evidence</li>
+                </ul>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Presentation Practice</h4>
+                <p>Write one counterargument paragraph for your thesis using the three-step formula. Present the opposing view fairly and respectfully!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Advanced Thesis Patterns -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔧 Advanced Thesis Patterns</h2>
+            
+            <div class="thesis-patterns">
+                <div class="pattern-card auto-reveal">
+                    <h4>Pattern 1: Acknowledgment + Argument</h4>
+                    <p><strong>Formula:</strong> "Although [counterargument], [main argument] because [reasons]."</p>
+                    <div class="correct-example" style="margin-top: 1rem;">
+                        <p><em>"Although Columbus described his voyages in religious terms, his expeditions were primarily economic ventures because his contracts emphasized material rewards, his letters focused on gold and spices, and his funding proposals stressed commercial benefits."</em></p>
+                    </div>
+                </div>
+                
+                <div class="pattern-card auto-reveal">
+                    <h4>Pattern 2: Comparative Complexity</h4>
+                    <p><strong>Formula:</strong> "While [factor X] played a role, [factor Y] was more significant because [reasons]."</p>
+                    <div class="correct-example" style="margin-top: 1rem;">
+                        <p><em>"While religious motivations influenced Columbus's public rhetoric, economic pressures were more significant in driving European exploration because trade route disruptions created urgent commercial needs and royal treasuries required new revenue sources."</em></p>
+                    </div>
+                </div>
+                
+                <div class="pattern-card auto-reveal">
+                    <h4>Pattern 3: Cause and Effect with Nuance</h4>
+                    <p><strong>Formula:</strong> "[Primary cause] led to [effect], though [secondary factors] also contributed by [mechanisms]."</p>
+                    <div class="correct-example" style="margin-top: 1rem;">
+                        <p><em>"Economic pressures led to accelerated European exploration in the 1490s, though technological advances and political competition also contributed by making overseas voyages more feasible and strategically necessary."</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Thesis Revision Challenge</h4>
+                <p>Revise your Week 1 thesis statement using one of these advanced patterns. Add acknowledgment of counterarguments or complexity to make your argument more sophisticated!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Essay Organization -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📋 Multi-Paragraph Essay Structure</h2>
+            
+            <div class="essay-structure">
+                <div class="structure-card auto-reveal">
+                    <h4>1️⃣ Introduction</h4>
+                    <ul>
+                        <li><strong>Hook</strong></li>
+                        <li><strong>Background</strong></li>
+                        <li><strong>Advanced Thesis</strong></li>
+                        <li><strong>Preview</strong></li>
+                    </ul>
+                </div>
+                <div class="structure-card auto-reveal">
+                    <h4>2️⃣ Body Paragraph 1</h4>
+                    <ul>
+                        <li><strong>Strongest Reason</strong></li>
+                        <li><strong>Evidence & Analysis</strong></li>
+                        <li><strong>Week 2 Skills</strong></li>
+                        <li><strong>Transition</strong></li>
+                    </ul>
+                </div>
+                <div class="structure-card auto-reveal">
+                    <h4>3️⃣ Body Paragraph 2</h4>
+                    <ul>
+                        <li><strong>Second Reason</strong></li>
+                        <li><strong>Evidence & Analysis</strong></li>
+                        <li><strong>Week 2 Skills</strong></li>
+                        <li><strong>Transition</strong></li>
+                    </ul>
+                </div>
+                <div class="structure-card auto-reveal">
+                    <h4>4️⃣ Body Paragraph 3</h4>
+                    <ul>
+                        <li><strong>Third Reason</strong></li>
+                        <li><strong>Evidence & Analysis</strong></li>
+                        <li><strong>Week 2 Skills</strong></li>
+                        <li><strong>Transition</strong></li>
+                    </ul>
+                </div>
+                <div class="structure-card auto-reveal">
+                    <h4>5️⃣ Counterargument</h4>
+                    <ul>
+                        <li><strong>Present Opposition</strong></li>
+                        <li><strong>Their Evidence</strong></li>
+                        <li><strong>Your Refutation</strong></li>
+                        <li><strong>Strengthen Thesis</strong></li>
+                    </ul>
+                </div>
+                <div class="structure-card auto-reveal">
+                    <h4>6️⃣ Conclusion</h4>
+                    <ul>
+                        <li><strong>Restate Thesis</strong></li>
+                        <li><strong>Synthesis</strong></li>
+                        <li><strong>Implications</strong></li>
+                        <li><strong>Significance</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Organization Strategy:</strong> Build your strongest case with 3 supporting paragraphs, then address the most serious objection to show why your argument still succeeds despite opposition.
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Essay Planning Workshop</h4>
+                <p>Create a complete 6-paragraph essay outline using your advanced thesis and all skills from Weeks 1-3!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Refutation Strategies -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>💪 Evidence-Based Refutation Strategies</h2>
+            
+            <div class="refutation-strategies">
+                <div class="strategy-card auto-reveal">
+                    <h4>🥇 Strategy 1: Superior Evidence</h4>
+                    <p>Present stronger, more recent, or more comprehensive evidence</p>
+                    <ul>
+                        <li>Use primary sources vs. secondary interpretations</li>
+                        <li>Cite more extensive research</li>
+                        <li>Reference recent scholarly consensus</li>
+                    </ul>
+                    <p><strong>Example:</strong> "However, more extensive analysis of Columbus's financial records reveals..."</p>
+                </div>
+                
+                <div class="strategy-card auto-reveal">
+                    <h4>🥈 Strategy 2: Alternative Interpretation</h4>
+                    <p>Show how the same evidence supports your argument better</p>
+                    <ul>
+                        <li>Reframe opposing evidence</li>
+                        <li>Provide different context</li>
+                        <li>Explain strategic motivations</li>
+                    </ul>
+                    <p><strong>Example:</strong> "While Columbus did mention religion, these references served strategic purposes..."</p>
+                </div>
+                
+                <div class="strategy-card auto-reveal">
+                    <h4>🥉 Strategy 3: Scope and Significance</h4>
+                    <p>Acknowledge partial validity but show your argument is more complete</p>
+                    <ul>
+                        <li>Accept minor role of opposing factor</li>
+                        <li>Demonstrate primary factor more important</li>
+                        <li>Show comprehensive explanation</li>
+                    </ul>
+                    <p><strong>Example:</strong> "Although religious factors played a role, economic motivations were more decisive because..."</p>
+                </div>
+            </div>
+
+            <div class="wrong-example auto-reveal">
+                <div class="example-label">🚫 Weak Refutation Approaches</div>
+                <ul>
+                    <li>Dismissing opposing views without evidence</li>
+                    <li>Attacking people rather than arguments</li>
+                    <li>Ignoring the strongest counter-evidence</li>
+                    <li>Using emotional rather than logical responses</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Refutation Example -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📝 Complete Refutation Example</h2>
+            
+            <div class="correct-example auto-reveal">
+                <div class="example-label">✅ Evidence-Based Refutation Paragraph</div>
+                <p><em>"While Columbus's religious rhetoric suggests spiritual motivations, a closer examination of his private correspondence reveals these references were strategically designed to appeal to royal sensibilities rather than reflect genuine primary motivation. Contemporary records show that Columbus's detailed financial negotiations demanded 10% of all wealth discovered, a percentage that far exceeded typical religious mission compensation. Furthermore, his personal letters to investors focused extensively on potential profits while mentioning conversion only when addressing Church officials, suggesting religious language was diplomatic necessity rather than driving purpose. This pattern of audience-specific messaging demonstrates that economic incentives remained Columbus's consistent priority regardless of his public religious proclamations."</em></p>
+            </div>
+
+            <div class="thesis-examples auto-reveal">
+                <h4>Refutation Structure Breakdown</h4>
+                <p><span class="step-indicator">1</span><strong>Acknowledge:</strong> "While Columbus's religious rhetoric suggests..."</p>
+                <p><span class="step-indicator">2</span><strong>Counter-evidence:</strong> Financial negotiations, audience-specific letters</p>
+                <p><span class="step-indicator">3</span><strong>Alternative interpretation:</strong> Strategic vs. genuine motivation</p>
+                <p><span class="step-indicator">4</span><strong>Conclusion:</strong> Economic priorities remained consistent</p>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Refutation Writing Practice</h4>
+                <p>Write a complete counterargument + refutation paragraph using one of the three refutation strategies. Make sure to:</p>
+                <ul>
+                    <li>Present the opposing view fairly</li>
+                    <li>Use evidence to refute, not dismiss</li>
+                    <li>Maintain professional academic tone</li>
+                    <li>Connect back to your thesis</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Advanced Transitions -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔗 Advanced Academic Transitions</h2>
+            
+            <div class="transition-grid">
+                <div class="transition-card auto-reveal">
+                    <h5>For Counterarguments</h5>
+                    <ul>
+                        <li>"Despite these arguments..."</li>
+                        <li>"While this perspective has merit..."</li>
+                        <li>"Although critics raise valid concerns..."</li>
+                        <li>"Proponents of this view contend..."</li>
+                    </ul>
+                </div>
+                
+                <div class="transition-card auto-reveal">
+                    <h5>For Refutations</h5>
+                    <ul>
+                        <li>"However, this interpretation overlooks..."</li>
+                        <li>"More comprehensive evidence suggests..."</li>
+                        <li>"While partially valid, this argument fails to..."</li>
+                        <li>"The preponderance of evidence demonstrates..."</li>
+                    </ul>
+                </div>
+                
+                <div class="transition-card auto-reveal">
+                    <h5>For Synthesis</h5>
+                    <ul>
+                        <li>"Ultimately, the evidence supports..."</li>
+                        <li>"When examined comprehensively..."</li>
+                        <li>"The strength of this argument lies in..."</li>
+                        <li>"These multiple perspectives confirm that..."</li>
+                    </ul>
+                </div>
+                
+                <div class="transition-card auto-reveal">
+                    <h5>For Complexity</h5>
+                    <ul>
+                        <li>"While acknowledging the complexity..."</li>
+                        <li>"Despite various contributing factors..."</li>
+                        <li>"Though multiple interpretations exist..."</li>
+                        <li>"Recognizing nuanced perspectives..."</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Transition Strategy:</strong> Use sophisticated language that shows respect for opposing views while clearly indicating your argument is stronger. Avoid dismissive or confrontational language.
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Transition Practice</h4>
+                <p>Practice writing smooth transitions between your outline sections using sophisticated academic language that maintains professional tone throughout!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Cross-Subject Applications -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔄 Universal Counterargument Skills</h2>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h3>🧪 Science Essays</h3>
+                    <ul>
+                        <li><strong>Alternative hypotheses:</strong> Acknowledge other explanations</li>
+                        <li><strong>Experimental limitations:</strong> Address potential objections</li>
+                        <li><strong>Example:</strong> "While some studies suggest X, the majority of evidence supports Y because..."</li>
+                    </ul>
+                </div>
+                
+                <div class="objective-card auto-reveal">
+                    <h3>📚 English Literature</h3>
+                    <ul>
+                        <li><strong>Character interpretations:</strong> Acknowledge alternative readings</li>
+                        <li><strong>Theme analysis:</strong> Address obvious counter-readings</li>
+                        <li><strong>Example:</strong> "Although readers might interpret this scene as X, the broader context suggests Y..."</li>
+                    </ul>
+                </div>
+                
+                <div class="objective-card auto-reveal">
+                    <h3>🌍 Social Studies</h3>
+                    <ul>
+                        <li><strong>Policy debates:</strong> Present multiple stakeholder perspectives</li>
+                        <li><strong>Solution proposals:</strong> Address obvious objections</li>
+                        <li><strong>Example:</strong> "Critics of this policy argue X, but implementation evidence shows Y..."</li>
+                    </ul>
+                </div>
+                
+                <div class="objective-card auto-reveal">
+                    <h3>💼 Any Academic Subject</h3>
+                    <ul>
+                        <li><strong>Complexity acknowledgment:</strong> Show awareness of nuanced issues</li>
+                        <li><strong>Professional disagreement:</strong> Respectful handling of opposing views</li>
+                        <li><strong>Credibility building:</strong> Demonstrate sophisticated thinking</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Universal Truth:</strong> Strong academic arguments in ALL subjects acknowledge complexity and address reasonable objections professionally. This skill separates high school from college-level thinking.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Writing Workshop -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>✍️ Complete Essay Construction Workshop</h2>
+            
+            <div class="practice-box auto-reveal">
+                <h4>Individual Writing Task</h4>
+                <p>Create a complete 6-paragraph essay outline integrating all three weeks' skills:</p>
+                
+                <div style="margin-top: 1.5rem;">
+                    <h5>Requirements Checklist:</h5>
+                    <ul>
+                        <li>✓ Introduction with advanced thesis acknowledging complexity</li>
+                        <li>✓ Three body paragraphs with Week 2 evidence integration</li>
+                        <li>✓ One counterargument + refutation paragraph</li>
+                        <li>✓ Conclusion synthesizing argument strength</li>
+                        <li>✓ Professional transitions throughout</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="argument-flow auto-reveal">
+                <div class="flow-step">Week 1<br>Structure</div>
+                <div class="flow-step">Week 2<br>Evidence</div>
+                <div class="flow-step">Week 3<br>Complexity</div>
+                <div class="flow-step">Complete<br>Essay</div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <h3>Teacher Conference Areas</h3>
+                <p>While you outline, I'll meet with each of you to discuss:</p>
+                <ul>
+                    <li><strong>Thesis sophistication:</strong> Does it acknowledge complexity appropriately?</li>
+                    <li><strong>Counterargument fairness:</strong> Are opposing views presented respectfully?</li>
+                    <li><strong>Refutation strength:</strong> Is response evidence-based and logical?</li>
+                    <li><strong>Overall organization:</strong> Does structure support complex argument?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Assessment and Next Steps -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Assessment and Next Steps</h2>
+            
+            <div class="practice-box auto-reveal">
+                <h4>✍️ Exit Assessment</h4>
+                <p>Demonstrate mastery by completing:</p>
+                <ul>
+                    <li>✓ Advanced thesis statement using one of the three complex patterns</li>
+                    <li>✓ One counterargument + refutation paragraph with evidence</li>
+                    <li>✓ Professional academic transitions and vocabulary</li>
+                    <li>✓ Complete 6-paragraph essay outline</li>
+                </ul>
+            </div>
+
+            <div class="refutation-strategies auto-reveal">
+                <h4>Self-Assessment Questions</h4>
+                <div class="strategy-card">
+                    <p><span class="step-indicator">✓</span>Can I identify and present counterarguments fairly and professionally?</p>
+                    <p><span class="step-indicator">✓</span>Do I refute opposing views with evidence rather than dismissal?</p>
+                    <p><span class="step-indicator">✓</span>Does my thesis acknowledge complexity while maintaining clear argument?</p>
+                    <p><span class="step-indicator">✓</span>Can I organize complex multi-paragraph arguments logically?</p>
+                </div>
+            </div>
+
+            <div class="argument-flow auto-reveal">
+                <div class="flow-step">Week 1<br>Structure & Thesis</div>
+                <div class="flow-step">Week 2<br>Research & Sources</div>
+                <div class="flow-step">Week 3<br>Complex Arguments</div>
+                <div class="flow-step">Week 4<br>Voice & Revision</div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>🚀 Week 4 Preview</h3>
+                <p><em>"How do we refine our complex arguments to sound sophisticated and professional? We'll focus on academic voice refinement and systematic revision strategies!"</em></p>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Week 3 Success:</strong> You now write sophisticated academic arguments that acknowledge complexity and address opposition professionally—the mark of college-level thinking and high school academic success!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+        let allRevealed = false;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            allRevealed = false;
+            resetReveal();
+            updateRevealButton();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                
+                if (revealIndex >= elements.length) {
+                    allRevealed = true;
+                    updateRevealButton();
+                }
+                return true;
+            }
+            return false;
+        }
+
+        function toggleRevealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (!allRevealed) {
+                // Reveal all remaining elements
+                for (let i = revealIndex; i < elements.length; i++) {
+                    elements[i].classList.add('show');
+                }
+                revealIndex = elements.length;
+                allRevealed = true;
+            } else {
+                // Hide all elements
+                elements.forEach(el => {
+                    el.classList.remove('show');
+                });
+                revealIndex = 0;
+                allRevealed = false;
+            }
+            updateRevealButton();
+        }
+
+        function updateRevealButton() {
+            const btn = document.getElementById('reveal-btn');
+            btn.textContent = allRevealed ? 'Hide All' : 'Reveal All';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                const revealed = revealNextElement();
+                if (!revealed && allRevealed) {
+                    nextSlide();
+                }
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (revealIndex === 0) {
+                    previousSlide();
+                } else {
+                    // Go back one element
+                    const currentSlideElement = slides[currentSlide];
+                    const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+                    if (revealIndex > 0) {
+                        revealIndex--;
+                        elements[revealIndex].classList.remove('show');
+                        allRevealed = false;
+                        updateRevealButton();
+                    }
+                }
+            } else if (e.key === ' ') {
+                e.preventDefault();
+                revealNextElement();
+            }
+        });
+
+        // Click anywhere to reveal next element
+        document.addEventListener('click', function(e) {
+            // Skip navigation elements
+            if (e.target.closest('.navigation') || 
+                e.target.closest('.slide-indicator')) {
+                return;
+            }
+            
+            const currentSlideElement = slides[currentSlide];
+            if (currentSlideElement && !currentSlideElement.classList.contains('hidden')) {
+                revealNextElement();
+            }
+        });
+
+        // Initialize
+        document.getElementById('slide-counter').textContent = `1 / ${totalSlides}`;
+        updateRevealButton();
+    </script>
+</body>
+</html>

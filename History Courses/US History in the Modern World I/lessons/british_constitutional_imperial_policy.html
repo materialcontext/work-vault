@@ -358,6 +358,17 @@
             transform: translateX(0);
         }
 
+        .ping-pong-list li {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .ping-pong-list li.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
         /* Navigation */
         .navigation {
             position: fixed;
@@ -503,7 +514,7 @@
             <div class="comparison-grid">
                 <div class="comparison-card auto-reveal">
                     <h4>📊 Previous Lessons Established</h4>
-                    <ul class="progressive-list">
+                    <ul class="ping-pong-list">
                         <li><strong>Capitalist innovations:</strong> Joint-stock companies, banking, insurance systems</li>
                         <li><strong>Colonial experiments:</strong> Virginia joint-stock, Massachusetts charter, Pennsylvania proprietary</li>
                         <li><strong>Economic power:</strong> Merchant bourgeoisie gaining political influence</li>
@@ -513,7 +524,7 @@
                 
                 <div class="comparison-card auto-reveal">
                     <h4>🏛️ Now We Add Constitutional Framework</h4>
-                    <ul class="progressive-list">
+                    <ul class="ping-pong-list">
                         <li><strong>Parliamentary sovereignty:</strong> Limits on royal power, merchant protection</li>
                         <li><strong>Imperial regulation:</strong> Navigation Acts systematize trade control</li>
                         <li><strong>Colonial governance:</strong> Three models reflecting constitutional principles</li>
@@ -527,7 +538,51 @@
             </div>
         </div>
 
-        <!-- Slide 3: The Glorious Revolution (1688) -->
+        <!-- Slide 3: Defining British Constitutional Monarchy -->
+        <div class="slide hidden" data-reveal-count="5">
+            <h2>🏛️ What Is Constitutional Monarchy?</h2>
+            
+            <div class="constitutional-development auto-reveal">
+                <h3>A Revolutionary System of Balanced Government</h3>
+                <p>Constitutional monarchy limits royal power through <strong>law</strong> and divides authority between <strong>Crown</strong>, <strong>Parliament</strong>, and <strong>Courts</strong>—creating a system where no single institution has absolute power</p>
+            </div>
+            
+            <div class="innovation-grid">
+                <div class="innovation-card auto-reveal">
+                    <h4>👑 Crown Powers (Limited)</h4>
+                    <p><strong>Executive authority:</strong> Appoints ministers and governors<br>
+                    <strong>Military command:</strong> Commands armed forces in wartime<br>
+                    <strong>Constitutional limits:</strong> Cannot tax, make laws, or maintain armies without Parliament</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>🏛️ Parliamentary Powers (Supreme)</h4>
+                    <p><strong>Legislative authority:</strong> Makes all laws for the realm<br>
+                    <strong>Financial control:</strong> Controls all taxation and government spending<br>
+                    <strong>Oversight power:</strong> Can impeach royal ministers for misconduct</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>⚖️ Court Powers (Independent)</h4>
+                    <p><strong>Legal interpretation:</strong> Applies common law and statutes<br>
+                    <strong>Due process:</strong> Protects subjects from arbitrary imprisonment<br>
+                    <strong>Property rights:</strong> Enforces contracts and protects private property</p>
+                </div>
+                
+                <div class="innovation-card auto-reveal">
+                    <h4>🌍 Imperial Application</h4>
+                    <p><strong>Colonial governance:</strong> System applied to overseas territories<br>
+                    <strong>Merchant protection:</strong> Commercial interests represented in Parliament<br>
+                    <strong>Legal framework:</strong> English common law extended to colonies</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <p>How does this balanced system of government create both opportunities and problems for governing overseas colonies?</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: The Glorious Revolution (1688) -->
         <div class="slide hidden" data-reveal-count="5">
             <h2>👑 The Glorious Revolution: Constitutional Monarchy Established</h2>
             
@@ -571,7 +626,7 @@
             </div>
         </div>
 
-        <!-- Slide 4: Primary Source - English Bill of Rights (1689) -->
+        <!-- Slide 5: Primary Source - English Bill of Rights (1689) -->
         <div class="slide hidden" data-reveal-count="4">
             <h2>📜 Primary Source: English Bill of Rights (1689)</h2>
             
@@ -604,7 +659,7 @@
             </div>
         </div>
 
-        <!-- Slide 5: Navigation Acts - Imperial Economic Policy -->
+        <!-- Slide 6: Navigation Acts - Imperial Economic Policy -->
         <div class="slide hidden" data-reveal-count="5">
             <h2>🚢 Navigation Acts: Parliamentary Mercantilism</h2>
             
@@ -648,7 +703,7 @@
             </div>
         </div>
 
-        <!-- Slide 6: Three Models of Colonial Governance -->
+        <!-- Slide 7: Three Models of Colonial Governance -->
         <div class="slide hidden" data-reveal-count="4">
             <h2>🏛️ Colonial Governance: Constitutional Principles Applied</h2>
             
@@ -659,7 +714,7 @@
             <div class="colonial-governance">
                 <div class="governance-card auto-reveal">
                     <h4>👑 Royal Colonies</h4>
-                    <ul class="progressive-list">
+                    <ul class="ping-pong-list">
                         <li><strong>Direct control:</strong> King appoints governor and council</li>
                         <li><strong>Parliamentary model:</strong> Elected assembly with limited powers</li>
                         <li><strong>Imperial authority:</strong> Governor has veto over colonial legislation</li>
@@ -670,7 +725,7 @@
                 
                 <div class="governance-card auto-reveal">
                     <h4>📜 Charter Colonies</h4>
-                    <ul class="progressive-list">
+                    <ul class="ping-pong-list">
                         <li><strong>Corporate model:</strong> Based on joint-stock company charters</li>
                         <li><strong>Self-governance:</strong> Elect own governors and assemblies</li>
                         <li><strong>Constitutional rights:</strong> Claim full English legal protections</li>
@@ -681,7 +736,7 @@
                 
                 <div class="governance-card auto-reveal">
                     <h4>🏰 Proprietary Colonies</h4>
-                    <ul class="progressive-list">
+                    <ul class="ping-pong-list">
                         <li><strong>Private ownership:</strong> Individual proprietors own colony</li>
                         <li><strong>Feudal elements:</strong> Combines medieval lordship with modern governance</li>
                         <li><strong>Balanced authority:</strong> Proprietor appoints governor, settlers elect assembly</li>
@@ -697,7 +752,7 @@
             </div>
         </div>
 
-        <!-- Slide 7: Constitutional Tensions in Imperial Relations -->
+        <!-- Slide 8: Constitutional Tensions in Imperial Relations -->
         <div class="slide hidden" data-reveal-count="5">
             <h2>⚡ Constitutional Paradox: Rights vs. Authority</h2>
             
@@ -708,7 +763,7 @@
             <div class="comparison-grid">
                 <div class="comparison-card auto-reveal">
                     <h4>🏴󠁧󠁢󠁥󠁮󠁧󠁿 English Constitutional Settlement</h4>
-                    <ul class="progressive-list">
+                    <ul class="ping-pong-list">
                         <li><strong>Parliamentary sovereignty:</strong> Parliament supreme law-making authority</li>
                         <li><strong>No taxation without representation:</strong> MPs represent taxpayers' interests</li>
                         <li><strong>Subject rights:</strong> Due process, petition, property protection</li>
@@ -718,7 +773,7 @@
                 
                 <div class="comparison-card auto-reveal">
                     <h4>🇺🇸 Colonial Constitutional Claims</h4>
-                    <ul class="progressive-list">
+                    <ul class="ping-pong-list">
                         <li><strong>English subjects:</strong> Colonists claim same constitutional rights</li>
                         <li><strong>No representation:</strong> No colonial MPs in Parliament</li>
                         <li><strong>Local assemblies:</strong> Colonial legislatures model Parliament</li>
@@ -749,7 +804,7 @@
             </div>
         </div>
 
-        <!-- Slide 8: Economic Integration and Political Tensions -->
+        <!-- Slide 9: Economic Integration and Political Tensions -->
         <div class="slide hidden" data-reveal-count="4">
             <h2>💰 Economic Success Creates Political Problems</h2>
             
@@ -793,7 +848,7 @@
             </div>
         </div>
 
-        <!-- Slide 9: Connecting Thread and Next Steps -->
+        <!-- Slide 10: Connecting Thread and Next Steps -->
         <div class="slide hidden" data-reveal-count="3">
             <h2>🔗 From Constitutional Success to Imperial Crisis</h2>
             
@@ -852,6 +907,7 @@
         <div class="indicator-dot" onclick="goToSlide(7)" role="tab" aria-label="Slide 7"></div>
         <div class="indicator-dot" onclick="goToSlide(8)" role="tab" aria-label="Slide 8"></div>
         <div class="indicator-dot" onclick="goToSlide(9)" role="tab" aria-label="Slide 9"></div>
+        <div class="indicator-dot" onclick="goToSlide(10)" role="tab" aria-label="Slide 10"></div>
     </div>
 
     <!-- Image tab (hidden by default, appears when relevant) -->
@@ -865,7 +921,7 @@
     <script>
         let currentSlide = 1;
         let currentStep = 1;
-        const totalSlides = 9;
+        const totalSlides = 10;
 
         // Get the number of reveal steps for current slide
         function getRevealCount(slideNum) {
@@ -878,6 +934,7 @@
             const slide = document.querySelector('.slide.active');
             const autoRevealElements = slide.querySelectorAll('.auto-reveal');
             const progressiveLists = slide.querySelectorAll('.progressive-list');
+            const pingPongLists = slide.querySelectorAll('.ping-pong-list');
             
             // Reveal auto-reveal elements
             autoRevealElements.forEach((element, index) => {
@@ -886,7 +943,7 @@
                 }
             });
             
-            // Reveal progressive list items
+            // Reveal progressive list items (normal pattern)
             progressiveLists.forEach(list => {
                 const items = list.querySelectorAll('li');
                 const itemsPerStep = Math.ceil(items.length / getRevealCount(currentSlide));
@@ -899,6 +956,45 @@
                         }, index * 100);
                     }
                 });
+            });
+            
+            // Reveal ping-pong list items (alternating pattern between left and right)
+            pingPongLists.forEach((list, listIndex) => {
+                const items = list.querySelectorAll('li');
+                const totalItems = items.length;
+                const maxSteps = getRevealCount(currentSlide);
+                const itemsPerStep = Math.ceil(totalItems / (maxSteps - 1)); // -1 to account for auto-reveal elements
+                
+                // Calculate which items to show based on ping-pong pattern
+                if (currentStep > 1) { // Skip first step which is auto-reveal
+                    const effectiveStep = currentStep - 1;
+                    const totalListsInGrid = pingPongLists.length;
+                    
+                    // For comparison grids, alternate between left and right lists
+                    if (totalListsInGrid === 2) {
+                        const itemsToShow = effectiveStep * itemsPerStep;
+                        items.forEach((item, index) => {
+                            // Alternate revealing items: left list first item, then right list first item, etc.
+                            const shouldReveal = index < itemsToShow;
+                            if (shouldReveal) {
+                                const delay = listIndex === 0 ? index * 200 : (index * 200) + 100;
+                                setTimeout(() => {
+                                    item.classList.add('revealed');
+                                }, delay);
+                            }
+                        });
+                    } else {
+                        // For single lists or other configurations, use normal progression
+                        const itemsToShow = effectiveStep * itemsPerStep;
+                        items.forEach((item, index) => {
+                            if (index < itemsToShow) {
+                                setTimeout(() => {
+                                    item.classList.add('revealed');
+                                }, index * 100);
+                            }
+                        });
+                    }
+                }
             });
         }
 
@@ -971,7 +1067,7 @@
             
             // Show/hide image tab based on slide
             const imageTab = document.getElementById('imageTab');
-            if (currentSlide === 6 || currentSlide === 8) {
+            if (currentSlide === 7 || currentSlide === 9) {
                 imageTab.classList.add('visible');
             } else {
                 imageTab.classList.remove('visible');
@@ -989,12 +1085,17 @@
             const slide = document.querySelector('.slide.active');
             const autoRevealElements = slide.querySelectorAll('.auto-reveal');
             const progressiveItems = slide.querySelectorAll('.progressive-list li');
+            const pingPongItems = slide.querySelectorAll('.ping-pong-list li');
             
             autoRevealElements.forEach(element => {
                 element.classList.remove('revealed');
             });
             
             progressiveItems.forEach(item => {
+                item.classList.remove('revealed');
+            });
+            
+            pingPongItems.forEach(item => {
                 item.classList.remove('revealed');
             });
         }

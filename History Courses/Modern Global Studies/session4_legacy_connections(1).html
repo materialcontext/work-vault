@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colonial Legacies and Modern Connections</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .slide {
+            min-height: 100vh;
+            padding: 2rem 4%;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            display: block;
+        }
+
+        .slide.hidden {
+            display: none;
+        }
+
+        .slide-content {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+            margin: 0 auto;
+            min-height: calc(100vh - 4rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .slide h1 {
+            font-size: 4.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .slide h2 {
+            font-size: 3.5rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .slide h3 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
+        .slide p, .slide li {
+            font-size: 2rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .slide ul {
+            text-align: left;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 600;
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(251, 191, 36, 0.8);
+            border-color: rgba(251, 191, 36, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .emoji-large {
+            font-size: 8rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 30px rgba(255,255,255,0.5);
+        }
+
+        .lesson-focus {
+            background: rgba(251, 191, 36, 0.2);
+            border: 3px solid #fbbf24;
+            padding: 3rem;
+            border-radius: 25px;
+            margin: 3rem 0;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 15px 50px rgba(251, 191, 36, 0.3);
+        }
+
+        .lesson-focus h3 {
+            color: #fbbf24;
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+        }
+
+        .lesson-focus p {
+            font-size: 2.2rem;
+            font-style: italic;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .objective-card {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.3);
+            border-color: rgba(251, 191, 36, 0.6);
+        }
+
+        .objective-card:hover::before {
+            left: 100%;
+        }
+
+        .objective-card h4 {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .legacy-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .legacy-card {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .legacy-card.economic {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.2);
+        }
+
+        .legacy-card.social {
+            border-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.2);
+        }
+
+        .legacy-card.political {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.2);
+        }
+
+        .legacy-card.cultural {
+            border-color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.2);
+        }
+
+        .legacy-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.3);
+        }
+
+        .legacy-card h4 {
+            color: #fbbf24;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .modern-comparison {
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid #10b981;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .modern-comparison h4 {
+            color: #fbbf24;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .quote-highlight {
+            background: rgba(99, 102, 241, 0.3);
+            border-left: 6px solid #6366f1;
+            padding: 2.5rem;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            font-size: 2.4rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+        }
+
+        .connection-bridge {
+            background: rgba(99, 102, 241, 0.2);
+            border: 2px solid #6366f1;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .connection-bridge h4 {
+            color: #fbbf24;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .data-showcase {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .data-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            align-items: center;
+        }
+
+        .data-label {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #fbbf24;
+        }
+
+        .data-value {
+            font-size: 1.8rem;
+            text-align: right;
+        }
+
+        .assessment-prep {
+            background: rgba(220, 38, 38, 0.2);
+            border: 2px solid #dc2626;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .assessment-prep h4 {
+            color: #fbbf24;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .skills-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .skill-box {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .skill-box h5 {
+            color: #fbbf24;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .skill-box p {
+            font-size: 1.3rem;
+            margin-bottom: 0;
+        }
+
+        .timeline-visual {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline-items {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .timeline-item {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .timeline-year {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #fbbf24;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-event {
+            font-size: 1.3rem;
+            line-height: 1.3;
+        }
+
+        @media (max-width: 768px) {
+            .slide h1 { font-size: 3rem; }
+            .slide h2 { font-size: 2.5rem; }
+            .slide h3 { font-size: 2rem; }
+            .slide p, .slide li { font-size: 1.4rem; }
+            .objectives-grid { grid-template-columns: 1fr; }
+            .legacy-examples { grid-template-columns: 1fr; }
+            .slide { padding: 1rem 2%; }
+            .slide-content { 
+                padding: 1rem 0; 
+                min-height: calc(100vh - 2rem);
+            }
+            .data-row { grid-template-columns: 1fr; text-align: center; }
+            .timeline-items { flex-direction: column; }
+            .skills-summary { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 15</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="revealBtn" onclick="toggleRevealAll()">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title & Session Focus -->
+    <div class="slide">
+        <div class="slide-content">
+            <div class="emoji-large auto-reveal">🌍💫</div>
+            <h1 class="auto-reveal">Colonial Legacies in the Modern World</h1>
+            <h2 class="auto-reveal">From Past to Present</h2>
+            
+            <div class="lesson-focus auto-reveal">
+                <h3>Session 4: Synthesis & Assessment Prep</h3>
+                <p><em>"How Colonial Patterns Shape Today's Global Relationships"</em></p>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Completing Our Journey</h4>
+                <p>You've analyzed <strong>perspectives</strong>, <strong>consequences</strong>, and <strong>strategies</strong>. Now we connect colonial patterns to <strong>contemporary global relationships</strong>.</p>
+            </div>
+            
+            <div class="auto-reveal" style="margin-top: 3rem;">
+                <p style="font-size: 2.2rem; color: #ffffff;"><strong>50 Minutes</strong> • Synthesis & Assessment Preparation</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Learning Objectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Bringing It All Together</h2>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h4>🔗 Legacy Analysis</h4>
+                    <p>Identify how colonial patterns continue to influence modern global relationships</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🌍 Contemporary Connections</h4>
+                    <p>Analyze current Spain-Latin America relationships through historical lens</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>✍️ Assessment Preparation</h4>
+                    <p>Apply all analytical skills to prepare for comparing European vs. Indigenous perspectives</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🧠 Historical Thinking</h4>
+                    <p>Synthesize four sessions of learning into comprehensive understanding of colonialism's impact</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Our Learning Journey -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📚 Our Four-Session Journey</h2>
+            
+            <div class="timeline-visual auto-reveal">
+                <div class="timeline-items">
+                    <div class="timeline-item">
+                        <div class="timeline-year">Session 1</div>
+                        <div class="timeline-event">Multiple Perspectives<br>Who said what & why?</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">Session 2</div>
+                        <div class="timeline-event">Global Consequences<br>What changed & why?</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">Session 3</div>
+                        <div class="timeline-event">Colonial Strategies<br>Different approaches</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">Session 4</div>
+                        <div class="timeline-event">Modern Legacies<br>Past to present</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Skills You've Developed</h3>
+                <p style="font-size: 2rem;">You can now analyze historical events from multiple angles, trace cause-and-effect relationships, compare different approaches, and connect past patterns to present realities.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Colonial Legacies Framework -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🧩 Understanding Colonial Legacies</h2>
+            
+            <div class="quote-highlight auto-reveal">
+                "Colonial relationships didn't end with independence - they created patterns that continue to shape global interactions today."
+            </div>
+            
+            <div class="legacy-examples">
+                <div class="legacy-card economic auto-reveal">
+                    <h4>💰 Economic Legacies</h4>
+                    <p><strong>Resource Extraction:</strong> Some regions still primarily export raw materials to former colonial powers</p>
+                    <p><strong>Trade Patterns:</strong> Historic trade routes often persist in modern commerce</p>
+                </div>
+                
+                <div class="legacy-card social auto-reveal">
+                    <h4>👥 Social Legacies</h4>
+                    <p><strong>Demographics:</strong> Colonial migration patterns shaped modern population distributions</p>
+                    <p><strong>Inequality:</strong> Colonial hierarchies often influenced lasting social structures</p>
+                </div>
+                
+                <div class="legacy-card political auto-reveal">
+                    <h4>⚖️ Political Legacies</h4>
+                    <p><strong>Institutions:</strong> Colonial legal and political systems often provided foundations for modern governments</p>
+                    <p><strong>Borders:</strong> Colonial boundaries became modern national borders</p>
+                </div>
+                
+                <div class="legacy-card cultural auto-reveal">
+                    <h4>🎭 Cultural Legacies</h4>
+                    <p><strong>Languages:</strong> Colonial languages became official languages in many regions</p>
+                    <p><strong>Syncretism:</strong> Blended cultural forms created during colonial period persist today</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Spain-Latin America Today -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🇪🇸🤝🌎 Spain and Latin America Today</h2>
+            
+            <div class="modern-comparison auto-reveal">
+                <h4>Contemporary Economic Relationships</h4>
+                <p>Spain is now a major investor in Latin America, with Spanish companies owning significant infrastructure, banks, and telecommunications across the region.</p>
+            </div>
+            
+            <div class="data-showcase auto-reveal">
+                <div class="data-row">
+                    <div class="data-label">Spanish Investment in Latin America:</div>
+                    <div class="data-value">Over $100 billion since 1990</div>
+                </div>
+                <div class="data-row">
+                    <div class="data-label">Major Spanish Companies:</div>
+                    <div class="data-value">Telefónica, Santander, Iberdrola</div>
+                </div>
+                <div class="data-row">
+                    <div class="data-label">Shared Language Speakers:</div>
+                    <div class="data-value">500+ million Spanish speakers globally</div>
+                </div>
+                <div class="data-row">
+                    <div class="data-label">Cultural Exchange:</div>
+                    <div class="data-value">Universities, media, immigration flows</div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Critical Analysis Question</h3>
+                <p style="font-size: 2rem;">How do these modern relationships both continue and differ from colonial patterns we studied?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Continuities and Changes -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔄 What's Changed vs. What Continues</h2>
+            
+            <div class="legacy-examples">
+                <div class="legacy-card economic auto-reveal">
+                    <h4>📈 Continuities</h4>
+                    <p><strong>Economic Patterns:</strong> Latin America still exports many raw materials to Europe</p>
+                    <p><strong>Language Dominance:</strong> Spanish remains the dominant language</p>
+                    <p><strong>Cultural Influence:</strong> European cultural forms still carry prestige</p>
+                </div>
+                
+                <div class="legacy-card political auto-reveal">
+                    <h4>🔄 Major Changes</h4>
+                    <p><strong>Political Sovereignty:</strong> Latin American nations control their own governments</p>
+                    <p><strong>Economic Partnership:</strong> Investment and trade based on mutual agreements</p>
+                    <p><strong>Cultural Exchange:</strong> Two-way cultural influence, not just European dominance</p>
+                </div>
+            </div>
+            
+            <div class="modern-comparison auto-reveal">
+                <h4>Complex Modern Reality</h4>
+                <p>Today's Spain-Latin America relationships show both colonial legacies and genuine partnership - they're neither simply colonial nor completely equal. Understanding this complexity requires the analytical skills you've been developing.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Global Patterns Today -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌍 Colonial Patterns in Today's World</h2>
+            
+            <div class="auto-reveal">
+                <h3>Where Do We See Similar Patterns?</h3>
+                <p style="font-size: 2rem;">The analytical tools you've learned help us understand many modern global relationships.</p>
+            </div>
+            
+            <div class="legacy-examples">
+                <div class="legacy-card economic auto-reveal">
+                    <h4>🌐 Global Supply Chains</h4>
+                    <p>Some regions focus on raw material extraction or manufacturing, while others control design and profits</p>
+                </div>
+                
+                <div class="legacy-card cultural auto-reveal">
+                    <h4>🎬 Cultural Influence</h4>
+                    <p>Media, technology, and educational systems from certain regions dominate globally</p>
+                </div>
+                
+                <div class="legacy-card political auto-reveal">
+                    <h4>🤝 International Relations</h4>
+                    <p>Historical relationships influence modern diplomatic and economic partnerships</p>
+                </div>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Your Analytical Toolkit</h4>
+                <p>The skills you've learned - perspective analysis, cause-and-effect thinking, comparison, and legacy analysis - help you understand any complex global relationship.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Indigenous Perspectives Today -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏛️ Indigenous Voices in the Modern World</h2>
+            
+            <div class="quote-highlight auto-reveal">
+                "Colonial encounters didn't end Indigenous peoples' stories - they continued to adapt, resist, and preserve their cultures in new ways."
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Contemporary Indigenous Perspectives</h3>
+                <p style="font-size: 2rem;">How might Indigenous peoples today view the colonial legacy and modern relationships?</p>
+            </div>
+            
+            <div class="legacy-examples">
+                <div class="legacy-card social auto-reveal">
+                    <h4>🎭 Cultural Survival</h4>
+                    <p><strong>Success:</strong> Many Indigenous languages, traditions, and knowledge systems survive and are being revitalized</p>
+                    <p><strong>Challenge:</strong> Ongoing pressure from dominant cultures and economic systems</p>
+                </div>
+                
+                <div class="legacy-card political auto-reveal">
+                    <h4>⚖️ Political Recognition</h4>
+                    <p><strong>Progress:</strong> Growing recognition of Indigenous rights and sovereignty in many countries</p>
+                    <p><strong>Struggle:</strong> Conflicts over land rights, resource extraction, and political representation</p>
+                </div>
+            </div>
+            
+            <div class="modern-comparison auto-reveal">
+                <h4>Connecting to Your Assessment</h4>
+                <p>Understanding both historical and contemporary Indigenous perspectives will strengthen your ability to compare European and Indigenous viewpoints on colonization.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Research Project Introduction -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📝 Your Research Project Assignment</h2>
+            
+            <div class="assessment-prep auto-reveal">
+                <h4>Colonial Legacy Research Project</h4>
+                <p><strong>Essential Question:</strong> How did colonial history shape your chosen country and its modern relationship with its former colonizer?</p>
+                <p><strong>Product:</strong> 6-8 page research paper with proper citations</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Choose Your Country</h3>
+                <p style="font-size: 2rem;">Select any country that was colonized by a European or other power. Consider countries you're genuinely curious about!</p>
+            </div>
+            
+            <div class="legacy-examples">
+                <div class="legacy-card economic auto-reveal">
+                    <h4>🌍 Suggested Options</h4>
+                    <p><strong>Popular Choices:</strong> Philippines, India, Mexico, Brazil, South Korea, Kenya, Algeria, Indonesia, Vietnam, Ghana, South Africa</p>
+                    <p><strong>Your Choice:</strong> Any colonized country that interests you!</p>
+                </div>
+            </div>
+            
+            <div class="modern-comparison auto-reveal">
+                <h4>Why This Project Matters</h4>
+                <p>You'll become a genuine expert on one country while applying all the analytical skills you've developed - perspective analysis, cause & effect, comparison, and legacy analysis.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Project Structure & Timeline -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📅 4-Week Project Timeline</h2>
+            
+            <div class="timeline-visual auto-reveal">
+                <div class="timeline-items">
+                    <div class="timeline-item">
+                        <div class="timeline-year">Week 1</div>
+                        <div class="timeline-event">Parts 1 & 2<br>Colonial Experience & Independence</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">Week 2</div>
+                        <div class="timeline-event">Parts 3 & 4<br>Modern Relations & Perspectives</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">Week 3</div>
+                        <div class="timeline-event">Paper Structure<br>Introduction & Conclusion</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">Week 4</div>
+                        <div class="timeline-event">Revisions<br>Final Draft & Polish</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skills-summary">
+                <div class="skill-box auto-reveal">
+                    <h5>Week 1 Focus</h5>
+                    <p>Research colonial history, impact, and independence movement using Sessions 1-3 skills</p>
+                </div>
+                
+                <div class="skill-box auto-reveal">
+                    <h5>Week 2 Focus</h5>
+                    <p>Analyze modern relationships and multiple perspectives using Session 4 skills</p>
+                </div>
+                
+                <div class="skill-box auto-reveal">
+                    <h5>Week 3 Focus</h5>
+                    <p>Organize research into coherent argument with strong introduction and conclusion</p>
+                </div>
+                
+                <div class="skill-box auto-reveal">
+                    <h5>Week 4 Focus</h5>
+                    <p>Polish writing, strengthen analysis, perfect citations and bibliography</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Paper Structure Framework -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📝 Research Paper Framework</h2>
+            
+            <div class="assessment-prep auto-reveal">
+                <h4>Four Required Analysis Sections</h4>
+                <p>Your paper should address all four parts of the research framework, showing how you've applied the analytical skills from our sessions.</p>
+            </div>
+            
+            <div class="legacy-examples">
+                <div class="legacy-card economic auto-reveal">
+                    <h4>📚 Part 1: Colonial Experience</h4>
+                    <p><strong>Apply Sessions 1-2 Skills:</strong> What colonial strategy was used? What were the demographic, economic, political, and cultural impacts? How did local peoples respond?</p>
+                </div>
+                
+                <div class="legacy-card social auto-reveal">
+                    <h4>🗽 Part 2: Independence Process</h4>
+                    <p><strong>Apply Session 3 Skills:</strong> How did the country gain independence? How does this compare to examples we studied in class?</p>
+                </div>
+                
+                <div class="legacy-card political auto-reveal">
+                    <h4>🌍 Part 3: Modern Relationships</h4>
+                    <p><strong>Apply Session 4 Skills:</strong> What economic, cultural, political connections exist today? What colonial patterns continue vs. what has changed?</p>
+                </div>
+                
+                <div class="legacy-card cultural auto-reveal">
+                    <h4>👥 Part 4: Contemporary Perspectives</h4>
+                    <p><strong>Synthesis Skills:</strong> How do people in both countries view this shared history today? Any reconciliation efforts or ongoing debates?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Source Requirements & Research Tips -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📚 Research Requirements & Tips</h2>
+            
+            <div class="data-showcase auto-reveal">
+                <div class="data-row">
+                    <div class="data-label">Minimum 8 Sources Total:</div>
+                    <div class="data-value">Quality over quantity!</div>
+                </div>
+                <div class="data-row">
+                    <div class="data-label">2+ Primary Sources:</div>
+                    <div class="data-value">Historical documents, speeches, letters</div>
+                </div>
+                <div class="data-row">
+                    <div class="data-label">2+ Academic Sources:</div>
+                    <div class="data-value">Scholarly articles, university websites</div>
+                </div>
+                <div class="data-row">
+                    <div class="data-label">2+ Contemporary Sources:</div>
+                    <div class="data-value">Recent news, government data, NGO reports</div>
+                </div>
+                <div class="data-row">
+                    <div class="data-label">Both Perspectives:</div>
+                    <div class="data-value">Sources from both countries</div>
+                </div>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Research Success Tips</h4>
+                <p><strong>Start broad, then narrow:</strong> Begin with general background, then focus on specific aspects. <strong>Use our ESCAPE method</strong> for primary sources. <strong>Ask yourself:</strong> Who benefits from this relationship? Who might see it differently?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Historical Thinking Review -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🧠 Historical Thinking Skills Mastered</h2>
+            
+            <div class="auto-reveal">
+                <h3>You've Developed Professional Historical Analysis Skills</h3>
+                <p style="font-size: 2rem;">These skills transfer to understanding any complex historical or contemporary issue.</p>
+            </div>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h4>🔍 Source Analysis</h4>
+                    <p>You can identify author perspective, purpose, and bias in any historical document</p>
+                </div>
+                
+                <div class="objective-card auto-reveal">
+                    <h4>🔗 Cause & Effect</h4>
+                    <p>You can trace complex chains of causation and understand multiple contributing factors</p>
+                </div>
+                
+                <div class="objective-card auto-reveal">
+                    <h4>⚖️ Comparison</h4>
+                    <p>You can systematically compare different approaches, strategies, or perspectives</p>
+                </div>
+                
+                <div class="objective-card auto-reveal">
+                    <h4>🌍 Contemporary Connections</h4>
+                    <p>You can identify how historical patterns continue to influence modern relationships</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Looking Forward -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🚀 Beyond This Unit</h2>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>How These Skills Transfer</h4>
+                <p>The analytical tools you've mastered will help you understand <strong>any complex global issue</strong> - from historical events to current international relations to environmental challenges.</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Your Analytical Toolkit</h3>
+                <ul style="font-size: 1.8rem;">
+                    <li><strong>Ask about perspective:</strong> Who's telling this story and why?</li>
+                    <li><strong>Trace cause and effect:</strong> What led to what, and why?</li>
+                    <li><strong>Compare approaches:</strong> How do different groups handle similar challenges?</li>
+                    <li><strong>Connect past to present:</strong> How do historical patterns influence today?</li>
+                    <li><strong>Consider multiple viewpoints:</strong> What would this look like from different positions?</li>
+                </ul>
+            </div>
+            
+            <div class="modern-comparison auto-reveal">
+                <h4>These Skills Apply To...</h4>
+                <p>Climate change debates, international conflicts, economic policy, social movements, technological changes - any complex issue where multiple perspectives and historical context matter.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 15: Unit Conclusion -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 What You've Accomplished</h2>
+            
+            <div class="quote-highlight auto-reveal">
+                "You've moved from analyzing individual documents to understanding complex global systems - that's the foundation of advanced historical thinking."
+            </div>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h4>✅ Multiple Perspectives</h4>
+                    <p>You understand how position and purpose shape what people emphasize in historical accounts</p>
+                </div>
+                
+                <div class="objective-card auto-reveal">
+                    <h4>✅ Global Consequences</h4>
+                    <p>You can analyze how local events created worldwide changes across multiple systems</p>
+                </div>
+                
+                <div class="objective-card auto-reveal">
+                    <h4>✅ Strategic Comparison</h4>
+                    <p>You understand how different goals and conditions led to different approaches and outcomes</p>
+                </div>
+                
+                <div class="objective-card auto-reveal">
+                    <h4>✅ Contemporary Relevance</h4>
+                    <p>You can connect historical patterns to modern global relationships and current issues</p>
+                </div>
+            </div>
+            
+            <div class="assessment-prep auto-reveal">
+                <h4>Ready for Your Research Project</h4>
+                <p>You now have all the analytical tools needed to investigate any country's colonial legacy and produce sophisticated historical analysis. Choose a country that genuinely interests you - your curiosity will drive excellent research!</p>
+            </div>
+            
+            <div class="auto-reveal" style="margin-top: 2rem;">
+                <p style="font-size: 2.2rem; color: #ffffff;"><strong>You're ready for advanced humanities coursework and informed global citizenship!</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentRevealIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlideIndicator() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.add('hidden'));
+            slides[n].classList.remove('hidden');
+            
+            // Reset all reveals for new slide
+            const reveals = slides[n].querySelectorAll('.auto-reveal');
+            reveals.forEach(element => {
+                element.classList.remove('revealed');
+            });
+            
+            currentRevealIndex = 0;
+            updateSlideIndicator();
+        }
+
+        function revealNext() {
+            const currentSlideEl = slides[currentSlide];
+            const reveals = currentSlideEl.querySelectorAll('.auto-reveal');
+            
+            if (currentRevealIndex < reveals.length) {
+                reveals[currentRevealIndex].classList.add('revealed');
+                currentRevealIndex++;
+                return true; // More reveals available
+            }
+            return false; // No more reveals
+        }
+
+        function nextSlide() {
+            // Try to reveal next element first
+            if (revealNext()) {
+                return; // Revealed an element, stay on slide
+            }
+            
+            // All elements revealed, move to next slide
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            // If no elements revealed, go to previous slide
+            if (currentRevealIndex === 0 && currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+                // Reveal all elements on previous slide
+                toggleRevealAll();
+            } else if (currentRevealIndex > 0) {
+                // Hide last revealed element
+                const reveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+                currentRevealIndex--;
+                reveals[currentRevealIndex].classList.remove('revealed');
+            }
+        }
+
+        function toggleRevealAll() {
+            const reveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            reveals.forEach(element => {
+                element.classList.add('revealed');
+            });
+            currentRevealIndex = reveals.length;
+        }
+
+        function nextPage() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousPage() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    previousSlide();
+                    break;
+                case '.':
+                case '>':
+                    nextPage();
+                    break;
+                case ',':
+                case '<':
+                    previousPage();
+                    break;
+                case 'Enter':
+                    toggleRevealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

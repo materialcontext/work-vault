@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place and Belonging - Pico Iyer's Global Soul</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', 'Roboto', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0c4a6e 0%, #075985 25%, #0369a1 50%, #0284c7 75%, #0ea5e9 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 4%;
+            position: relative;
+        }
+
+        .slide-content {
+            max-width: 1300px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .slide h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: #fbbf24;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .slide h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+        }
+
+        .slide h3 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            line-height: 1.3;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .lesson-focus {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border: 3px solid #fbbf24;
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 15px 50px rgba(251, 191, 36, 0.3);
+        }
+
+        .lesson-focus h3 {
+            color: #fbbf24;
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+        }
+
+        .lesson-focus p {
+            font-size: 2.2rem;
+            font-style: italic;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .objective-card {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.3);
+            border-color: rgba(251, 191, 36, 0.6);
+        }
+
+        .objective-card:hover::before {
+            left: 100%;
+        }
+
+        .objective-card h4 {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .author-intro {
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid #10b981;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .author-intro h4 {
+            color: #fbbf24;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .house-fire-section {
+            background: rgba(220, 38, 38, 0.2);
+            border-left: 6px solid #dc2626;
+            padding: 2.5rem;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.2);
+            margin: 2rem 0;
+        }
+
+        .house-fire-section h4 {
+            color: #fbbf24;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .global-soul-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .example-card {
+            background: rgba(16, 185, 129, 0.2);
+            border-left: 6px solid #10b981;
+            padding: 2rem;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .example-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.3);
+        }
+
+        .example-card h4 {
+            color: #fbbf24;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .example-card p {
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+            font-size: 1.6rem;
+        }
+
+        .quote-highlight {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #0f172a;
+            padding: 2.5rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            font-weight: 600;
+            font-size: 2rem;
+            box-shadow: 0 15px 35px rgba(251, 191, 36, 0.4);
+            font-style: italic;
+        }
+
+        .personal-connection {
+            background: rgba(168, 85, 247, 0.2);
+            border: 2px solid #a855f7;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .personal-connection h4 {
+            color: #fbbf24;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .airport-analysis {
+            background: linear-gradient(135deg, #059669, #047857);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            box-shadow: 0 15px 35px rgba(5, 150, 105, 0.4);
+        }
+
+        .airport-analysis h4 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: #fbbf24;
+            border: none;
+            color: #0f172a;
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+            min-width: 80px;
+        }
+
+        .nav-btn:hover {
+            background: #f59e0b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.5);
+        }
+
+        .nav-btn:disabled {
+            background: #64748b;
+            color: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fbbf24;
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            font-size: 1.1rem;
+        }
+
+        .emoji-large {
+            font-size: 5rem;
+            margin: 1.5rem 0;
+            display: block;
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+
+        li {
+            margin: 1rem 0;
+            padding-left: 0.5rem;
+            font-size: 1.8rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        strong {
+            color: #fbbf24;
+            font-weight: 700;
+        }
+
+        em {
+            color: #fbbf24;
+            font-style: italic;
+        }
+
+        .connection-bridge {
+            background: rgba(99, 102, 241, 0.2);
+            border: 2px solid #6366f1;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .connection-bridge h4 {
+            color: #fbbf24;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .place-analysis {
+            background: rgba(139, 69, 19, 0.2);
+            border: 2px solid #8b4513;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .place-analysis h4 {
+            color: #fbbf24;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .slide h1 { font-size: 3rem; }
+            .slide h2 { font-size: 2.5rem; }
+            .slide h3 { font-size: 2rem; }
+            .slide p, .slide li { font-size: 1.4rem; }
+            .objectives-grid { grid-template-columns: 1fr; }
+            .global-soul-examples { grid-template-columns: 1fr; }
+            .slide { padding: 1rem 2%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 10</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="revealBtn" onclick="toggleRevealAll()">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title & Week Transition -->
+    <div class="slide">
+        <div class="slide-content">
+            <div class="emoji-large auto-reveal">🌍🏠</div>
+            <h1 class="auto-reveal">Place and Belonging</h1>
+            <h2 class="auto-reveal">Pico Iyer's "The Global Soul"</h2>
+            
+            <div class="lesson-focus auto-reveal">
+                <h3>Week 2 Essential Question</h3>
+                <p><em>"How does place shape who we become, and what happens when we belong to multiple places at once?"</em></p>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Building from Week 1</h4>
+                <p>We've explored <strong>name, language, and cultural narratives</strong> as components of identity. Now we examine how <strong>geography, migration, and multiple homes</strong> shape who we are.</p>
+            </div>
+            
+            <div class="auto-reveal" style="margin-top: 3rem;">
+                <p style="font-size: 2.2rem; color: #ffffff;"><strong>Week 2, Lesson 1</strong> • Geography and Identity Formation</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Learning Objectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Today's Learning Goals</h2>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h4>🌐 Understand "Global Soul"</h4>
+                    <p>Analyze Iyer's concept of belonging to multiple places simultaneously and its implications for identity</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🔥 Analyze the House Fire</h4>
+                    <p>Examine how physical displacement reveals deeper questions about home and rootedness</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>✈️ Explore Liminal Spaces</h4>
+                    <p>Investigate airports and other "in-between" places as metaphors for modern identity formation</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🪞 Connect Personal Experience</h4>
+                    <p>Relate Iyer's multicultural identity to your own experience navigating Korean and American contexts</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Assignment Bridge -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔄 Your Single Story Assignment</h2>
+            
+            <div class="author-intro auto-reveal">
+                <h4>Share Your Discoveries</h4>
+                <p><strong>What "single story" did you identify, and what might a fuller story include?</strong></p>
+                <ul>
+                    <li>Which single story did you choose and where did you encounter it?</li>
+                    <li>What aspects or perspectives might be missing from this narrative?</li>
+                    <li>How does recognizing this single story change your understanding?</li>
+                </ul>
+            </div>
+            
+            <div class="auto-reveal" style="margin-top: 3rem;">
+                <h3>Bridge to Today's Topic</h3>
+                <p style="font-size: 2rem;">Just as single stories flatten cultural complexity, simple answers to <strong>"Where are you from?"</strong> can flatten the experience of people who belong to multiple places. Today we meet someone who embodies this complexity.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Meet Pico Iyer -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>👨‍💼 Pico Iyer: A Global Soul</h2>
+            
+            <div class="author-intro auto-reveal">
+                <h4>Multicultural Background</h4>
+                <p><strong>Born in England to Indian parents, educated in American boarding schools, currently living in Japan</strong> - Iyer embodies the complexity of modern global identity.</p>
+            </div>
+            
+            <div class="global-soul-examples">
+                <div class="example-card auto-reveal">
+                    <h4>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Born: Oxford, England</h4>
+                    <p>Son of Indian parents studying at Oxford University - immediately multicultural from birth</p>
+                </div>
+                
+                <div class="example-card auto-reveal">
+                    <h4>🇺🇸 Educated: United States</h4>
+                    <p>Attended American boarding schools and Harvard University, worked as Time magazine writer</p>
+                </div>
+                
+                <div class="example-card auto-reveal">
+                    <h4>🇯🇵 Lives: Nara, Japan</h4>
+                    <p>Has lived in Japan since 1992 with his Japanese wife, writing about cross-cultural experience</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>The Essential Question</h3>
+                <p style="font-size: 2rem;">When someone asks Iyer <strong>"Where are you from?"</strong> - what would he say? What would <strong>you</strong> say to that question?</p>
+            </div>
+            
+            <div class="quote-highlight auto-reveal">
+                "I am a multinational soul on a multinational globe on which more and more countries are as polyglot and restless as airports."
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: The House Fire - Physical Home Loss -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔥 Chapter 1: "The Burning House"</h2>
+            
+            <div class="house-fire-section auto-reveal">
+                <h4>The Event</h4>
+                <p>In 1990, a wildfire in California destroyed Iyer's family home - <strong>the physical space he had known for twenty years but never truly felt was "home."</strong></p>
+            </div>
+            
+            <div class="global-soul-examples">
+                <div class="example-card auto-reveal">
+                    <h4>🏠 Physical Loss</h4>
+                    <p><strong>All material possessions gone</strong> - photos, books, memories stored in objects disappeared in one day</p>
+                </div>
+                
+                <div class="example-card auto-reveal">
+                    <h4>💭 Emotional Revelation</h4>
+                    <p><strong>He hadn't felt truly "at home" there anyway</strong> - the loss revealed his deeper sense of displacement</p>
+                </div>
+                
+                <div class="example-card auto-reveal">
+                    <h4>🤔 Philosophical Question</h4>
+                    <p><strong>What is "home" when you belong to multiple places?</strong> Is it location, people, culture, or something internal?</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Critical Analysis Questions</h3>
+                <ul style="font-size: 1.8rem;">
+                    <li>Why might the house fire have been almost a relief for Iyer?</li>
+                    <li>How does losing physical "home" force questions about identity?</li>
+                    <li>What's the difference between a house and a home?</li>
+                </ul>
+            </div>
+            
+            <div class="quote-highlight auto-reveal">
+                "For more and more of us, home has really less to do with a piece of soil than with a piece of soul."
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: The Global Soul Concept -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌍 What Is a "Global Soul"?</h2>
+            
+            <div class="author-intro auto-reveal">
+                <h4>Iyer's Definition</h4>
+                <p><strong>Global souls belong to lots of places at once - emotionally, physically, spiritually. They don't know how to answer "Where are you from?" because the answer is anything but simple.</strong></p>
+            </div>
+            
+            <div class="global-soul-examples">
+                <div class="example-card auto-reveal">
+                    <h4>🤷‍♂️ Multiple Belonging</h4>
+                    <p><strong>Feel "at home" in several places</strong> but not completely rooted in any single location</p>
+                </div>
+                
+                <div class="example-card auto-reveal">
+                    <h4>🛂 Complex Identity</h4>
+                    <p><strong>Passport, accent, appearance, culture don't align</strong> in simple ways that others expect</p>
+                </div>
+                
+                <div class="example-card auto-reveal">
+                    <h4>🌐 Cultural Fluency</h4>
+                    <p><strong>Navigate multiple cultural contexts</strong> but always retain some sense of being an outsider</p>
+                </div>
+            </div>
+            
+            <div class="place-analysis auto-reveal">
+                <h4>Modern Global Phenomenon</h4>
+                <p>Iyer argues that globalization, technology, and migration are creating <strong>more and more people who live between cultures</strong> rather than fully within one culture. This challenges traditional ideas about nationality, identity, and belonging.</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Discussion Questions</h3>
+                <ul style="font-size: 1.8rem;">
+                    <li>Do you recognize yourself as a "global soul"? Why or why not?</li>
+                    <li>What are the advantages and challenges of belonging to multiple places?</li>
+                    <li>How might being a global soul affect relationships and career choices?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Airports as Liminal Spaces -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>✈️ LAX: Life Between Places</h2>
+            
+            <div class="airport-analysis auto-reveal">
+                <h4>Chapter 2: "The Airport"</h4>
+                <p><strong>Iyer analyzes Los Angeles International Airport as the perfect symbol of global soul existence - "town life without a town," existing between departure and arrival, between one identity and another.</strong></p>
+            </div>
+            
+            <div class="global-soul-examples">
+                <div class="example-card auto-reveal">
+                    <h4>🏪 Complete Society</h4>
+                    <p><strong>Shops, restaurants, services, people</strong> - everything needed for life, but no permanent residents</p>
+                </div>
+                
+                <div class="example-card auto-reveal">
+                    <h4>⏰ No-Time Zone</h4>
+                    <p><strong>Neither day nor night, neither here nor there</strong> - exists outside normal time and space</p>
+                </div>
+                
+                <div class="example-card auto-reveal">
+                    <h4>🌍 Cultural Mixing</h4>
+                    <p><strong>People from everywhere, going everywhere</strong> - temporarily sharing space while heading to different destinations</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Airport as Metaphor</h3>
+                <p style="font-size: 2rem;">For global souls, <strong>life itself feels like being in an airport</strong> - always in transit, always between places, carrying your identity with you rather than receiving it from location.</p>
+            </div>
+            
+            <div class="quote-highlight auto-reveal">
+                "I slipped into that peculiar state of mind—or no-mind—that belongs to the no-time, no-place of the airport, that out-of-body state in which one's not quite there, but certainly not elsewhere."
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Personal Connection</h3>
+                <p style="font-size: 1.8rem;">Think about your own experience of airports, moving between Korea and America. How do those transition spaces feel? What insights about identity do they offer?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Your Global Soul Experience -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🪞 Your Place and Identity</h2>
+            
+            <div class="personal-connection auto-reveal">
+                <h4>Reflection Questions</h4>
+                <ul>
+                    <li><strong>Where do you feel most "at home"?</strong> Is it a specific place, or is it more complex than that?</li>
+                    <li><strong>How do you answer "Where are you from?"</strong> Does your answer change depending on who's asking?</li>
+                    <li><strong>What places have shaped your identity?</strong> Seoul, your neighborhood, your school, other locations?</li>
+                    <li><strong>Do you ever feel like you're "between" places or cultures?</strong> How does that feel?</li>
+                </ul>
+            </div>
+            
+            <div class="place-analysis auto-reveal">
+                <h4>Your Multicultural Navigation</h4>
+                <p>Like Iyer, you're navigating <strong>multiple cultural contexts</strong> - Korean family traditions, American school culture, perhaps others. This gives you insight into the global soul experience of belonging to multiple places simultaneously.</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Korean-American Global Soul</h3>
+                <p style="font-size: 2rem;">Your experience moving between Korea and America provides <strong>direct insight</strong> into Iyer's themes: What does "home" mean when you have connections to multiple countries and cultures?</p>
+            </div>
+            
+            <div class="author-intro auto-reveal">
+                <h4>Advantages of Global Soul Identity</h4>
+                <p>Iyer suggests that global souls develop <strong>cultural adaptability, empathy for outsiders, and ability to see multiple perspectives</strong> - valuable skills for our interconnected world.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Place and Identity Analysis -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🗺️ How Places Shape Identity</h2>
+            
+            <div class="global-soul-examples">
+                <div class="example-card auto-reveal">
+                    <h4>🏙️ Urban vs. Rural</h4>
+                    <p><strong>Cities offer anonymity and diversity</strong> while rural areas provide community and tradition - each shapes different aspects of identity</p>
+                </div>
+                
+                <div class="example-card auto-reveal">
+                    <h4>🌍 National Contexts</h4>
+                    <p><strong>Different countries have different values, opportunities, limitations</strong> - affecting what's possible and expected</p>
+                </div>
+                
+                <div class="example-card auto-reveal">
+                    <h4>🏠 Family Spaces</h4>
+                    <p><strong>Home environment, neighborhood, school</strong> - daily surroundings shape personality and worldview</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Geographic Identity Questions</h3>
+                <ul style="font-size: 1.8rem;">
+                    <li>How might growing up in Seoul versus a small Korean town shape identity differently?</li>
+                    <li>What opportunities and challenges does living in America provide that Korea might not, and vice versa?</li>
+                    <li>How do different places bring out different aspects of your personality?</li>
+                </ul>
+            </div>
+            
+            <div class="airport-analysis auto-reveal">
+                <h4>🏠 Tonight's Assignment</h4>
+                <p><strong>Place Observation:</strong> Choose one specific place that has shaped your identity (your bedroom, a neighborhood, a city, etc.). Write 1 page describing this place in concrete detail and explaining how it has influenced who you are. Think about sights, sounds, feelings, memories, and what this place taught you about yourself and the world.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Looking Forward -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔮 Week 2 Connections Ahead</h2>
+            
+            <div class="auto-reveal">
+                <h3>How This Builds Our Understanding</h3>
+                <p style="font-size: 2rem;">Understanding global souls and place-based identity prepares us for:</p>
+            </div>
+            
+            <div class="global-soul-examples">
+                <div class="example-card auto-reveal">
+                    <h4>📖 Marjane Satrapi's <em>Persepolis</em></h4>
+                    <p>How revolution in Iran shaped a young girl's identity and forced her own global soul journey</p>
+                </div>
+                
+                <div class="example-card auto-reveal">
+                    <h4>🗺️ Migration Patterns</h4>
+                    <p>Global data on how people move between places and adapt their identities to new contexts</p>
+                </div>
+                
+                <div class="example-card auto-reveal">
+                    <h4>🏛️ Colonial Impact</h4>
+                    <p>How European colonization forced massive identity changes by altering relationships between people and place</p>
+                </div>
+            </div>
+            
+            <div class="quote-highlight auto-reveal">
+                Next Lesson: Marjane Satrapi's <em>Persepolis</em> - when political revolution forces a child to navigate identity between traditional Iran and modern global contexts.
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Essential Course Question Revisited</h3>
+                <p style="font-size: 1.8rem;"><em>"How do I find my voice while understanding the complexities of our global community?"</em></p>
+                <p style="font-size: 1.6rem;">Global souls like Iyer - and like you - find their voice precisely by <strong>embracing complexity</strong> rather than choosing simple answers about belonging and identity.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+        let allRevealed = false;
+
+        function updateSlideCounter() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentSlide === 0 && revealIndex === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1 && allRevealed;
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            allRevealed = false;
+            resetReveal();
+            updateSlideCounter();
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                
+                if (revealIndex === elements.length) {
+                    allRevealed = true;
+                }
+                
+                updateNavigationButtons();
+                updateRevealButton();
+                return true;
+            }
+            return false;
+        }
+
+        function revealAllElements() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            elements.forEach(el => {
+                el.classList.add('show');
+            });
+            
+            revealIndex = elements.length;
+            allRevealed = true;
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function hideAllElements() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+            
+            revealIndex = 0;
+            allRevealed = false;
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function toggleRevealAll() {
+            if (allRevealed) {
+                hideAllElements();
+            } else {
+                revealAllElements();
+            }
+        }
+
+        function updateRevealButton() {
+            const revealBtn = document.getElementById('revealBtn');
+            revealBtn.textContent = allRevealed ? 'Hide All' : 'Reveal All';
+        }
+
+        function nextSlide() {
+            if (!allRevealed) {
+                const revealed = revealNextElement();
+                if (!revealed && currentSlide < totalSlides - 1) {
+                    showSlide(currentSlide + 1);
+                }
+            } else if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (revealIndex > 0) {
+                // Go to previous element
+                const currentSlideElement = slides[currentSlide];
+                const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+                
+                elements[revealIndex - 1].classList.remove('show');
+                revealIndex--;
+                allRevealed = false;
+                updateNavigationButtons();
+                updateRevealButton();
+            } else if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+                // Auto-reveal all elements on previous slide
+                revealAllElements();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                revealNextElement();
+            }
+        });
+
+        // Initialize
+        updateSlideCounter();
+        updateNavigationButtons();
+        updateRevealButton();
+    </script>
+</body>
+</html>

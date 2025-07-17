@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colonial Strategies Across the Americas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .slide {
+            min-height: 100vh;
+            padding: 2rem 4%;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            display: block;
+        }
+
+        .slide.hidden {
+            display: none;
+        }
+
+        .slide-content {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+            margin: 0 auto;
+            min-height: calc(100vh - 4rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .slide h1 {
+            font-size: 4.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .slide h2 {
+            font-size: 3.5rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .slide h3 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
+        .slide p, .slide li {
+            font-size: 2rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .slide ul {
+            text-align: left;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 600;
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(251, 191, 36, 0.8);
+            border-color: rgba(251, 191, 36, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .emoji-large {
+            font-size: 8rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 30px rgba(255,255,255,0.5);
+        }
+
+        .lesson-focus {
+            background: rgba(251, 191, 36, 0.2);
+            border: 3px solid #fbbf24;
+            padding: 3rem;
+            border-radius: 25px;
+            margin: 3rem 0;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 15px 50px rgba(251, 191, 36, 0.3);
+        }
+
+        .lesson-focus h3 {
+            color: #fbbf24;
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+        }
+
+        .lesson-focus p {
+            font-size: 2.2rem;
+            font-style: italic;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .objective-card {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.3);
+            border-color: rgba(251, 191, 36, 0.6);
+        }
+
+        .objective-card:hover::before {
+            left: 100%;
+        }
+
+        .objective-card h4 {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .colonial-strategies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .strategy-card {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .strategy-card.spanish {
+            border-color: #dc2626;
+            background: rgba(220, 38, 38, 0.2);
+        }
+
+        .strategy-card.british {
+            border-color: #2563eb;
+            background: rgba(37, 99, 235, 0.2);
+        }
+
+        .strategy-card.french {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.2);
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.3);
+        }
+
+        .strategy-card h4 {
+            color: #fbbf24;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .strategy-card .flag {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-section {
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid #10b981;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .comparison-section h4 {
+            color: #fbbf24;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .quote-highlight {
+            background: rgba(99, 102, 241, 0.3);
+            border-left: 6px solid #6366f1;
+            padding: 2.5rem;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            font-size: 2.4rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+        }
+
+        .connection-bridge {
+            background: rgba(99, 102, 241, 0.2);
+            border: 2px solid #6366f1;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .connection-bridge h4 {
+            color: #fbbf24;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .comparison-table {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            align-items: center;
+        }
+
+        .table-header {
+            background: rgba(251, 191, 36, 0.3);
+            font-weight: 600;
+            font-size: 1.6rem;
+        }
+
+        .table-cell {
+            font-size: 1.4rem;
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        .indigenous-impact {
+            background: rgba(220, 38, 38, 0.2);
+            border: 2px solid #dc2626;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .indigenous-impact h4 {
+            color: #fbbf24;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .slide h1 { font-size: 3rem; }
+            .slide h2 { font-size: 2.5rem; }
+            .slide h3 { font-size: 2rem; }
+            .slide p, .slide li { font-size: 1.4rem; }
+            .objectives-grid { grid-template-columns: 1fr; }
+            .colonial-strategies { grid-template-columns: 1fr; }
+            .slide { padding: 1rem 2%; }
+            .slide-content { 
+                padding: 1rem 0; 
+                min-height: calc(100vh - 2rem);
+            }
+            .table-row { grid-template-columns: 1fr; }
+            .table-cell { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 12</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="revealBtn" onclick="toggleRevealAll()">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title & Session Focus -->
+    <div class="slide">
+        <div class="slide-content">
+            <div class="emoji-large auto-reveal">🗺️⚔️</div>
+            <h1 class="auto-reveal">Colonial Strategies Across the Americas</h1>
+            <h2 class="auto-reveal">Comparing European Approaches</h2>
+            
+            <div class="lesson-focus auto-reveal">
+                <h3>Session 3: Comparative Analysis</h3>
+                <p><em>"Different Powers, Different Strategies, Different Outcomes"</em></p>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Building on Sessions 1 & 2</h4>
+                <p>You've analyzed <strong>individual perspectives</strong> and <strong>global consequences</strong>. Now we compare <strong>different colonial strategies</strong> across the Americas.</p>
+            </div>
+            
+            <div class="auto-reveal" style="margin-top: 3rem;">
+                <p style="font-size: 2.2rem; color: #ffffff;"><strong>50 Minutes</strong> • Developing Comparison Skills</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Learning Objectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Comparison Skills We're Building</h2>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h4>🔍 Comparative Analysis</h4>
+                    <p>Identify similarities and differences between Spanish, British, and French colonial approaches</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🎯 Strategic Thinking</h4>
+                    <p>Understand how different goals led to different colonial strategies and outcomes</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🌍 Geographic Awareness</h4>
+                    <p>See how geography and resources influenced colonial approaches across different regions</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>📊 Pattern Recognition</h4>
+                    <p>Identify patterns that help explain why different approaches succeeded or failed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: The Big Question -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🤔 Our Central Question</h2>
+            
+            <div class="quote-highlight auto-reveal">
+                "If all European powers wanted wealth and territory in the Americas, why did they use such different strategies?"
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Today's Investigation</h3>
+                <p style="font-size: 2.2rem;">We'll compare <strong>three different colonial models</strong> to understand how goals, geography, and resources shaped colonial strategies.</p>
+            </div>
+            
+            <div class="comparison-section auto-reveal">
+                <h4>What We're Comparing</h4>
+                <p><strong>Spanish Territorial Empire</strong> vs. <strong>British Settlement Colonies</strong> vs. <strong>French Trading Networks</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Spanish Strategy Overview -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🇪🇸 Spanish Strategy: Territorial Empire</h2>
+            
+            <div class="colonial-strategies">
+                <div class="strategy-card spanish auto-reveal">
+                    <div class="flag">🇪🇸</div>
+                    <h4>Core Strategy</h4>
+                    <p><strong>Territorial Control:</strong> Conquer large areas, establish direct rule, extract wealth through tribute and mining</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Key Features</h3>
+                <ul style="font-size: 1.8rem;">
+                    <li><strong>Military conquest</strong> of existing empires (Aztec, Inca)</li>
+                    <li><strong>Administrative bureaucracy</strong> with viceroys and governors</li>
+                    <li><strong>Religious conversion</strong> through missions and churches</li>
+                    <li><strong>Economic extraction</strong> through encomienda and silver mining</li>
+                    <li><strong>Urban centers</strong> as administrative and economic hubs</li>
+                </ul>
+            </div>
+            
+            <div class="comparison-section auto-reveal">
+                <h4>Why This Strategy?</h4>
+                <p>Spain found <strong>wealthy, organized societies</strong> with gold and silver. Military conquest allowed them to take over existing tribute systems and extract massive wealth quickly.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: British Strategy Overview -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🇬🇧 British Strategy: Settlement Colonies</h2>
+            
+            <div class="colonial-strategies">
+                <div class="strategy-card british auto-reveal">
+                    <div class="flag">🇬🇧</div>
+                    <h4>Core Strategy</h4>
+                    <p><strong>Permanent Settlement:</strong> Establish agricultural communities, gradually expand territory, develop local economies</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Key Features</h3>
+                <ul style="font-size: 1.8rem;">
+                    <li><strong>Family migration</strong> for permanent settlement</li>
+                    <li><strong>Agricultural development</strong> with individual land ownership</li>
+                    <li><strong>Local self-government</strong> through colonial assemblies</li>
+                    <li><strong>Trade relationships</strong> with Indigenous peoples (initially)</li>
+                    <li><strong>Gradual expansion</strong> westward over generations</li>
+                </ul>
+            </div>
+            
+            <div class="comparison-section auto-reveal">
+                <h4>Why This Strategy?</h4>
+                <p>Britain found <strong>less centralized societies</strong> with abundant land but less obvious wealth. Settlement allowed gradual development of agriculture and trade.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: French Strategy Overview -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🇫🇷 French Strategy: Trading Networks</h2>
+            
+            <div class="colonial-strategies">
+                <div class="strategy-card french auto-reveal">
+                    <div class="flag">🇫🇷</div>
+                    <h4>Core Strategy</h4>
+                    <p><strong>Commercial Partnerships:</strong> Build alliances with Indigenous peoples, focus on fur trade, maintain small settlements</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Key Features</h3>
+                <ul style="font-size: 1.8rem;">
+                    <li><strong>Trading posts</strong> and small settlements along rivers</li>
+                    <li><strong>Military alliances</strong> with Indigenous groups</li>
+                    <li><strong>Fur trade economy</strong> based on Indigenous knowledge</li>
+                    <li><strong>Missionary activity</strong> but less forced conversion</li>
+                    <li><strong>Intermarriage</strong> and cultural blending (Métis people)</li>
+                </ul>
+            </div>
+            
+            <div class="comparison-section auto-reveal">
+                <h4>Why This Strategy?</h4>
+                <p>France found <strong>mobile Indigenous societies</strong> with valuable fur resources. Partnership worked better than conquest for accessing furs and navigating vast territories.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Direct Comparison -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚖️ Side-by-Side Comparison</h2>
+            
+            <div class="comparison-table auto-reveal">
+                <div class="table-row table-header">
+                    <div class="table-cell">Aspect</div>
+                    <div class="table-cell">🇪🇸 Spanish</div>
+                    <div class="table-cell">🇬🇧 British</div>
+                    <div class="table-cell">🇫🇷 French</div>
+                </div>
+                
+                <div class="table-row auto-reveal">
+                    <div class="table-cell"><strong>Primary Goal</strong></div>
+                    <div class="table-cell">Gold & silver extraction</div>
+                    <div class="table-cell">Agricultural settlement</div>
+                    <div class="table-cell">Fur trade profits</div>
+                </div>
+                
+                <div class="table-row auto-reveal">
+                    <div class="table-cell"><strong>Settlement Type</strong></div>
+                    <div class="table-cell">Administrative cities</div>
+                    <div class="table-cell">Family farms & towns</div>
+                    <div class="table-cell">Trading posts</div>
+                </div>
+                
+                <div class="table-row auto-reveal">
+                    <div class="table-cell"><strong>Indigenous Relations</strong></div>
+                    <div class="table-cell">Conquest & control</div>
+                    <div class="table-cell">Displacement & conflict</div>
+                    <div class="table-cell">Partnership & alliance</div>
+                </div>
+                
+                <div class="table-row auto-reveal">
+                    <div class="table-cell"><strong>Population</strong></div>
+                    <div class="table-cell">Small Spanish elite</div>
+                    <div class="table-cell">Large settler families</div>
+                    <div class="table-cell">Very small French presence</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Geographic Factors -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🗺️ How Geography Shaped Strategy</h2>
+            
+            <div class="colonial-strategies">
+                <div class="strategy-card spanish auto-reveal">
+                    <h4>🏔️ Spanish Regions</h4>
+                    <p><strong>Mexico & Peru:</strong> Mountain empires with gold/silver, dense populations, existing tribute systems</p>
+                    <p><strong>Strategy Match:</strong> Conquest worked because wealth was concentrated and accessible</p>
+                </div>
+                
+                <div class="strategy-card british auto-reveal">
+                    <h4>🌾 British Regions</h4>
+                    <p><strong>Atlantic Coast:</strong> Good farmland, moderate climate, scattered Indigenous groups</p>
+                    <p><strong>Strategy Match:</strong> Settlement worked because land was suitable for European agriculture</p>
+                </div>
+                
+                <div class="strategy-card french auto-reveal">
+                    <h4>🌲 French Regions</h4>
+                    <p><strong>Great Lakes & Rivers:</strong> Vast forests, harsh winters, mobile Indigenous hunters</p>
+                    <p><strong>Strategy Match:</strong> Trading worked because furs required Indigenous expertise and cooperation</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Key Insight</h3>
+                <p style="font-size: 2.2rem;">Colonial strategies weren't just European choices - they were <strong>responses to American conditions</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Indigenous Responses -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏛️ How Indigenous Peoples Responded</h2>
+            
+            <div class="indigenous-impact auto-reveal">
+                <h4>Different Colonial Strategies = Different Indigenous Responses</h4>
+                <p>Indigenous peoples weren't passive victims - they actively responded to different European approaches with different strategies of their own.</p>
+            </div>
+            
+            <div class="colonial-strategies">
+                <div class="strategy-card spanish auto-reveal">
+                    <h4>🇪🇸 Response to Spanish</h4>
+                    <p><strong>Resistance & Adaptation:</strong> Rebellions (Pueblo Revolt), cultural syncretism, legal challenges using Spanish law</p>
+                </div>
+                
+                <div class="strategy-card british auto-reveal">
+                    <h4>🇬🇧 Response to British</h4>
+                    <p><strong>Conflict & Displacement:</strong> Warfare (King Philip's War), alliances with other Europeans, westward migration</p>
+                </div>
+                
+                <div class="strategy-card french auto-reveal">
+                    <h4>🇫🇷 Response to French</h4>
+                    <p><strong>Partnership & Autonomy:</strong> Strategic alliances, trade negotiations, maintaining cultural independence</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Pattern Recognition</h3>
+                <p style="font-size: 2rem;">Indigenous responses often <strong>matched the colonial strategy</strong> - conquest led to resistance, settlement led to conflict, trade led to negotiation.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Success and Failure Analysis -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📈 Evaluating Success and Failure</h2>
+            
+            <div class="auto-reveal">
+                <h3>Which Strategy "Worked" Best?</h3>
+                <p style="font-size: 2rem;">Success depends on what you were trying to achieve and how you measure it.</p>
+            </div>
+            
+            <div class="comparison-section auto-reveal">
+                <h4>Different Measures of Success</h4>
+                <p><strong>Immediate Wealth:</strong> Spanish won (massive silver extraction)</p>
+                <p><strong>Long-term Growth:</strong> British won (sustainable population and economy)</p>
+                <p><strong>Indigenous Relations:</strong> French won (fewer conflicts, better partnerships)</p>
+                <p><strong>Cultural Survival:</strong> Mixed results for all approaches</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Critical Analysis Question</h3>
+                <p style="font-size: 2.2rem;">Why might success for Europeans mean failure for Indigenous peoples, regardless of the strategy used?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Modern Connections -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌍 Connecting to Today</h2>
+            
+            <div class="quote-highlight auto-reveal">
+                "Colonial strategies created patterns that still influence relationships between regions today."
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Modern Examples</h3>
+                <p style="font-size: 2rem;">How do we see similar patterns in today's global relationships?</p>
+            </div>
+            
+            <div class="colonial-strategies">
+                <div class="strategy-card auto-reveal">
+                    <h4>🏭 Economic Extraction</h4>
+                    <p>Some regions still primarily export raw materials to others that control manufacturing and technology</p>
+                </div>
+                
+                <div class="strategy-card auto-reveal">
+                    <h4>🤝 Partnership Models</h4>
+                    <p>Some international relationships emphasize mutual benefit and cultural respect</p>
+                </div>
+                
+                <div class="strategy-card auto-reveal">
+                    <h4>⚖️ Power Imbalances</h4>
+                    <p>Historical colonial relationships often created lasting inequalities in global power</p>
+                </div>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Next Session Preview</h4>
+                <p>We'll explore how these colonial legacies specifically shape modern relationships between Spain and Latin America.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Session Synthesis -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 What We've Learned About Comparison</h2>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h4>✅ Comparative Analysis</h4>
+                    <p>You can now identify key similarities and differences between different historical approaches</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>✅ Strategic Thinking</h4>
+                    <p>You understand how goals, geography, and conditions shaped different strategies</p>
+                </div>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Skills for Your Assessment</h4>
+                <p>These comparison skills will help you analyze <strong>European vs. Indigenous perspectives</strong> in your final assessment - you can now see how different positions led to different viewpoints.</p>
+            </div>
+            
+            <div class="auto-reveal" style="margin-top: 3rem;">
+                <p style="font-size: 2.2rem; color: #ffffff;"><strong>You're developing the analytical tools to understand any complex historical comparison!</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentRevealIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlideIndicator() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.add('hidden'));
+            slides[n].classList.remove('hidden');
+            
+            // Reset all reveals for new slide
+            const reveals = slides[n].querySelectorAll('.auto-reveal');
+            reveals.forEach(element => {
+                element.classList.remove('revealed');
+            });
+            
+            currentRevealIndex = 0;
+            updateSlideIndicator();
+        }
+
+        function revealNext() {
+            const currentSlideEl = slides[currentSlide];
+            const reveals = currentSlideEl.querySelectorAll('.auto-reveal');
+            
+            if (currentRevealIndex < reveals.length) {
+                reveals[currentRevealIndex].classList.add('revealed');
+                currentRevealIndex++;
+                return true; // More reveals available
+            }
+            return false; // No more reveals
+        }
+
+        function nextSlide() {
+            // Try to reveal next element first
+            if (revealNext()) {
+                return; // Revealed an element, stay on slide
+            }
+            
+            // All elements revealed, move to next slide
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            // If no elements revealed, go to previous slide
+            if (currentRevealIndex === 0 && currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+                // Reveal all elements on previous slide
+                toggleRevealAll();
+            } else if (currentRevealIndex > 0) {
+                // Hide last revealed element
+                const reveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+                currentRevealIndex--;
+                reveals[currentRevealIndex].classList.remove('revealed');
+            }
+        }
+
+        function toggleRevealAll() {
+            const reveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            reveals.forEach(element => {
+                element.classList.add('revealed');
+            });
+            currentRevealIndex = reveals.length;
+        }
+
+        function nextPage() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousPage() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    previousSlide();
+                    break;
+                case '.':
+                case '>':
+                    nextPage();
+                    break;
+                case ',':
+                case '<':
+                    previousPage();
+                    break;
+                case 'Enter':
+                    toggleRevealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

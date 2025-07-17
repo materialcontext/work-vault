@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Names and Identity - Lesson 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', 'Roboto', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 4%;
+            position: relative;
+        }
+
+        .slide-content {
+            max-width: 1300px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .slide h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: #fbbf24;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .slide h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+        }
+
+        .slide h3 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            line-height: 1.3;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #e2e8f0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .essential-question {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border: 3px solid #fbbf24;
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 15px 50px rgba(251, 191, 36, 0.3);
+        }
+
+        .essential-question h3 {
+            color: #fbbf24;
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+        }
+
+        .essential-question p {
+            font-size: 2.2rem;
+            font-style: italic;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .lesson-objectives {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .objective-card {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.3);
+            border-color: rgba(251, 191, 36, 0.6);
+        }
+
+        .objective-card:hover::before {
+            left: 100%;
+        }
+
+        .objective-card h4 {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .text-analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .analysis-card {
+            background: rgba(16, 185, 129, 0.2);
+            border-left: 6px solid #10b981;
+            padding: 2rem;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .analysis-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.3);
+        }
+
+        .analysis-card h4 {
+            color: #10b981;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .cultural-examples {
+            background: rgba(139, 92, 246, 0.2);
+            border: 2px solid #8b5cf6;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .cultural-examples h4 {
+            color: #c4b5fd;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .quote-highlight {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #0f172a;
+            padding: 2.5rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            font-weight: 600;
+            font-size: 2rem;
+            box-shadow: 0 15px 35px rgba(251, 191, 36, 0.4);
+            font-style: italic;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: #fbbf24;
+            border: none;
+            color: #0f172a;
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+            min-width: 80px;
+        }
+
+        .nav-btn:hover {
+            background: #f59e0b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.5);
+        }
+
+        .nav-btn:disabled {
+            background: #64748b;
+            color: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fbbf24;
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            font-size: 1.1rem;
+        }
+
+        .emoji-large {
+            font-size: 5rem;
+            margin: 1.5rem 0;
+            display: block;
+        }
+
+        .activity-prompt {
+            background: rgba(220, 38, 38, 0.2);
+            border: 2px solid #dc2626;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .activity-prompt h4 {
+            color: #fca5a5;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .homework-box {
+            background: linear-gradient(135deg, #0891b2, #0e7490);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            box-shadow: 0 15px 35px rgba(8, 145, 178, 0.4);
+        }
+
+        .homework-box h4 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+
+        li {
+            margin: 1rem 0;
+            padding-left: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        strong {
+            color: #fbbf24;
+            font-weight: 700;
+        }
+
+        em {
+            color: #a78bfa;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .slide h1 { font-size: 3rem; }
+            .slide h2 { font-size: 2.5rem; }
+            .slide h3 { font-size: 2rem; }
+            .slide p, .slide li { font-size: 1.4rem; }
+            .lesson-objectives { grid-template-columns: 1fr; }
+            .text-analysis-grid { grid-template-columns: 1fr; }
+            .slide { padding: 1rem 2%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 7</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="revealBtn" onclick="toggleRevealAll()">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title & Course Introduction -->
+    <div class="slide">
+        <div class="slide-content">
+            <div class="emoji-large auto-reveal">📝</div>
+            <h1 class="auto-reveal">Names and Identity</h1>
+            <h2 class="auto-reveal">Course Introduction</h2>
+            
+            <div class="essential-question auto-reveal">
+                <h3>Course Essential Question</h3>
+                <p><em>"How do we find our voice while understanding the complexities of our global community?"</em></p>
+            </div>
+            
+            <div class="auto-reveal" style="margin-top: 3rem;">
+                <p style="font-size: 2.2rem; color: #a78bfa;"><strong>Week 1, Lesson 1</strong> • Sandra Cisneros, "My Name"</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Lesson Objectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Today's Learning Goals</h2>
+            
+            <div class="lesson-objectives">
+                <div class="objective-card auto-reveal">
+                    <h4>📖 Text Analysis</h4>
+                    <p>Analyze how names reflect cultural identity in Sandra Cisneros's "My Name"</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🌍 Cultural Connections</h4>
+                    <p>Connect personal naming experiences to broader cultural patterns worldwide</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🎓 Course Understanding</h4>
+                    <p>Understand this course's essential question and integrated structure</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>✍️ Close Reading</h4>
+                    <p>Practice finding textual evidence and making analytical connections</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Your Name Story -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🗣️ Opening: Your Name Story</h2>
+            
+            <div class="activity-prompt auto-reveal">
+                <h4>Personal Reflection (5 minutes)</h4>
+                <p><strong>Tell me about your name:</strong></p>
+                <ul>
+                    <li>Who chose it?</li>
+                    <li>What does it mean?</li>
+                    <li>How do you feel about it?</li>
+                    <li>Do you go by something different than your given name?</li>
+                </ul>
+            </div>
+            
+            <div class="auto-reveal" style="margin-top: 3rem;">
+                <h3>Course Connection</h3>
+                <p style="font-size: 2rem; color: #e2e8f0;">Names are our first connection to family and culture. Today we'll read about someone with complicated feelings about her name, then think about how this connects to our course's essential question.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Course Overview -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📚 Course Overview</h2>
+            
+            <div class="auto-reveal">
+                <h3>Integration Approach</h3>
+                <p>This 8-week course combines <strong>writing development</strong> with <strong>global studies</strong> through <strong>identity exploration</strong>.</p>
+            </div>
+            
+            <div class="cultural-examples auto-reveal">
+                <h4>Global Studies Topics We'll Explore</h4>
+                <ul>
+                    <li><strong>European colonization</strong> of the Americas and Africa</li>
+                    <li><strong>The Iranian Revolution</strong> and Middle Eastern complexity</li>
+                    <li><strong>Modern China's</strong> development and governance</li>
+                    <li><strong>Diverse cultures</strong> and political systems worldwide</li>
+                </ul>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Writing Progression</h3>
+                <p>Personal narratives → Analytical paragraphs → Global issue essays</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <p style="font-size: 2rem; color: #fbbf24; margin-top: 2rem;"><strong>We start personal and expand global, always connecting back to identity and voice.</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Text Analysis Setup -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📖 "My Name" by Sandra Cisneros</h2>
+            
+            <div class="auto-reveal">
+                <h3>Author Context</h3>
+                <p>Sandra Cisneros is a Mexican-American author who writes about growing up in Chicago. This story is told by a young narrator named Esperanza.</p>
+            </div>
+            
+            <div class="activity-prompt auto-reveal">
+                <h4>As We Read, Think About:</h4>
+                <p>How does Esperanza's experience with her name connect to your own name story?</p>
+            </div>
+            
+            <div class="auto-reveal" style="margin-top: 3rem;">
+                <h3>First Reading</h3>
+                <p style="font-size: 1.8rem; color: #a78bfa;">Read aloud together, then discuss initial impressions</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Close Reading Analysis -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔍 Close Reading Discussion</h2>
+            
+            <div class="text-analysis-grid">
+                <div class="analysis-card auto-reveal">
+                    <h4>Heritage and Legacy</h4>
+                    <p><strong>Question:</strong> What does Esperanza inherit from her great-grandmother besides the name?</p>
+                    <p><em>Look for: both strong-willed, great-grandmother's confinement, the window imagery</em></p>
+                </div>
+                
+                <div class="analysis-card auto-reveal">
+                    <h4>Language and Sound</h4>
+                    <p><strong>Question:</strong> How does her name sound different in English versus Spanish? Find the exact descriptions.</p>
+                    <p><em>Look for: "muddy color" vs. "silver," "thick records" vs. "soft like tissue paper"</em></p>
+                </div>
+                
+                <div class="analysis-card auto-reveal">
+                    <h4>Identity and Choice</h4>
+                    <p><strong>Question:</strong> What names does she want instead? What does this tell us about who she wants to become?</p>
+                    <p><em>Look for: her list of alternative names, the desire to "baptize myself"</em></p>
+                </div>
+            </div>
+            
+            <div class="quote-highlight auto-reveal">
+                Key Insight: "Why does the same name feel completely different depending on the language and culture?"
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Global Cultural Connections & Homework -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌍 Global Cultural Connections</h2>
+            
+            <div class="cultural-examples auto-reveal">
+                <h4>Naming Practices Worldwide</h4>
+                <ul>
+                    <li><strong>Iceland:</strong> Last names = father's name + son/daughter</li>
+                    <li><strong>China:</strong> Family name first, given name reflects hopes</li>
+                    <li><strong>Hispanic cultures:</strong> Multiple family names preserve both sides</li>
+                    <li><strong>Many African cultures:</strong> Names reflect birth circumstances or family dreams</li>
+                </ul>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Analysis Question</h3>
+                <p style="font-size: 2rem;">What patterns do you see in how names connect to family, culture, and identity across different societies?</p>
+            </div>
+            
+            <div class="homework-box auto-reveal">
+                <h4>🏠 Homework Assignment</h4>
+                <p>Ask a family member about your name: Who chose it? Does it have meaning? Are there family naming traditions? We'll use this next lesson.</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Next Lesson Preview</h3>
+                <p>Tomorrow: Amy Tan's "Mother Tongue" about language and identity</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+        let allRevealed = false;
+
+        function updateSlideCounter() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentSlide === 0 && revealIndex === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1 && allRevealed;
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            allRevealed = false;
+            resetReveal();
+            updateSlideCounter();
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                
+                if (revealIndex === elements.length) {
+                    allRevealed = true;
+                }
+                
+                updateNavigationButtons();
+                updateRevealButton();
+                return true;
+            }
+            return false;
+        }
+
+        function revealAllElements() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            elements.forEach(el => {
+                el.classList.add('show');
+            });
+            
+            revealIndex = elements.length;
+            allRevealed = true;
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function hideAllElements() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+            
+            revealIndex = 0;
+            allRevealed = false;
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function toggleRevealAll() {
+            if (allRevealed) {
+                hideAllElements();
+            } else {
+                revealAllElements();
+            }
+        }
+
+        function updateRevealButton() {
+            const revealBtn = document.getElementById('revealBtn');
+            revealBtn.textContent = allRevealed ? 'Hide All' : 'Reveal All';
+        }
+
+        function nextSlide() {
+            if (!allRevealed) {
+                const revealed = revealNextElement();
+                if (!revealed && currentSlide < totalSlides - 1) {
+                    showSlide(currentSlide + 1);
+                }
+            } else if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (revealIndex > 0) {
+                // Go to previous element
+                const currentSlideElement = slides[currentSlide];
+                const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+                
+                elements[revealIndex - 1].classList.remove('show');
+                revealIndex--;
+                allRevealed = false;
+                updateNavigationButtons();
+                updateRevealButton();
+            } else if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+                // Auto-reveal all elements on previous slide
+                revealAllElements();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                revealNextElement();
+            }
+        });
+
+        // Initialize
+        updateSlideCounter();
+        updateNavigationButtons();
+        updateRevealButton();
+    </script>
+</body>
+</html>

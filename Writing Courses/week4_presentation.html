@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 4: Revision Strategies and Academic Voice Mastery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #dc2626 0%, #ea580c 25%, #f59e0b 50%, #eab308 75%, #facc15 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .slide-content {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .slide h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #facc15, #eab308, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.1;
+        }
+
+        .slide h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #facc15;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .slide h3 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide p, .slide li {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #e2e8f0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question {
+            background: rgba(250, 204, 21, 0.15);
+            backdrop-filter: blur(20px);
+            border: 3px solid rgba(250, 204, 21, 0.4);
+            border-radius: 30px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 15px 50px rgba(250, 204, 21, 0.2);
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question h3 {
+            color: #facc15;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .objective-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(250, 204, 21, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(250, 204, 21, 0.3);
+            border-color: rgba(250, 204, 21, 0.6);
+        }
+
+        .objective-card:hover::before {
+            left: 100%;
+        }
+
+        .objective-card h3 {
+            color: #facc15;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .revision-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .revision-flow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #facc15, #f59e0b, #ea580c, #dc2626);
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        .flow-step {
+            background: linear-gradient(135deg, #ffffff, #f1f5f9);
+            color: #dc2626;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 3;
+            border: 3px solid rgba(250, 204, 21, 0.6);
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .flow-step:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(250, 204, 21, 0.4);
+        }
+
+        .revision-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .revision-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .content-revision {
+            border-color: rgba(239, 68, 68, 0.4);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .voice-revision {
+            border-color: rgba(245, 158, 11, 0.4);
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .mechanical-revision {
+            border-color: rgba(34, 197, 94, 0.4);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .content-revision h3 {
+            color: #fca5a5;
+        }
+
+        .voice-revision h3 {
+            color: #fcd34d;
+        }
+
+        .mechanical-revision h3 {
+            color: #86efac;
+        }
+
+        .revision-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(250, 204, 21, 0.3);
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #f59e0b, #ea580c);
+            color: #ffffff;
+            padding: 2rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            font-weight: 600;
+            font-size: 1.4rem;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .comparison-examples {
+            background: rgba(99, 102, 241, 0.2);
+            border-left: 6px solid #6366f1;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .before-example {
+            background: rgba(239, 68, 68, 0.2);
+            border-left: 6px solid #ef4444;
+            padding: 1.5rem;
+            border-radius: 0 15px 15px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .after-example {
+            background: rgba(34, 197, 94, 0.2);
+            border-left: 6px solid #22c55e;
+            padding: 1.5rem;
+            border-radius: 0 15px 15px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .example-label {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .before-example .example-label {
+            color: #fca5a5;
+        }
+
+        .after-example .example-label {
+            color: #86efac;
+        }
+
+        .word-choice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .word-level {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 2px solid rgba(147, 51, 234, 0.3);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .word-level:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.3);
+            border-color: rgba(147, 51, 234, 0.6);
+        }
+
+        .word-level h4 {
+            color: #c084fc;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .checklist-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .checklist-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(250, 204, 21, 0.3);
+            border-color: rgba(250, 204, 21, 0.6);
+        }
+
+        .checklist-card h4 {
+            color: #facc15;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(250, 204, 21, 0.9);
+            border: none;
+            color: #dc2626;
+            padding: 1.2rem 1.8rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(250, 204, 21, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-btn:hover {
+            background: rgba(250, 204, 21, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(250, 204, 21, 0.6);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(250, 204, 21, 0.9);
+            color: #dc2626;
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(250, 204, 21, 0.4);
+            z-index: 1000;
+        }
+
+        .emoji-large {
+            font-size: 4rem;
+            margin: 1rem 0;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+            color: #e2e8f0;
+        }
+
+        li {
+            margin: 0.8rem 0;
+            padding-left: 1rem;
+            color: #e2e8f0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        strong {
+            color: #facc15;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .step-indicator {
+            display: inline-block;
+            background: #facc15;
+            color: #dc2626;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-right: 1rem;
+            text-shadow: none;
+        }
+
+        .practice-box {
+            background: rgba(147, 51, 234, 0.2);
+            border: 2px solid rgba(147, 51, 234, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+        }
+
+        .practice-box h4 {
+            color: #c084fc;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .improvement-showcase {
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid rgba(16, 185, 129, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+        }
+
+        .improvement-showcase h4 {
+            color: #10b981;
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 1920px) {
+            .slide {
+                padding: 3rem 4rem;
+            }
+            
+            .slide-content {
+                max-width: 1600px;
+            }
+        }
+
+        @media (min-width: 2560px) {
+            .slide {
+                padding: 4rem 6rem;
+            }
+            
+            .slide-content {
+                max-width: 2000px;
+            }
+            
+            .objectives-grid {
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            }
+            
+            .revision-levels {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-height: 800px) {
+            .slide {
+                padding: 1rem 2rem;
+                justify-content: flex-start;
+                padding-top: 2rem;
+            }
+            
+            .slide h1 {
+                font-size: clamp(2rem, 4vw, 3rem);
+                margin-bottom: 0.5rem;
+            }
+            
+            .slide h2 {
+                font-size: clamp(1.5rem, 3vw, 2.5rem);
+                margin-bottom: 1rem;
+            }
+            
+            .objectives-grid,
+            .revision-levels,
+            .word-choice-grid {
+                gap: 1rem;
+                margin: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 14</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="reveal-btn" onclick="toggleRevealAll()">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1 class="auto-reveal">Week 4: Revision Strategies & Academic Voice Mastery</h1>
+            <div class="emoji-large auto-reveal">✨</div>
+            <div class="central-question auto-reveal">
+                <h3>Systematic Writing Improvement</h3>
+                <p><em>Transform your writing from good to sophisticated through strategic revision and professional academic voice</em></p>
+            </div>
+            <div class="revision-flow auto-reveal">
+                <div class="flow-step">Content Revision</div>
+                <div class="flow-step">Academic Voice</div>
+                <div class="flow-step">Mechanical Editing</div>
+                <div class="flow-step">Independent Mastery</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Learning Objectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Session Objectives</h2>
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h3>📋 Content Revision</h3>
+                    <p>Master systematic approaches to strengthen arguments, improve thesis statements, and enhance evidence integration</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>🎭 Academic Voice</h3>
+                    <p>Develop sophisticated word choice, sentence variety, and professional tone that demonstrates high-level thinking</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>🔧 Editing Skills</h3>
+                    <p>Learn mechanical editing techniques for grammar, punctuation, and citation accuracy that build credibility</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>⚡ Independence</h3>
+                    <p>Become self-directed writers who can systematically improve their own work without constant teacher guidance</p>
+                </div>
+            </div>
+            <div class="central-question auto-reveal">
+                <h3>Central Question</h3>
+                <p><em>"How do we systematically improve our academic writing to sound sophisticated and professional?"</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Three Levels of Revision -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔄 Three Levels of Revision</h2>
+            
+            <div class="revision-levels">
+                <div class="revision-card content-revision auto-reveal">
+                    <h3>🎯 Level 1: Content Revision</h3>
+                    <p><strong>Big Picture Changes</strong></p>
+                    <ul>
+                        <li>Thesis strength and clarity</li>
+                        <li>Argument logic and organization</li>
+                        <li>Evidence quality and integration</li>
+                        <li>Counterargument effectiveness</li>
+                        <li>Overall essay coherence</li>
+                    </ul>
+                    <p><strong>Question:</strong> "Does my argument make sense and convince readers?"</p>
+                </div>
+                
+                <div class="revision-card voice-revision auto-reveal">
+                    <h3>🎭 Level 2: Academic Voice</h3>
+                    <p><strong>Style and Language</strong></p>
+                    <ul>
+                        <li>Word choice precision and sophistication</li>
+                        <li>Sentence variety and complexity</li>
+                        <li>Professional tone consistency</li>
+                        <li>Academic vocabulary usage</li>
+                        <li>Transition smoothness</li>
+                    </ul>
+                    <p><strong>Question:</strong> "Do I sound like a sophisticated academic writer?"</p>
+                </div>
+                
+                <div class="revision-card mechanical-revision auto-reveal">
+                    <h3>🔧 Level 3: Mechanical Editing</h3>
+                    <p><strong>Accuracy and Polish</strong></p>
+                    <ul>
+                        <li>Grammar and sentence structure</li>
+                        <li>Punctuation and capitalization</li>
+                        <li>Citation format and accuracy</li>
+                        <li>Spelling and proofreading</li>
+                        <li>Final formatting</li>
+                    </ul>
+                    <p><strong>Question:</strong> "Is my writing polished and error-free?"</p>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Revision Priority:</strong> Always start with content (Level 1), then improve style (Level 2), and finish with mechanics (Level 3). Don't waste time fixing grammar in paragraphs you might delete!
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Content Revision Strategies -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Content Revision Mastery</h2>
+            
+            <div class="checklist-grid">
+                <div class="checklist-card auto-reveal">
+                    <h4>📝 Thesis Evaluation</h4>
+                    <ul>
+                        <li>✓ Is it arguable and specific?</li>
+                        <li>✓ Does it acknowledge complexity?</li>
+                        <li>✓ Do all body paragraphs support it?</li>
+                        <li>✓ Is it sophisticated enough for the evidence?</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>🔗 Argument Logic</h4>
+                    <ul>
+                        <li>✓ Do paragraphs follow logical order?</li>
+                        <li>✓ Are transitions clear and smooth?</li>
+                        <li>✓ Does each point advance the thesis?</li>
+                        <li>✓ Are counterarguments addressed effectively?</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>📊 Evidence Quality</h4>
+                    <ul>
+                        <li>✓ Are sources credible and current?</li>
+                        <li>✓ Is quote integration smooth?</li>
+                        <li>✓ Does analysis explain significance?</li>
+                        <li>✓ Is there enough evidence for each claim?</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>🎯 Overall Coherence</h4>
+                    <ul>
+                        <li>✓ Does introduction preview argument effectively?</li>
+                        <li>✓ Does conclusion synthesize rather than repeat?</li>
+                        <li>✓ Are paragraphs focused and unified?</li>
+                        <li>✓ Would readers follow the logic easily?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Content Revision Workshop</h4>
+                <p>Using your Week 3 essay outline, apply the content revision checklist:</p>
+                <ul>
+                    <li>Strengthen your thesis using advanced patterns</li>
+                    <li>Reorder paragraphs for maximum logical impact</li>
+                    <li>Improve evidence integration and analysis</li>
+                    <li>Enhance counterargument presentation and refutation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Academic Voice Development -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎭 Academic Voice Sophistication</h2>
+            
+            <div class="before-after">
+                <div class="before-example auto-reveal">
+                    <div class="example-label">❌ Basic Academic Voice</div>
+                    <p><em>"Columbus wanted to find gold. He wrote letters to the king and queen. The letters talked about gold a lot. This shows he cared about money. Many people think he was just greedy. But I think there were good reasons for this."</em></p>
+                    <p><strong>Problems:</strong> Simple sentences, repetitive language, informal tone, weak transitions</p>
+                </div>
+                
+                <div class="after-example auto-reveal">
+                    <div class="example-label">✅ Sophisticated Academic Voice</div>
+                    <p><em>"Columbus's correspondence reveals a calculated emphasis on material wealth that served strategic rather than purely mercenary purposes. His detailed inventories of potential resources in letters to Ferdinand and Isabella demonstrate sophisticated understanding of royal economic priorities. While critics interpret this focus as evidence of greed, the historical context suggests Columbus tailored his rhetoric to secure essential financial backing for exploration that required substantial royal investment."</em></p>
+                    <p><strong>Strengths:</strong> Complex sentences, precise vocabulary, professional tone, smooth flow</p>
+                </div>
+            </div>
+
+            <div class="word-choice-grid auto-reveal">
+                <div class="word-level">
+                    <h4>🔄 Verb Sophistication</h4>
+                    <ul>
+                        <li><strong>Basic:</strong> shows → demonstrates, reveals, illustrates</li>
+                        <li><strong>Advanced:</strong> said → contended, asserted, proclaimed</li>
+                        <li><strong>Analysis:</strong> proves → substantiates, corroborates, validates</li>
+                    </ul>
+                </div>
+                
+                <div class="word-level">
+                    <h4>🎯 Noun Precision</h4>
+                    <ul>
+                        <li><strong>Basic:</strong> things → factors, elements, aspects</li>
+                        <li><strong>Advanced:</strong> problems → challenges, complications, impediments</li>
+                        <li><strong>Academic:</strong> reasons → rationale, justification, motivation</li>
+                    </ul>
+                </div>
+                
+                <div class="word-level">
+                    <h4>📊 Adjective Enhancement</h4>
+                    <ul>
+                        <li><strong>Basic:</strong> important → significant, crucial, paramount</li>
+                        <li><strong>Advanced:</strong> big → substantial, extensive, comprehensive</li>
+                        <li><strong>Precise:</strong> good → effective, sophisticated, compelling</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Sentence Sophistication -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📝 Sentence Variety and Complexity</h2>
+            
+            <div class="comparison-examples auto-reveal">
+                <h4>From Simple to Sophisticated Sentences</h4>
+                
+                <div class="before-after" style="margin-top: 1.5rem;">
+                    <div class="before-example">
+                        <div class="example-label">❌ Repetitive Simple Sentences</div>
+                        <p><em>"European trade routes were expensive. Ottoman control made them dangerous. Merchants faced high taxes. Columbus proposed a western route. This route would avoid Ottoman territories. Spain found this proposal attractive."</em></p>
+                    </div>
+                    
+                    <div class="after-example">
+                        <div class="example-label">✅ Varied Complex Sentences</div>
+                        <p><em>"As European trade routes became increasingly expensive due to Ottoman control, merchants faced prohibitive taxes that threatened commercial viability. Consequently, Columbus's proposal for a western route offered an attractive alternative that would circumvent Ottoman territories while providing Spain direct access to Asian markets."</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <h3>Sentence Variety Techniques</h3>
+                <p><span class="step-indicator">1</span><strong>Combine short sentences:</strong> Use conjunctions, relative clauses, participial phrases</p>
+                <p><span class="step-indicator">2</span><strong>Vary sentence openings:</strong> Start with different elements (dependent clauses, prepositional phrases, transitions)</p>
+                <p><span class="step-indicator">3</span><strong>Use sophisticated structures:</strong> Although/while clauses, because/since reasoning, conditional statements</p>
+                <p><span class="step-indicator">4</span><strong>Balance complexity:</strong> Mix longer complex sentences with shorter impactful statements</p>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Sentence Sophistication Challenge</h4>
+                <p>Take a paragraph from your essay and rewrite it using:</p>
+                <ul>
+                    <li>At least 3 different sentence openings</li>
+                    <li>2 complex sentences with dependent clauses</li>
+                    <li>1 sophisticated academic vocabulary substitution per sentence</li>
+                    <li>Smooth transitions between ideas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Eliminating Weak Language -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>💪 Eliminating Weak Academic Language</h2>
+            
+            <div class="revision-levels">
+                <div class="revision-card content-revision auto-reveal">
+                    <h3>🚫 Avoid Hedging Overuse</h3>
+                    <p><strong>Weak hedging:</strong></p>
+                    <ul>
+                        <li>"I think that maybe..."</li>
+                        <li>"It seems like possibly..."</li>
+                        <li>"Perhaps it could be..."</li>
+                    </ul>
+                    <p><strong>Academic confidence:</strong></p>
+                    <ul>
+                        <li>"The evidence suggests..."</li>
+                        <li>"Analysis demonstrates..."</li>
+                        <li>"Research indicates..."</li>
+                    </ul>
+                </div>
+                
+                <div class="revision-card voice-revision auto-reveal">
+                    <h3>⚡ Replace Weak Verbs</h3>
+                    <p><strong>Weak constructions:</strong></p>
+                    <ul>
+                        <li>"There is/are/was/were..."</li>
+                        <li>"It is important that..."</li>
+                        <li>"This shows that..."</li>
+                    </ul>
+                    <p><strong>Strong alternatives:</strong></p>
+                    <ul>
+                        <li>"Columbus demonstrates..."</li>
+                        <li>"Economic pressures necessitated..."</li>
+                        <li>"Evidence reveals..."</li>
+                    </ul>
+                </div>
+                
+                <div class="revision-card mechanical-revision auto-reveal">
+                    <h3>🎯 Eliminate Informal Language</h3>
+                    <p><strong>Informal expressions:</strong></p>
+                    <ul>
+                        <li>"A lot of" → numerous, substantial</li>
+                        <li>"Really big" → significant, extensive</li>
+                        <li>"Get" → obtain, acquire, achieve</li>
+                    </ul>
+                    <p><strong>Academic precision:</strong></p>
+                    <ul>
+                        <li>"Numerous factors contributed..."</li>
+                        <li>"Significant evidence supports..."</li>
+                        <li>"Columbus sought to obtain..."</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="comparison-examples auto-reveal">
+                <h4>Complete Language Transformation</h4>
+                <div class="before-after">
+                    <div class="before-example">
+                        <div class="example-label">❌ Weak Academic Language</div>
+                        <p><em>"I think that there were a lot of reasons why Columbus really wanted to go to America. It seems like maybe he was thinking about getting gold and stuff. There are many people who say he was just greedy, but I think there might be other reasons too."</em></p>
+                    </div>
+                    
+                    <div class="after-example">
+                        <div class="example-label">✅ Strong Academic Language</div>
+                        <p><em>"Multiple factors motivated Columbus's westward expeditions, particularly his strategic focus on acquiring material wealth through alternative trade routes. While critics characterize his actions as purely mercenary, comprehensive analysis reveals more complex economic and political considerations driving his proposals."</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Mechanical Editing Excellence -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔧 Mechanical Editing for Credibility</h2>
+            
+            <div class="checklist-grid">
+                <div class="checklist-card auto-reveal">
+                    <h4>📝 Grammar Essentials</h4>
+                    <ul>
+                        <li>✓ Subject-verb agreement</li>
+                        <li>✓ Pronoun-antecedent clarity</li>
+                        <li>✓ Parallel structure in lists</li>
+                        <li>✓ Proper verb tenses</li>
+                        <li>✓ Fragment and run-on elimination</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>⚡ Punctuation Power</h4>
+                    <ul>
+                        <li>✓ Comma usage in complex sentences</li>
+                        <li>✓ Semicolon for sophisticated connections</li>
+                        <li>✓ Quotation mark accuracy</li>
+                        <li>✓ Apostrophe precision</li>
+                        <li>✓ Dash usage for emphasis</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>📚 Citation Accuracy</h4>
+                    <ul>
+                        <li>✓ MLA format consistency</li>
+                        <li>✓ In-text citation placement</li>
+                        <li>✓ Works Cited completeness</li>
+                        <li>✓ Quote integration formatting</li>
+                        <li>✓ Page number accuracy</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>🎯 Final Polish</h4>
+                    <ul>
+                        <li>✓ Spelling verification</li>
+                        <li>✓ Capitalization consistency</li>
+                        <li>✓ Number and date formatting</li>
+                        <li>✓ Font and spacing uniformity</li>
+                        <li>✓ Final proofreading pass</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Editing Strategy:</strong> Read your essay three times - once for content flow, once for sentence-level issues, and once aloud for rhythm and clarity. Use spell-check but don't rely on it exclusively!
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Editing Workshop</h4>
+                <p>Apply systematic editing to your revision:</p>
+                <ul>
+                    <li>Check every sentence for grammatical accuracy</li>
+                    <li>Verify all citations follow MLA format precisely</li>
+                    <li>Read aloud to catch awkward constructions</li>
+                    <li>Use checklist to ensure comprehensive editing</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Self-Assessment Strategies -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📊 Independent Self-Assessment</h2>
+            
+            <div class="formula-box auto-reveal">
+                <h3>The 24-Hour Rule</h3>
+                <p>Always let your writing "rest" for at least 24 hours before final revision. Distance helps you see problems and opportunities you miss when writing is fresh in your mind.</p>
+            </div>
+
+            <div class="revision-levels">
+                <div class="revision-card content-revision auto-reveal">
+                    <h3>🎯 Content Self-Check</h3>
+                    <p><strong>Read like a skeptical teacher:</strong></p>
+                    <ul>
+                        <li>Would someone disagree with my thesis?</li>
+                        <li>Does each paragraph prove a specific point?</li>
+                        <li>Is my evidence actually convincing?</li>
+                        <li>Did I address obvious counterarguments?</li>
+                    </ul>
+                </div>
+                
+                <div class="revision-card voice-revision auto-reveal">
+                    <h3>🎭 Voice Self-Check</h3>
+                    <p><strong>Read like an admissions officer:</strong></p>
+                    <ul>
+                        <li>Do I sound intelligent and sophisticated?</li>
+                        <li>Would a professor take this seriously?</li>
+                        <li>Are my sentences varied and interesting?</li>
+                        <li>Does my vocabulary demonstrate academic knowledge?</li>
+                    </ul>
+                </div>
+                
+                <div class="revision-card mechanical-revision auto-reveal">
+                    <h3>🔧 Accuracy Self-Check</h3>
+                    <p><strong>Read like a professional editor:</strong></p>
+                    <ul>
+                        <li>Would errors distract from my argument?</li>
+                        <li>Are citations formatted consistently?</li>
+                        <li>Does every sentence read smoothly?</li>
+                        <li>Would this meet publication standards?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Self-Assessment Practice</h4>
+                <p>Use the three self-check approaches on your current essay:</p>
+                <ul>
+                    <li>Read as a skeptical teacher - challenge your own arguments</li>
+                    <li>Read as an admissions officer - evaluate sophistication</li>
+                    <li>Read as a professional editor - catch every error</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Peer Review Excellence -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>👥 Strategic Peer Review</h2>
+            
+            <div class="revision-flow auto-reveal">
+                <div class="flow-step">Content<br>Feedback</div>
+                <div class="flow-step">Voice<br>Evaluation</div>
+                <div class="flow-step">Error<br>Detection</div>
+                <div class="flow-step">Improvement<br>Planning</div>
+            </div>
+
+            <div class="checklist-grid">
+                <div class="checklist-card auto-reveal">
+                    <h4>🎯 Content Review Questions</h4>
+                    <ul>
+                        <li>Is the thesis clear and arguable?</li>
+                        <li>Do all paragraphs support the main argument?</li>
+                        <li>Is evidence convincing and well-integrated?</li>
+                        <li>Are counterarguments addressed effectively?</li>
+                        <li>Does the conclusion synthesize rather than repeat?</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>🎭 Voice Review Questions</h4>
+                    <ul>
+                        <li>Does the writer sound knowledgeable and confident?</li>
+                        <li>Are sentences varied and sophisticated?</li>
+                        <li>Is academic vocabulary used naturally?</li>
+                        <li>Are transitions smooth and logical?</li>
+                        <li>Does the tone remain consistently professional?</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>🔧 Accuracy Review Questions</h4>
+                    <ul>
+                        <li>Are there any grammatical errors?</li>
+                        <li>Is punctuation used correctly throughout?</li>
+                        <li>Are citations formatted properly?</li>
+                        <li>Is spelling accurate in all instances?</li>
+                        <li>Does formatting meet assignment requirements?</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>💡 Improvement Suggestions</h4>
+                    <ul>
+                        <li>What is the strongest part of this essay?</li>
+                        <li>What one change would most improve the argument?</li>
+                        <li>Where could evidence be stronger or clearer?</li>
+                        <li>What language could be more sophisticated?</li>
+                        <li>What would make this essay more convincing?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Peer Review Golden Rule:</strong> Give the kind of detailed, helpful feedback you want to receive. Focus on helping your partner become a better writer, not just fixing this one essay.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Complete Revision Process -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔄 Complete Revision Cycle</h2>
+            
+            <div class="improvement-showcase auto-reveal">
+                <h4>Week 1 → Week 4 Transformation</h4>
+                <div class="before-after">
+                    <div class="before-example">
+                        <div class="example-label">Week 1: Basic Essay</div>
+                        <p><em>"Columbus wanted to explore. He asked the king and queen for money. They said yes. He found America. This was important because it started exploration."</em></p>
+                    </div>
+                    
+                    <div class="after-example">
+                        <div class="example-label">Week 4: Sophisticated Analysis</div>
+                        <p><em>"Although Columbus portrayed his expeditions as religious missions, comprehensive analysis of his correspondence reveals primarily economic motivations that reflected broader European commercial pressures. His strategic emphasis on material wealth in royal communications demonstrates sophisticated understanding of monarchial priorities, ultimately securing support for voyages that transformed global trade patterns despite opposition from traditional religious authorities."</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="revision-flow auto-reveal">
+                <div class="flow-step">Week 1<br>Structure</div>
+                <div class="flow-step">Week 2<br>Research</div>
+                <div class="flow-step">Week 3<br>Complexity</div>
+                <div class="flow-step">Week 4<br>Sophistication</div>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Complete Revision Workshop</h4>
+                <p>Apply the full revision cycle to your essay:</p>
+                <ul>
+                    <li><strong>Content Revision:</strong> Strengthen thesis, improve logic, enhance evidence</li>
+                    <li><strong>Voice Development:</strong> Sophisticated vocabulary, sentence variety, professional tone</li>
+                    <li><strong>Mechanical Editing:</strong> Grammar accuracy, citation precision, final polish</li>
+                    <li><strong>Self-Assessment:</strong> Evaluate against high academic standards</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Cross-Subject Applications -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔄 Universal Revision Skills</h2>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h3>🧪 Science Writing</h3>
+                    <ul>
+                        <li><strong>Content:</strong> Hypothesis clarity, data analysis accuracy</li>
+                        <li><strong>Voice:</strong> Objective tone, precise scientific language</li>
+                        <li><strong>Mechanics:</strong> Lab report format, citation accuracy</li>
+                    </ul>
+                </div>
+                
+                <div class="objective-card auto-reveal">
+                    <h3>📚 English Essays</h3>
+                    <ul>
+                        <li><strong>Content:</strong> Thesis specificity, textual evidence quality</li>
+                        <li><strong>Voice:</strong> Literary analysis vocabulary, sophisticated interpretation</li>
+                        <li><strong>Mechanics:</strong> MLA format, quote integration accuracy</li>
+                    </ul>
+                </div>
+                
+                <div class="objective-card auto-reveal">
+                    <h3>🌍 Social Studies</h3>
+                    <ul>
+                        <li><strong>Content:</strong> Historical argument logic, source evaluation</li>
+                        <li><strong>Voice:</strong> Academic objectivity, analytical perspective</li>
+                        <li><strong>Mechanics:</strong> Citation consistency, factual accuracy</li>
+                    </ul>
+                </div>
+                
+                <div class="objective-card auto-reveal">
+                    <h3>💼 Any Academic Subject</h3>
+                    <ul>
+                        <li><strong>Content:</strong> Clear arguments supported by evidence</li>
+                        <li><strong>Voice:</strong> Professional tone appropriate to audience</li>
+                        <li><strong>Mechanics:</strong> Error-free presentation that builds credibility</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Universal Truth:</strong> The revision skills you've mastered work for ALL academic writing. Content-Voice-Mechanics revision applies whether you're writing lab reports, literary analyses, or research papers.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Independence and Lifelong Learning -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚡ Becoming an Independent Writer</h2>
+            
+            <div class="revision-levels">
+                <div class="revision-card content-revision auto-reveal">
+                    <h3>🎯 Self-Directed Improvement</h3>
+                    <ul>
+                        <li>Use revision checklists independently</li>
+                        <li>Seek feedback from multiple sources</li>
+                        <li>Read excellent writing to internalize patterns</li>
+                        <li>Practice regularly without teacher prompting</li>
+                        <li>Set personal writing improvement goals</li>
+                    </ul>
+                </div>
+                
+                <div class="revision-card voice-revision auto-reveal">
+                    <h3>📚 Continuous Learning Resources</h3>
+                    <ul>
+                        <li>Academic writing handbooks and guides</li>
+                        <li>Online grammar and style resources</li>
+                        <li>High-quality published writing models</li>
+                        <li>Writing center consultations</li>
+                        <li>Peer writing groups and feedback partnerships</li>
+                    </ul>
+                </div>
+                
+                <div class="revision-card mechanical-revision auto-reveal">
+                    <h3>🚀 High School Success Strategies</h3>
+                    <ul>
+                        <li>Apply revision cycle to all writing assignments</li>
+                        <li>Build vocabulary through wide reading</li>
+                        <li>Practice timed writing with revision skills</li>
+                        <li>Use technology tools effectively but not exclusively</li>
+                        <li>Develop personal editing and proofreading systems</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="improvement-showcase auto-reveal">
+                <h4>Your Writing Journey Continues</h4>
+                <p>You now have the complete toolkit for academic writing success:</p>
+                <div class="revision-flow">
+                    <div class="flow-step">Structure<br>Mastery</div>
+                    <div class="flow-step">Research<br>Skills</div>
+                    <div class="flow-step">Complex<br>Arguments</div>
+                    <div class="flow-step">Professional<br>Voice</div>
+                </div>
+                <p style="margin-top: 2rem;"><strong>Keep growing:</strong> Every essay is an opportunity to practice and improve these skills. You're now equipped for high school success and beyond!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Final Assessment and Celebration -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Course Completion and Assessment</h2>
+            
+            <div class="practice-box auto-reveal">
+                <h4>✍️ Final Portfolio Assessment</h4>
+                <p>Demonstrate complete mastery through your writing portfolio:</p>
+                <ul>
+                    <li>✓ Week 1 basic essay → Week 4 sophisticated revision</li>
+                    <li>✓ Research integration with multiple credible sources</li>
+                    <li>✓ Complex argumentation with counterargument mastery</li>
+                    <li>✓ Professional academic voice throughout</li>
+                    <li>✓ Error-free mechanical accuracy</li>
+                </ul>
+            </div>
+
+            <div class="improvement-showcase auto-reveal">
+                <h4>Self-Assessment: Can You Now...</h4>
+                <div class="checklist-grid">
+                    <div class="checklist-card">
+                        <p><span class="step-indicator">✓</span>Write clear, arguable thesis statements that acknowledge complexity?</p>
+                        <p><span class="step-indicator">✓</span>Find, evaluate, and integrate credible sources effectively?</p>
+                        <p><span class="step-indicator">✓</span>Present and refute counterarguments professionally?</p>
+                        <p><span class="step-indicator">✓</span>Revise systematically for content, voice, and mechanics?</p>
+                        <p><span class="step-indicator">✓</span>Write with sophisticated academic voice and vocabulary?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="revision-flow auto-reveal">
+                <div class="flow-step">Academic<br>Foundation</div>
+                <div class="flow-step">Research<br>Competence</div>
+                <div class="flow-step">Complex<br>Thinking</div>
+                <div class="flow-step">Independent<br>Excellence</div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>🎉 Congratulations!</h3>
+                <p><em>You have mastered the essential academic writing skills for American high school success. You can now write sophisticated, research-based arguments with professional academic voice!</em></p>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Your Writing Future:</strong> These skills transfer to every high school class, AP courses, college applications, and beyond. You're not just prepared for 9th grade—you're prepared for academic success at the highest levels!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+        let allRevealed = false;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            allRevealed = false;
+            resetReveal();
+            updateRevealButton();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                
+                if (revealIndex >= elements.length) {
+                    allRevealed = true;
+                    updateRevealButton();
+                }
+                return true;
+            }
+            return false;
+        }
+
+        function toggleRevealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (!allRevealed) {
+                // Reveal all remaining elements
+                for (let i = revealIndex; i < elements.length; i++) {
+                    elements[i].classList.add('show');
+                }
+                revealIndex = elements.length;
+                allRevealed = true;
+            } else {
+                // Hide all elements
+                elements.forEach(el => {
+                    el.classList.remove('show');
+                });
+                revealIndex = 0;
+                allRevealed = false;
+            }
+            updateRevealButton();
+        }
+
+        function updateRevealButton() {
+            const btn = document.getElementById('reveal-btn');
+            btn.textContent = allRevealed ? 'Hide All' : 'Reveal All';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                const revealed = revealNextElement();
+                if (!revealed && allRevealed) {
+                    nextSlide();
+                }
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (revealIndex === 0) {
+                    previousSlide();
+                } else {
+                    // Go back one element
+                    const currentSlideElement = slides[currentSlide];
+                    const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+                    if (revealIndex > 0) {
+                        revealIndex--;
+                        elements[revealIndex].classList.remove('show');
+                        allRevealed = false;
+                        updateRevealButton();
+                    }
+                }
+            } else if (e.key === ' ') {
+                e.preventDefault();
+                revealNextElement();
+            }
+        });
+
+        // Click anywhere to reveal next element
+        document.addEventListener('click', function(e) {
+            // Skip navigation elements
+            if (e.target.closest('.navigation') || 
+                e.target.closest('.slide-indicator')) {
+                return;
+            }
+            
+            const currentSlideElement = slides[currentSlide];
+            if (currentSlideElement && !currentSlideElement.classList.contains('hidden')) {
+                revealNextElement();
+            }
+        });
+
+        // Initialize
+        document.getElementById('slide-counter').textContent = `1 / ${totalSlides}`;
+        updateRevealButton();
+    </script>
+</body>
+</html>

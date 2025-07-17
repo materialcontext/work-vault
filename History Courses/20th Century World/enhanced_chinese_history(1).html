@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>China in Crisis: Tradition, Revolution, and Identity (1890s-1930s)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #FFF8DC 0%, #F5F5DC 50%, #FFFACD 100%);
+            color: #2C2C2C;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            width: 95%;
+            height: 90%;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FEFEFE 100%);
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border: 3px solid #DAA520;
+            position: relative;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: linear-gradient(135deg, #8B0000, #DAA520);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
+        }
+
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, #2C5F2D, #97BC62);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(44, 95, 45, 0.3);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(44, 95, 45, 0.4);
+        }
+
+        .image-tab {
+            position: fixed;
+            top: 30px;
+            right: 80px;
+            background: linear-gradient(135deg, #DAA520, #B8860B);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .image-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+        }
+
+        .image-content {
+            max-width: 80%;
+            max-height: 80%;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-align: center;
+            background: linear-gradient(135deg, #8B0000 0%, #DAA520 50%, #228B22 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #8B0000;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #DAA520, #B8860B);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 650;
+            color: #228B22;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            font-size: 1.6rem;
+            color: #696969;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .central-question {
+            background: linear-gradient(135deg, #FFF8DC 0%, #FFFACD 100%);
+            border: 3px solid #DAA520;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            font-size: 1.5rem;
+            color: #8B4513;
+            font-weight: 600;
+            font-style: italic;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(218, 165, 32, 0.2);
+        }
+
+        .central-question::before {
+            content: '🏮';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: #FFF8DC;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #2C5F2D, #97BC62);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(44, 95, 45, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .lens-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .lens-card {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8F6F3 100%);
+            border: 2px solid #E5E5E5;
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .lens-card.social {
+            border-left: 6px solid #FF6B6B;
+        }
+
+        .lens-card.gender {
+            border-left: 6px solid #4ECDC4;
+        }
+
+        .lens-card.cultural {
+            border-left: 6px solid #45B7D1;
+        }
+
+        .lens-card.environmental {
+            border-left: 6px solid #96CEB4;
+        }
+
+        .lens-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .lens-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #8B0000;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lens-icon {
+            font-size: 1.6rem;
+        }
+
+        .source-container {
+            background: linear-gradient(135deg, #E8F5E8 0%, #F0F8F0 100%);
+            border-left: 5px solid #228B22;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(34, 139, 34, 0.1);
+        }
+
+        .source-header {
+            font-weight: 700;
+            color: #228B22;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .source-text {
+            font-style: italic;
+            color: #2C5F2D;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #8B0000, #DAA520, #228B22);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            background: #FFFFFF;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #DAA520;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 1.5rem;
+            width: 12px;
+            height: 12px;
+            background: #DAA520;
+            border-radius: 50%;
+            border: 3px solid #FFFFFF;
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: #8B0000;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .interactive-prompt {
+            background: linear-gradient(135deg, #FFF8DC 0%, #FFFACD 100%);
+            border: 2px solid #DAA520;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-size: 1.2rem;
+            color: #8B4513;
+            font-weight: 600;
+            font-style: italic;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(218, 165, 32, 0.2);
+        }
+
+        .interactive-prompt::before {
+            content: "🤔";
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: #FFF8DC;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-side {
+            background: linear-gradient(135deg, #F8F6F3 0%, #FFFFFF 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 2px solid #E5E5E5;
+        }
+
+        .comparison-side.traditional {
+            border-left: 6px solid #8B0000;
+        }
+
+        .comparison-side.modern {
+            border-left: 6px solid #228B22;
+        }
+
+        .comparison-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .traditional .comparison-title {
+            color: #8B0000;
+        }
+
+        .modern .comparison-title {
+            color: #228B22;
+        }
+
+        ul, ol {
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+
+        p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #3D3D3D;
+        }
+
+        strong {
+            color: #8B0000;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .lens-grid,
+            .comparison-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Enhanced Title -->
+        <div class="slide active">
+            <div class="slide-number">1/10</div>
+            
+            <div class="reveal-item">
+                <h1>China in Crisis</h1>
+                <div class="subtitle">Tradition, Revolution, and Identity (1890s-1930s)</div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="central-question">
+                    How did ordinary Chinese people experience the collapse of traditional society and the birth of modern China?
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p><strong>Today's Approach:</strong> We'll explore Chinese history through four critical lenses - examining how farmers, women, students, and workers experienced revolutionary change, not just the political elite.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">450M</span>
+                        <span class="stat-label">China's population in 1890s</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">1,828</span>
+                        <span class="stat-label">Recorded famines (108 BC - 1911 AD)</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">10,000</span>
+                        <span class="stat-label">Chinese students in Japan by 1906</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Four Historical Lenses -->
+        <div class="slide">
+            <div class="slide-number">2/10</div>
+            
+            <div class="reveal-item">
+                <h2>Understanding China Through Four Lenses</h2>
+                <p>Modern historians use multiple perspectives to understand complex transformations:</p>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="lens-grid">
+                    <div class="lens-card social">
+                        <div class="lens-title">
+                            <span class="lens-icon">👥</span>
+                            Social History Lens
+                        </div>
+                        <p>How did ordinary people - farmers, workers, merchants - experience economic crisis and social upheaval?</p>
+                        <ul>
+                            <li>Population pressure and land shortage</li>
+                            <li>Foreign competition destroying traditional crafts</li>
+                            <li>Famine, opium addiction, and survival strategies</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="lens-card gender">
+                        <div class="lens-title">
+                            <span class="lens-icon">♀️</span>
+                            Gender History Lens
+                        </div>
+                        <p>How did the crisis of traditional society create new possibilities for women's liberation?</p>
+                        <ul>
+                            <li>Foot-binding abolition movement</li>
+                            <li>Women's education and legal rights</li>
+                            <li>Revolutionary activism and new identities</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="lens-card cultural">
+                        <div class="lens-title">
+                            <span class="lens-icon">📚</span>
+                            Cultural/Intellectual Lens
+                        </div>
+                        <p>How did intellectuals navigate between preserving Chinese identity and embracing modernity?</p>
+                        <ul>
+                            <li>Abolition of imperial examinations</li>
+                            <li>May Fourth Movement and new literature</li>
+                            <li>Generational conflicts over tradition</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="lens-card environmental">
+                        <div class="lens-title">
+                            <span class="lens-icon">🌊</span>
+                            Environmental/Demographic Lens
+                        </div>
+                        <p>How did natural disasters and population growth shape political and social change?</p>
+                        <ul>
+                            <li>1931 Central China floods</li>
+                            <li>Agricultural crisis and modernization</li>
+                            <li>Migration patterns and urbanization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Social History Part 1 - Economic Crisis -->
+        <div class="slide">
+            <div class="slide-number">3/14</div>
+            
+            <div class="reveal-item">
+                <h2>👥 Social History Part 1: Economic Crisis</h2>
+                <h3>The Collapse of Traditional Livelihoods</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="source-container">
+                    <div class="source-header">Ning Lao Tai Tai's Memoir (1887-1888 Famine)</div>
+                    <div class="source-text">"Day after day I sat at home. Hunger gnawed. What could I do? My mother was dead. My brother had gone away. When my husband brought home food I ate it and my children ate with me."</div>
+                </div>
+                
+                <p><strong>Context:</strong> Ning Lao Tai Tai was married to an opium addict during a period when an estimated 80% of village populations were frequent opium users.</p>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">130%</span>
+                        <span class="stat-label">Grain tax surcharge in 1890s Hunan</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">250,000</span>
+                        <span class="stat-label">People per magistrate by 19th century</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">80%</span>
+                        <span class="stat-label">Village populations using opium frequently</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    How did foreign competition and government taxation create a crisis for ordinary Chinese families?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Social History Part 2 - Foreign Impact and Guild System -->
+        <div class="slide">
+            <div class="slide-number">4/14</div>
+            
+            <div class="reveal-item">
+                <h2>👥 Social History Part 2: Foreign Competition</h2>
+                <h3>The Transformation of Traditional Crafts and Trade</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="source-container">
+                    <div class="source-header">Guild System Transformation After Opium Wars</div>
+                    <div class="source-text">Traditional guild numbers soared after the Opium Wars (1839-1841, 1856-1858) and Taiping Rebellion (1850-1864). "Growing business and work opportunities engendered by foreign capital" led to guild proliferation, while "rise of native capitalist-style production and its competition with traditional manufacture and commerce" created unprecedented challenges.</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="comparison-grid">
+                    <div class="comparison-side traditional">
+                        <div class="comparison-title">Traditional Economy</div>
+                        <ul>
+                            <li><strong>Artisan guilds:</strong> Protected local craftsmen</li>
+                            <li><strong>Subsistence farming:</strong> Family-based agriculture</li>
+                            <li><strong>Local markets:</strong> Regional trade networks</li>
+                            <li><strong>Traditional skills:</strong> Passed down through generations</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-side modern">
+                        <div class="comparison-title">Foreign Competition</div>
+                        <ul>
+                            <li><strong>Machine-made goods:</strong> Cheaper, mass-produced items</li>
+                            <li><strong>Cash crops:</strong> Opium and export agriculture</li>
+                            <li><strong>Global markets:</strong> International trade dominance</li>
+                            <li><strong>New technologies:</strong> Displaced traditional workers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">5.25</span>
+                        <span class="stat-label">Average family size (1929-1931 survey)</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">5.55</span>
+                        <span class="stat-label">North China vs. 5.03 South China</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">12,456</span>
+                        <span class="stat-label">Farm families surveyed across 11 provinces</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Gender History Part 1 - Foot-Binding Revolution -->
+        <div class="slide">
+            <div class="slide-number">5/14</div>
+            
+            <div class="reveal-item">
+                <h2>♀️ Gender History Part 1: The Foot-Binding Revolution</h2>
+                <h3>From Physical Constraint to Liberation</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">1902</div>
+                        <div class="timeline-event">Foot-binding outlawed by imperial edicts</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1912</div>
+                        <div class="timeline-event">New Republic bans foot-binding with enforcement</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1915</div>
+                        <div class="timeline-event">Government begins issuing fines for violations</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1937</div>
+                        <div class="timeline-event">Only 4.5% of women in Xiamen still had bound feet</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">99.2%</span>
+                        <span class="stat-label">Women with bound feet (born before 1890)</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">60%</span>
+                        <span class="stat-label">Young girls still being bound in 1915</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">0%</span>
+                        <span class="stat-label">Girls being bound in some villages by 1919</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="source-container">
+                    <div class="source-header">Rural-Urban Divide in Foot-binding Practices</div>
+                    <div class="source-text">In rural Hebei Province villages, 99.2% of women born before 1890 had bound feet, but one village that bound 99% of women born in 1889 went to 0% by 1919. The transformation was remarkably rapid once it began.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Gender History Part 2 - Women's Political Awakening -->
+        <div class="slide">
+            <div class="slide-number">6/14</div>
+            
+            <div class="reveal-item">
+                <h2>♀️ Gender History Part 2: Women's Political Awakening</h2>
+                <h3>From Domestic Sphere to Revolutionary Action</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="source-container">
+                    <div class="source-header">Qiu Jin (1875-1907) - "Address to My Two Hundred Million Women Compatriots"</div>
+                    <div class="source-text">"There was no discrimination between men and women when High Heaven originally gave birth to humankind... Dear listeners, do you realize that our nation is about to perish? Men cannot be sure of their own survival, so how can we continue to rely on them?"</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="lens-grid">
+                    <div class="lens-card social">
+                        <div class="lens-title">
+                            <span class="lens-icon">🎓</span>
+                            Educational Rights
+                        </div>
+                        <ul>
+                            <li><strong>1920:</strong> Women first admitted to Beijing University</li>
+                            <li><strong>1932:</strong> 68% of women in Beixia Area enrolled in literacy classes</li>
+                            <li><strong>New schools:</strong> Women's schools established nationwide</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="lens-card cultural">
+                        <div class="lens-title">
+                            <span class="lens-icon">⚖️</span>
+                            Legal Transformation
+                        </div>
+                        <ul>
+                            <li><strong>1931 Civil Code:</strong> Equal inheritance rights</li>
+                            <li><strong>Marriage rights:</strong> Banned forced marriage</li>
+                            <li><strong>Economic freedom:</strong> Women's right to control money</li>
+                            <li><strong>Divorce rights:</strong> Women could initiate divorce</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="lens-card environmental">
+                        <div class="lens-title">
+                            <span class="lens-icon">✊</span>
+                            Revolutionary Participation
+                        </div>
+                        <ul>
+                            <li><strong>1911 Revolution:</strong> Women's Revolutionary Organizations</li>
+                            <li><strong>Encompassing Love Society:</strong> Promoted women's education</li>
+                            <li><strong>May Fourth Movement:</strong> Women's political participation expanded</li>
+                            <li><strong>"New Woman" concept:</strong> Modern female identity</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="lens-card gender">
+                        <div class="lens-title">
+                            <span class="lens-icon">🗣️</span>
+                            Personal Transformation
+                        </div>
+                        <ul>
+                            <li><strong>Self-expression:</strong> Choice in clothing, appearance</li>
+                            <li><strong>Career opportunities:</strong> Teaching, journalism, activism</li>
+                            <li><strong>Public speaking:</strong> Women addressing crowds</li>
+                            <li><strong>Political organizing:</strong> Leadership in movements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Cultural/Intellectual History Part 1 - Educational Revolution -->
+        <div class="slide">
+            <div class="slide-number">7/14</div>
+            
+            <div class="reveal-item">
+                <h2>📚 Cultural/Intellectual History Part 1: Educational Revolution</h2>
+                <h3>The End of the Imperial Examination System</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="source-container">
+                    <div class="source-header">Abolition of Civil Service Examinations (1905)</div>
+                    <div class="source-text">The thousand-year-old imperial examination system was abolished, ending Confucian-based education that emphasized memorization of classics and "eight-legged essay" format. This represented the most fundamental transformation of Chinese intellectual life in over a millennium.</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="comparison-grid">
+                    <div class="comparison-side traditional">
+                        <div class="comparison-title">Imperial Examination System</div>
+                        <ul>
+                            <li><strong>Confucian classics:</strong> Memorization of ancient texts</li>
+                            <li><strong>"Eight-legged essay":</strong> Rigid format requirements</li>
+                            <li><strong>Classical Chinese:</strong> Archaic written language</li>
+                            <li><strong>Moral cultivation:</strong> Character over technical skills</li>
+                            <li><strong>Elite selection:</strong> Narrow path to government service</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-side modern">
+                        <div class="comparison-title">New Educational System</div>
+                        <ul>
+                            <li><strong>Western subjects:</strong> Science, mathematics, technology</li>
+                            <li><strong>Critical thinking:</strong> Analysis and debate encouraged</li>
+                            <li><strong>Vernacular Chinese:</strong> Spoken language in writing</li>
+                            <li><strong>Practical skills:</strong> Technical and professional training</li>
+                            <li><strong>Mass education:</strong> Broader access to learning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">13</span>
+                        <span class="stat-label">First Chinese students sent to Japan (1896)</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">8,000</span>
+                        <span class="stat-label">Chinese students in Japan (1905)</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">10,000</span>
+                        <span class="stat-label">Chinese students in Japan (1906)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Cultural/Intellectual History Part 2 - Literary Revolution -->
+        <div class="slide">
+            <div class="slide-number">8/14</div>
+            
+            <div class="reveal-item">
+                <h2>📚 Cultural/Intellectual History Part 2: Literary Revolution</h2>
+                <h3>The May Fourth Movement and New Culture</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="source-container">
+                    <div class="source-header">Chen Duxiu's "Our Final Awakening" (1916)</div>
+                    <div class="source-text">"We believe only these two gentlemen can bring salvation from all the darkness in China, be it political, moral, intellectual, or spiritual. In support of these two gentlemen [Mr. Science and Mr. Democracy], we are willing to endure any oppression from the state or attacks from society."</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="source-container">
+                    <div class="source-header">Hu Shi's Eight Principles for Literature Reform (1917)</div>
+                    <div class="source-text">1. Write with substance (須言之有物)<br>2. Do not imitate the ancients (不摹仿古人)<br>3. Respect grammar (須講求文法)<br>4. Avoid meaningless expressions (不作無病之呻吟)</div>
+                </div>
+                <p><strong>Impact:</strong> By 1920, the Ministry of Education required primary school textbooks to be written in vernacular Chinese.</p>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="source-container">
+                    <div class="source-header">Lu Xun's "Diary of a Madman" (1918) - First vernacular Chinese story</div>
+                    <div class="source-text">"Since I could not sleep anyway, I read intently half the night, until I began to see words between the lines, the whole book being filled with the two words—'Eat people.'"</div>
+                </div>
+                <p><strong>Significance:</strong> Lu Xun used the metaphor of cannibalism to critique traditional Chinese society, arguing that Confucian morality was destroying human nature.</p>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    How did the literary revolution challenge not just language, but the entire foundation of Chinese cultural identity?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Environmental/Demographic History Part 1 - Population Crisis -->
+        <div class="slide">
+            <div class="slide-number">9/14</div>
+            
+            <div class="reveal-item">
+                <h2>🌊 Environmental/Demographic History Part 1: Population Crisis</h2>
+                <h3>The Malthusian Trap and Recurring Famines</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="source-container">
+                    <div class="source-header">China's Environmental Challenges (Historical Context)</div>
+                    <div class="source-text">Between 108 BC and 1911 AD, China experienced 1,828 recorded famines—nearly one per year in some province. Population had grown 3-4 times between 1500-1850, creating inevitable land shortages and famine cycles.</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">1,828</span>
+                        <span class="stat-label">Recorded famines (108 BC - 1911 AD)</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">3-4x</span>
+                        <span class="stat-label">Population growth (1500-1850)</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">450M</span>
+                        <span class="stat-label">Population by 1890s</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="lens-grid">
+                    <div class="lens-card environmental">
+                        <div class="lens-title">
+                            <span class="lens-icon">🌾</span>
+                            Agricultural Pressure
+                        </div>
+                        <ul>
+                            <li><strong>Land shortage:</strong> Too many people, too little farmland</li>
+                            <li><strong>Soil exhaustion:</strong> Overuse without proper rotation</li>
+                            <li><strong>Traditional methods:</strong> Limited productivity gains</li>
+                            <li><strong>Crop failures:</strong> Devastating impact on dense populations</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="lens-card social">
+                        <div class="lens-title">
+                            <span class="lens-icon">🏘️</span>
+                            Social Consequences
+                        </div>
+                        <ul>
+                            <li><strong>Migration:</strong> Rural-to-urban movement</li>
+                            <li><strong>Social unrest:</strong> Peasant rebellions and violence</li>
+                            <li><strong>Family breakdown:</strong> Abandonment, sale of children</li>
+                            <li><strong>Banditry:</strong> Desperate survival strategies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    How did China's population growth create conditions that made the country vulnerable to political and economic crisis?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Environmental/Demographic History Part 2 - The 1931 Floods -->
+        <div class="slide">
+            <div class="slide-number">10/14</div>
+            
+            <div class="reveal-item">
+                <h2>🌊 Environmental/Demographic History Part 2: The 1931 Floods</h2>
+                <h3>Natural Disaster as Political Crisis</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">180,000</span>
+                        <span class="stat-label">Square kilometers affected</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">25-53M</span>
+                        <span class="stat-label">People directly impacted</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">15%</span>
+                        <span class="stat-label">Of crops destroyed in Yangtze Valley</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="source-container">
+                    <div class="source-header">Scale of the 1931 Central China Floods</div>
+                    <div class="source-text">The flood affected 180,000 square kilometers (equivalent to England and half of Scotland) with 25-53 million people directly impacted. Death toll estimates range from 422,420 (Chinese historians) to 2-4 million (Western sources). This represented 15% of wheat and rice crops destroyed in the Yangtze Valley.</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="comparison-grid">
+                    <div class="comparison-side traditional">
+                        <div class="comparison-title">Traditional Disaster Response</div>
+                        <ul>
+                            <li><strong>Imperial granaries:</strong> Limited food storage</li>
+                            <li><strong>Local officials:</strong> Overwhelmed by scale</li>
+                            <li><strong>Confucian morality:</strong> Disaster = loss of Mandate of Heaven</li>
+                            <li><strong>Religious explanations:</strong> Natural disasters as divine punishment</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-side modern">
+                        <div class="comparison-title">Modern Crisis Management</div>
+                        <ul>
+                            <li><strong>National Flood Relief Commission:</strong> Centralized response</li>
+                            <li><strong>International aid:</strong> League of Nations assistance</li>
+                            <li><strong>Scientific approach:</strong> Engineering and meteorology</li>
+                            <li><strong>Media coverage:</strong> Global awareness and fundraising</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p><strong>Political Impact:</strong> This was the first major test for the Kuomintang Government under T.V. Soong, demonstrating both the need for modern disaster management and the challenges of governing a vast, environmentally vulnerable nation.</p>
+            </div>
+        </div>
+
+        <!-- Slide 11: Boxer Rebellion - Multiple Perspectives -->
+        <div class="slide">
+            <div class="slide-number">11/14</div>
+            
+            <div class="reveal-item">
+                <h2>Case Study: The Boxer Rebellion (1899-1901)</h2>
+                <h3>Understanding Through Multiple Lenses</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="lens-grid">
+                    <div class="lens-card social">
+                        <div class="lens-title">
+                            <span class="lens-icon">👥</span>
+                            Social Perspective
+                        </div>
+                        <p><strong>Rural Origins:</strong> Arose in "inland sections of northern coastal province of Shandong" - region with long history of social unrest and martial societies.</p>
+                        <p><strong>Economic Catalyst:</strong> Drought followed by floods in 1897-98 forced farmers to flee to cities seeking food.</p>
+                    </div>
+                    
+                    <div class="lens-card environmental">
+                        <div class="lens-title">
+                            <span class="lens-icon">🌊</span>
+                            Environmental Impact
+                        </div>
+                        <p><strong>Natural Disasters:</strong> Severe drought followed by devastating floods created desperate conditions for rural population.</p>
+                        <p><strong>Agricultural Crisis:</strong> Crop failures pushed millions into poverty and migration.</p>
+                    </div>
+                    
+                    <div class="lens-card cultural">
+                        <div class="lens-title">
+                            <span class="lens-icon">📚</span>
+                            Cultural Response
+                        </div>
+                        <p><strong>Anti-Foreign Sentiment:</strong> "Escalating tensions caused Chinese to turn against 'foreign devils' who engaged in the Scramble for China."</p>
+                        <p><strong>Traditional Practices:</strong> Boxers used martial arts and spiritual practices to resist Western influence.</p>
+                    </div>
+                    
+                    <div class="lens-card gender">
+                        <div class="lens-title">
+                            <span class="lens-icon">♀️</span>
+                            Gender Dynamics
+                        </div>
+                        <p><strong>Women's Participation:</strong> Some women joined the movement, challenging traditional gender roles.</p>
+                        <p><strong>Protection Motives:</strong> Defense of Chinese women from foreign influence became a rallying cry.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    How do these different perspectives help us understand the complexity of Chinese responses to foreign pressure?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Three Paths to Modernity -->
+        <div class="slide">
+            <div class="slide-number">12/14</div>
+            
+            <div class="reveal-item">
+                <h2>Three Visions for Modern China (1920s-1930s)</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="lens-grid">
+                    <div class="lens-card cultural">
+                        <div class="lens-title">
+                            <span class="lens-icon">🎭</span>
+                            Cultural Modernists
+                        </div>
+                        <p><strong>Strategy:</strong> Transform culture first - literature, art, philosophy</p>
+                        <p><strong>Key Figures:</strong> Lu Xun, Hu Shi, Chen Duxiu</p>
+                        <p><strong>Approach:</strong> Create new Chinese identity through intellectual revolution</p>
+                    </div>
+                    
+                    <div class="lens-card social">
+                        <div class="lens-title">
+                            <span class="lens-icon">🏛️</span>
+                            Liberal Republicans
+                        </div>
+                        <p><strong>Strategy:</strong> Build democratic institutions - constitution, elections, rule of law</p>
+                        <p><strong>Key Figures:</strong> Sun Yat-sen, early Kuomintang</p>
+                        <p><strong>Approach:</strong> Gradual political reform based on Western models</p>
+                    </div>
+                    
+                    <div class="lens-card environmental">
+                        <div class="lens-title">
+                            <span class="lens-icon">⚡</span>
+                            Revolutionary Communists
+                        </div>
+                        <p><strong>Strategy:</strong> Overthrow the entire system - class struggle, rural revolution</p>
+                        <p><strong>Key Figures:</strong> Mao Zedong, early Communist Party</p>
+                        <p><strong>Approach:</strong> Peasant-based revolution to transform society</p>
+                    </div>
+                    
+                    <div class="lens-card gender">
+                        <div class="lens-title">
+                            <span class="lens-icon">👑</span>
+                            Conservative Traditionalists
+                        </div>
+                        <p><strong>Strategy:</strong> Preserve Chinese values while adopting Western technology</p>
+                        <p><strong>Key Figures:</strong> Confucian scholars, some regional leaders</p>
+                        <p><strong>Approach:</strong> Selective modernization maintaining cultural essence</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    Which approach do you think offered the most promising path for China? Why might different groups have supported different visions?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Student Voices and Experiences -->
+        <div class="slide">
+            <div class="slide-number">13/14</div>
+            
+            <div class="reveal-item">
+                <h2>Voices from the Transformation</h2>
+                <h3>Personal Experiences of Change</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="source-container">
+                    <div class="source-header">Autobiography of Chinese Woman Student (1920s)</div>
+                    <div class="source-text">"When I cut my hair short and wore Western dress, my grandmother wept and said I was no longer Chinese. But when I learned to read and write, when I could support myself - then I knew I was finally becoming human."</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="comparison-grid">
+                    <div class="comparison-side traditional">
+                        <div class="comparison-title">Traditional Life</div>
+                        <ul>
+                            <li>Arranged marriages</li>
+                            <li>Foot-binding for women</li>
+                            <li>Confucian hierarchy</li>
+                            <li>Agricultural subsistence</li>
+                            <li>Extended family authority</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-side modern">
+                        <div class="comparison-title">Modern Possibilities</div>
+                        <ul>
+                            <li>Choice in marriage partners</li>
+                            <li>Women's education and careers</li>
+                            <li>Individual expression</li>
+                            <li>Urban opportunities</li>
+                            <li>Personal independence</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="source-container">
+                    <div class="source-header">Hu Shi's Eight Principles for Literature Reform (1917)</div>
+                    <div class="source-text">1. Write with substance (須言之有物)<br>2. Do not imitate the ancients (不摹仿古人)<br>3. Respect grammar (須講求文法)<br>4. Avoid meaningless expressions (不作無病之呻吟)</div>
+                </div>
+                <p><strong>Impact:</strong> By 1920, the Ministry of Education required primary school textbooks to be written in vernacular Chinese.</p>
+            </div>
+        </div>
+
+        <!-- Slide 14: Legacy and Reflection -->
+        <div class="slide">
+            <div class="slide-number">14/14</div>
+            
+            <div class="reveal-item">
+                <h2>Legacy: Understanding Historical Transformation</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="central-question">
+                    What can we learn from studying how ordinary Chinese people navigated the collapse of traditional society and the birth of modern China?
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Key Insights from Our Four-Lens Analysis:</h3>
+                <ul>
+                    <li><strong>Social History:</strong> Economic crisis and foreign pressure created conditions for revolutionary change</li>
+                    <li><strong>Gender History:</strong> Women's liberation was central to broader social transformation</li>
+                    <li><strong>Cultural History:</strong> Intellectual movements shaped new possibilities for Chinese identity</li>
+                    <li><strong>Environmental History:</strong> Natural disasters and demographic pressure influenced political developments</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Historical Thinking Skills Applied:</h3>
+                <ul>
+                    <li><strong>Multiple Perspectives:</strong> Understanding different groups' experiences</li>
+                    <li><strong>Cause and Consequence:</strong> Analyzing interconnected factors</li>
+                    <li><strong>Continuity and Change:</strong> Identifying what persisted and what transformed</li>
+                    <li><strong>Historical Significance:</strong> Evaluating lasting impact on Chinese society</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    How do the challenges faced by Chinese people in the 1890s-1930s connect to contemporary global issues of tradition versus modernity?
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="control-btn" onclick="previousSlide()">← Previous</button>
+        <button class="control-btn" onclick="nextSlide()">Next →</button>
+        <button class="control-btn" onclick="revealNext()">Reveal</button>
+        <button class="control-btn" onclick="revealAll()">Show All</button>
+    </div>
+
+    <div class="image-tab" onclick="toggleImage()">📸 Images</div>
+
+    <div class="image-overlay" onclick="toggleImage()">
+        <div class="image-content" onclick="event.stopPropagation()">
+            <h3>Historical Images</h3>
+            <p>Chinese Family Portrait, c. 1900</p>
+            <p>Foot-binding photographs and documentation</p>
+            <p>May Fourth Movement student demonstrations</p>
+            <p>1931 flood damage documentation</p>
+            <p>Revolutionary posters and literature</p>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentReveal = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            currentReveal = 0;
+            hideAllReveals();
+        }
+
+        function nextSlide() {
+            const revealItems = slides[currentSlide].querySelectorAll('.reveal-item');
+            if (currentReveal < revealItems.length) {
+                revealNext();
+            } else {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (currentReveal > 0) {
+                hideAllReveals();
+                currentReveal = 0;
+            } else {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        function revealNext() {
+            const revealItems = slides[currentSlide].querySelectorAll('.reveal-item');
+            if (currentReveal < revealItems.length) {
+                revealItems[currentReveal].classList.add('revealed');
+                currentReveal++;
+            }
+        }
+
+        function revealAll() {
+            const revealItems = slides[currentSlide].querySelectorAll('.reveal-item');
+            revealItems.forEach(item => item.classList.add('revealed'));
+            currentReveal = revealItems.length;
+        }
+
+        function hideAllReveals() {
+            const revealItems = slides[currentSlide].querySelectorAll('.reveal-item');
+            revealItems.forEach(item => item.classList.remove('revealed'));
+        }
+
+        function toggleImage() {
+            const overlay = document.querySelector('.image-overlay');
+            overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowLeft':
+                    previousSlide();
+                    break;
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+                case ',':
+                    showSlide(currentSlide - 1);
+                    break;
+                case '.':
+                    showSlide(currentSlide + 1);
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+            }
+        });
+
+        // Initialize first slide
+        revealNext();
+    </script>
+</body>
+</html>
