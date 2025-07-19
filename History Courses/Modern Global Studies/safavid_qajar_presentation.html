@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safavid State Formation to Qajar Decline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2d1b69 0%, #11998e 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .slide {
+            min-height: 100vh;
+            padding: 2rem 4%;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            display: block;
+        }
+
+        .slide.hidden {
+            display: none;
+        }
+
+        .slide-content {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+            margin: 0 auto;
+            min-height: calc(100vh - 4rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .slide h1 {
+            font-size: 4.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .slide h2 {
+            font-size: 3.5rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .slide h3 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: #38bdf8;
+            font-weight: 600;
+        }
+
+        .slide p, .slide li {
+            font-size: 2rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .slide ul {
+            text-align: left;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 600;
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(56, 189, 248, 0.8);
+            border-color: rgba(56, 189, 248, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.3);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .emoji-large {
+            font-size: 8rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
+        }
+
+        .unit-focus {
+            background: rgba(56, 189, 248, 0.2);
+            border: 3px solid #38bdf8;
+            padding: 3rem;
+            border-radius: 25px;
+            margin: 3rem 0;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 15px 50px rgba(56, 189, 248, 0.3);
+        }
+
+        .unit-focus h3 {
+            color: #38bdf8;
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+        }
+
+        .unit-focus p {
+            font-size: 2.2rem;
+            font-style: italic;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .objective-card {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(56, 189, 248, 0.3);
+            border-color: rgba(56, 189, 248, 0.6);
+        }
+
+        .objective-card:hover::before {
+            left: 100%;
+        }
+
+        .objective-card h4 {
+            color: #38bdf8;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .historical-periods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .period-card {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .period-card.safavid {
+            border-color: #dc2626;
+            background: rgba(220, 38, 38, 0.2);
+        }
+
+        .period-card.qajar {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.2);
+        }
+
+        .period-card.constitutional {
+            border-color: #059669;
+            background: rgba(5, 150, 105, 0.2);
+        }
+
+        .period-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(56, 189, 248, 0.3);
+        }
+
+        .period-card h4 {
+            color: #38bdf8;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .period-card .date-range {
+            color: #94a3b8;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-visual {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline-date {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #38bdf8;
+            min-width: 150px;
+            text-align: left;
+        }
+
+        .timeline-event {
+            font-size: 1.6rem;
+            flex: 1;
+            text-align: left;
+            padding-left: 2rem;
+        }
+
+        .quote-highlight {
+            background: rgba(99, 102, 241, 0.3);
+            border-left: 6px solid #6366f1;
+            padding: 2.5rem;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            font-size: 2.4rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+        }
+
+        .connection-bridge {
+            background: rgba(99, 102, 241, 0.2);
+            border: 2px solid #6366f1;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .connection-bridge h4 {
+            color: #38bdf8;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .key-concepts {
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid #10b981;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .key-concepts h4 {
+            color: #38bdf8;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .concept-box {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #38bdf8;
+        }
+
+        .conflict-showcase {
+            background: rgba(220, 38, 38, 0.2);
+            border: 2px solid #dc2626;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .conflict-showcase h4 {
+            color: #38bdf8;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .vs-comparison {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        .vs-side {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .vs-divider {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        @media (max-width: 768px) {
+            .slide h1 { font-size: 3rem; }
+            .slide h2 { font-size: 2.5rem; }
+            .slide h3 { font-size: 2rem; }
+            .slide p, .slide li { font-size: 1.4rem; }
+            .objectives-grid { grid-template-columns: 1fr; }
+            .historical-periods { grid-template-columns: 1fr; }
+            .slide { padding: 1rem 2%; }
+            .slide-content { 
+                padding: 1rem 0; 
+                min-height: calc(100vh - 2rem);
+            }
+            .timeline-item { flex-direction: column; text-align: center; }
+            .timeline-date { min-width: auto; margin-bottom: 0.5rem; }
+            .timeline-event { padding-left: 0; }
+            .vs-comparison { grid-template-columns: 1fr; gap: 1rem; }
+            .vs-divider { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 16</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="revealBtn" onclick="toggleRevealAll()">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title & Week Overview -->
+    <div class="slide">
+        <div class="slide-content">
+            <div class="emoji-large auto-reveal">👑⚔️</div>
+            <h1 class="auto-reveal">Iran as a Shi'a State</h1>
+            <h2 class="auto-reveal">Safavid Glory to Qajar Decline (1501-1900)</h2>
+            
+            <div class="unit-focus auto-reveal">
+                <h3>Week 2: Building Iranian Identity</h3>
+                <p><em>"How Iran became officially Shi'a and faced foreign intervention"</em></p>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Building on Week 1</h4>
+                <p>You understand Iranian cultural patterns. Now we see how Iran becomes an <strong>officially Shi'a state</strong> and develops modern forms of resistance to foreign pressure.</p>
+            </div>
+            
+            <div class="auto-reveal" style="margin-top: 3rem;">
+                <p style="font-size: 2.2rem; color: #ffffff;"><strong>400 Years in 50 Minutes</strong> • Setting Up the Revolution</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Essential Question & Overview -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Week 2 Essential Question</h2>
+            
+            <div class="quote-highlight auto-reveal">
+                "How did Iran develop as a Shi'a state while facing foreign pressure?"
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Our Journey Through 400 Years</h3>
+                <p style="font-size: 2rem;">From the Safavid transformation to the Constitutional Revolution's failure</p>
+            </div>
+            
+            <div class="historical-periods">
+                <div class="period-card safavid auto-reveal">
+                    <div class="date-range">1501-1736</div>
+                    <h4>👑 Safavid Revolution</h4>
+                    <p>Iran becomes officially Shi'a state for the first time in history</p>
+                </div>
+                
+                <div class="period-card qajar auto-reveal">
+                    <div class="date-range">1789-1925</div>
+                    <h4>🌍 Foreign Pressure</h4>
+                    <p>Russian and British "Great Game" - new forms of intervention</p>
+                </div>
+                
+                <div class="period-card constitutional auto-reveal">
+                    <div class="date-range">1905-1911</div>
+                    <h4>⚖️ Democratic Experiment</h4>
+                    <p>Iran tries constitutional monarchy - foreign powers destroy it</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Learning Objectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📚 What We'll Master Today</h2>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h4>👑 Safavid State-Building</h4>
+                    <p>Analyze how Shah Ismail created the first officially Shi'a state and its political consequences</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🌍 Great Game Dynamics</h4>
+                    <p>Understand how Russian/British competition shaped Iranian development and weakness</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>⚖️ Constitutional Revolution</h4>
+                    <p>Evaluate Iran's first democratic experiment and why foreign intervention destroyed it</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🔗 Revolutionary Patterns</h4>
+                    <p>Identify how these experiences created conditions for the 1979 Islamic Revolution</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Shah Ismail's Revolution -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>👑 Shah Ismail I: The Shi'a Revolution (1501)</h2>
+            
+            <div class="auto-reveal">
+                <h3>A 14-Year-Old Changes History</h3>
+                <p style="font-size: 2rem;">In 1501, teenage Shah Ismail declares Iran officially Shi'a for the first time.</p>
+            </div>
+            
+            <div class="timeline-visual auto-reveal">
+                <div class="timeline-item">
+                    <div class="timeline-date">1501</div>
+                    <div class="timeline-event">Ismail conquers Tabriz, declares himself Shah, orders all subjects to convert to Shi'a Islam</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1502-1510</div>
+                    <div class="timeline-event">Forced conversion campaigns - Sunni clerics killed or exiled, Shi'a clerics imported</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1514</div>
+                    <div class="timeline-event">Battle of Chaldiran - Ottomans defeat Safavids, Sunni vs. Shi'a warfare begins</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1520s-1730s</div>
+                    <div class="timeline-event">Iran consolidates as Shi'a state, creates distinct identity opposing Sunni Ottoman Empire</div>
+                </div>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Revolutionary Significance</h4>
+                <p><strong>For 1979:</strong> Established tradition of <strong>religious authority as political legitimacy</strong>. When Khomeini claimed religious authority in 1979, he was drawing on 500 years of Shi'a political tradition.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Why Forced Conversion Worked -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚡ Why Did Iranians Accept Shi'a Conversion?</h2>
+            
+            <div class="auto-reveal">
+                <h3>Building on Week 1 Patterns</h3>
+                <p style="font-size: 2rem;">Remember: Iranians already preferred Shi'a Islam. Now it became <strong>official state policy</strong>.</p>
+            </div>
+            
+            <div class="historical-periods">
+                <div class="period-card safavid auto-reveal">
+                    <h4>🎭 Cultural Fit</h4>
+                    <p><strong>Already Popular:</strong> Many Iranians already sympathized with Shi'a Islam</p>
+                    <p><strong>Zoroastrian Echo:</strong> Righteous vs. corrupt power appealed to Iranian worldview</p>
+                    <p><strong>Anti-Arab Sentiment:</strong> Shi'a offered alternative to Arab Sunni Caliphate</p>
+                </div>
+                
+                <div class="period-card constitutional auto-reveal">
+                    <h4>🏛️ Political Benefits</h4>
+                    <p><strong>Unity Tool:</strong> Shi'a identity unified Iran against Sunni Ottoman enemies</p>
+                    <p><strong>Independence Symbol:</strong> Religious distinctiveness = political independence</p>
+                    <p><strong>Clerical Support:</strong> Shi'a clerics supported Safavid rule</p>
+                </div>
+            </div>
+            
+            <div class="quote-highlight auto-reveal">
+                "Ismail didn't just change Iran's religion - he created a new form of religious-political authority that would last until 1979."
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Safavid Political Innovation -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏛️ Safavid Political System</h2>
+            
+            <div class="auto-reveal">
+                <h3>Religious-Political Authority Fusion</h3>
+                <p style="font-size: 2rem;">The Safavids created a unique system combining royal and religious authority.</p>
+            </div>
+            
+            <div class="key-concepts auto-reveal">
+                <h4>Safavid Innovations</h4>
+                <div class="concept-grid">
+                    <div class="concept-box">Shah as Religious Leader</div>
+                    <div class="concept-box">Clerical Bureaucracy</div>
+                    <div class="concept-box">Shi'a Law</div>
+                    <div class="concept-box">Religious Legitimacy</div>
+                </div>
+            </div>
+            
+            <div class="vs-comparison auto-reveal">
+                <div class="vs-side">
+                    <h4>Traditional Persian Kings</h4>
+                    <p>Political power + Zoroastrian tradition</p>
+                </div>
+                <div class="vs-divider">→</div>
+                <div class="vs-side">
+                    <h4>Safavid Shahs</h4>
+                    <p>Political power + Shi'a religious authority</p>
+                </div>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>1979 Revolution Template</h4>
+                <p><strong>Khomeini's Strategy:</strong> Claimed the same combination of religious and political authority that Safavids had established. He argued the Shah lacked <strong>religious legitimacy</strong> that true rulers needed.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Safavid Cultural Renaissance -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎨 Safavid Cultural Golden Age</h2>
+            
+            <div class="auto-reveal">
+                <h3>Isfahan: "Half the World"</h3>
+                <p style="font-size: 2rem;">The Safavids created one of the world's most beautiful capitals and a flourishing Persian-Islamic culture.</p>
+            </div>
+            
+            <div class="historical-periods">
+                <div class="period-card safavid auto-reveal">
+                    <h4>🏛️ Architecture & Art</h4>
+                    <p><strong>Isfahan:</strong> Magnificent mosques, palaces, and public squares</p>
+                    <p><strong>Persian Carpets:</strong> World-famous artistic tradition flourishes</p>
+                    <p><strong>Miniature Painting:</strong> Distinctive Persian-Islamic art style</p>
+                </div>
+                
+                <div class="period-card constitutional auto-reveal">
+                    <h4>📚 Literature & Learning</h4>
+                    <p><strong>Persian Poetry:</strong> Continued tradition of great Persian poets</p>
+                    <p><strong>Shi'a Scholarship:</strong> Iran becomes center of Shi'a Islamic learning</p>
+                    <p><strong>Cultural Confidence:</strong> Pride in Iranian achievements under Shi'a rule</p>
+                </div>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Revolutionary Memory</h4>
+                <p><strong>1979 Appeal:</strong> Khomeini could point to Safavid period as proof that <strong>Islamic rule made Iran strong and culturally vibrant</strong>. Westernization under the Shah = cultural decline.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Ottoman-Safavid Rivalry -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚔️ The Great Sunni-Shi'a Conflict</h2>
+            
+            <div class="auto-reveal">
+                <h3>Religious War Shapes Regional Identity</h3>
+                <p style="font-size: 2rem;">For 200+ years, Safavid Iran and Ottoman Empire fought for control of the Middle East.</p>
+            </div>
+            
+            <div class="conflict-showcase auto-reveal">
+                <h4>Why This Conflict Mattered</h4>
+                <div class="vs-comparison">
+                    <div class="vs-side">
+                        <h4>🇹🇷 Ottoman Empire</h4>
+                        <p><strong>Sunni Islam</strong></p>
+                        <p>Controlled Arab heartland</p>
+                        <p>Superior military technology</p>
+                        <p>Expanding into Europe</p>
+                    </div>
+                    <div class="vs-divider">VS</div>
+                    <div class="vs-side">
+                        <h4>🇮🇷 Safavid Iran</h4>
+                        <p><strong>Shi'a Islam</strong></p>
+                        <p>Controlled Persian heartland</p>
+                        <p>Defensive position</p>
+                        <p>Distinct cultural identity</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="key-concepts auto-reveal">
+                <h4>Long-term Consequences</h4>
+                <p><strong>Iran's Identity:</strong> Defined in opposition to Sunni power</p>
+                <p><strong>Shi'a Consolidation:</strong> War strengthened Iranian Shi'a identity</p>
+                <p><strong>Defensive Mentality:</strong> Iran surrounded by hostile Sunni powers</p>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Modern Echo</h4>
+                <p><strong>1979 Revolution:</strong> Khomeini used same "Iran vs. hostile foreign powers" narrative. Replace Ottoman Empire with United States/Soviet Union.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Safavid Decline and Qajar Rise -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📉 From Safavid Glory to Qajar Weakness</h2>
+            
+            <div class="timeline-visual auto-reveal">
+                <div class="timeline-item">
+                    <div class="timeline-date">1722</div>
+                    <div class="timeline-event">Afghan invasion captures Isfahan, Safavid collapse begins</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1736-1747</div>
+                    <div class="timeline-event">Nadir Shah briefly restores Iranian power but dies in civil war</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1789</div>
+                    <div class="timeline-event">Qajar dynasty established - much weaker than Safavids</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1800s</div>
+                    <div class="timeline-event">Iran becomes target of Russian and British imperial expansion</div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>The Dangerous New World</h3>
+                <p style="font-size: 2rem;">By 1800, Iran faces a completely new threat: <strong>European imperial powers</strong> with industrial technology and global ambitions.</p>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Setting Up 1979</h4>
+                <p><strong>Pattern Established:</strong> Strong Iran under Islamic rule (Safavids) vs. Weak Iran under foreign influence (later Qajars and Pahlavis). This comparison would be crucial for revolutionary propaganda.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: The Great Game Begins -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌍 The "Great Game" in Iran</h2>
+            
+            <div class="auto-reveal">
+                <h3>New Form of Foreign Pressure</h3>
+                <p style="font-size: 2rem;">Russia and Britain compete for influence in Iran - not through direct conquest, but through <strong>economic and political control</strong>.</p>
+            </div>
+            
+            <div class="conflict-showcase auto-reveal">
+                <h4>How the Great Game Worked</h4>
+                <div class="vs-comparison">
+                    <div class="vs-side">
+                        <h4>🇷🇺 Russian Strategy</h4>
+                        <p><strong>Northern Iran:</strong> Military pressure, territorial gains</p>
+                        <p><strong>Economic:</strong> Trade concessions, loans to Qajar government</p>
+                        <p><strong>Political:</strong> Influence over Iranian foreign policy</p>
+                    </div>
+                    <div class="vs-divider">VS</div>
+                    <div class="vs-side">
+                        <h4>🇬🇧 British Strategy</h4>
+                        <p><strong>Southern Iran:</strong> Protect route to India</p>
+                        <p><strong>Economic:</strong> Telegraph, banking, oil concessions</p>
+                        <p><strong>Political:</strong> Keep Iran weak but not Russian-controlled</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="key-concepts auto-reveal">
+                <h4>Iran Caught in the Middle</h4>
+                <p><strong>Weak Government:</strong> Qajars couldn't resist either power</p>
+                <p><strong>Economic Dependency:</strong> Foreign loans, concessions, control</p>
+                <p><strong>Loss of Sovereignty:</strong> Iran becomes semi-colony</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Foreign Economic Penetration -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>💰 Economic Imperialism in Action</h2>
+            
+            <div class="auto-reveal">
+                <h3>How to Control a Country Without Conquering It</h3>
+                <p style="font-size: 2rem;">Britain and Russia pioneered new forms of imperial control through <strong>economic concessions</strong>.</p>
+            </div>
+            
+            <div class="timeline-visual auto-reveal">
+                <div class="timeline-item">
+                    <div class="timeline-date">1872</div>
+                    <div class="timeline-event">Reuter Concession - British control of railways, telegraphs, mines, forests for 70 years</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1890</div>
+                    <div class="timeline-event">Tobacco Concession - British monopoly over Iranian tobacco production and sales</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1901</div>
+                    <div class="timeline-event">Anglo-Persian Oil Company - British control of Iranian oil for 60 years</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1907</div>
+                    <div class="timeline-event">Anglo-Russian Agreement - Iran divided into spheres of influence</div>
+                </div>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Revolutionary Precedent</h4>
+                <p><strong>1979 Key Memory:</strong> Foreign economic control = loss of Iranian sovereignty. Khomeini's anti-American message drew directly on this historical experience of economic imperialism.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Tobacco Protest - First Mass Resistance -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🚬 The Tobacco Protest (1891-92)</h2>
+            
+            <div class="auto-reveal">
+                <h3>Religious Authority Defeats Foreign Economic Control</h3>
+                <p style="font-size: 2rem;">Iran's first successful mass protest movement used <strong>religious authority</strong> to resist foreign economic penetration.</p>
+            </div>
+            
+            <div class="quote-highlight auto-reveal">
+                "Today the use of tobacco is forbidden by the Hidden Imam. May God's curse be upon whoever uses it from this day forward."
+                <br><br>— Ayatollah Shirazi's fatwa, 1891
+            </div>
+            
+            <div class="key-concepts auto-reveal">
+                <h4>Why the Tobacco Protest Succeeded</h4>
+                <div class="concept-grid">
+                    <div class="concept-box">Religious Authority</div>
+                    <div class="concept-box">Mass Participation</div>
+                    <div class="concept-box">Economic Pressure</div>
+                    <div class="concept-box">National Unity</div>
+                </div>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Template for 1979</h4>
+                <p><strong>Exact Same Strategy:</strong> Religious leaders issue rulings against foreign influence → Mass boycotts → Economic pressure → Government forced to concede. Sound familiar?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Constitutional Revolution 1905-1911 -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚖️ Iran's First Democratic Revolution</h2>
+            
+            <div class="auto-reveal">
+                <h3>Religious and Secular Leaders Unite</h3>
+                <p style="font-size: 2rem;">1905: Iranians demand constitutional monarchy and parliament (Majles) to limit royal power and foreign influence.</p>
+            </div>
+            
+            <div class="historical-periods">
+                <div class="period-card constitutional auto-reveal">
+                    <h4>🤝 Unlikely Coalition</h4>
+                    <p><strong>Religious Leaders:</strong> Want to limit Shah's arbitrary power</p>
+                    <p><strong>Intellectuals:</strong> Want modern constitutional government</p>
+                    <p><strong>Merchants:</strong> Want protection from foreign economic control</p>
+                    <p><strong>Common Goal:</strong> Reduce foreign influence, increase Iranian sovereignty</p>
+                </div>
+            </div>
+            
+            <div class="timeline-visual auto-reveal">
+                <div class="timeline-item">
+                    <div class="timeline-date">1905-06</div>
+                    <div class="timeline-event">Mass protests force Shah to agree to constitutional monarchy</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1906</div>
+                    <div class="timeline-event">First Majles (parliament) elected, writes Iran's first constitution</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1907-11</div>
+                    <div class="timeline-event">Shah tries to destroy constitution with Russian support</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1911</div>
+                    <div class="timeline-event">Russian ultimatum forces closure of Majles - democracy ends</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Why Constitutional Revolution Failed -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>💔 Democracy Destroyed by Foreign Intervention</h2>
+            
+            <div class="auto-reveal">
+                <h3>The Tragedy of Iranian Democracy</h3>
+                <p style="font-size: 2rem;">Iran's first democratic experiment succeeded - until <strong>foreign powers destroyed it</strong>.</p>
+            </div>
+            
+            <div class="conflict-showcase auto-reveal">
+                <h4>Why Russia and Britain Opposed Iranian Democracy</h4>
+                <p><strong>Russian Fear:</strong> Democratic Iran might inspire Russian revolutionaries</p>
+                <p><strong>British Concern:</strong> Iranian parliament might cancel profitable concessions</p>
+                <p><strong>Both Agreed:</strong> Weak, autocratic Iran easier to control than democratic Iran</p>
+            </div>
+            
+            <div class="quote-highlight auto-reveal">
+                "We cannot allow the Iranian parliament to continue examining our agreements. Iranian democracy threatens our interests."
+                <br><br>— British diplomatic correspondence, 1911
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Crucial 1979 Memory</h4>
+                <p><strong>Iranian Lesson:</strong> When we tried democracy and independence, <strong>foreign powers destroyed it</strong>. This memory was absolutely central to why Iranians supported the 1979 revolution against foreign-backed Shah.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 15: Patterns Established by 1911 -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔄 Historical Patterns Set for 1979</h2>
+            
+            <div class="auto-reveal">
+                <h3>What Iranians Had Learned by 1911</h3>
+                <p style="font-size: 2rem;">Four centuries of experience created expectations that would shape the 1979 revolution.</p>
+            </div>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h4>⚡ Religious-Political Authority</h4>
+                    <p>Shi'a clerics have legitimate authority to challenge secular rulers, especially foreign-backed ones</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🌍 Foreign Intervention Pattern</h4>
+                    <p>Western powers consistently oppose Iranian independence and democracy when it threatens their interests</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🤝 Coalition Strategy</h4>
+                    <p>Religious and secular Iranians can unite against foreign domination - as in Tobacco Protest and Constitutional Revolution</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>💪 Mass Resistance Works</h4>
+                    <p>Economic boycotts and popular protests can force government concessions - but foreign powers may intervene</p>
+                </div>
+            </div>
+            
+            <div class="quote-highlight auto-reveal">
+                "By 1911, Iranians knew: Foreign-backed rulers lack legitimacy. Religious authority provides alternative. Mass resistance can succeed - if foreign powers don't intervene."
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 16: Next Week Preview -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔜 Next Week: Pahlavi Modernization Crisis</h2>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>The Stage is Set</h4>
+                <p>You now understand how Iran became a Shi'a state and developed patterns of resistance to foreign domination. Next week: <strong>How Pahlavi modernization created revolutionary conditions</strong>.</p>
+            </div>
+            
+            <div class="historical-periods">
+                <div class="period-card safavid auto-reveal">
+                    <h4>👑 Reza Shah (1925-1941)</h4>
+                    <p>Forced modernization and secularization - repeating Safavid pattern but with Western models</p>
+                </div>
+                
+                <div class="period-card qajar auto-reveal">
+                    <h4>🛢️ Oil and American Alliance</h4>
+                    <p>Mohammad Reza Shah becomes dependent on United States - new form of foreign backing</p>
+                </div>
+                
+                <div class="period-card constitutional auto-reveal">
+                    <h4>⚡ Revolutionary Conditions</h4>
+                    <p>Modernization without democracy + foreign dependence = perfect conditions for religious-led revolution</p>
+                </div>
+            </div>
+            
+            <div class="unit-focus auto-reveal">
+                <h4>Essential Question Preview</h4>
+                <p style="font-size: 2rem;"><em>"How did the Pahlavi dynasty's modernization create revolutionary conditions?"</em></p>
+            </div>
+            
+            <div class="auto-reveal" style="margin-top: 2rem;">
+                <p style="font-size: 2.2rem; color: #ffffff;"><strong>You're building deep expertise in Iranian historical patterns!</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentRevealIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlideIndicator() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.add('hidden'));
+            slides[n].classList.remove('hidden');
+            
+            // Reset all reveals for new slide
+            const reveals = slides[n].querySelectorAll('.auto-reveal');
+            reveals.forEach(element => {
+                element.classList.remove('revealed');
+            });
+            
+            currentRevealIndex = 0;
+            updateSlideIndicator();
+        }
+
+        function revealNext() {
+            const currentSlideEl = slides[currentSlide];
+            const reveals = currentSlideEl.querySelectorAll('.auto-reveal');
+            
+            if (currentRevealIndex < reveals.length) {
+                reveals[currentRevealIndex].classList.add('revealed');
+                currentRevealIndex++;
+                return true; // More reveals available
+            }
+            return false; // No more reveals
+        }
+
+        function nextSlide() {
+            // Try to reveal next element first
+            if (revealNext()) {
+                return; // Revealed an element, stay on slide
+            }
+            
+            // All elements revealed, move to next slide
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            // If no elements revealed, go to previous slide
+            if (currentRevealIndex === 0 && currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+                // Reveal all elements on previous slide
+                toggleRevealAll();
+            } else if (currentRevealIndex > 0) {
+                // Hide last revealed element
+                const reveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+                currentRevealIndex--;
+                reveals[currentRevealIndex].classList.remove('revealed');
+            }
+        }
+
+        function toggleRevealAll() {
+            const reveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            reveals.forEach(element => {
+                element.classList.add('revealed');
+            });
+            currentRevealIndex = reveals.length;
+        }
+
+        function nextPage() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousPage() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    previousSlide();
+                    break;
+                case '.':
+                case '>':
+                    nextPage();
+                    break;
+                case ',':
+                case '<':
+                    previousPage();
+                    break;
+                case 'Enter':
+                    toggleRevealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

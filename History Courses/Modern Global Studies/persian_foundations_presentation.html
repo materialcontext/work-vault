@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persian Foundations to Islamic Transformation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .slide {
+            min-height: 100vh;
+            padding: 2rem 4%;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            display: block;
+        }
+
+        .slide.hidden {
+            display: none;
+        }
+
+        .slide-content {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+            margin: 0 auto;
+            min-height: calc(100vh - 4rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .slide h1 {
+            font-size: 4.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .slide h2 {
+            font-size: 3.5rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .slide h3 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        .slide p, .slide li {
+            font-size: 2rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .slide ul {
+            text-align: left;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 600;
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.8);
+            border-color: rgba(255, 215, 0, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .emoji-large {
+            font-size: 8rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 30px rgba(255,215,0,0.5);
+        }
+
+        .unit-focus {
+            background: rgba(255, 215, 0, 0.2);
+            border: 3px solid #ffd700;
+            padding: 3rem;
+            border-radius: 25px;
+            margin: 3rem 0;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 15px 50px rgba(255, 215, 0, 0.3);
+        }
+
+        .unit-focus h3 {
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+        }
+
+        .unit-focus p {
+            font-size: 2.2rem;
+            font-style: italic;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .objective-card {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+            border-color: rgba(255, 215, 0, 0.6);
+        }
+
+        .objective-card:hover::before {
+            left: 100%;
+        }
+
+        .objective-card h4 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .historical-periods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .period-card {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .period-card.persian {
+            border-color: #dc2626;
+            background: rgba(220, 38, 38, 0.2);
+        }
+
+        .period-card.islamic {
+            border-color: #059669;
+            background: rgba(5, 150, 105, 0.2);
+        }
+
+        .period-card.shia {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.2);
+        }
+
+        .period-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+        }
+
+        .period-card h4 {
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .period-card .date-range {
+            color: #94a3b8;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-visual {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline-date {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #ffd700;
+            min-width: 150px;
+            text-align: left;
+        }
+
+        .timeline-event {
+            font-size: 1.6rem;
+            flex: 1;
+            text-align: left;
+            padding-left: 2rem;
+        }
+
+        .quote-highlight {
+            background: rgba(99, 102, 241, 0.3);
+            border-left: 6px solid #6366f1;
+            padding: 2.5rem;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            font-size: 2.4rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+        }
+
+        .connection-bridge {
+            background: rgba(99, 102, 241, 0.2);
+            border: 2px solid #6366f1;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .connection-bridge h4 {
+            color: #ffd700;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .key-concepts {
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid #10b981;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .key-concepts h4 {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .concept-box {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            .slide h1 { font-size: 3rem; }
+            .slide h2 { font-size: 2.5rem; }
+            .slide h3 { font-size: 2rem; }
+            .slide p, .slide li { font-size: 1.4rem; }
+            .objectives-grid { grid-template-columns: 1fr; }
+            .historical-periods { grid-template-columns: 1fr; }
+            .slide { padding: 1rem 2%; }
+            .slide-content { 
+                padding: 1rem 0; 
+                min-height: calc(100vh - 2rem);
+            }
+            .timeline-item { flex-direction: column; text-align: center; }
+            .timeline-date { min-width: auto; margin-bottom: 0.5rem; }
+            .timeline-event { padding-left: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 14</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="revealBtn" onclick="toggleRevealAll()">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title & Unit Introduction -->
+    <div class="slide">
+        <div class="slide-content">
+            <div class="emoji-large auto-reveal">🏛️⭐</div>
+            <h1 class="auto-reveal">Persian Foundations to Islamic Transformation</h1>
+            <h2 class="auto-reveal">Building Iran's Historical Identity (550 BCE - 1500 CE)</h2>
+            
+            <div class="unit-focus auto-reveal">
+                <h3>Week 1: Setting the Foundation</h3>
+                <p><em>"Understanding 1,000 years of Iranian history to comprehend the 1979 revolution"</em></p>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Why Start Here?</h4>
+                <p>To understand why Iran's 1979 revolution took the form it did, we need to understand the <strong>deep historical patterns</strong> that shaped Iranian identity and responses to foreign pressure.</p>
+            </div>
+            
+            <div class="auto-reveal" style="margin-top: 3rem;">
+                <p style="font-size: 2.2rem; color: #ffffff;"><strong>50 Minutes</strong> • Foundation Building for Revolutionary Analysis</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Essential Question & Objectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Week 1 Essential Question</h2>
+            
+            <div class="quote-highlight auto-reveal">
+                "How did Persian and Islamic traditions combine to create a unique Iranian identity?"
+            </div>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h4>🏛️ Persian Foundations</h4>
+                    <p>Understand Cyrus the Great's tolerance model and Zoroastrian concepts that shaped Iranian political thinking</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🕌 Islamic Adaptation</h4>
+                    <p>Analyze how Iranians adapted to Islamic conquest while preserving their distinctive identity</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>⚡ Shi'a Development</h4>
+                    <p>Identify why Iranians gravitated toward Shi'a Islam and its political implications</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🔗 Pattern Recognition</h4>
+                    <p>Recognize historical patterns that will help explain the 1979 revolution</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Historical Overview -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📅 1,000 Years in One Hour</h2>
+            
+            <div class="auto-reveal">
+                <h3>Our Journey Through Time</h3>
+                <p style="font-size: 2rem;">We're covering nearly a millennium to understand the <strong>deep roots</strong> of Iranian identity and political culture.</p>
+            </div>
+            
+            <div class="historical-periods">
+                <div class="period-card persian auto-reveal">
+                    <div class="date-range">550-331 BCE</div>
+                    <h4>🏛️ Persian Empire</h4>
+                    <p><strong>Cyrus to Alexander:</strong> Founding concepts of tolerance, righteous rule, and multi-ethnic empire</p>
+                </div>
+                
+                <div class="period-card islamic auto-reveal">
+                    <div class="date-range">637-1000 CE</div>
+                    <h4>🕌 Islamic Conquest</h4>
+                    <p><strong>Arab Conquest to Persian Renaissance:</strong> Cultural adaptation while maintaining distinct identity</p>
+                </div>
+                
+                <div class="period-card shia auto-reveal">
+                    <div class="date-range">1000-1500 CE</div>
+                    <h4>⚡ Shi'a Evolution</h4>
+                    <p><strong>Religious Development:</strong> Growing Persian preference for Shi'a Islam and its political implications</p>
+                </div>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Revolution Connection</h4>
+                <p>Each period establishes patterns that will be <strong>crucial for understanding</strong> how and why the 1979 Islamic Revolution succeeded.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Cyrus the Great -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>👑 Cyrus the Great (550-530 BCE)</h2>
+            
+            <div class="quote-highlight auto-reveal">
+                "I am Cyrus, king of the world... When I entered Babylon as a friend and established the seat of government in the palace of the ruler under jubilation and rejoicing, I did not allow anyone to terrorize the people."
+                <br><br>— Cyrus Cylinder, 539 BCE
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Revolutionary Concepts for Ancient World</h3>
+                <p style="font-size: 2rem;">Cyrus created ideas about rulership that would shape Iranian thinking for millennia.</p>
+            </div>
+            
+            <div class="key-concepts auto-reveal">
+                <h4>Cyrus's Political Innovations</h4>
+                <div class="concept-grid">
+                    <div class="concept-box">Religious Tolerance</div>
+                    <div class="concept-box">Local Autonomy</div>
+                    <div class="concept-box">Righteous Ruler</div>
+                    <div class="concept-box">Multi-ethnic Empire</div>
+                </div>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>1979 Revolution Connection</h4>
+                <p><strong>Khomeini's appeal:</strong> Portrayed himself as restoring righteous Iranian rule against foreign-imposed Shah. The concept of legitimate authority rooted in justice, not just power, came from Cyrus.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Zoroastrianism -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔥 Zoroastrian Foundations</h2>
+            
+            <div class="auto-reveal">
+                <h3>Iran's First Monotheistic Revolution</h3>
+                <p style="font-size: 2rem;">Zoroastrianism gave Iranians a unique worldview that influenced how they approached later religions and politics.</p>
+            </div>
+            
+            <div class="historical-periods">
+                <div class="period-card persian auto-reveal">
+                    <h4>🌟 Core Concepts</h4>
+                    <p><strong>Cosmic Dualism:</strong> Good vs. Evil, Light vs. Darkness</p>
+                    <p><strong>Human Choice:</strong> People must actively choose good</p>
+                    <p><strong>Divine Justice:</strong> Ultimate triumph of righteousness</p>
+                </div>
+                
+                <div class="period-card islamic auto-reveal">
+                    <h4>👑 Political Implications</h4>
+                    <p><strong>Righteous Ruler:</strong> Kings must serve Ahura Mazda (Good)</p>
+                    <p><strong>Religious Authority:</strong> Priests as guardians of truth</p>
+                    <p><strong>Social Justice:</strong> Ruler's duty to protect the good</p>
+                </div>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Islamic Revolution Echo</h4>
+                <p><strong>Khomeini's message:</strong> The Shah represents evil/darkness imposed by foreign powers. The Islamic Revolution represents the triumph of good/light. Sound familiar?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Islamic Conquest -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚔️ The Islamic Conquest (637 CE)</h2>
+            
+            <div class="auto-reveal">
+                <h3>Military Defeat, Cultural Adaptation</h3>
+                <p style="font-size: 2rem;">Arabs conquered Persia militarily, but Persians conquered Islamic civilization culturally.</p>
+            </div>
+            
+            <div class="timeline-visual auto-reveal">
+                <div class="timeline-item">
+                    <div class="timeline-date">637 CE</div>
+                    <div class="timeline-event">Arab armies defeat Sassanid Persian Empire at Battle of Qadisiyyah</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">650-750 CE</div>
+                    <div class="timeline-event">Gradual conversion to Islam, but Persian culture persists</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">750-1000 CE</div>
+                    <div class="timeline-event">Persian administrators run Islamic government, Persian poetry flourishes</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">900-1100 CE</div>
+                    <div class="timeline-event">Persian becomes language of Islamic learning and literature</div>
+                </div>
+            </div>
+            
+            <div class="key-concepts auto-reveal">
+                <h4>Pattern of Iranian Adaptation</h4>
+                <p><strong>Accept new religion → Influence it with Persian traditions → Make it distinctively Iranian</strong></p>
+                <p>This same pattern will appear again and again in Iranian history!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Persian Influence on Islam -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎭 Persian Cultural Synthesis</h2>
+            
+            <div class="quote-highlight auto-reveal">
+                "The Persians ruled for a thousand years and did not need us Arabs even for a day. We have been ruling them for one or two centuries and cannot do without them for an hour."
+                <br><br>— Ibn Qutayba, 9th century Arab writer
+            </div>
+            
+            <div class="historical-periods">
+                <div class="period-card persian auto-reveal">
+                    <h4>📚 Administrative Expertise</h4>
+                    <p><strong>Government Skills:</strong> Persians became the bureaucrats running Islamic empire</p>
+                    <p><strong>Cultural Influence:</strong> Persian court customs adopted by Caliphs</p>
+                </div>
+                
+                <div class="period-card islamic auto-reveal">
+                    <h4>🎨 Literary Renaissance</h4>
+                    <p><strong>Persian Poetry:</strong> Ferdowsi's Shahnameh preserves pre-Islamic Persian heroes</p>
+                    <p><strong>Islamic Learning:</strong> Persian becomes language of scholarship</p>
+                </div>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Revolutionary Pattern</h4>
+                <p><strong>Iranian strategy:</strong> When you can't resist foreign power directly, <strong>transform it from within</strong>. This same approach will appear in responses to Western influence in the 20th century.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Shi'a Development -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚡ Why Iranians Chose Shi'a Islam</h2>
+            
+            <div class="auto-reveal">
+                <h3>The Appeal of the Underdog</h3>
+                <p style="font-size: 2rem;">Iranians, conquered by Arabs, sympathized with Ali's family - also defeated by political power.</p>
+            </div>
+            
+            <div class="historical-periods">
+                <div class="period-card shia auto-reveal">
+                    <h4>🏛️ Political Appeal</h4>
+                    <p><strong>Ali's Supporters:</strong> Seen as righteous leaders defeated by corrupt power</p>
+                    <p><strong>Persian Sympathy:</strong> Identified with those oppressed by Arab Sunni Caliphs</p>
+                    <p><strong>Legitimate Authority:</strong> Imams as righteous rulers vs. political rulers</p>
+                </div>
+                
+                <div class="period-card persian auto-reveal">
+                    <h4>🎭 Cultural Fit</h4>
+                    <p><strong>Zoroastrian Echo:</strong> Good vs. Evil, righteous suffering</p>
+                    <p><strong>Persian Interpretation:</strong> Shi'a Islam with Persian characteristics</p>
+                    <p><strong>Religious Authority:</strong> Clerics as guides to truth</p>
+                </div>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Revolutionary Foundation</h4>
+                <p><strong>1979 Key:</strong> Shi'a Islam provided Iranians with a <strong>religious justification for opposing political authority</strong> seen as illegitimate. The Shah = corrupt worldly power. Khomeini = righteous religious authority.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Imam Concept -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>👤 The Concept of the Imam</h2>
+            
+            <div class="auto-reveal">
+                <h3>Religious Authority vs. Political Power</h3>
+                <p style="font-size: 2rem;">Shi'a Islam developed a concept that would be <strong>crucial</strong> for the 1979 revolution.</p>
+            </div>
+            
+            <div class="key-concepts auto-reveal">
+                <h4>What is an Imam in Shi'a Thought?</h4>
+                <div class="concept-grid">
+                    <div class="concept-box">Divine Guidance</div>
+                    <div class="concept-box">Righteous Leadership</div>
+                    <div class="concept-box">Spiritual Authority</div>
+                    <div class="concept-box">Social Justice</div>
+                </div>
+            </div>
+            
+            <div class="historical-periods">
+                <div class="period-card shia auto-reveal">
+                    <h4>🔍 Two Types of Authority</h4>
+                    <p><strong>Political Rulers:</strong> May have power but lack legitimacy</p>
+                    <p><strong>Religious Imams:</strong> Have spiritual authority and represent justice</p>
+                    <p><strong>Tension:</strong> When these conflict, Shi'as should follow religious authority</p>
+                </div>
+            </div>
+            
+            <div class="quote-highlight auto-reveal">
+                "1979 Revolution Success: Khomeini convinced millions that he represented legitimate Imam-like authority against the Shah's illegitimate political power."
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Cultural Synthesis Patterns -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔄 Iranian Cultural Adaptation Pattern</h2>
+            
+            <div class="auto-reveal">
+                <h3>The Secret of Iranian Survival</h3>
+                <p style="font-size: 2rem;">How do you maintain your identity when more powerful forces conquer you?</p>
+            </div>
+            
+            <div class="timeline-visual auto-reveal">
+                <div class="timeline-item">
+                    <div class="timeline-date">Step 1</div>
+                    <div class="timeline-event"><strong>Accept new system</strong> - Don't resist directly when you're too weak</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Step 2</div>
+                    <div class="timeline-event"><strong>Excel within it</strong> - Become indispensable to the new rulers</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Step 3</div>
+                    <div class="timeline-event"><strong>Influence from within</strong> - Shape the system with your values</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Step 4</div>
+                    <div class="timeline-event"><strong>Create synthesis</strong> - Make it distinctively Iranian</div>
+                </div>
+            </div>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>This Pattern Will Repeat</h4>
+                <p><strong>With Mongols (13th c.):</strong> Persians convert Mongol rulers to Islam<br>
+                <strong>With Western influence (20th c.):</strong> Iranians try to modernize on their own terms<br>
+                <strong>With 1979 Revolution:</strong> Create "Islamic Republic" - neither purely traditional nor Western</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: By 1500 - Iranian Identity Established -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 By 1500: A Unique Civilization</h2>
+            
+            <div class="auto-reveal">
+                <h3>What Had Iran Become?</h3>
+                <p style="font-size: 2rem;">After nearly 1,000 years, Iranians had created something unique in the Islamic world.</p>
+            </div>
+            
+            <div class="historical-periods">
+                <div class="period-card persian auto-reveal">
+                    <h4>🎭 Cultural Identity</h4>
+                    <p><strong>Persian Language:</strong> Distinct from Arabic, vehicle for literature and learning</p>
+                    <p><strong>Persian Traditions:</strong> Nowruz, poetry, art, architectural styles</p>
+                    <p><strong>Historical Pride:</strong> Memory of Persian Empire's greatness</p>
+                </div>
+                
+                <div class="period-card shia auto-reveal">
+                    <h4>⚡ Religious Distinctiveness</h4>
+                    <p><strong>Shi'a Preference:</strong> Growing Iranian identification with Shi'a Islam</p>
+                    <p><strong>Religious Authority:</strong> Clerics as independent from political power</p>
+                    <p><strong>Oppositional Tradition:</strong> Resistance to "illegitimate" authority</p>
+                </div>
+                
+                <div class="period-card islamic auto-reveal">
+                    <h4>🔗 Synthesis Achievement</h4>
+                    <p><strong>Iranian Islam:</strong> Neither Arab nor purely Persian</p>
+                    <p><strong>Adaptation Mastery:</strong> Proven ability to maintain identity under pressure</p>
+                    <p><strong>Political Culture:</strong> Expectations about legitimate vs. illegitimate rule</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Patterns for Revolution -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔮 Patterns That Will Shape 1979</h2>
+            
+            <div class="auto-reveal">
+                <h3>Why This History Matters</h3>
+                <p style="font-size: 2rem;">The 1979 revolution wasn't a sudden event - it drew on <strong>deep Iranian historical patterns</strong>.</p>
+            </div>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h4>🏛️ Righteous Rule Concept</h4>
+                    <p>From Cyrus to Imams: legitimate authority must serve justice, not just hold power</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>⚡ Religious Political Authority</h4>
+                    <p>Shi'a tradition of clerics as independent moral authorities who can challenge rulers</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🎭 Cultural Adaptation</h4>
+                    <p>Master strategy: accept foreign influence but transform it to serve Iranian values</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h4>🚫 Anti-Foreign Domination</h4>
+                    <p>Historical experience of maintaining identity against foreign control</p>
+                </div>
+            </div>
+            
+            <div class="quote-highlight auto-reveal">
+                "Understanding these patterns helps explain why Khomeini's message resonated so powerfully in 1979."
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Next Week Preview -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔜 Next Week: Safavids to Qajars</h2>
+            
+            <div class="connection-bridge auto-reveal">
+                <h4>Building on Today's Foundation</h4>
+                <p>Now that you understand Iranian cultural patterns, we'll see how Iran becomes an <strong>officially Shi'a state</strong> and faces new forms of foreign pressure.</p>
+            </div>
+            
+            <div class="historical-periods">
+                <div class="period-card persian auto-reveal">
+                    <h4>👑 Safavid Revolution (1501)</h4>
+                    <p>Shah Ismail forces conversion to Shi'a Islam - Iran becomes officially Shi'a state for the first time</p>
+                </div>
+                
+                <div class="period-card islamic auto-reveal">
+                    <h4>🌍 Foreign Pressure Returns</h4>
+                    <p>Russian and British "Great Game" - new forms of foreign intervention in Iranian affairs</p>
+                </div>
+                
+                <div class="period-card shia auto-reveal">
+                    <h4>⚖️ Constitutional Revolution (1905)</h4>
+                    <p>Iranians try democracy for the first time - and foreign powers help destroy it</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Essential Question Preview</h3>
+                <p style="font-size: 2rem;"><em>"How did Iran develop as a Shi'a state while facing foreign pressure?"</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Session Conclusion -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 What We've Established Today</h2>
+            
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h4>✅ Persian Foundations</h4>
+                    <p>You understand Cyrus's tolerance model and how righteous rule concepts shaped Iranian political thinking</p>
+                </div>
+                
+                <div class="objective-card auto-reveal">
+                    <h4>✅ Islamic Adaptation</h4>
+                    <p>You can analyze how Iranians maintained identity while adapting to Islamic conquest</p>
+                </div>
+                
+                <div class="objective-card auto-reveal">
+                    <h4>✅ Shi'a Development</h4>
+                    <p>You recognize why Iranians gravitated toward Shi'a Islam and its political implications</p>
+                </div>
+                
+                <div class="objective-card auto-reveal">
+                    <h4>✅ Revolutionary Patterns</h4>
+                    <p>You've identified historical patterns that will help explain why the 1979 revolution succeeded</p>
+                </div>
+            </div>
+            
+            <div class="unit-focus auto-reveal">
+                <h4>Ready for Deep Analysis</h4>
+                <p>You now have the <strong>foundational knowledge</strong> to understand how Iranian history created the conditions for Islamic Revolution. Next week, we see these patterns in action!</p>
+            </div>
+            
+            <div class="auto-reveal" style="margin-top: 2rem;">
+                <p style="font-size: 2.2rem; color: #ffffff;"><strong>You're building expertise in one of the world's most important civilizations!</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentRevealIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlideIndicator() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.add('hidden'));
+            slides[n].classList.remove('hidden');
+            
+            // Reset all reveals for new slide
+            const reveals = slides[n].querySelectorAll('.auto-reveal');
+            reveals.forEach(element => {
+                element.classList.remove('revealed');
+            });
+            
+            currentRevealIndex = 0;
+            updateSlideIndicator();
+        }
+
+        function revealNext() {
+            const currentSlideEl = slides[currentSlide];
+            const reveals = currentSlideEl.querySelectorAll('.auto-reveal');
+            
+            if (currentRevealIndex < reveals.length) {
+                reveals[currentRevealIndex].classList.add('revealed');
+                currentRevealIndex++;
+                return true; // More reveals available
+            }
+            return false; // No more reveals
+        }
+
+        function nextSlide() {
+            // Try to reveal next element first
+            if (revealNext()) {
+                return; // Revealed an element, stay on slide
+            }
+            
+            // All elements revealed, move to next slide
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            // If no elements revealed, go to previous slide
+            if (currentRevealIndex === 0 && currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+                // Reveal all elements on previous slide
+                toggleRevealAll();
+            } else if (currentRevealIndex > 0) {
+                // Hide last revealed element
+                const reveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+                currentRevealIndex--;
+                reveals[currentRevealIndex].classList.remove('revealed');
+            }
+        }
+
+        function toggleRevealAll() {
+            const reveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            reveals.forEach(element => {
+                element.classList.add('revealed');
+            });
+            currentRevealIndex = reveals.length;
+        }
+
+        function nextPage() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousPage() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    previousSlide();
+                    break;
+                case '.':
+                case '>':
+                    nextPage();
+                    break;
+                case ',':
+                case '<':
+                    previousPage();
+                    break;
+                case 'Enter':
+                    toggleRevealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
