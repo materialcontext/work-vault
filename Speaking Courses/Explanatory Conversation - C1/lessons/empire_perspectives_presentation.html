@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Different Americans Saw Empire</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298, #1e3c72);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .slide {
+            display: none;
+            padding: 3rem;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #87ceeb;
+        }
+
+        .step-indicator {
+            background: rgba(255, 215, 0, 0.9);
+            color: #1e3c72;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        .central-question {
+            background: linear-gradient(135deg, #2a5298, #1e3c72);
+            border: 3px solid #ffd700;
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.2);
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question h3 {
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .content-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.3);
+            border-color: rgba(255, 215, 0, 0.6);
+        }
+
+        .content-card h3 {
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .progressive-list {
+            list-style: none;
+            text-align: left;
+            margin: 1rem 0;
+        }
+
+        .progressive-list li {
+            margin: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+        }
+
+        .progressive-list li.reveal {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .progressive-list li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .quote-box {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 6px solid #ffd700;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 15px 15px 0;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .quote-attribution {
+            font-weight: bold;
+            color: #ffd700;
+            margin-top: 1rem;
+            font-style: normal;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 215, 0, 0.9);
+            border: none;
+            color: #1e3c72;
+            padding: 1.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.4rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 1);
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255, 215, 0, 0.9);
+            color: #1e3c72;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .vocab-frame {
+            background: rgba(135, 206, 235, 0.2);
+            border-left: 6px solid #87ceeb;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 20px 20px 0;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(135, 206, 235, 0.2);
+        }
+
+        .vocab-frame h4 {
+            color: #87ceeb;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #1e3c72;
+            padding: 2rem;
+            border-radius: 30px;
+            margin: 2rem 0;
+            font-weight: 700;
+            font-size: 1.4rem;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        .perspective-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .perspective-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .perspective-card:hover {
+            border-color: rgba(255, 215, 0, 0.8);
+            transform: translateY(-5px);
+        }
+
+        .perspective-title {
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .emoji-large {
+            font-size: 4rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 12</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" onclick="revealAll()" style="margin-left: 1rem;">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide active">
+        <div class="slide-content">
+            <div class="step-indicator animate-in" style="animation-delay: 0.2s;">Lesson 6 - US History II</div>
+            <h1>How Different Americans Saw Empire</h1>
+            <div class="emoji-large animate-in" style="animation-delay: 0.8s;">🏛️🌎⚔️</div>
+            <div class="central-question">
+                <h3>Building Perspective Analysis Skills</h3>
+                <p><em>The Spanish-American War and Philippine-American War (1898-1904)</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Core Challenge -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🎯 Your Speaking Challenge</h2>
+            <div class="challenge-box auto-reveal">
+                "Explain why Americans disagreed so strongly about whether the United States should control the Philippines, using at least three different perspectives and showing how the same events looked completely different to different groups."
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🎯 Success Criteria</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Speak for 6-7 minutes</li>
+                        <li class="auto-reveal">Use at least 3 different perspectives</li>
+                        <li class="auto-reveal">Include specific evidence and examples</li>
+                        <li class="auto-reveal">Show how same events = different interpretations</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>📈 Fluency Focus</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Perspective comparison language</li>
+                        <li class="auto-reveal">Evidence analysis skills</li>
+                        <li class="auto-reveal">Multiple causation reasoning</li>
+                        <li class="auto-reveal">Historical empathy development</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Historical Context -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>📚 Essential Context: 1898-1904</h2>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🇺🇸 Spanish-American War (1898)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">US defeats Spain in 3 months</li>
+                        <li class="auto-reveal">Gains Cuba, Puerto Rico, Philippines</li>
+                        <li class="auto-reveal">America becomes overseas empire</li>
+                        <li class="auto-reveal">Treaty of Paris: $20 million for Philippines</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🇵🇭 Philippine-American War (1899-1902)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Filipinos expected independence</li>
+                        <li class="auto-reveal">US decides to keep Philippines as colony</li>
+                        <li class="auto-reveal">3+ years of guerrilla warfare</li>
+                        <li class="auto-reveal">200,000+ Filipino deaths</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="vocab-frame auto-reveal">
+                <h4>Key Question</h4>
+                <p>How could the same events lead to such different conclusions about what America should do?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Perspective Language Frames -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🗣️ Language for Multiple Perspectives</h2>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🔄 Comparison Frames</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">"While [Group A] believed..., [Group B] argued..."</li>
+                        <li class="auto-reveal">"From the perspective of..., this meant..."</li>
+                        <li class="auto-reveal">"However, [different group] saw it as..."</li>
+                        <li class="auto-reveal">"The same event looked completely different because..."</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>📋 Evidence Frames</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">"According to [source], the main reason was..."</li>
+                        <li class="auto-reveal">"This group was motivated by..."</li>
+                        <li class="auto-reveal">"The evidence shows that..."</li>
+                        <li class="auto-reveal">"For example, [name] argued that..."</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="challenge-box auto-reveal">
+                Practice using these frames as we explore different viewpoints on American empire!
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Economic Perspectives -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>💰 Economic Lens: Business vs. Labor</h2>
+            <div class="perspective-grid">
+                <div class="perspective-card auto-reveal">
+                    <div class="perspective-title">🏭 PRO-EMPIRE: Business Leaders</div>
+                    <div class="quote-box">
+                        "American factories are making more than the American people can use. The trade of the world must and shall be ours."
+                        <div class="quote-attribution">- Senator Albert Beveridge</div>
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Philippines = gateway to Asia markets</li>
+                        <li class="auto-reveal">$100 million in potential trade</li>
+                        <li class="auto-reveal">New investment opportunities</li>
+                    </ul>
+                </div>
+                <div class="perspective-card auto-reveal">
+                    <div class="perspective-title">⚒️ ANTI-EMPIRE: Workers & Farmers</div>
+                    <div class="quote-box">
+                        "Profitable to army contractors but expenditure without return to farmers and laborers."
+                        <div class="quote-attribution">- Anti-Imperialist League</div>
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Costs burden working families</li>
+                        <li class="auto-reveal">Fear of cheap foreign labor</li>
+                        <li class="auto-reveal">Resources should help domestic needs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Racial Perspectives -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🏛️ Racial Lens: Superiority vs. Equality</h2>
+            <div class="perspective-grid">
+                <div class="perspective-card auto-reveal">
+                    <div class="perspective-title">⚪ PRO-EMPIRE: White Supremacist Logic</div>
+                    <div class="quote-box">
+                        "A people sprung from the most masterful blood of history... imperial by virtue of their power."
+                        <div class="quote-attribution">- Pro-Imperial Arguments</div>
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Filipinos "unfit for self-government"</li>
+                        <li class="auto-reveal">Anglo-Saxon duty to civilize</li>
+                        <li class="auto-reveal">Social Darwinist thinking</li>
+                    </ul>
+                </div>
+                <div class="perspective-card auto-reveal">
+                    <div class="perspective-title">⚖️ ANTI-EMPIRE: Constitutional Equality</div>
+                    <div class="quote-box">
+                        "All men, of whatever race or color, are entitled to life, liberty, and the pursuit of happiness."
+                        <div class="quote-attribution">- Anti-Imperialist League Platform</div>
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Imperialism violates founding principles</li>
+                        <li class="auto-reveal">Government without consent = tyranny</li>
+                        <li class="auto-reveal">Some opposed for exclusionist reasons</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Regional Perspectives -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🗺️ Regional Lens: West, South, North</h2>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🌅 American West</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Strongest support for Pacific expansion</li>
+                        <li class="auto-reveal">Asian markets crucial for development</li>
+                        <li class="auto-reveal">San Francisco/Seattle business interests</li>
+                        <li class="auto-reveal">Geographic proximity to Philippines</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🏛️ American South</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Mixed: prove regional patriotism</li>
+                        <li class="auto-reveal">Heal Civil War divisions</li>
+                        <li class="auto-reveal">BUT: concerns about non-white populations</li>
+                        <li class="auto-reveal">Regional pride vs. racial fears</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🏭 Industrial North</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">BOTH strongest support AND opposition</li>
+                        <li class="auto-reveal">Business interests = pro-empire</li>
+                        <li class="auto-reveal">Intellectuals/reformers = anti-empire</li>
+                        <li class="auto-reveal">Commercial vs. traditional values</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Filipino Perspectives -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🇵🇭 Filipino Lens: Independence Betrayed</h2>
+            <div class="central-question auto-reveal">
+                <h3>The Filipino Viewpoint</h3>
+                <p>How did Filipinos see American "liberation"?</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🗓️ Initial Hope (June 1898)</h3>
+                    <div class="quote-box">
+                        "Filipinos declared independence June 12, 1898, expecting American recognition like Cuba received."
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Expected partnership, not colonization</li>
+                        <li class="auto-reveal">Had been fighting Spain for years</li>
+                        <li class="auto-reveal">Established provisional government</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>😠 Betrayal and Resistance</h3>
+                    <div class="quote-box">
+                        "I protest in the name of the Filipino people against this intrusion of the United States Government."
+                        <div class="quote-attribution">- Emilio Aguinaldo</div>
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">America chose colonial control</li>
+                        <li class="auto-reveal">3+ years of guerrilla warfare</li>
+                        <li class="auto-reveal">Strategy: "constant losses" to US forces</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Women's Perspectives -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>👩 Gender Lens: Imperial Motherhood vs. Anti-Imperial Activism</h2>
+            <div class="perspective-grid">
+                <div class="perspective-card auto-reveal">
+                    <div class="perspective-title">👑 PRO-EMPIRE: Imperial Motherhood</div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Duty to "uplift" women in colonies</li>
+                        <li class="auto-reveal">Spread "Christian civilization"</li>
+                        <li class="auto-reveal">American domesticity as model</li>
+                        <li class="auto-reveal">Carriers of civilizing mission</li>
+                    </ul>
+                </div>
+                <div class="perspective-card auto-reveal">
+                    <div class="perspective-title">⚖️ ANTI-EMPIRE: Women's Rights Activism</div>
+                    <div class="quote-box">
+                        "To 'protect the weak' has always been the excuse of the ruler and tax-gatherer, the chief, the king, the baron."
+                        <div class="quote-attribution">- Jane Addams</div>
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Sympathy with governed without consent</li>
+                        <li class="auto-reveal">Connection to women's suffrage</li>
+                        <li class="auto-reveal">Jane Addams as key speaker</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="vocab-frame auto-reveal">
+                <h4>Cross-Pacific Women's Activism</h4>
+                <p>Clemencia López (Filipino) traveled to US, met President Roosevelt, testified to Senate for Philippine independence</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Constitutional Debates -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>📜 Constitutional Lens: Empire vs. Republic</h2>
+            <div class="central-question auto-reveal">
+                <h3>Core Constitutional Question</h3>
+                <p>Can America have an empire and still be a republic?</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>⚖️ Anti-Imperial Constitutional Arguments</h3>
+                    <div class="quote-box">
+                        "Government without consent of the governed. Taxation without representation. The very things the Declaration of Independence protested."
+                        <div class="quote-attribution">- Carl Schurz</div>
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Constitution has no provision for colonies</li>
+                        <li class="auto-reveal">Creates "subject class of citizens"</li>
+                        <li class="auto-reveal">Violates founding principles</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>📊 Congressional Evidence</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Treaty of Paris passed Senate by ONE vote (57-27)</li>
+                        <li class="auto-reveal">Bacon Resolution (Philippine independence) defeated by VP tie-breaker</li>
+                        <li class="auto-reveal">Nation deeply divided on empire</li>
+                        <li class="auto-reveal">Anti-imperial sentiment stronger than often recognized</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Practice Framework -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🎯 Structure Your 6-7 Minute Explanation</h2>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>📝 Opening (1 minute)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Brief context: Spanish-American War results</li>
+                        <li class="auto-reveal">State the controversy: Philippines control</li>
+                        <li class="auto-reveal">Preview: "Three different perspectives"</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>💰 Economic Perspective (2 minutes)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Business leaders: markets and trade</li>
+                        <li class="auto-reveal">Workers/farmers: costs and competition</li>
+                        <li class="auto-reveal">Specific evidence and quotes</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🏛️ Racial/Constitutional Perspective (2 minutes)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Pro-empire: civilizing mission</li>
+                        <li class="auto-reveal">Anti-empire: founding principles</li>
+                        <li class="auto-reveal">Show how same values → opposite conclusions</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🇵🇭 Filipino Perspective (1-2 minutes)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Expected independence, got colonization</li>
+                        <li class="auto-reveal">Aguinaldo's resistance</li>
+                        <li class="auto-reveal">Conclude: Why same events = different views</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Final Challenge -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🚀 Your Turn: Perspective Analysis</h2>
+            <div class="challenge-box auto-reveal">
+                Now you're ready to explain why Americans disagreed so strongly about empire using multiple perspectives!
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>✅ Remember to Include</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">At least 3 different perspectives</li>
+                        <li class="auto-reveal">Specific examples and evidence</li>
+                        <li class="auto-reveal">Comparison language</li>
+                        <li class="auto-reveal">Show how same events → different interpretations</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🎯 Success Indicators</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Sustained 6-7 minute explanation</li>
+                        <li class="auto-reveal">Clear perspective transitions</li>
+                        <li class="auto-reveal">Evidence-based reasoning</li>
+                        <li class="auto-reveal">Historical empathy demonstrated</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="vocab-frame auto-reveal">
+                <h4>Key Insight</h4>
+                <p>The same historical events can look completely different depending on your perspective, interests, and values. This lesson prepares you to understand complex debates throughout American history!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            updateSlideCounter();
+            
+            // Trigger auto-reveals for the new slide
+            setTimeout(() => {
+                const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+                autoReveals.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('show');
+                    }, index * 200);
+                });
+                
+                const listItems = slides[currentSlide].querySelectorAll('.progressive-list li');
+                listItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('reveal');
+                    }, (index + 2) * 300);
+                });
+            }, 100);
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const autoReveals = currentSlideElement.querySelectorAll('.auto-reveal');
+            const listItems = currentSlideElement.querySelectorAll('.progressive-list li');
+            
+            autoReveals.forEach(element => element.classList.add('show'));
+            listItems.forEach(item => item.classList.add('reveal'));
+        }
+
+        function updateSlideCounter() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowLeft':
+                case ',':
+                    previousSlide();
+                    break;
+                case 'ArrowRight':
+                case '.':
+                    nextSlide();
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+            }
+        });
+
+        // Initialize first slide
+        showSlide(0);
+    </script>
+</body>
+</html>

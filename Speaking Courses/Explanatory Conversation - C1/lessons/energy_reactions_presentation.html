@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Energy Changes in Reactions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f4c75, #3282b8, #0f4c75);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .slide {
+            display: none;
+            padding: 3rem;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #ff6b6b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #74b9ff;
+        }
+
+        .step-indicator {
+            background: rgba(255, 107, 107, 0.9);
+            color: #0f4c75;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        .central-question {
+            background: linear-gradient(135deg, #3282b8, #0f4c75);
+            border: 3px solid #ff6b6b;
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 12px 40px rgba(255, 107, 107, 0.2);
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question h3 {
+            color: #ff6b6b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .content-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.3);
+            border-color: rgba(255, 107, 107, 0.6);
+        }
+
+        .content-card h3 {
+            color: #ff6b6b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .progressive-list {
+            list-style: none;
+            text-align: left;
+            margin: 1rem 0;
+        }
+
+        .progressive-list li {
+            margin: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+        }
+
+        .progressive-list li.reveal {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .progressive-list li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        .demo-box {
+            background: rgba(255, 107, 107, 0.1);
+            border: 3px solid #ff6b6b;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .demo-title {
+            color: #ff6b6b;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .temp-indicator {
+            font-size: 3rem;
+            margin: 1rem 0;
+            font-weight: bold;
+        }
+
+        .hot {
+            color: #ff6b6b;
+            text-shadow: 0 0 20px #ff6b6b;
+        }
+
+        .cold {
+            color: #74b9ff;
+            text-shadow: 0 0 20px #74b9ff;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 107, 107, 0.9);
+            border: none;
+            color: #0f4c75;
+            padding: 1.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.4rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 107, 107, 1);
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255, 107, 107, 0.9);
+            color: #0f4c75;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .vocab-frame {
+            background: rgba(116, 185, 255, 0.2);
+            border-left: 6px solid #74b9ff;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 20px 20px 0;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(116, 185, 255, 0.2);
+        }
+
+        .vocab-frame h4 {
+            color: #74b9ff;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: #ffffff;
+            padding: 2rem;
+            border-radius: 30px;
+            margin: 2rem 0;
+            font-weight: 700;
+            font-size: 1.4rem;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .reaction-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .reaction-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px solid rgba(255, 107, 107, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .reaction-card:hover {
+            border-color: rgba(255, 107, 107, 0.8);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.3);
+        }
+
+        .reaction-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .endothermic {
+            border-color: rgba(116, 185, 255, 0.6);
+        }
+
+        .endothermic .reaction-title {
+            color: #74b9ff;
+        }
+
+        .exothermic {
+            border-color: rgba(255, 107, 107, 0.6);
+        }
+
+        .exothermic .reaction-title {
+            color: #ff6b6b;
+        }
+
+        .energy-diagram {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+
+        .bond-concept {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border: 2px solid rgba(116, 185, 255, 0.4);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .emoji-large {
+            font-size: 4rem;
+            margin: 1rem 0;
+        }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .example-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .example-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 107, 107, 0.6);
+        }
+
+        .example-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #ff6b6b;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 12</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" onclick="revealAll()" style="margin-left: 1rem;">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide active">
+        <div class="slide-content">
+            <div class="step-indicator animate-in" style="animation-delay: 0.2s;">Lesson 9 - Physical Science</div>
+            <h1>How Energy Changes in Reactions</h1>
+            <div class="emoji-large animate-in" style="animation-delay: 0.8s;">🔥❄️⚡</div>
+            <div class="central-question">
+                <h3>Energy Flow in Chemical Systems</h3>
+                <p><em>Why some reactions get hot while others get cold</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Core Challenge -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🎯 Your Energy Explanation Challenge</h2>
+            <div class="challenge-box auto-reveal">
+                "Explain why some chemical reactions release heat while others absorb heat, using specific examples and showing how energy flows during bond breaking and bond formation."
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🎯 Success Criteria</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Speak for 7-8 minutes</li>
+                        <li class="auto-reveal">Explain both endothermic and exothermic reactions</li>
+                        <li class="auto-reveal">Use bond breaking/forming concepts</li>
+                        <li class="auto-reveal">Give specific real-world examples</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>📈 Scientific Skills Focus</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Energy flow analysis</li>
+                        <li class="auto-reveal">Molecular-level explanations</li>
+                        <li class="auto-reveal">Observable-to-invisible connections</li>
+                        <li class="auto-reveal">Cause-and-effect reasoning</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Building on Previous Knowledge -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🔗 Building on What You Know</h2>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🧪 From Chemical Changes</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Chemical reactions create new substances</li>
+                        <li class="auto-reveal">Bonds between atoms break and form</li>
+                        <li class="auto-reveal">Evidence includes temperature changes</li>
+                        <li class="auto-reveal">But WHY do temperatures change?</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>⚛️ From Atomic Structure</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Atoms bond by sharing/transferring electrons</li>
+                        <li class="auto-reveal">Different elements form different bonds</li>
+                        <li class="auto-reveal">Bond strength varies between atoms</li>
+                        <li class="auto-reveal">Today: Energy and bond breaking/forming</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="central-question auto-reveal">
+                <h3>Key Connection</h3>
+                <p>Temperature changes during reactions happen because energy is involved in breaking old bonds and forming new ones!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Essential Vocabulary -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>📚 Energy Vocabulary</h2>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🔥 Exothermic Reaction</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Definition:</strong> Releases energy (usually heat)</li>
+                        <li class="auto-reveal"><strong>Observable:</strong> Temperature increases</li>
+                        <li class="auto-reveal"><strong>Examples:</strong> Burning, hand warmers</li>
+                        <li class="auto-reveal"><strong>Memory:</strong> "EXo" = Exit/Out</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>❄️ Endothermic Reaction</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Definition:</strong> Absorbs energy from surroundings</li>
+                        <li class="auto-reveal"><strong>Observable:</strong> Temperature decreases</li>
+                        <li class="auto-reveal"><strong>Examples:</strong> Cold packs, melting ice</li>
+                        <li class="auto-reveal"><strong>Memory:</strong> "ENdo" = Enter/In</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="vocab-frame auto-reveal">
+                <h4>Key Language Frames</h4>
+                <p><strong>"Energy is released when..."</strong> | <strong>"This reaction absorbs energy because..."</strong> | <strong>"The temperature changes because..."</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: The Bond Energy Concept -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🔗 The Big Idea: Bond Energy</h2>
+            <div class="central-question auto-reveal">
+                <h3>Two Universal Rules</h3>
+                <p>All chemical reactions follow these energy rules</p>
+            </div>
+            <div class="reaction-comparison">
+                <div class="bond-concept auto-reveal">
+                    <h3>⚡ Rule 1: Breaking Bonds</h3>
+                    <div class="temp-indicator cold">REQUIRES ENERGY</div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Like breaking apart LEGO blocks</li>
+                        <li class="auto-reveal">Takes effort to separate atoms</li>
+                        <li class="auto-reveal">Energy must be PUT IN</li>
+                        <li class="auto-reveal">Always endothermic step</li>
+                    </ul>
+                </div>
+                <div class="bond-concept auto-reveal">
+                    <h3>⚡ Rule 2: Forming Bonds</h3>
+                    <div class="temp-indicator hot">RELEASES ENERGY</div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Like magnets snapping together</li>
+                        <li class="auto-reveal">Atoms "want" to be stable</li>
+                        <li class="auto-reveal">Energy is GIVEN OFF</li>
+                        <li class="auto-reveal">Always exothermic step</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="vocab-frame auto-reveal">
+                <h4>The Energy Balance Determines Everything</h4>
+                <p>If more energy is released than absorbed → <strong>Exothermic overall</strong><br>
+                If more energy is absorbed than released → <strong>Endothermic overall</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Demonstration Analysis -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🧪 Let's Analyze Real Reactions</h2>
+            <div class="reaction-comparison">
+                <div class="reaction-card exothermic auto-reveal">
+                    <div class="reaction-title">🔥 Hand Warmer (Exothermic)</div>
+                    <div class="demo-box">
+                        <div class="demo-title">Iron + Oxygen → Iron Oxide</div>
+                        <div class="temp-indicator hot">Gets HOT! 🌡️⬆️</div>
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Iron atoms bond with oxygen</li>
+                        <li class="auto-reveal">New bonds are very strong</li>
+                        <li class="auto-reveal">More energy released than used</li>
+                        <li class="auto-reveal">Excess energy = heat you feel</li>
+                    </ul>
+                </div>
+                <div class="reaction-card endothermic auto-reveal">
+                    <div class="reaction-title">❄️ Cold Pack (Endothermic)</div>
+                    <div class="demo-box">
+                        <div class="demo-title">Ammonium Nitrate + Water</div>
+                        <div class="temp-indicator cold">Gets COLD! 🌡️⬇️</div>
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Salt crystals break apart in water</li>
+                        <li class="auto-reveal">Breaking bonds requires energy</li>
+                        <li class="auto-reveal">More energy needed than released</li>
+                        <li class="auto-reveal">Takes energy from surroundings = feels cold</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Classic Example - Baking Soda and Vinegar -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🥤 Classic Demo: Baking Soda + Vinegar</h2>
+            <div class="central-question auto-reveal">
+                <h3>What Type of Reaction?</h3>
+                <p>Let's analyze the energy flow step by step</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>👀 What We Observe</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Fizzing and bubbling (CO₂ gas)</li>
+                        <li class="auto-reveal">Temperature drops slightly</li>
+                        <li class="auto-reveal">New substances formed</li>
+                        <li class="auto-reveal">Reaction happens quickly</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>⚡ Energy Analysis</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Bonds in baking soda break (needs energy)</li>
+                        <li class="auto-reveal">Bonds in vinegar break (needs energy)</li>
+                        <li class="auto-reveal">New bonds form in products (releases energy)</li>
+                        <li class="auto-reveal">Slightly more energy needed than released</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="vocab-frame auto-reveal">
+                <h4>Conclusion</h4>
+                <p><strong>Slightly endothermic</strong> - The reaction absorbs a small amount of energy from the surroundings, making the mixture cooler.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Real-World Applications -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🌎 Energy Changes All Around Us</h2>
+            <div class="example-grid">
+                <div class="example-card auto-reveal">
+                    <div class="example-title">🔥 Exothermic Examples</div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Combustion:</strong> Burning wood, gasoline</li>
+                        <li class="auto-reveal"><strong>Respiration:</strong> Your body "burning" food</li>
+                        <li class="auto-reveal"><strong>Hand warmers:</strong> Iron oxidation</li>
+                        <li class="auto-reveal"><strong>Neutralization:</strong> Antacid + stomach acid</li>
+                    </ul>
+                </div>
+                <div class="example-card auto-reveal">
+                    <div class="example-title">❄️ Endothermic Examples</div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Photosynthesis:</strong> Plants making food</li>
+                        <li class="auto-reveal"><strong>Cold packs:</strong> Instant cooling</li>
+                        <li class="auto-reveal"><strong>Melting:</strong> Ice to water</li>
+                        <li class="auto-reveal"><strong>Cooking:</strong> Baking bread (some steps)</li>
+                    </ul>
+                </div>
+                <div class="example-card auto-reveal">
+                    <div class="example-title">🏠 At Home</div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Exo:</strong> Oven cleaner getting hot</li>
+                        <li class="auto-reveal"><strong>Endo:</strong> Evaporating sweat cooling you</li>
+                        <li class="auto-reveal"><strong>Exo:</strong> Concrete setting and warming</li>
+                        <li class="auto-reveal"><strong>Endo:</strong> Dissolving Epsom salts</li>
+                    </ul>
+                </div>
+                <div class="example-card auto-reveal">
+                    <div class="example-title">🏭 Industrial Uses</div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Exo:</strong> Steel production heat</li>
+                        <li class="auto-reveal"><strong>Endo:</strong> Refrigeration systems</li>
+                        <li class="auto-reveal"><strong>Exo:</strong> Rocket fuel combustion</li>
+                        <li class="auto-reveal"><strong>Endo:</strong> Ammonia production</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Energy Diagrams -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>📊 Visualizing Energy Changes</h2>
+            <div class="reaction-comparison">
+                <div class="content-card auto-reveal">
+                    <h3>🔥 Exothermic Energy Profile</h3>
+                    <div class="energy-diagram">
+                        Energy ↑<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Reactants<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↘<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Products<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|________________________→<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reaction Progress
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Products have less energy than reactants</li>
+                        <li class="auto-reveal">Energy difference = heat released</li>
+                        <li class="auto-reveal">System loses energy to surroundings</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>❄️ Endothermic Energy Profile</h3>
+                    <div class="energy-diagram">
+                        Energy ↑<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Products<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↗<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Reactants<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|________________________→<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reaction Progress
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Products have more energy than reactants</li>
+                        <li class="auto-reveal">Energy difference = heat absorbed</li>
+                        <li class="auto-reveal">System gains energy from surroundings</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Language Practice -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🗣️ Practice Your Explanation Language</h2>
+            <div class="challenge-box auto-reveal">
+                Choose one example and explain it in 2 minutes using energy flow concepts!
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🔥 Burning Wood</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">What bonds break? (wood + oxygen)</li>
+                        <li class="auto-reveal">What bonds form? (CO₂ + water)</li>
+                        <li class="auto-reveal">Which step releases more energy?</li>
+                        <li class="auto-reveal">Why do you feel heat?</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>❄️ Melting Ice</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">What bonds break? (hydrogen bonds)</li>
+                        <li class="auto-reveal">What energy is needed?</li>
+                        <li class="auto-reveal">Where does energy come from?</li>
+                        <li class="auto-reveal">Why does ice cream stay cold?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="vocab-frame auto-reveal">
+                <h4>Use These Frames</h4>
+                <p>"This reaction is [exothermic/endothermic] because..." | "When bonds break..." | "The energy released/absorbed comes from..."</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Structure Your Explanation -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🎯 Structure Your 7-8 Minute Explanation</h2>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>📝 Opening (1.5 minutes)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Define endothermic and exothermic</li>
+                        <li class="auto-reveal">State the two universal bond rules</li>
+                        <li class="auto-reveal">Preview: "Energy balance determines reaction type"</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🔥 Exothermic Section (2.5 minutes)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Explain energy flow: more released than used</li>
+                        <li class="auto-reveal">Give specific example (hand warmer, burning)</li>
+                        <li class="auto-reveal">Connect to bond breaking/forming</li>
+                        <li class="auto-reveal">Real-world applications</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>❄️ Endothermic Section (2.5 minutes)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Explain energy flow: more used than released</li>
+                        <li class="auto-reveal">Give specific example (cold pack, melting)</li>
+                        <li class="auto-reveal">Connect to bond breaking/forming</li>
+                        <li class="auto-reveal">Real-world applications</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🔗 Conclusion (1.5 minutes)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Summarize energy balance concept</li>
+                        <li class="auto-reveal">Connect to daily life examples</li>
+                        <li class="auto-reveal">Explain why this matters in science</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Final Challenge -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🚀 Your Turn: Energy Flow Expert</h2>
+            <div class="challenge-box auto-reveal">
+                Now you're ready to explain how energy flows in chemical reactions and why some get hot while others get cold!
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>✅ Must Include</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Both exothermic and endothermic reactions</li>
+                        <li class="auto-reveal">Bond breaking and forming concepts</li>
+                        <li class="auto-reveal">Specific real-world examples</li>
+                        <li class="auto-reveal">Energy balance determines overall type</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🎯 Advanced Success Indicators</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Sustained 7-8 minute explanation</li>
+                        <li class="auto-reveal">Molecular-level understanding</li>
+                        <li class="auto-reveal">Observable-to-invisible connections</li>
+                        <li class="auto-reveal">Scientific reasoning and evidence</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="vocab-frame auto-reveal">
+                <h4>Scientific Insight</h4>
+                <p>Understanding energy changes in reactions helps explain everything from how our bodies work to how we design better batteries, medicines, and industrial processes. Energy flow is fundamental to all chemistry!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            updateSlideCounter();
+            
+            // Trigger auto-reveals for the new slide
+            setTimeout(() => {
+                const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+                autoReveals.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('show');
+                    }, index * 200);
+                });
+                
+                const listItems = slides[currentSlide].querySelectorAll('.progressive-list li');
+                listItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('reveal');
+                    }, (index + 2) * 300);
+                });
+            }, 100);
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const autoReveals = currentSlideElement.querySelectorAll('.auto-reveal');
+            const listItems = currentSlideElement.querySelectorAll('.progressive-list li');
+            
+            autoReveals.forEach(element => element.classList.add('show'));
+            listItems.forEach(item => item.classList.add('reveal'));
+        }
+
+        function updateSlideCounter() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowLeft':
+                case ',':
+                    previousSlide();
+                    break;
+                case 'ArrowRight':
+                case '.':
+                    nextSlide();
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+            }
+        });
+
+        // Initialize first slide
+        showSlide(0);
+    </script>
+</body>
+</html>

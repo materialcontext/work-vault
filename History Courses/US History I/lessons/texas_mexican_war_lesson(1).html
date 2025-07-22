@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remember the Alamo! - Texas and the Mexican War</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #7c2d12 0%, #dc2626 25%, #ea580c 50%, #f59e0b 75%, #fbbf24 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide-container {
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 3rem 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .slide.hidden {
+            display: none;
+        }
+
+        .slide-content {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Enhanced Typography for slower learners */
+        .slide h1 {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #fbbf24;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+        }
+
+        .slide h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #fed7aa;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            line-height: 1.3;
+        }
+
+        .slide h3 {
+            font-size: clamp(1.6rem, 3vw, 2.5rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.4;
+        }
+
+        .slide p, .slide li {
+            font-size: clamp(1.3rem, 2vw, 1.9rem);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Connection boxes for explicit linking */
+        .connection-box {
+            background: rgba(59, 130, 246, 0.2);
+            border: 3px solid #3b82f6;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.3);
+        }
+
+        .connection-box h4 {
+            color: #60a5fa;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        /* Content Sections with clear progression */
+        .content-section {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 1.5rem 0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .content-section.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content-section:hover {
+            border-color: rgba(251, 191, 36, 0.6);
+            transform: translateY(-5px);
+        }
+
+        /* Simple two-column grid */
+        .simple-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        /* Chain of events styling */
+        .chain-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .chain-step {
+            background: rgba(251, 191, 36, 0.15);
+            border: 2px solid #fbbf24;
+            border-radius: 15px;
+            padding: 1.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .chain-step:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.3);
+        }
+
+        .chain-step::after {
+            content: "↓";
+            position: absolute;
+            bottom: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: #fbbf24;
+            font-weight: bold;
+        }
+
+        .chain-step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            background: #fbbf24;
+            color: #7c2d12;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Primary Source with enhanced readability */
+        .primary-source {
+            background: rgba(139, 92, 246, 0.2);
+            border: 3px solid rgba(139, 92, 246, 0.4);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            position: relative;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.3);
+        }
+
+        .primary-source::before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            top: -1rem;
+            left: 1.5rem;
+            color: rgba(139, 92, 246, 0.6);
+            font-weight: bold;
+        }
+
+        .primary-source .source-info {
+            margin-top: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            color: #c4b5fd;
+            font-size: 1.1rem;
+        }
+
+        /* Question highlights for comprehension checks */
+        .question-highlight {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #ffffff;
+            padding: 2rem 3rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            font-weight: 700;
+            font-size: 1.8rem;
+            box-shadow: 0 12px 30px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Timeline for Texas history */
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #fbbf24;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin: 2rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            flex: 1;
+            margin: 0 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .timeline-year {
+            background: #fbbf24;
+            color: #7c2d12;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Enhanced Navigation */
+        .slide-indicator {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            display: flex;
+            gap: 0.8rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(251, 191, 36, 0.9);
+            color: #7c2d12;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-btn:hover {
+            background: rgba(251, 191, 36, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(251, 191, 36, 0.4);
+        }
+
+        /* Progressive revelation system */
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Map container for visual learning */
+        .map-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .map-placeholder {
+            background: rgba(251, 191, 36, 0.2);
+            height: 300px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fbbf24;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .simple-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .slide {
+                padding: 2rem 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 1rem 0.5rem;
+            }
+            
+            .content-section {
+                padding: 1.5rem;
+                margin: 1rem 0;
+            }
+            
+            .navigation {
+                bottom: 1rem;
+                right: 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .nav-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 12</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="revealBtn" onclick="toggleRevealAll()">Reveal All</button>
+    </div>
+
+    <div class="slide-container" id="slideContainer">
+        <!-- Slide 1: Title and Connection -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1 class="auto-reveal">Remember the Alamo!</h1>
+                <h2 class="auto-reveal">Texas and the Mexican War (1836-1848)</h2>
+                
+                <div class="connection-box auto-reveal">
+                    <h4>🔗 Connecting to Our Story</h4>
+                    <p>We've seen how the Missouri Compromise tried to balance slave and free states. We've seen Americans moving west for new opportunities. Today we'll discover how these two forces collided in Texas and created a war that changed America forever.</p>
+                </div>
+
+                <div class="question-highlight auto-reveal">
+                    <strong>Central Question:</strong> Was the Mexican-American War justified expansion or an aggressive land grab - and what did territorial victory cost the nation?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Problem - Connecting to Previous Learning -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>The Problem Jefferson Predicted</h1>
+                
+                <div class="connection-box auto-reveal">
+                    <h4>Remember Jefferson's Warning?</h4>
+                    <p>In 1820, Jefferson called the Missouri Crisis "a fire bell in the night." He warned that drawing geographical lines about slavery would create future problems. Let's see how Texas proved him right.</p>
+                </div>
+
+                <div class="simple-grid">
+                    <div class="content-section auto-reveal">
+                        <h3>🔥 The Missouri Compromise "Solution"</h3>
+                        <p>• 11 free states vs. 11 slave states</p>
+                        <p>• 36°30' line to divide future territories</p>
+                        <p>• Temporary peace that Jefferson said wouldn't last</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>🌎 Westward Expansion Pressure</h3>
+                        <p>• Americans moving west for cheap land</p>
+                        <p>• Each new territory = slavery question again</p>
+                        <p>• What happens when expansion meets Mexico?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Chain of Events Begins -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>How We Got to Texas</h1>
+                <h2>A Chain Reaction Nobody Expected</h2>
+                
+                <div class="chain-container">
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">1</div>
+                        <h3>Spain Fails in Texas (1690-1821)</h3>
+                        <p>Spain couldn't populate or control Texas. Only 2,500 Spanish settlers in the entire territory by 1821. Comanches controlled more land than Spain did!</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">2</div>
+                        <h3>Mexico Gets Independence (1821)</h3>
+                        <p>New Mexican government has a problem: huge empty frontier that needs defending. Their solution? Invite Americans to settle Texas!</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">3</div>
+                        <h3>Americans Flood Into Texas (1825-1834)</h3>
+                        <p>Mexico offers amazing deal: 4,605 acres for 4 cents per acre! By 1834: 30,000 Americans vs. only 7,800 Mexicans in Texas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: The Impossible Situation -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>An Impossible Situation</h1>
+                
+                <div class="content-section auto-reveal">
+                    <h3>🤝 What Mexico Wanted vs. What Actually Happened</h3>
+                </div>
+
+                <div class="simple-grid">
+                    <div class="content-section auto-reveal">
+                        <h3>Mexico's Plan</h3>
+                        <p>• American settlers become loyal Mexican citizens</p>
+                        <p>• Convert to Catholicism</p>
+                        <p>• Follow Mexican laws (no slavery after 1829)</p>
+                        <p>• Defend Mexico's frontier</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>What Really Happened</h3>
+                        <p>• Americans stayed American in culture</p>
+                        <p>• Ignored Catholic conversion requirement</p>
+                        <p>• Brought slaves anyway</p>
+                        <p>• Expected eventual U.S. annexation</p>
+                    </div>
+                </div>
+
+                <div class="question-highlight auto-reveal">
+                    Think About It: When two groups want completely different things, what usually happens?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: The Crisis Explodes -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>When the Crisis Exploded</h1>
+                <h2>Mexico Tries to Take Control (1830-1835)</h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item auto-reveal">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1830</div>
+                            <h3>Law of April 6, 1830</h3>
+                            <p>Mexico panics! Bans American immigration, prohibits new slaves, increases taxes. Too little, too late.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item auto-reveal">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1833</div>
+                            <h3>Santa Anna Becomes Dictator</h3>
+                            <p>Destroys Mexico's constitution, rules as dictator. Texans lose their legal rights under Mexican law.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item auto-reveal">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1834</div>
+                            <h3>Stephen F. Austin Imprisoned</h3>
+                            <p>The one person keeping peace gets arrested. When Austin supports revolution in 1835, it's over.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: The Texas Revolution -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>The Texas Revolution (1835-1836)</h1>
+                
+                <div class="map-container auto-reveal">
+                    <div class="map-placeholder">
+                        [Interactive Map: Key Battles of Texas Revolution]
+                    </div>
+                </div>
+
+                <div class="simple-grid">
+                    <div class="content-section auto-reveal">
+                        <h3>⚔️ Key Battles</h3>
+                        <p><strong>Gonzales:</strong> "Come and Take It" - first battle</p>
+                        <p><strong>The Alamo:</strong> 182 defenders die, become martyrs</p>
+                        <p><strong>Goliad Massacre:</strong> Santa Anna executes 425 prisoners</p>
+                        <p><strong>San Jacinto:</strong> Houston wins in 18 minutes!</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>🎯 What This Was Really About</h3>
+                        <p>Texas Revolution wasn't just about independence - it was about <strong>slavery</strong>.</p>
+                        <p>95% of Texas economy = cotton with slave labor</p>
+                        <p>Texas constitution <em>protected</em> slavery</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Primary Source - Texas Declaration -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>What Texans Said</h1>
+                
+                <div class="primary-source auto-reveal">
+                    The Mexican government has failed to establish any public system of education... [and] has demanded the surrender of a number of our citizens and ordered military detachments to seize and carry them away... It has failed to protect the lives, liberty and property of the people... It denies us the right of worshipping the Almighty according to the dictates of our own conscience...
+                    <div class="source-info">— Texas Declaration of Independence, March 2, 1836</div>
+                </div>
+
+                <div class="connection-box auto-reveal">
+                    <h4>🔍 Notice Something Familiar?</h4>
+                    <p>This sounds a lot like the American Declaration of Independence! Texans used the same arguments about government failing to protect rights. But they added complaints about Mexico's anti-slavery laws.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: The Republic of Texas Problem -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>The Republic of Texas Problem</h1>
+                <h2>(1836-1845): A Slave Nation Next Door</h2>
+                
+                <div class="simple-grid">
+                    <div class="content-section auto-reveal">
+                        <h3>😰 America's Dilemma</h3>
+                        <p>Texans voted 3,277 to 91 for U.S. annexation</p>
+                        <p>But admitting Texas = another slave state</p>
+                        <p>Remember the Missouri Compromise balance?</p>
+                        <p>This would break it!</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>🏦 Texas's Problems</h3>
+                        <p>Massive debt: $12 million by 1845</p>
+                        <p>Mexico still attacking</p>
+                        <p>Only 6 countries recognized Texas</p>
+                        <p>Needed America's protection</p>
+                    </div>
+                </div>
+
+                <div class="question-highlight auto-reveal">
+                    The Big Question: Should America annex a slave republic and break the Missouri Compromise?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: The Missouri Compromise Breaks -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>Breaking the Missouri Compromise</h1>
+                
+                <div class="connection-box auto-reveal">
+                    <h4>🔗 Remember the Balance</h4>
+                    <p>Missouri Compromise (1820): 11 free states, 11 slave states. Equal power in the Senate. This kept the peace for 25 years.</p>
+                </div>
+
+                <div class="chain-container">
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">1</div>
+                        <h3>1845: Texas Annexation</h3>
+                        <p>Texas becomes 28th state - as a SLAVE state. Balance broken: 13 slave vs. 12 free states.</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">2</div>
+                        <h3>Mexico Declares War</h3>
+                        <p>Mexico never recognized Texas independence. Annexation = stealing Mexican territory in Mexico's view.</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">3</div>
+                        <h3>Border Dispute = War Excuse</h3>
+                        <p>Where's the border? Rio Grande or Nueces River? President Polk sends troops to disputed area. Mexico attacks. War begins!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: The Mexican-American War Results -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>The War's Massive Consequences</h1>
+                <h2>America Wins Big - But At What Cost?</h2>
+                
+                <div class="map-container auto-reveal">
+                    <div class="map-placeholder">
+                        [Map showing Mexican Cession - California, Nevada, Utah, parts of Arizona, New Mexico, Colorado, Wyoming]
+                    </div>
+                </div>
+
+                <div class="simple-grid">
+                    <div class="content-section auto-reveal">
+                        <h3>🏆 What America Gained</h3>
+                        <p>• California (Gold Rush!)</p>
+                        <p>• Nevada, Utah</p>
+                        <p>• Parts of Arizona, New Mexico, Colorado, Wyoming</p>
+                        <p>• 525,000 square miles of new territory</p>
+                        <p>• Pacific coast access</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>💀 What It Cost</h3>
+                        <p>• 13,000+ American deaths</p>
+                        <p>• $15 million to Mexico</p>
+                        <p>• Slavery question in ALL new territories</p>
+                        <p>• National crisis over expansion</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Jefferson's Prophecy Comes True -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>Jefferson's Prophecy Comes True</h1>
+                
+                <div class="primary-source auto-reveal">
+                    A geographical line, coinciding with a marked principle, moral and political, once conceived and held up to the angry passions of men, will never be obliterated; and every new irritation will mark it deeper and deeper...
+                    <div class="source-info">— Thomas Jefferson on the Missouri Compromise, 1820</div>
+                </div>
+
+                <div class="connection-box auto-reveal">
+                    <h4>🔮 Jefferson Was Right!</h4>
+                    <p>The Missouri Compromise line couldn't contain the slavery question. Each new territory forced the nation to decide: slave or free? Texas annexation and the Mexican War made compromise impossible.</p>
+                </div>
+
+                <div class="chain-container">
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">1</div>
+                        <h3>The Wilmot Proviso (1846)</h3>
+                        <p>Congressman David Wilmot proposes: NO slavery in territories won from Mexico. Passes House, fails Senate. The fight begins!</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">2</div>
+                        <h3>California Wants Statehood (1849)</h3>
+                        <p>California wants to enter as a FREE state. But it's below the 36°30' line! The Missouri Compromise is officially dead.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Conclusion - The Path to Crisis -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>The Path to Crisis</h1>
+                <h2>How Texas Led to the Civil War</h2>
+                
+                <div class="chain-container">
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">1</div>
+                        <h3>Missouri Compromise (1820)</h3>
+                        <p>Temporary solution: draw a line, balance slave/free states</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">2</div>
+                        <h3>Westward Expansion Pressure</h3>
+                        <p>Americans want land, Mexico needs settlers</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">3</div>
+                        <h3>Texas Revolution & Republic</h3>
+                        <p>Slavery-based independence creates annexation crisis</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">4</div>
+                        <h3>Mexican-American War</h3>
+                        <p>Massive territorial gains force slavery question everywhere</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">5</div>
+                        <h3>Coming Next: Compromise of 1850</h3>
+                        <p>Congress's desperate attempt to solve the crisis Texas created</p>
+                    </div>
+                </div>
+
+                <div class="question-highlight auto-reveal">
+                    <strong>Our Answer:</strong> The Mexican-American War was both justified expansion AND created a national crisis that pushed America toward Civil War.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            // Reset auto-reveals for new slide
+            resetAutoReveals();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function resetAutoReveals() {
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            autoReveals.forEach((element, index) => {
+                element.classList.remove('show');
+                setTimeout(() => {
+                    element.classList.add('show');
+                }, index * 300); // Slower reveal for comprehension
+            });
+
+            // Also handle timeline items and chain steps
+            const timelineItems = slides[currentSlide].querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, index) => {
+                item.classList.remove('revealed');
+                setTimeout(() => {
+                    item.classList.add('revealed');
+                }, (index + autoReveals.length) * 300);
+            });
+
+            const contentSections = slides[currentSlide].querySelectorAll('.content-section');
+            contentSections.forEach((section, index) => {
+                section.classList.remove('revealed');
+                setTimeout(() => {
+                    section.classList.add('revealed');
+                }, (index + autoReveals.length) * 200);
+            });
+        }
+
+        function toggleRevealAll() {
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            const timelineItems = slides[currentSlide].querySelectorAll('.timeline-item');
+            const contentSections = slides[currentSlide].querySelectorAll('.content-section');
+            
+            const allRevealed = Array.from(autoReveals).every(el => el.classList.contains('show'));
+            
+            if (allRevealed) {
+                autoReveals.forEach(el => el.classList.remove('show'));
+                timelineItems.forEach(el => el.classList.remove('revealed'));
+                contentSections.forEach(el => el.classList.remove('revealed'));
+            } else {
+                autoReveals.forEach(el => el.classList.add('show'));
+                timelineItems.forEach(el => el.classList.add('revealed'));
+                contentSections.forEach(el => el.classList.add('revealed'));
+            }
+        }
+
+        function revealNext() {
+            const currentAutoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            const currentTimelineItems = slides[currentSlide].querySelectorAll('.timeline-item');
+            const currentContentSections = slides[currentSlide].querySelectorAll('.content-section');
+            
+            const allElements = [...currentAutoReveals, ...currentTimelineItems, ...currentContentSections];
+            const nextUnrevealed = allElements.find(el => 
+                !el.classList.contains('show') && !el.classList.contains('revealed')
+            );
+            
+            if (nextUnrevealed) {
+                if (nextUnrevealed.classList.contains('auto-reveal')) {
+                    nextUnrevealed.classList.add('show');
+                } else {
+                    nextUnrevealed.classList.add('revealed');
+                }
+            } else {
+                nextSlide();
+            }
+        }
+
+        function hideNext() {
+            const currentAutoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            const currentTimelineItems = slides[currentSlide].querySelectorAll('.timeline-item');
+            const currentContentSections = slides[currentSlide].querySelectorAll('.content-section');
+            
+            const allElements = [...currentAutoReveals, ...currentTimelineItems, ...currentContentSections];
+            const revealedElements = allElements.filter(el => 
+                el.classList.contains('show') || el.classList.contains('revealed')
+            );
+            
+            if (revealedElements.length > 0) {
+                const lastRevealed = revealedElements[revealedElements.length - 1];
+                if (lastRevealed.classList.contains('auto-reveal')) {
+                    lastRevealed.classList.remove('show');
+                } else {
+                    lastRevealed.classList.remove('revealed');
+                }
+            } else {
+                previousSlide();
+            }
+        }
+
+        // Enhanced keyboard navigation for slower learners
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowRight':
+                case ' ':
+                    e.preventDefault();
+                    revealNext();
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    hideNext();
+                    break;
+                case '.':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case ',':
+                    e.preventDefault();
+                    previousSlide();
+                    break;
+                case 'Enter':
+                    e.preventDefault();
+                    toggleRevealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            showSlide(0);
+        });
+    </script>
+</body>
+</html>

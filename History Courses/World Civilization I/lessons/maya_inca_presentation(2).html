@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maya Civilization: A Deep Dive Through Time</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2E8B57 0%, #228B22 50%, #006400 100%);
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            padding: 3rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.3) 100%);
+            backdrop-filter: blur(5px);
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+
+
+        h1 {
+            font-size: 4.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FF8C00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 3.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            color: #98FB98;
+        }
+
+        h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #90EE90;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        p {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .central-question {
+            background: rgba(255, 140, 0, 0.2);
+            border: 3px solid rgba(255, 140, 0, 0.5);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .central-question h3 {
+            color: #FF8C00;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-section {
+            background: rgba(72, 61, 139, 0.15);
+            border: 3px solid rgba(72, 61, 139, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .period-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .period-card {
+            background: rgba(34, 139, 34, 0.3);
+            border: 2px solid rgba(34, 139, 34, 0.6);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .period-card:hover {
+            background: rgba(34, 139, 34, 0.4);
+            transform: scale(1.03);
+        }
+
+        .achievement-box {
+            background: rgba(50, 205, 50, 0.2);
+            border: 3px solid rgba(50, 205, 50, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .achievement-box h4 {
+            color: #32CD32;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .political-analysis {
+            background: rgba(138, 43, 226, 0.15);
+            border: 3px solid rgba(138, 43, 226, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .political-analysis h4 {
+            color: #9370DB;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .city-state-card {
+            background: rgba(255, 69, 0, 0.2);
+            border: 2px solid rgba(255, 69, 0, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .city-state-card:hover {
+            background: rgba(255, 69, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .social-hierarchy {
+            background: rgba(165, 42, 42, 0.2);
+            border: 3px solid rgba(165, 42, 42, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-hierarchy h4 {
+            color: #CD853F;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .innovation-timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            flex-wrap: wrap;
+        }
+
+        .timeline-point {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000;
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin: 0.5rem;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            padding: 1rem;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .image-tab {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .image-tab:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .slide-image {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            max-width: 300px;
+            max-height: 400px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+            font-size: 1.3rem;
+        }
+
+        li {
+            margin: 1rem 0;
+            padding-left: 1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        strong {
+            color: #FFD700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .narrative-thread {
+            background: rgba(255, 140, 0, 0.2);
+            border: 3px solid rgba(255, 140, 0, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .narrative-thread h3 {
+            color: #FF8C00;
+            margin-bottom: 1rem;
+        }
+
+        .emoji-large {
+            font-size: 5rem;
+            margin: 2rem 0;
+            display: block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-15px);
+            }
+            60% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .legacy-continuation {
+            background: rgba(72, 61, 139, 0.15);
+            border: 3px solid rgba(72, 61, 139, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .legacy-continuation h4 {
+            color: #9370DB;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 1.5rem;
+            }
+            
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.5rem; }
+            p { font-size: 1.1rem; }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .period-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .innovation-timeline {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <!-- Slide 1: Title Slide -->
+        <div class="slide active">
+            <h1>🏛️ Maya Civilization</h1>
+                <h2>A Deep Dive Through Time</h2>
+                
+                <div class="central-question">
+                    <h3>🔗 Course Narrative Thread</h3>
+                    <p><em>How did one civilization continuously reinvent itself across 3,000 years, creating America's most sophisticated political, intellectual, and cultural achievements?</em></p>
+                </div>
+                
+                <div class="innovation-timeline">
+                    <div class="timeline-point">Preclassic 2000 BCE - 250 CE</div>
+                    <div class="timeline-point">Classic 250 - 900 CE</div>
+                    <div class="timeline-point">Postclassic 900 - 1500 CE</div>
+                    <div class="timeline-point">Modern 1500 CE - Present</div>
+                </div>
+                
+                <p><strong>Focus:</strong> Political evolution, social organization, and cultural achievements across time</p>
+        </div>
+
+        <!-- Slide 2: Learning Objectives -->
+        <div class="slide">
+            <h2>🎯 Learning Objectives</h2>
+                
+                <div class="period-grid">
+                    <div class="period-card auto-reveal">
+                        <h3>📈 Chronological Development</h3>
+                        <p>Trace Maya political evolution from village societies to complex city-states through major historical periods</p>
+                    </div>
+                    
+                    <div class="period-card auto-reveal">
+                        <h3>👑 Political Configurations</h3>
+                        <p>Analyze different forms of Maya governance: early chiefdoms, divine kingship, and city-state federalism</p>
+                    </div>
+                    
+                    <div class="period-card auto-reveal">
+                        <h3>🏛️ Social Organization</h3>
+                        <p>Examine how Maya social hierarchies, religious systems, and economic structures evolved over time</p>
+                    </div>
+                    
+                    <div class="period-card auto-reveal">
+                        <h3>🔄 Continuity & Change</h3>
+                        <p>Evaluate what elements of Maya civilization persisted through transformations and continue today</p>
+                    </div>
+                </div>
+
+                <div class="central-question auto-reveal">
+                    <h3>🔍 Central Question</h3>
+                    <p>How did Maya civilization adapt its political and social organization to meet changing challenges while maintaining cultural continuity across millennia?</p>
+                </div>
+        </div>
+
+        <!-- Slide 3: Geographic Foundation -->
+        <div class="slide">
+            <h2>🌍 Geographic Foundation: The Challenge</h2>
+                
+                <span class="emoji-large">🌳</span>
+
+                <div class="central-question auto-reveal">
+                    <h3>Environmental Context</h3>
+                    <p><strong>Tropical rainforest civilization:</strong> How do you build complex society in dense jungle with no rivers, seasonal droughts, and poor soils?</p>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="achievement-box auto-reveal">
+                        <h4>🌧️ Environmental Challenges</h4>
+                        <ul>
+                            <li class="auto-reveal"><strong>No permanent rivers:</strong> Unlike Mesopotamia, Egypt, Indus Valley</li>
+                            <li class="auto-reveal"><strong>Seasonal extremes:</strong> 6 months of rain, 6 months of drought</li>
+                            <li class="auto-reveal"><strong>Tropical diseases:</strong> Malaria, yellow fever, parasites</li>
+                            <li class="auto-reveal"><strong>Poor limestone soils:</strong> Nutrients quickly depleted</li>
+                            <li class="auto-reveal"><strong>Dense canopy:</strong> 95% of sunlight blocked at ground level</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="achievement-box auto-reveal">
+                        <h4>🎯 Maya Solutions</h4>
+                        <ul>
+                            <li class="auto-reveal"><strong>Water engineering:</strong> Massive reservoir systems storing rainwater</li>
+                            <li class="auto-reveal"><strong>Forest agriculture:</strong> Multi-story farming using all canopy levels</li>
+                            <li class="auto-reveal"><strong>Raised fields:</strong> Building soil in wetlands (chinampas)</li>
+                            <li class="auto-reveal"><strong>Sacred cenotes:</strong> Natural sinkholes as water/religious centers</li>
+                            <li class="auto-reveal"><strong>Urban planning:</strong> Cities designed around water collection</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="narrative-thread auto-reveal">
+                    <h3>🔗 Course Connection</h3>
+                    <p>Like Mesopotamians with flooding rivers or Egyptians with the Nile, Maya had to innovate around their environment. But their solutions were uniquely sophisticated.</p>
+                </div>
+        </div>
+
+        <!-- Slide 4: Preclassic Period (2000 BCE - 250 CE) -->
+        <div class="slide">
+            <h2>🌱 Preclassic Period: Building the Foundation (2000 BCE - 250 CE)</h2>
+                
+                <div class="timeline-section auto-reveal">
+                    <h3>🕰️ The Long Formation</h3>
+                    <p><strong>2,250 years of development</strong> - longer than all of recorded Western civilization since Rome</p>
+                </div>
+
+                <div class="period-grid">
+                    <div class="period-card auto-reveal">
+                        <h3>🏘️ Early Villages (2000-1000 BCE)</h3>
+                        <ul>
+                            <li class="auto-reveal"><strong>Settled agriculture:</strong> Maize cultivation from wild teosinte</li>
+                            <li class="auto-reveal"><strong>Ceramic traditions:</strong> Sophisticated pottery styles</li>
+                            <li class="auto-reveal"><strong>Trade networks:</strong> Obsidian, jade, shell exchange</li>
+                            <li class="auto-reveal"><strong>Social differentiation:</strong> Elite vs. commoner burials appear</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="period-card auto-reveal">
+                        <h3>👑 Emerging Complexity (1000-300 BCE)</h3>
+                        <ul>
+                            <li class="auto-reveal"><strong>Proto-cities:</strong> El Mirador, Nakbe, Cival</li>
+                            <li class="auto-reveal"><strong>Monumental architecture:</strong> First pyramids and plazas</li>
+                            <li class="auto-reveal"><strong>Writing emergence:</strong> Early hieroglyphic inscriptions</li>
+                            <li class="auto-reveal"><strong>Political hierarchy:</strong> Chiefs becoming kings</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="political-analysis auto-reveal">
+                    <h4>🏛️ Political Development</h4>
+                    <p class="auto-reveal"><strong>From egalitarian villages to complex chiefdoms:</strong> Social stratification emerges gradually as agricultural surplus enables specialized roles. Early rulers justify power through religious authority and control of trade networks.</p>
+                </div>
+
+                <div class="achievement-box auto-reveal">
+                    <h4>🗿 El Mirador: The First Metropolis</h4>
+                    <p class="auto-reveal">By 300 BCE, El Mirador had <strong>100,000+ people</strong> and the largest pyramid in Maya history (La Danta: 72 meters high). This shows sophisticated organization before the "Classic" period even began.</p>
+                </div>
+        </div>
+
+        <!-- Slide 5: Classic Period Rise (250-600 CE) -->
+        <div class="slide">
+            <h2>👑 Classic Period Rise: Divine Kingship (250-600 CE)</h2>
+                
+                <div class="central-question auto-reveal">
+                    <h3>Political Revolution</h3>
+                    <p><strong>K'uhul Ajaw System:</strong> "Divine Lord" rulers claiming direct connection to gods, revolutionizing Maya political organization</p>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="political-analysis auto-reveal">
+                        <h4>👑 Divine Kingship Innovation</h4>
+                        <ul>
+                            <li class="auto-reveal"><strong>Royal bloodlines:</strong> Hereditary rule through sacred genealogies</li>
+                            <li class="auto-reveal"><strong>Cosmic connection:</strong> Kings as intermediaries between human/divine worlds</li>
+                            <li class="auto-reveal"><strong>Ritual calendar:</strong> Royal ceremonies timed to astronomical events</li>
+                            <li class="auto-reveal"><strong>Monument propaganda:</strong> Stelae recording royal achievements</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="social-hierarchy auto-reveal">
+                        <h4>🏛️ Social Stratification</h4>
+                        <ul>
+                            <li class="auto-reveal"><strong>K'uhul Ajaw:</strong> Divine ruler at apex</li>
+                            <li class="auto-reveal"><strong>Sahal:</strong> Noble administrators and war leaders</li>
+                            <li class="auto-reveal"><strong>Aj k'uhuun:</strong> Scribes, priests, specialists</li>
+                            <li class="auto-reveal"><strong>Macehualli:</strong> Commoner farmers, artisans, traders</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="period-grid">
+                    <div class="city-state-card auto-reveal">
+                        <h3>🏛️ Major Centers Emerge</h3>
+                        <ul>
+                            <li class="auto-reveal"><strong>Tikal:</strong> Northern Petén superpower</li>
+                            <li class="auto-reveal"><strong>Calakmul:</strong> Tikal's great rival to the north</li>
+                            <li class="auto-reveal"><strong>Caracol:</strong> Belize mountain stronghold</li>
+                            <li class="auto-reveal"><strong>Palenque:</strong> Western Maya cultural center</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="city-state-card auto-reveal">
+                        <h3>🎯 Political Structure</h3>
+                        <ul>
+                            <li class="auto-reveal"><strong>Independent city-states:</strong> 60+ autonomous polities</li>
+                            <li class="auto-reveal"><strong>Alliance networks:</strong> Marriage diplomacy and tribute</li>
+                            <li class="auto-reveal"><strong>Competitive culture:</strong> Prestige through achievement</li>
+                            <li class="auto-reveal"><strong>Ritual warfare:</strong> Capturing nobles for sacrifice</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="narrative-thread auto-reveal">
+                    <h3>🔗 Course Parallel</h3>
+                    <p>Like Greek city-states, Maya political fragmentation drove innovation through competition. But Maya added religious legitimacy that Greeks lacked.</p>
+                </div>
+        </div>
+
+        <!-- Slide 6: Classic Period Peak (600-800 CE) -->
+        <div class="slide">
+            <h2>🌟 Classic Period Peak: The Great Competition (600-800 CE)</h2>
+                
+                <span class="emoji-large">⚔️</span>
+
+                <div class="central-question auto-reveal">
+                    <h3>The Tikal-Calakmul Rivalry</h3>
+                    <p><strong>Superpower Competition:</strong> Two great alliances reshape Maya politics across Mesoamerica</p>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="city-state-card auto-reveal">
+                        <h3>🦅 Tikal Alliance</h3>
+                        <ul>
+                            <li class="auto-reveal"><strong>Geographic base:</strong> Central Petén rainforest</li>
+                            <li class="auto-reveal"><strong>Key allies:</strong> Uaxactun, Yaxha, Caracol (sometimes)</li>
+                            <li class="auto-reveal"><strong>Advantages:</strong> Rich agricultural hinterland, cenote access</li>
+                            <li class="auto-reveal"><strong>Peak rulers:</strong> Jasaw Chan K'awiil (682-734 CE)</li>
+                            <li class="auto-reveal"><strong>Achievements:</strong> Massive Temple IV (65m), largest Maya structure</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="city-state-card auto-reveal">
+                        <h3>🐍 Calakmul Alliance</h3>
+                        <ul>
+                            <li class="auto-reveal"><strong>Geographic base:</strong> Northern Petén/Campeche</li>
+                            <li class="auto-reveal"><strong>Key allies:</strong> Caracol, El Perú, Naranjo</li>
+                            <li class="auto-reveal"><strong>Advantages:</strong> Trade route control, larger territory</li>
+                            <li class="auto-reveal"><strong>Peak rulers:</strong> Yuknom Ch'een II (636-686 CE)</li>
+                            <li class="auto-reveal"><strong>Achievements:</strong> Structure II (45m), political dominance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="achievement-box auto-reveal">
+                    <h4>⚔️ Revolutionary Warfare</h4>
+                    <p class="auto-reveal"><strong>Star Wars:</strong> Maya scheduled major battles for Venus heliacal rising, believing it gave divine support. Winners captured enemy kings for ritual sacrifice, weakening rival dynasties.</p>
+                </div>
+
+                <div class="political-analysis auto-reveal">
+                    <h4>🏛️ Political Innovation</h4>
+                    <p class="auto-reveal"><strong>Alliance system:</strong> Small city-states join larger powers for protection and trade access. This creates stable power blocs while maintaining local autonomy - sophisticated federal thinking.</p>
+                </div>
+        </div>
+
+        <!-- Slide 7: Intellectual Achievements -->
+        <div class="slide">
+            <h2>🧮 Intellectual Revolution: Maya Achievements</h2>
+                
+                <div class="central-question auto-reveal">
+                    <h3>Knowledge as Power</h3>
+                    <p><strong>Information monopoly:</strong> Maya elites controlled writing, mathematics, and astronomy to legitimize political authority</p>
+                </div>
+
+                <div class="period-grid">
+                    <div class="achievement-box auto-reveal">
+                        <h4>✍️ Writing Revolution</h4>
+                        <ul>
+                            <li class="auto-reveal"><strong>800+ hieroglyphs:</strong> Only fully developed American writing system</li>
+                            <li class="auto-reveal"><strong>Historical records:</strong> 2,000+ sites with inscriptions</li>
+                            <li class="auto-reveal"><strong>Multiple genres:</strong> History, astronomy, literature, law</li>
+                            <li class="auto-reveal"><strong>Elite literacy:</strong> Kings, nobles, scribes could read/write</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="achievement-box auto-reveal">
+                        <h4>🔢 Mathematical Precision</h4>
+                        <ul>
+                            <li class="auto-reveal"><strong>Zero concept:</strong> Independent invention, centuries before Europe</li>
+                            <li class="auto-reveal"><strong>Vigesimal system:</strong> Base-20 mathematics</li>
+                            <li class="auto-reveal"><strong>Large numbers:</strong> Calculations into millions</li>
+                            <li class="auto-reveal"><strong>Practical application:</strong> Architecture, astronomy, calendars</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="achievement-box auto-reveal">
+                        <h4>🌟 Astronomical Mastery</h4>
+                        <ul>
+                            <li class="auto-reveal"><strong>Eclipse prediction:</strong> Centuries in advance</li>
+                            <li class="auto-reveal"><strong>Venus tables:</strong> 584-day cycle tracking</li>
+                            <li class="auto-reveal"><strong>Calendar accuracy:</strong> 365.2420 days (modern: 365.2422)</li>
+                            <li class="auto-reveal"><strong>Long Count:</strong> Dates tracking millions of years</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="political-analysis auto-reveal">
+                    <h4>🏛️ Knowledge & Political Power</h4>
+                    <p class="auto-reveal"><strong>Information control:</strong> Only royal scribes could read/write, giving rulers monopoly on historical records, laws, and astronomical predictions used to legitimize authority.</p>
+                </div>
+
+                <div class="narrative-thread auto-reveal">
+                    <h3>🔗 Course Connection</h3>
+                    <p>Like Egyptian pharaohs or Mesopotamian priests, Maya rulers used specialized knowledge to justify political power. But Maya intellectual achievements surpassed their contemporaries.</p>
+                </div>
+        </div>
+
+        <!-- Slide 8: Classic Collapse & Transformation (800-900 CE) -->
+        <div class="slide">
+            <h2>🌊 Classic Period Transformation (800-900 CE)</h2>
+                
+                <div class="central-question auto-reveal">
+                    <h3>Complex System Change</h3>
+                    <p><strong>Not "collapse" but transformation:</strong> How did Maya civilization adapt to environmental and political pressures?</p>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="achievement-box auto-reveal">
+                        <h4>🌧️ Environmental Pressures</h4>
+                        <ul>
+                            <li class="auto-reveal"><strong>Climate change:</strong> 9th century drought cycles</li>
+                            <li class="auto-reveal"><strong>Soil depletion:</strong> Intensive agriculture consequences</li>
+                            <li class="auto-reveal"><strong>Deforestation:</strong> Building materials, fuel demands</li>
+                            <li class="auto-reveal"><strong>Population stress:</strong> Cities reaching environmental limits</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="achievement-box auto-reveal">
+                        <h4>🏛️ Political Factors</h4>
+                        <ul>
+                            <li class="auto-reveal"><strong>Warfare intensification:</strong> Destructive rather than ritual conflict</li>
+                            <li class="auto-reveal"><strong>Elite competition:</strong> Resources diverted to monuments vs. infrastructure</li>
+                            <li class="auto-reveal"><strong>Trade disruption:</strong> Long-distance networks breaking down</li>
+                            <li class="auto-reveal"><strong>Legitimacy crisis:</strong> Rulers unable to deliver prosperity</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="political-analysis auto-reveal">
+                    <h4>🔄 Adaptation Strategies</h4>
+                    <p class="auto-reveal"><strong>Regional variation:</strong> Southern lowlands abandoned monumental centers, but northern cities like Chichen Itza thrived. Maya people migrated, adapted, continued - they didn't disappear.</p>
+                </div>
+
+                <div class="narrative-thread auto-reveal">
+                    <h3>🧠 Critical Analysis</h3>
+                    <p>Rather than mysterious "collapse," this represents normal civilizational adaptation to changing conditions. Rome "fell" but became Byzantium and Holy Roman Empire. Similarly, Maya transformed.</p>
+                </div>
+        </div>
+
+        <!-- Slide 9: Postclassic Period (900-1500 CE) -->
+        <div class="slide">
+            <h2>🔄 Postclassic Period: Reinvention (900-1500 CE)</h2>
+                
+                <div class="central-question auto-reveal">
+                    <h3>New Political Models</h3>
+                    <p><strong>From divine kingship to merchant leagues:</strong> Maya civilization reinvents itself with new forms of organization</p>
+                </div>
+
+                <div class="period-grid">
+                    <div class="period-card auto-reveal">
+                        <h3>🏛️ Chichen Itza Dominance (900-1200)</h3>
+                        <ul>
+                            <li class="auto-reveal"><strong>New architecture:</strong> Ball courts, warriors' temples, feathered serpents</li>
+                            <li class="auto-reveal"><strong>Mexican influence:</strong> Central Mexican political/religious ideas</li>
+                            <li class="auto-reveal"><strong>Trade networks:</strong> Controlling salt, obsidian, turquoise routes</li>
+                            <li class="auto-reveal"><strong>Political innovation:</strong> Reduced emphasis on individual kingship</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="period-card auto-reveal">
+                        <h3>🏝️ Mayapan League (1200-1440)</h3>
+                        <ul>
+                            <li class="auto-reveal"><strong>Federal system:</strong> Alliance of city-states under Mayapan leadership</li>
+                            <li class="auto-reveal"><strong>Hostage politics:</strong> Rival rulers' families live in Mayapan</li>
+                            <li class="auto-reveal"><strong>Economic integration:</strong> Standardized trade, shared infrastructure</li>
+                            <li class="auto-reveal"><strong>Cultural synthesis:</strong> Blending local and foreign traditions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="political-analysis auto-reveal">
+                    <h4>🏛️ Political Evolution</h4>
+                    <p class="auto-reveal"><strong>From theocracy to confederation:</strong> Postclassic Maya reduced divine kingship in favor of merchant councils, federal leagues, and shared governance - anticipating modern political concepts.</p>
+                </div>
+
+                <div class="achievement-box auto-reveal">
+                    <h4>📚 Intellectual Continuity</h4>
+                    <p class="auto-reveal"><strong>Books and learning:</strong> Postclassic period produced most Maya codices (books). Writing, mathematics, and astronomy continued developing - not declining.</p>
+                </div>
+        </div>
+
+        <!-- Slide 10: Social Organization Analysis -->
+        <div class="slide">
+            <h2>🏛️ Maya Social Organization: Comparative Analysis</h2>
+                
+                <div class="central-question auto-reveal">
+                    <h3>Social Innovation</h3>
+                    <p><strong>How did Maya society balance hierarchy with mobility, competition with cooperation?</strong></p>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="social-hierarchy auto-reveal">
+                        <h4>👑 Elite Organization</h4>
+                        <ul>
+                            <li class="auto-reveal"><strong>Royal dynasties:</strong> Hereditary but competitive legitimacy</li>
+                            <li class="auto-reveal"><strong>Noble houses:</strong> Sahals governing local districts</li>
+                            <li class="auto-reveal"><strong>Specialist classes:</strong> Scribes, priests, artists, merchants</li>
+                            <li class="auto-reveal"><strong>Merit advancement:</strong> Skill in warfare, crafts, or learning</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="social-hierarchy auto-reveal">
+                        <h4>🌾 Commoner Society</h4>
+                        <ul>
+                            <li class="auto-reveal"><strong>Extended families:</strong> Multi-generational households</li>
+                            <li class="auto-reveal"><strong>Craft specialization:</strong> Potters, weavers, farmers, traders</li>
+                            <li class="auto-reveal"><strong>Community labor:</strong> Collective work on monuments, infrastructure</li>
+                            <li class="auto-reveal"><strong>Religious participation:</strong> Festivals, ceremonies, obligations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="political-analysis auto-reveal">
+                    <h4>⚖️ Social Mobility</h4>
+                    <p class="auto-reveal"><strong>Achievement-based advancement:</strong> Unlike rigid caste systems, Maya society allowed mobility through military success, craft mastery, religious knowledge, or merchant wealth.</p>
+                </div>
+
+                <div class="achievement-box auto-reveal">
+                    <h4>🌾 Economic Base</h4>
+                    <p class="auto-reveal"><strong>Market economy:</strong> Maya used cacao beans as currency, operated market centers, and had professional merchant classes trading across Mesoamerica - sophisticated commercial system.</p>
+                </div>
+
+                <div class="narrative-thread auto-reveal">
+                    <h3>🔗 Course Comparison</h3>
+                    <p>Maya social organization combined Egyptian divine kingship, Greek competitive achievement, and Phoenician commercial networks - creating unique synthesis.</p>
+                </div>
+        </div>
+
+        <!-- Slide 11: Modern Continuity -->
+        <div class="slide">
+            <h2>🌟 Living Civilization: Maya Today</h2>
+                
+                <div class="central-question auto-reveal">
+                    <h3>Cultural Continuity</h3>
+                    <p><strong>6+ million Maya speakers today:</strong> This is not a "lost" civilization but a continuing culture</p>
+                </div>
+
+                <div class="period-grid">
+                    <div class="legacy-continuation auto-reveal">
+                        <h4>🗣️ Language Preservation</h4>
+                        <ul>
+                            <li class="auto-reveal"><strong>30+ Maya languages:</strong> Yucatec, K'iche', Kaqchikel, Q'eqchi'</li>
+                            <li class="auto-reveal"><strong>Geographic distribution:</strong> Mexico, Guatemala, Belize, Honduras</li>
+                            <li class="auto-reveal"><strong>Cultural transmission:</strong> Oral traditions, traditional knowledge</li>
+                            <li class="auto-reveal"><strong>Modern education:</strong> Bilingual schools, language revitalization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="legacy-continuation auto-reveal">
+                        <h4>🌾 Traditional Practices</h4>
+                        <ul>
+                            <li class="auto-reveal"><strong>Agricultural techniques:</strong> Forest gardens, traditional crop varieties</li>
+                            <li class="auto-reveal"><strong>Religious ceremonies:</strong> 260-day calendar still used</li>
+                            <li class="auto-reveal"><strong>Craft traditions:</strong> Weaving, pottery, architecture</li>
+                            <li class="auto-reveal"><strong>Political organization:</strong> Community councils, consensus decision-making</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="achievement-box auto-reveal">
+                    <h4>🏛️ Political Legacy</h4>
+                    <p class="auto-reveal"><strong>Modern influence:</strong> Maya political concepts of federalism, competitive achievement, and environmental adaptation continue influencing contemporary governance and social organization.</p>
+                </div>
+
+                <div class="political-analysis auto-reveal">
+                    <h4>🌍 Global Impact</h4>
+                    <p class="auto-reveal"><strong>World heritage:</strong> Maya mathematical concepts (zero, place notation), agricultural techniques (forest gardening), and architectural methods (earthquake-resistant construction) benefit global civilization.</p>
+                </div>
+        </div>
+
+        <!-- Slide 12: Course Synthesis -->
+        <div class="slide">
+            <h2>🎯 Course Synthesis: Maya Lessons</h2>
+                
+                <div class="narrative-thread auto-reveal">
+                    <h3>🔗 Fundamental Course Questions</h3>
+                    <div class="period-grid">
+                        <div class="achievement-box auto-reveal">
+                            <h4>Individual vs. Collective Balance</h4>
+                            <p>Maya competitive city-states promoted individual achievement while maintaining strong community obligations - sophisticated balance</p>
+                        </div>
+                        
+                        <div class="achievement-box auto-reveal">
+                            <h4>Civilizational Endurance</h4>
+                            <p>3,000+ year continuity through environmental adaptation, political flexibility, and cultural innovation - not rigid institutions</p>
+                        </div>
+                        
+                        <div class="achievement-box auto-reveal">
+                            <h4>Cultural Transmission</h4>
+                            <p>Ideas spread through trade networks, diplomatic marriages, competitive emulation, and voluntary adoption rather than forced conquest</p>
+                        </div>
+                        
+                        <div class="achievement-box auto-reveal">
+                            <h4>Defining "The Good Life"</h4>
+                            <p>Maya emphasized cosmic harmony, artistic achievement, intellectual mastery, and community participation - holistic flourishing</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="central-question auto-reveal">
+                    <h3>Critical Synthesis</h3>
+                    <p>How do Maya approaches to environmental challenges, political organization, and cultural achievement compare to other civilizations we've studied? What patterns of innovation and adaptation do you observe?</p>
+                </div>
+
+                <div class="political-analysis auto-reveal">
+                    <h4>🔍 Historical Thinking</h4>
+                    <p class="auto-reveal"><strong>Maya model:</strong> Decentralized, competitive, adaptive, environmentally integrated civilization lasting millennia. Alternative to centralized empire-building, offering lessons for modern governance and sustainability.</p>
+                </div>
+        </div>
+
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <div>← → : Navigate slides</div>
+        <div>, . : Previous/Next page</div>
+        <div>Enter: Reveal all content</div>
+    </div>
+
+    <!-- Slide counter -->
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">12</span>
+    </div>
+
+    <!-- Image tab (optional) -->
+    <div class="image-tab" onclick="toggleImage()">📸 Images</div>
+    <img class="slide-image" id="slide-image" src="" alt="Slide image" />
+
+    <script>
+        let currentSlide = 0;
+        let revealIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            revealIndex = 0;
+            hideAllContent();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function hideAllContent() {
+            const currentSlideElement = slides[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            autoRevealElements.forEach(element => {
+                element.classList.remove('revealed');
+            });
+        }
+
+        function revealNext() {
+            const currentSlideElement = slides[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < autoRevealElements.length) {
+                autoRevealElements[revealIndex].classList.add('revealed');
+                revealIndex++;
+            } else {
+                nextSlide();
+            }
+        }
+
+        function revealPrevious() {
+            if (revealIndex > 0) {
+                const currentSlideElement = slides[currentSlide];
+                const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+                revealIndex--;
+                autoRevealElements[revealIndex].classList.remove('revealed');
+            } else {
+                prevSlide();
+                // Reveal all content on the previous slide
+                const currentSlideElement = slides[currentSlide];
+                const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+                autoRevealElements.forEach(element => {
+                    element.classList.add('revealed');
+                });
+                revealIndex = autoRevealElements.length;
+            }
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            autoRevealElements.forEach(element => {
+                element.classList.add('revealed');
+            });
+            revealIndex = autoRevealElements.length;
+        }
+
+        function toggleImage() {
+            const imageElement = document.getElementById('slide-image');
+            if (imageElement.style.display === 'none' || !imageElement.style.display) {
+                imageElement.style.display = 'block';
+            } else {
+                imageElement.style.display = 'none';
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            switch(event.key) {
+                case 'ArrowRight':
+                    event.preventDefault();
+                    revealNext();
+                    break;
+                case 'ArrowLeft':
+                    event.preventDefault();
+                    revealPrevious();
+                    break;
+                case '.':
+                    event.preventDefault();
+                    nextSlide();
+                    break;
+                case ',':
+                    event.preventDefault();
+                    prevSlide();
+                    break;
+                case 'Enter':
+                    event.preventDefault();
+                    if (revealIndex === slides[currentSlide].querySelectorAll('.auto-reveal').length) {
+                        nextSlide();
+                    } else {
+                        revealAll();
+                    }
+                    break;
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

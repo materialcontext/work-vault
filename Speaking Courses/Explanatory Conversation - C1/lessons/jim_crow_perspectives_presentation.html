@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Different Groups Experienced Jim Crow</title>
+    <style>
+        * {
+            margin-bottom: 20px;
+            padding: 0;
+	    font-size: 20px;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c1810, #5d3a1a, #2c1810);
+            color: #ffffff;
+            height: 100vh;
+        }
+
+        .slide {
+            display: none;
+            padding: 3rem;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #cd853f, #daa520);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #cd853f;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #daa520;
+        }
+
+        .step-indicator {
+            background: rgba(205, 133, 63, 0.9);
+            color: #2c1810;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        .central-question {
+            background: linear-gradient(135deg, #5d3a1a, #2c1810);
+            border: 3px solid #cd853f;
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 12px 40px rgba(205, 133, 63, 0.2);
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question h3 {
+            color: #cd853f;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .content-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(205, 133, 63, 0.3);
+            border-color: rgba(205, 133, 63, 0.6);
+        }
+
+        .content-card h3 {
+            color: #cd853f;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .progressive-list {
+            list-style: none;
+            text-align: left;
+            margin: 1rem 0;
+        }
+
+        .progressive-list li {
+            margin: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+        }
+
+        .progressive-list li.reveal {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .progressive-list li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #cd853f;
+            font-weight: bold;
+        }
+
+        .quote-box {
+            background: rgba(205, 133, 63, 0.1);
+            border-left: 6px solid #cd853f;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 15px 15px 0;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .quote-attribution {
+            font-weight: bold;
+            color: #cd853f;
+            margin-top: 1rem;
+            font-style: normal;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(205, 133, 63, 0.9);
+            border: none;
+            color: #2c1810;
+            padding: 1.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(205, 133, 63, 0.4);
+        }
+
+        .nav-btn:hover {
+            background: rgba(205, 133, 63, 1);
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(205, 133, 63, 0.6);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(205, 133, 63, 0.9);
+            color: #2c1810;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(205, 133, 63, 0.4);
+        }
+
+        .vocab-frame {
+            background: rgba(218, 165, 32, 0.2);
+            border-left: 6px solid #daa520;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 20px 20px 0;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(218, 165, 32, 0.2);
+        }
+
+        .vocab-frame h4 {
+            color: #daa520;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #cd853f, #daa520);
+            color: #2c1810;
+            padding: 2rem;
+            border-radius: 30px;
+            margin: 2rem 0;
+            font-weight: 700;
+            font-size: 1.4rem;
+            box-shadow: 0 8px 25px rgba(205, 133, 63, 0.4);
+        }
+
+        .perspective-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .perspective-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(205, 133, 63, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .perspective-card:hover {
+            border-color: rgba(205, 133, 63, 0.8);
+            transform: translateY(-5px);
+        }
+
+        .perspective-title {
+            color: #cd853f;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .strategy-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .strategy-card {
+            background: rgba(255, 255, 255, 0.12);
+            border: 2px solid rgba(205, 133, 63, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(205, 133, 63, 0.8);
+            box-shadow: 0 15px 35px rgba(205, 133, 63, 0.3);
+        }
+
+        .strategy-title {
+            color: #cd853f;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .emoji-large {
+            font-size: 4rem;
+            margin: 1rem 0;
+        }
+
+        .timeline-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #cd853f;
+        }
+
+        .timeline-year {
+            color: #cd853f;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 13</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" onclick="revealAll()" style="margin-left: 1rem;">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide active">
+        <div class="slide-content">
+            <div class="step-indicator animate-in" style="animation-delay: 0.2s;">Lesson 8 - US History II</div>
+            <h1>How Different Groups Experienced Jim Crow</h1>
+            <div class="emoji-large animate-in" style="animation-delay: 0.8s;">⚖️🚫✊</div>
+            <div class="central-question">
+                <h3>Analyzing Multiple Resistance Strategies</h3>
+                <p><em>The systematic oppression and diverse responses (1877-1920s)</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Core Challenge -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🎯 Your Complex Speaking Challenge</h2>
+            <div class="challenge-box auto-reveal">
+                "Explain how the same Jim Crow system looked completely different to white Southerners, African Americans, and white Northerners, and describe the different strategies African Americans used to resist these laws, using specific examples to show why people chose different approaches."
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🎯 Success Criteria</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Speak for 6-7 minutes</li>
+                        <li class="auto-reveal">Explain at least 3 different resistance strategies</li>
+                        <li class="auto-reveal">Show how same system affected different groups</li>
+                        <li class="auto-reveal">Use specific historical evidence</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>📈 Advanced Skills Focus</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Strategy analysis and comparison</li>
+                        <li class="auto-reveal">Cause-and-effect reasoning</li>
+                        <li class="auto-reveal">Historical empathy and context</li>
+                        <li class="auto-reveal">Multiple perspective synthesis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Historical Context -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>📚 The Rise of Jim Crow (1877-1920s)</h2>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <div class="timeline-section">
+                        <div class="timeline-year">1877: Compromise Ends Reconstruction</div>
+                        <p>Federal troops withdrawn from South, white Democrats regain power</p>
+                    </div>
+                    <div class="timeline-section">
+                        <div class="timeline-year">1890s: Legal Segregation Begins</div>
+                        <p>Southern states pass Jim Crow laws, disenfranchisement</p>
+                    </div>
+                    <div class="timeline-section">
+                        <div class="timeline-year">1896: Plessy v. Ferguson</div>
+                        <p>"Separate but equal" becomes legal doctrine</p>
+                    </div>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>📊 The System's Impact</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Mississippi:</strong> 147,000 → 9,000 Black voters</li>
+                        <li class="auto-reveal"><strong>Louisiana:</strong> 130,000 → 1,342 Black voters</li>
+                        <li class="auto-reveal"><strong>Lynching:</strong> 80-160 African Americans annually</li>
+                        <li class="auto-reveal"><strong>Segregation:</strong> All public facilities separated</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="vocab-frame auto-reveal">
+                <h4>Key Question</h4>
+                <p>How did people facing the same oppressive system choose such different strategies to resist it?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Language Frames -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🗣️ Language for Strategy Analysis</h2>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🔄 Strategy Comparison Frames</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">"Some African Americans chose... because they believed..."</li>
+                        <li class="auto-reveal">"Other African Americans argued that... was more effective..."</li>
+                        <li class="auto-reveal">"This strategy was risky because... but necessary because..."</li>
+                        <li class="auto-reveal">"While [Person A] focused on..., [Person B] emphasized..."</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>📋 Perspective Analysis Frames</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">"From [group's] perspective, Jim Crow laws..."</li>
+                        <li class="auto-reveal">"However, [different group] experienced these laws as..."</li>
+                        <li class="auto-reveal">"The same system looked different because..."</li>
+                        <li class="auto-reveal">"Evidence shows that [group] chose this approach because..."</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="challenge-box auto-reveal">
+                Practice using these frames as we explore why people facing oppression chose different paths!
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: White Southern Perspective -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🏛️ White Southern Perspective: "Restoring Order"</h2>
+            <div class="central-question auto-reveal">
+                <h3>How White Southerners Justified Jim Crow</h3>
+                <p>Same laws, completely different reasoning</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🛡️ "Protection" Arguments</h3>
+                    <div class="quote-box">
+                        "Allowing black people to attend white schools would mean constantly subjecting them to adverse feeling and opinion."
+                        <div class="quote-attribution">- Early 20th-century scholar</div>
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Claimed segregation protected African Americans</li>
+                        <li class="auto-reveal">Argued integration would cause "race consciousness"</li>
+                        <li class="auto-reveal">Portrayed separation as beneficial to both races</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>📊 Political and Economic Motivations</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Depression-era whites feared job competition</li>
+                        <li class="auto-reveal">Politicians used racism to win poor white votes</li>
+                        <li class="auto-reveal">"Grandfather clauses" split poor whites from Blacks</li>
+                        <li class="auto-reveal">Newspapers exaggerated Black crimes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Washington vs Du Bois -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🤝 vs ✊ African American Strategy Debate</h2>
+            <div class="strategy-comparison">
+                <div class="strategy-card auto-reveal">
+                    <div class="strategy-title">📚 Booker T. Washington: "Atlanta Compromise"</div>
+                    <div class="quote-box">
+                        "In all things purely social we can be as separate as the five fingers, and yet one as the hand in all things essential to mutual progress."
+                        <div class="quote-attribution">- Atlanta Speech, 1895</div>
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Strategy:</strong> Accept segregation temporarily</li>
+                        <li class="auto-reveal"><strong>Focus:</strong> Vocational education, economic progress</li>
+                        <li class="auto-reveal"><strong>Reasoning:</strong> Economic success → eventual political rights</li>
+                        <li class="auto-reveal"><strong>Risk:</strong> White supremacists used his ideas against Black rights</li>
+                    </ul>
+                </div>
+                <div class="strategy-card auto-reveal">
+                    <div class="strategy-title">⚖️ W.E.B. Du Bois: Immediate Rights</div>
+                    <div class="quote-box">
+                        "Racism would not allow black people to rise out of poverty in the first place."
+                        <div class="quote-attribution">- Critique of Washington</div>
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Strategy:</strong> Demand civil rights immediately</li>
+                        <li class="auto-reveal"><strong>Focus:</strong> Higher education, "Talented Tenth"</li>
+                        <li class="auto-reveal"><strong>Reasoning:</strong> Political power needed first</li>
+                        <li class="auto-reveal"><strong>Action:</strong> Co-founded NAACP (1909)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="vocab-frame auto-reveal">
+                <h4>Key Insight</h4>
+                <p>Both leaders wanted equality but completely disagreed on how to achieve it. Their different life experiences shaped their strategies.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Women's Resistance -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>👩‍⚖️ Women's Resistance: Ida B. Wells</h2>
+            <div class="central-question auto-reveal">
+                <h3>Fighting Multiple Battles</h3>
+                <p>Racism AND sexism simultaneously</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🚂 Personal Experience Shapes Activism</h3>
+                    <div class="quote-box">
+                        "When the conductor tried to drag her from her seat, she bit his hand. Two men helped forcibly remove Ida while white passengers applauded."
+                        <div class="quote-attribution">- 1884 Train Incident</div>
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Bought first-class ticket, forced to move</li>
+                        <li class="auto-reveal">Physical resistance to segregation</li>
+                        <li class="auto-reveal">Sued railroad and won (temporarily)</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>📰 Anti-Lynching Crusade Strategy</h3>
+                    <div class="quote-box">
+                        "To arouse the conscience of America"
+                        <div class="quote-attribution">- Purpose of "Southern Horrors"</div>
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Used journalism to expose lynching reality</li>
+                        <li class="auto-reveal">Forced into exile after editorial</li>
+                        <li class="auto-reveal">International speaking tours</li>
+                        <li class="auto-reveal">Combined anti-racism with women's suffrage</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Community Strategies -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🏘️ Community-Based Resistance Strategies</h2>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🎭 "Walking the Tightrope"</h3>
+                    <div class="quote-box">
+                        "Protective socialization by black people themselves was created to accommodate white-imposed sanctions while subtly encouraging challenges to those sanctions."
+                        <div class="quote-attribution">- Historian William Chafe</div>
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Appear to accept segregation publicly</li>
+                        <li class="auto-reveal">Build strength within Black community</li>
+                        <li class="auto-reveal">Prepare for future challenges</li>
+                        <li class="auto-reveal">Churches as organizing centers</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🏃‍♂️ The Great Migration Strategy</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Individual/family resistance through movement</li>
+                        <li class="auto-reveal">Chicago Defender encouraged Northern migration</li>
+                        <li class="auto-reveal">White Southerners tried to ban the newspaper</li>
+                        <li class="auto-reveal">Migration as "voting with your feet"</li>
+                        <li class="auto-reveal">Economic impact on Southern labor</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="vocab-frame auto-reveal">
+                <h4>Strategy Insight</h4>
+                <p>People facing oppression don't just choose between accommodation and confrontation—they create diverse, creative forms of resistance.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Northern Perspectives -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🏙️ White Northern Perspective: Indifference and Complicity</h2>
+            <div class="perspective-grid">
+                <div class="perspective-card auto-reveal">
+                    <div class="perspective-title">🏛️ Federal Government Abandonment</div>
+                    <div class="quote-box">
+                        "Government abandoned the cause of black equality. In white America, the belief in white supremacy and black inferiority deepened."
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">No federal intervention to stop Jim Crow</li>
+                        <li class="auto-reveal">Supreme Court legitimized segregation</li>
+                        <li class="auto-reveal">Congress blocked anti-lynching legislation</li>
+                    </ul>
+                </div>
+                <div class="perspective-card auto-reveal">
+                    <div class="perspective-title">🏭 Northern Segregation Reality</div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Property requirements for voting</li>
+                        <li class="auto-reveal">Segregated schools and neighborhoods</li>
+                        <li class="auto-reveal">"Whites Only" business signs</li>
+                        <li class="auto-reveal">Economic discrimination in employment</li>
+                        <li class="auto-reveal">Different methods, similar goals</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="central-question auto-reveal">
+                <h3>Key Realization</h3>
+                <p>Jim Crow wasn't just a Southern problem—it was a national system of racial oppression with regional variations.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Violence and Terror -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>⚠️ Violence as Social Control Strategy</h2>
+            <div class="central-question auto-reveal">
+                <h3>Lynching: The Ultimate Enforcement Tool</h3>
+                <p>How terror shaped all other resistance strategies</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>📊 The Reality of Lynching</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">80-160 African Americans lynched annually</li>
+                        <li class="auto-reveal">Public spectacles with large crowds</li>
+                        <li class="auto-reveal">Often for trivial "offenses"</li>
+                        <li class="auto-reveal">Psychological weapon against entire community</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🎯 Multiple Targets and Messages</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Primary message: Control African American men</li>
+                        <li class="auto-reveal">Secondary message: Control white women's choices</li>
+                        <li class="auto-reveal">Economic message: Maintain cheap labor</li>
+                        <li class="auto-reveal">Political message: Prevent voting and organizing</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="vocab-frame auto-reveal">
+                <h4>Strategic Impact</h4>
+                <p>Understanding the threat of violence helps explain why African Americans chose such different resistance strategies—each had to balance effectiveness with survival.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Structure Framework -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🎯 Structure Your 6-7 Minute Explanation</h2>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>📝 Opening (1 minute)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Context: End of Reconstruction → Jim Crow rise</li>
+                        <li class="auto-reveal">Scope of oppression: voting, education, public life</li>
+                        <li class="auto-reveal">Preview: "Different groups, different strategies"</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🏛️ White Perspectives (1.5 minutes)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Southern justifications: "protection," "natural order"</li>
+                        <li class="auto-reveal">Northern indifference and complicity</li>
+                        <li class="auto-reveal">How same system served different white interests</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>✊ Resistance Strategies (3 minutes)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Washington: Accommodation and economic focus</li>
+                        <li class="auto-reveal">Du Bois: Immediate rights and political action</li>
+                        <li class="auto-reveal">Wells: Anti-lynching journalism</li>
+                        <li class="auto-reveal">Community: "Walking tightrope" + migration</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🔗 Synthesis (1.5 minutes)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Why different backgrounds → different strategies</li>
+                        <li class="auto-reveal">How violence shaped all choices</li>
+                        <li class="auto-reveal">Legacy: Foundation for later civil rights movement</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Practice Activity -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>💪 Quick Strategy Analysis Practice</h2>
+            <div class="challenge-box auto-reveal">
+                Choose one resistance strategy and explain in 2 minutes: What was the strategy? Why did people choose it? What were the risks and benefits?
+            </div>
+            <div class="content-grid">
+                <div class="strategy-card auto-reveal">
+                    <div class="strategy-title">🤝 Washington's Approach</div>
+                    <p>Focus on economic progress, accept segregation temporarily, build relationships with white philanthropists</p>
+                </div>
+                <div class="strategy-card auto-reveal">
+                    <div class="strategy-title">⚖️ Du Bois's Method</div>
+                    <p>Demand immediate political rights, challenge segregation legally, organize the "Talented Tenth"</p>
+                </div>
+                <div class="strategy-card auto-reveal">
+                    <div class="strategy-title">📰 Wells's Activism</div>
+                    <p>Expose lynching through journalism, build national/international pressure, combine race and gender rights</p>
+                </div>
+                <div class="strategy-card auto-reveal">
+                    <div class="strategy-title">🏃‍♂️ The Great Migration</div>
+                    <p>Vote with your feet, seek economic opportunities, escape Southern violence through movement North</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Final Challenge -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>🚀 Your Turn: Complex Perspective Analysis</h2>
+            <div class="challenge-box auto-reveal">
+                Now you're ready to explain how different groups experienced Jim Crow and why African Americans chose such different resistance strategies!
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>✅ Must Include</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">How Jim Crow looked different to different groups</li>
+                        <li class="auto-reveal">At least 3 different resistance strategies</li>
+                        <li class="auto-reveal">Specific evidence and examples</li>
+                        <li class="auto-reveal">Why people chose different approaches</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🎯 Advanced Success Indicators</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Sustained 6-7 minute explanation</li>
+                        <li class="auto-reveal">Strategy analysis with reasoning</li>
+                        <li class="auto-reveal">Historical empathy demonstrated</li>
+                        <li class="auto-reveal">Complex cause-and-effect understanding</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="vocab-frame auto-reveal">
+                <h4>Historical Insight</h4>
+                <p>Understanding how people facing oppression choose different survival and resistance strategies helps us analyze complex situations throughout history—and today. People's backgrounds, experiences, and circumstances shape their strategic choices.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            updateSlideCounter();
+            
+            // Trigger auto-reveals for the new slide
+            setTimeout(() => {
+                const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+                autoReveals.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('show');
+                    }, index * 200);
+                });
+                
+                const listItems = slides[currentSlide].querySelectorAll('.progressive-list li');
+                listItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('reveal');
+                    }, (index + 2) * 300);
+                });
+            }, 100);
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const autoReveals = currentSlideElement.querySelectorAll('.auto-reveal');
+            const listItems = currentSlideElement.querySelectorAll('.progressive-list li');
+            
+            autoReveals.forEach(element => element.classList.add('show'));
+            listItems.forEach(item => item.classList.add('reveal'));
+        }
+
+        function updateSlideCounter() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowLeft':
+                case ',':
+                    previousSlide();
+                    break;
+                case 'ArrowRight':
+                case '.':
+                    nextSlide();
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+            }
+        });
+
+        // Initialize first slide
+        showSlide(0);
+    </script>
+</body>
+</html>

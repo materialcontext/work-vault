@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japan's Great Transformation: From Isolation to Empire (1890s-1930s)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #2C2C2C;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            width: 95%;
+            height: 90%;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FEFEFE 100%);
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+            border: 3px solid #C41E3A;
+            position: relative;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: linear-gradient(135deg, #C41E3A, #8B0000);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(196, 30, 58, 0.4);
+        }
+
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, #C41E3A, #8B0000);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(196, 30, 58, 0.3);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(196, 30, 58, 0.4);
+        }
+
+        .flag-tab {
+            position: fixed;
+            top: 30px;
+            right: 80px;
+            background: linear-gradient(135deg, #C41E3A, #8B0000);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .image-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+        }
+
+        .image-content {
+            max-width: 80%;
+            max-height: 80%;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-align: center;
+            background: linear-gradient(135deg, #C41E3A 0%, #8B0000 50%, #2E8B57 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #C41E3A;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #C41E3A, #8B0000);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 650;
+            color: #8B0000;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            font-size: 1.6rem;
+            color: #696969;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .central-question {
+            background: linear-gradient(135deg, #FFF5F5 0%, #FFEBEB 100%);
+            border: 3px solid #C41E3A;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            font-size: 1.5rem;
+            color: #8B0000;
+            font-weight: 600;
+            font-style: italic;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(196, 30, 58, 0.2);
+        }
+
+        .central-question::before {
+            content: '🇯🇵';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: #FFF5F5;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+        }
+
+        .dramatic-moment {
+            background: linear-gradient(135deg, #2E8B57, #3CB371);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(46, 139, 87, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dramatic-moment::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .dramatic-moment:hover::before {
+            left: 100%;
+        }
+
+        .dramatic-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .dramatic-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #C41E3A, #8B0000);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(196, 30, 58, 0.3);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.6s ease;
+        }
+
+        .stat-card:hover::before {
+            transform: scale(1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            display: block;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-side {
+            background: linear-gradient(135deg, #F8F6F3 0%, #FFFFFF 100%);
+            border-radius: 15px;
+            padding: 2.5rem;
+            border: 3px solid #E5E5E5;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .comparison-side.japan {
+            border-left: 8px solid #C41E3A;
+            transform: translateX(-5px);
+        }
+
+        .comparison-side.china {
+            border-left: 8px solid #FFD700;
+            transform: translateX(5px);
+        }
+
+        .comparison-side:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .comparison-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .japan .comparison-title {
+            color: #C41E3A;
+        }
+
+        .china .comparison-title {
+            color: #B8860B;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 3rem 0;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: linear-gradient(180deg, #C41E3A, #8B0000, #2E8B57);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            background: #FFFFFF;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 6px solid #C41E3A;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(196, 30, 58, 0.2);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 2rem;
+            width: 18px;
+            height: 18px;
+            background: #C41E3A;
+            border-radius: 50%;
+            border: 4px solid #FFFFFF;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: #C41E3A;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-event {
+            color: #3D3D3D;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        .quote-container {
+            background: linear-gradient(135deg, #E8F5E8 0%, #F0F8F0 100%);
+            border-left: 6px solid #2E8B57;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(46, 139, 87, 0.1);
+            position: relative;
+        }
+
+        .quote-container::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 4rem;
+            color: #2E8B57;
+            opacity: 0.3;
+            font-family: serif;
+        }
+
+        .quote-header {
+            font-weight: 700;
+            color: #2E8B57;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .quote-text {
+            font-style: italic;
+            color: #2C5F2D;
+            line-height: 1.7;
+            font-size: 1.2rem;
+            margin-left: 2rem;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .tech-card {
+            background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
+            border: 2px solid #4682B4;
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(70, 130, 180, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .tech-card:hover::before {
+            left: 100%;
+        }
+
+        .tech-card:hover {
+            border-color: #1E90FF;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(70, 130, 180, 0.2);
+        }
+
+        .tech-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1E90FF;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tech-icon {
+            font-size: 1.8rem;
+        }
+
+        .interactive-prompt {
+            background: linear-gradient(135deg, #FFF8DC 0%, #FFFACD 100%);
+            border: 3px solid #DAA520;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            font-size: 1.3rem;
+            color: #B8860B;
+            font-weight: 600;
+            font-style: italic;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 6px 20px rgba(218, 165, 32, 0.2);
+        }
+
+        .interactive-prompt::before {
+            content: "🤔";
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: #FFF8DC;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-card {
+            background: linear-gradient(135deg, #FFE4E1 0%, #FFF0F5 100%);
+            border: 2px solid #CD919E;
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .social-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(205, 145, 158, 0.3);
+        }
+
+        .social-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #8B4B61;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #FFE6CC 0%, #FFF2E6 100%);
+            border: 2px solid #FF8C00;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.1);
+        }
+
+        .highlight-text {
+            color: #CC6600;
+            font-weight: 600;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        ul, ol {
+            padding-left: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+            color: #3D3D3D;
+        }
+
+        strong {
+            color: #C41E3A;
+            font-weight: 700;
+        }
+
+        .victory-banner {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #8B4513;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+            font-size: 1.3rem;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .victory-banner::before {
+            content: '⚔️';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .comparison-grid,
+            .stats-grid,
+            .tech-grid,
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="slide-number">1/12</div>
+            
+            <div class="reveal-item">
+                <h1>Japan's Great Transformation</h1>
+                <div class="subtitle">From Isolation to Empire (1890s-1930s)</div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="central-question">
+                    How did Japan achieve in 50 years what took Western nations centuries—transforming from a feudal society into Asia's first modern imperial power?
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="dramatic-moment">
+                    <div class="dramatic-title">The Great Divergence</div>
+                    <div class="dramatic-text">While China—with its vast territory and ancient civilization—struggled against foreign domination, Japan systematically transformed itself into the colonizer rather than the colonized.</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">50 Years</span>
+                        <span class="stat-label">From feudalism to modern empire</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Literacy rate achieved by 1910</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">240,616</span>
+                        <span class="stat-label">Japanese troops defeated 357,100 Chinese forces (1894)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Strategic Choice -->
+        <div class="slide">
+            <div class="slide-number">2/12</div>
+            
+            <div class="reveal-item">
+                <h2>The Strategic Choice: Revolution or Collapse</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote-container">
+                    <div class="quote-header">Itō Hirobumi, architect of the Meiji Constitution</div>
+                    <div class="quote-text">"The Emperor on His Throne combines in himself the sovereignty of the state and the government of the country and of his subjects."</div>
+                </div>
+                
+                <p>Unlike China's attempt to preserve traditional structures while adopting Western technology, Japan made a revolutionary choice: <strong>comprehensive reform was preferable to gradual collapse.</strong></p>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="comparison-grid">
+                    <div class="comparison-side japan">
+                        <div class="comparison-title">🇯🇵 Japan's Unified Response</div>
+                        <ul>
+                            <li><strong>1871:</strong> Abolished 260+ feudal domains overnight</li>
+                            <li><strong>1873:</strong> Universal military conscription replaced samurai privilege</li>
+                            <li><strong>1889:</strong> Modern constitution with functioning parliament</li>
+                            <li><strong>Elite consensus:</strong> "Rich Country, Strong Army" (Fukoku Kyōhei)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-side china">
+                        <div class="comparison-title">🇨🇳 China's Fragmented Approach</div>
+                        <ul>
+                            <li><strong>1898:</strong> Hundred Days' Reform crushed after 103 days</li>
+                            <li><strong>Preserved:</strong> Imperial bureaucracy and Confucian examinations</li>
+                            <li><strong>Regional:</strong> Li Hongzhang's independent "self-strengthening"</li>
+                            <li><strong>Conservative resistance:</strong> Traditional elite blocked change</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="highlight-box">
+                    <div class="highlight-text">Geographic advantage: Japan's 380,000 km² and 33 million homogeneous population enabled unified policy implementation, while China's 9.6 million km² and 400+ million diverse population created massive coordination challenges.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Educational Revolution -->
+        <div class="slide">
+            <div class="slide-number">3/12</div>
+            
+            <div class="reveal-item">
+                <h2>Creating Modern Citizens: The Educational Revolution</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote-container">
+                    <div class="quote-header">Fukuzawa Yukichi, founder of Keio University (1872)</div>
+                    <div class="quote-text">"Heaven does not create one person above or below another. Learning makes the difference between the wise and the stupid."</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">25,000</span>
+                        <span class="stat-label">Elementary schools established by 1875</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">30% → 98%</span>
+                        <span class="stat-label">School enrollment (1870s → 1910)</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">1 Generation</span>
+                        <span class="stat-label">To achieve universal literacy</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span class="tech-icon">📚</span>
+                            Wakon Yōsai Strategy
+                        </div>
+                        <p><strong>"Japanese Spirit, Western Techniques"</strong> - Students learned Western mathematics and science while maintaining Japanese moral training emphasizing duty to emperor and family.</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span class="tech-icon">🏛️</span>
+                            Elite Training System
+                        </div>
+                        <p><strong>Tokyo Imperial University (1877)</strong> became the training ground for government officials, while specialized technical schools proliferated to serve industrial needs.</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span class="tech-icon">⚖️</span>
+                            Democratic Education
+                        </div>
+                        <p>Unlike China's examination system that admitted only 1% of 2-3 million annual applicants, Japan created <strong>mass education for all social classes.</strong></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    What does it mean that Japan achieved in one generation what took Western nations centuries? How did this educational transformation create the human capital for rapid modernization?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Technological Mastery -->
+        <div class="slide">
+            <div class="slide-number">4/12</div>
+            
+            <div class="reveal-item">
+                <h2>From Samurai Swords to Steel Mills: Industrial Strategy</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="dramatic-moment">
+                    <div class="dramatic-title">The Zaibatsu Revolution</div>
+                    <div class="dramatic-text">By the 1930s, the "Big Four" conglomerates—Mitsui, Mitsubishi, Sumitomo, and Yasuda—controlled 75% of Japan's export trade and over 50% of heavy industry, enabling massive capital mobilization impossible in fragmented China.</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">1872</div>
+                        <div class="timeline-event"><strong>First Railway:</strong> Tokyo-Yokohama line built with British expertise, expanded to 20,000 km network by 1935</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1874</div>
+                        <div class="timeline-event"><strong>Communications Revolution:</strong> Telegraph lines connected entire archipelago, with undersea cables linking Japan to global network</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1906</div>
+                        <div class="timeline-event"><strong>Strategic Coordination:</strong> Railway system nationalized to ensure unified development planning</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="comparison-grid">
+                    <div class="comparison-side japan">
+                        <div class="comparison-title">🏭 Japan's Coordinated Development</div>
+                        <ul>
+                            <li><strong>State guidance:</strong> Government model factories transferred technology</li>
+                            <li><strong>Zaibatsu system:</strong> Vertical integration from materials to exports</li>
+                            <li><strong>Strategic infrastructure:</strong> Railways, telegraph, modern banking</li>
+                            <li><strong>3-4% annual GDP growth</strong> over seven decades</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-side china">
+                        <div class="comparison-title">⛓️ China's Fragmented Economy</div>
+                        <ul>
+                            <li><strong>Foreign control:</strong> 80 treaty ports, 23 foreign concessions</li>
+                            <li><strong>Artificial barriers:</strong> Foreign tariffs kept artificially low</li>
+                            <li><strong>Extraction economy:</strong> Wealth flowed to foreign enclaves</li>
+                            <li><strong>No unified strategy:</strong> Development within foreign-controlled zones</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Military Transformation -->
+        <div class="slide">
+            <div class="slide-number">5/12</div>
+            
+            <div class="reveal-item">
+                <h2>From Feudal Warriors to Modern Military: The Samurai's End</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="victory-banner">
+                    <strong>1877 Satsuma Rebellion:</strong> Modern conscript army with rifles defeated legendary samurai warriors with swords—symbolizing Japan's complete transformation from feudal to modern society.
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">109</span>
+                        <span class="stat-label">Warships commissioned (1895-1905)</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">3rd Largest</span>
+                        <span class="stat-label">Naval power by 1900</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">40,800</span>
+                        <span class="stat-label">Naval personnel (up from 15,100)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span class="tech-icon">⚔️</span>
+                            Universal Conscription
+                        </div>
+                        <p><strong>1873:</strong> All men serve regardless of social class—destroying samurai military monopoly and creating citizen-soldiers loyal to emperor rather than feudal lords.</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span class="tech-icon">🚢</span>
+                            Naval Modernization
+                        </div>
+                        <p><strong>"Perseverance and Determination"</strong> (Gashinshoutan): Ten-year naval expansion program created modern fleet capable of defeating Chinese and Russian navies.</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span class="tech-icon">🎯</span>
+                            Strategic Innovation
+                        </div>
+                        <p>Western military observers noted Japanese forces were <strong>"better equipped, better trained, and better led"</strong> through systematic adoption of Prussian army and British naval models.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote-container">
+                    <div class="quote-header">Li Hongzhang after China's defeat (1895)</div>
+                    <div class="quote-text">"What we have to learn from the barbarians is only one thing: solid ships and effective guns." But Japan learned everything: organization, training, logistics, and strategy.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Cultural Adaptation -->
+        <div class="slide">
+            <div class="slide-number">6/12</div>
+            
+            <div class="reveal-item">
+                <h2>Balancing Tradition and Modernity: Cultural Negotiation</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="social-grid">
+                    <div class="social-card">
+                        <div class="social-title">
+                            <span>👘</span>
+                            Fashion Evolution
+                        </div>
+                        <p><strong>Bunmei Kaika (1868-1883):</strong> Initial Western adoption → <strong>Rokumeikan period (1880s):</strong> Systematic reforms → <strong>Nativist revival (1890s+):</strong> Balanced integration</p>
+                    </div>
+                    
+                    <div class="social-card">
+                        <div class="social-title">
+                            <span>👩‍💼</span>
+                            Women's Transformation
+                        </div>
+                        <p>Beyond "good wife, wise mother" ideology: women became teachers, journalists, business professionals. <strong>"Moga" (modern girls)</strong> represented financial and sexual independence.</p>
+                    </div>
+                    
+                    <div class="social-card">
+                        <div class="social-title">
+                            <span>🏙️</span>
+                            Urban-Rural Balance
+                        </div>
+                        <p>Cities embraced Western innovations—electric lights, department stores, cafés—while rural areas maintained traditions, creating cultural diversity within national unity.</p>
+                    </div>
+                    
+                    <div class="social-card">
+                        <div class="social-title">
+                            <span>🎭</span>
+                            Identity Preservation
+                        </div>
+                        <p><strong>Wakon Yōsai</strong> enabled selective adoption while maintaining cultural continuity centered on emperor and national mission—avoiding China's cultural crisis.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="comparison-grid">
+                    <div class="comparison-side japan">
+                        <div class="comparison-title">🇯🇵 Graduated Cultural Change</div>
+                        <ul>
+                            <li><strong>Selective adaptation:</strong> Western techniques, Japanese spirit</li>
+                            <li><strong>Cultural negotiation:</strong> Different segments adapted at own pace</li>
+                            <li><strong>Identity continuity:</strong> Emperor system provided cultural anchor</li>
+                            <li><strong>Managed diversity:</strong> Urban-rural cultural balance</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-side china">
+                        <div class="comparison-title">🇨🇳 Cultural Revolution Crisis</div>
+                        <ul>
+                            <li><strong>May Fourth Movement:</strong> Complete rejection of tradition demanded</li>
+                            <li><strong>"Mr. Science, Mr. Democracy":</strong> Replace Confucian heritage entirely</li>
+                            <li><strong>Literary revolution:</strong> Classical Chinese replaced by vernacular</li>
+                            <li><strong>Identity crisis:</strong> Ongoing struggles with cultural authenticity</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: The First Victory -->
+        <div class="slide">
+            <div class="slide-number">7/12</div>
+            
+            <div class="reveal-item">
+                <h2>Proving Success: The Sino-Japanese War (1894-1895)</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="dramatic-moment">
+                    <div class="dramatic-title">David Defeats Goliath</div>
+                    <div class="dramatic-text">Japan's 240,616 troops systematically defeated China's 357,100 forces through superior organization, training, and technology—shocking the world and announcing Asia's first modern power.</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">September 1894</div>
+                        <div class="timeline-event"><strong>Battle of the Yalu River:</strong> Japanese naval superiority established, demonstrating effective modern fleet operations</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">November 1894</div>
+                        <div class="timeline-event"><strong>Capture of Port Arthur:</strong> Japanese forces demonstrated mastery of modern siege warfare and combined arms tactics</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">April 1895</div>
+                        <div class="timeline-event"><strong>Treaty of Shimonoseki:</strong> China ceded Taiwan "in perpetuity," paid massive indemnity, opened additional ports to Japanese trade</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">200M Taels</span>
+                        <span class="stat-label">Chinese indemnity (~$5B today)</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">Taiwan</span>
+                        <span class="stat-label">Ceded to Japan permanently</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">4 Ports</span>
+                        <span class="stat-label">Additional Chinese markets opened</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote-container">
+                    <div class="quote-header">Li Hongzhang's Beiyang Fleet—China's Modern Navy</div>
+                    <div class="quote-text">Despite modern ships and Western technology, completely destroyed by Japanese forces. The difference: Japan learned organization and strategy, not just technology.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Global Shock -->
+        <div class="slide">
+            <div class="slide-number">8/12</div>
+            
+            <div class="reveal-item">
+                <h2>Shocking the World: Victory Over Russia (1904-1905)</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="victory-banner">
+                    The first time an Asian power defeated a European empire in modern warfare—inspiring anti-colonial movements worldwide and forcing recognition of Japan as a great power.
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span class="tech-icon">🌊</span>
+                            Naval Innovation
+                        </div>
+                        <p><strong>Battle of Tsushima:</strong> Admiral Tōgō's fleet destroyed the Russian Baltic Fleet using superior gunnery, tactics, and intelligence—establishing Japan as a naval power.</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span class="tech-icon">🏔️</span>
+                            Land Warfare
+                        </div>
+                        <p><strong>Siege of Port Arthur:</strong> Japanese forces captured Russia's "impregnable" fortress through systematic modern siege techniques and enormous sacrifice.</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span class="tech-icon">🌏</span>
+                            Global Impact
+                        </div>
+                        <p>Victory inspired <strong>Gandhi in India, Sun Yat-sen in China, and nationalist movements</strong> across Asia and Africa—proving Western military dominance could be challenged.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="highlight-box">
+                    <div class="highlight-text">Boxer Rebellion participation (1900): Japan contributed 20,840 troops—the largest contingent in the Eight-Nation Alliance—and participated as an equal with Western powers in suppressing Chinese resistance and negotiating terms.</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    What did it mean for the global imperial system when an Asian nation defeated both Chinese and Russian empires? How did this reshape international relations and colonial resistance movements?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Imperial Expansion -->
+        <div class="slide">
+            <div class="slide-number">9/12</div>
+            
+            <div class="reveal-item">
+                <h2>From Victim to Victor: Japanese Imperialism</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">1910</div>
+                        <div class="timeline-event"><strong>Korean Annexation:</strong> Unlike European resource extraction, Japan invested heavily in Korean infrastructure, education, and industry to integrate the peninsula</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1931</div>
+                        <div class="timeline-event"><strong>Manchurian Incident:</strong> Japanese military created puppet state of Manchukuo, establishing industrial base in northeast China</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1937</div>
+                        <div class="timeline-event"><strong>Second Sino-Japanese War:</strong> Full-scale invasion of China marked Japan's transformation into aggressive imperial power</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="comparison-grid">
+                    <div class="comparison-side japan">
+                        <div class="comparison-title">🇯🇵 Imperial Success Story</div>
+                        <ul>
+                            <li><strong>Avoided colonization:</strong> Only non-Western nation to escape European domination</li>
+                            <li><strong>Became colonizer:</strong> Controlled Taiwan, Korea, Manchuria, Pacific islands</li>
+                            <li><strong>Industrial integration:</strong> Developed colonial territories for Japanese economic benefit</li>
+                            <li><strong>Regional hegemon:</strong> Dominated East Asian politics by 1930s</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-side china">
+                        <div class="comparison-title">🇨🇳 Victim of Imperial Powers</div>
+                        <ul>
+                            <li><strong>"Century of Humiliation":</strong> Foreign concessions, unequal treaties, territorial losses</li>
+                            <li><strong>Semi-colonial status:</strong> Formal independence but foreign economic control</li>
+                            <li><strong>Internal fragmentation:</strong> Warlord period, civil wars, political chaos</li>
+                            <li><strong>Resource extraction:</strong> Wealth flowed to foreign powers including Japan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">450M Taels</span>
+                        <span class="stat-label">Boxer Rebellion indemnity (~$11B today)</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">39 Years</span>
+                        <span class="stat-label">Payment period with 4% interest</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">8 Nations</span>
+                        <span class="stat-label">Foreign troops occupied Beijing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: The Transformation Model -->
+        <div class="slide">
+            <div class="slide-number">10/12</div>
+            
+            <div class="reveal-item">
+                <h2>The Meiji Model: Blueprint for Non-Western Modernization</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span class="tech-icon">👑</span>
+                            Unified Leadership
+                        </div>
+                        <p><strong>Meiji oligarchs (*genrō*)</strong> provided coordinated direction through leaders like Itō Hirobumi (constitutional architect) and Yamagata Aritomo (military creator).</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span class="tech-icon">🏛️</span>
+                            Institutional Revolution
+                        </div>
+                        <p><strong>Complete system overhaul:</strong> abolished feudalism, created modern bureaucracy, established constitutional government, built national education system.</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span class="tech-icon">🔧</span>
+                            Strategic Technology Transfer
+                        </div>
+                        <p><strong>Selective adoption:</strong> studied best practices globally, adapted to Japanese conditions, created indigenous innovation capacity through systematic learning.</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span class="tech-icon">🎌</span>
+                            Cultural Continuity
+                        </div>
+                        <p><strong>Wakon Yōsai strategy:</strong> preserved core identity while adapting Western techniques, avoiding cultural crisis that paralyzed other societies.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote-container">
+                    <div class="quote-header">"Fukoku Kyōhei" - Rich Country, Strong Army</div>
+                    <div class="quote-text">Japan's clear national motto focused all energies on systematic modernization, contrasting with China's fragmented efforts and unclear objectives.</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="highlight-box">
+                    <div class="highlight-text">Geographic advantage: Japan's island position provided defensive benefits and contained space for controlled modernization, while China's vast continental territory made central coordination extremely difficult.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Lessons and Legacy -->
+        <div class="slide">
+            <div class="slide-number">11/12</div>
+            
+            <div class="reveal-item">
+                <h2>Why Japan Succeeded Where China Struggled</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="social-grid">
+                    <div class="social-card">
+                        <div class="social-title">
+                            <span>⏰</span>
+                            Timing Advantage
+                        </div>
+                        <p>Observed China's defeats in Opium Wars, had decade to prepare before facing Western pressure, could study and adapt successful responses.</p>
+                    </div>
+                    
+                    <div class="social-card">
+                        <div class="social-title">
+                            <span>🎯</span>
+                            Unified Strategy
+                        </div>
+                        <p>Clear national mission, coordinated elite leadership, systematic implementation across all sectors simultaneously.</p>
+                    </div>
+                    
+                    <div class="social-card">
+                        <div class="social-title">
+                            <span>🏝️</span>
+                            Geographic Benefits
+                        </div>
+                        <p>Island defensibility, manageable size, homogeneous population enabled comprehensive reform impossible in vast continental China.</p>
+                    </div>
+                    
+                    <div class="social-card">
+                        <div class="social-title">
+                            <span>💼</span>
+                            External Pressure
+                        </div>
+                        <p>Faced primarily American diplomatic pressure manageable through negotiation, while China confronted multiple competing imperial powers.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="dramatic-moment">
+                    <div class="dramatic-title">The Developmental State Model</div>
+                    <div class="dramatic-text">Japan's combination of market mechanisms with strategic government guidance created the template later followed by South Korea, Taiwan, and Singapore during their rapid development periods.</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">1st Asian</span>
+                        <span class="stat-label">Modern constitutional monarchy</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">7 Decades</span>
+                        <span class="stat-label">Sustained 3-4% GDP growth</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">Template</span>
+                        <span class="stat-label">For East Asian development model</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Contemporary Relevance -->
+        <div class="slide">
+            <div class="slide-number">12/12</div>
+            
+            <div class="reveal-item">
+                <h2>Legacy: Shaping Modern East Asia</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="central-question">
+                    What can contemporary developing nations learn from Japan's systematic approach to balancing Western adoption with cultural preservation?
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="comparison-grid">
+                    <div class="comparison-side japan">
+                        <div class="comparison-title">🇯🇵 Japan's Lasting Contributions</div>
+                        <ul>
+                            <li><strong>Modernization model:</strong> Proved non-Western societies could adopt Western technology while preserving identity</li>
+                            <li><strong>Developmental state:</strong> Strategic government guidance with market mechanisms</li>
+                            <li><strong>Educational revolution:</strong> Mass literacy as foundation for economic development</li>
+                            <li><strong>Cultural balance:</strong> Selective adaptation without cultural destruction</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-side china">
+                        <div class="comparison-title">🇨🇳 China's Revolutionary Path</div>
+                        <ul>
+                            <li><strong>"Century of Humiliation":</strong> Shaped Chinese nationalism and Communist ideology</li>
+                            <li><strong>Cultural tension:</strong> Ongoing struggles between tradition and modernity</li>
+                            <li><strong>Radical solutions:</strong> Convinced later leaders only revolution could overcome foreign domination</li>
+                            <li><strong>Contemporary influence:</strong> Historical experience shapes current development policies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="victory-banner">
+                    <strong>The Great Lesson:</strong> Successful modernization requires comprehensive institutional transformation guided by unified leadership and strategic vision—technological change alone is insufficient.
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    How do the different paths taken by Japan and China from 1890s-1930s continue to influence East Asian geopolitics, development strategies, and cultural debates about tradition versus modernity in our interconnected world?
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote-container">
+                    <div class="quote-header">Final Reflection</div>
+                    <div class="quote-text">Japan's transformation from potential colonial victim to imperial power within 50 years demonstrates that with unified leadership, systematic planning, and cultural wisdom, societies can master the challenges of rapid technological and social change while preserving their essential identity.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="control-btn" onclick="previousSlide()">← Previous</button>
+        <button class="control-btn" onclick="nextSlide()">Next →</button>
+        <button class="control-btn" onclick="revealNext()">Reveal</button>
+        <button class="control-btn" onclick="revealAll()">Show All</button>
+    </div>
+
+    <div class="flag-tab" onclick="toggleImage()">🖼️ Images</div>
+
+    <div class="image-overlay" onclick="toggleImage()">
+        <div class="image-content" onclick="event.stopPropagation()">
+            <h3>Historical Images</h3>
+            <p>Meiji Emperor and constitutional ceremony</p>
+            <p>Before/after photos of Tokyo modernization</p>
+            <p>Industrial development: railways, factories, shipyards</p>
+            <p>Military transformation: samurai vs. modern soldiers</p>
+            <p>Cultural adaptation: traditional and Western dress</p>
+            <p>Sino-Japanese War battle scenes and maps</p>
+            <p>Russo-Japanese War naval battles</p>
+            <p>Korean colonial development projects</p>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentReveal = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            currentReveal = 0;
+            hideAllReveals();
+        }
+
+        function nextSlide() {
+            const revealItems = slides[currentSlide].querySelectorAll('.reveal-item');
+            if (currentReveal < revealItems.length) {
+                revealNext();
+            } else {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (currentReveal > 0) {
+                hideAllReveals();
+                currentReveal = 0;
+            } else {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        function revealNext() {
+            const revealItems = slides[currentSlide].querySelectorAll('.reveal-item');
+            if (currentReveal < revealItems.length) {
+                revealItems[currentReveal].classList.add('revealed');
+                currentReveal++;
+            }
+        }
+
+        function revealAll() {
+            const revealItems = slides[currentSlide].querySelectorAll('.reveal-item');
+            revealItems.forEach(item => item.classList.add('revealed'));
+            currentReveal = revealItems.length;
+        }
+
+        function hideAllReveals() {
+            const revealItems = slides[currentSlide].querySelectorAll('.reveal-item');
+            revealItems.forEach(item => item.classList.remove('revealed'));
+        }
+
+        function toggleImage() {
+            const overlay = document.querySelector('.image-overlay');
+            overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowLeft':
+                    previousSlide();
+                    break;
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+                case ',':
+                    showSlide(currentSlide - 1);
+                    break;
+                case '.':
+                    showSlide(currentSlide + 1);
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+            }
+        });
+
+        // Initialize first slide
+        revealNext();
+    </script>
+</body>
+</html>
