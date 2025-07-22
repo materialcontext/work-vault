@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 8: Seven Years' War and Imperial Crisis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a0611 0%, #2d1b2e 50%, #3e2723 100%);
+            color: #ffffff;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .presentation-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .slide {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 1;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .slide.hidden {
+            display: none;
+        }
+
+        .slide-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .unit-title {
+            font-size: 1.6rem;
+            color: #ff6b35;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .lesson-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .central-question {
+            font-size: 1.8rem;
+            color: #ffab91;
+            font-style: italic;
+            background: rgba(255,255,255,0.1);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #ff6b35;
+            line-height: 1.6;
+        }
+
+        .slide h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #ff6b35;
+        }
+
+        .slide h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #ff6b35;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .concept-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,107,53,0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,107,53,0.5);
+        }
+
+        .concept-card h3 {
+            color: #ff6b35;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .concept-card p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .global-map {
+            background: linear-gradient(45deg, rgba(255,107,53,0.1), rgba(247,147,30,0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255,107,53,0.3);
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .global-map h3 {
+            color: #ff6b35;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .conflict-zones {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .conflict-zone {
+            background: rgba(255,171,145,0.2);
+            padding: 1.2rem;
+            border-radius: 10px;
+            border: 2px solid #ffab91;
+            text-align: center;
+        }
+
+        .conflict-zone h4 {
+            color: #ff6b35;
+            margin-bottom: 0.8rem;
+            font-size: 1.5rem;
+        }
+
+        .conflict-zone p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .primary-source {
+            background: rgba(255,171,145,0.2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #ffab91;
+            margin: 1.5rem 0;
+            font-style: italic;
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        .primary-source strong {
+            color: #ffab91;
+            font-style: normal;
+            font-size: 1.4rem;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .analysis-card {
+            background: rgba(255,255,255,0.08);
+            padding: 1.2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255,107,53,0.2);
+            text-align: center;
+        }
+
+        .analysis-card h4 {
+            color: #ff6b35;
+            margin-bottom: 0.8rem;
+            font-size: 1.5rem;
+        }
+
+        .analysis-card p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .fiscal-crisis {
+            background: rgba(255,69,0,0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #ff4500;
+            margin: 2rem 0;
+        }
+
+        .fiscal-crisis h3 {
+            color: #ff4500;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .crisis-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .crisis-stat {
+            background: rgba(255,255,255,0.1);
+            padding: 1.2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .crisis-number {
+            font-size: 2.5rem;
+            color: #ff4500;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .crisis-description {
+            font-size: 1.1rem;
+            color: #ffab91;
+        }
+
+        .imperial-responses {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .imperial-response {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255,107,53,0.3);
+        }
+
+        .imperial-response h4 {
+            color: #ff6b35;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1.6rem;
+        }
+
+        .response-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .response-features li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .response-features li:before {
+            content: "▶";
+            color: #ffab91;
+            position: absolute;
+            left: 0;
+        }
+
+        .question-highlight {
+            background: linear-gradient(45deg, rgba(255,69,0,0.2), rgba(255,140,0,0.2));
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid #ff6347;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.4rem;
+            color: #ff6b35;
+            line-height: 1.6;
+        }
+
+        .connecting-thread {
+            background: rgba(255,107,53,0.15);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid #ff6b35;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        .connecting-thread h3 {
+            color: #ff6b35;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .colonial-resistance {
+            background: linear-gradient(45deg, rgba(255,107,53,0.1), rgba(247,147,30,0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #ff6b35;
+            margin: 2rem 0;
+        }
+
+        .resistance-timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .resistance-event {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #ffab91;
+        }
+
+        .event-year {
+            font-size: 1.3rem;
+            color: #ff6b35;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-title {
+            font-size: 1.1rem;
+            color: #ffab91;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-description {
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .auto-reveal, .reveal-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.revealed, .reveal-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255,107,53,0.3);
+            transform: translateY(-2px);
+            border-color: #ff6b35;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .indicator-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator-dot.active {
+            background: #ff6b35;
+            transform: scale(1.2);
+        }
+
+        .image-tab {
+            position: fixed;
+            top: 20px;
+            right: 100px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .image-tab:hover {
+            background: rgba(255,107,53,0.3);
+            border-color: #ff6b35;
+        }
+
+        .image-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .image-content {
+            max-width: 80%;
+            max-height: 80%;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            color: #333;
+        }
+
+        .midterm-notice {
+            background: linear-gradient(45deg, rgba(255,215,0,0.2), rgba(255,69,0,0.2));
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid #ffd700;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .midterm-notice h3 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .midterm-notice p {
+            font-size: 1.3rem;
+            color: #ffab91;
+        }
+
+        .auto-reveal p, .reveal-item p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title and Central Question -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-header auto-reveal">
+                <div class="unit-title">UNIT II: REVOLUTIONARY IMPLEMENTATION</div>
+                <div class="lesson-title">Week 8: Seven Years' War and Imperial Crisis</div>
+                <div class="central-question">How did global imperial competition create fiscal crisis that enabled revolutionary political change?</div>
+            </div>
+            
+            <div class="content-grid">
+                <div class="concept-card auto-reveal">
+                    <h3>🔑 Key Concept</h3>
+                    <p>Imperial war and constitutional crisis - the Seven Years' War as the first truly global conflict that tests all imperial systems and creates fiscal pressures forcing new experiments in governance</p>
+                </div>
+                
+                <div class="concept-card auto-reveal">
+                    <h3>🌍 Geographic Focus</h3>
+                    <p>Global conflict from North America to India affecting imperial relationships across continents - demonstrating interconnected nature of emerging world system</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Today's Challenge:</strong> Understanding how global warfare creates constitutional conflicts between imperial authority and colonial autonomy - setting the stage for revolutionary transformation
+            </div>
+        </div>
+
+        <!-- Slide 2: Connecting from Atlantic Slave Trade -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>🔗 From Economic Integration to Imperial Competition</h2>
+            
+            <div class="auto-reveal">
+                <h3>Last Week's Foundation: Atlantic Slave Trade as Revolutionary Economic System</h3>
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h4>🌍 Global Integration</h4>
+                        <p>Atlantic slave trade creates permanent economic connections between four continents</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>💰 Capital Accumulation</h4>
+                        <p>Slave trade profits fund European military and industrial development</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>⚖️ Social Tensions</h4>
+                        <p>Slavery creates contradictions with developing ideas about freedom and equality</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #ff6b35; text-align: center; margin: 1.5rem 0;">This Week's Question:</h3>
+                <div class="question-highlight">
+                    How does competition for these profitable global networks lead to the first world war - and how do the costs of global warfare create constitutional crises within imperial systems?
+                </div>
+            </div>
+
+            <div class="connecting-thread auto-reveal">
+                <h3>Economic Integration Creates Imperial Competition</h3>
+                <p>The Atlantic slave trade and global economic networks established in previous weeks become the stakes in global imperial competition - leading to worldwide conflict and constitutional crisis</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Seven Years' War as First Global Conflict -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>🌍 The First World War (1754-1763)</h2>
+            
+            <div class="auto-reveal">
+                <h3>Why "First Global Conflict" Rather Than Just "Imperial War"?</h3>
+            </div>
+            
+            <div class="global-map auto-reveal">
+                <h3>Simultaneous Warfare Across Five Continents</h3>
+                <div class="conflict-zones">
+                    <div class="conflict-zone">
+                        <h4>🇺🇸 North America</h4>
+                        <p>French and Indian War: Britain vs. France for Ohio Valley and Great Lakes territories</p>
+                    </div>
+                    <div class="conflict-zone">
+                        <h4>🇪🇺 Europe</h4>
+                        <p>Austria vs. Prussia in Silesia; France vs. Britain in European theaters</p>
+                    </div>
+                    <div class="conflict-zone">
+                        <h4>🇮🇳 India</h4>
+                        <p>Battle for Bengal: British East India Company vs. French trading posts</p>
+                    </div>
+                    <div class="conflict-zone">
+                        <h4>🌴 Caribbean</h4>
+                        <p>Sugar island warfare: British naval supremacy vs. French colonial territories</p>
+                    </div>
+                    <div class="conflict-zone">
+                        <h4>🌍 Africa</h4>
+                        <p>Competition for slave trading posts and gold trading networks</p>
+                    </div>
+                    <div class="conflict-zone">
+                        <h4>🌊 Global Seas</h4>
+                        <p>Naval warfare across Atlantic, Pacific, and Indian Oceans</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="analysis-grid auto-reveal">
+                <div class="analysis-card">
+                    <h4>💰 Economic Stakes</h4>
+                    <p>Control of global trade networks, slave trade profits, and colonial raw materials</p>
+                </div>
+                <div class="analysis-card">
+                    <h4>⚔️ Military Innovation</h4>
+                    <p>First coordinated global military strategy requiring unprecedented logistics</p>
+                </div>
+                <div class="analysis-card">
+                    <h4>🏛️ Political Consequences</h4>
+                    <p>Victory or defeat determines which imperial system dominates global networks</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How does this global scope of warfare create different pressures on imperial systems than previous regional conflicts?
+            </div>
+        </div>
+
+        <!-- Slide 4: British Victory and Territorial Gains -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>🇬🇧 British Victory and Global Dominance</h2>
+            
+            <div class="auto-reveal">
+                <h3>Treaty of Paris (1763): Reshaping the Global Map</h3>
+            </div>
+            
+            <div class="content-grid auto-reveal">
+                <div class="concept-card">
+                    <h3>🗺️ Territorial Transformations</h3>
+                    <p><strong>From France:</strong> All of Canada, Louisiana east of Mississippi, several Caribbean islands<br><strong>From Spain:</strong> Florida in exchange for Cuba<br><strong>Result:</strong> Britain controls most of North America east of Mississippi River</p>
+                </div>
+                
+                <div class="concept-card">
+                    <h3>🌍 Global Network Control</h3>
+                    <p><strong>India:</strong> British East India Company dominates Bengal and southern India<br><strong>Caribbean:</strong> British control most profitable sugar islands<br><strong>Africa:</strong> British dominate Atlantic slave trade networks<br><strong>Naval supremacy:</strong> British fleet controls global sea routes</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Revolutionary Implications:</strong> British victory creates the largest empire in human history - but how will Britain govern and pay for this vast global system?
+            </div>
+        </div>
+
+        <!-- Slide 5: British Fiscal Crisis -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>💸 The Price of Global Victory</h2>
+            
+            <div class="fiscal-crisis auto-reveal">
+                <h3>British National Debt Crisis</h3>
+                <div class="crisis-stats">
+                    <div class="crisis-stat">
+                        <div class="crisis-number">£122M</div>
+                        <div class="crisis-description">British national debt before Seven Years' War (1754)</div>
+                    </div>
+                    <div class="crisis-stat">
+                        <div class="crisis-number">£232M</div>
+                        <div class="crisis-description">British national debt after Seven Years' War (1763)</div>
+                    </div>
+                    <div class="crisis-stat">
+                        <div class="crisis-number">90%</div>
+                        <div class="crisis-description">Increase in national debt from global warfare</div>
+                    </div>
+                    <div class="crisis-stat">
+                        <div class="crisis-number">£350K</div>
+                        <div class="crisis-description">Annual cost of maintaining 10,000 troops in North America</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>The Constitutional Problem</h3>
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h4>🏛️ Parliamentary Logic</h4>
+                        <p>British taxpayers already heavily burdened - colonies should pay for their own defense since they benefited from war</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>⚖️ Colonial Logic</h4>
+                        <p>No taxation without representation - colonies cannot be taxed by Parliament where they have no voice</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>💰 Economic Reality</h4>
+                        <p>Britain needs colonial revenue to service debt, but colonies resist new taxation systems</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How does fiscal crisis force Britain to choose between constitutional principles and imperial financial necessity?
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #ffab91; text-align: center;">The Revolutionary Question</h3>
+                <p style="text-align: center; font-size: 1.2rem;">Can the British constitutional system that enabled global victory also manage the costs and governance of global empire?</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Primary Source Analysis - Stamp Act -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>📜 The Stamp Act Crisis (1765)</h2>
+            
+            <div class="primary-source auto-reveal">
+                <strong>Stamp Act (1765):</strong><br>
+                "An act for granting and applying certain stamp duties, and other duties, in the British colonies and plantations in America, towards further defraying the expenses of defending, protecting, and securing the same..."
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Colonial Response - Virginia Resolves (1765):</h3>
+                <div class="primary-source">
+                    <strong>Patrick Henry's Virginia Resolves:</strong><br>
+                    "The taxation of the people by themselves, or by persons chosen by themselves to represent them... is the only security against a burdensome taxation, and the distinguishing characteristic of British freedom, without which the ancient constitution cannot exist."
+                </div>
+            </div>
+            
+            <div class="analysis-grid auto-reveal">
+                <div class="analysis-card">
+                    <h4>🏛️ Constitutional Crisis</h4>
+                    <p><strong>British position:</strong> Parliament has sovereignty over all British subjects<br><strong>Colonial position:</strong> No taxation without representation is fundamental British principle</p>
+                </div>
+                <div class="analysis-card">
+                    <h4>💰 Imperial Logic</h4>
+                    <p><strong>Revenue necessity:</strong> Britain needs systematic colonial taxation<br><strong>Colonial resistance:</strong> Boycotts, protests, and refusal to cooperate</p>
+                </div>
+                <div class="analysis-card">
+                    <h4>⚖️ Legal Innovation</h4>
+                    <p><strong>Constitutional precedent:</strong> Colonies claim English constitutional rights<br><strong>Imperial contradiction:</strong> Colonial autonomy vs. imperial authority</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How does the Stamp Act crisis reveal the fundamental contradiction between British constitutional principles and imperial governance needs?
+            </div>
+        </div>
+
+        <!-- Slide 7: Colonial Resistance and Imperial Reform -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>✊ Colonial Resistance to Imperial Taxation</h2>
+            
+            <div class="colonial-resistance auto-reveal">
+                <h3>Escalating Constitutional Conflict (1763-1773)</h3>
+                <div class="resistance-timeline">
+                    <div class="resistance-event">
+                        <div class="event-year">1765</div>
+                        <div class="event-title">Stamp Act Crisis</div>
+                        <div class="event-description">Colonial boycotts force repeal but assert Parliamentary supremacy</div>
+                    </div>
+                    <div class="resistance-event">
+                        <div class="event-year">1767</div>
+                        <div class="event-title">Townshend Acts</div>
+                        <div class="event-description">External taxes on imports; colonial non-importation agreements</div>
+                    </div>
+                    <div class="resistance-event">
+                        <div class="event-year">1770</div>
+                        <div class="event-title">Boston Massacre</div>
+                        <div class="event-description">British troops fire on colonial crowd; propaganda victory for resistance</div>
+                    </div>
+                    <div class="resistance-event">
+                        <div class="event-year">1773</div>
+                        <div class="event-title">Tea Act Crisis</div>
+                        <div class="event-description">Boston Tea Party destroys East India Company tea; imperial authority challenged</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="analysis-grid auto-reveal">
+                <div class="analysis-card">
+                    <h4>🛡️ Constitutional Innovation</h4>
+                    <p>Colonies develop new theories of federal relationships and limited government authority</p>
+                </div>
+                <div class="analysis-card">
+                    <h4>🤝 Intercolonial Cooperation</h4>
+                    <p>Committees of Correspondence create first continental political networks</p>
+                </div>
+                <div class="analysis-card">
+                    <h4>💼 Economic Warfare</h4>
+                    <p>Boycotts and non-importation prove effective against imperial policies</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How does colonial resistance to imperial taxation create new forms of political organization and constitutional thinking?
+            </div>
+        </div>
+
+        <!-- Slide 8: Comparative Imperial Responses -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>⚖️ Comparative Imperial Adaptation Strategies</h2>
+            
+            <div class="auto-reveal">
+                <h3>How Different Imperial Systems Respond to Global War Costs</h3>
+            </div>
+            
+            <div class="imperial-responses auto-reveal">
+                <div class="imperial-response">
+                    <h4>🇬🇧 British Response</h4>
+                    <ul class="response-features">
+                        <li><strong>Constitutional constraint:</strong> Parliamentary sovereignty limits taxation methods</li>
+                        <li><strong>Colonial autonomy:</strong> Colonial assemblies resist new taxes using British constitutional principles</li>
+                        <li><strong>Commercial focus:</strong> Revenue through trade regulation and customs duties</li>
+                        <li><strong>Military enforcement:</strong> Troops to enforce taxation and customs collection</li>
+                        <li><strong>Crisis result:</strong> Constitutional conflict over representation and taxation</li>
+                    </ul>
+                </div>
+                
+                <div class="imperial-response">
+                    <h4>🇪🇸 Spanish Response</h4>
+                    <ul class="response-features">
+                        <li><strong>Administrative reform:</strong> Bourbon reforms increase colonial efficiency</li>
+                        <li><strong>Royal authority:</strong> Absolute monarchy enables systematic tax increases</li>
+                        <li><strong>Economic extraction:</strong> Increased mining revenues and colonial tribute</li>
+                        <li><strong>Military modernization:</strong> Professional armies replace colonial militias</li>
+                        <li><strong>Crisis result:</strong> Administrative efficiency but reduced colonial autonomy</li>
+                    </ul>
+                </div>
+                
+                <div class="imperial-response">
+                    <h4>🇫🇷 French Response</h4>
+                    <ul class="response-features">
+                        <li><strong>Territorial loss:</strong> Loses most North American colonies to Britain</li>
+                        <li><strong>Financial crisis:</strong> War debt contributes to royal fiscal collapse</li>
+                        <li><strong>Caribbean focus:</strong> Concentrates on profitable sugar island colonies</li>
+                        <li><strong>Royal authority:</strong> Absolute monarchy attempts tax reform</li>
+                        <li><strong>Crisis result:</strong> Financial crisis contributes to French Revolution</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                Why does the British constitutional system prove less adaptable to imperial fiscal crisis than Spanish absolute monarchy?
+            </div>
+        </div>
+
+        <!-- Slide 9: Historical Questions and Analysis -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>❓ Could Imperial Crisis Have Been Resolved Without Revolutionary Change?</h2>
+            
+            <div class="auto-reveal">
+                <h3>Counterfactual Analysis Framework</h3>
+            </div>
+            
+            <div class="content-grid auto-reveal">
+                <div class="concept-card">
+                    <h3>🔍 Evidence for Alternative Solutions</h3>
+                    <p><strong>Federal arrangements:</strong> Imperial parliament with colonial representation<br><strong>Economic compromise:</strong> Colonial internal taxation in exchange for imperial defense<br><strong>Administrative reform:</strong> More autonomous colonial governance within imperial system<br><strong>Gradual integration:</strong> Slow incorporation of colonies into British political system</p>
+                </div>
+                
+                <div class="concept-card">
+                    <h3>🔍 Evidence for Inevitable Conflict</h3>
+                    <p><strong>Constitutional incompatibility:</strong> Parliamentary sovereignty vs. colonial representative government<br><strong>Economic interests:</strong> Colonial merchant class vs. British commercial regulation<br><strong>Geographic reality:</strong> 3,000-mile distance makes direct representation impractical<br><strong>Cultural development:</strong> Colonial society increasingly distinct from British society</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Key Historical Question:</strong> How did global war create local constitutional conflicts that proved impossible to resolve within existing imperial frameworks?
+            </div>
+        </div>
+
+        <!-- Slide 10: Revolutionary Opportunities and Unit Conclusion -->
+        <div class="slide hidden" data-reveal-count="5">
+            <h2>🔗 Imperial Fiscal Crisis Creates Revolutionary Opportunities</h2>
+            
+            <div class="connecting-thread auto-reveal">
+                <h3>The Revolutionary Transformation</h3>
+                <p>The Seven Years' War represents the moment when global imperial competition and constitutional government prove incompatible - fiscal pressures from global warfare force imperial powers to choose between constitutional principles and imperial authority, creating revolutionary opportunities</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="text-align: center; color: #ff6b35; margin: 1.5rem 0;">How Global War Creates Revolutionary Conditions:</h3>
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h4>💸 Fiscal Pressure</h4>
+                        <p>Global warfare costs exceed traditional revenue sources, forcing new taxation experiments</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>⚖️ Constitutional Crisis</h4>
+                        <p>Imperial taxation conflicts with colonial claims to constitutional representation rights</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>🤝 Political Innovation</h4>
+                        <p>Colonial resistance creates new forms of intercolonial cooperation and constitutional theory</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>🌍 Global Context</h4>
+                        <p>Imperial competition makes colonial loyalty essential but constitutional compliance impossible</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="midterm-notice auto-reveal">
+                <h3>📝 Unit II Complete - Midterm Exam Next</h3>
+                <p>We have now completed our analysis of revolutionary implementation from British constitutional development through global imperial crisis. Next week: midterm examination covering imperial systems, economic revolutions, and constitutional conflicts (1450-1763)</p>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <p><strong>Unit III Preview:</strong> How do the constitutional conflicts and revolutionary opportunities created by imperial crisis lead to actual revolutionary transformation in America and across the Atlantic world?</p>
+            </div>
+            
+            <div class="auto-reveal" style="text-align: center; margin-top: 2rem;">
+                <h3 style="color: #ffab91;">From Crisis to Revolution</h3>
+                <p style="font-size: 1.2rem;">The Seven Years' War creates the fiscal and constitutional pressures that will drive revolutionary political change throughout the remainder of our course</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()" aria-label="Previous">← Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()" aria-label="Next">Next →</button>
+    </div>
+
+    <!-- Slide Indicators -->
+    <div class="slide-indicator" role="tablist" aria-label="Slide navigation">
+        <div class="indicator-dot active" onclick="goToSlide(0)" role="tab" aria-label="Slide 1"></div>
+        <div class="indicator-dot" onclick="goToSlide(1)" role="tab" aria-label="Slide 2"></div>
+        <div class="indicator-dot" onclick="goToSlide(2)" role="tab" aria-label="Slide 3"></div>
+        <div class="indicator-dot" onclick="goToSlide(3)" role="tab" aria-label="Slide 4"></div>
+        <div class="indicator-dot" onclick="goToSlide(4)" role="tab" aria-label="Slide 5"></div>
+        <div class="indicator-dot" onclick="goToSlide(5)" role="tab" aria-label="Slide 6"></div>
+        <div class="indicator-dot" onclick="goToSlide(6)" role="tab" aria-label="Slide 7"></div>
+        <div class="indicator-dot" onclick="goToSlide(7)" role="tab" aria-label="Slide 8"></div>
+        <div class="indicator-dot" onclick="goToSlide(8)" role="tab" aria-label="Slide 9"></div>
+        <div class="indicator-dot" onclick="goToSlide(9)" role="tab" aria-label="Slide 10"></div>
+    </div>
+
+    <!-- Image Tab -->
+    <div class="image-tab" onclick="toggleImage()">🗺️ War Maps</div>
+
+    <!-- Image Overlay -->
+    <div class="image-overlay" id="imageOverlay" onclick="toggleImage()">
+        <div class="image-content">
+            <h3>Seven Years' War Global Theater Maps</h3>
+            <p>Interactive maps showing simultaneous military campaigns across North America, Europe, India, Caribbean, and global naval warfare routes. Includes battle locations, territorial changes from Treaty of Paris (1763), and British imperial expansion.</p>
+            <button onclick="toggleImage()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #ff6b35; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentReveal = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlideIndicators() {
+            const indicators = document.querySelectorAll('.indicator-dot');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function showSlide(slideIndex) {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('hidden', index !== slideIndex);
+            });
+            
+            currentReveal = 0;
+            updateSlideIndicators();
+            revealNextItem();
+        }
+
+        function nextSlide() {
+            const currentSlideElement = slides[currentSlide];
+            const maxReveals = parseInt(currentSlideElement.dataset.revealCount) || 1;
+            
+            if (currentReveal < maxReveals) {
+                revealNextItem();
+            } else if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentReveal > 0) {
+                hideCurrentItem();
+            } else if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+                // Reveal all items on previous slide
+                const prevSlideElement = slides[currentSlide];
+                const maxReveals = parseInt(prevSlideElement.dataset.revealCount) || 1;
+                currentReveal = maxReveals;
+                showAllReveals();
+            }
+        }
+
+        function revealNextItem() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.auto-reveal, .reveal-item');
+            
+            if (currentReveal < revealItems.length) {
+                revealItems[currentReveal].classList.add('revealed');
+                currentReveal++;
+            }
+        }
+
+        function hideCurrentItem() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.auto-reveal, .reveal-item');
+            
+            if (currentReveal > 0) {
+                currentReveal--;
+                revealItems[currentReveal].classList.remove('revealed');
+            }
+        }
+
+        function showAllReveals() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.auto-reveal, .reveal-item');
+            revealItems.forEach(item => item.classList.add('revealed'));
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            showSlide(currentSlide);
+        }
+
+        function toggleImage() {
+            const overlay = document.getElementById('imageOverlay');
+            overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(event) {
+            switch(event.key) {
+                case 'ArrowLeft':
+                    previousSlide();
+                    break;
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+                case ',':
+                    if (currentSlide > 0) {
+                        currentSlide--;
+                        showSlide(currentSlide);
+                        const maxReveals = parseInt(slides[currentSlide].dataset.revealCount) || 1;
+                        currentReveal = maxReveals;
+                        showAllReveals();
+                    }
+                    break;
+                case '.':
+                    if (currentSlide < totalSlides - 1) {
+                        currentSlide++;
+                        showSlide(currentSlide);
+                    }
+                    break;
+                case 'Enter':
+                    showAllReveals();
+                    const maxReveals = parseInt(slides[currentSlide].dataset.revealCount) || 1;
+                    currentReveal = maxReveals;
+                    break;
+            }
+        });
+
+        // Initialize presentation
+        showSlide(0);
+    </script>
+</body>
+</html>

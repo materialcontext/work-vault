@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Rush! California Dreams and Realities</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            width: 95%;
+            max-width: 1400px;
+            height: 90vh;
+            padding: 2rem 3rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide.hidden {
+            display: none;
+        }
+
+        .slide-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 2rem;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-right: 1rem;
+        }
+
+        /* Custom scrollbar for better visibility */
+        .slide-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .slide-content::-webkit-scrollbar-track {
+            background: rgba(251, 191, 36, 0.1);
+            border-radius: 4px;
+        }
+
+        .slide-content::-webkit-scrollbar-thumb {
+            background: rgba(251, 191, 36, 0.5);
+            border-radius: 4px;
+        }
+
+        .slide-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(251, 191, 36, 0.7);
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #fbbf24, #f59e0b, #d97706);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
+        }
+
+        h2 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #fbbf24;
+        }
+
+        h3 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #fcd34d;
+        }
+
+        h4 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: #fed7aa;
+        }
+
+        p, li {
+            font-size: 1.8rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Progressive Disclosure */
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+            border: 2px solid #fbbf24;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .nav-btn:hover {
+            background: rgba(251, 191, 36, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .nav-btn.active {
+            background: rgba(251, 191, 36, 0.4);
+            border-color: #f59e0b;
+        }
+
+        /* Slide Indicator */
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 1.5rem 0;
+            border: 2px solid rgba(251, 191, 36, 0.2);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .simple-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        /* Connection Box */
+        .connection-box {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid rgba(59, 130, 246, 0.4);
+            text-align: center;
+        }
+
+        /* Question Highlight */
+        .question-highlight {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #ffffff;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            font-weight: 700;
+            font-size: 1.4rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #fbbf24;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin: 2rem 0;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 1.5rem;
+            border-radius: 15px;
+            width: 45%;
+            border: 2px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .timeline-year {
+            background: #fbbf24;
+            color: #7c2d12;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        /* Map Container */
+        .map-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            text-align: center;
+        }
+
+        .map-placeholder {
+            background: rgba(251, 191, 36, 0.2);
+            height: 300px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fbbf24;
+        }
+
+        /* Primary Source */
+        .primary-source {
+            background: rgba(139, 92, 246, 0.2);
+            border: 3px solid rgba(139, 92, 246, 0.4);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            position: relative;
+            backdrop-filter: blur(15px);
+        }
+
+        .primary-source::before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            top: -1rem;
+            left: 1.5rem;
+            color: rgba(139, 92, 246, 0.6);
+            font-weight: bold;
+        }
+
+        .source-info {
+            margin-top: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            color: #c4b5fd;
+            font-size: 1.1rem;
+        }
+
+        /* Statistics Box */
+        .stats-box {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid rgba(239, 68, 68, 0.4);
+        }
+
+        .big-stat {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Perspective Cards */
+        .perspective-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .perspective-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 2rem;
+            border-left: 5px solid;
+        }
+
+        .perspective-card.forty-niner {
+            border-left-color: #fbbf24;
+        }
+
+        .perspective-card.chinese {
+            border-left-color: #ef4444;
+        }
+
+        .perspective-card.californio {
+            border-left-color: #10b981;
+        }
+
+        .perspective-card.native {
+            border-left-color: #8b5cf6;
+        }
+
+        /* Chain of Events */
+        .chain-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .chain-step {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 2px solid rgba(251, 191, 36, 0.2);
+        }
+
+        .step-number {
+            background: #fbbf24;
+            color: #7c2d12;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* Image Tab */
+        .image-tab {
+            position: fixed;
+            top: 6rem;
+            right: 2rem;
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+            border: 2px solid #fbbf24;
+            border-radius: 15px 15px 0 0;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            z-index: 999;
+            backdrop-filter: blur(10px);
+        }
+
+        .image-panel {
+            position: fixed;
+            top: 8rem;
+            right: 2rem;
+            width: 300px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #fbbf24;
+            border-radius: 15px;
+            padding: 1rem;
+            display: none;
+            z-index: 998;
+            backdrop-filter: blur(15px);
+        }
+
+        .image-panel.visible {
+            display: block;
+        }
+
+        .image-panel img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        /* Status indicator for reveal state */
+        .reveal-status {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fbbf24;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            z-index: 1000;
+        }
+        .keyboard-help {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fbbf24;
+            padding: 1rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .keyboard-help.visible {
+            opacity: 1;
+        }
+
+        .keyboard-help h4 {
+            color: #fbbf24;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .keyboard-help p {
+            margin-bottom: 0.3rem;
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+
+        /* Progress Indicator */
+        .progress-indicator {
+            position: fixed;
+            top: 5rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            z-index: 1000;
+        }
+
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(251, 191, 36, 0.3);
+            transition: background 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background: #fbbf24;
+        }
+
+        .progress-dot.revealed {
+            background: #10b981;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .simple-grid, .three-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .slide {
+                padding: 1.5rem 2rem;
+            }
+
+            h1 {
+                font-size: 3.5rem;
+            }
+
+            h2 {
+                font-size: 2.8rem;
+            }
+
+            h3 {
+                font-size: 2rem;
+            }
+
+            h4 {
+                font-size: 1.6rem;
+            }
+
+            p, li {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 1rem;
+                height: 95vh;
+            }
+            
+            .navigation {
+                bottom: 1rem;
+                right: 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .nav-btn {
+                padding: 0.8rem 1.2rem;
+                font-size: 1rem;
+                min-width: 100px;
+            }
+
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            h2 {
+                font-size: 2.2rem;
+            }
+
+            h3 {
+                font-size: 1.8rem;
+            }
+
+            h4 {
+                font-size: 1.4rem;
+            }
+
+            p, li {
+                font-size: 1.3rem;
+            }
+
+            .reveal-status {
+                bottom: 8.5rem;
+                right: 1rem;
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .keyboard-help {
+                left: 1rem;
+                bottom: 1rem;
+                font-size: 0.8rem;
+                max-width: 250px;
+            }
+
+            .slide-indicator {
+                top: 1rem;
+                right: 1rem;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 15</span>
+    </div>
+
+    <div class="image-tab" id="imageTab" onclick="toggleImagePanel()">📷 Images</div>
+    <div class="image-panel" id="imagePanel">
+        <p style="color: #fbbf24; font-weight: 600; margin-bottom: 1rem;">Slide Images</p>
+        <div id="imageContent">
+            <p>No image for this slide</p>
+        </div>
+    </div>
+
+    <div class="reveal-status" id="revealStatus">
+        Items: 0/0
+    </div>
+
+    <div class="keyboard-help" id="keyboardHelp">
+        <h4>⌨️ Keyboard Controls</h4>
+        <p>→ Show next item (then next slide)</p>
+        <p>← Hide previous item (then prev slide)</p>
+        <p>, (comma) Jump to previous slide</p>
+        <p>. (period) Jump to next slide</p>
+        <p>Enter Show/hide all items</p>
+        <p>H Toggle this help</p>
+        <p>Esc Close panels</p>
+    </div>
+
+    <div class="progress-indicator" id="progressIndicator">
+        <!-- Progress dots will be added by JavaScript -->
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="revealBtn" onclick="toggleRevealAll()">Reveal All</button>
+        <button class="nav-btn" id="helpBtn" onclick="toggleHelp()">Help</button>
+    </div>
+
+    <div class="slide-container" id="slideContainer">
+        <!-- Slide 1: Title and Connection -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1 class="auto-reveal">Gold Rush!</h1>
+                <h2 class="auto-reveal">California Dreams and Realities (1848-1855)</h2>
+                
+                <div class="connection-box auto-reveal">
+                    <h4>🔗 Connecting to Our Story</h4>
+                    <p>Remember how the Mexican-American War gave America massive new territories? Today we'll discover how one small discovery in that territory created the biggest migration in American history - and broke the Missouri Compromise forever.</p>
+                </div>
+
+                <div class="question-highlight auto-reveal">
+                    <strong>Central Question:</strong> How did the California Gold Rush change the West and the nation?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Discovery -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>January 24, 1848</h1>
+                <h2>A Discovery That Changed Everything</h2>
+                
+                <div class="map-container auto-reveal">
+                    <div class="map-placeholder">
+                        [Map: Sutter's Mill, California - where it all began]
+                    </div>
+                </div>
+
+                <div class="simple-grid">
+                    <div class="content-section auto-reveal">
+                        <h3>🔨 The Moment</h3>
+                        <p>James Marshall spots something shiny in the American River at Sutter's Mill.</p>
+                        <p>"I reached my hand down and picked it up; it made my heart thump, for I was certain it was gold."</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>🤐 The Secret</h3>
+                        <p>John Sutter tries to keep it quiet - he knows what will happen to his land.</p>
+                        <p>Too late! Word spreads like wildfire.</p>
+                        <p>By May 1848, San Francisco is nearly empty!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Numbers Are Insane -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>The Numbers Are Insane</h1>
+                <h2>The Biggest Migration in American History</h2>
+                
+                <div class="timeline auto-reveal">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1848</div>
+                            <h3>800 Americans in California</h3>
+                            <p>Before gold discovery</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1849</div>
+                            <h3>90,000 "Forty-Niners" Arrive</h3>
+                            <p>The Gold Rush explodes!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1850</div>
+                            <h3>300,000 Total Population</h3>
+                            <p>Enough for statehood!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-box auto-reveal">
+                    <div class="big-stat">37,500%</div>
+                    <p>Population increase in just 2 years!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Primary Source - Forty-Niner Letter -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>What the Forty-Niners Said</h1>
+                
+                <div class="primary-source auto-reveal">
+                    The whole country from San Francisco to Los Angeles, and from the sea shore to the base of the Sierra Nevada, resounds with the sordid cry of gold! GOLD!! GOLD!!! while the field is left half planted, the house half built, and everything neglected but the manufacture of shovels and pickaxes.
+                    <div class="source-info">— Walter Colton, Alcalde of Monterey, 1848</div>
+                </div>
+
+                <div class="connection-box auto-reveal">
+                    <h4>🔍 Think About It</h4>
+                    <p>What does this tell us about how gold fever affected normal life in California?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Multiple Perspectives -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>Not Everyone's Story Was the Same</h1>
+                <h2>The Gold Rush From Different Views</h2>
+                
+                <div class="perspective-grid">
+                    <div class="perspective-card forty-niner auto-reveal">
+                        <h3>🇺🇸 American Forty-Niners</h3>
+                        <p><strong>Dream:</strong> Get rich quick and return home</p>
+                        <p><strong>Reality:</strong> Hard work, disease, most went home broke</p>
+                        <p><strong>Impact:</strong> Created mining laws and communities</p>
+                    </div>
+                    
+                    <div class="perspective-card chinese auto-reveal">
+                        <h3>🇨🇳 Chinese Immigrants</h3>
+                        <p><strong>Called it:</strong> "Gam Saan" (Gold Mountain)</p>
+                        <p><strong>Experience:</strong> Heavy discrimination, foreign miners tax</p>
+                        <p><strong>Response:</strong> Started businesses, sent money to families</p>
+                    </div>
+                </div>
+
+                <div class="perspective-grid">
+                    <div class="perspective-card californio auto-reveal">
+                        <h3>🇲🇽 Californios (Mexican Landowners)</h3>
+                        <p><strong>First reaction:</strong> Sold cattle to miners, got rich</p>
+                        <p><strong>Then:</strong> Lost land to squatters and legal battles</p>
+                        <p><strong>Result:</strong> Became poor in their own land</p>
+                    </div>
+                    
+                    <div class="perspective-card native auto-reveal">
+                        <h3>🏹 Native Americans</h3>
+                        <p><strong>Before 1848:</strong> 150,000 Native people in California</p>
+                        <p><strong>By 1870:</strong> Only 30,000 survivors</p>
+                        <p><strong>Cause:</strong> Violence, disease, starvation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Women in the Gold Rush -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>Women Found New Opportunities</h1>
+                
+                <div class="simple-grid">
+                    <div class="content-section auto-reveal">
+                        <h3>👩‍💼 Economic Freedom</h3>
+                        <p><strong>Only 8% of population</strong> - but huge impact!</p>
+                        <p>Sarah Royce: neighbors earned <strong>$100/month</strong> cooking for miners</p>
+                        <p>That's more than most men made back East!</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>⚖️ Legal Rights</h3>
+                        <p>California's 1850 constitution gave married women <strong>property rights</strong></p>
+                        <p>This was impossible in Eastern states!</p>
+                        <p>Women could own businesses, make contracts</p>
+                    </div>
+                </div>
+
+                <div class="primary-source auto-reveal">
+                    I have made about $18,000 worth of pies - about one third of this has been clear profit. One year I dragged my own wood off the mountain and chopped it, and I have never had so much as a child to take a step for me in this country.
+                    <div class="source-info">— Luzena Stanley Wilson, entrepreneur, 1849</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: The Political Crisis Begins -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>Remember Jefferson's Warning?</h1>
+                <h2>The "Fire Bell in the Night" Comes True</h2>
+                
+                <div class="connection-box auto-reveal">
+                    <h4>🔥 The Missouri Compromise Problem</h4>
+                    <p>In 1820, Jefferson warned that the Missouri Compromise was just temporary. The Gold Rush proved him right!</p>
+                </div>
+
+                <div class="chain-container">
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">1</div>
+                        <h3>Missouri Compromise Balance</h3>
+                        <p>15 free states vs. 15 slave states in the Senate</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">2</div>
+                        <h3>California Applies for Statehood</h3>
+                        <p>300,000 people = enough for statehood in 1850</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">3</div>
+                        <h3>California Chooses "FREE STATE"</h3>
+                        <p>Not from morality - white miners didn't want slave competition!</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">4</div>
+                        <h3>CRISIS!</h3>
+                        <p>16 free vs. 15 slave states = Southern power broken!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: The Environmental Disaster -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>The Environmental Cost</h1>
+                <h2>Gold Fever Destroys the Land</h2>
+                
+                <div class="simple-grid">
+                    <div class="content-section auto-reveal">
+                        <h3>💧 Hydraulic Mining</h3>
+                        <p>High-pressure water jets blast away entire hillsides</p>
+                        <p>Millions of tons of debris fill rivers</p>
+                        <p>Sacramento Valley flooding for decades</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>☠️ Mercury Poisoning</h3>
+                        <p>Mercury used to separate gold from rock</p>
+                        <p>Poisoned rivers, fish, and people</p>
+                        <p>Effects still felt today!</p>
+                    </div>
+                </div>
+
+                <div class="stats-box auto-reveal">
+                    <div class="big-stat">1.5 Billion</div>
+                    <p>Tons of earth moved during Gold Rush</p>
+                </div>
+
+                <div class="connection-box auto-reveal">
+                    <h4>🌍 Modern Connection</h4>
+                    <p>How does this compare to modern environmental debates about resource extraction?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Primary Source - Chinese Perspective -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>Voices of Discrimination</h1>
+                
+                <div class="primary-source auto-reveal">
+                    Your honorable people have established a new government. We are told that your government is one of benevolence, and that the people are all treated with justice and humanity... Why then do you pass laws to oppress Chinese people?
+                    <div class="source-info">— Chinese leaders to Governor Bigler, 1852</div>
+                </div>
+
+                <div class="content-section auto-reveal">
+                    <h3>📜 The Foreign Miners Tax</h3>
+                    <p>1850: $20 per month for non-citizens (later $4)</p>
+                    <p>That's more than most miners made!</p>
+                    <p>1854: People v. Hall - Chinese couldn't testify in court</p>
+                    <p>Made them easy targets for violence and theft</p>
+                </div>
+
+                <div class="question-highlight auto-reveal">
+                    How did discrimination affect different groups' Gold Rush experiences?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: The Rush to Statehood -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>California Skips Territorial Status</h1>
+                <h2>Straight to Statehood!</h2>
+                
+                <div class="timeline auto-reveal">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">Sept 1849</div>
+                            <h3>Constitutional Convention</h3>
+                            <p>Californians write their own constitution - without waiting for Congress!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">Oct 1849</div>
+                            <h3>Slavery Vote: UNANIMOUS</h3>
+                            <p>All delegates vote to prohibit slavery</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">Dec 1849</div>
+                            <h3>Application to Congress</h3>
+                            <p>California asks to enter as a FREE state</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="connection-box auto-reveal">
+                    <h4>🤔 Why No Slavery?</h4>
+                    <p>Not moral opposition - economic competition! White miners feared slave labor would drive down wages.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Success Stories and Failures -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>Did People Actually Get Rich?</h1>
+                
+                <div class="three-column">
+                    <div class="content-section auto-reveal">
+                        <h3>💰 The Lucky Few</h3>
+                        <p>About 1 in 20 miners got rich</p>
+                        <p>Early arrivals found most gold</p>
+                        <p>Some found $1,000+ nuggets!</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>📈 The Real Winners</h3>
+                        <p>Merchants selling supplies</p>
+                        <p>Levi Strauss (blue jeans)</p>
+                        <p>Hotels, restaurants, saloons</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>💸 Most Forty-Niners</h3>
+                        <p>Spent more than they found</p>
+                        <p>Equipment cost $500+</p>
+                        <p>Food prices: $1/egg, $100/barrel flour</p>
+                    </div>
+                </div>
+
+                <div class="primary-source auto-reveal">
+                    The stories you have heard about the gold mines are greatly exaggerated... it will cost a man $300 to get here and will cost him $2.50 per day to live after he gets here.
+                    <div class="source-info">— Sheldon Shufelt, letter home, 1850</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: The Congressional Crisis -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>Congress Faces the Crisis</h1>
+                <h2>The Missouri Compromise Is Dead</h2>
+                
+                <div class="simple-grid">
+                    <div class="content-section auto-reveal">
+                        <h3>😠 Southern Reaction</h3>
+                        <p>"California admission breaks our agreement!"</p>
+                        <p>Some threaten secession already</p>
+                        <p>Senate balance = everything in 1850</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>😤 Northern Response</h3>
+                        <p>"California has the right to choose!"</p>
+                        <p>Population justifies statehood</p>
+                        <p>Free soil movement growing</p>
+                    </div>
+                </div>
+
+                <div class="question-highlight auto-reveal">
+                    <strong>Coming Next:</strong> Can Henry Clay's "Great Compromiser" save the Union one more time?
+                </div>
+
+                <div class="connection-box auto-reveal">
+                    <h4>🔗 Setting Up the Compromise of 1850</h4>
+                    <p>The Gold Rush created the crisis. Next lesson: How did Congress try to solve it?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Long-term Impact -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>The Gold Rush Changed Everything</h1>
+                
+                <div class="three-column">
+                    <div class="content-section auto-reveal">
+                        <h3>🌎 Nationally</h3>
+                        <p>Broke Missouri Compromise</p>
+                        <p>Forced slavery debate nationwide</p>
+                        <p>Connected East and West economically</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>🏔️ In California</h3>
+                        <p>Created diverse, multicultural society</p>
+                        <p>Environmental destruction</p>
+                        <p>Established California as economic power</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>👥 For People</h3>
+                        <p>New opportunities for women</p>
+                        <p>Devastating for Native Americans</p>
+                        <p>Pattern of Western discrimination</p>
+                    </div>
+                </div>
+
+                <div class="stats-box auto-reveal">
+                    <div class="big-stat">$2 Billion</div>
+                    <p>Worth of gold extracted (in today's money: $70+ billion)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Connecting the Dots -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>Connecting the Dots</h1>
+                <h2>From Gold Rush to Civil War</h2>
+                
+                <div class="chain-container">
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">1</div>
+                        <h3>Mexican-American War (1846-1848)</h3>
+                        <p>America gains California territory</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">2</div>
+                        <h3>Gold Discovery (1848)</h3>
+                        <p>Massive migration to California</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">3</div>
+                        <h3>Statehood Crisis (1849-1850)</h3>
+                        <p>California wants to enter as free state</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">4</div>
+                        <h3>Compromise of 1850</h3>
+                        <p>Temporary solution to the crisis</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">5</div>
+                        <h3>Road to Civil War</h3>
+                        <p>Tensions continue to build...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Final Reflection -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>Our Answer</h1>
+                
+                <div class="question-highlight auto-reveal">
+                    <strong>How did the California Gold Rush change the West and the nation?</strong>
+                </div>
+
+                <div class="simple-grid">
+                    <div class="content-section auto-reveal">
+                        <h3>💫 The West</h3>
+                        <p>Created California as multicultural society</p>
+                        <p>Established patterns of discrimination</p>
+                        <p>Devastated Native populations</p>
+                        <p>Damaged environment for generations</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>🇺🇸 The Nation</h3>
+                        <p>Broke the Missouri Compromise</p>
+                        <p>Forced immediate crisis over slavery</p>
+                        <p>Showed economic decisions have political consequences</p>
+                        <p>Set up conflicts leading to Civil War</p>
+                    </div>
+                </div>
+
+                <div class="connection-box auto-reveal">
+                    <h4>🔮 Next Time</h4>
+                    <p>Can the Compromise of 1850 hold the nation together? Or is it too late to avoid the "irrepressible conflict"?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentRevealIndex = 0;
+        let allRevealed = false;
+        const totalSlides = 15;
+
+        // Image content for each slide
+        const slideImages = {
+            0: { title: "Gold Rush Overview", content: "<p>Images of forty-niners panning for gold, diverse miners working together</p>" },
+            1: { title: "Sutter's Mill", content: "<p>Historical photo of Sutter's Mill where gold was discovered</p>" },
+            2: { title: "Migration Numbers", content: "<p>Charts showing population explosion in California</p>" },
+            3: { title: "Forty-Niner Letter", content: "<p>Original handwritten letters from gold miners</p>" },
+            4: { title: "Diverse Perspectives", content: "<p>Photos of Chinese miners, Californio families, Native Americans</p>" },
+            5: { title: "Women in Gold Rush", content: "<p>Photos of women entrepreneurs, Sarah Royce, mining camp scenes</p>" },
+            6: { title: "Political Crisis", content: "<p>Map showing free vs slave states balance</p>" },
+            7: { title: "Environmental Impact", content: "<p>Photos of hydraulic mining damage, before/after landscapes</p>" },
+            8: { title: "Chinese Experience", content: "<p>Photos of Chinese miners, discriminatory signs, community photos</p>" },
+            9: { title: "California Constitution", content: "<p>Documents from 1849 Constitutional Convention</p>" },
+            10: { title: "Success and Failure", content: "<p>Photos of successful merchants vs. failed miners</p>" },
+            11: { title: "Congressional Debate", content: "<p>Images of Henry Clay, Congressional debates</p>" },
+            12: { title: "Long-term Impact", content: "<p>Modern California, environmental damage photos</p>" },
+            13: { title: "Connecting Events", content: "<p>Timeline images from Mexican War to Civil War</p>" },
+            14: { title: "Final Reflection", content: "<p>Summary images showing transformation of California and nation</p>" }
+        };
+
+        function updateSlideCounter() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function updateImagePanel() {
+            const imageContent = document.getElementById('imageContent');
+            const slideImage = slideImages[currentSlide];
+            if (slideImage) {
+                imageContent.innerHTML = `<h4>${slideImage.title}</h4>${slideImage.content}`;
+            } else {
+                imageContent.innerHTML = '<p>No image for this slide</p>';
+            }
+        }
+
+        function updateRevealStatus() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            const status = document.getElementById('revealStatus');
+            
+            if (autoRevealElements.length === 0) {
+                status.textContent = 'No items to reveal';
+                status.style.opacity = '0.5';
+            } else {
+                status.textContent = `Items: ${currentRevealIndex}/${autoRevealElements.length}`;
+                status.style.opacity = '1';
+            }
+        }
+
+        function updateProgressIndicator() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            const progressIndicator = document.getElementById('progressIndicator');
+            
+            // Clear existing dots
+            progressIndicator.innerHTML = '';
+            
+            // Only add dots if there are elements to reveal
+            if (autoRevealElements.length > 0) {
+                autoRevealElements.forEach((element, index) => {
+                    const dot = document.createElement('div');
+                    dot.className = 'progress-dot';
+                    if (index < currentRevealIndex) {
+                        dot.classList.add('revealed');
+                    } else if (index === currentRevealIndex && !allRevealed) {
+                        dot.classList.add('active');
+                    }
+                    progressIndicator.appendChild(dot);
+                });
+            }
+        }
+
+        function toggleImagePanel() {
+            const panel = document.getElementById('imagePanel');
+            panel.classList.toggle('visible');
+        }
+
+        function toggleHelp() {
+            const help = document.getElementById('keyboardHelp');
+            help.classList.toggle('visible');
+        }
+
+        function showSlide(index) {
+            // Hide all slides
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.classList.add('hidden'));
+            
+            // Show current slide
+            slides[index].classList.remove('hidden');
+            
+            // Reset reveal state for new slide
+            currentRevealIndex = 0;
+            allRevealed = false;
+            
+            // Check if this slide has auto-reveal elements
+            const autoRevealElements = slides[index].querySelectorAll('.auto-reveal');
+            if (autoRevealElements.length === 0) {
+                allRevealed = true; // No elements to reveal
+            }
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === totalSlides - 1;
+            
+            // Reset reveal button
+            const revealBtn = document.getElementById('revealBtn');
+            if (autoRevealElements.length === 0) {
+                revealBtn.textContent = 'No Items';
+                revealBtn.disabled = true;
+            } else {
+                revealBtn.textContent = 'Reveal All';
+                revealBtn.disabled = false;
+                revealBtn.classList.remove('active');
+            }
+            
+            // Hide all auto-reveal elements on new slide
+            autoRevealElements.forEach(element => {
+                element.classList.remove('revealed');
+            });
+            
+            updateSlideCounter();
+            updateImagePanel();
+            updateProgressIndicator();
+            updateRevealStatus();
+            
+            // Scroll to top of slide content
+            const slideContent = slides[index].querySelector('.slide-content');
+            if (slideContent) {
+                slideContent.scrollTop = 0;
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        function revealNext() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (currentRevealIndex < autoRevealElements.length) {
+                autoRevealElements[currentRevealIndex].classList.add('revealed');
+                currentRevealIndex++;
+                updateProgressIndicator();
+            }
+            
+            if (currentRevealIndex >= autoRevealElements.length) {
+                allRevealed = true;
+                document.getElementById('revealBtn').textContent = 'Hide All';
+                document.getElementById('revealBtn').classList.add('active');
+            }
+        }
+
+        function revealPrevious() {
+            if (currentRevealIndex > 0) {
+                const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+                const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+                
+                currentRevealIndex--;
+                autoRevealElements[currentRevealIndex].classList.remove('revealed');
+                allRevealed = false;
+                
+                document.getElementById('revealBtn').textContent = 'Reveal All';
+                document.getElementById('revealBtn').classList.remove('active');
+                updateProgressIndicator();
+            }
+        }
+
+        function toggleRevealAll() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            const revealBtn = document.getElementById('revealBtn');
+            
+            if (autoRevealElements.length === 0) return; // No elements to reveal
+            
+            if (!allRevealed) {
+                // Reveal all with staggered animation
+                autoRevealElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('revealed');
+                    }, index * 150);
+                });
+                currentRevealIndex = autoRevealElements.length;
+                allRevealed = true;
+                revealBtn.textContent = 'Hide All';
+                revealBtn.classList.add('active');
+                
+                // Update progress indicator after animation completes
+                setTimeout(() => {
+                    updateProgressIndicator();
+                    updateRevealStatus();
+                }, autoRevealElements.length * 150);
+            } else {
+                // Hide all
+                autoRevealElements.forEach(element => {
+                    element.classList.remove('revealed');
+                });
+                currentRevealIndex = 0;
+                allRevealed = false;
+                revealBtn.textContent = 'Reveal All';
+                revealBtn.classList.remove('active');
+                updateProgressIndicator();
+                updateRevealStatus();
+            }
+        }
+
+        // Enhanced keyboard controls with proper progressive disclosure
+        document.addEventListener('keydown', function(event) {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            // Add visual feedback for key presses
+            const activeBtn = document.querySelector('.nav-btn.active');
+            if (activeBtn) {
+                activeBtn.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    activeBtn.style.transform = '';
+                }, 100);
+            }
+
+            switch(event.key.toLowerCase()) {
+                case 'arrowright':
+                    event.preventDefault();
+                    // If slide has no auto-reveal elements, go directly to next slide
+                    if (autoRevealElements.length === 0) {
+                        if (currentSlide < totalSlides - 1) {
+                            nextSlide();
+                        }
+                    }
+                    // If slide has elements, reveal next element first
+                    else if (currentRevealIndex < autoRevealElements.length) {
+                        revealNext();
+                    } 
+                    // Only go to next slide if all elements are revealed
+                    else if (allRevealed && currentSlide < totalSlides - 1) {
+                        nextSlide();
+                    }
+                    break;
+                case 'arrowleft':
+                    event.preventDefault();
+                    // If slide has no auto-reveal elements, go directly to previous slide
+                    if (autoRevealElements.length === 0) {
+                        if (currentSlide > 0) {
+                            previousSlide();
+                        }
+                    }
+                    // If slide has elements, hide previous element first  
+                    else if (currentRevealIndex > 0) {
+                        revealPrevious();
+                    }
+                    // Only go to previous slide if no elements are revealed
+                    else if (currentRevealIndex === 0 && currentSlide > 0) {
+                        previousSlide();
+                    }
+                    break;
+                case ',':
+                    event.preventDefault();
+                    previousSlide();
+                    break;
+                case '.':
+                    event.preventDefault();
+                    nextSlide();
+                    break;
+                case 'enter':
+                    event.preventDefault();
+                    if (autoRevealElements.length > 0) {
+                        toggleRevealAll();
+                    }
+                    break;
+                case 'h':
+                    event.preventDefault();
+                    toggleHelp();
+                    break;
+                case 'escape':
+                    event.preventDefault();
+                    // Hide help and image panel
+                    document.getElementById('keyboardHelp').classList.remove('visible');
+                    document.getElementById('imagePanel').classList.remove('visible');
+                    break;
+            }
+        });
+
+        // Initialize presentation
+        function initializePresentation() {
+            showSlide(0);
+            
+            // Show help briefly on load
+            setTimeout(() => {
+                toggleHelp();
+                setTimeout(() => {
+                    toggleHelp();
+                }, 3000);
+            }, 1000);
+        }
+
+        initializePresentation();
+    </script>
+</body>
+</html>
