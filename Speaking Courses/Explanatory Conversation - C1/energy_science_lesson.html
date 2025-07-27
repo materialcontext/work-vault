@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Changes in Chemical Reactions - Science Content</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            overflow: hidden;
+            cursor: default;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 95%;
+            height: 90%;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: block;
+            animation: fadeInSlide 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #ffd700;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #87ceeb;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+        }
+
+        .content-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.3);
+            border-color: rgba(255, 215, 0, 0.6);
+        }
+
+        .molecular-diagram {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.3rem;
+            text-align: center;
+            border: 2px solid #ffd700;
+        }
+
+        .energy-profile {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            border-left: 5px solid #87ceeb;
+        }
+
+        .progressive-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .progressive-list li {
+            margin: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.2rem;
+            line-height: 1.4;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .progressive-list li::before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+            font-size: 1.4rem;
+        }
+
+        .progressive-list li.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .central-concept {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 12px 40px rgba(255, 107, 107, 0.3);
+        }
+
+        .bond-energy-box {
+            background: rgba(255, 255, 255, 0.12);
+            border: 3px solid #87ceeb;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .energy-indicator {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .energy-in {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+        }
+
+        .energy-out {
+            background: linear-gradient(135deg, #ff6b6b, #e84393);
+            color: white;
+        }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .example-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .exothermic-example {
+            border-color: #ff6b6b;
+        }
+
+        .endothermic-example {
+            border-color: #74b9ff;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 215, 0, 0.9);
+            border: none;
+            color: #333;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            width: 50px;
+            height: 50px;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 1);
+            transform: scale(1.1);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255, 215, 0, 0.9);
+            color: #333;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .image-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 10rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .image-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .hidden-image {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 60%;
+            max-height: 60%;
+            z-index: 1001;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .real-world-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .real-world-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .real-world-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffd700;
+        }
+
+        .calculation-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid #87ceeb;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="slide-indicator" id="slideIndicator">1 / 10</div>
+        <div class="image-toggle" id="imageToggle">📷 View Image</div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <h1>⚡ Energy Changes in Chemical Reactions</h1>
+            <div class="central-concept auto-reveal">
+                <h3>The Science Behind Energy Flow</h3>
+                <p style="font-size: 1.4rem; margin-top: 1rem;">Understanding how energy moves during chemical reactions at the molecular level</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🎯 Learning Objectives</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Understand bond energy at the molecular level</li>
+                        <li class="auto-reveal">Explain energy changes using particle theory</li>
+                        <li class="auto-reveal">Analyze real-world reaction examples</li>
+                        <li class="auto-reveal">Connect energy flow to observable changes</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🔬 Key Concepts</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Bond breaking and formation energy</li>
+                        <li class="auto-reveal">Activation energy barriers</li>
+                        <li class="auto-reveal">Energy conservation in reactions</li>
+                        <li class="auto-reveal">Molecular-level explanations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Energy and Chemical Bonds -->
+        <div class="slide">
+            <h2>🔗 Chemical Bonds and Energy</h2>
+            <div class="central-concept auto-reveal">
+                <h3>The Fundamental Energy Rules</h3>
+                <p>All chemical reactions follow two universal energy principles</p>
+            </div>
+            <div class="content-grid">
+                <div class="bond-energy-box auto-reveal">
+                    <h3>⚡ Rule 1: Breaking Bonds</h3>
+                    <div class="energy-indicator energy-in">REQUIRES ENERGY INPUT</div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Bonds are attractive forces between atoms</li>
+                        <li class="auto-reveal">Energy must overcome these attractions</li>
+                        <li class="auto-reveal">Think: pulling apart magnets requires work</li>
+                        <li class="auto-reveal">Always an endothermic process</li>
+                    </ul>
+                    <div class="molecular-diagram auto-reveal">
+                        A—B + Energy → A + B
+                    </div>
+                </div>
+                <div class="bond-energy-box auto-reveal">
+                    <h3>⚡ Rule 2: Forming Bonds</h3>
+                    <div class="energy-indicator energy-out">RELEASES ENERGY</div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Atoms form bonds to become more stable</li>
+                        <li class="auto-reveal">Energy is released as bonds form</li>
+                        <li class="auto-reveal">Think: magnets snapping together</li>
+                        <li class="auto-reveal">Always an exothermic process</li>
+                    </ul>
+                    <div class="molecular-diagram auto-reveal">
+                        A + B → A—B + Energy
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Exothermic Reactions -->
+        <div class="slide">
+            <h2>🔥 Exothermic Reactions: More Energy Out</h2>
+            <div class="central-concept auto-reveal">
+                <h3>When Bond Formation Wins</h3>
+                <p>Energy released from new bonds > Energy needed to break old bonds</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🧪 Example: Combustion of Methane</h3>
+                    <div class="molecular-diagram">
+                        CH₄ + 2O₂ → CO₂ + 2H₂O + ENERGY
+                    </div>
+                    <div class="calculation-box auto-reveal">
+                        <strong>Energy Analysis:</strong><br>
+                        Bonds Broken: 4 C-H + 2 O=O = 2648 kJ<br>
+                        Bonds Formed: 2 C=O + 4 O-H = 3470 kJ<br>
+                        <strong>Net Energy Released: 822 kJ/mol</strong>
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Strong C=O and O-H bonds form</li>
+                        <li class="auto-reveal">Much more energy released than used</li>
+                        <li class="auto-reveal">Excess energy appears as heat and light</li>
+                    </ul>
+                </div>
+                <div class="energy-profile auto-reveal">
+                    <h3>📊 Energy Profile</h3>
+                    <div class="molecular-diagram">
+                        Energy ↑<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Reactants<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↘<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Products<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|_________________→<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reaction Progress
+                    </div>
+                    <p style="margin-top: 1rem; color: #ff6b6b; font-weight: bold;">Products have LOWER energy than reactants</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Endothermic Reactions -->
+        <div class="slide">
+            <h2>❄️ Endothermic Reactions: More Energy In</h2>
+            <div class="central-concept auto-reveal">
+                <h3>When Bond Breaking Wins</h3>
+                <p>Energy needed to break old bonds > Energy released from new bonds</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🧪 Example: Thermal Decomposition</h3>
+                    <div class="molecular-diagram">
+                        CaCO₃ + ENERGY → CaO + CO₂
+                    </div>
+                    <div class="calculation-box auto-reveal">
+                        <strong>Energy Analysis:</strong><br>
+                        Bonds Broken: Ca-O + C=O = 1420 kJ<br>
+                        Bonds Formed: Ca-O (new) = 1240 kJ<br>
+                        <strong>Net Energy Required: 180 kJ/mol</strong>
+                    </div>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Strong ionic bonds must be broken</li>
+                        <li class="auto-reveal">New bonds are weaker than original</li>
+                        <li class="auto-reveal">Energy must be continuously supplied</li>
+                    </ul>
+                </div>
+                <div class="energy-profile auto-reveal">
+                    <h3>📊 Energy Profile</h3>
+                    <div class="molecular-diagram">
+                        Energy ↑<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Products<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↗<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Reactants<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|_________________→<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reaction Progress
+                    </div>
+                    <p style="margin-top: 1rem; color: #74b9ff; font-weight: bold;">Products have HIGHER energy than reactants</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Activation Energy -->
+        <div class="slide">
+            <h2>🏔️ Activation Energy: The Energy Barrier</h2>
+            <div class="central-concept auto-reveal">
+                <h3>Why Reactions Need a "Push" to Start</h3>
+                <p>Even exothermic reactions need initial energy input</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🔥 Why Paper Doesn't Spontaneously Burn</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Combustion is highly exothermic</li>
+                        <li class="auto-reveal">But it needs activation energy to start</li>
+                        <li class="auto-reveal">Match provides the initial energy</li>
+                        <li class="auto-reveal">Once started, reaction sustains itself</li>
+                    </ul>
+                    <div class="energy-profile auto-reveal">
+                        <h3>📊 Complete Energy Profile</h3>
+                        <div class="molecular-diagram">
+                            Energy ↑<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⛰️ Activation<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Reactants&nbsp;&nbsp;&nbsp;Energy<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↘<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Products<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;|_________________→<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reaction Progress
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🧪 Molecular Explanation</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Molecules must collide with enough energy</li>
+                        <li class="auto-reveal">Bonds partially break in transition state</li>
+                        <li class="auto-reveal">Requires precise molecular orientations</li>
+                        <li class="auto-reveal">Temperature increases molecular motion</li>
+                    </ul>
+                    <div class="molecular-diagram auto-reveal">
+                        <strong>Collision Theory:</strong><br>
+                        Effective Collision = Right Energy + Right Orientation
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Real-World Applications -->
+        <div class="slide">
+            <h2>🌍 Energy Changes in Your World</h2>
+            <div class="real-world-grid">
+                <div class="real-world-card exothermic-example auto-reveal">
+                    <h3>🔥 Exothermic Examples</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Cellular Respiration:</strong> Glucose + O₂ → Energy for life</li>
+                        <li class="auto-reveal"><strong>Hand Warmers:</strong> Iron oxidation releases heat</li>
+                        <li class="auto-reveal"><strong>Car Engines:</strong> Gasoline combustion powers motion</li>
+                        <li class="auto-reveal"><strong>Batteries:</strong> Chemical energy → electrical energy</li>
+                    </ul>
+                </div>
+                <div class="real-world-card endothermic-example auto-reveal">
+                    <h3>❄️ Endothermic Examples</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Photosynthesis:</strong> Light energy stores glucose</li>
+                        <li class="auto-reveal"><strong>Cold Packs:</strong> Ammonium nitrate dissolution</li>
+                        <li class="auto-reveal"><strong>Cooking:</strong> Heat breaks down proteins</li>
+                        <li class="auto-reveal"><strong>Thermal Decomposition:</strong> Limestone → Lime</li>
+                    </ul>
+                </div>
+                <div class="real-world-card auto-reveal">
+                    <h3>🏠 Everyday Examples</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Exo:</strong> Baking soda + vinegar</li>
+                        <li class="auto-reveal"><strong>Endo:</strong> Evaporating sweat cools you</li>
+                        <li class="auto-reveal"><strong>Exo:</strong> Concrete setting releases heat</li>
+                        <li class="auto-reveal"><strong>Endo:</strong> Ice melting absorbs energy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Energy Conservation -->
+        <div class="slide">
+            <h2>⚖️ Energy Conservation in Reactions</h2>
+            <div class="central-concept auto-reveal">
+                <h3>Energy Cannot Be Created or Destroyed</h3>
+                <p>It only changes form during chemical reactions</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🔄 Energy Transformations</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Chemical → Heat:</strong> Combustion reactions</li>
+                        <li class="auto-reveal"><strong>Chemical → Light:</strong> Chemiluminescence</li>
+                        <li class="auto-reveal"><strong>Chemical → Electrical:</strong> Batteries</li>
+                        <li class="auto-reveal"><strong>Light → Chemical:</strong> Photosynthesis</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>📊 Energy Accounting</h3>
+                    <div class="calculation-box">
+                        <strong>For ANY reaction:</strong><br>
+                        Energy In = Energy Out<br><br>
+                        <strong>Exothermic:</strong><br>
+                        Chemical Energy → Heat + Light + Products<br><br>
+                        <strong>Endothermic:</strong><br>
+                        Heat + Reactants → Products + Stored Energy
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Catalysts and Energy -->
+        <div class="slide">
+            <h2>⚡ Catalysts: Energy Shortcuts</h2>
+            <div class="central-concept auto-reveal">
+                <h3>Making Reactions Faster Without Changing Energy</h3>
+                <p>Catalysts lower activation energy but don't change overall energy change</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🧪 How Catalysts Work</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Provide alternative reaction pathway</li>
+                        <li class="auto-reveal">Lower activation energy barrier</li>
+                        <li class="auto-reveal">Speed up forward AND reverse reactions</li>
+                        <li class="auto-reveal">Regenerated unchanged after reaction</li>
+                    </ul>
+                </div>
+                <div class="energy-profile auto-reveal">
+                    <h3>📊 Catalyst Energy Profile</h3>
+                    <div class="molecular-diagram">
+                        Energy ↑<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⛰️ Without catalyst<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;🏔️ With catalyst<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↘<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;|_________________→<br>
+                        Same overall energy change!
+                    </div>
+                </div>
+            </div>
+            <div class="example-grid auto-reveal">
+                <div class="example-card">
+                    <h3>🧬 Biological Catalysts</h3>
+                    <p><strong>Enzymes</strong> speed up reactions in living things by factors of millions!</p>
+                </div>
+                <div class="example-card">
+                    <h3>🏭 Industrial Catalysts</h3>
+                    <p><strong>Platinum</strong> in car catalytic converters breaks down pollutants</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Temperature and Reaction Rates -->
+        <div class="slide">
+            <h2>🌡️ Temperature Effects on Energy</h2>
+            <div class="central-concept auto-reveal">
+                <h3>Why Hot Things React Faster</h3>
+                <p>Temperature affects molecular motion and collision frequency</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🔥 Higher Temperature Effects</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Molecules move faster</li>
+                        <li class="auto-reveal">More frequent collisions</li>
+                        <li class="auto-reveal">More collisions exceed activation energy</li>
+                        <li class="auto-reveal">Reaction rate increases exponentially</li>
+                    </ul>
+                    <div class="molecular-diagram auto-reveal">
+                        <strong>Rule of Thumb:</strong><br>
+                        +10°C → Double reaction rate
+                    </div>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>❄️ Lower Temperature Effects</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Molecules move slower</li>
+                        <li class="auto-reveal">Fewer effective collisions</li>
+                        <li class="auto-reveal">Preserving food by cooling</li>
+                        <li class="auto-reveal">Chemical storage requires cool conditions</li>
+                    </ul>
+                    <div class="molecular-diagram auto-reveal">
+                        <strong>Why refrigeration works:</strong><br>
+                        Slows decomposition reactions
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Summary and Key Insights -->
+        <div class="slide">
+            <h2>🎯 Key Scientific Insights</h2>
+            <div class="central-concept auto-reveal">
+                <h3>Understanding Energy in Chemical Reactions</h3>
+                <p>The molecular foundation of chemistry</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🔗 Bond Energy Principles</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Breaking bonds always requires energy</li>
+                        <li class="auto-reveal">Forming bonds always releases energy</li>
+                        <li class="auto-reveal">Net energy change determines reaction type</li>
+                        <li class="auto-reveal">Activation energy explains reaction rates</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🌟 Real-World Applications</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Energy storage in fuels and batteries</li>
+                        <li class="auto-reveal">Life processes depend on energy changes</li>
+                        <li class="auto-reveal">Industrial processes use catalysts</li>
+                        <li class="auto-reveal">Temperature controls reaction speed</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="central-concept auto-reveal">
+                <h3>🧠 Scientific Thinking</h3>
+                <p style="font-size: 1.3rem;">Understanding energy changes helps us predict reaction behavior, design better processes, and explain natural phenomena from molecular to biological levels.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn">←</button>
+        <button class="nav-btn" id="nextBtn">→</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+
+        function updateSlideIndicator() {
+            document.getElementById('slideIndicator').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            updateSlideIndicator();
+            revealIndex = 0;
+            
+            // Auto-reveal first few elements
+            setTimeout(() => {
+                const autoRevealElements = slides[currentSlide].querySelectorAll('.auto-reveal');
+                autoRevealElements.forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.add('show');
+                    }, index * 300);
+                });
+            }, 100);
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function revealNext() {
+            const currentSlideElement = slides[currentSlide];
+            const revealElements = currentSlideElement.querySelectorAll('.progressive-list li');
+            
+            if (revealIndex < revealElements.length) {
+                revealElements[revealIndex].classList.add('show');
+                revealIndex++;
+            } else {
+                nextSlide();
+            }
+        }
+
+        function revealPrev() {
+            if (revealIndex > 0) {
+                const currentSlideElement = slides[currentSlide];
+                const revealElements = currentSlideElement.querySelectorAll('.progressive-list li');
+                revealIndex--;
+                revealElements[revealIndex].classList.remove('show');
+            } else {
+                prevSlide();
+            }
+        }
+
+        // Event listeners
+        document.getElementById('nextBtn').addEventListener('click', nextSlide);
+        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                    revealNext();
+                    break;
+                case 'ArrowLeft':
+                    revealPrev();
+                    break;
+                case ',':
+                    prevSlide();
+                    break;
+                case '.':
+                    nextSlide();
+                    break;
+                case 'Enter':
+                    // Reveal all content on current slide
+                    const currentSlideElement = slides[currentSlide];
+                    const allRevealElements = currentSlideElement.querySelectorAll('.auto-reveal, .progressive-list li');
+                    allRevealElements.forEach(el => el.classList.add('show'));
+                    revealIndex = currentSlideElement.querySelectorAll('.progressive-list li').length;
+                    break;
+            }
+        });
+
+        // Image toggle functionality
+        document.getElementById('imageToggle').addEventListener('click', () => {
+            // This would toggle associated images for each slide
+            alert('Image functionality would show relevant molecular diagrams, reaction photos, or energy graphs for this slide.');
+        });
+
+        // Initialize first slide
+        showSlide(0);
+    </script>
+</body>
+</html>

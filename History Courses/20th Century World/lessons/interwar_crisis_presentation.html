@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Global Interwar Crisis: Democracy, Depression, and the Road to War (1918-1939)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #3B4A5C 100%);
+            color: #2C2C2C;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            width: 95%;
+            height: 90%;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FEFEFE 100%);
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+            border: 3px solid #C0392B;
+            position: relative;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: linear-gradient(135deg, #C0392B, #8B0000);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(192, 57, 43, 0.4);
+        }
+
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, #C0392B, #8B0000);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(192, 57, 43, 0.3);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(192, 57, 43, 0.4);
+        }
+
+        .crisis-tab {
+            position: fixed;
+            top: 30px;
+            right: 80px;
+            background: linear-gradient(135deg, #C0392B, #8B0000);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .image-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+        }
+
+        .image-content {
+            max-width: 80%;
+            max-height: 80%;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-align: center;
+            background: linear-gradient(135deg, #C0392B 0%, #8B0000 50%, #2C3E50 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #C0392B;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #C0392B, #8B0000);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 650;
+            color: #8B0000;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            font-size: 1.6rem;
+            color: #696969;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .central-question {
+            background: linear-gradient(135deg, #FFF5F5 0%, #FFEBEB 100%);
+            border: 3px solid #C0392B;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            font-size: 1.5rem;
+            color: #8B0000;
+            font-weight: 600;
+            font-style: italic;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(192, 57, 43, 0.2);
+        }
+
+        .central-question::before {
+            content: '⚡';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: #FFF5F5;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+        }
+
+        .crisis-moment {
+            background: linear-gradient(135deg, #E74C3C, #C0392B);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .crisis-moment::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .crisis-moment:hover::before {
+            left: 100%;
+        }
+
+        .crisis-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .crisis-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #C0392B, #8B0000);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(192, 57, 43, 0.3);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.6s ease;
+        }
+
+        .stat-card:hover::before {
+            transform: scale(1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            display: block;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-side {
+            background: linear-gradient(135deg, #F8F6F3 0%, #FFFFFF 100%);
+            border-radius: 15px;
+            padding: 2.5rem;
+            border: 3px solid #E5E5E5;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .comparison-side.prosperity {
+            border-left: 8px solid #27AE60;
+            transform: translateX(-5px);
+        }
+
+        .comparison-side.crisis {
+            border-left: 8px solid #C0392B;
+            transform: translateX(5px);
+        }
+
+        .comparison-side.democracy {
+            border-left: 8px solid #3498DB;
+        }
+
+        .comparison-side.authoritarianism {
+            border-left: 8px solid #8B0000;
+        }
+
+        .comparison-side:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .comparison-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .prosperity .comparison-title {
+            color: #27AE60;
+        }
+
+        .crisis .comparison-title {
+            color: #C0392B;
+        }
+
+        .democracy .comparison-title {
+            color: #3498DB;
+        }
+
+        .authoritarianism .comparison-title {
+            color: #8B0000;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 3rem 0;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: linear-gradient(180deg, #C0392B, #8B0000, #2C3E50);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            background: #FFFFFF;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 6px solid #C0392B;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(192, 57, 43, 0.2);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 2rem;
+            width: 18px;
+            height: 18px;
+            background: #C0392B;
+            border-radius: 50%;
+            border: 4px solid #FFFFFF;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: #C0392B;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-event {
+            color: #3D3D3D;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        .quote-container {
+            background: linear-gradient(135deg, #E8F5E8 0%, #F0F8F0 100%);
+            border-left: 6px solid #27AE60;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.1);
+            position: relative;
+        }
+
+        .quote-container::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 4rem;
+            color: #27AE60;
+            opacity: 0.3;
+            font-family: serif;
+        }
+
+        .quote-header {
+            font-weight: 700;
+            color: #27AE60;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .quote-text {
+            font-style: italic;
+            color: #2C5F2D;
+            line-height: 1.7;
+            font-size: 1.2rem;
+            margin-left: 2rem;
+        }
+
+        .region-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .region-card {
+            background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
+            border: 2px solid #3498DB;
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .region-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .region-card:hover::before {
+            left: 100%;
+        }
+
+        .region-card:hover {
+            border-color: #2980B9;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(52, 152, 219, 0.2);
+        }
+
+        .region-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2980B9;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .region-icon {
+            font-size: 1.8rem;
+        }
+
+        .interactive-prompt {
+            background: linear-gradient(135deg, #FFF8DC 0%, #FFFACD 100%);
+            border: 3px solid #DAA520;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            font-size: 1.3rem;
+            color: #B8860B;
+            font-weight: 600;
+            font-style: italic;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 6px 20px rgba(218, 165, 32, 0.2);
+        }
+
+        .interactive-prompt::before {
+            content: "🤔";
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: #FFF8DC;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .tech-card {
+            background: linear-gradient(135deg, #FFE4E1 0%, #FFF0F5 100%);
+            border: 2px solid #CD919E;
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(205, 145, 158, 0.3);
+        }
+
+        .tech-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #8B4B61;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #FFE6CC 0%, #FFF2E6 100%);
+            border: 2px solid #FF8C00;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.1);
+        }
+
+        .warning-text {
+            color: #CC6600;
+            font-weight: 600;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .collapse-banner {
+            background: linear-gradient(135deg, #8B0000, #C0392B);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+            box-shadow: 0 8px 25px rgba(139, 0, 0, 0.4);
+            font-size: 1.3rem;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .collapse-banner::before {
+            content: '💥';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+
+        ul, ol {
+            padding-left: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+            color: #3D3D3D;
+        }
+
+        strong {
+            color: #C0392B;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .comparison-grid,
+            .stats-grid,
+            .region-grid,
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="slide-number">1/16</div>
+            
+            <div class="reveal-item">
+                <h1>The Global Interwar Crisis</h1>
+                <div class="subtitle">Democracy, Depression, and the Road to War (1918-1939)</div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="central-question">
+                    How did the optimism of post-war reconstruction give way to economic catastrophe, political extremism, and ultimately global conflict?
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="crisis-moment">
+                    <div class="crisis-title">Twenty-One Years of Crisis</div>
+                    <div class="crisis-text">The interwar period witnessed the most rapid transformation in human history—from unprecedented prosperity to global depression, from democratic hope to totalitarian nightmare, from international cooperation to world war.</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">21 Years</span>
+                        <span class="stat-label">From Armistice to invasion of Poland</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">50% Drop</span>
+                        <span class="stat-label">In global trade during Depression</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">9 Countries</span>
+                        <span class="stat-label">Became authoritarian by 1936</span>
+                    </div>
+                </stats-grid>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Economic Web -->
+        <div class="slide">
+            <div class="slide-number">2/16</div>
+            
+            <div class="reveal-item">
+                <h2>The Great Depression's Global Web</h2>
+                <h3>When America Sneezed, the World Caught Pneumonia</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">89%</span>
+                        <span class="stat-label">U.S. stock market decline by 1932</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">47%</span>
+                        <span class="stat-label">Industrial production fall (Germany & U.S.)</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">25%</span>
+                        <span class="stat-label">Unemployment rate in America</span>
+                    </div>
+                </stats-grid>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="crisis-moment">
+                    <div class="crisis-title">Economic Integration Creates Global Catastrophe</div>
+                    <div class="crisis-text">The crisis spread through interconnected financial markets, trade relationships, and the gold standard system. When American capital flows dried up, European recovery collapsed. International trade fell by over 50%, creating unemployment and political instability worldwide.</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">October 1929</div>
+                        <div class="timeline-event">Wall Street Crash: Dow Jones falls from 381 to 198 points</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1929-1933</div>
+                        <div class="timeline-event">7,000 American banks fail—nearly one-third of entire banking system</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">September 1931</div>
+                        <div class="timeline-event">Britain abandons gold standard; countries that followed recovered faster</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="warning-box">
+                    <div class="warning-text">France didn't recover until 1938, demonstrating how political instability compounded economic problems and created opportunities for extremist movements.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Technology and Mass Society -->
+        <div class="slide">
+            <div class="slide-number">3/16</div>
+            
+            <div class="reveal-item">
+                <h2>Technology and the Birth of Mass Society</h2>
+                <h3>Radio, Cinema, and the Power to Reach Millions</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span>📻</span>
+                            Radio Revolution
+                        </div>
+                        <p><strong>From 0% to 60%</strong> of American households owned radios by 1930, creating the first truly national mass audiences and breaking down regional isolation.</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span>🎬</span>
+                            Cinema's Global Reach
+                        </div>
+                        <p><strong>Hollywood emerged as global entertainment center</strong>, spreading American cultural values worldwide while "talkies" revolutionized mass communication.</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span>✈️</span>
+                            Aviation Transforms Distance
+                        </div>
+                        <p><strong>Metal monoplanes achieved over 560 km/h</strong>, shrinking distances and enabling rapid military deployment across continents.</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span>📰</span>
+                            Mass Media Power
+                        </div>
+                        <p><strong>Radio, cinema, and mass circulation newspapers</strong> enabled both democratic participation and totalitarian manipulation on unprecedented scales.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="comparison-grid">
+                    <div class="comparison-side democracy">
+                        <div class="comparison-title">🗳️ Democratic Uses</div>
+                        <ul>
+                            <li><strong>FDR's Fireside Chats:</strong> Direct communication with citizens</li>
+                            <li><strong>Educational programming:</strong> Mass literacy and civic engagement</li>
+                            <li><strong>Cultural expression:</strong> Harlem Renaissance, artistic movements</li>
+                            <li><strong>Political campaigning:</strong> Reaching voters directly</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-side authoritarianism">
+                        <div class="comparison-title">📢 Totalitarian Manipulation</div>
+                        <ul>
+                            <li><strong>Nazi rallies:</strong> Broadcast to millions simultaneously</li>
+                            <li><strong>Stalin's propaganda:</strong> Media control to justify purges</li>
+                            <li><strong>Mass indoctrination:</strong> Coordinated messaging across all media</li>
+                            <li><strong>Surveillance state:</strong> Technology for population control</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Democratic Breakdown -->
+        <div class="slide">
+            <div class="slide-number">4/16</div>
+            
+            <div class="reveal-item">
+                <h2>The Democratic Breakdown</h2>
+                <h3>Economic Crisis Enables Political Extremism</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote-container">
+                    <div class="quote-header">Cambridge Economics Research Finding</div>
+                    <div class="quote-text">Countries experiencing one standard deviation decline in growth saw 2.9% increases in extreme right-wing vote shares—explaining the Nazi surge from 2.6% (1928) to 37.3% (1932).</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="collapse-banner">
+                    By 1936, authoritarian regimes controlled Germany, Italy, Hungary, Romania, Poland, Portugal, Austria, and Greece—representing systematic collapse of democratic experiment across Europe.
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="region-grid">
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">🇩🇪</span>
+                            Weimar Republic Crisis
+                        </div>
+                        <p><strong>Hyperinflation (1923):</strong> Dollar exchange rate peaked at 4.2 trillion marks. When bread cost 100 billion marks, Germans lost faith in democracy.</p>
+                        <p><strong>Structural weaknesses:</strong> Proportional representation, Article 48 emergency powers, war guilt burden.</p>
+                    </div>
+                    
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">🇮🇹</span>
+                            Fascist Italy Model
+                        </div>
+                        <p><strong>Corporate state:</strong> Professional corporations controlled by party. 1929 Concordat with Vatican legitimized regime.</p>
+                        <p><strong>Ethiopian War:</strong> Poison gas, aerial bombardment, concentration camps demonstrated fascist brutality.</p>
+                    </div>
+                    
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">🇷🇺</span>
+                            Soviet Authoritarianism
+                        </div>
+                        <p><strong>Five-Year Plan:</strong> 350% increase in heavy industry, but at enormous human cost through forced collectivization.</p>
+                        <p><strong>Great Purges:</strong> 750,000 executed; show trials broadcast to terrorize population.</p>
+                    </div>
+                    
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">🇪🇸</span>
+                            Spanish Civil War
+                        </div>
+                        <p><strong>Dress rehearsal for WWII:</strong> 16,000 Germans, 70,000 Italians tested weapons and tactics.</p>
+                        <p><strong>Guernica bombing:</strong> First carpet-bombing of European city, April 26, 1937.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Germany's Fatal Path -->
+        <div class="slide">
+            <div class="slide-number">5/16</div>
+            
+            <div class="reveal-item">
+                <h2>Germany: From Democracy to Dictatorship</h2>
+                <h3>How the Nazis Destroyed Democracy Legally</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">January 30, 1933</div>
+                        <div class="timeline-event"><strong>Hitler Appointed Chancellor:</strong> Conservative politicians wrongly believed they could "tame" him and use his popularity</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">March 23, 1933</div>
+                        <div class="timeline-event"><strong>Enabling Act:</strong> Passed 444-94, legally establishing dictatorship by allowing Hitler to pass laws without parliament</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">June 30, 1934</div>
+                        <div class="timeline-event"><strong>Night of Long Knives:</strong> Eliminated SA leadership and other political opponents, consolidating Hitler's personal control</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1933-1935</div>
+                        <div class="timeline-event"><strong>Gleichschaltung:</strong> All political parties banned, trade unions destroyed, first concentration camps opened</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="warning-box">
+                    <div class="warning-text">The hyperinflation crisis of 1923 created cultural preoccupations with criminals and manipulators that permeated Weimar culture, from Brecht's "Threepenny Opera" to Fritz Lang's films about criminal masterminds.</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    How did a democracy with one of the world's most advanced constitutions become a totalitarian dictatorship in less than two years?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Asian Nationalism and Imperial Expansion -->
+        <div class="slide">
+            <div class="slide-number">6/16</div>
+            
+            <div class="reveal-item">
+                <h2>Asia: Nationalism Meets Imperial Expansion</h2>
+                <h3>Japan's Aggression and China's Resistance</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="crisis-moment">
+                    <div class="crisis-title">September 18, 1931: The Mukden Incident</div>
+                    <div class="crisis-text">Japan's fabricated attack on its own railway line provided pretext for Manchurian invasion—the first major challenge to post-war international order that the League of Nations failed to stop.</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="comparison-grid">
+                    <div class="comparison-side crisis">
+                        <div class="comparison-title">🇯🇵 Japanese Imperial Expansion</div>
+                        <ul>
+                            <li><strong>Manchurian invasion (1931):</strong> Created puppet state of Manchukuo</li>
+                            <li><strong>Full China invasion (1937):</strong> Nanjing Massacre killed 300,000 civilians</li>
+                            <li><strong>Military radicalization:</strong> February 26, 1936 revolt eliminated civilian leaders</li>
+                            <li><strong>Resource acquisition:</strong> Needed raw materials for industrial expansion</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-side democracy">
+                        <div class="comparison-title">🇨🇳 Chinese Resistance and Civil War</div>
+                        <ul>
+                            <li><strong>Long March (1934-35):</strong> 100,000 began, 7,000-8,000 survived epic retreat</li>
+                            <li><strong>United Front (1937):</strong> Communists and Nationalists temporarily allied</li>
+                            <li><strong>Communist growth:</strong> From 40,000 (1937) to 1,000,000 (1945) members</li>
+                            <li><strong>Guerrilla warfare:</strong> Rural resistance despite Japanese occupation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="region-grid">
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">🇮🇳</span>
+                            Gandhi's Salt March
+                        </div>
+                        <p><strong>240 miles in 24 days:</strong> Sparked nationwide civil disobedience resulting in over 60,000 arrests.</p>
+                        <p><strong>Government of India Act (1935):</strong> Longest act in British Parliament history with 451 clauses.</p>
+                    </div>
+                    
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">🌏</span>
+                            Southeast Asian Resistance
+                        </div>
+                        <p><strong>Ho Chi Minh in Vietnam, Sukarno in Indonesia</strong> laid foundations for post-war decolonization.</p>
+                        <p><strong>Great Depression revealed vulnerabilities</strong> in European colonial rule across the region.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: America's Boom and Bust -->
+        <div class="slide">
+            <div class="slide-number">7/16</div>
+            
+            <div class="reveal-item">
+                <h2>America: From Roaring Twenties to New Deal</h2>
+                <h3>Prosperity, Crash, and Democratic Recovery</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="comparison-grid">
+                    <div class="comparison-side prosperity">
+                        <div class="comparison-title">📈 1920s Economic Boom</div>
+                        <ul>
+                            <li><strong>4.2% annual GNP growth:</strong> Real economic expansion throughout decade</li>
+                            <li><strong>Automobile revolution:</strong> From 6.7 to 23 million vehicles</li>
+                            <li><strong>Consumer culture:</strong> Mass production and credit created modern lifestyle</li>
+                            <li><strong>Per capita income:</strong> Rose from $520 to $681</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-side crisis">
+                        <div class="comparison-title">📉 Depression and Recovery</div>
+                        <ul>
+                            <li><strong>Stock crash:</strong> Dow fell from 381 to 198 points (October 1929)</li>
+                            <li><strong>Banking collapse:</strong> 7,000 banks failed (one-third of system)</li>
+                            <li><strong>Works Progress Administration:</strong> Employed 8.5 million over eight years</li>
+                            <li><strong>Social Security Act:</strong> Created foundation of welfare state</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">60%</span>
+                        <span class="stat-label">Households with radios by 1930</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">2.5M</span>
+                        <span class="stat-label">People left Plains states (Dust Bowl)</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">175,000</span>
+                        <span class="stat-label">African Americans in Harlem Renaissance</span>
+                    </div>
+                </stats-grid>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote-container">
+                    <div class="quote-header">Cultural Transformation: The Harlem Renaissance</div>
+                    <div class="quote-text">175,000 African Americans moved to three square miles of Manhattan, creating unprecedented cultural expression through Langston Hughes, Duke Ellington, and Aaron Douglas, while radio ownership exceeded telephone ownership, creating shared national experiences.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Global Labor Movements -->
+        <div class="slide">
+            <div class="slide-number">8/16</div>
+            
+            <div class="reveal-item">
+                <h2>Global Social Movements and Labor Organization</h2>
+                <h3>Workers Organize Across National Boundaries</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="crisis-moment">
+                    <div class="crisis-title">1936: The Year of the Worker</div>
+                    <div class="crisis-text">Factory occupations in France involving 2 million workers secured 40-hour weeks and paid vacations, while American sit-down strikes challenged corporate power. Labor movements achieved unprecedented international coordination.</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="region-grid">
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">🇫🇷</span>
+                            France's Popular Front
+                        </div>
+                        <p><strong>Matignon Accords (1936):</strong> 40-hour week, paid vacations, 12% wage increases won through factory occupations.</p>
+                        <p><strong>2 million workers</strong> participated in coordinated strike actions across the country.</p>
+                    </div>
+                    
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">🇺🇸</span>
+                            American Industrial Unions
+                        </div>
+                        <p><strong>Wagner Act (1935):</strong> Guaranteed collective bargaining rights, enabling union growth from 2.7 to 8 million members.</p>
+                        <p><strong>Flint sit-down strike:</strong> 44-day occupation defeated General Motors, establishing industrial unionism.</p>
+                    </div>
+                    
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">🌍</span>
+                            International Solidarity
+                        </div>
+                        <p><strong>Spanish Civil War:</strong> 35,000-40,000 international volunteers from over 50 countries fought for Republic.</p>
+                        <p><strong>Communist International:</strong> Coordinated labor organizing across national boundaries.</p>
+                    </div>
+                    
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">👩‍💼</span>
+                            Women's Changing Roles
+                        </div>
+                        <p><strong>19th Amendment (1920):</strong> American women gained suffrage, European countries followed throughout decade.</p>
+                        <p><strong>"Double burden":</strong> Working while maintaining domestic responsibilities created new social tensions.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    How did economic crisis create opportunities for both democratic labor organizing and totalitarian manipulation of worker grievances?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: International System Collapse -->
+        <div class="slide">
+            <div class="slide-number">9/16</div>
+            
+            <div class="reveal-item">
+                <h2>The League of Nations and Collective Security's Failure</h2>
+                <h3>From Hope to Helplessness</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">1931-1933</div>
+                        <div class="timeline-event"><strong>Manchurian Crisis:</strong> League took 18 months to condemn Japan's invasion; Japan simply withdrew from League and continued occupation</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1935-1936</div>
+                        <div class="timeline-event"><strong>Ethiopian Crisis:</strong> League imposed sanctions excluding oil, coal, steel—precisely the resources Italy needed for war</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">March 7, 1936</div>
+                        <div class="timeline-event"><strong>Rhineland Remilitarization:</strong> Only 3,000 German troops entered; Hitler ordered withdrawal if France responded militarily</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">September 30, 1938</div>
+                        <div class="timeline-event"><strong>Munich Agreement:</strong> Chamberlain, Daladier, Hitler, Mussolini partitioned Czechoslovakia without Czech participation</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="collapse-banner">
+                    The Treaty of Versailles created grievances without enforcement: Germany lost 13% of territory and faced $33 billion in reparations, creating resentment that extremists exploited while paradoxically leaving Germany as the dominant power in Eastern Europe.
+                </collapse-banner>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="warning-box">
+                    <div class="warning-text">The Locarno Treaties (1925) provided brief hope—Germany's League admission, Rhineland evacuation, Nobel Peace Prizes—but failed to guarantee eastern borders, leaving Poland and Czechoslovakia vulnerable.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: The Road to War -->
+        <div class="slide">
+            <div class="slide-number">10/16</div>
+            
+            <div class="reveal-item">
+                <h2>The Road to Global War</h2>
+                <h3>From Appeasement to Aggression</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="crisis-moment">
+                    <div class="crisis-title">August 23, 1939: The Nazi-Soviet Pact</div>
+                    <div class="crisis-text">Stalin and Hitler divided Eastern Europe into spheres of influence. The secret protocol gave the USSR the Baltic states, eastern Poland, and Bessarabia while Germany took western Poland—eliminating Hitler's fear of a two-front war.</div>
+                </crisis>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">1.6% → 18.9%</span>
+                        <span class="stat-label">German military spending as % of GDP (1933-1938)</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">22.7%</span>
+                        <span class="stat-label">Japanese military spending (1938)</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">1.2%</span>
+                        <span class="stat-label">U.S. military spending remained low until 1940</span>
+                    </div>
+                </stats-grid>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="comparison-grid">
+                    <div class="comparison-side crisis">
+                        <div class="comparison-title">⚔️ Axis Rearmament</div>
+                        <ul>
+                            <li><strong>Germany:</strong> Over 1000% increase in military spending (1933-1938)</li>
+                            <li><strong>Japan:</strong> Highest military burden relative to economy</li>
+                            <li><strong>Italy:</strong> African wars tested modern weapons and tactics</li>
+                            <li><strong>Coordination:</strong> Anti-Comintern Pact and mutual support</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-side democracy">
+                        <div class="comparison-title">🛡️ Democratic Response</div>
+                        <ul>
+                            <li><strong>Britain:</strong> Increased from 2.2% to 6.9% of GDP slowly</li>
+                            <li><strong>France:</strong> Significant increases only after 1936</li>
+                            <li><strong>United States:</strong> Remained isolationist until very late</li>
+                            <li><strong>Too little, too late:</strong> Democracies failed to deter aggression</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote-container">
+                    <div class="quote-header">The Munich Agreement (September 30, 1938)</div>
+                    <div class="quote-text">Chamberlain declared "peace for our time" after partitioning Czechoslovakia without Czech participation. Instead of preventing war, Munich destroyed Czech defenses and convinced Hitler that democracies would surrender rather than fight.</div>
+                </quote>
+            </div>
+        </div>
+
+        <!-- Slide 11: Technology and Warfare -->
+        <div class="slide">
+            <div class="slide-number">11/16</div>
+            
+            <div class="reveal-item">
+                <h2>Technology Transforms Warfare</h2>
+                <h3>From Trenches to Lightning War</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span>✈️</span>
+                            Aviation Revolution
+                        </div>
+                        <p><strong>From primitive biplanes to metal monoplanes</strong> achieving over 560 km/h. Strategic bombing emerged with Guernica (1937) as first carpet-bombing of European city.</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span>🚗</span>
+                            Mechanized Warfare
+                        </div>
+                        <p><strong>Tanks, motorized infantry, and coordination</strong> enabled "blitzkrieg" tactics that made WWI trench warfare obsolete.</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span>📡</span>
+                            Communication Systems
+                        </div>
+                        <p><strong>Radio coordination of military units</strong> enabled rapid deployment and tactical flexibility impossible in previous conflicts.</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="tech-title">
+                            <span>🏭</span>
+                            Industrial Capacity
+                        </div>
+                        <p><strong>Mass production techniques applied to weapons</strong> made total war possible on unprecedented scales.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="crisis-moment">
+                    <div class="crisis-title">April 26, 1937: Guernica</div>
+                    <div class="crisis-text">The bombing of this Basque town marked the first aerial destruction of a European city, with Nazi and Italian aircraft testing tactics that would be used across Europe. Pablo Picasso's painting immortalized the horror for the world.</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    How did technological advances that promised progress and prosperity become tools for unprecedented destruction and totalitarian control?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Cultural Transformation -->
+        <div class="slide">
+            <div class="slide-number">12/16</div>
+            
+            <div class="reveal-item">
+                <h2>Cultural Revolution: Tradition Meets Modernity</h2>
+                <h3>Art, Literature, and Social Change</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="region-grid">
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">🎨</span>
+                            Artistic Innovation
+                        </div>
+                        <p><strong>Bauhaus, Dadaism, Surrealism</strong> challenged traditional forms while reflecting social upheaval.</p>
+                        <p><strong>Modern architecture:</strong> Le Corbusier, Frank Lloyd Wright revolutionized urban spaces.</p>
+                    </div>
+                    
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">📚</span>
+                            Literary Modernism
+                        </div>
+                        <p><strong>Joyce, Kafka, Hemingway</strong> captured psychological trauma of post-war society.</p>
+                        <p><strong>Stream of consciousness:</strong> New narrative techniques reflected fractured reality.</p>
+                    </div>
+                    
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">🎵</span>
+                            Musical Revolution
+                        </div>
+                        <p><strong>Jazz Age:</strong> African American music transformed global popular culture.</p>
+                        <p><strong>Radio broadcasting:</strong> Created shared musical experiences across vast distances.</p>
+                    </div>
+                    
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">🏛️</span>
+                            Social Movements
+                        </div>
+                        <p><strong>Women's suffrage:</strong> Political participation expanded across Western nations.</p>
+                        <p><strong>Youth culture:</strong> Generational conflicts over tradition versus modernity.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote-container">
+                    <div class="quote-header">The "Lost Generation" Experience</div>
+                    <div class="quote-text">Writers like Hemingway and Remarque captured the psychological trauma of WWI veterans struggling to find meaning in peacetime society, while their works became global bestsellers that shaped public understanding of war's true costs.</div>
+                </quote>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="warning-box">
+                    <div class="warning-text">Cultural innovation coexisted with cultural destruction: Nazi book burnings, Soviet suppression of artistic freedom, and the rise of mass propaganda showed how creativity could be both expression of freedom and target of oppression.</div>
+                </warning-box>
+            </div>
+        </div>
+
+        <!-- Slide 13: Colonial Resistance -->
+        <div class="slide">
+            <div class="slide-number">13/16</div>
+            
+            <div class="reveal-item">
+                <h2>The Stirring of Nations: Colonial Resistance</h2>
+                <h3>Nationalism Challenges Empire</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="region-grid">
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">🇮🇳</span>
+                            India's Mass Movement
+                        </div>
+                        <p><strong>Salt March (1930):</strong> Gandhi's 240-mile walk sparked nationwide civil disobedience with 60,000+ arrests.</p>
+                        <p><strong>Non-violent resistance:</strong> Demonstrated power of organized mass protest against imperial authority.</p>
+                    </div>
+                    
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">🌍</span>
+                            Middle Eastern Independence
+                        </div>
+                        <p><strong>Egypt achieved quasi-independence (1937), Iraq gained formal independence (1930)</strong> through sustained nationalist pressure.</p>
+                        <p><strong>Arab revolts:</strong> Nearly ten bloody uprisings revealed costs of maintaining empire.</p>
+                    </div>
+                    
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">🌏</span>
+                            Southeast Asian Resistance
+                        </div>
+                        <p><strong>Ho Chi Minh (Vietnam), Sukarno (Indonesia)</strong> organized movements combining nationalism and socialism.</p>
+                        <p><strong>Great Depression weakness:</strong> Economic crisis revealed vulnerabilities in colonial rule.</p>
+                    </div>
+                    
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">🌍</span>
+                            African Liberation Foundations
+                        </div>
+                        <p><strong>Italo-Ethiopian War (1935-36):</strong> Demonstrated both European brutality and African military capacity.</p>
+                        <p><strong>Organizational structures:</strong> Liberation movements developed frameworks for later independence struggles.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="crisis-moment">
+                    <div class="crisis-title">The Great Depression's Colonial Impact</div>
+                    <div class="crisis-text">Economic crisis made colonial extraction systems unsustainable while inspiring anticolonial organizing. European powers appeared vulnerable for the first time, encouraging nationalist movements worldwide.</div>
+                </crisis>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    How did the interwar crisis of European confidence create opportunities for colonial independence movements that would reshape the post-war world?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: The Failure of Appeasement -->
+        <div class="slide">
+            <div class="slide-number">14/16</div>
+            
+            <div class="reveal-item">
+                <h2>The Failure of Appeasement</h2>
+                <h3>Why Compromise with Totalitarianism Failed</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">1925-1929</div>
+                        <div class="timeline-event"><strong>Locarno Spirit:</strong> Brief period of international cooperation and peaceful revision of Versailles seemed possible</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">March 1936</div>
+                        <div class="timeline-event"><strong>Rhineland Test:</strong> Only 3,000 German troops, but no response encouraged Hitler's belief democracies wouldn't fight</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">September 1938</div>
+                        <div class="timeline-event"><strong>Munich "Peace":</strong> Chamberlain's "peace for our time" destroyed Czech defenses, emboldened Hitler</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">March 1939</div>
+                        <div class="timeline-event"><strong>Prague Occupation:</strong> Hitler violated Munich Agreement, proving appeasement had failed completely</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="comparison-grid">
+                    <div class="comparison-side democracy">
+                        <div class="comparison-title">🕊️ Appeasement Logic</div>
+                        <ul>
+                            <li><strong>War trauma:</strong> WWI memories made leaders avoid conflict</li>
+                            <li><strong>Economic priority:</strong> Depression recovery took precedence</li>
+                            <li><strong>Reasonable revision:</strong> Some Versailles terms seemed unfair</li>
+                            <li><strong>Gradual approach:</strong> Hoped to satisfy Hitler's "legitimate" demands</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-side crisis">
+                        <div class="comparison-title">⚔️ Totalitarian Exploitation</div>
+                        <ul>
+                            <li><strong>Unlimited aims:</strong> Hitler sought European domination, not revision</li>
+                            <li><strong>Psychological warfare:</strong> Each success emboldened further aggression</li>
+                            <li><strong>Military preparation:</strong> Used peace time to rearm massively</li>
+                            <li><strong>Democratic weakness:</strong> Interpreted compromise as cowardice</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="collapse-banner">
+                    The fundamental error: Treating ideological movements seeking total power as if they were traditional states with limited, negotiable aims.
+                </collapse-banner>
+            </div>
+        </div>
+
+        <!-- Slide 15: September 1939 -->
+        <div class="slide">
+            <div class="slide-number">15/16</div>
+            
+            <div class="reveal-item">
+                <h2>September 1, 1939: The World at War Again</h2>
+                <h3>How Twenty-One Years of Peace Ended</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="crisis-moment">
+                    <div class="crisis-title">The Convergence of Crises</div>
+                    <div class="crisis-text">Economic collapse enabled political extremism. Technological advances enhanced totalitarian control. International institutions proved helpless. The failure of collective security, breakdown of international law, and rise of mass society created conditions for history's most devastating war.</div>
+                </crisis>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">21 Years</span>
+                        <span class="stat-label">From Armistice to invasion of Poland</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">6 Million</span>
+                        <span class="stat-label">Jews who would die in Holocaust</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">70 Million</span>
+                        <span class="stat-label">Total WWII casualties (estimate)</span>
+                    </div>
+                </stats-grid>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="region-grid">
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">💔</span>
+                            Democratic Failures
+                        </div>
+                        <p><strong>League of Nations impotence:</strong> Could not stop aggression by determined powers.</p>
+                        <p><strong>Economic nationalism:</strong> Deepened depression and international mistrust.</p>
+                    </div>
+                    
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">⚡</span>
+                            Totalitarian Success
+                        </div>
+                        <p><strong>Mass society manipulation:</strong> Radio, film, rallies mobilized millions.</p>
+                        <p><strong>State-directed economics:</strong> Appeared more effective than democracy during crisis.</p>
+                    </div>
+                    
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">🌍</span>
+                            Global Integration
+                        </div>
+                        <p><strong>Economic interdependence:</strong> Made local problems global catastrophes.</p>
+                        <p><strong>Communication revolution:</strong> Spread both democratic ideals and totalitarian propaganda.</p>
+                    </div>
+                    
+                    <div class="region-card">
+                        <div class="region-title">
+                            <span class="region-icon">🔥</span>
+                            Technological Power
+                        </div>
+                        <p><strong>Industrial warfare:</strong> Made total destruction possible on unprecedented scales.</p>
+                        <p><strong>Mass surveillance:</strong> Enabled authoritarian control of entire populations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Lessons and Legacy -->
+        <div class="slide">
+            <div class="slide-number">16/16</div>
+            
+            <div class="reveal-item">
+                <h2>Lessons from the Interwar Crisis</h2>
+                <h3>What Democracy Must Remember</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="central-question">
+                    How quickly can international order collapse when economic crisis, technological change, and political extremism intersect?
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="comparison-grid">
+                    <div class="comparison-side crisis">
+                        <div class="comparison-title">⚠️ Warning Signs</div>
+                        <ul>
+                            <li><strong>Economic inequality and crisis</strong> create opportunities for extremist movements</li>
+                            <li><strong>Technology can enhance both freedom and oppression</strong>—outcome depends on institutions</li>
+                            <li><strong>International cooperation requires constant vigilance</strong> and willingness to act</li>
+                            <li><strong>Appeasement of totalitarian movements only encourages further aggression</strong></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-side democracy">
+                        <div class="comparison-title">💪 Democratic Resilience</div>
+                        <ul>
+                            <li><strong>Roosevelt's New Deal showed adaptation capacity</strong> while maintaining democratic values</li>
+                            <li><strong>Gandhi's non-violent resistance demonstrated</strong> power of organized moral action</li>
+                            <li><strong>Cultural creativity flourished</strong> even during economic crisis</li>
+                            <li><strong>Technological innovations ultimately enabled democratic victory</strong> in World War II</li>
+                        </ul>
+                    </div>
+                </comparison-grid>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote-container">
+                    <div class="quote-header">The Fundamental Lesson</div>
+                    <div class="quote-text">Democracy requires both institutional strength and the will to defend itself against those who would destroy it. The failure to stop extremism early—at the Rhineland (1936), Munich (1938), or through effective collective security—demonstrated that appeasement only encourages further aggression.</div>
+                </quote-container>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="crisis-moment">
+                    <div class="crisis-title">The Eternal Relevance</div>
+                    <div class="crisis-text">The interwar period's lesson remains as relevant today as it was on September 1, 1939: defending democratic institutions before they come under existential threat is far easier than rebuilding them after they collapse.</div>
+                </crisis-moment>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    What parallels do you see between the interwar crisis and contemporary challenges to democratic governance around the world?
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="control-btn" onclick="previousSlide()">← Previous</button>
+        <button class="control-btn" onclick="nextSlide()">Next →</button>
+        <button class="control-btn" onclick="revealNext()">Reveal</button>
+        <button class="control-btn" onclick="revealAll()">Show All</button>
+    </div>
+
+    <div class="crisis-tab" onclick="toggleImage()">📊 Data</div>
+
+    <div class="image-overlay" onclick="toggleImage()">
+        <div class="image-content" onclick="event.stopPropagation()">
+            <h3>Key Statistics and Data</h3>
+            <p>Stock market crash charts and economic data</p>
+            <p>Map of authoritarian takeovers 1918-1939</p>
+            <p>Radio ownership and technology adoption graphs</p>
+            <p>Military spending comparisons by country</p>
+            <p>Timeline of international crises and responses</p>
+            <p>Trade decline and unemployment statistics</p>
+            <p>Colonial resistance movement locations</p>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentReveal = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            currentReveal = 0;
+            hideAllReveals();
+        }
+
+        function nextSlide() {
+            const revealItems = slides[currentSlide].querySelectorAll('.reveal-item');
+            if (currentReveal < revealItems.length) {
+                revealNext();
+            } else {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (currentReveal > 0) {
+                hideAllReveals();
+                currentReveal = 0;
+            } else {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        function revealNext() {
+            const revealItems = slides[currentSlide].querySelectorAll('.reveal-item');
+            if (currentReveal < revealItems.length) {
+                revealItems[currentReveal].classList.add('revealed');
+                currentReveal++;
+            }
+        }
+
+        function revealAll() {
+            const revealItems = slides[currentSlide].querySelectorAll('.reveal-item');
+            revealItems.forEach(item => item.classList.add('revealed'));
+            currentReveal = revealItems.length;
+        }
+
+        function hideAllReveals() {
+            const revealItems = slides[currentSlide].querySelectorAll('.reveal-item');
+            revealItems.forEach(item => item.classList.remove('revealed'));
+        }
+
+        function toggleImage() {
+            const overlay = document.querySelector('.image-overlay');
+            overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowLeft':
+                    previousSlide();
+                    break;
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+                case ',':
+                    showSlide(currentSlide - 1);
+                    break;
+                case '.':
+                    showSlide(currentSlide + 1);
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+            }
+        });
+
+        // Initialize first slide
+        revealNext();
+    </script>
+</body>
+</html>

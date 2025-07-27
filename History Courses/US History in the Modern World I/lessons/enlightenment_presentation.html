@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The European Enlightenment: Age of Reason and Revolution</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            width: 95vw;
+            height: 90vh;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px 60px;
+            display: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide-header {
+            border-bottom: 4px solid #e74c3c;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .slide-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .slide-subtitle {
+            font-size: 1.5rem;
+            color: #7f8c8d;
+            font-weight: 300;
+        }
+
+        .content-area {
+            height: calc(100% - 120px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .progressive-content {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+            margin: 20px 0;
+        }
+
+        .progressive-content.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .main-concept {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #e74c3c;
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .key-point {
+            font-size: 1.8rem;
+            margin: 25px 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-left: 6px solid #3498db;
+            border-radius: 10px;
+            line-height: 1.4;
+        }
+
+        .thinker-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .thinker-card {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: scale(0.9);
+            transition: all 0.5s ease;
+        }
+
+        .thinker-card.revealed {
+            transform: scale(1);
+        }
+
+        .thinker-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .thinker-idea {
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 20px;
+            border-bottom: 1px solid #ecf0f1;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .comparison-table tr:nth-child(even) td {
+            background: #f8f9fa;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            z-index: 1000;
+        }
+
+        .image-tab {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #e74c3c;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .image-tab:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        .slide-image {
+            position: absolute;
+            top: 50%;
+            right: 50px;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: all 0.5s ease;
+            z-index: 50;
+        }
+
+        .slide-image.visible {
+            opacity: 1;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e74c3c, #f39c12, #27ae60);
+            border-radius: 2px;
+        }
+
+        .timeline-point {
+            background: white;
+            border: 4px solid #2c3e50;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            transform: scale(0);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-point.revealed {
+            transform: scale(1);
+        }
+
+        .timeline-label {
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2c3e50;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: all 0.6s ease 0.3s;
+        }
+
+        .timeline-point.revealed .timeline-label {
+            opacity: 1;
+        }
+
+        .activity-prompt {
+            background: linear-gradient(135deg, #fd79a8, #e84393);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 30px 0;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .debate-sides {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 30px 0;
+        }
+
+        .debate-side {
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform: scale(0.95);
+        }
+
+        .debate-side.for {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+        }
+
+        .debate-side.against {
+            background: linear-gradient(135deg, #e17055, #d63031);
+            color: white;
+        }
+
+        .debate-side:hover {
+            transform: scale(1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .quote-box {
+            background: #f8f9fa;
+            border-left: 6px solid #e74c3c;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 10px;
+            font-style: italic;
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 4rem;
+            color: #e74c3c;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-family: serif;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 1200px) {
+            .slide-title { font-size: 2.5rem; }
+            .main-concept { font-size: 2rem; }
+            .key-point { font-size: 1.5rem; }
+            .thinker-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active" data-image="https://upload.wikimedia.org/wikipedia/commons/8/8a/Voltaire_Philosophy_of_Newton_frontispiece.jpg">
+            <div class="slide-header">
+                <h1 class="slide-title progressive-content">The European Enlightenment</h1>
+                <p class="slide-subtitle progressive-content">Age of Reason and Revolution (1680-1800)</p>
+            </div>
+            <div class="content-area">
+                <div class="main-concept progressive-content">
+                    "Dare to know! Have courage to use your own understanding!"
+                </div>
+                <div class="key-point progressive-content">
+                    <strong>Essential Question:</strong> How did reason challenge tradition and reshape European society?
+                </div>
+                <div class="timeline progressive-content">
+                    <div class="timeline-point">
+                        <div class="timeline-label">Scientific Revolution<br>1600-1700</div>
+                    </div>
+                    <div class="timeline-point">
+                        <div class="timeline-label">Early Enlightenment<br>1680-1740</div>
+                    </div>
+                    <div class="timeline-point">
+                        <div class="timeline-label">High Enlightenment<br>1740-1780</div>
+                    </div>
+                    <div class="timeline-point">
+                        <div class="timeline-label">French Revolution<br>1789-1799</div>
+                    </div>
+                </div>
+            </div>
+            <div class="image-tab">📸 View Image</div>
+            <div class="slide-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/8a/Voltaire_Philosophy_of_Newton_frontispiece.jpg')"></div>
+        </div>
+
+        <!-- Slide 2: What was the Enlightenment? -->
+        <div class="slide" data-image="https://upload.wikimedia.org/wikipedia/commons/f/f4/Diderot%27s_Encyclopedie.jpg">
+            <div class="slide-header">
+                <h1 class="slide-title">What Was the Enlightenment?</h1>
+                <p class="slide-subtitle">Breaking Free from Tradition</p>
+            </div>
+            <div class="content-area">
+                <div class="main-concept progressive-content">
+                    An intellectual revolution that challenged authority with reason
+                </div>
+                <div class="key-point progressive-content">
+                    <strong>Core Belief:</strong> Human reason could solve social problems and improve society
+                </div>
+                <div class="key-point progressive-content">
+                    <strong>Key Challenge:</strong> Traditional authority vs. rational inquiry
+                </div>
+                <div class="key-point progressive-content">
+                    <strong>Revolutionary Idea:</strong> Knowledge comes from experience, not just tradition
+                </div>
+                <div class="activity-prompt progressive-content">
+                    Think-Pair-Share: What authorities do you question today?
+                </div>
+            </div>
+            <div class="image-tab">📖 Encyclopedia</div>
+            <div class="slide-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/f/f4/Diderot%27s_Encyclopedie.jpg')"></div>
+        </div>
+
+        <!-- Slide 3: The Philosophers -->
+        <div class="slide" data-image="https://upload.wikimedia.org/wikipedia/commons/5/56/Voltaire_Philosophy_of_Newton_frontispiece.jpg">
+            <div class="slide-header">
+                <h1 class="slide-title">Meet the Philosophes</h1>
+                <p class="slide-subtitle">The Revolutionary Thinkers</p>
+            </div>
+            <div class="content-area">
+                <div class="thinker-grid">
+                    <div class="thinker-card progressive-content">
+                        <div class="thinker-name">Voltaire</div>
+                        <div class="thinker-idea">"I may disagree with what you say, but I'll defend your right to say it"</div>
+                    </div>
+                    <div class="thinker-card progressive-content">
+                        <div class="thinker-name">John Locke</div>
+                        <div class="thinker-idea">"Life, liberty, and property" - Natural rights theory</div>
+                    </div>
+                    <div class="thinker-card progressive-content">
+                        <div class="thinker-name">Montesquieu</div>
+                        <div class="thinker-idea">Separation of powers prevents tyranny</div>
+                    </div>
+                    <div class="thinker-card progressive-content">
+                        <div class="thinker-name">Rousseau</div>
+                        <div class="thinker-idea">"Man is born free, but everywhere he is in chains"</div>
+                    </div>
+                </div>
+                <div class="activity-prompt progressive-content">
+                    Which philosopher's ideas still influence us today?
+                </div>
+            </div>
+            <div class="image-tab">🧠 Thinkers</div>
+            <div class="slide-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/56/Voltaire_Philosophy_of_Newton_frontispiece.jpg')"></div>
+        </div>
+
+        <!-- Slide 4: Key Ideas Comparison -->
+        <div class="slide">
+            <div class="slide-header">
+                <h1 class="slide-title">Revolutionary Ideas</h1>
+                <p class="slide-subtitle">Before vs. After Enlightenment Thinking</p>
+            </div>
+            <div class="content-area">
+                <table class="comparison-table progressive-content">
+                    <thead>
+                        <tr>
+                            <th>Topic</th>
+                            <th>Traditional View</th>
+                            <th>Enlightenment View</th>
+                        </tr>
+                    </thead>
+                    <tbody class="progressive-content">
+                        <tr>
+                            <td><strong>Knowledge</strong></td>
+                            <td>Comes from tradition and authority</td>
+                            <td>Comes from reason and experience</td>
+                        </tr>
+                    </tbody>
+                    <tbody class="progressive-content">
+                        <tr>
+                            <td><strong>Government</strong></td>
+                            <td>Divine right of kings</td>
+                            <td>Social contract and consent of governed</td>
+                        </tr>
+                    </tbody>
+                    <tbody class="progressive-content">
+                        <tr>
+                            <td><strong>Religion</strong></td>
+                            <td>One true faith, enforce uniformity</td>
+                            <td>Religious tolerance and freedom</td>
+                        </tr>
+                    </tbody>
+                    <tbody class="progressive-content">
+                        <tr>
+                            <td><strong>Human Nature</strong></td>
+                            <td>Born sinful, need strict control</td>
+                            <td>Born with natural rights and potential</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 5: The Salon Activity -->
+        <div class="slide" data-image="https://upload.wikimedia.org/wikipedia/commons/1/1c/Lemonnier_-_Un_salon_de_Madame_Geoffrin.jpg">
+            <div class="slide-header">
+                <h1 class="slide-title">Salon Simulation</h1>
+                <p class="slide-subtitle">Experience Enlightenment Debate</p>
+            </div>
+            <div class="content-area">
+                <div class="main-concept progressive-content">
+                    You are invited to Madame Geoffrin's salon in 1750s Paris
+                </div>
+                <div class="key-point progressive-content">
+                    <strong>Your Mission:</strong> Debate the role of reason in government
+                </div>
+                <div class="debate-sides progressive-content">
+                    <div class="debate-side for">
+                        <div>Team Reason</div>
+                        <div style="font-size: 1rem; margin-top: 10px;">Governments should be based on rational principles and natural rights</div>
+                    </div>
+                    <div class="debate-side against">
+                        <div>Team Tradition</div>
+                        <div style="font-size: 1rem; margin-top: 10px;">Traditional authority and religion provide stability and order</div>
+                    </div>
+                </div>
+                <div class="activity-prompt progressive-content">
+                    Choose your side and prepare your strongest argument!
+                </div>
+            </div>
+            <div class="image-tab">🏛️ Salon</div>
+            <div class="slide-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/1c/Lemonnier_-_Un_salon_de_Madame_Geoffrin.jpg')"></div>
+        </div>
+
+        <!-- Slide 6: Impact on Revolution -->
+        <div class="slide" data-image="https://upload.wikimedia.org/wikipedia/commons/5/5d/Declaration_of_the_Rights_of_Man_and_of_the_Citizen_in_1789.jpg">
+            <div class="slide-header">
+                <h1 class="slide-title">From Ideas to Revolution</h1>
+                <p class="slide-subtitle">When Philosophy Meets Politics</p>
+            </div>
+            <div class="content-area">
+                <div class="main-concept progressive-content">
+                    Enlightenment ideas became the foundation for modern democracy
+                </div>
+                <div class="key-point progressive-content">
+                    <strong>American Revolution (1776):</strong> "Life, liberty, and the pursuit of happiness"
+                </div>
+                <div class="key-point progressive-content">
+                    <strong>French Revolution (1789):</strong> "Liberty, equality, fraternity"
+                </div>
+                <div class="quote-box progressive-content">
+                    We hold these truths to be self-evident, that all men are created equal...
+                    <div style="text-align: right; margin-top: 10px; font-size: 1rem;">- Declaration of Independence</div>
+                </div>
+                <div class="activity-prompt progressive-content">
+                    Which Enlightenment idea was most revolutionary? Why?
+                </div>
+            </div>
+            <div class="image-tab">⚖️ Rights</div>
+            <div class="slide-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/5d/Declaration_of_the_Rights_of_Man_and_of_the_Citizen_in_1789.jpg')"></div>
+        </div>
+
+        <!-- Slide 7: Legacy and Modern Connections -->
+        <div class="slide">
+            <div class="slide-header">
+                <h1 class="slide-title">Enlightenment Legacy Today</h1>
+                <p class="slide-subtitle">Ideas That Still Shape Our World</p>
+            </div>
+            <div class="content-area">
+                <div class="main-concept progressive-content">
+                    Modern democratic principles trace back to Enlightenment thinking
+                </div>
+                <div class="thinker-grid">
+                    <div class="thinker-card progressive-content" style="background: linear-gradient(135deg, #00b894, #00a085);">
+                        <div class="thinker-name">Religious Freedom</div>
+                        <div class="thinker-idea">First Amendment protections from Voltaire's ideas</div>
+                    </div>
+                    <div class="thinker-card progressive-content" style="background: linear-gradient(135deg, #e17055, #d63031);">
+                        <div class="thinker-name">Separation of Powers</div>
+                        <div class="thinker-idea">U.S. Constitution structure from Montesquieu</div>
+                    </div>
+                    <div class="thinker-card progressive-content" style="background: linear-gradient(135deg, #6c5ce7, #a29bfe);">
+                        <div class="thinker-name">Natural Rights</div>
+                        <div class="thinker-idea">Human rights movements from Locke</div>
+                    </div>
+                    <div class="thinker-card progressive-content" style="background: linear-gradient(135deg, #fd79a8, #e84393);">
+                        <div class="thinker-name">Scientific Method</div>
+                        <div class="thinker-idea">Modern medicine and technology</div>
+                    </div>
+                </div>
+                <div class="activity-prompt progressive-content">
+                    How do you see Enlightenment ideas in current events today?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Assessment and Reflection -->
+        <div class="slide">
+            <div class="slide-header">
+                <h1 class="slide-title">Exit Ticket</h1>
+                <p class="slide-subtitle">Show What You Know</p>
+            </div>
+            <div class="content-area">
+                <div class="main-concept progressive-content">
+                    Quick Check: Can you use your understanding?
+                </div>
+                <div class="key-point progressive-content">
+                    <strong>Question 1:</strong> Which Enlightenment philosopher would support the separation of church and state? Explain your reasoning.
+                </div>
+                <div class="key-point progressive-content">
+                    <strong>Question 2:</strong> How did Enlightenment ideas challenge traditional European society?
+                </div>
+                <div class="key-point progressive-content">
+                    <strong>Question 3:</strong> Give one example of how Enlightenment ideas influence your life today.
+                </div>
+                <div class="activity-prompt progressive-content">
+                    Write a one-sentence summary: What was the most important Enlightenment idea?
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        ← → : Next/Previous slide<br>
+        ↑ ↓ : Progressive disclosure<br>
+        Enter: Reveal all<br>
+        , . : Quick navigation
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentStep = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            currentStep = 0;
+            resetSlideContent(slides[index]);
+        }
+
+        function resetSlideContent(slide) {
+            const progressiveElements = slide.querySelectorAll('.progressive-content');
+            progressiveElements.forEach(el => el.classList.remove('revealed'));
+        }
+
+        function revealNext() {
+            const currentSlideEl = slides[currentSlide];
+            const progressiveElements = currentSlideEl.querySelectorAll('.progressive-content');
+            
+            if (currentStep < progressiveElements.length) {
+                progressiveElements[currentStep].classList.add('revealed');
+                currentStep++;
+            } else if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function revealPrevious() {
+            if (currentStep > 0) {
+                currentStep--;
+                const currentSlideEl = slides[currentSlide];
+                const progressiveElements = currentSlideEl.querySelectorAll('.progressive-content');
+                progressiveElements[currentStep].classList.remove('revealed');
+            } else if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+                const newSlideEl = slides[currentSlide];
+                const progressiveElements = newSlideEl.querySelectorAll('.progressive-content');
+                progressiveElements.forEach(el => el.classList.add('revealed'));
+                currentStep = progressiveElements.length;
+            }
+        }
+
+        function revealAll() {
+            const currentSlideEl = slides[currentSlide];
+            const progressiveElements = currentSlideEl.querySelectorAll('.progressive-content');
+            progressiveElements.forEach(el => el.classList.add('revealed'));
+            currentStep = progressiveElements.length;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Image toggle functionality
+        document.querySelectorAll('.image-tab').forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                const slideImage = slides[index].querySelector('.slide-image');
+                slideImage.classList.toggle('visible');
+            });
+        });
+
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                    e.preventDefault();
+                    const currentSlideEl = slides[currentSlide];
+                    const progressiveElements = currentSlideEl.querySelectorAll('.progressive-content');
+                    if (currentStep >= progressiveElements.length) {
+                        nextSlide();
+                    } else {
+                        revealNext();
+                    }
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    if (currentStep <= 0) {
+                        previousSlide();
+                    } else {
+                        revealPrevious();
+                    }
+                    break;
+                case 'ArrowDown':
+                    e.preventDefault();
+                    revealNext();
+                    break;
+                case 'ArrowUp':
+                    e.preventDefault();
+                    revealPrevious();
+                    break;
+                case 'Enter':
+                    e.preventDefault();
+                    revealAll();
+                    break;
+                case ',':
+                    e.preventDefault();
+                    previousSlide();
+                    break;
+                case '.':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+            }
+        });
+
+        // Debate side click functionality
+        document.querySelectorAll('.debate-side').forEach(side => {
+            side.addEventListener('click', () => {
+                side.style.transform = 'scale(1.1)';
+                side.style.boxShadow = '0 20px 50px rgba(0,0,0,0.4)';
+                setTimeout(() => {
+                    side.style.transform = 'scale(1)';
+                    side.style.boxShadow = '0 15px 40px rgba(0,0,0,0.3)';
+                }, 200);
+            });
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

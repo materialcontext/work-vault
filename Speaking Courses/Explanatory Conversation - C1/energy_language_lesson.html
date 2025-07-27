@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Changes - Language Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            overflow: hidden;
+            cursor: default;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 95%;
+            height: 90%;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: block;
+            animation: fadeInSlide 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #ffd700;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #87ceeb;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+        }
+
+        .content-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.3);
+            border-color: rgba(255, 215, 0, 0.6);
+        }
+
+        .frame-box {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 3px solid rgba(251, 191, 36, 0.4);
+            margin: 1.5rem 0;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .frame-box:hover {
+            border-color: rgba(251, 191, 36, 0.8);
+            box-shadow: 0 15px 35px rgba(251, 191, 36, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .frame-text {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #fbbf24;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .frame-example {
+            font-size: 1.3rem;
+            color: #e5e7eb;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            border-left: 4px solid #fbbf24;
+        }
+
+        .progressive-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .progressive-list li {
+            margin: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.2rem;
+            line-height: 1.4;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .progressive-list li::before {
+            content: "💬";
+            position: absolute;
+            left: 0;
+            font-size: 1.4rem;
+        }
+
+        .progressive-list li.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .central-concept {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 12px 40px rgba(255, 107, 107, 0.3);
+        }
+
+        .practice-scenario {
+            background: linear-gradient(135deg, #2E8B57, #3CB371);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 2px solid #ffd700;
+        }
+
+        .scenario-title {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .speaking-task {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            border: 2px solid #87ceeb;
+        }
+
+        .task-title {
+            color: #87ceeb;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .assessment-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .success-criteria {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .success-criteria h4 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        .success-criteria ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .success-criteria li {
+            margin: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .success-criteria li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 215, 0, 0.9);
+            border: none;
+            color: #333;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            width: 50px;
+            height: 50px;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 1);
+            transform: scale(1.1);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255, 215, 0, 0.9);
+            color: #333;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .image-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 10rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .image-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timer-box {
+            background: rgba(255, 107, 107, 0.3);
+            border: 2px solid #ff6b6b;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .blank {
+            color: #ffd700;
+            font-weight: bold;
+            text-decoration: underline;
+            background: rgba(255, 215, 0, 0.2);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+        }
+
+        .structure-box {
+            background: rgba(135, 206, 235, 0.2);
+            border-left: 5px solid #87ceeb;
+            padding: 2rem;
+            border-radius: 0 15px 15px 0;
+            margin: 1.5rem 0;
+        }
+
+        .example-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .exothermic-example {
+            background: rgba(255, 107, 107, 0.2);
+            border: 2px solid #ff6b6b;
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+
+        .endothermic-example {
+            background: rgba(116, 185, 255, 0.2);
+            border: 2px solid #74b9ff;
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="slide-indicator" id="slideIndicator">1 / 12</div>
+        <div class="image-toggle" id="imageToggle">📝 Practice Guide</div>
+
+        <!-- Slide 1: Title and Objectives -->
+        <div class="slide active">
+            <h1>🗣️ Speaking About Energy Changes</h1>
+            <div class="central-concept auto-reveal">
+                <h3>Language Practice for Scientific Explanation</h3>
+                <p style="font-size: 1.4rem; margin-top: 1rem;">Master the language you need to explain endothermic and exothermic reactions fluently</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🎯 Language Objectives</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Use scientific explanation language frames</li>
+                        <li class="auto-reveal">Structure 7-8 minute explanations effectively</li>
+                        <li class="auto-reveal">Connect cause and effect in reactions</li>
+                        <li class="auto-reveal">Give specific examples with supporting details</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🗣️ Speaking Goals</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Sustained academic speaking (7-8 minutes)</li>
+                        <li class="auto-reveal">Smooth transitions between ideas</li>
+                        <li class="auto-reveal">Clear pronunciation of scientific terms</li>
+                        <li class="auto-reveal">Confident use of explanation structures</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Essential Language Frames -->
+        <div class="slide">
+            <h2>📝 Essential Language Frames</h2>
+            <div class="content-grid">
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">"This reaction is [exothermic/endothermic] because..."</div>
+                    <div class="frame-example">
+                        "This reaction is <span class="blank">exothermic</span> because it <span class="blank">releases energy</span> to the surroundings."
+                    </div>
+                </div>
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">"When bonds [break/form], energy is [required/released]..."</div>
+                    <div class="frame-example">
+                        "When bonds <span class="blank">break</span>, energy is <span class="blank">required</span> to overcome the attractive forces."
+                    </div>
+                </div>
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">"The energy released/absorbed comes from..."</div>
+                    <div class="frame-example">
+                        "The energy <span class="blank">released</span> comes from <span class="blank">forming stronger bonds</span> than those that were broken."
+                    </div>
+                </div>
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">"Evidence for this includes..."</div>
+                    <div class="frame-example">
+                        "Evidence for this includes <span class="blank">temperature increase</span> and <span class="blank">visible light production</span>."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Comparison Language -->
+        <div class="slide">
+            <h2>⚖️ Comparison and Contrast Language</h2>
+            <div class="content-grid">
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">"Unlike [endothermic/exothermic] reactions, [this type]..."</div>
+                    <div class="frame-example">
+                        "Unlike <span class="blank">exothermic</span> reactions, <span class="blank">endothermic</span> reactions absorb energy from their surroundings."
+                    </div>
+                </div>
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">"While [one type] does X, [other type] does Y..."</div>
+                    <div class="frame-example">
+                        "While <span class="blank">combustion</span> releases heat, <span class="blank">photosynthesis</span> requires energy input from sunlight."
+                    </div>
+                </div>
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">"The key difference between these reactions is..."</div>
+                    <div class="frame-example">
+                        "The key difference is <span class="blank">the direction of energy flow</span> - one releases energy while the other absorbs it."
+                    </div>
+                </div>
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">"Both types share the characteristic that..."</div>
+                    <div class="frame-example">
+                        "Both types share the characteristic that <span class="blank">they involve bond breaking and forming</span>."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Cause and Effect Language -->
+        <div class="slide">
+            <h2>🔄 Cause and Effect Language</h2>
+            <div class="content-grid">
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">"Because [cause], [effect] occurs..."</div>
+                    <div class="frame-example">
+                        "Because <span class="blank">more energy is released than absorbed</span>, <span class="blank">the temperature increases</span>."
+                    </div>
+                </div>
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">"This leads to/results in..."</div>
+                    <div class="frame-example">
+                        "The energy imbalance <span class="blank">results in</span> observable temperature changes in the surroundings."
+                    </div>
+                </div>
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">"As a consequence of [X], we observe [Y]..."</div>
+                    <div class="frame-example">
+                        "As a consequence of <span class="blank">bond formation releasing energy</span>, we observe <span class="blank">heat and light production</span>."
+                    </div>
+                </div>
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">"The reason why [observation] happens is..."</div>
+                    <div class="frame-example">
+                        "The reason why <span class="blank">cold packs feel cold</span> is <span class="blank">because the reaction absorbs thermal energy</span>."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Example Introduction Language -->
+        <div class="slide">
+            <h2>📚 Introducing Examples Effectively</h2>
+            <div class="content-grid">
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">"A perfect example of this is..."</div>
+                    <div class="frame-example">
+                        "A perfect example of this is <span class="blank">burning wood</span>, where we can clearly see the energy being released."
+                    </div>
+                </div>
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">"This can be seen in everyday situations like..."</div>
+                    <div class="frame-example">
+                        "This can be seen in everyday situations like <span class="blank">using hand warmers</span> or <span class="blank">cooking food</span>."
+                    </div>
+                </div>
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">"To illustrate this concept, consider..."</div>
+                    <div class="frame-example">
+                        "To illustrate this concept, consider <span class="blank">what happens when you mix baking soda and vinegar</span>."
+                    </div>
+                </div>
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">"Another way to understand this is by looking at..."</div>
+                    <div class="frame-example">
+                        "Another way to understand this is by looking at <span class="blank">how our bodies get energy from food</span>."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Structuring Your Explanation -->
+        <div class="slide">
+            <h2>🏗️ Building Your 7-8 Minute Explanation</h2>
+            <div class="structure-box auto-reveal">
+                <h3>📝 Recommended Structure</h3>
+                <div class="timer-box">Total Time: 7-8 minutes</div>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🚀 Opening (1.5 minutes)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Hook:</strong> "Imagine touching a hand warmer..."</li>
+                        <li class="auto-reveal"><strong>Definitions:</strong> Clear endothermic vs. exothermic</li>
+                        <li class="auto-reveal"><strong>Preview:</strong> "I'll explain the energy principles..."</li>
+                        <li class="auto-reveal"><strong>Roadmap:</strong> "First..., then..., finally..."</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🔥 Body Section 1: Exothermic (2.5 minutes)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Principle:</strong> Energy flow direction</li>
+                        <li class="auto-reveal"><strong>Mechanism:</strong> Bond breaking vs. forming</li>
+                        <li class="auto-reveal"><strong>Example:</strong> Detailed combustion analysis</li>
+                        <li class="auto-reveal"><strong>Evidence:</strong> Observable temperature changes</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>❄️ Body Section 2: Endothermic (2.5 minutes)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Contrast:</strong> "Unlike exothermic reactions..."</li>
+                        <li class="auto-reveal"><strong>Mechanism:</strong> Energy absorption process</li>
+                        <li class="auto-reveal"><strong>Example:</strong> Cold pack or photosynthesis</li>
+                        <li class="auto-reveal"><strong>Evidence:</strong> Temperature decrease</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🎯 Conclusion (1.5 minutes)</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal"><strong>Summary:</strong> Key energy principles</li>
+                        <li class="auto-reveal"><strong>Significance:</strong> Why this matters</li>
+                        <li class="auto-reveal"><strong>Connection:</strong> Link to daily life</li>
+                        <li class="auto-reveal"><strong>Final thought:</strong> Memorable conclusion</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Transition Language -->
+        <div class="slide">
+            <h2>🔄 Smooth Transitions Between Ideas</h2>
+            <div class="content-grid">
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">Moving to Examples</div>
+                    <div class="frame-example">
+                        "Now let me demonstrate this with a specific example..." | "To see this in action, consider..."
+                    </div>
+                </div>
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">Contrasting Ideas</div>
+                    <div class="frame-example">
+                        "On the other hand..." | "In contrast to this..." | "Moving to the opposite type..."
+                    </div>
+                </div>
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">Adding Information</div>
+                    <div class="frame-example">
+                        "Furthermore..." | "Additionally..." | "Another important point is..."
+                    </div>
+                </div>
+                <div class="frame-box auto-reveal">
+                    <div class="frame-text">Concluding</div>
+                    <div class="frame-example">
+                        "To summarize..." | "In conclusion..." | "This demonstrates that..."
+                    </div>
+                </div>
+            </div>
+            <div class="central-concept auto-reveal">
+                <h3>💡 Transition Tip</h3>
+                <p>Use transitional phrases to signal what's coming next and help your listener follow your explanation easily.</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Practice Scenario 1 -->
+        <div class="slide">
+            <h2>🎬 Practice Scenario 1: Hand Warmers</h2>
+            <div class="practice-scenario auto-reveal">
+                <div class="scenario-title">🔥 Explain How Hand Warmers Work (2 minutes)</div>
+                <div class="example-pair">
+                    <div class="content-card">
+                        <h3>🔬 Scientific Facts</h3>
+                        <ul class="progressive-list">
+                            <li class="auto-reveal">Iron powder + oxygen → iron oxide</li>
+                            <li class="auto-reveal">Exothermic reaction</li>
+                            <li class="auto-reveal">Temperature increases up to 60°C</li>
+                            <li class="auto-reveal">Process takes several hours</li>
+                        </ul>
+                    </div>
+                    <div class="content-card">
+                        <h3>🗣️ Language Focus</h3>
+                        <ul class="progressive-list">
+                            <li class="auto-reveal">Use cause-and-effect language</li>
+                            <li class="auto-reveal">Explain bond energy changes</li>
+                            <li class="auto-reveal">Connect molecular level to observable</li>
+                            <li class="auto-reveal">Include specific evidence</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="speaking-task auto-reveal">
+                <div class="task-title">Your Turn: 2-Minute Explanation</div>
+                <p><strong>Task:</strong> Explain why hand warmers get hot using scientific principles and appropriate language frames.</p>
+                <div class="success-criteria">
+                    <h4>Success Criteria:</h4>
+                    <ul>
+                        <li>Use "exothermic" and "energy release" correctly</li>
+                        <li>Explain bond breaking and forming</li>
+                        <li>Connect molecular changes to temperature increase</li>
+                        <li>Use at least 3 different language frames</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Practice Scenario 2 -->
+        <div class="slide">
+            <h2>🎬 Practice Scenario 2: Cold Packs</h2>
+            <div class="practice-scenario auto-reveal">
+                <div class="scenario-title">❄️ Explain How Instant Cold Packs Work (2 minutes)</div>
+                <div class="example-pair">
+                    <div class="content-card">
+                        <h3>🔬 Scientific Facts</h3>
+                        <ul class="progressive-list">
+                            <li class="auto-reveal">Ammonium nitrate dissolves in water</li>
+                            <li class="auto-reveal">Endothermic process</li>
+                            <li class="auto-reveal">Temperature drops 10-15°C</li>
+                            <li class="auto-reveal">Energy absorbed from surroundings</li>
+                        </ul>
+                    </div>
+                    <div class="content-card">
+                        <h3>🗣️ Language Focus</h3>
+                        <ul class="progressive-list">
+                            <li class="auto-reveal">Contrast with exothermic reactions</li>
+                            <li class="auto-reveal">Use energy absorption language</li>
+                            <li class="auto-reveal">Explain why temperature decreases</li>
+                            <li class="auto-reveal">Connect to practical applications</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="speaking-task auto-reveal">
+                <div class="task-title">Your Turn: 2-Minute Explanation</div>
+                <p><strong>Task:</strong> Explain why cold packs get cold, contrasting with exothermic reactions.</p>
+                <div class="success-criteria">
+                    <h4>Success Criteria:</h4>
+                    <ul>
+                        <li>Use "endothermic" and "energy absorption" correctly</li>
+                        <li>Compare and contrast with exothermic reactions</li>
+                        <li>Explain energy source (surroundings)</li>
+                        <li>Use transition language effectively</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Full Explanation Practice -->
+        <div class="slide">
+            <h2>🎯 Full Explanation Challenge</h2>
+            <div class="central-concept auto-reveal">
+                <h3>Your Complete 7-8 Minute Explanation</h3>
+                <p>Now put it all together for your full explanation</p>
+            </div>
+            <div class="speaking-task auto-reveal">
+                <div class="task-title">🗣️ Complete Speaking Task</div>
+                <p><strong>Topic:</strong> "Explain the difference between endothermic and exothermic reactions, including how energy flows and why these differences matter in real life."</p>
+                <div class="timer-box">Time Target: 7-8 minutes</div>
+            </div>
+            <div class="assessment-grid">
+                <div class="assessment-box auto-reveal">
+                    <h3>✅ Content Requirements</h3>
+                    <ul class="success-criteria">
+                        <li>Define both reaction types clearly</li>
+                        <li>Explain bond energy principles</li>
+                        <li>Give specific examples of each type</li>
+                        <li>Connect to real-world applications</li>
+                        <li>Include observable evidence</li>
+                    </ul>
+                </div>
+                <div class="assessment-box auto-reveal">
+                    <h3>🗣️ Language Requirements</h3>
+                    <ul class="success-criteria">
+                        <li>Use 8+ different language frames</li>
+                        <li>Include comparison and contrast language</li>
+                        <li>Show clear cause-and-effect relationships</li>
+                        <li>Use smooth transitions between sections</li>
+                        <li>Maintain fluent, sustained speaking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Self-Assessment Checklist -->
+        <div class="slide">
+            <h2>📋 Self-Assessment Checklist</h2>
+            <div class="central-concept auto-reveal">
+                <h3>Rate Your Performance</h3>
+                <p>Use this checklist to evaluate your explanation</p>
+            </div>
+            <div class="content-grid">
+                <div class="assessment-box auto-reveal">
+                    <h3>🎯 Content Accuracy</h3>
+                    <ul class="success-criteria">
+                        <li>Correctly defined endothermic and exothermic</li>
+                        <li>Accurately explained bond energy concepts</li>
+                        <li>Used appropriate scientific examples</li>
+                        <li>Connected molecular level to observable changes</li>
+                        <li>Demonstrated understanding of energy flow</li>
+                    </ul>
+                </div>
+                <div class="assessment-box auto-reveal">
+                    <h3>🗣️ Language Fluency</h3>
+                    <ul class="success-criteria">
+                        <li>Spoke for 7-8 minutes without major gaps</li>
+                        <li>Used varied sentence structures</li>
+                        <li>Pronounced scientific terms clearly</li>
+                        <li>Used language frames naturally</li>
+                        <li>Maintained clear organization throughout</li>
+                    </ul>
+                </div>
+                <div class="assessment-box auto-reveal">
+                    <h3>🔄 Communication Effectiveness</h3>
+                    <ul class="success-criteria">
+                        <li>Explanation was easy to follow</li>
+                        <li>Examples clearly supported main points</li>
+                        <li>Transitions helped listener understand</li>
+                        <li>Conclusion effectively summarized key points</li>
+                        <li>Would help someone else understand the topic</li>
+                    </ul>
+                </div>
+                <div class="assessment-box auto-reveal">
+                    <h3>📈 Areas for Improvement</h3>
+                    <ul class="success-criteria">
+                        <li>Which language frames need more practice?</li>
+                        <li>Where could examples be more specific?</li>
+                        <li>Which transitions felt awkward?</li>
+                        <li>What scientific concepts need clarification?</li>
+                        <li>How can timing be improved?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Next Steps and Extension -->
+        <div class="slide">
+            <h2>🚀 Extending Your Skills</h2>
+            <div class="central-concept auto-reveal">
+                <h3>Building on Your Success</h3>
+                <p>Take your scientific explanation skills to the next level</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>📚 Additional Practice Topics</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Explain catalysts and activation energy</li>
+                        <li class="auto-reveal">Compare different energy sources</li>
+                        <li class="auto-reveal">Analyze reactions in living systems</li>
+                        <li class="auto-reveal">Discuss environmental applications</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🎭 Presentation Variations</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Explain to different audiences (peers, younger students)</li>
+                        <li class="auto-reveal">Create visual aids to support explanations</li>
+                        <li class="auto-reveal">Practice Q&A sessions</li>
+                        <li class="auto-reveal">Record and review your explanations</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🔬 Cross-Curricular Connections</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Biology: metabolism and enzyme reactions</li>
+                        <li class="auto-reveal">Environmental science: climate and energy</li>
+                        <li class="auto-reveal">Engineering: energy efficiency design</li>
+                        <li class="auto-reveal">Health: nutrition and energy production</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>💬 Language Development</h3>
+                    <ul class="progressive-list">
+                        <li class="auto-reveal">Master more complex scientific vocabulary</li>
+                        <li class="auto-reveal">Practice hypothesis and prediction language</li>
+                        <li class="auto-reveal">Develop argumentation skills</li>
+                        <li class="auto-reveal">Learn to explain experimental procedures</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="central-concept auto-reveal">
+                <h3>🌟 Congratulations!</h3>
+                <p style="font-size: 1.3rem;">You now have the language tools to explain energy changes in chemical reactions clearly and confidently. Keep practicing to build even stronger scientific communication skills!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn">←</button>
+        <button class="nav-btn" id="nextBtn">→</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+
+        function updateSlideIndicator() {
+            document.getElementById('slideIndicator').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            updateSlideIndicator();
+            revealIndex = 0;
+            
+            // Hide all reveal elements on the new slide
+            const allRevealElements = slides[currentSlide].querySelectorAll('.auto-reveal, .progressive-list li');
+            allRevealElements.forEach(el => {
+                el.classList.remove('show');
+            });
+            
+            // Always show the first element (usually title/heading) immediately
+            const firstElement = slides[currentSlide].querySelector('.auto-reveal');
+            if (firstElement) {
+                firstElement.classList.add('show');
+                revealIndex = 1;
+            }
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function revealNext() {
+            const currentSlideElement = slides[currentSlide];
+            const revealElements = currentSlideElement.querySelectorAll('.auto-reveal, .progressive-list li');
+            
+            if (revealIndex < revealElements.length) {
+                revealElements[revealIndex].classList.add('show');
+                revealIndex++;
+            } else {
+                nextSlide();
+            }
+        }
+
+        function revealPrev() {
+            if (revealIndex > 0) {
+                const currentSlideElement = slides[currentSlide];
+                const revealElements = currentSlideElement.querySelectorAll('.auto-reveal, .progressive-list li');
+                revealIndex--;
+                revealElements[revealIndex].classList.remove('show');
+            } else {
+                prevSlide();
+            }
+        }
+
+        // Event listeners
+        document.getElementById('nextBtn').addEventListener('click', nextSlide);
+        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                    revealNext();
+                    break;
+                case 'ArrowLeft':
+                    revealPrev();
+                    break;
+                case ',':
+                    prevSlide();
+                    break;
+                case '.':
+                    nextSlide();
+                    break;
+                case 'Enter':
+                    // Reveal all content on current slide
+                    const currentSlideElement = slides[currentSlide];
+                    const allRevealElements = currentSlideElement.querySelectorAll('.auto-reveal, .progressive-list li');
+                    allRevealElements.forEach(el => el.classList.add('show'));
+                    revealIndex = currentSlideElement.querySelectorAll('.progressive-list li').length;
+                    break;
+            }
+        });
+
+        // Practice guide toggle
+        document.getElementById('imageToggle').addEventListener('click', () => {
+            alert('Practice Guide:\n\n1. Read the language frames aloud\n2. Practice filling in the blanks\n3. Time yourself during scenarios\n4. Record your explanations\n5. Use the self-assessment checklist\n\nRemember: Fluency comes from practice!');
+        });
+
+        // Initialize first slide
+        showSlide(0);
+    </script>
+</body>
+</html>

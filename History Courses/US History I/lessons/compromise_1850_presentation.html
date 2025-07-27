@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Compromise of 1850 - Buying Time or Making Things Worse?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            width: 95%;
+            max-width: 1400px;
+            height: 90vh;
+            padding: 2rem 3rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide.hidden {
+            display: none;
+        }
+
+        .slide-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 2rem;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-right: 1rem;
+        }
+
+        /* Custom scrollbar for better visibility */
+        .slide-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .slide-content::-webkit-scrollbar-track {
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 4px;
+        }
+
+        .slide-content::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 4px;
+        }
+
+        .slide-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(59, 130, 246, 0.7);
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8, #1e40af);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+        }
+
+        h2 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #3b82f6;
+        }
+
+        h3 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #60a5fa;
+        }
+
+        h4 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: #93c5fd;
+        }
+
+        p, li {
+            font-size: 1.8rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Progressive Disclosure */
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .nav-btn:hover {
+            background: rgba(59, 130, 246, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .nav-btn.active {
+            background: rgba(59, 130, 246, 0.4);
+            border-color: #1d4ed8;
+        }
+
+        /* Status indicator for reveal state */
+        .reveal-status {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: #3b82f6;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            z-index: 1000;
+        }
+
+        /* Keyboard Controls Help */
+        .keyboard-help {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: #3b82f6;
+            padding: 1rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .keyboard-help.visible {
+            opacity: 1;
+        }
+
+        .keyboard-help h4 {
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .keyboard-help p {
+            margin-bottom: 0.3rem;
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+
+        /* Progress Indicator */
+        .progress-indicator {
+            position: fixed;
+            top: 5rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            z-index: 1000;
+        }
+
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.3);
+            transition: background 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background: #3b82f6;
+        }
+
+        .progress-dot.revealed {
+            background: #10b981;
+        }
+
+        /* Slide Indicator */
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 1.5rem 0;
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .simple-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .five-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        /* Connection Box */
+        .connection-box {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid rgba(16, 185, 129, 0.4);
+            text-align: center;
+        }
+
+        /* Crisis Box */
+        .crisis-box {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid rgba(239, 68, 68, 0.4);
+            text-align: center;
+        }
+
+        /* Question Highlight */
+        .question-highlight {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: #ffffff;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            font-weight: 700;
+            font-size: 1.4rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #3b82f6;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin: 2rem 0;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 1.5rem;
+            border-radius: 15px;
+            width: 45%;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .timeline-year {
+            background: #3b82f6;
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        /* Primary Source */
+        .primary-source {
+            background: rgba(139, 92, 246, 0.2);
+            border: 3px solid rgba(139, 92, 246, 0.4);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            position: relative;
+            backdrop-filter: blur(15px);
+        }
+
+        .primary-source::before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            top: -1rem;
+            left: 1.5rem;
+            color: rgba(139, 92, 246, 0.6);
+            font-weight: bold;
+        }
+
+        .source-info {
+            margin-top: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            color: #c4b5fd;
+            font-size: 1.1rem;
+        }
+
+        /* Character Cards */
+        .character-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .character-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border-left: 5px solid;
+        }
+
+        .character-card.clay {
+            border-left-color: #3b82f6;
+        }
+
+        .character-card.webster {
+            border-left-color: #10b981;
+        }
+
+        .character-card.calhoun {
+            border-left-color: #ef4444;
+        }
+
+        /* Compromise Parts */
+        .compromise-part {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem 0;
+            border-left: 5px solid;
+            position: relative;
+        }
+
+        .compromise-part.california {
+            border-left-color: #10b981;
+        }
+
+        .compromise-part.territories {
+            border-left-color: #3b82f6;
+        }
+
+        .compromise-part.texas {
+            border-left-color: #f59e0b;
+        }
+
+        .compromise-part.fugitive {
+            border-left-color: #ef4444;
+        }
+
+        .compromise-part.dc {
+            border-left-color: #8b5cf6;
+        }
+
+        .part-number {
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #3b82f6;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Reaction Cards */
+        .reaction-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .reaction-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 2rem;
+            border-left: 5px solid;
+        }
+
+        .reaction-card.north {
+            border-left-color: #3b82f6;
+        }
+
+        .reaction-card.south {
+            border-left-color: #ef4444;
+        }
+
+        /* Chain of Events */
+        .chain-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .chain-step {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 2px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .step-number {
+            background: #3b82f6;
+            color: #ffffff;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* Image Tab */
+        .image-tab {
+            position: fixed;
+            top: 6rem;
+            right: 2rem;
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+            border-radius: 15px 15px 0 0;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            z-index: 999;
+            backdrop-filter: blur(10px);
+        }
+
+        .image-panel {
+            position: fixed;
+            top: 8rem;
+            right: 2rem;
+            width: 300px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #3b82f6;
+            border-radius: 15px;
+            padding: 1rem;
+            display: none;
+            z-index: 998;
+            backdrop-filter: blur(15px);
+        }
+
+        .image-panel.visible {
+            display: block;
+        }
+
+        .image-panel img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .simple-grid, .three-column, .character-grid, .five-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .slide {
+                padding: 1.5rem 2rem;
+            }
+
+            h1 {
+                font-size: 3.5rem;
+            }
+
+            h2 {
+                font-size: 2.8rem;
+            }
+
+            h3 {
+                font-size: 2rem;
+            }
+
+            h4 {
+                font-size: 1.6rem;
+            }
+
+            p, li {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 1rem;
+                height: 95vh;
+            }
+            
+            .navigation {
+                bottom: 1rem;
+                right: 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .nav-btn {
+                padding: 0.8rem 1.2rem;
+                font-size: 1rem;
+                min-width: 100px;
+            }
+
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            h2 {
+                font-size: 2.2rem;
+            }
+
+            h3 {
+                font-size: 1.8rem;
+            }
+
+            h4 {
+                font-size: 1.4rem;
+            }
+
+            p, li {
+                font-size: 1.3rem;
+            }
+
+            .reveal-status {
+                bottom: 8.5rem;
+                right: 1rem;
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .keyboard-help {
+                left: 1rem;
+                bottom: 1rem;
+                font-size: 0.8rem;
+                max-width: 250px;
+            }
+
+            .slide-indicator {
+                top: 1rem;
+                right: 1rem;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 16</span>
+    </div>
+
+    <div class="image-tab" id="imageTab" onclick="toggleImagePanel()">📷 Images</div>
+    <div class="image-panel" id="imagePanel">
+        <p style="color: #3b82f6; font-weight: 600; margin-bottom: 1rem;">Slide Images</p>
+        <div id="imageContent">
+            <p>No image for this slide</p>
+        </div>
+    </div>
+
+    <div class="reveal-status" id="revealStatus">
+        Items: 0/0
+    </div>
+
+    <div class="keyboard-help" id="keyboardHelp">
+        <h4>⌨️ Keyboard Controls</h4>
+        <p>→ Show next item (then next slide)</p>
+        <p>← Hide previous item (then prev slide)</p>
+        <p>, (comma) Jump to previous slide</p>
+        <p>. (period) Jump to next slide</p>
+        <p>Enter Show/hide all items</p>
+        <p>H Toggle this help</p>
+        <p>Esc Close panels</p>
+    </div>
+
+    <div class="progress-indicator" id="progressIndicator">
+        <!-- Progress dots will be added by JavaScript -->
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="revealBtn" onclick="toggleRevealAll()">Reveal All</button>
+        <button class="nav-btn" id="helpBtn" onclick="toggleHelp()">Help</button>
+    </div>
+
+    <div class="slide-container" id="slideContainer">
+        <!-- Slide 1: Title and Connection -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1 class="auto-reveal">The Compromise of 1850</h1>
+                <h2 class="auto-reveal">Buying Time or Making Things Worse?</h2>
+                
+                <div class="connection-box auto-reveal">
+                    <h4>🔗 Remember Where We Left Off</h4>
+                    <p>California's Gold Rush created a CRISIS: 300,000 people want statehood as a FREE state. This breaks the Missouri Compromise balance of 15 free vs. 15 slave states. Southern states threaten secession!</p>
+                </div>
+
+                <div class="question-highlight auto-reveal">
+                    <strong>Central Question:</strong> Did the Compromise of 1850 solve the slavery question or delay the inevitable?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Crisis Congress Faced -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>Congress in Crisis</h1>
+                <h2>December 1849 - The Nation on the Brink</h2>
+                
+                <div class="crisis-box auto-reveal">
+                    <h3>🔥 The Immediate Problem</h3>
+                    <p>California's admission as a FREE state would make it 16 free vs. 15 slave states</p>
+                    <p><strong>Southern power in the Senate = BROKEN</strong></p>
+                </div>
+
+                <div class="simple-grid">
+                    <div class="content-section auto-reveal">
+                        <h3>😡 Southern Threats</h3>
+                        <p>Several states threaten to SECEDE if California enters free</p>
+                        <p>"The Union has already been dissolved!" - Southern papers</p>
+                        <p>Talk of a Southern convention to plan independence</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>😤 Northern Demands</h3>
+                        <p>California has the RIGHT to choose for itself</p>
+                        <p>Population justifies immediate statehood</p>
+                        <p>"No more slave territory!" - Free Soil movement</p>
+                    </div>
+                </div>
+
+                <div class="timeline auto-reveal">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">Jan 1850</div>
+                            <h4>Henry Clay Returns</h4>
+                            <p>The "Great Compromiser" comes out of retirement for one last attempt to save the Union</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Great Triumvirate -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>The Great Triumvirate's Last Stand</h1>
+                <h2>Three Giants of the Senate</h2>
+                
+                <div class="character-grid">
+                    <div class="character-card clay auto-reveal">
+                        <h3>🤝 Henry Clay</h3>
+                        <h4>"The Great Compromiser"</h4>
+                        <p><strong>Age 73</strong> - Missouri Compromise creator</p>
+                        <p><strong>Goal:</strong> Save the Union through compromise</p>
+                        <p><strong>Plan:</strong> Package deal - something for everyone</p>
+                    </div>
+                    
+                    <div class="character-card webster auto-reveal">
+                        <h3>🎯 Daniel Webster</h3>
+                        <h4>"Defender of the Union"</h4>
+                        <p><strong>From Massachusetts</strong> - usually anti-slavery</p>
+                        <p><strong>Shocking move:</strong> Supports compromise</p>
+                        <p><strong>Belief:</strong> Union more important than principles</p>
+                    </div>
+                    
+                    <div class="character-card calhoun auto-reveal">
+                        <h3>⚔️ John C. Calhoun</h3>
+                        <h4>"The South's Champion"</h4>
+                        <p><strong>Dying of tuberculosis</strong> - final speech</p>
+                        <p><strong>Demand:</strong> Equal rights for slavery</p>
+                        <p><strong>Warning:</strong> South will leave if denied</p>
+                    </div>
+                </div>
+
+                <div class="connection-box auto-reveal">
+                    <h4>⏰ The Last Chance</h4>
+                    <p>These three men had dominated the Senate for 30 years. This would be their final attempt to hold the country together.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Clay's Omnibus Bill -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>Clay's Master Plan</h1>
+                <h2>The Omnibus Bill Strategy</h2>
+                
+                <div class="primary-source auto-reveal">
+                    I implore, as the best blessing which Heaven can bestow upon me on earth, that if the direful and sad event of the dissolution of the Union shall happen, I may not survive to behold the sad and heart-rending spectacle.
+                    <div class="source-info">— Henry Clay, introducing his compromise, January 29, 1850</div>
+                </div>
+
+                <div class="simple-grid">
+                    <div class="content-section auto-reveal">
+                        <h3>🎪 "Omnibus" Strategy</h3>
+                        <p>Package all issues into ONE giant bill</p>
+                        <p>Forces Congress to vote yes or no on everything</p>
+                        <p>Nobody gets everything, everybody gets something</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>🤔 The Logic</h3>
+                        <p>Northern senators want California statehood</p>
+                        <p>Southern senators want fugitive slave protection</p>
+                        <p>If tied together, both sides must compromise</p>
+                    </div>
+                </div>
+
+                <div class="crisis-box auto-reveal">
+                    <h3>❌ The Problem</h3>
+                    <p>Clay's omnibus strategy FAILS! Too many senators hate parts of the package. They vote down the entire bill in July 1850.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Primary Source - Webster's Speech -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>Webster's Shocking Speech</h1>
+                <h2>March 7, 1850 - "Union Above All"</h2>
+                
+                <div class="primary-source auto-reveal">
+                    I wish to speak today, not as a Massachusetts man, nor as a Northern man, but as an American... I speak today for the preservation of the Union. Hear me for my cause.
+                    <div class="source-info">— Daniel Webster, "Seventh of March" speech</div>
+                </div>
+
+                <div class="simple-grid">
+                    <div class="content-section auto-reveal">
+                        <h3>😱 Northern Shock</h3>
+                        <p>Webster usually opposed slavery expansion</p>
+                        <p>Now supports compromise including Fugitive Slave Act</p>
+                        <p>Northern newspapers call him a "traitor"</p>
+                        <p>Abolitionists burn him in effigy</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>🤔 Webster's Logic</h3>
+                        <p>"The Union is more important than any single issue"</p>
+                        <p>Slavery won't spread naturally to desert territories anyway</p>
+                        <p>Better to compromise than see the nation split</p>
+                    </div>
+                </div>
+
+                <div class="question-highlight auto-reveal">
+                    Was Webster a traitor to his principles or a patriot saving the Union?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Calhoun's Final Warning -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>Calhoun's Dying Warning</h1>
+                <h2>The South's Final Ultimatum</h2>
+                
+                <div class="primary-source auto-reveal">
+                    The cords that bind the States together are already greatly weakened. What is it that has endangered the Union? The immediate cause is the almost universal discontent which pervades all the States composing the Southern section of the Union.
+                    <div class="source-info">— John C. Calhoun's final speech, read by Senator James Mason (Calhoun too sick to speak)</div>
+                </div>
+
+                <div class="simple-grid">
+                    <div class="content-section auto-reveal">
+                        <h3>☠️ Calhoun's Condition</h3>
+                        <p>Dying of tuberculosis, too weak to give speech</p>
+                        <p>Senator Mason reads his words while Calhoun listens</p>
+                        <p>Dies one month later - his final political act</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>⚠️ The Ultimatum</h3>
+                        <p>South demands EQUAL rights in territories</p>
+                        <p>Return of ALL fugitive slaves</p>
+                        <p>Stop anti-slavery agitation in Congress</p>
+                        <p><strong>Or the South leaves the Union</strong></p>
+                    </div>
+                </div>
+
+                <div class="connection-box auto-reveal">
+                    <h4>🔍 Think About It</h4>
+                    <p>Why might Calhoun's demands have been impossible for the North to accept?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Stephen Douglas Saves the Day -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>The "Little Giant" Steps In</h1>
+                <h2>Stephen Douglas's New Strategy</h2>
+                
+                <div class="simple-grid">
+                    <div class="content-section auto-reveal">
+                        <h3>🧠 Douglas's Insight</h3>
+                        <p><strong>Age 37</strong> - youngest major player</p>
+                        <p>Sees why Clay's omnibus failed</p>
+                        <p><strong>New idea:</strong> Separate the bills!</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>🎯 The Strategy</h3>
+                        <p>Break package into 5 separate bills</p>
+                        <p>Each bill gets different coalition of supporters</p>
+                        <p>Some senators vote for some bills, not others</p>
+                    </div>
+                </div>
+
+                <div class="timeline auto-reveal">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">Aug-Sept 1850</div>
+                            <h4>Douglas's Strategy Works</h4>
+                            <p>Five separate bills pass one by one. The Compromise of 1850 becomes law!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="connection-box auto-reveal">
+                    <h4>🤓 Political Genius</h4>
+                    <p>Douglas figured out how to get things done when the "Great Compromiser" failed. Sometimes fresh thinking beats experience!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: The Five-Part Solution -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>The Five-Part Compromise</h1>
+                <h2>Something for Everyone?</h2>
+                
+                <div class="compromise-part california auto-reveal">
+                    <div class="part-number">1</div>
+                    <h3>California Enters as FREE State</h3>
+                    <p><strong>Northern Victory:</strong> Tips Senate balance 16-15 for free states</p>
+                    <p>No restrictions on slavery decision - California chose freely</p>
+                </div>
+
+                <div class="compromise-part territories auto-reveal">
+                    <div class="part-number">2</div>
+                    <h3>Utah & New Mexico = Popular Sovereignty</h3>
+                    <p><strong>Southern Victory:</strong> Residents decide slavery question themselves</p>
+                    <p>No Congressional prohibition like Missouri Compromise line</p>
+                </div>
+
+                <div class="compromise-part texas auto-reveal">
+                    <div class="part-number">3</div>
+                    <h3>Texas Border & Debt Deal</h3>
+                    <p>Texas gives up land claims in New Mexico</p>
+                    <p><strong>Texas gets:</strong> $10 million to pay off Republic of Texas debts</p>
+                </div>
+
+                <div class="compromise-part fugitive auto-reveal">
+                    <div class="part-number">4</div>
+                    <h3>NEW Fugitive Slave Act</h3>
+                    <p><strong>Southern Victory:</strong> Federal government MUST help catch runaway slaves</p>
+                    <p>Suspected slaves can't testify or have jury trials</p>
+                    <p><strong>This becomes the "poison pill"</strong></p>
+                </div>
+
+                <div class="compromise-part dc auto-reveal">
+                    <div class="part-number">5</div>
+                    <h3>End Slave TRADE in Washington D.C.</h3>
+                    <p><strong>Northern Victory:</strong> No more slave markets in the capital</p>
+                    <p>But slavery itself still legal in D.C.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Initial Reactions -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>How Did People React?</h1>
+                <h2>Initial Celebrations and Concerns</h2>
+                
+                <div class="reaction-grid">
+                    <div class="reaction-card north auto-reveal">
+                        <h3>🎉 Northern Moderates</h3>
+                        <p><strong>Celebrated:</strong> California free, slavery expansion limited</p>
+                        <p><strong>Worried about:</strong> Fugitive Slave Act requirements</p>
+                        <p><strong>Hoped:</strong> This would end slavery debates forever</p>
+                    </div>
+                    
+                    <div class="reaction-card south auto-reveal">
+                        <h3>😐 Southern Moderates</h3>
+                        <p><strong>Accepted:</strong> Better than losing everything</p>
+                        <p><strong>Liked:</strong> Fugitive Slave Act protection</p>
+                        <p><strong>Still angry:</strong> About losing California</p>
+                    </div>
+                </div>
+
+                <div class="simple-grid">
+                    <div class="content-section auto-reveal">
+                        <h3>😡 Abolitionists</h3>
+                        <p>FURIOUS about Fugitive Slave Act</p>
+                        <p>Called it "a law to make every free state a slave state"</p>
+                        <p>Vowed resistance and non-compliance</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>🔥 Fire-Eaters (Southern Extremists)</h3>
+                        <p>Wanted secession instead of compromise</p>
+                        <p>Saw this as a defeat for the South</p>
+                        <p>Continued planning for eventual independence</p>
+                    </div>
+                </div>
+
+                <div class="crisis-box auto-reveal">
+                    <h3>⚠️ Warning Signs</h3>
+                    <p>Both extremes HATED the compromise. Only moderates supported it. What happens when the extremes get stronger?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: The Fugitive Slave Act Backfires -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>The "Poison Pill" Explodes</h1>
+                <h2>How the Fugitive Slave Act Backfired</h2>
+                
+                <div class="primary-source auto-reveal">
+                    By requiring the aid of the people in the execution of the law, it seems to me the government is asking the impossible. No law can be enforced against the moral sense of the North.
+                    <div class="source-info">— Northern newspaper editorial, 1850</div>
+                </div>
+
+                <div class="simple-grid">
+                    <div class="content-section auto-reveal">
+                        <h3>📜 What the Law Required</h3>
+                        <p>ALL citizens must help catch suspected fugitive slaves</p>
+                        <p>$1,000 fine for helping a fugitive escape</p>
+                        <p>Federal commissioners paid MORE for sending people south</p>
+                        <p>No jury trials, no testimony from accused</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>😠 Northern Outrage</h3>
+                        <p>Made every Northerner part of the slavery system</p>
+                        <p>Free blacks could be kidnapped without protection</p>
+                        <p>Violated Northern beliefs about justice and freedom</p>
+                    </div>
+                </div>
+
+                <div class="chain-container">
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">1</div>
+                        <h3>Underground Railroad Expands</h3>
+                        <p>More Northerners help slaves escape than ever before</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">2</div>
+                        <h3>Uncle Tom's Cabin (1852)</h3>
+                        <p>Harriet Beecher Stowe's novel shows slavery's horrors</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">3</div>
+                        <h3>Personal Liberty Laws</h3>
+                        <p>Northern states pass laws to protect accused fugitives</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Did It Work? -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>Did the Compromise Work?</h1>
+                <h2>Short-term Success, Long-term Disaster</h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item auto-reveal">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1850-1854</div>
+                            <h4>Temporary Peace</h4>
+                            <p>Both sections accepted the compromise. Economic boom. Talk of secession ended.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item auto-reveal">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1854</div>
+                            <h4>Kansas-Nebraska Act</h4>
+                            <p>Douglas breaks the compromise with popular sovereignty in Kansas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item auto-reveal">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1854-1860</div>
+                            <h4>Bleeding Kansas</h4>
+                            <p>Violence over slavery in Kansas territory</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item auto-reveal">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1860-1861</div>
+                            <h4>Secession Crisis</h4>
+                            <p>The compromise completely fails</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-highlight auto-reveal">
+                    So did the Compromise work? It bought 10 years of peace but made the final crisis worse. Was that worth it?
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Why Did It Fail Long-Term? -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>Why Did It Fail Long-Term?</h1>
+                
+                <div class="three-column">
+                    <div class="content-section auto-reveal">
+                        <h3>🧠 Fundamental Problem</h3>
+                        <p>Didn't solve the basic issue: Should slavery expand?</p>
+                        <p>Just postponed the decision</p>
+                        <p>Every new territory would cause the same crisis</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>😡 Made Things Worse</h3>
+                        <p>Fugitive Slave Act radicalized the North</p>
+                        <p>More Northerners became anti-slavery</p>
+                        <p>Popular sovereignty led to violence in Kansas</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>👥 Leaders Gone</h3>
+                        <p>Clay, Webster, Calhoun all died 1850-1852</p>
+                        <p>Younger generation less willing to compromise</p>
+                        <p>Extremists got stronger on both sides</p>
+                    </div>
+                </div>
+
+                <div class="primary-source auto-reveal">
+                    The Compromise of 1850 was not a solution but a postponement. It gave the country a breathing space but did not heal the fundamental wound.
+                    <div class="source-info">— Modern historian David Potter</div>
+                </div>
+
+                <div class="connection-box auto-reveal">
+                    <h4>💭 Think About It</h4>
+                    <p>Sometimes trying to compromise on moral issues just makes the problem worse. Can you think of modern examples?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Historical Debate -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>The Historical Debate</h1>
+                <h2>Was Compromise Worth the Cost?</h2>
+                
+                <div class="reaction-grid">
+                    <div class="reaction-card north auto-reveal">
+                        <h3>✅ "It Was Necessary"</h3>
+                        <p><strong>Argument:</strong> Prevented civil war in 1850 when North wasn't ready</p>
+                        <p>Gave time for North to grow stronger economically</p>
+                        <p>Allowed anti-slavery movement to build support</p>
+                        <p><strong>Bottom line:</strong> Delayed inevitable conflict until North could win</p>
+                    </div>
+                    
+                    <div class="reaction-card south auto-reveal">
+                        <h3>❌ "It Made Things Worse"</h3>
+                        <p><strong>Argument:</strong> Fugitive Slave Act turned moderates into radicals</p>
+                        <p>Popular sovereignty principle led to Kansas violence</p>
+                        <p>Compromise failed anyway - just made final crisis bloodier</p>
+                        <p><strong>Bottom line:</strong> Should have resolved the issue in 1850</p>
+                    </div>
+                </div>
+
+                <div class="question-highlight auto-reveal">
+                    What do YOU think? Was the Compromise of 1850 a necessary delay or a costly mistake?
+                </div>
+
+                <div class="connection-box auto-reveal">
+                    <h4>🎯 Assessment Activity</h4>
+                    <p>Write a short argument defending your position using evidence from today's lesson.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Primary Source Analysis -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>Document Analysis Activity</h1>
+                
+                <div class="primary-source auto-reveal">
+                    The question of slavery, either for or against, is the great absorbing question of the day. The anti-slavery feeling is growing stronger and stronger every day, and it will continue to grow until slavery shall be abolished, or it will become so strong as to tear the Union asunder.
+                    <div class="source-info">— Congressman Abraham Lincoln, 1850</div>
+                </div>
+
+                <div class="simple-grid">
+                    <div class="content-section auto-reveal">
+                        <h3>📖 Source Questions</h3>
+                        <p><strong>1.</strong> Who wrote this and when?</p>
+                        <p><strong>2.</strong> What prediction does Lincoln make?</p>
+                        <p><strong>3.</strong> How does this relate to the Compromise of 1850?</p>
+                        <p><strong>4.</strong> Was Lincoln right? Use evidence to support your answer.</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>🔍 Historical Thinking</h3>
+                        <p>This document shows that even in 1850, some people predicted the compromise wouldn't work.</p>
+                        <p><strong>Question:</strong> Should politicians have listened to warnings like Lincoln's?</p>
+                    </div>
+                </div>
+
+                <div class="question-highlight auto-reveal">
+                    Use this quote to support your argument about whether the Compromise of 1850 was a good idea.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Connecting Forward -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>Setting Up the Crisis</h1>
+                <h2>How the Compromise Led to War</h2>
+                
+                <div class="chain-container">
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">1</div>
+                        <h3>Compromise of 1850</h3>
+                        <p>Temporary peace but fundamental issues unsolved</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">2</div>
+                        <h3>Fugitive Slave Act Backlash</h3>
+                        <p>Radicalizes Northern opinion against slavery</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">3</div>
+                        <h3>Uncle Tom's Cabin (1852)</h3>
+                        <p>Anti-slavery novel reaches millions</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">4</div>
+                        <h3>Kansas-Nebraska Act (1854)</h3>
+                        <p>Stephen Douglas breaks his own compromise</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">5</div>
+                        <h3>Bleeding Kansas (1854-1860)</h3>
+                        <p>Violence proves popular sovereignty doesn't work</p>
+                    </div>
+                    
+                    <div class="chain-step auto-reveal">
+                        <div class="step-number">6</div>
+                        <h3>Coming Next...</h3>
+                        <p>Lincoln-Douglas Debates and the 1860 election</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Our Answer -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h1>Our Answer</h1>
+                
+                <div class="question-highlight auto-reveal">
+                    <strong>Did the Compromise of 1850 solve the slavery question or delay the inevitable?</strong>
+                </div>
+
+                <div class="simple-grid">
+                    <div class="content-section auto-reveal">
+                        <h3>✅ What It Accomplished</h3>
+                        <p>Prevented immediate secession crisis in 1850</p>
+                        <p>Gave the country 10 years of economic growth</p>
+                        <p>Allowed California to enter as a free state</p>
+                        <p>Showed that compromise was still possible</p>
+                    </div>
+                    
+                    <div class="content-section auto-reveal">
+                        <h3>❌ What It Failed To Do</h3>
+                        <p>Didn't resolve fundamental slavery expansion question</p>
+                        <p>Fugitive Slave Act radicalized Northern opinion</p>
+                        <p>Popular sovereignty led to violence in Kansas</p>
+                        <p>Made extremists stronger on both sides</p>
+                    </div>
+                </div>
+
+                <div class="connection-box auto-reveal">
+                    <h4>📊 The Verdict</h4>
+                    <p>The Compromise of 1850 was a <strong>successful delay</strong> that <strong>failed as a solution</strong>. It bought time but made the final crisis worse when it came.</p>
+                </div>
+
+                <div class="crisis-box auto-reveal">
+                    <h4>🔮 Next Time</h4>
+                    <p>How did Stephen Douglas's Kansas-Nebraska Act destroy his own compromise and create "Bleeding Kansas"?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentRevealIndex = 0;
+        let allRevealed = false;
+        const totalSlides = 16;
+
+        // Image content for each slide
+        const slideImages = {
+            0: { title: "Compromise Overview", content: "<p>Images of the Capitol building in 1850, maps showing free vs slave states</p>" },
+            1: { title: "Congressional Crisis", content: "<p>Political cartoons showing sectional tensions, newspaper headlines</p>" },
+            2: { title: "Great Triumvirate", content: "<p>Portraits of Clay, Webster, and Calhoun in the Senate chamber</p>" },
+            3: { title: "Clay's Omnibus Bill", content: "<p>Images of Clay speaking, the Capitol dome under construction</p>" },
+            4: { title: "Webster's Speech", content: "<p>Portrait of Webster giving his famous speech, Northern newspaper reactions</p>" },
+            5: { title: "Calhoun's Warning", content: "<p>Final portrait of Calhoun, Senate chamber during his speech</p>" },
+            6: { title: "Stephen Douglas", content: "<p>Portrait of the 'Little Giant,' Congressional voting records</p>" },
+            7: { title: "Five-Part Solution", content: "<p>Maps showing territorial changes, legislative documents</p>" },
+            8: { title: "Initial Reactions", content: "<p>Newspaper headlines North and South, celebration and protest images</p>" },
+            9: { title: "Fugitive Slave Act", content: "<p>Images of slave catchers, Underground Railroad activity, wanted posters</p>" },
+            10: { title: "Success and Failure", content: "<p>Timeline graphics, Uncle Tom's Cabin book cover</p>" },
+            11: { title: "Why It Failed", content: "<p>Kansas violence images, political cartoon about extremism</p>" },
+            12: { title: "Historical Debate", content: "<p>Historian quotes, modern analysis charts</p>" },
+            13: { title: "Document Analysis", content: "<p>Lincoln's 1850 letter, contemporary newspaper excerpts</p>" },
+            14: { title: "Connecting Forward", content: "<p>Timeline from 1850 to 1860, progression of crises</p>" },
+            15: { title: "Final Assessment", content: "<p>Summary graphics showing compromise effects, evaluation rubric</p>" }
+        };
+
+        function updateSlideCounter() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function updateImagePanel() {
+            const imageContent = document.getElementById('imageContent');
+            const slideImage = slideImages[currentSlide];
+            if (slideImage) {
+                imageContent.innerHTML = `<h4>${slideImage.title}</h4>${slideImage.content}`;
+            } else {
+                imageContent.innerHTML = '<p>No image for this slide</p>';
+            }
+        }
+
+        function updateRevealStatus() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            const status = document.getElementById('revealStatus');
+            
+            if (autoRevealElements.length === 0) {
+                status.textContent = 'No items to reveal';
+                status.style.opacity = '0.5';
+            } else {
+                status.textContent = `Items: ${currentRevealIndex}/${autoRevealElements.length}`;
+                status.style.opacity = '1';
+            }
+        }
+
+        function updateProgressIndicator() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            const progressIndicator = document.getElementById('progressIndicator');
+            
+            // Clear existing dots
+            progressIndicator.innerHTML = '';
+            
+            // Only add dots if there are elements to reveal
+            if (autoRevealElements.length > 0) {
+                autoRevealElements.forEach((element, index) => {
+                    const dot = document.createElement('div');
+                    dot.className = 'progress-dot';
+                    if (index < currentRevealIndex) {
+                        dot.classList.add('revealed');
+                    } else if (index === currentRevealIndex && !allRevealed) {
+                        dot.classList.add('active');
+                    }
+                    progressIndicator.appendChild(dot);
+                });
+            }
+        }
+
+        function toggleImagePanel() {
+            const panel = document.getElementById('imagePanel');
+            panel.classList.toggle('visible');
+        }
+
+        function toggleHelp() {
+            const help = document.getElementById('keyboardHelp');
+            help.classList.toggle('visible');
+        }
+
+        function showSlide(index) {
+            // Hide all slides
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.classList.add('hidden'));
+            
+            // Show current slide
+            slides[index].classList.remove('hidden');
+            
+            // Reset reveal state for new slide
+            currentRevealIndex = 0;
+            allRevealed = false;
+            
+            // Check if this slide has auto-reveal elements
+            const autoRevealElements = slides[index].querySelectorAll('.auto-reveal');
+            if (autoRevealElements.length === 0) {
+                allRevealed = true; // No elements to reveal
+            }
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === totalSlides - 1;
+            
+            // Reset reveal button
+            const revealBtn = document.getElementById('revealBtn');
+            if (autoRevealElements.length === 0) {
+                revealBtn.textContent = 'No Items';
+                revealBtn.disabled = true;
+            } else {
+                revealBtn.textContent = 'Reveal All';
+                revealBtn.disabled = false;
+                revealBtn.classList.remove('active');
+            }
+            
+            // Hide all auto-reveal elements on new slide
+            autoRevealElements.forEach(element => {
+                element.classList.remove('revealed');
+            });
+            
+            updateSlideCounter();
+            updateImagePanel();
+            updateProgressIndicator();
+            updateRevealStatus();
+            
+            // Scroll to top of slide content
+            const slideContent = slides[index].querySelector('.slide-content');
+            if (slideContent) {
+                slideContent.scrollTop = 0;
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        function revealNext() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (currentRevealIndex < autoRevealElements.length) {
+                autoRevealElements[currentRevealIndex].classList.add('revealed');
+                currentRevealIndex++;
+                updateProgressIndicator();
+                updateRevealStatus();
+            }
+            
+            if (currentRevealIndex >= autoRevealElements.length) {
+                allRevealed = true;
+                document.getElementById('revealBtn').textContent = 'Hide All';
+                document.getElementById('revealBtn').classList.add('active');
+            }
+        }
+
+        function revealPrevious() {
+            if (currentRevealIndex > 0) {
+                const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+                const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+                
+                currentRevealIndex--;
+                autoRevealElements[currentRevealIndex].classList.remove('revealed');
+                allRevealed = false;
+                
+                document.getElementById('revealBtn').textContent = 'Reveal All';
+                document.getElementById('revealBtn').classList.remove('active');
+                updateProgressIndicator();
+                updateRevealStatus();
+            }
+        }
+
+        function toggleRevealAll() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            const revealBtn = document.getElementById('revealBtn');
+            
+            if (autoRevealElements.length === 0) return; // No elements to reveal
+            
+            if (!allRevealed) {
+                // Reveal all with staggered animation
+                autoRevealElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('revealed');
+                    }, index * 150);
+                });
+                currentRevealIndex = autoRevealElements.length;
+                allRevealed = true;
+                revealBtn.textContent = 'Hide All';
+                revealBtn.classList.add('active');
+                
+                // Update progress indicator after animation completes
+                setTimeout(() => {
+                    updateProgressIndicator();
+                    updateRevealStatus();
+                }, autoRevealElements.length * 150);
+            } else {
+                // Hide all
+                autoRevealElements.forEach(element => {
+                    element.classList.remove('revealed');
+                });
+                currentRevealIndex = 0;
+                allRevealed = false;
+                revealBtn.textContent = 'Reveal All';
+                revealBtn.classList.remove('active');
+                updateProgressIndicator();
+                updateRevealStatus();
+            }
+        }
+
+        // Enhanced keyboard controls with proper progressive disclosure
+        document.addEventListener('keydown', function(event) {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            // Add visual feedback for key presses
+            const activeBtn = document.querySelector('.nav-btn.active');
+            if (activeBtn) {
+                activeBtn.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    activeBtn.style.transform = '';
+                }, 100);
+            }
+
+            switch(event.key.toLowerCase()) {
+                case 'arrowright':
+                    event.preventDefault();
+                    // If slide has no auto-reveal elements, go directly to next slide
+                    if (autoRevealElements.length === 0) {
+                        if (currentSlide < totalSlides - 1) {
+                            nextSlide();
+                        }
+                    }
+                    // If slide has elements, reveal next element first
+                    else if (currentRevealIndex < autoRevealElements.length) {
+                        revealNext();
+                    } 
+                    // Only go to next slide if all elements are revealed
+                    else if (allRevealed && currentSlide < totalSlides - 1) {
+                        nextSlide();
+                    }
+                    break;
+                case 'arrowleft':
+                    event.preventDefault();
+                    // If slide has no auto-reveal elements, go directly to previous slide
+                    if (autoRevealElements.length === 0) {
+                        if (currentSlide > 0) {
+                            previousSlide();
+                        }
+                    }
+                    // If slide has elements, hide previous element first  
+                    else if (currentRevealIndex > 0) {
+                        revealPrevious();
+                    }
+                    // Only go to previous slide if no elements are revealed
+                    else if (currentRevealIndex === 0 && currentSlide > 0) {
+                        previousSlide();
+                    }
+                    break;
+                case ',':
+                    event.preventDefault();
+                    previousSlide();
+                    break;
+                case '.':
+                    event.preventDefault();
+                    nextSlide();
+                    break;
+                case 'enter':
+                    event.preventDefault();
+                    if (autoRevealElements.length > 0) {
+                        toggleRevealAll();
+                    }
+                    break;
+                case 'h':
+                    event.preventDefault();
+                    toggleHelp();
+                    break;
+                case 'escape':
+                    event.preventDefault();
+                    // Hide help and image panel
+                    document.getElementById('keyboardHelp').classList.remove('visible');
+                    document.getElementById('imagePanel').classList.remove('visible');
+                    break;
+            }
+        });
+
+        // Initialize presentation
+        function initializePresentation() {
+            showSlide(0);
+            
+            // Show help briefly on load
+            setTimeout(() => {
+                toggleHelp();
+                setTimeout(() => {
+                    toggleHelp();
+                }, 3000);
+            }, 1000);
+        }
+
+        initializePresentation();
+    </script>
+</body>
+</html>

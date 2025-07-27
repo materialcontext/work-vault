@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foreign Influence in Iran: The Mossadegh Era and Beyond</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3a8a, #3730a3, #1e40af, #1d4ed8);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            min-height: 100vh;
+            padding: 2rem 4%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            padding: 2rem 0;
+            min-height: calc(100vh - 4rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        .slide h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1.5rem;
+        }
+
+        .slide h3 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #fcd34d;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 1.5rem;
+        }
+
+        .slide h4 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #fde047;
+            margin-bottom: 1rem;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1.5rem;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.7);
+            color: #ffd700;
+            border: 2px solid #ffd700;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: #ffd700;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.6);
+            color: #ffd700;
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            font-size: 1.1rem;
+        }
+
+        .emoji-large {
+            font-size: 5rem;
+            margin: 1.5rem 0;
+            display: block;
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .crisis-overview {
+            background: rgba(239, 68, 68, 0.3);
+            border-left: 6px solid #ef4444;
+            padding: 2.5rem;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.2);
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .timeline-section {
+            background: rgba(16, 185, 129, 0.3);
+            border-left: 6px solid #10b981;
+            padding: 2.5rem;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .operation-details {
+            background: rgba(139, 69, 19, 0.3);
+            border-left: 6px solid #8b4513;
+            padding: 2.5rem;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.2);
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .quote-highlight {
+            background: linear-gradient(135deg, #ffd700, #daa520);
+            color: #2d1810;
+            padding: 2.5rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            font-weight: 600;
+            font-size: 2rem;
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.4);
+            font-style: italic;
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .method-card {
+            background: rgba(59, 130, 246, 0.3);
+            border-left: 6px solid #3b82f6;
+            padding: 2rem;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .method-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.3);
+        }
+
+        .consequences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .consequence-card {
+            background: rgba(236, 72, 153, 0.3);
+            border-left: 6px solid #ec4899;
+            padding: 1.8rem;
+            border-radius: 0 15px 15px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.2);
+            text-align: left;
+        }
+
+        .legacy-impact {
+            background: rgba(168, 85, 247, 0.3);
+            border-left: 6px solid #a855f7;
+            padding: 2.5rem;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.2);
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .resistance-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .resistance-card {
+            background: rgba(34, 197, 94, 0.3);
+            border-left: 6px solid #22c55e;
+            padding: 2rem;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.2);
+            text-align: left;
+        }
+
+        .money-data {
+            background: rgba(255, 215, 0, 0.9);
+            color: #2d1810;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            font-weight: 700;
+            font-size: 2.2rem;
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
+            text-align: center;
+        }
+
+        .comparison-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            background: rgba(245, 101, 101, 0.3);
+            border-left: 6px solid #f56565;
+            padding: 2rem;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(245, 101, 101, 0.2);
+            text-align: left;
+        }
+
+        strong {
+            color: #ffd700;
+            font-weight: 700;
+        }
+
+        em {
+            color: #ffd700;
+            font-style: italic;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin: 1rem 0;
+            padding-left: 0.5rem;
+            font-size: 1.7rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .slide h1 { font-size: 3rem; }
+            .slide h2 { font-size: 2.5rem; }
+            .slide h3 { font-size: 2rem; }
+            .slide h4 { font-size: 1.8rem; }
+            .slide p, .slide li { font-size: 1.4rem; }
+            .method-grid { grid-template-columns: 1fr; }
+            .consequences-grid { grid-template-columns: 1fr; }
+            .comparison-section { grid-template-columns: 1fr; }
+            .resistance-examples { grid-template-columns: 1fr; }
+            .slide { padding: 1rem 2%; }
+            .slide-content { 
+                padding: 1rem 0; 
+                min-height: calc(100vh - 2rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 18</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="revealBtn" onclick="toggleRevealAll()">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <div class="emoji-large auto-reveal">🕵️‍♂️🇮🇷</div>
+            <h1 class="auto-reveal">Foreign Influence in 20th Century Iran</h1>
+            <h2 class="auto-reveal">The Mossadegh Crisis and Beyond</h2>
+            
+            <div class="crisis-overview auto-reveal">
+                <h3>Central Question</h3>
+                <p style="font-size: 2.2rem;"><strong>How did foreign intelligence operations fundamentally reshape Iranian politics and create lasting consequences that continue to influence Middle Eastern geopolitics today?</strong></p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Our Focus</h3>
+                <p style="font-size: 2rem;">We'll examine the sophisticated web of <strong>British imperial control</strong>, the <strong>CIA's Operation AJAX</strong>, and how these interventions shaped Iran's revolutionary trajectory toward the 1979 Islamic Revolution.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Soviet Strategy -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>☭ Soviet Strategy: The Long Game</h2>
+            
+            <div class="auto-reveal">
+                <h3>Different Power, Different Methods</h3>
+                <p style="font-size: 2rem;">While Britain and America focused on controlling Iran's government, the Soviet Union played <strong>the long game</strong> through systematic infiltration and ideological influence.</p>
+            </div>
+
+            <div class="method-grid auto-reveal">
+                <div class="method-card">
+                    <h4>🚩 The Tudeh Party</h4>
+                    <p><strong>Membership:</strong> 25,000 members and 400,000 trade union affiliates</p>
+                    <p><strong>Funding:</strong> Regular stipends from KGB for party leadership</p>
+                    <p><strong>Training:</strong> 10-15 members annually trained in "conspiratorial work"</p>
+                    <p><strong>Operations:</strong> Systematic financial support and operational control</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>🗺️ Territorial Expansion</h4>
+                    <p><strong>Azerbaijan Crisis (1945-46):</strong> Soviet-backed puppet states in northern Iran</p>
+                    <p><strong>Kurdish Republic:</strong> Mahabad Republic supported by USSR</p>
+                    <p><strong>Withdrawal:</strong> International pressure through UN forced Soviet retreat</p>
+                    <p><strong>Strategy:</strong> Testing Western resolve while maintaining plausible deniability</p>
+                </div>
+            </div>
+
+            <div class="timeline-section auto-reveal">
+                <h4>Soviet Methods vs. Western Methods</h4>
+                <p><strong>Ideological Framework:</strong> Emphasized communist theory and anti-imperialism rather than simple bribery</p>
+                <p><strong>Centralized Organization:</strong> Used disciplined party structure rather than loose networks</p>
+                <p><strong>Long-term Patience:</strong> Focused on gradual influence rather than quick coups</p>
+                <p><strong>Popular Appeal:</strong> Addressed social justice and economic inequality issues</p>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Soviet Failure: Their ultimate strategic failure stemmed from overreliance on proxy organizations lacking broad popular support and miscalculation of Iranian nationalist sentiment that conflicted with foreign control regardless of ideological packaging.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Iranian Resistance -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>✊ Iranian Resistance: Fighting Back</h2>
+            
+            <div class="auto-reveal">
+                <h3>How Iranians Responded to Foreign Control</h3>
+                <p style="font-size: 2rem;">Despite sophisticated foreign operations, Iranians developed increasingly effective <strong>resistance strategies</strong> that evolved from institutional efforts to mass nationalist movements.</p>
+            </div>
+
+            <div class="resistance-examples auto-reveal">
+                <div class="resistance-card">
+                    <h4>🏛️ Constitutional Resistance</h4>
+                    <p><strong>Parliament (Majles):</strong> Used constitutional procedures to challenge foreign concessions</p>
+                    <p><strong>Legal Challenges:</strong> Court cases against foreign companies and their Iranian contracts</p>
+                    <p><strong>Legislative Opposition:</strong> Refusing to ratify agreements favorable to foreign powers</p>
+                    <p><strong>Democratic Legitimacy:</strong> Using popular support to resist foreign pressure</p>
+                </div>
+                
+                <div class="resistance-card">
+                    <h4>📰 Media and Culture</h4>
+                    <p><strong>Independent Press:</strong> Journalists who couldn't be bought by foreign powers</p>
+                    <p><strong>Poetry and Literature:</strong> Cultural expressions of resistance to foreign domination</p>
+                    <p><strong>Religious Networks:</strong> Mosque-based communication avoiding foreign surveillance</p>
+                    <p><strong>Intellectual Circles:</strong> Universities and coffee houses as centers of nationalist thought</p>
+                </div>
+                
+                <div class="resistance-card">
+                    <h4>👥 Mass Movements</h4>
+                    <p><strong>Oil Nationalization Support:</strong> Overwhelming popular backing for Mossadegh's policies</p>
+                    <p><strong>Bazaar Networks:</strong> Traditional merchant class organizing economic resistance</p>
+                    <p><strong>Student Activism:</strong> University students protesting foreign influence</p>
+                    <p><strong>Religious Mobilization:</strong> Clerics organizing opposition to foreign control</p>
+                </div>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Growing Sophistication: Popular awareness of foreign manipulation became increasingly sophisticated throughout the century. The 1953 coup became "a touchstone of modern Iranian nationalism" that could not be overcome despite 25 years of the Shah's rule.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Seeds of Revolution -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌱 Seeds of Revolution: Long-Term Consequences</h2>
+            
+            <div class="auto-reveal">
+                <h3>How Foreign Operations Created Revolutionary Conditions</h3>
+                <p style="font-size: 2rem;">The CIA's own internal studies acknowledged that the 1953 coup <strong>"fatally wounded"</strong> the legitimacy of the Shah's monarchy, creating lasting grievances that shaped political discourse for generations.</p>
+            </div>
+
+            <div class="legacy-impact auto-reveal">
+                <h4>Institutional Damage from Foreign Intervention</h4>
+                <p><strong>Democratic Legitimacy Lost:</strong> Parliament and democratic institutions permanently weakened after 1953</p>
+                <p><strong>Constitutional Monarchy Destroyed:</strong> "Transformed a turbulent constitutional monarchy into an absolutist kingship"</p>
+                <p><strong>Popular Sovereignty Violated:</strong> Iranians learned their democratic choices could be overturned by foreign powers</p>
+                <p><strong>National Independence Compromised:</strong> Iran became dependent on U.S. military and intelligence support</p>
+            </div>
+
+            <div class="consequences-grid auto-reveal">
+                <div class="consequence-card">
+                    <h4>🧠 Memory and Narrative</h4>
+                    <p>1953 coup became central to Iranian political consciousness</p>
+                    <p>Anti-foreign sentiment became mobilizing force for opposition</p>
+                    <p>Historical grievances provided framework for revolutionary discourse</p>
+                </div>
+                
+                <div class="consequence-card">
+                    <h4>🔄 Pattern Recognition</h4>
+                    <p>Iranians learned to identify signs of foreign manipulation</p>
+                    <p>Suspicion of Western-educated leaders increased</p>
+                    <p>Traditional institutions gained legitimacy as alternatives to foreign-backed government</p>
+                </div>
+                
+                <div class="consequence-card">
+                    <h4>⚖️ Justice and Revenge</h4>
+                    <p>Demand for accountability for foreign intervention</p>
+                    <p>Revolutionary ideology incorporated anti-imperialist themes</p>
+                    <p>1979 revolution explicitly referenced 1953 coup as justification</p>
+                </div>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                CIA Assessment: The operation "induced a succession of unintended consequences," with the 1979 revolution being the most significant. Foreign intervention created the very conditions it sought to prevent.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 15: Revolution and "Great Satan" -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>😈 The "Great Satan": Foreign Operations as Revolutionary Catalyst</h2>
+            
+            <div class="auto-reveal">
+                <h3>From Historical Grievance to Revolutionary Ideology</h3>
+                <p style="font-size: 2rem;">Knowledge and memory of foreign operations, particularly the 1953 coup, became <strong>central catalysts</strong> for Iran's 1979 Islamic Revolution, providing revolutionaries with powerful narrative frameworks.</p>
+            </div>
+
+            <div class="crisis-overview auto-reveal">
+                <h4>Khomeini's Strategic Use of History</h4>
+                <p style="font-size: 2rem;"><strong>Ayatollah Khomeini's characterization of America as the "Great Satan" drew explicitly on the 1953 intervention</strong>, combining Islamic rhetoric with anti-imperialist sentiment rooted in historical grievance.</p>
+            </div>
+
+            <div class="method-grid auto-reveal">
+                <div class="method-card">
+                    <h4>📖 Historical Memory as Weapon</h4>
+                    <p><strong>1953 Coup References:</strong> Revolutionary leaders constantly referenced foreign intervention</p>
+                    <p><strong>Educational Campaigns:</strong> Teaching younger Iranians about foreign manipulation</p>
+                    <p><strong>Symbolic Actions:</strong> Using historical anniversaries to mobilize support</p>
+                    <p><strong>Legitimacy Framework:</strong> Foreign operations proved need for independent government</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>🏛️ Embassy Seizure Strategy</h4>
+                    <p><strong>Deliberate Design:</strong> 1979 embassy seizure exploited widespread knowledge of American interference</p>
+                    <p><strong>Historical Justification:</strong> Revolutionary students referenced 1953 coup to justify actions</p>
+                    <p><strong>Popular Mobilization:</strong> Used historical memory to mobilize support for radical policies</p>
+                    <p><strong>"Second Revolution":</strong> Hostage crisis enabled Islamists to outmaneuver leftist opposition</p>
+                </div>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Strategic Insight: Anti-Americanism was not merely emotional but strategically employed by revolutionary leaders who understood how historical grievances could serve their political objectives.
+            </div>
+
+            <div class="legacy-impact auto-reveal">
+                <h4>Institutional Consequences</h4>
+                <p><strong>State Legitimacy:</strong> Islamic Republic grounded its institutional legitimacy in opposition to perceived American control</p>
+                <p><strong>Foreign Policy:</strong> Revolutionary Iran became "just as firmly contingent upon the United States as the shah ever was"—but in opposition rather than alliance</p>
+                <p><strong>Regional Influence:</strong> Iran's anti-American stance became model for other resistance movements</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 16: Regional Patterns -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🗺️ Regional Patterns: Comparing Foreign Interventions</h2>
+            
+            <div class="auto-reveal">
+                <h3>Iran in Context: Success and Failure Patterns</h3>
+                <p style="font-size: 2rem;">Iran's experience with foreign intelligence operations, while extreme in its consequences, reflected broader patterns of Cold War intervention that produced <strong>varying degrees of success and failure</strong> across the Middle East.</p>
+            </div>
+
+            <div class="comparison-section auto-reveal">
+                <div class="comparison-card">
+                    <h4>🇸🇾 Syria: CIA Failure</h4>
+                    <p><strong>Operation Straggle (1957):</strong> $500,000 in bribes failed when Syrian officers exposed the plot</p>
+                    <p><strong>Why It Failed:</strong> Better intelligence services, lack of popular support for pro-Western alternatives</p>
+                    <p><strong>Outcome:</strong> Expulsion of American operatives, deteriorated relations</p>
+                    <p><strong>Lesson:</strong> Strong government institutions could resist foreign manipulation</p>
+                </div>
+                
+                <div class="comparison-card">
+                    <h4>🇪🇬 Egypt: Balanced Approach</h4>
+                    <p><strong>Soviet Success:</strong> Arms deals and support during 1956 Suez Crisis</p>
+                    <p><strong>American Recovery:</strong> Shift back toward U.S. under Sadat</p>
+                    <p><strong>Why Different:</strong> More balanced superpower relations, leadership transitions allowed policy reversals</p>
+                    <p><strong>Key Factor:</strong> Egypt's experience didn't generate lasting anti-Western sentiment</p>
+                </div>
+                
+                <div class="comparison-card">
+                    <h4>🇮🇶 Iraq: Evolving Influence</h4>
+                    <p><strong>1958 Coup:</strong> Overthrew pro-Western monarchy</p>
+                    <p><strong>1980s Support:</strong> Western backing during Iran-Iraq War as "useful balancer"</p>
+                    <p><strong>2003 Invasion:</strong> Created power vacuums enabling Iranian influence</p>
+                    <p><strong>Irony:</strong> American intervention ultimately benefited Iranian regional power</p>
+                </div>
+            </div>
+
+            <div class="timeline-section auto-reveal">
+                <h4>Patterns of Success and Failure</h4>
+                <p><strong>Successful Interventions Required:</strong> Existing domestic opposition, effective local intelligence networks, weak target country security apparatus, clear strategic objectives</p>
+                <p><strong>Failures Typically Resulted From:</strong> Underestimating nationalist sentiment, inadequate understanding of local political dynamics, failure to account for unintended consequences</p>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Iran's Uniqueness: What made Iran different was the combination of sophisticated foreign operations, strong nationalist response, and the long-term memory of intervention that created revolutionary conditions.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 17: Lessons and Legacy -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📚 The Pedagogy of Unintended Consequences</h2>
+            
+            <div class="auto-reveal">
+                <h3>What We Learn from Iran's Experience</h3>
+                <p style="font-size: 2rem;">The comprehensive analysis of foreign intelligence operations in Iran reveals a <strong>paradox of imperial overreach</strong>: sophisticated methods that achieved short-term tactical objectives while creating strategic disasters.</p>
+            </div>
+
+            <div class="legacy-impact auto-reveal">
+                <h4>The Fundamental Paradox</h4>
+                <p><strong>Short-term Success:</strong> 1953 coup brilliantly restored Western control over Iranian oil resources and eliminated nationalism threat</p>
+                <p><strong>Long-term Disaster:</strong> Established conditions for 1979 Islamic Revolution that created America's most enduring regional adversary</p>
+                <p><strong>Strategic Reversal:</strong> British intelligence operations ultimately contributed to revolutionary sentiment that swept away pro-Western forces entirely</p>
+                <p><strong>Unintended Creation:</strong> Soviet penetration failed to prevent Iran's transformation into theocratic state equally hostile to communist ideology</p>
+            </div>
+
+            <div class="method-grid auto-reveal">
+                <div class="method-card">
+                    <h4>🔄 Systemic Impact</h4>
+                    <p><strong>Regional Transformation:</strong> Foreign intelligence activities fundamentally reshaped entire regional systems</p>
+                    <p><strong>Lasting Consequences:</strong> Effects persisting decades after original interventions</p>
+                    <p><strong>Pattern Recognition:</strong> Iranian case holds crucial lessons for understanding contemporary Middle Eastern conflicts</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>🧠 Memory and Politics</h4>
+                    <p><strong>Institutional Grievances:</strong> External manipulation creates lasting institutional grievances</p>
+                    <p><strong>Nationalist Reactions:</strong> Popular responses often more powerful than technological advantages of intervening powers</p>
+                    <p><strong>Historical Consciousness:</strong> Deep historical memories continue to shape global politics</p>
+                </div>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Most Significant Insight: External manipulation of sovereign nations, regardless of sophistication or short-term success, creates lasting institutional grievances and nationalist reactions that ultimately prove more powerful than the technological and financial advantages of intervening powers.
+            </div>
+
+            <div class="crisis-overview auto-reveal">
+                <h4>Contemporary Relevance</h4>
+                <p style="font-size: 2rem;">Understanding these historical patterns remains essential for developing more effective and sustainable approaches to international relations that account for the deep historical memories that continue to shape global politics today.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 18: Conclusion and Reflection -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🤔 Reflection: Foreign Influence and National Sovereignty</h2>
+            
+            <div class="auto-reveal">
+                <h3>Connecting Past to Present</h3>
+                <p style="font-size: 2rem;">Iran's 20th-century experience with foreign influence offers crucial insights into contemporary debates about <strong>national sovereignty</strong>, <strong>democratic legitimacy</strong>, and <strong>international relations</strong>.</p>
+            </div>
+
+            <div class="method-grid auto-reveal">
+                <div class="method-card">
+                    <h4>🗳️ Democracy and Intervention</h4>
+                    <p><strong>Key Question:</strong> Can foreign intervention ever support democracy?</p>
+                    <p><strong>Iranian Example:</strong> 1953 coup destroyed democratically elected government</p>
+                    <p><strong>Lasting Impact:</strong> Intervention delegitimized democratic institutions for generations</p>
+                    <p><strong>Modern Relevance:</strong> How do we evaluate foreign support for democratic movements today?</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>🛢️ Economic and Political Power</h4>
+                    <p><strong>Key Question:</strong> How do economic interests drive political intervention?</p>
+                    <p><strong>Iranian Example:</strong> Oil control motivated sophisticated intelligence operations</p>
+                    <p><strong>Pattern Recognition:</strong> Economic leverage as tool of political control</p>
+                    <p><strong>Contemporary Issues:</strong> How do resource-based economies navigate great power competition?</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>🧠 Memory and Historical Narrative</h4>
+                    <p><strong>Key Question:</strong> How do historical grievances shape present politics?</p>
+                    <p><strong>Iranian Example:</strong> 1953 coup memory fueled 1979 revolution</p>
+                    <p><strong>Psychological Impact:</strong> Foreign intervention creates lasting suspicion of external influence</p>
+                    <p><strong>Global Application:</strong> How do historical memories shape international relations worldwide?</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>⚖️ Nationalism and Resistance</h4>
+                    <p><strong>Key Question:</strong> Why do nationalist movements often prove stronger than foreign influence?</p>
+                    <p><strong>Iranian Example:</strong> Popular nationalism ultimately overcame sophisticated foreign operations</p>
+                    <p><strong>Universal Pattern:</strong> External control generates internal resistance movements</p>
+                    <p><strong>Strategic Lesson:</strong> Long-term stability requires popular legitimacy, not just foreign backing</p>
+                </div>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Essential Question for Today: How can nations maintain their sovereignty and democratic legitimacy while navigating great power competition and global economic integration?
+            </div>
+
+            <div class="legacy-impact auto-reveal">
+                <h4>Your Role in Understanding History</h4>
+                <p style="font-size: 2rem;">Understanding Iran's experience with foreign influence helps us become more informed citizens who can evaluate contemporary international relations with historical perspective and critical thinking skills.</p>
+            </div>
+        </div>
+
+    <!-- Slide 2: Overview of Foreign Powers -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌍 The Players in Iran's Foreign Influence Drama</h2>
+            
+            <div class="auto-reveal">
+                <h3>Three Major Powers, Different Methods</h3>
+                <p style="font-size: 2rem;">Throughout the 20th century, Iran became the target of systematic foreign manipulation by three major powers, each using distinct but overlapping strategies.</p>
+            </div>
+
+            <div class="comparison-section auto-reveal">
+                <div class="comparison-card">
+                    <h4>🇬🇧 Britain: Imperial Control</h4>
+                    <p><strong>Primary Goal:</strong> Control Iranian oil resources</p>
+                    <p><strong>Methods:</strong> Economic coercion, media manipulation, bribery networks</p>
+                    <p><strong>Timeline:</strong> 1900s-1950s (peak influence)</p>
+                    <p><strong>Key Asset:</strong> Anglo-Iranian Oil Company (later BP)</p>
+                </div>
+                
+                <div class="comparison-card">
+                    <h4>🇺🇸 United States: Cold War Strategy</h4>
+                    <p><strong>Primary Goal:</strong> Prevent Soviet expansion, secure ally</p>
+                    <p><strong>Methods:</strong> Covert operations, military aid, intelligence cooperation</p>
+                    <p><strong>Timeline:</strong> 1950s-1979 (until revolution)</p>
+                    <p><strong>Key Operation:</strong> 1953 CIA coup (Operation AJAX)</p>
+                </div>
+                
+                <div class="comparison-card">
+                    <h4>☭ Soviet Union: Ideological Penetration</h4>
+                    <p><strong>Primary Goal:</strong> Territorial expansion, communist influence</p>
+                    <p><strong>Methods:</strong> Proxy parties, separatist movements, long-term infiltration</p>
+                    <p><strong>Timeline:</strong> 1920s-1980s (consistent pressure)</p>
+                    <p><strong>Key Asset:</strong> Tudeh (Communist) Party</p>
+                </div>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Remember: These weren't separate, unrelated efforts. These powers often competed with each other for control over Iran, creating a complex web of rivalries that Iranian leaders had to navigate.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: British Imperial Foundation -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🛢️ British Imperial Control: The Foundation</h2>
+            
+            <div class="auto-reveal">
+                <h3>Oil as Imperial Control</h3>
+                <p style="font-size: 2rem;">British influence in Iran was built on <strong>economic exploitation</strong> through the Anglo-Persian Oil Company, which became the template for modern economic imperialism.</p>
+            </div>
+
+            <div class="money-data auto-reveal">
+                By 1951: Britain extracted 338 million tons of Iranian oil while paying Iran only £118 million—approximately 7 shillings per ton—while British shareholders received £115 million in dividends
+            </div>
+
+            <div class="operation-details auto-reveal">
+                <h4>How British Control Worked</h4>
+                <p><strong>Economic Leverage:</strong> The Anglo-Iranian Oil Company operated as "an empire within an empire," controlling Iran's main income source and consistently breaking promises regarding worker conditions and infrastructure development.</p>
+                
+                <p><strong>Intelligence Networks:</strong> MI6 established extensive networks following World War II, with the Tehran station compiling detailed profiles for recruitment purposes.</p>
+                
+                <p><strong>Local Assets:</strong> The Rashidian Brothers—wealthy merchants connected to Iranian royalty—served as primary British assets, distributing weapons to tribal leaders and orchestrating street demonstrations.</p>
+                
+                <p><strong>Systematic Corruption:</strong> British operations employed corruption of Iranian officials, with Ambassador Hoveyda noting that "the British would bring suitcases of cash and give it to these people."</p>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Key Point: British methods in Iran pioneered the post-colonial model of control—maintaining dominance through economic leverage and intelligence operations rather than direct military occupation.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Enter Mossadegh -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>👨‍⚖️ Mohammad Mossadegh: The Nationalist Challenge</h2>
+            
+            <div class="auto-reveal">
+                <h3>Who Was Mossadegh?</h3>
+                <p style="font-size: 2rem;">Mohammad Mossadegh represented everything foreign powers feared: a <strong>democratically elected</strong>, <strong>popular nationalist leader</strong> who demanded Iranian control over Iranian resources.</p>
+            </div>
+
+            <div class="timeline-section auto-reveal">
+                <h4>Mossadegh's Rise and Platform</h4>
+                <p><strong>Background:</strong> Aristocratic family, European education, constitutional lawyer</p>
+                <p><strong>National Front (1949):</strong> Founded coalition demanding "that all foreign influence be eliminated from Iran"</p>
+                <p><strong>Prime Minister (1951):</strong> Appointed by parliament with overwhelming popular support</p>
+                <p><strong>Core Demand:</strong> Nationalization of Iran's oil industry</p>
+            </div>
+
+            <div class="resistance-examples auto-reveal">
+                <div class="resistance-card">
+                    <h4>📜 Oil Nationalization (1951)</h4>
+                    <p>Mossadegh's nationalization received <strong>overwhelming popular support</strong>, demonstrating the effectiveness of anti-foreign sentiment as a mobilizing force.</p>
+                    <p>The move challenged the fundamental basis of British imperial control in Iran.</p>
+                </div>
+                
+                <div class="resistance-card">
+                    <h4>🗳️ Democratic Legitimacy</h4>
+                    <p>Unlike many Middle Eastern leaders, Mossadegh derived his power from <strong>parliamentary approval</strong> and <strong>popular support</strong>, not foreign backing.</p>
+                    <p>This made him particularly dangerous to foreign powers used to controlling weak, dependent rulers.</p>
+                </div>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Why Mossadegh Mattered: He proved that Iranian leaders could be popular, legitimate, AND independent of foreign control—a combination that threatened the entire system of imperial influence.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: British Response and Crisis -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚔️ British Retaliation: Economic Warfare</h2>
+            
+            <div class="auto-reveal">
+                <h3>When Diplomacy Failed, Britain Chose War</h3>
+                <p style="font-size: 2rem;">Faced with the loss of their oil concession, Britain responded with <strong>comprehensive economic warfare</strong> designed to destroy Iran's economy and government.</p>
+            </div>
+
+            <div class="method-grid auto-reveal">
+                <div class="method-card">
+                    <h4>🚢 Naval Blockade</h4>
+                    <p><strong>Strategy:</strong> Royal Navy intercepted Iranian oil tankers worldwide</p>
+                    <p><strong>Goal:</strong> Prevent Iran from selling nationalized oil</p>
+                    <p><strong>Impact:</strong> Iran's oil revenue dropped to nearly zero</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>💰 Financial Strangulation</h4>
+                    <p><strong>Strategy:</strong> Froze Iranian assets in British banks</p>
+                    <p><strong>Goal:</strong> Prevent Iran from accessing foreign currency</p>
+                    <p><strong>Impact:</strong> Severe economic crisis and government budget shortfall</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>📰 Propaganda Campaign</h4>
+                    <p><strong>Strategy:</strong> Bribed newspaper editors and journalists</p>
+                    <p><strong>Goal:</strong> Create hostile media coverage of Mossadegh</p>
+                    <p><strong>Impact:</strong> By 1952, nearly the entire Iranian media had become hostile to Mossadegh despite his popular support</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>🤝 International Isolation</h4>
+                    <p><strong>Strategy:</strong> Convinced other countries to boycott Iranian oil</p>
+                    <p><strong>Goal:</strong> Ensure Iran had no alternative buyers</p>
+                    <p><strong>Impact:</strong> Complete economic isolation of Iranian government</p>
+                </div>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Think About This: Britain's response showed that challenging imperial control would result in comprehensive economic warfare, not just diplomatic pressure.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: America Enters the Game -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🇺🇸 America's Decision: From Opposition to Intervention</h2>
+            
+            <div class="auto-reveal">
+                <h3>The Shift from Truman to Eisenhower</h3>
+                <p style="font-size: 2rem;">Initially, the <strong>Truman administration opposed intervention</strong> in Iran. But the <strong>Eisenhower administration</strong> decided to act in early 1953, fundamentally changing American foreign policy.</p>
+            </div>
+
+            <div class="timeline-section auto-reveal">
+                <h4>Why America Changed Its Mind</h4>
+                <p><strong>Cold War Logic:</strong> Britain successfully framed nationalist Mossadegh as a communist threat</p>
+                <p><strong>Strategic Location:</strong> Iran bordered the Soviet Union and controlled crucial oil resources</p>
+                <p><strong>Domino Theory:</strong> Fear that Iranian independence would inspire other nationalist movements</p>
+                <p><strong>Alliance Pressure:</strong> Britain threatened to align more closely with Soviet Union if America didn't help</p>
+            </div>
+
+            <div class="money-data auto-reveal">
+                The Eisenhower administration allocated $1 million to overthrow Iran's democratically elected government
+            </div>
+
+            <div class="operation-details auto-reveal">
+                <h4>Key Decision Points</h4>
+                <p><strong>British Appeals:</strong> London argued that Mossadegh's government was becoming communist-dominated</p>
+                <p><strong>Strategic Assessment:</strong> American intelligence concluded that Iran was "going communist"</p>
+                <p><strong>Authorization:</strong> President Eisenhower personally approved the covert operation</p>
+                <p><strong>Implementation:</strong> CIA officer Kermit Roosevelt Jr. (grandson of President Theodore Roosevelt) selected to lead the operation</p>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Critical Moment: This was America's first major covert operation to overthrow a democratically elected government during the Cold War. It established a precedent for future interventions worldwide.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Operation AJAX - Planning -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Operation AJAX: The CIA's Master Plan</h2>
+            
+            <div class="auto-reveal">
+                <h3>Sophisticated Intelligence Operation</h3>
+                <p style="font-size: 2rem;">Operation AJAX represented the most sophisticated foreign intelligence operation of its time, combining <strong>psychological warfare</strong>, <strong>systematic corruption</strong>, and <strong>strategic deception</strong>.</p>
+            </div>
+
+            <div class="method-grid auto-reveal">
+                <div class="method-card">
+                    <h4>💰 Systematic Corruption</h4>
+                    <p><strong>Parliament Members:</strong> CIA "purchased" parliamentarians intended to vote Mossadegh out of office</p>
+                    <p><strong>Military Officers:</strong> Bribes to key commanders to ensure army cooperation</p>
+                    <p><strong>Religious Leaders:</strong> CIA had "firm contacts" with clerical figures</p>
+                    <p><strong>Media Control:</strong> Bought off Iranian press outlets for propaganda</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>🎭 False Flag Operations</h4>
+                    <p><strong>Fake Communist Violence:</strong> CIA operatives posed as communists committing crimes</p>
+                    <p><strong>Religious Provocation:</strong> Staged incidents to anger religious conservatives</p>
+                    <p><strong>Black Propaganda:</strong> Fabricated stories in controlled media</p>
+                    <p><strong>Rumor Campaigns:</strong> Spread false information about Mossadegh's policies</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>👥 Network Building</h4>
+                    <p><strong>Bazaar Merchants:</strong> Traditional conservative business community</p>
+                    <p><strong>Tribal Leaders:</strong> Rural power brokers receiving weapons and money</p>
+                    <p><strong>Thugs and Criminals:</strong> "Rented crowds" for street demonstrations</p>
+                    <p><strong>Political Opposition:</strong> Non-communist opponents of Mossadegh</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>⚖️ Legal Manipulation</h4>
+                    <p><strong>Constitutional Interpretation:</strong> Using Shah's dismissal powers</p>
+                    <p><strong>Parliamentary Pressure:</strong> Forcing confidence votes</p>
+                    <p><strong>Judicial Influence:</strong> Ensuring court cooperation</p>
+                    <p><strong>Military Orders:</strong> Legitimate-appearing command structure</p>
+                </div>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Remember: This wasn't just a simple coup. It was a comprehensive campaign to manipulate every aspect of Iranian political society.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: The First Attempt Fails -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>❌ August 15, 1953: The First Coup Fails</h2>
+            
+            <div class="auto-reveal">
+                <h3>When Intelligence Operations Go Wrong</h3>
+                <p style="font-size: 2rem;">The first coup attempt on August 15, 1953 <strong>failed spectacularly</strong>, demonstrating that even sophisticated intelligence operations can fail when facing determined resistance.</p>
+            </div>
+
+            <div class="timeline-section auto-reveal">
+                <h4>How the First Attempt Collapsed</h4>
+                <p><strong>The Plan:</strong> Colonel delivered the Shah's order dismissing Mossadegh as Prime Minister</p>
+                <p><strong>Mossadegh's Response:</strong> Having learned of the plot, Mossadegh arrested the colonel</p>
+                <p><strong>Popular Reaction:</strong> Iranian people demonstrated in support of Mossadegh</p>
+                <p><strong>CIA Response:</strong> Headquarters cabled Roosevelt to abort the operation immediately</p>
+            </div>
+
+            <div class="resistance-examples auto-reveal">
+                <div class="resistance-card">
+                    <h4>🕵️‍♂️ Intelligence Failure</h4>
+                    <p>Mossadegh's counter-intelligence had <strong>penetrated the conspiracy</strong></p>
+                    <p>Iranian security forces were <strong>prepared for the coup attempt</strong></p>
+                    <p>The operation's <strong>security was compromised</strong> from the beginning</p>
+                </div>
+                
+                <div class="resistance-card">
+                    <h4>👨‍👩‍👧‍👦 Popular Support</h4>
+                    <p><strong>Street demonstrations</strong> supported Mossadegh</p>
+                    <p><strong>Military units</strong> remained loyal to the government</p>
+                    <p><strong>Parliament</strong> condemned the coup attempt</p>
+                </div>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Crucial Moment: At this point, the operation should have ended. CIA headquarters ordered Roosevelt to abort. But Roosevelt made a decision that changed Middle Eastern history.
+            </div>
+
+            <div class="crisis-overview auto-reveal">
+                <h4>Roosevelt's Famous Reply</h4>
+                <p style="font-size: 2.2rem;">When CIA headquarters cabled Roosevelt to abort the operation, he famously replied: <strong>"We're not done here"</strong> and defied orders to attempt a second coup.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: The Second Coup Succeeds -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>✅ August 19, 1953: The Second Coup Succeeds</h2>
+            
+            <div class="auto-reveal">
+                <h3>When Persistence Pays Off</h3>
+                <p style="font-size: 2rem;">Roosevelt's improvised second coup succeeded through <strong>massive bribery</strong>, <strong>"rented crowds,"</strong> and <strong>strategic violence</strong>, fundamentally altering Iranian and Middle Eastern history.</p>
+            </div>
+
+            <div class="money-data auto-reveal">
+                So much American money flooded Tehran that the exchange rate fell from 128 to under 80 rials per dollar during the operation
+            </div>
+
+            <div class="method-grid auto-reveal">
+                <div class="method-card">
+                    <h4>💵 Massive Bribery</h4>
+                    <p><strong>Military Officers:</strong> Key commanders bought with CIA funds</p>
+                    <p><strong>Street Crowds:</strong> Professional demonstrators paid to support the Shah</p>
+                    <p><strong>Parliament Members:</strong> Additional bribes to ensure cooperation</p>
+                    <p><strong>Media Support:</strong> Newspapers paid to report coup as popular uprising</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>🎭 Manufactured Chaos</h4>
+                    <p><strong>"Rented Crowds":</strong> Professional demonstrators created appearance of popular revolt</p>
+                    <p><strong>Strategic Violence:</strong> Targeted attacks to create sense of crisis</p>
+                    <p><strong>False Flag Operations:</strong> Communist attacks actually conducted by CIA operatives</p>
+                    <p><strong>Rumor Mills:</strong> Stories of Mossadegh's communist ties spread throughout city</p>
+                </div>
+            </div>
+
+            <div class="timeline-section auto-reveal">
+                <h4>How August 19 Unfolded</h4>
+                <p><strong>Morning:</strong> CIA-organized crowds began demonstrating against Mossadegh</p>
+                <p><strong>Midday:</strong> Military units joined the coup after receiving bribes</p>
+                <p><strong>Afternoon:</strong> Street fighting broke out between government and coup forces</p>
+                <p><strong>Evening:</strong> Mossadegh's government collapsed after approximately 300 deaths</p>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                The Result: The Shah returned as an absolute monarch, and Iran became a client state of the United States. American oil companies received 40% of Iran's oil fields as thanks for CIA assistance.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Immediate Consequences -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚡ Immediate Consequences of Operation AJAX</h2>
+            
+            <div class="auto-reveal">
+                <h3>Short-Term Success, Long-Term Disaster</h3>
+                <p style="font-size: 2rem;">Operation AJAX achieved its <strong>immediate objectives</strong> brilliantly but established conditions for <strong>strategic disasters</strong> that would unfold over the next 25 years.</p>
+            </div>
+
+            <div class="consequences-grid auto-reveal">
+                <div class="consequence-card">
+                    <h4>✅ Western Oil Control Restored</h4>
+                    <p>Iran signed new consortium agreement giving Western companies control</p>
+                    <p>American companies received 40% share as reward for CIA assistance</p>
+                </div>
+                
+                <div class="consequence-card">
+                    <h4>✅ Strategic Alliance Established</h4>
+                    <p>Iran became key U.S. ally in Middle East during Cold War</p>
+                    <p>Military aid and intelligence cooperation agreements signed</p>
+                </div>
+                
+                <div class="consequence-card">
+                    <h4>✅ CIA Operational Success</h4>
+                    <p>Operation established template for future covert operations</p>
+                    <p>Used later in Guatemala, Congo, and other countries</p>
+                </div>
+                
+                <div class="consequence-card">
+                    <h4>❌ Democratic Government Destroyed</h4>
+                    <p>Iran's parliament and democratic institutions undermined</p>
+                    <p>Constitutional monarchy transformed into absolute rule</p>
+                </div>
+                
+                <div class="consequence-card">
+                    <h4>❌ Nationalist Movement Crushed</h4>
+                    <p>Iranian independence movement set back for decades</p>
+                    <p>Political opposition driven underground</p>
+                </div>
+                
+                <div class="consequence-card">
+                    <h4>❌ Popular Legitimacy Lost</h4>
+                    <p>Shah's regime permanently delegitimized in popular view</p>
+                    <p>Iranian nationalism became anti-American</p>
+                </div>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Key Insight: Every immediate success of the operation created a deeper long-term problem that would eventually produce the 1979 Islamic Revolution.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: SAVAK and Control -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>👁️ SAVAK: The Intelligence State</h2>
+            
+            <div class="auto-reveal">
+                <h3>Creating the Perfect Police State</h3>
+                <p style="font-size: 2rem;">After 1953, the United States helped create <strong>SAVAK</strong>, Iran's intelligence service, as the ultimate tool of political control—but this foreign-designed institution further alienated Iranians from their government.</p>
+            </div>
+
+            <div class="operation-details auto-reveal">
+                <h4>SAVAK: Foreign Intelligence Cooperation</h4>
+                <p><strong>CIA Foundation:</strong> SAVAK was created with CIA funding, training, and organizational support</p>
+                <p><strong>Training Program:</strong> Major General Herbert Norman Schwarzkopf "trained virtually all of the first generation of SAVAK personnel"</p>
+                <p><strong>Scale:</strong> Over 400 officers trained annually near McLean, Virginia</p>
+                <p><strong>Israeli Involvement:</strong> Mossad replaced CIA trainers after 1965</p>
+            </div>
+
+            <div class="method-grid auto-reveal">
+                <div class="method-card">
+                    <h4>🏢 Domestic Surveillance</h4>
+                    <p><strong>Detention Centers:</strong> Network of facilities for political prisoners</p>
+                    <p><strong>Informant Networks:</strong> Systematic penetration of Iranian society</p>
+                    <p><strong>Torture Programs:</strong> Interrogation techniques taught by foreign advisors</p>
+                    <p><strong>Political Repression:</strong> Elimination of all opposition to Shah's rule</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>🌍 International Operations</h4>
+                    <p><strong>Overseas Surveillance:</strong> Monitoring Iranian students abroad</p>
+                    <p><strong>Campus Networks:</strong> 13 full-time case officers running networks</p>
+                    <p><strong>Student Monitoring:</strong> 30,000 Iranian students on U.S. college campuses under surveillance</p>
+                    <p><strong>Assassination Operations:</strong> Eliminating opposition figures overseas</p>
+                </div>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                The Paradox: Foreign intelligence cooperation that increased the regime's repressive capabilities also increased popular awareness of foreign manipulation, creating the very grievances that would fuel revolution.
+            </quote>
+        </div>
+    </div>
+
+    <!-- Slide 12: Soviet Strategy -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>☭ Soviet Strategy: The Long Game</h2>
+            
+            <div class="auto-reveal">
+                <h3>Different Power, Different Methods</h3>
+                <p style="font-size: 2rem;">While Britain and America focused on controlling Iran's government, the Soviet Union played <strong>the long game</strong> through systematic infiltration and ideological influence.</p>
+            </div>
+
+            <div class="method-grid auto-reveal">
+                <div class="method-card">
+                    <h4>🚩 The Tudeh Party</h4>
+                    <p><strong>Membership:</strong> 25,000 members and 400,000 trade union affiliates</p>
+                    <p><strong>Funding:</strong> Regular stipends from KGB for party leadership</p>
+                    <p><strong>Training:</strong> 10-15 members annually trained in "conspiratorial work"</p>
+                    <p><strong>Operations:</strong> Systematic financial support and operational control</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>🗺️ Territorial Expansion</h4>
+                    <p><strong>Azerbaijan Crisis (1945-46):</strong> Soviet-backed puppet states in northern Iran</p>
+                    <p><strong>Kurdish Republic:</strong> Mahabad Republic supported by USSR</p>
+                    <p><strong>Withdrawal:</strong> International pressure through UN forced Soviet retreat</p>
+                    <p><strong>Strategy:</strong> Testing Western resolve while maintaining plausible deniability</p>
+                </div>
+            </div>
+
+            <div class="timeline-section auto-reveal">
+                <h4>Soviet Methods vs. Western Methods</h4>
+                <p><strong>Ideological Framework:</strong> Emphasized communist theory and anti-imperialism rather than simple bribery</p>
+                <p><strong>Centralized Organization:</strong> Used disciplined party structure rather than loose networks</p>
+                <p><strong>Long-term Patience:</strong> Focused on gradual influence rather than quick coups</p>
+                <p><strong>Popular Appeal:</strong> Addressed social justice and economic inequality issues</p>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Soviet Failure: Their ultimate strategic failure stemmed from overreliance on proxy organizations lacking broad popular support and miscalculation of Iranian nationalist sentiment that conflicted with foreign control regardless of ideological packaging.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Iranian Resistance -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>✊ Iranian Resistance: Fighting Back</h2>
+            
+            <div class="auto-reveal">
+                <h3>How Iranians Responded to Foreign Control</h3>
+                <p style="font-size: 2rem;">Despite sophisticated foreign operations, Iranians developed increasingly effective <strong>resistance strategies</strong> that evolved from institutional efforts to mass nationalist movements.</p>
+            </div>
+
+            <div class="resistance-examples auto-reveal">
+                <div class="resistance-card">
+                    <h4>🏛️ Constitutional Resistance</h4>
+                    <p><strong>Parliament (Majles):</strong> Used constitutional procedures to challenge foreign concessions</p>
+                    <p><strong>Legal Challenges:</strong> Court cases against foreign companies and their Iranian contracts</p>
+                    <p><strong>Legislative Opposition:</strong> Refusing to ratify agreements favorable to foreign powers</p>
+                    <p><strong>Democratic Legitimacy:</strong> Using popular support to resist foreign pressure</p>
+                </div>
+                
+                <div class="resistance-card">
+                    <h4>📰 Media and Culture</h4>
+                    <p><strong>Independent Press:</strong> Journalists who couldn't be bought by foreign powers</p>
+                    <p><strong>Poetry and Literature:</strong> Cultural expressions of resistance to foreign domination</p>
+                    <p><strong>Religious Networks:</strong> Mosque-based communication avoiding foreign surveillance</p>
+                    <p><strong>Intellectual Circles:</strong> Universities and coffee houses as centers of nationalist thought</p>
+                </div>
+                
+                <div class="resistance-card">
+                    <h4>👥 Mass Movements</h4>
+                    <p><strong>Oil Nationalization Support:</strong> Overwhelming popular backing for Mossadegh's policies</p>
+                    <p><strong>Bazaar Networks:</strong> Traditional merchant class organizing economic resistance</p>
+                    <p><strong>Student Activism:</strong> University students protesting foreign influence</p>
+                    <p><strong>Religious Mobilization:</strong> Clerics organizing opposition to foreign control</p>
+                </div>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Growing Sophistication: Popular awareness of foreign manipulation became increasingly sophisticated throughout the century. The 1953 coup became "a touchstone of modern Iranian nationalism" that could not be overcome despite 25 years of the Shah's rule.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Seeds of Revolution -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🌱 Seeds of Revolution: Long-Term Consequences</h2>
+            
+            <div class="auto-reveal">
+                <h3>How Foreign Operations Created Revolutionary Conditions</h3>
+                <p style="font-size: 2rem;">The CIA's own internal studies acknowledged that the 1953 coup <strong>"fatally wounded"</strong> the legitimacy of the Shah's monarchy, creating lasting grievances that shaped political discourse for generations.</p>
+            </div>
+
+            <div class="legacy-impact auto-reveal">
+                <h4>Institutional Damage from Foreign Intervention</h4>
+                <p><strong>Democratic Legitimacy Lost:</strong> Parliament and democratic institutions permanently weakened after 1953</p>
+                <p><strong>Constitutional Monarchy Destroyed:</strong> "Transformed a turbulent constitutional monarchy into an absolutist kingship"</p>
+                <p><strong>Popular Sovereignty Violated:</strong> Iranians learned their democratic choices could be overturned by foreign powers</p>
+                <p><strong>National Independence Compromised:</strong> Iran became dependent on U.S. military and intelligence support</p>
+            </div>
+
+            <div class="consequences-grid auto-reveal">
+                <div class="consequence-card">
+                    <h4>🧠 Memory and Narrative</h4>
+                    <p>1953 coup became central to Iranian political consciousness</p>
+                    <p>Anti-foreign sentiment became mobilizing force for opposition</p>
+                    <p>Historical grievances provided framework for revolutionary discourse</p>
+                </div>
+                
+                <div class="consequence-card">
+                    <h4>🔄 Pattern Recognition</h4>
+                    <p>Iranians learned to identify signs of foreign manipulation</p>
+                    <p>Suspicion of Western-educated leaders increased</p>
+                    <p>Traditional institutions gained legitimacy as alternatives to foreign-backed government</p>
+                </div>
+                
+                <div class="consequence-card">
+                    <h4>⚖️ Justice and Revenge</h4>
+                    <p>Demand for accountability for foreign intervention</p>
+                    <p>Revolutionary ideology incorporated anti-imperialist themes</p>
+                    <p>1979 revolution explicitly referenced 1953 coup as justification</p>
+                </div>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                CIA Assessment: The operation "induced a succession of unintended consequences," with the 1979 revolution being the most significant. Foreign intervention created the very conditions it sought to prevent.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 15: Revolution and "Great Satan" -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>😈 The "Great Satan": Foreign Operations as Revolutionary Catalyst</h2>
+            
+            <div class="auto-reveal">
+                <h3>From Historical Grievance to Revolutionary Ideology</h3>
+                <p style="font-size: 2rem;">Knowledge and memory of foreign operations, particularly the 1953 coup, became <strong>central catalysts</strong> for Iran's 1979 Islamic Revolution, providing revolutionaries with powerful narrative frameworks.</p>
+            </div>
+
+            <div class="crisis-overview auto-reveal">
+                <h4>Khomeini's Strategic Use of History</h4>
+                <p style="font-size: 2rem;"><strong>Ayatollah Khomeini's characterization of America as the "Great Satan" drew explicitly on the 1953 intervention</strong>, combining Islamic rhetoric with anti-imperialist sentiment rooted in historical grievance.</p>
+            </div>
+
+            <div class="method-grid auto-reveal">
+                <div class="method-card">
+                    <h4>📖 Historical Memory as Weapon</h4>
+                    <p><strong>1953 Coup References:</strong> Revolutionary leaders constantly referenced foreign intervention</p>
+                    <p><strong>Educational Campaigns:</strong> Teaching younger Iranians about foreign manipulation</p>
+                    <p><strong>Symbolic Actions:</strong> Using historical anniversaries to mobilize support</p>
+                    <p><strong>Legitimacy Framework:</strong> Foreign operations proved need for independent government</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>🏛️ Embassy Seizure Strategy</h4>
+                    <p><strong>Deliberate Design:</strong> 1979 embassy seizure exploited widespread knowledge of American interference</p>
+                    <p><strong>Historical Justification:</strong> Revolutionary students referenced 1953 coup to justify actions</p>
+                    <p><strong>Popular Mobilization:</strong> Used historical memory to mobilize support for radical policies</p>
+                    <p><strong>"Second Revolution":</strong> Hostage crisis enabled Islamists to outmaneuver leftist opposition</p>
+                </div>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Strategic Insight: Anti-Americanism was not merely emotional but strategically employed by revolutionary leaders who understood how historical grievances could serve their political objectives.
+            </div>
+
+            <div class="legacy-impact auto-reveal">
+                <h4>Institutional Consequences</h4>
+                <p><strong>State Legitimacy:</strong> Islamic Republic grounded its institutional legitimacy in opposition to perceived American control</p>
+                <p><strong>Foreign Policy:</strong> Revolutionary Iran became "just as firmly contingent upon the United States as the shah ever was"—but in opposition rather than alliance</p>
+                <p><strong>Regional Influence:</strong> Iran's anti-American stance became model for other resistance movements</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 16: Regional Patterns -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🗺️ Regional Patterns: Comparing Foreign Interventions</h2>
+            
+            <div class="auto-reveal">
+                <h3>Iran in Context: Success and Failure Patterns</h3>
+                <p style="font-size: 2rem;">Iran's experience with foreign intelligence operations, while extreme in its consequences, reflected broader patterns of Cold War intervention that produced <strong>varying degrees of success and failure</strong> across the Middle East.</p>
+            </div>
+
+            <div class="comparison-section auto-reveal">
+                <div class="comparison-card">
+                    <h4>🇸🇾 Syria: CIA Failure</h4>
+                    <p><strong>Operation Straggle (1957):</strong> $500,000 in bribes failed when Syrian officers exposed the plot</p>
+                    <p><strong>Why It Failed:</strong> Better intelligence services, lack of popular support for pro-Western alternatives</p>
+                    <p><strong>Outcome:</strong> Expulsion of American operatives, deteriorated relations</p>
+                    <p><strong>Lesson:</strong> Strong government institutions could resist foreign manipulation</p>
+                </div>
+                
+                <div class="comparison-card">
+                    <h4>🇪🇬 Egypt: Balanced Approach</h4>
+                    <p><strong>Soviet Success:</strong> Arms deals and support during 1956 Suez Crisis</p>
+                    <p><strong>American Recovery:</strong> Shift back toward U.S. under Sadat</p>
+                    <p><strong>Why Different:</strong> More balanced superpower relations, leadership transitions allowed policy reversals</p>
+                    <p><strong>Key Factor:</strong> Egypt's experience didn't generate lasting anti-Western sentiment</p>
+                </div>
+                
+                <div class="comparison-card">
+                    <h4>🇮🇶 Iraq: Evolving Influence</h4>
+                    <p><strong>1958 Coup:</strong> Overthrew pro-Western monarchy</p>
+                    <p><strong>1980s Support:</strong> Western backing during Iran-Iraq War as "useful balancer"</p>
+                    <p><strong>2003 Invasion:</strong> Created power vacuums enabling Iranian influence</p>
+                    <p><strong>Irony:</strong> American intervention ultimately benefited Iranian regional power</p>
+                </div>
+            </div>
+
+            <div class="timeline-section auto-reveal">
+                <h4>Patterns of Success and Failure</h4>
+                <p><strong>Successful Interventions Required:</strong> Existing domestic opposition, effective local intelligence networks, weak target country security apparatus, clear strategic objectives</p>
+                <p><strong>Failures Typically Resulted From:</strong> Underestimating nationalist sentiment, inadequate understanding of local political dynamics, failure to account for unintended consequences</p>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Iran's Uniqueness: What made Iran different was the combination of sophisticated foreign operations, strong nationalist response, and the long-term memory of intervention that created revolutionary conditions.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 17: Lessons and Legacy -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📚 The Pedagogy of Unintended Consequences</h2>
+            
+            <div class="auto-reveal">
+                <h3>What We Learn from Iran's Experience</h3>
+                <p style="font-size: 2rem;">The comprehensive analysis of foreign intelligence operations in Iran reveals a <strong>paradox of imperial overreach</strong>: sophisticated methods that achieved short-term tactical objectives while creating strategic disasters.</p>
+            </div>
+
+            <div class="legacy-impact auto-reveal">
+                <h4>The Fundamental Paradox</h4>
+                <p><strong>Short-term Success:</strong> 1953 coup brilliantly restored Western control over Iranian oil resources and eliminated nationalism threat</p>
+                <p><strong>Long-term Disaster:</strong> Established conditions for 1979 Islamic Revolution that created America's most enduring regional adversary</p>
+                <p><strong>Strategic Reversal:</strong> British intelligence operations ultimately contributed to revolutionary sentiment that swept away pro-Western forces entirely</p>
+                <p><strong>Unintended Creation:</strong> Soviet penetration failed to prevent Iran's transformation into theocratic state equally hostile to communist ideology</p>
+            </div>
+
+            <div class="method-grid auto-reveal">
+                <div class="method-card">
+                    <h4>🔄 Systemic Impact</h4>
+                    <p><strong>Regional Transformation:</strong> Foreign intelligence activities fundamentally reshaped entire regional systems</p>
+                    <p><strong>Lasting Consequences:</strong> Effects persisting decades after original interventions</p>
+                    <p><strong>Pattern Recognition:</strong> Iranian case holds crucial lessons for understanding contemporary Middle Eastern conflicts</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>🧠 Memory and Politics</h4>
+                    <p><strong>Institutional Grievances:</strong> External manipulation creates lasting institutional grievances</p>
+                    <p><strong>Nationalist Reactions:</strong> Popular responses often more powerful than technological advantages of intervening powers</p>
+                    <p><strong>Historical Consciousness:</strong> Deep historical memories continue to shape global politics</p>
+                </div>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Most Significant Insight: External manipulation of sovereign nations, regardless of sophistication or short-term success, creates lasting institutional grievances and nationalist reactions that ultimately prove more powerful than the technological and financial advantages of intervening powers.
+            </div>
+
+            <div class="crisis-overview auto-reveal">
+                <h4>Contemporary Relevance</h4>
+                <p style="font-size: 2rem;">Understanding these historical patterns remains essential for developing more effective and sustainable approaches to international relations that account for the deep historical memories that continue to shape global politics today.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 18: Conclusion and Reflection -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🤔 Reflection: Foreign Influence and National Sovereignty</h2>
+            
+            <div class="auto-reveal">
+                <h3>Connecting Past to Present</h3>
+                <p style="font-size: 2rem;">Iran's 20th-century experience with foreign influence offers crucial insights into contemporary debates about <strong>national sovereignty</strong>, <strong>democratic legitimacy</strong>, and <strong>international relations</strong>.</p>
+            </div>
+
+            <div class="method-grid auto-reveal">
+                <div class="method-card">
+                    <h4>🗳️ Democracy and Intervention</h4>
+                    <p><strong>Key Question:</strong> Can foreign intervention ever support democracy?</p>
+                    <p><strong>Iranian Example:</strong> 1953 coup destroyed democratically elected government</p>
+                    <p><strong>Lasting Impact:</strong> Intervention delegitimized democratic institutions for generations</p>
+                    <p><strong>Modern Relevance:</strong> How do we evaluate foreign support for democratic movements today?</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>🛢️ Economic and Political Power</h4>
+                    <p><strong>Key Question:</strong> How do economic interests drive political intervention?</p>
+                    <p><strong>Iranian Example:</strong> Oil control motivated sophisticated intelligence operations</p>
+                    <p><strong>Pattern Recognition:</strong> Economic leverage as tool of political control</p>
+                    <p><strong>Contemporary Issues:</strong> How do resource-based economies navigate great power competition?</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>🧠 Memory and Historical Narrative</h4>
+                    <p><strong>Key Question:</strong> How do historical grievances shape present politics?</p>
+                    <p><strong>Iranian Example:</strong> 1953 coup memory fueled 1979 revolution</p>
+                    <p><strong>Psychological Impact:</strong> Foreign intervention creates lasting suspicion of external influence</p>
+                    <p><strong>Global Application:</strong> How do historical memories shape international relations worldwide?</p>
+                </div>
+                
+                <div class="method-card">
+                    <h4>⚖️ Nationalism and Resistance</h4>
+                    <p><strong>Key Question:</strong> Why do nationalist movements often prove stronger than foreign influence?</p>
+                    <p><strong>Iranian Example:</strong> Popular nationalism ultimately overcame sophisticated foreign operations</p>
+                    <p><strong>Universal Pattern:</strong> External control generates internal resistance movements</p>
+                    <p><strong>Strategic Lesson:</strong> Long-term stability requires popular legitimacy, not just foreign backing</p>
+                </div>
+            </div>
+
+            <div class="quote-highlight auto-reveal">
+                Essential Question for Today: How can nations maintain their sovereignty and democratic legitimacy while navigating great power competition and global economic integration?
+            </div>
+
+            <div class="legacy-impact auto-reveal">
+                <h4>Your Role in Understanding History</h4>
+                <p style="font-size: 2rem;">Understanding Iran's experience with foreign influence helps us become more informed citizens who can evaluate contemporary international relations with historical perspective and critical thinking skills.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+        let allRevealed = false;
+
+        function updateSlideCounter() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentSlide === 0 && revealIndex === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1 && allRevealed;
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            allRevealed = false;
+            resetReveal();
+            
+            // Always show at least the first element on the new slide
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            if (elements.length > 0) {
+                elements[0].classList.add('show');
+                revealIndex = 1;
+            }
+            
+            updateSlideCounter();
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                
+                if (revealIndex === elements.length) {
+                    allRevealed = true;
+                }
+                
+                updateNavigationButtons();
+                updateRevealButton();
+                return true;
+            }
+            return false;
+        }
+
+        function revealAllElements() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            elements.forEach(el => {
+                el.classList.add('show');
+            });
+            
+            revealIndex = elements.length;
+            allRevealed = true;
+            updateNavigationButtons();
+            updateRevealButton();
+        }
+
+        function updateRevealButton() {
+            const revealBtn = document.getElementById('revealBtn');
+            if (allRevealed) {
+                revealBtn.textContent = 'All Revealed';
+                revealBtn.disabled = true;
+            } else {
+                revealBtn.textContent = 'Reveal All';
+                revealBtn.disabled = false;
+            }
+        }
+
+        function toggleRevealAll() {
+            if (!allRevealed) {
+                revealAllElements();
+            }
+        }
+
+        function nextSlide() {
+            if (!allRevealed) {
+                if (!revealNextElement()) {
+                    if (currentSlide < totalSlides - 1) {
+                        showSlide(currentSlide + 1);
+                    }
+                }
+            } else {
+                if (currentSlide < totalSlides - 1) {
+                    showSlide(currentSlide + 1);
+                }
+            }
+        }
+
+        function previousSlide() {
+            if (revealIndex > 0 && !allRevealed) {
+                // Go to previous reveal state
+                revealIndex--;
+                const currentSlideElement = slides[currentSlide];
+                const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+                elements[revealIndex].classList.remove('show');
+                allRevealed = false;
+                updateNavigationButtons();
+                updateRevealButton();
+            } else if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+                // Reveal all elements on previous slide
+                revealAllElements();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            switch(event.key) {
+                case 'ArrowLeft':
+                    event.preventDefault();
+                    previousSlide();
+                    break;
+                case 'ArrowRight':
+                    event.preventDefault();
+                    nextSlide();
+                    break;
+                case ',':
+                    event.preventDefault();
+                    if (currentSlide > 0) {
+                        showSlide(currentSlide - 1);
+                        revealAllElements();
+                    }
+                    break;
+                case '.':
+                    event.preventDefault();
+                    if (currentSlide < totalSlides - 1) {
+                        showSlide(currentSlide + 1);
+                    }
+                    break;
+                case 'Enter':
+                    event.preventDefault();
+                    toggleRevealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        updateSlideCounter();
+        updateNavigationButtons();
+        updateRevealButton();
+        
+        // Ensure first slide content is visible on load
+        const firstSlideElements = slides[0].querySelectorAll('.auto-reveal');
+        if (firstSlideElements.length > 0) {
+            firstSlideElements[0].classList.add('show');
+            revealIndex = 1;
+        }
+    </script>
+</body>
+</html>
