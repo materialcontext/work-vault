@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Systematic Decline of Zhou China</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .slide-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .slide {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: none;
+        }
+
+        .slide.active {
+            display: block;
+            animation: fadeInSlide 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ffd700, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ff6b35;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        h4 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #4ecdc4;
+        }
+
+        p, li {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .timeline-section {
+            background: rgba(255, 215, 0, 0.15);
+            border: 3px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-section h3 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        .crisis-box {
+            background: rgba(255, 107, 53, 0.15);
+            border: 3px solid rgba(255, 107, 53, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .crisis-box h3, .crisis-box h4 {
+            color: #ff6b35;
+            margin-bottom: 1rem;
+        }
+
+        .evidence-box {
+            background: rgba(78, 205, 196, 0.15);
+            border: 3px solid rgba(78, 205, 196, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .evidence-box h4 {
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .battle-sequence {
+            background: rgba(220, 20, 60, 0.15);
+            border: 3px solid rgba(220, 20, 60, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .battle-sequence h4 {
+            color: #dc143c;
+            margin-bottom: 1rem;
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin: 0.8rem 0;
+            list-style-type: disc;
+        }
+
+        strong {
+            color: #ffd700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 215, 0, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: #1a1a2e;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 1);
+            transform: scale(1.1);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 15px;
+            border-radius: 20px;
+            color: #ffd700;
+            font-weight: bold;
+            z-index: 1000;
+        }
+
+        .reveal-btn {
+            background: rgba(78, 205, 196, 0.8);
+            border-radius: 25px !important;
+            width: auto !important;
+            padding: 10px 20px !important;
+            font-size: 1rem !important;
+        }
+
+        .reveal-btn:hover {
+            background: rgba(78, 205, 196, 1);
+        }
+
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .connecting-thread {
+            background: rgba(138, 43, 226, 0.15);
+            border: 3px solid rgba(138, 43, 226, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .connecting-thread h4 {
+            color: #8a2be2;
+            margin-bottom: 1rem;
+        }
+
+        .phase-header {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .date-range {
+            font-size: 1.5rem;
+            color: #4ecdc4;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 15</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()" title="Previous Slide">‹</button>
+        <button class="nav-btn" onclick="nextSlide()" title="Next Slide">›</button>
+        <button class="nav-btn reveal-btn" onclick="toggleRevealAll()" title="Reveal All" id="reveal-toggle">Reveal</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide active">
+        <h1>🐲 The Systematic Decline of Zhou China</h1>
+        <div class="phase-header auto-reveal">
+            <div class="date-range">1046-475 BCE</div>
+            <h2>From Imperial Unity to Regional Fragmentation</h2>
+        </div>
+        
+        <div class="timeline-section auto-reveal">
+            <h3>Central Thesis</h3>
+            <p>The Zhou dynasty's decline represents a paradigmatic case of how <strong>institutional success paradoxically creates the conditions for systematic political fragmentation</strong>. The fengjian feudal system's effectiveness in governing vast territories generated autonomous power centers that inevitably competed with central authority.</p>
+        </div>
+
+        <div class="comparison-grid auto-reveal">
+            <div class="comparison-card">
+                <h4>📍 Key Periods</h4>
+                <ul>
+                    <li><strong>Early Western Zhou (1046-950):</strong> Conquest & consolidation</li>
+                    <li><strong>Middle Western Zhou (950-850):</strong> Peak & emerging tensions</li>
+                    <li><strong>Late Western Zhou (850-771):</strong> Crisis & collapse</li>
+                    <li><strong>Eastern Zhou (770-475):</strong> Fragmentation & competition</li>
+                </ul>
+            </div>
+            <div class="comparison-card">
+                <h4>🔗 Driving Forces</h4>
+                <ul>
+                    <li><strong>Institutional contradictions</strong> in feudal governance</li>
+                    <li><strong>Environmental pressures</strong> and climate change</li>
+                    <li><strong>Military innovations</strong> and technological diffusion</li>
+                    <li><strong>Regional identity formation</strong> and economic autonomy</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: The Conquest Foundation (1046-1043 BCE) -->
+    <div class="slide">
+        <h2>⚔️ The Conquest Foundation (1046-1043 BCE)</h2>
+        
+        <div class="timeline-section auto-reveal">
+            <h3>The Battle of Muye: Military Superiority Establishes Political Authority</h3>
+            <p>King Wu's victory over the Shang in 1046 BCE demonstrated <strong>organizational and technological superiority</strong>—300 chariots and 45,000 troops overwhelmed Shang forces through superior formation discipline and coordinated chariot deployment.</p>
+        </div>
+
+        <div class="comparison-grid auto-reveal">
+            <div class="comparison-card">
+                <h4>🏹 Zhou Military Advantages</h4>
+                <ul>
+                    <li><strong>Superior chariot tactics:</strong> Coordinated formations vs. individual combat</li>
+                    <li><strong>Alliance warfare:</strong> Multi-tribal coalition against isolated Shang</li>
+                    <li><strong>Bronze weapons:</strong> Advanced metallurgy and mass production</li>
+                    <li><strong>Strategic timing:</strong> Attack during Shang internal rebellion</li>
+                </ul>
+            </div>
+            <div class="comparison-card">
+                <h4>🎯 Political Innovations</h4>
+                <ul>
+                    <li><strong>Mandate of Heaven:</strong> Divine approval for regime change</li>
+                    <li><strong>Cultural integration:</strong> Adoption of Shang rituals and customs</li>
+                    <li><strong>Elite co-optation:</strong> Shang nobles retained in subordinate roles</li>
+                    <li><strong>Territorial expansion:</strong> Beyond Shang heartland immediately</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="crisis-box auto-reveal">
+            <h4>⚡ The Succession Crisis (1043 BCE)</h4>
+            <p><strong>King Wu's sudden death after only four years</strong> created the dynasty's first existential crisis. His heir, King Cheng, was too young to rule effectively, requiring regency that would establish crucial constitutional precedents—and reveal inherent system vulnerabilities.</p>
+        </div>
+    </div>
+
+    <!-- Slide 3: The Three Guards War - Setting the Stage -->
+    <div class="slide">
+        <h2>🛡️ The Three Guards War: Constitutional Crisis (1043-1037 BCE)</h2>
+        
+        <div class="timeline-section auto-reveal">
+            <h3>The Regency Question and Institutional Legitimacy</h3>
+            <p>The Duke of Zhou's assumption of regency for the child-king Cheng created <strong>unprecedented constitutional tensions</strong>. Zhou political theory had no clear precedent for temporary rule, raising questions about succession legitimacy and power distribution.</p>
+        </div>
+
+        <div class="comparison-grid auto-reveal">
+            <div class="comparison-card">
+                <h4>👑 The Regency Problem</h4>
+                <ul>
+                    <li><strong>No constitutional precedent:</strong> Zhou law unclear on temporary rule</li>
+                    <li><strong>Duke of Zhou's authority:</strong> Brother of dead king, uncle of heir</li>
+                    <li><strong>Alternative claimants:</strong> Other royal brothers with equal legitimacy</li>
+                    <li><strong>Institutional innovation:</strong> Regency as constitutional necessity</li>
+                </ul>
+            </div>
+            <div class="comparison-card">
+                <h4>⚡ Structural Tensions</h4>
+                <ul>
+                    <li><strong>Kinship vs. territory:</strong> Family loyalty vs. regional control</li>
+                    <li><strong>Central vs. local:</strong> Court authority vs. field commanders</li>
+                    <li><strong>Innovation vs. tradition:</strong> New policies vs. established customs</li>
+                    <li><strong>Unity vs. autonomy:</strong> Collective rule vs. individual power</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="evidence-box auto-reveal">
+            <h4>📜 Bronze Inscription Evidence</h4>
+            <p>Contemporary bronze vessels reveal the <strong>complexity of legitimacy claims</strong> during this period. Multiple inscriptions reference different royal calendars and conflicting authority structures, indicating genuine confusion about legitimate governance even among court officials.</p>
+        </div>
+    </div>
+
+    <!-- Slide 4: The Three Guards War - The Rebellion -->
+    <div class="slide">
+        <h2>⚔️ The Three Guards Rebellion: Military and Political Dimensions</h2>
+        
+        <div class="battle-sequence auto-reveal">
+            <h4>🏰 The Eastern Alliance Against the Regency</h4>
+            <p><strong>The "Three Guards"—Shu Du of Cai, Guan Shu, and Huo Shu</strong>—were Zhou princes stationed as military governors in former Shang territories. Their rebellion represented far more than family rivalry: it was a fundamental challenge to the newly established Zhou constitutional order.</p>
+        </div>
+
+        <div class="comparison-grid auto-reveal">
+            <div class="comparison-card">
+                <h4>👥 Coalition Components</h4>
+                <ul>
+                    <li><strong>The Three Guards:</strong> Royal brothers with legitimate claims</li>
+                    <li><strong>Shang partisans:</strong> Former dynasty loyalists seeking restoration</li>
+                    <li><strong>Dongyi tribes:</strong> Non-Zhou peoples resisting integration</li>
+                    <li><strong>Regional nobles:</strong> Lords preferring local autonomy</li>
+                </ul>
+            </div>
+            <div class="comparison-card">
+                <h4>🎯 Strategic Objectives</h4>
+                <ul>
+                    <li><strong>Eliminate regency:</strong> Direct rule by adult Zhou prince</li>
+                    <li><strong>Restore Shang influence:</strong> Co-opt legitimacy from previous dynasty</li>
+                    <li><strong>Decentralize authority:</strong> Strengthen regional vs. central power</li>
+                    <li><strong>Challenge innovation:</strong> Return to traditional governance patterns</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="crisis-box auto-reveal">
+            <h4>⚡ Military Campaign and Constitutional Resolution</h4>
+            <p>The Duke of Zhou's <strong>systematic suppression of the rebellion</strong> (1040-1037 BCE) established crucial precedents: regency as legitimate temporary authority, central control over regional military commands, and the integration of conquered peoples through cultural adaptation rather than elimination.</p>
+        </div>
+    </div>
+
+    <!-- Slide 5: The Three Guards War - Long-term Consequences -->
+    <div class="slide">
+        <h2>🏛️ The Three Guards War: Institutional Consequences</h2>
+        
+        <div class="timeline-section auto-reveal">
+            <h3>Constitutional Precedents and Systematic Contradictions</h3>
+            <p>The Duke of Zhou's victory established the <strong>fengjian feudal system</strong> as the solution to governing vast, diverse territories. However, this solution contained inherent contradictions that would drive Zhou decline for the next three centuries.</p>
+        </div>
+
+        <div class="comparison-grid auto-reveal">
+            <div class="comparison-card">
+                <h4>✅ Immediate Solutions</h4>
+                <ul>
+                    <li><strong>Territorial control:</strong> 71 fiefs established across conquered lands</li>
+                    <li><strong>Kinship integration:</strong> Family relationships bind regional rulers</li>
+                    <li><strong>Cultural unification:</strong> Zhou rituals and customs spread systematically</li>
+                    <li><strong>Military coordination:</strong> Regional armies under central command</li>
+                </ul>
+            </div>
+            <div class="comparison-card">
+                <h4>⚠️ Inherent Problems</h4>
+                <ul>
+                    <li><strong>Generational dilution:</strong> Kinship bonds weaken over time</li>
+                    <li><strong>Regional identity:</strong> Local interests compete with central loyalty</li>
+                    <li><strong>Autonomous resources:</strong> Independent economic and military capacity</li>
+                    <li><strong>Distance effects:</strong> Geographic separation reduces control</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="evidence-box auto-reveal">
+            <h4>🏗️ The Eastern Capital Strategy</h4>
+            <p>The establishment of <strong>Luoyang as the eastern capital</strong> represented sophisticated administrative thinking: maintain presence in former Shang territories while preserving western Zhou heartland. Yet this dual-capital system created competing power centers within the royal court itself.</p>
+        </div>
+
+        <div class="connecting-thread auto-reveal">
+            <h4>🔗 The Paradox Established</h4>
+            <p>The Three Guards War's resolution demonstrated that <strong>effective Zhou governance required autonomous regional power</strong>—precisely the condition that would eventually undermine central authority. The Duke of Zhou's institutional innovations were simultaneously the foundation of Zhou success and the mechanism of its eventual fragmentation.</p>
+        </div>
+    </div>
+
+    <!-- Slide 6: Early Western Zhou Consolidation (1037-950 BCE) -->
+    <div class="slide">
+        <h2>🏛️ Early Western Zhou Consolidation (1037-950 BCE)</h2>
+        
+        <div class="timeline-section auto-reveal">
+            <h3>Kings Cheng and Kang: The Golden Age Foundation</h3>
+            <p>The reigns of Cheng (1042-1021 BCE) and Kang (1021-996 BCE) marked the <strong>successful implementation of the Duke of Zhou's institutional framework</strong>. This period established administrative precedents and cultural integration that sustained Zhou authority for three centuries.</p>
+        </div>
+
+        <div class="comparison-grid auto-reveal">
+            <div class="comparison-card">
+                <h4>🏗️ Administrative Achievements</h4>
+                <ul>
+                    <li><strong>Six Armies of the West:</strong> Professional military force in Zhou heartland</li>
+                    <li><strong>Eight Armies of Chengzhou:</strong> Eastern garrison controlling former Shang territories</li>
+                    <li><strong>Well-field system:</strong> Agricultural organization integrating nobles and peasants</li>
+                    <li><strong>Bronze production networks:</strong> Material culture unifying Zhou domains</li>
+                </ul>
+            </div>
+            <div class="comparison-card">
+                <h4>🌍 Territorial Integration</h4>
+                <ul>
+                    <li><strong>Systematic urban planning:</strong> Zhou cities following consistent layouts</li>
+                    <li><strong>Communication networks:</strong> Roads and relay stations connecting regions</li>
+                    <li><strong>Cultural standardization:</strong> Ritual practices and ceremonial forms</li>
+                    <li><strong>Economic coordination:</strong> Trade systems favoring Zhou centers</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="evidence-box auto-reveal">
+            <h4>🔍 Archaeological Evidence of Success</h4>
+            <p>Excavations at sites like Zhouyuan reveal <strong>sophisticated material culture integration</strong> during this period. Bronze vessels show consistent artistic styles across vast distances, while settlement patterns demonstrate coordinated urban development following Zhou administrative principles.</p>
+        </div>
+
+        <div class="crisis-box auto-reveal">
+            <h4>⚠️ Early Warning Signs</h4>
+            <p>Even during this "golden age," <strong>structural tensions emerged</strong>. Bronze inscriptions evolved from collective ritual dedication to individual achievement records, reflecting gradual shifts from unified Zhou identity toward regional prestige competition.</p>
+        </div>
+    </div>
+
+    <!-- Slide 7: Middle Western Zhou Peak and Tensions (950-850 BCE) -->
+    <div class="slide">
+        <h2>⚖️ Middle Western Zhou: Peak and Emerging Contradictions (950-850 BCE)</h2>
+        
+        <div class="timeline-section auto-reveal">
+            <h3>King Mu's Long Reign: Administrative Sophistication and Military Overextension</h3>
+            <p><strong>King Mu's 55-year reign (977-922 BCE)</strong> represented both the zenith of Zhou institutional development and the emergence of systematic weaknesses. Legal codes and bureaucratic reforms created unprecedented administrative sophistication, yet territorial expansion strained central coordination capabilities.</p>
+        </div>
+
+        <div class="comparison-grid auto-reveal">
+            <div class="comparison-card">
+                <h4>📜 Administrative Innovations</h4>
+                <ul>
+                    <li><strong>Systematic legal codes:</strong> Written laws replacing customary practices</li>
+                    <li><strong>Professional bureaucracy:</strong> Specialized officials beyond royal kinship</li>
+                    <li><strong>Regional coordination:</strong> Standardized administrative procedures</li>
+                    <li><strong>Military reforms:</strong> Professional armies supplementing feudal levies</li>
+                </ul>
+            </div>
+            <div class="comparison-card">
+                <h4>⚠️ Systemic Contradictions</h4>
+                <ul>
+                    <li><strong>Multiple royal calendars:</strong> Different dating systems in same court</li>
+                    <li><strong>Regional bronze styles:</strong> Local artistic traditions diverging</li>
+                    <li><strong>Autonomous urban development:</strong> Cities developing independent characteristics</li>
+                    <li><strong>Kinship dilution:</strong> Family relationships weakening across generations</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="battle-sequence auto-reveal">
+            <h4>💀 King Zhao's Chu Disaster (961-957 BCE)</h4>
+            <p><strong>The catastrophic loss of King Zhao and half the royal army</strong> in southern campaigns marked the effective end of Zhou military expansion. This disaster demonstrated how territorial overextension had weakened core defensive capabilities, forcing reliance on potentially unreliable regional allies.</p>
+        </div>
+
+        <div class="evidence-box auto-reveal">
+            <h4>🏛️ Institutional Adaptation Under Stress</h4>
+            <p>Archaeological evidence reveals <strong>defensive construction and resource concentration</strong> in Zhou heartlands during this period, indicating awareness of mounting threats. Yet the same evidence shows continued investment in regional development, suggesting inability to resolve the central tension between expansion and consolidation.</p>
+        </div>
+    </div>
+
+    <!-- Slide 8: Late Western Zhou Crisis (850-771 BCE) -->
+    <div class="slide">
+        <h2>🔥 Late Western Zhou Crisis (850-771 BCE)</h2>
+        
+        <div class="timeline-section auto-reveal">
+            <h3>Political Upheaval and Environmental Pressure</h3>
+            <p>The late Western Zhou period witnessed <strong>accelerating institutional collapse</strong> through converging political crises and environmental challenges. King Li's despotic rule and the subsequent Gonghe Regency revealed the complete erosion of traditional royal authority.</p>
+        </div>
+
+        <div class="crisis-box auto-reveal">
+            <h4>👑 King Li's Tyranny and Popular Uprising (841 BCE)</h4>
+            <p><strong>The first recorded popular uprising in Chinese history</strong> forced King Li into exile and established the Gonghe Regency under collective noble leadership. This unprecedented event demonstrated that royal authority now depended on aristocratic consent rather than divine mandate.</p>
+        </div>
+
+        <div class="comparison-grid auto-reveal">
+            <div class="comparison-card">
+                <h4>🌡️ Environmental Pressures</h4>
+                <ul>
+                    <li><strong>End of Climatic Optimum:</strong> Holocene warming period ends c. 850 BCE</li>
+                    <li><strong>Drought cycles:</strong> Agricultural productivity declining</li>
+                    <li><strong>Nomadic pressure:</strong> Climate change intensifies border conflicts</li>
+                    <li><strong>Resource competition:</strong> Environmental stress worsens political tensions</li>
+                </ul>
+            </div>
+            <div class="comparison-card">
+                <h4>⚡ Political Breakdown</h4>
+                <ul>
+                    <li><strong>Royal authority collapse:</strong> King Li's exile eliminates absolute monarchy</li>
+                    <li><strong>Aristocratic power rise:</strong> Nobles assume collective leadership</li>
+                    <li><strong>Regional independence:</strong> States developing autonomous policies</li>
+                    <li><strong>Military fragmentation:</strong> Central armies losing effectiveness</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="evidence-box auto-reveal">
+            <h4>🏺 Archaeological Evidence of Collapse</h4>
+            <p>Excavations at Zhouyuan reveal <strong>hastily constructed defensive walls and hidden treasure hoards</strong> dating to this period. These archaeological traces confirm the historical accounts of mounting threats and institutional breakdown affecting even the royal heartland.</p>
+        </div>
+    </div>
+
+    <!-- Slide 9: The Final Crisis - King You and the 771 BCE Catastrophe -->
+    <div class="slide">
+        <h2>💥 The Final Crisis: King You and the 771 BCE Catastrophe</h2>
+        
+        <div class="battle-sequence auto-reveal">
+            <h4>👑 King You's Constitutional Violations (781-771 BCE)</h4>
+            <p><strong>King You's deposition of Queen Shen in favor of concubine Bao Si</strong> violated fundamental succession norms and created factional conflict at court. This personal decision triggered the alliance between the Marquis of Shen and Quanrong nomads that would destroy the Western Zhou.</p>
+        </div>
+
+        <div class="comparison-grid auto-reveal">
+            <div class="comparison-card">
+                <h4>⚔️ The Quanrong Invasion</h4>
+                <ul>
+                    <li><strong>Strategic alliance:</strong> Marquis of Shen + Quanrong nomads</li>
+                    <li><strong>Multiple motivations:</strong> Succession dispute + territorial pressure</li>
+                    <li><strong>Military superiority:</strong> Combined forces vs. isolated Zhou court</li>
+                    <li><strong>Systematic destruction:</strong> Capital sacked, king killed, dynasty ended</li>
+                </ul>
+            </div>
+            <div class="comparison-card">
+                <h4>🚨 System Failure Indicators</h4>
+                <ul>
+                    <li><strong>Beacon fire system:</strong> Warning network failed to summon aid</li>
+                    <li><strong>Military loyalty collapse:</strong> Regional armies didn't respond</li>
+                    <li><strong>Court isolation:</strong> Royal house abandoned by traditional allies</li>
+                    <li><strong>Institutional breakdown:</strong> Fundamental administrative collapse</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="crisis-box auto-reveal">
+            <h4>🔚 The End of Western Zhou</h4>
+            <p>The 771 BCE disaster represented <strong>complete systemic breakdown</strong> rather than simple foreign conquest. The Zhou royal house lost control of the Wei Valley heartland and could never again command the military resources necessary for imperial restoration.</p>
+        </div>
+
+        <div class="connecting-thread auto-reveal">
+            <h4>🔗 Transition to Eastern Zhou</h4>
+            <p>The relocation to Luoyang in 770 BCE marked not dynastic continuation but <strong>fundamental political transformation</strong>. The Zhou king became a ceremonial figurehead while regional states assumed de facto sovereignty over Chinese political development.</p>
+        </div>
+    </div>
+
+    <!-- Slide 10: Eastern Zhou Transformation (770-475 BCE) -->
+    <div class="slide">
+        <h2>🏛️ Eastern Zhou Transformation: The Hegemonic System (770-475 BCE)</h2>
+        
+        <div class="timeline-section auto-reveal">
+            <h3>From Imperial Authority to Regional Competition</h3>
+            <p>The Eastern Zhou period transformed Chinese politics from <strong>centralized monarchy to competitive regionalism</strong>. The Zhou king retained ritual importance but exercised no real power, while regional hegemonies provided actual political leadership through military strength and diplomatic skill.</p>
+        </div>
+
+        <div class="comparison-grid auto-reveal">
+            <div class="comparison-card">
+                <h4>👑 The Five Hegemons</h4>
+                <ul>
+                    <li><strong>Duke Huan of Qi (685-643):</strong> "Revere the King, Expel the Barbarians"</li>
+                    <li><strong>Duke Wen of Jin (636-628):</strong> Military victory at Chengpu (632 BCE)</li>
+                    <li><strong>Duke Mu of Qin (659-621):</strong> Western expansion and nomad conquest</li>
+                    <li><strong>King Zhuang of Chu (613-591):</strong> Southern power challenging Zhou legitimacy</li>
+                </ul>
+            </div>
+            <div class="comparison-card">
+                <h4>🎯 Hegemonic Innovations</h4>
+                <ul>
+                    <li><strong>Interstate conferences:</strong> Regular diplomatic coordination</li>
+                    <li><strong>Alliance systems:</strong> Flexible military partnerships</li>
+                    <li><strong>Professional bureaucracies:</strong> Merit-based administration</li>
+                    <li><strong>Economic integration:</strong> Trade networks bypassing royal court</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="evidence-box auto-reveal">
+            <h4>🏺 Material Culture Evidence</h4>
+            <p><strong>Archaeological evidence reveals dramatic changes</strong> in material culture during this period. Regional bronze casting developed distinctive styles reflecting local political identities, while settlement patterns showed increasing independence from Zhou administrative networks.</p>
+        </div>
+
+        <div class="battle-sequence auto-reveal">
+            <h4>⚔️ The Warfare Revolution</h4>
+            <p><strong>540 wars over two centuries</strong> reduced the number of states from hundreds to fifteen by 475 BCE. This competitive environment rewarded military innovation, administrative efficiency, and diplomatic skill while rendering traditional Zhou authority increasingly irrelevant.</p>
+        </div>
+    </div>
+
+    <!-- Slide 11: Military and Technological Transformation -->
+    <div class="slide">
+        <h2>⚔️ Military and Technological Transformation</h2>
+        
+        <div class="timeline-section auto-reveal">
+            <h3>From Aristocratic Warfare to Professional Military Systems</h3>
+            <p>The Spring and Autumn period witnessed <strong>revolutionary changes in military organization and technology</strong> that fundamentally altered the balance of power between central and regional authorities.</p>
+        </div>
+
+        <div class="comparison-grid auto-reveal">
+            <div class="comparison-card">
+                <h4>🏹 Technological Innovations</h4>
+                <ul>
+                    <li><strong>Iron metallurgy (c. 500 BCE):</strong> Cheaper, more effective weapons</li>
+                    <li><strong>Crossbow development:</strong> Peasant conscripts effective vs. noble warriors</li>
+                    <li><strong>Siege warfare techniques:</strong> Fortified cities became vulnerable</li>
+                    <li><strong>Combined arms tactics:</strong> Coordinated infantry, cavalry, chariots</li>
+                </ul>
+            </div>
+            <div class="comparison-card">
+                <h4>🛡️ Organizational Changes</h4>
+                <ul>
+                    <li><strong>Professional armies:</strong> Replaced seasonal feudal levies</li>
+                    <li><strong>Specialized military roles:</strong> Engineers, logistics, intelligence</li>
+                    <li><strong>Regional military identity:</strong> Cavalry (north), naval forces (south)</li>
+                    <li><strong>Merit-based promotion:</strong> Military service as social mobility path</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="evidence-box auto-reveal">
+            <h4>📚 Military Literature and Strategic Thought</h4>
+            <p><strong>Sun Tzu's "Art of War"</strong> emerged from this competitive environment, providing intellectual frameworks for understanding conflict that transcended traditional ritual constraints. These innovations spread rapidly among regional states, creating military parity that prevented unified imperial restoration.</p>
+        </div>
+
+        <div class="crisis-box auto-reveal">
+            <h4>⚡ Technology Diffusion and Royal Disadvantage</h4>
+            <p>The spread of military innovations throughout Zhou domains <strong>eliminated royal technological advantages</strong> that had initially enabled conquest and control. Regional states developed military capabilities that matched or exceeded royal resources, making central authority dependent on potentially hostile allies.</p>
+        </div>
+    </div>
+
+    <!-- Slide 12: Regional Identity and Economic Independence -->
+    <div class="slide">
+        <h2>🏭 Regional Identity and Economic Independence</h2>
+        
+        <div class="timeline-section auto-reveal">
+            <h3>Economic Foundations of Political Autonomy</h3>
+            <p>Regional states developed <strong>independent economic foundations</strong> through trade networks, agricultural innovations, and specialized production that reduced dependence on royal coordination and provided resources for autonomous political development.</p>
+        </div>
+
+        <div class="comparison-grid auto-reveal">
+            <div class="comparison-card">
+                <h4>💰 Economic Innovations</h4>
+                <ul>
+                    <li><strong>Independent currency systems:</strong> Regional coinages reflecting political autonomy</li>
+                    <li><strong>Specialized craft production:</strong> Iron smelting, bronze casting, textile manufacturing</li>
+                    <li><strong>Agricultural improvements:</strong> Irrigation systems, crop rotation, new farming tools</li>
+                    <li><strong>Commercial networks:</strong> Trade routes connecting regions directly</li>
+                </ul>
+            </div>
+            <div class="comparison-card">
+                <h4>🎭 Cultural Development</h4>
+                <ul>
+                    <li><strong>Regional artistic styles:</strong> Bronze decoration reflecting local preferences</li>
+                    <li><strong>Distinctive architectural forms:</strong> Palace and city designs varying by region</li>
+                    <li><strong>Local ritual practices:</strong> Religious ceremonies adapted to regional conditions</li>
+                    <li><strong>Philosophical schools:</strong> Intellectual traditions emerging from competitive environment</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="evidence-box auto-reveal">
+            <h4>🏺 Archaeological Evidence of Regional Identity</h4>
+            <p><strong>Burial practices, settlement patterns, and material culture</strong> reveal increasing regional differentiation during the Eastern Zhou period. States developed distinctive identities reflected in everything from pottery styles to urban planning, indicating fundamental shifts in political allegiance from Zhou universalism to regional patriotism.</p>
+        </div>
+
+        <div class="connecting-thread auto-reveal">
+            <h4>🔗 Economic Independence Enables Political Autonomy</h4>
+            <p>Regional states could finance professional armies and bureaucratic administrations through local resources, <strong>eliminating reliance on royal grants and tribute relationships</strong>. This economic independence provided the foundation for the political competition that would characterize the Warring States period.</p>
+        </div>
+    </div>
+
+    <!-- Slide 13: Environmental and Demographic Factors -->
+    <div class="slide">
+        <h2>🌡️ Environmental and Demographic Pressures</h2>
+        
+        <div class="timeline-section auto-reveal">
+            <h3>Climate Change and Political Transformation</h3>
+            <p><strong>Environmental pressures played a crucial role</strong> in Zhou political transitions. The end of the Holocene Climatic Optimum created drought cycles that stressed agricultural systems and intensified competition for resources, contributing to political fragmentation.</p>
+        </div>
+
+        <div class="comparison-grid auto-reveal">
+            <div class="comparison-card">
+                <h4>🌦️ Climate Impacts</h4>
+                <ul>
+                    <li><strong>Holocene Optimum end (850-750 BCE):</strong> Cooler, drier conditions</li>
+                    <li><strong>Drought cycles:</strong> Reduced agricultural productivity in Zhou heartland</li>
+                    <li><strong>Nomadic pressure:</strong> Climate change forced population movements</li>
+                    <li><strong>Resource competition:</strong> Environmental stress worsened political tensions</li>
+                </ul>
+            </div>
+            <div class="comparison-card">
+                <h4>📈 Demographic Changes</h4>
+                <ul>
+                    <li><strong>Population growth:</strong> Agricultural improvements supported larger populations</li>
+                    <li><strong>Urban expansion:</strong> Cities requiring larger agricultural hinterlands</li>
+                    <li><strong>Migration pressures:</strong> Population movements disrupting territorial boundaries</li>
+                    <li><strong>Land scarcity:</strong> Competition for fertile territory intensifying</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="evidence-box auto-reveal">
+            <h4>🔬 Paleoclimatic Research Evidence</h4>
+            <p><strong>Recent paleoclimatic studies</strong> confirm that Zhou political transitions coincided with significant environmental changes. Ice core and pollen data demonstrate cooling and aridification that stressed agricultural systems precisely when political cohesion was weakening.</p>
+        </div>
+
+        <div class="crisis-box auto-reveal">
+            <h4>⚡ The Perfect Storm</h4>
+            <p>Environmental pressures intensified political instability at precisely the moment when institutional cohesion was weakening. <strong>Climate change created resource competition when the Zhou system was least capable of coordinating responses</strong>, contributing to the systematic breakdown of central authority.</p>
+        </div>
+    </div>
+
+    <!-- Slide 14: The Warring States Transition (475 BCE) -->
+    <div class="slide">
+        <h2>⚔️ The Warring States Transition (475 BCE)</h2>
+        
+        <div class="timeline-section auto-reveal">
+            <h3>From Controlled Competition to Open Warfare</h3>
+            <p>The transition to the Warring States period around 475 BCE marked the <strong>complete abandonment of Zhou ritual constraints</strong> on interstate competition. Regional states openly pursued territorial conquest and political domination without reference to traditional legitimacy.</p>
+        </div>
+
+        <div class="comparison-grid auto-reveal">
+            <div class="comparison-card">
+                <h4>📊 Systematic Changes</h4>
+                <ul>
+                    <li><strong>Open territorial annexation:</strong> States absorbed neighbors completely</li>
+                    <li><strong>Professional military dominance:</strong> Warfare became full-time occupation</li>
+                    <li><strong>Bureaucratic innovation:</strong> Administrative efficiency crucial for survival</li>
+                    <li><strong>Technological competition:</strong> Military innovation as state priority</li>
+                </ul>
+            </div>
+            <div class="comparison-card">
+                <h4>🎯 Seven Major Powers</h4>
+                <ul>
+                    <li><strong>Qin (West):</strong> Military organization and legal innovation</li>
+                    <li><strong>Chu (South):</strong> Territorial expansion and cultural confidence</li>
+                    <li><strong>Qi (East):</strong> Commercial wealth and diplomatic skill</li>
+                    <li><strong>Yan, Zhao, Wei, Han:</strong> Northern coalition and competition</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="battle-sequence auto-reveal">
+            <h4>🏛️ Institutional Innovation Through Competition</h4>
+            <p><strong>Competitive pressure drove unprecedented innovation</strong> in government, law, military organization, philosophy, and technology. The Warring States period generated institutional mechanisms that would provide foundations for subsequent imperial unification under Qin and Han.</p>
+        </div>
+
+        <div class="connecting-thread auto-reveal">
+            <h4>🔗 Zhou Fragmentation Enables Imperial Innovation</h4>
+            <p>The Zhou dynasty's systematic decline created the competitive political environment that generated innovations in governance, military organization, and administrative efficiency. <strong>Political fragmentation paradoxically provided the laboratory for institutional development</strong> that would characterize imperial China.</p>
+        </div>
+    </div>
+
+    <!-- Slide 15: Conclusion - The Zhou Legacy -->
+    <div class="slide">
+        <h2>🏛️ The Zhou Legacy: Success Creating Transformation</h2>
+        
+        <div class="timeline-section auto-reveal">
+            <h3>Institutional Success Breeding Competitive Innovation</h3>
+            <p>The Zhou dynasty's 571-year evolution demonstrates how <strong>effective governance innovations can generate structural contradictions</strong> that ultimately create new forms of political organization. The fengjian system's success in territorial integration inevitably produced the regional autonomy that fragmented central authority.</p>
+        </div>
+
+        <div class="comparison-grid auto-reveal">
+            <div class="comparison-card">
+                <h4>📚 Enduring Lessons</h4>
+                <ul>
+                    <li><strong>Institutional paradox:</strong> Success creates conditions for change</li>
+                    <li><strong>Geographic constraints:</strong> Territorial expansion strains coordination</li>
+                    <li><strong>Technological diffusion:</strong> Innovations spread to competitors</li>
+                    <li><strong>Generational dynamics:</strong> Loyalty bonds weaken over time</li>
+                </ul>
+            </div>
+            <div class="comparison-card">
+                <h4>🔄 Cyclical Patterns</h4>
+                <ul>
+                    <li><strong>Unification → Expansion → Fragmentation → Competition</strong></li>
+                    <li><strong>Innovation → Diffusion → Parity → New Innovation</strong></li>
+                    <li><strong>Central Authority → Regional Autonomy → Interstate System</strong></li>
+                    <li><strong>Ritual Integration → Cultural Diversity → Competitive Identity</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="evidence-box auto-reveal">
+            <h4>🏺 Archaeological Confirmation</h4>
+            <p><strong>Material culture evidence confirms political fragmentation</strong> reflected fundamental changes in economic organization, social structure, and cultural identity across Zhou domains. The transformation was systematic rather than merely political, affecting all aspects of Chinese civilization.</p>
+        </div>
+
+        <div class="connecting-thread auto-reveal">
+            <h4>🔗 Foundation for Future Development</h4>
+            <p>The Zhou dynasty's decline created the competitive political environment that generated the <strong>institutional innovations, military technologies, and philosophical traditions</strong> that would define Chinese civilization for the next two millennia. Political fragmentation enabled cultural innovation that provided foundations for subsequent imperial unification.</p>
+        </div>
+
+        <div class="timeline-section auto-reveal">
+            <h3>🎯 The Ultimate Paradox</h3>
+            <p><strong>Zhou institutional success created the conditions for its own transcendence</strong>, demonstrating that political evolution follows patterns more complex than simple rise and decline. The dynasty's fragmentation represents not failure but successful adaptation to changed circumstances through competitive innovation.</p>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 15;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Show current slide
+            if (n >= 0 && n < totalSlides) {
+                slides[n].classList.add('active');
+                currentSlide = n;
+                
+                // Update slide counter
+                document.getElementById('slide-counter').textContent = `${n + 1} / ${totalSlides}`;
+                
+                // Reset auto-reveal elements
+                setTimeout(() => {
+                    const reveals = slides[n].querySelectorAll('.auto-reveal');
+                    reveals.forEach((reveal, index) => {
+                        setTimeout(() => {
+                            reveal.classList.add('show');
+                        }, index * 150);
+                    });
+                }, 100);
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        function toggleRevealAll() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const reveals = currentSlideElement.querySelectorAll('.auto-reveal');
+            const button = document.getElementById('reveal-toggle');
+            
+            const allRevealed = Array.from(reveals).every(reveal => reveal.classList.contains('show'));
+            
+            if (allRevealed) {
+                reveals.forEach(reveal => reveal.classList.remove('show'));
+                button.textContent = 'Reveal';
+            } else {
+                reveals.forEach(reveal => reveal.classList.add('show'));
+                button.textContent = 'Hide';
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowRight':
+                case ' ':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    previousSlide();
+                    break;
+                case ',':
+                    e.preventDefault();
+                    previousSlide();
+                    break;
+                case '.':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'Enter':
+                    e.preventDefault();
+                    toggleRevealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 9: American Revolution in Global Context</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 50%, #5c6bc0 100%);
+            color: #ffffff;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .presentation-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .slide {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 1;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .slide.hidden {
+            display: none;
+        }
+
+        .slide-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .unit-title {
+            font-size: 1.6rem;
+            color: #ffc107;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .lesson-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ffc107, #ff9800);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .central-question {
+            font-size: 1.8rem;
+            color: #fff3c4;
+            font-style: italic;
+            background: rgba(255,255,255,0.1);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #ffc107;
+            line-height: 1.6;
+        }
+
+        .slide h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #ffc107;
+        }
+
+        .slide h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #ffc107;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .concept-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,193,7,0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,193,7,0.5);
+        }
+
+        .concept-card h3 {
+            color: #ffc107;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .concept-card p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .primary-source {
+            background: rgba(255,243,196,0.2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #fff3c4;
+            margin: 1.5rem 0;
+            font-style: italic;
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        .primary-source strong {
+            color: #fff3c4;
+            font-style: normal;
+            font-size: 1.4rem;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .analysis-card {
+            background: rgba(255,255,255,0.08);
+            padding: 1.2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255,193,7,0.2);
+            text-align: center;
+        }
+
+        .analysis-card h4 {
+            color: #ffc107;
+            margin-bottom: 0.8rem;
+            font-size: 1.5rem;
+        }
+
+        .analysis-card p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .question-highlight {
+            background: linear-gradient(45deg, rgba(255,193,7,0.2), rgba(255,152,0,0.2));
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid #ff9800;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.4rem;
+            color: #ffc107;
+            line-height: 1.6;
+        }
+
+        .connecting-thread {
+            background: rgba(255,193,7,0.15);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid #ffc107;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        .connecting-thread h3 {
+            color: #ffc107;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .auto-reveal, .reveal-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.revealed, .reveal-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255,193,7,0.3);
+            transform: translateY(-2px);
+            border-color: #ffc107;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            max-width: 200px;
+        }
+
+        .indicator-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator-dot.active {
+            background: #ffc107;
+            transform: scale(1.2);
+        }
+
+        .image-tab {
+            position: fixed;
+            top: 20px;
+            right: 100px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .image-tab:hover {
+            background: rgba(255,193,7,0.3);
+            border-color: #ffc107;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-event {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #fff3c4;
+        }
+
+        .event-year {
+            font-size: 1.3rem;
+            color: #ffc107;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-title {
+            font-size: 1.1rem;
+            color: #fff3c4;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-description {
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .democratic-evolution {
+            background: linear-gradient(45deg, rgba(255,193,7,0.1), rgba(255,152,0,0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #ffc107;
+            margin: 2rem 0;
+        }
+
+        .evolution-stages {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .evolution-stage {
+            background: rgba(255,255,255,0.1);
+            padding: 1.2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #fff3c4;
+        }
+
+        .stage-title {
+            font-size: 1.4rem;
+            color: #ffc107;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+        }
+
+        .stage-content {
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .independence-evolution {
+            background: rgba(255,193,7,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #ffc107;
+            margin: 2rem 0;
+        }
+
+        .independence-timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .independence-stage {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #fff3c4;
+        }
+
+        .global-context {
+            background: linear-gradient(45deg, rgba(255,193,7,0.1), rgba(63,81,181,0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #ffc107;
+            margin: 2rem 0;
+        }
+
+        .global-participants {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .participant-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #ffc107;
+        }
+
+        .participant-card h4 {
+            color: #ffc107;
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+        }
+
+        .participant-card p {
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .revolutionary-outcomes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .outcome-comparison {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255,193,7,0.3);
+        }
+
+        .outcome-comparison h4 {
+            color: #ffc107;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1.6rem;
+        }
+
+        .outcome-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .outcome-features li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .outcome-features li:before {
+            content: "▶";
+            color: #fff3c4;
+            position: absolute;
+            left: 0;
+        }
+
+        .auto-reveal p, .reveal-item p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .causes-review {
+            background: rgba(255,193,7,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #ffc107;
+            margin: 2rem 0;
+        }
+
+        .causes-chain {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .cause-link {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #fff3c4;
+            position: relative;
+        }
+
+        .cause-link:not(:last-child):after {
+            content: "→";
+            position: absolute;
+            right: -1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ffc107;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .cause-title {
+            font-size: 1.2rem;
+            color: #ffc107;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .cause-description {
+            font-size: 1rem;
+            line-height: 1.3;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title and Central Question -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-header auto-reveal">
+                <div class="unit-title">UNIT III: REVOLUTIONARY TRANSFORMATION</div>
+                <div class="lesson-title">Week 9: American Revolution in Global Context</div>
+                <div class="central-question">How did American revolutionary experience both reflect and influence global patterns of political transformation?</div>
+            </div>
+            
+            <div class="content-grid">
+                <div class="concept-card auto-reveal">
+                    <h3>🔑 Key Concept</h3>
+                    <p>Revolutionary war and constitutional innovation - understanding the American Revolution as both product of global forces and catalyst for worldwide political transformation</p>
+                </div>
+                
+                <div class="concept-card auto-reveal">
+                    <h3>🌍 Geographic Focus</h3>
+                    <p>American Revolution within broader Atlantic revolutionary movements - connecting colonial resistance to global patterns of political change</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Extended Focus Today:</strong> Tracing the evolution from imperial crisis through democratic development to independence, then analyzing how American success influences global revolutionary movements
+            </div>
+        </div>
+
+        <!-- Slide 2: Review - Chain of Causation from Seven Years' War -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>🔗 Review: From Imperial Crisis to Revolutionary War</h2>
+            
+            <div class="causes-review auto-reveal">
+                <h3>The Causal Chain (1763-1775)</h3>
+                <div class="causes-chain">
+                    <div class="cause-link">
+                        <div class="cause-title">Seven Years' War Victory</div>
+                        <div class="cause-description">Britain gains global empire but doubles national debt</div>
+                    </div>
+                    <div class="cause-link">
+                        <div class="cause-title">Fiscal Crisis</div>
+                        <div class="cause-description">Parliament needs colonial revenue to service £232M debt</div>
+                    </div>
+                    <div class="cause-link">
+                        <div class="cause-title">Constitutional Conflict</div>
+                        <div class="cause-description">Colonial assemblies resist taxation without representation</div>
+                    </div>
+                    <div class="cause-link">
+                        <div class="cause-title">Escalating Resistance</div>
+                        <div class="cause-description">Stamp Act through Tea Act crises build colonial unity</div>
+                    </div>
+                    <div class="cause-link">
+                        <div class="cause-title">Military Confrontation</div>
+                        <div class="cause-description">Coercive Acts (1774) and Lexington/Concord (1775)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #ffc107; text-align: center;">Key Point from Last Week:</h3>
+                <p style="text-align: center; font-size: 1.3rem;">British constitutional system created colonial assemblies with autonomous powers, but global war costs forced imperial taxation that contradicted constitutional principles of representation and consent</p>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How does this constitutional crisis lead from resistance to reform efforts to complete independence? Let's trace the evolution of American political thinking...
+            </div>
+        </div>
+
+        <!-- Slide 3: Evolution of Democratic Ideas in Colonial America -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>🏛️ Democratic Ideas in Colonial Development (1620-1760)</h2>
+            
+            <div class="auto-reveal">
+                <h3>From English Constitutional Principles to American Democratic Innovation</h3>
+            </div>
+            
+            <div class="democratic-evolution auto-reveal">
+                <h3>Three Stages of Colonial Democratic Development</h3>
+                <div class="evolution-stages">
+                    <div class="evolution-stage">
+                        <div class="stage-title">Stage 1: Transplanted English Rights (1620-1660)</div>
+                        <div class="stage-content"><strong>Virginia House of Burgesses (1619):</strong> First colonial assembly claims English parliamentary rights<br><strong>Massachusetts Bay:</strong> Town meetings and written laws<br><strong>Principle:</strong> Colonists possess same constitutional rights as Englishmen</div>
+                    </div>
+                    <div class="evolution-stage">
+                        <div class="stage-title">Stage 2: Colonial Autonomy (1660-1720)</div>
+                        <div class="stage-content"><strong>Charter colonies:</strong> Connecticut, Rhode Island self-governing<br><strong>Proprietary experiments:</strong> Pennsylvania's Frame of Government<br><strong>Principle:</strong> Colonial assemblies control local taxation and legislation</div>
+                    </div>
+                    <div class="evolution-stage">
+                        <div class="stage-title">Stage 3: Democratic Innovation (1720-1760)</div>
+                        <div class="stage-content"><strong>Expanded suffrage:</strong> Property requirements lower than England<br><strong>Religious pluralism:</strong> Multiple Protestant denominations coexist<br><strong>Principle:</strong> Popular participation broader than European models</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="analysis-grid auto-reveal">
+                <div class="analysis-card">
+                    <h4>🗳️ Broader Participation</h4>
+                    <p>50-60% of white men can vote in colonies vs. 20% in England due to lower property requirements</p>
+                </div>
+                <div class="analysis-card">
+                    <h4>📜 Written Constitutions</h4>
+                    <p>Colonial charters create precedent for written limits on government power</p>
+                </div>
+                <div class="analysis-card">
+                    <h4>⛪ Religious Diversity</h4>
+                    <p>Multiple Protestant denominations prevent single church establishment in most colonies</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How do these colonial democratic innovations create the intellectual foundation for resistance to imperial authority in the 1760s-1770s?
+            </div>
+        </div>
+
+        <!-- Slide 4: The Evolution of Independence Thinking -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>💭 From Loyal Resistance to Independence (1765-1776)</h2>
+            
+            <div class="auto-reveal">
+                <h3>The Intellectual Journey: How Colonial Thinking Evolved</h3>
+            </div>
+            
+            <div class="independence-evolution auto-reveal">
+                <h3>Four Phases of Independence Thinking</h3>
+                <div class="independence-timeline">
+                    <div class="independence-stage">
+                        <div class="stage-title">Phase 1: Constitutional Resistance (1765-1770)</div>
+                        <div class="stage-content"><strong>Goal:</strong> Restore traditional rights within British Empire<br><strong>Arguments:</strong> "No taxation without representation"<br><strong>Key Thinkers:</strong> James Otis, Samuel Adams<br><strong>Strategy:</strong> Appeal to British constitutional precedent</div>
+                    </div>
+                    <div class="independence-stage">
+                        <div class="stage-title">Phase 2: Imperial Reform (1770-1773)</div>
+                        <div class="stage-content"><strong>Goal:</strong> Federal relationship with Parliament<br><strong>Arguments:</strong> Colonial assemblies equal to Parliament<br><strong>Key Thinkers:</strong> John Adams, Thomas Jefferson<br><strong>Strategy:</strong> Theoretical separation of imperial and local authority</div>
+                    </div>
+                    <div class="independence-stage">
+                        <div class="stage-title">Phase 3: Rejection of Parliament (1773-1775)</div>
+                        <div class="stage-content"><strong>Goal:</strong> Direct relationship with Crown only<br><strong>Arguments:</strong> Parliament has no authority over colonies<br><strong>Key Thinkers:</strong> Alexander Hamilton, James Wilson<br><strong>Strategy:</strong> Loyalty to King, resistance to Parliament</div>
+                    </div>
+                    <div class="independence-stage">
+                        <div class="stage-title">Phase 4: Complete Independence (1775-1776)</div>
+                        <div class="stage-content"><strong>Goal:</strong> Separate nation with popular sovereignty<br><strong>Arguments:</strong> Government derives authority from consent of governed<br><strong>Key Thinkers:</strong> Thomas Paine, Thomas Jefferson<br><strong>Strategy:</strong> Revolutionary war and new constitutional government</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="primary-source auto-reveal">
+                <strong>Thomas Paine, "Common Sense" (January 1776):</strong><br>
+                "The cause of America is in a great measure the cause of all mankind... We have it in our power to begin the world over again."
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                Why does it take eleven years (1765-1776) for colonial thinking to evolve from resistance to independence? What forces drive this intellectual transformation?
+            </div>
+        </div>
+
+        <!-- Slide 5: Key Turning Points Toward Independence -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>⚡ Critical Moments in the Path to Independence</h2>
+            
+            <div class="timeline auto-reveal">
+                <div class="timeline-event">
+                    <div class="event-year">1773</div>
+                    <div class="event-title">Boston Tea Party</div>
+                    <div class="event-description">Direct action destroys East India Company property; imperial authority directly challenged</div>
+                </div>
+                <div class="timeline-event">
+                    <div class="event-year">1774</div>
+                    <div class="event-title">Coercive Acts</div>
+                    <div class="event-description">Parliament punishes Massachusetts; other colonies see threat to their autonomy</div>
+                </div>
+                <div class="timeline-event">
+                    <div class="event-year">1774</div>
+                    <div class="event-title">First Continental Congress</div>
+                    <div class="event-description">Intercolonial political cooperation; unified resistance strategy</div>
+                </div>
+                <div class="timeline-event">
+                    <div class="event-year">1775</div>
+                    <div class="event-title">Lexington & Concord</div>
+                    <div class="event-description">Armed conflict begins; British troops fire on colonial militia</div>
+                </div>
+                <div class="timeline-event">
+                    <div class="event-year">1775</div>
+                    <div class="event-title">Second Continental Congress</div>
+                    <div class="event-description">Creates Continental Army; still hopes for reconciliation with King</div>
+                </div>
+                <div class="timeline-event">
+                    <div class="event-year">1776</div>
+                    <div class="event-title">Declaration of Independence</div>
+                    <div class="event-description">Formal break with Britain; new theory of government based on popular sovereignty</div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #9c27b0; text-align: center;">The Revolutionary Moment</h3>
+                <p style="text-align: center; font-size: 1.3rem;">By 1776, colonial leaders conclude that constitutional reform within the British Empire is impossible - new political structures are needed based on popular sovereignty and consent of the governed</p>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                Now that we understand how American independence developed, how does this revolutionary experience connect to global patterns of political transformation?
+            </div>
+        </div>
+
+        <!-- Slide 6: Declaration of Independence - Revolutionary Political Theory -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>📜 Declaration of Independence as Constitutional Innovation</h2>
+            
+            <div class="primary-source auto-reveal">
+                <strong>Declaration of Independence (1776):</strong><br>
+                "We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness. That to secure these rights, Governments are instituted among Men, deriving their just powers from the consent of the governed..."
+            </div>
+            
+            <div class="auto-reveal">
+                <h3>Revolutionary Political Innovations in the Declaration</h3>
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h4>🏛️ Popular Sovereignty</h4>
+                        <p><strong>Revolutionary idea:</strong> Government authority comes from people, not divine right or tradition<br><strong>Global significance:</strong> Challenges legitimacy of all monarchical systems</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>⚖️ Natural Rights</h4>
+                        <p><strong>Revolutionary idea:</strong> Rights exist prior to government and cannot be taken away<br><strong>Global significance:</strong> Universal principles apply to all human societies</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>🔄 Right of Revolution</h4>
+                        <p><strong>Revolutionary idea:</strong> People can overthrow governments that violate their rights<br><strong>Global significance:</strong> Legitimizes resistance movements worldwide</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #ffc107;">Why This Represents Constitutional Innovation</h3>
+                <p style="text-align: center; font-size: 1.2rem;">The Declaration synthesizes Enlightenment philosophy with colonial constitutional experience to create new theoretical foundation for legitimate government - moving beyond resistance to create new political possibilities</p>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How do these revolutionary principles in the Declaration appeal to other colonial and European movements seeking political change?
+            </div>
+        </div>
+
+        <!-- Slide 7: Global Context - International Participation in American Revolution -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>🌍 American Revolution as Global Conflict</h2>
+            
+            <div class="auto-reveal">
+                <h3>Why European Powers Support American Independence</h3>
+            </div>
+            
+            <div class="global-context auto-reveal">
+                <h3>International Participants and Motivations</h3>
+                <div class="global-participants">
+                    <div class="participant-card">
+                        <h4>🇫🇷 France</h4>
+                        <p><strong>Motivation:</strong> Revenge for Seven Years' War defeat; weaken British empire<br><strong>Support:</strong> Military alliance (1778), naval power, loans, supplies<br><strong>Cost:</strong> Massive debt contributing to French fiscal crisis</p>
+                    </div>
+                    <div class="participant-card">
+                        <h4>🇪🇸 Spain</h4>
+                        <p><strong>Motivation:</strong> Recover Gibraltar and Florida from Britain<br><strong>Support:</strong> Military alliance with France, supplies to Americans<br><strong>Concern:</strong> Revolutionary ideas might spread to Spanish colonies</p>
+                    </div>
+                    <div class="participant-card">
+                        <h4>🇳🇱 Netherlands</h4>
+                        <p><strong>Motivation:</strong> Commercial competition with Britain<br><strong>Support:</strong> Loans, naval supplies, diplomatic recognition<br><strong>Consequence:</strong> Fourth Anglo-Dutch War (1780-1784)</p>
+                    </div>
+                    <div class="participant-card">
+                        <h4>🇷🇺 Russia</h4>
+                        <p><strong>Motivation:</strong> Neutral trade rights, balance European powers<br><strong>Support:</strong> Armed Neutrality League to protect neutral shipping<br><strong>Impact:</strong> Isolates Britain diplomatically</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #ffc107; text-align: center;">Revolutionary Irony</h3>
+                <p style="text-align: center; font-size: 1.2rem;">Absolute monarchies (France, Spain) support republican revolution against constitutional monarchy (Britain) for reasons of imperial competition rather than ideological sympathy</p>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How does this global support enable American success while simultaneously spreading revolutionary financial and ideological pressures throughout Europe?
+            </div>
+        </div>
+
+        <!-- Slide 8: Military Innovation and Revolutionary War -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>⚔️ Revolutionary War as Military and Political Innovation</h2>
+            
+            <div class="auto-reveal">
+                <h3>How Americans Win Against World's Most Powerful Empire</h3>
+            </div>
+            
+            <div class="content-grid auto-reveal">
+                <div class="concept-card">
+                    <h3>🎯 Military Strategies</h3>
+                    <p><strong>Avoid decisive battles:</strong> Washington's Fabian strategy preserves Continental Army<br><strong>Geographic advantages:</strong> 3,000 miles from Britain, familiar terrain<br><strong>Popular support:</strong> Local militias provide intelligence and harassment<br><strong>Foreign assistance:</strong> French naval power crucial at Yorktown (1781)</p>
+                </div>
+                
+                <div class="concept-card">
+                    <h3>🏛️ Political Innovation</h3>
+                    <p><strong>State constitutions:</strong> New governments based on written constitutions and popular sovereignty<br><strong>Continental Congress:</strong> Federal coordination without strong central authority<br><strong>Popular mobilization:</strong> Broader political participation than European models<br><strong>Ideological warfare:</strong> Revolutionary ideas as weapons against traditional authority</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Key Success Factors:</strong> Combination of military strategy, geographic advantages, international support, and revolutionary political mobilization creates conditions for unlikely victory against British Empire
+            </div>
+        </div>
+
+        <!-- Slide 9: Constitutional Innovation - Articles of Confederation and Constitution -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>📋 Constitutional Experiments (1777-1789)</h2>
+            
+            <div class="auto-reveal">
+                <h3>From Revolutionary War to Constitutional Government</h3>
+            </div>
+            
+            <div class="revolutionary-outcomes auto-reveal">
+                <div class="outcome-comparison">
+                    <h4>Articles of Confederation (1777-1789)</h4>
+                    <ul class="outcome-features">
+                        <li><strong>Weak central government:</strong> Fear of replicating British tyranny</li>
+                        <li><strong>State sovereignty:</strong> States retain most governing power</li>
+                        <li><strong>No taxation power:</strong> Congress cannot force state compliance</li>
+                        <li><strong>Unanimous amendment:</strong> Constitutional change nearly impossible</li>
+                        <li><strong>Success:</strong> Wins Revolutionary War, establishes independence</li>
+                        <li><strong>Problems:</strong> Economic chaos, interstate conflicts, weak international position</li>
+                    </ul>
+                </div>
+                
+                <div class="outcome-comparison">
+                    <h4>Constitution (1787-1789)</h4>
+                    <ul class="outcome-features">
+                        <li><strong>Federal system:</strong> Power divided between national and state governments</li>
+                        <li><strong>Separation of powers:</strong> Legislative, executive, judicial branches check each other</li>
+                        <li><strong>Popular sovereignty:</strong> "We the People" as source of authority</li>
+                        <li><strong>Amendment process:</strong> Difficult but possible constitutional change</li>
+                        <li><strong>Innovation:</strong> First large-scale republic in modern world</li>
+                        <li><strong>Influence:</strong> Model for constitutional governments worldwide</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="primary-source auto-reveal">
+                <strong>Federalist #10 (James Madison, 1787):</strong><br>
+                "If men were angels, no government would be necessary... In framing a government which is to be administered by men over men, the great difficulty lies in this: you must first enable the government to control the governed; and in the next place oblige it to control itself."
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How does the U.S. Constitution solve the problem of creating effective government while preventing tyranny - and why does this constitutional innovation influence global political development?
+            </div>
+        </div>
+
+        <!-- Slide 10: Global Impact - Revolutionary Ideas Spread -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>🌊 Revolutionary Ideas Spread Across the Atlantic World</h2>
+            
+            <div class="auto-reveal">
+                <h3>American Revolution Inspires Global Movements</h3>
+            </div>
+            
+            <div class="global-participants auto-reveal">
+                <div class="participant-card">
+                    <h4>🇫🇷 French Revolution (1789)</h4>
+                    <p><strong>Connection:</strong> French debt from American war contributes to fiscal crisis<br><strong>Ideas:</strong> Declaration of Rights inspired by American example<br><strong>Outcome:</strong> More radical transformation than American model</p>
+                </div>
+                <div class="participant-card">
+                    <h4>🇭🇹 Haitian Revolution (1791)</h4>
+                    <p><strong>Connection:</strong> Enslaved people apply "all men created equal" to racial equality<br><strong>Ideas:</strong> Universal human rights regardless of race<br><strong>Outcome:</strong> First successful slave revolution creating independent nation</p>
+                </div>
+                <div class="participant-card">
+                    <h4>🌎 Latin American Independence</h4>
+                    <p><strong>Connection:</strong> Spanish colonial elites inspired by American federal model<br><strong>Ideas:</strong> Right of revolution against imperial authority<br><strong>Outcome:</strong> Independence movements across Spanish America (1810-1825)</p>
+                </div>
+                <div class="participant-card">
+                    <h4>🇬🇷 Greek Independence (1821)</h4>
+                    <p><strong>Connection:</strong> American philhellenic support and constitutional model<br><strong>Ideas:</strong> National self-determination and constitutional government<br><strong>Outcome:</strong> Independence from Ottoman Empire with constitutional monarchy</p>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #ffc107; text-align: center;">Revolutionary Principles as Global Force</h3>
+                <p style="text-align: center; font-size: 1.2rem;">Popular sovereignty, constitutional government, and right of revolution become intellectual weapons used by diverse movements worldwide - though with different outcomes based on local conditions</p>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                Why do American revolutionary principles appeal to such diverse movements, and how do different societies adapt these ideas to their particular circumstances?
+            </div>
+        </div>
+
+        <!-- Slide 11: Comparative Revolutionary Outcomes -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>⚖️ Why Did American Revolution Succeed When Others Failed?</h2>
+            
+            <div class="auto-reveal">
+                <h3>Comparative Analysis: American Success vs. Other Revolutionary Attempts</h3>
+            </div>
+            
+            <div class="revolutionary-outcomes auto-reveal">
+                <div class="outcome-comparison">
+                    <h4>✅ American Revolutionary Advantages</h4>
+                    <ul class="outcome-features">
+                        <li><strong>Geographic isolation:</strong> 3,000 miles from Britain, difficult to crush rebellion</li>
+                        <li><strong>Colonial experience:</strong> 150+ years of self-governance in assemblies</li>
+                        <li><strong>Elite unity:</strong> Colonial leadership shares constitutional goals</li>
+                        <li><strong>International support:</strong> French alliance provides crucial military aid</li>
+                        <li><strong>Economic base:</strong> Diverse colonial economy supports sustained resistance</li>
+                        <li><strong>Constitutional tradition:</strong> Experience with written charters and limited government</li>
+                        <li><strong>Social stability:</strong> Revolution preserves existing social hierarchy (for whites)</li>
+                    </ul>
+                </div>
+                
+                <div class="outcome-comparison">
+                    <h4>❌ Challenges Facing Other Revolutions</h4>
+                    <ul class="outcome-features">
+                        <li><strong>Geographic proximity:</strong> European revolutions face immediate military suppression</li>
+                        <li><strong>Social radicalism:</strong> French, Haitian revolutions challenge class/racial hierarchies</li>
+                        <li><strong>Elite divisions:</strong> Revolutionary leadership often fragments over goals</li>
+                        <li><strong>Economic disruption:</strong> Revolutions in established societies disrupt existing economies</li>
+                        <li><strong>International opposition:</strong> European monarchies unite against revolutionary ideas</li>
+                        <li><strong>Military intervention:</strong> Counter-revolutionary armies from neighboring countries</li>
+                        <li><strong>Social conflict:</strong> Class and ethnic divisions complicate revolutionary unity</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Historical Question:</strong> Could the American Revolution have failed? What alternative outcomes were possible, and how did specific American advantages enable constitutional success?
+            </div>
+        </div>
+
+        <!-- Slide 12: Limits and Contradictions of American Revolution -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>⚠️ Revolutionary Contradictions and Limits</h2>
+            
+            <div class="auto-reveal">
+                <h3>What the American Revolution Did NOT Transform</h3>
+            </div>
+            
+            <div class="analysis-grid auto-reveal">
+                <div class="analysis-card">
+                    <h4>⛓️ Slavery Continues</h4>
+                    <p><strong>Contradiction:</strong> "All men created equal" while 500,000+ remain enslaved<br><strong>Compromise:</strong> Constitution protects slavery for sectional unity<br><strong>Consequence:</strong> Fundamental contradiction will drive future crisis</p>
+                </div>
+                <div class="analysis-card">
+                    <h4>🏠 Indigenous Peoples</h4>
+                    <p><strong>Exclusion:</strong> Revolutionary principles do not apply to Native Americans<br><strong>Expansion:</strong> Independence enables westward territorial growth<br><strong>Conflict:</strong> Constitutional government enables systematic dispossession</p>
+                </div>
+                <div class="analysis-card">
+                    <h4>👩 Women's Rights</h4>
+                    <p><strong>Legal status:</strong> "Republican motherhood" but no political equality<br><strong>Property rights:</strong> Married women remain under coverture laws<br><strong>Political participation:</strong> Excluded from voting and office-holding</p>
+                </div>
+            </div>
+            
+            <div class="primary-source auto-reveal">
+                <strong>Abigail Adams to John Adams (1776):</strong><br>
+                "Remember the Ladies, and be more generous and favourable to them than your ancestors. Do not put such unlimited power into the hands of the Husbands. Remember all Men would be tyrants if they could."
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #ffc107; text-align: center;">Revolutionary Paradox</h3>
+                <p style="text-align: center; font-size: 1.2rem;">American Revolution succeeds by preserving existing social hierarchies while creating new political institutions - revolutionary in constitutional terms but conservative in social transformation</p>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How do these contradictions and limits in the American Revolution create ongoing tensions that will drive future political conflicts and social movements?
+            </div>
+        </div>
+
+        <!-- Slide 13: Long-term Global Influence -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>🌐 American Constitutional Model Goes Global</h2>
+            
+            <div class="auto-reveal">
+                <h3>Constitutional Innovations Adopted Worldwide</h3>
+            </div>
+            
+            <div class="content-grid auto-reveal">
+                <div class="concept-card">
+                    <h3>📋 Written Constitutions</h3>
+                    <p><strong>American innovation:</strong> Supreme law in written document rather than unwritten tradition<br><strong>Global adoption:</strong> By 1900, most nations adopt written constitutional systems<br><strong>Influence:</strong> Constitutional conventions become standard method for political reform</p>
+                </div>
+                
+                <div class="concept-card">
+                    <h3>🏛️ Federal Systems</h3>
+                    <p><strong>American innovation:</strong> Power divided between national and regional governments<br><strong>Global adoption:</strong> Germany, Canada, Australia, India, and others adopt federal models<br><strong>Influence:</strong> Solution for governing large, diverse territories</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Next Week Preview:</strong> How do American constitutional innovations interact with British industrial development and democratic expansion to create new models of political and economic organization in the early 19th century?
+            </div>
+        </div>
+
+        <!-- Slide 14: Unit III Connection and Looking Forward -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>🔗 Revolutionary Transformation Continues</h2>
+            
+            <div class="connecting-thread auto-reveal">
+                <h3>American Revolutionary Success Creates Model for Constitutional Innovation</h3>
+                <p>The American Revolution demonstrates that constitutional government based on popular sovereignty can succeed on a large scale - providing intellectual and practical model for democratic movements worldwide while creating new tensions over slavery, expansion, and social equality</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="text-align: center; color: #ffc107; margin: 1.5rem 0;">Unit III Trajectory: Revolutionary Ideas Spread and Transform</h3>
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h4>🏛️ Constitutional Innovation</h4>
+                        <p>American federal system and written constitution influence global political development</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>🏭 Economic Revolution</h4>
+                        <p>Industrial development creates new tensions between democratic ideals and economic inequality</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>⚖️ Unresolved Contradictions</h4>
+                        <p>Slavery and territorial expansion create sectional crisis testing constitutional system</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>🌍 Global Influence</h4>
+                        <p>American success inspires and complicates revolutionary movements across Atlantic world</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #ffc107;">Coming Challenges for American System:</h3>
+                <p style="text-align: center; font-size: 1.2rem;">Constitutional federalism and industrial development will create new tensions over democratic participation, slavery expansion, and economic inequality - testing whether revolutionary constitutional innovations can adapt to changing conditions</p>
+            </div>
+            
+            <div class="auto-reveal" style="text-align: center; margin-top: 2rem;">
+                <h3 style="color: #ffc107;">Understanding Revolutionary Success</h3>
+                <p style="font-size: 1.2rem;">The American Revolution succeeds because it combines constitutional innovation with favorable geographic and international conditions - but its revolutionary principles create ongoing pressures for further political and social transformation</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()" aria-label="Previous">← Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()" aria-label="Next">Next →</button>
+    </div>
+
+    <!-- Slide Indicators -->
+    <div class="slide-indicator" role="tablist" aria-label="Slide navigation">
+        <div class="indicator-dot active" onclick="goToSlide(0)" role="tab" aria-label="Slide 1"></div>
+        <div class="indicator-dot" onclick="goToSlide(1)" role="tab" aria-label="Slide 2"></div>
+        <div class="indicator-dot" onclick="goToSlide(2)" role="tab" aria-label="Slide 3"></div>
+        <div class="indicator-dot" onclick="goToSlide(3)" role="tab" aria-label="Slide 4"></div>
+        <div class="indicator-dot" onclick="goToSlide(5)" role="tab" aria-label="Slide 5"></div>
+        <div class="indicator-dot" onclick="goToSlide(5)" role="tab" aria-label="Slide 6"></div>
+        <div class="indicator-dot" onclick="goToSlide(6)" role="tab" aria-label="Slide 7"></div>
+        <div class="indicator-dot" onclick="goToSlide(7)" role="tab" aria-label="Slide 8"></div>
+        <div class="indicator-dot" onclick="goToSlide(8)" role="tab" aria-label="Slide 9"></div>
+        <div class="indicator-dot" onclick="goToSlide(9)" role="tab" aria-label="Slide 10"></div>
+        <div class="indicator-dot" onclick="goToSlide(10)" role="tab" aria-label="Slide 11"></div>
+        <div class="indicator-dot" onclick="goToSlide(11)" role="tab" aria-label="Slide 12"></div>
+        <div class="indicator-dot" onclick="goToSlide(12)" role="tab" aria-label="Slide 13"></div>
+        <div class="indicator-dot" onclick="goToSlide(13)" role="tab" aria-label="Slide 14"></div>
+    </div>
+
+    <!-- Image Tab -->
+    <div class="image-tab" onclick="toggleImage()">🗺️ Revolutionary Maps</div>
+
+    <!-- Image Overlay -->
+    <div class="image-overlay" id="imageOverlay" onclick="toggleImage()">
+        <div class="image-content">
+            <h3>American Revolution Global Context Maps</h3>
+            <p>Interactive maps showing revolutionary war campaigns, international alliances, global conflict zones, and the spread of revolutionary ideas across the Atlantic world. Includes battle maps, diplomatic networks, and revolutionary movements inspired by American success.</p>
+            <button onclick="toggleImage()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #9c27b0; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentReveal = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlideIndicators() {
+            const indicators = document.querySelectorAll('.indicator-dot');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function showSlide(slideIndex) {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('hidden', index !== slideIndex);
+            });
+            
+            currentReveal = 0;
+            updateSlideIndicators();
+            revealNextItem();
+        }
+
+        function nextSlide() {
+            const currentSlideElement = slides[currentSlide];
+            const maxReveals = parseInt(currentSlideElement.dataset.revealCount) || 1;
+            
+            if (currentReveal < maxReveals) {
+                revealNextItem();
+            } else if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentReveal > 0) {
+                hideCurrentItem();
+            } else if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+                // Reveal all items on previous slide
+                const prevSlideElement = slides[currentSlide];
+                const maxReveals = parseInt(prevSlideElement.dataset.revealCount) || 1;
+                currentReveal = maxReveals;
+                showAllReveals();
+            }
+        }
+
+        function revealNextItem() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.auto-reveal, .reveal-item');
+            
+            if (currentReveal < revealItems.length) {
+                revealItems[currentReveal].classList.add('revealed');
+                currentReveal++;
+            }
+        }
+
+        function hideCurrentItem() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.auto-reveal, .reveal-item');
+            
+            if (currentReveal > 0) {
+                currentReveal--;
+                revealItems[currentReveal].classList.remove('revealed');
+            }
+        }
+
+        function showAllReveals() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.auto-reveal, .reveal-item');
+            revealItems.forEach(item => item.classList.add('revealed'));
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            showSlide(currentSlide);
+        }
+
+        function toggleImage() {
+            const overlay = document.getElementById('imageOverlay');
+            overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(event) {
+            switch(event.key) {
+                case 'ArrowLeft':
+                    previousSlide();
+                    break;
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+                case ',':
+                    if (currentSlide > 0) {
+                        currentSlide--;
+                        showSlide(currentSlide);
+                        const maxReveals = parseInt(slides[currentSlide].dataset.revealCount) || 1;
+                        currentReveal = maxReveals;
+                        showAllReveals();
+                    }
+                    break;
+                case '.':
+                    if (currentSlide < totalSlides - 1) {
+                        currentSlide++;
+                        showSlide(currentSlide);
+                    }
+                    break;
+                case 'Enter':
+                    showAllReveals();
+                    const maxReveals = parseInt(slides[currentSlide].dataset.revealCount) || 1;
+                    currentReveal = maxReveals;
+                    break;
+            }
+        });
+
+        // Initialize presentation
+        showSlide(0);
+    </script>
+</body>
+</html>

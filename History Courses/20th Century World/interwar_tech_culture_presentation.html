@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interwar Period: Global Technological and Cultural Transformation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #2C3E50 0%, #34495E 25%, #2C3E50 50%, #1A252F 100%);
+            color: #FFFFFF;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 95%;
+            height: 95%;
+            padding: 2rem;
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: block;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .slide-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 1rem;
+        }
+
+        .slide-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #FFD700, #FF6B35, #F7931E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide-subtitle {
+            font-size: 1.4rem;
+            color: #BDC3C7;
+            font-weight: 300;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .content-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .content-card.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid #3498DB;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.4s ease;
+        }
+
+        .tech-item.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .tech-item h4 {
+            color: #3498DB;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .cultural-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .cultural-item {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid #E74C3C;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.4s ease;
+        }
+
+        .cultural-item.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .cultural-item h4 {
+            color: #E74C3C;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .country-section {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.5s ease;
+        }
+
+        .country-section.revealed {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .country-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .country-flag {
+            font-size: 3rem;
+            margin-right: 1rem;
+        }
+
+        .country-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #FFD700, #FF6B35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .highlight-stat {
+            background: linear-gradient(45deg, #FF6B35, #F7931E);
+            padding: 0.3rem 0.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.2rem;
+        }
+
+        .connection-box {
+            background: linear-gradient(135deg, #9B59B6, #8E44AD);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+
+        .connection-box.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .synthesis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .synthesis-card {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(155, 89, 182, 0.2));
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transform: rotateY(90deg);
+            transition: all 0.6s ease;
+        }
+
+        .synthesis-card.revealed {
+            opacity: 1;
+            transform: rotateY(0deg);
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .image-toggle {
+            position: fixed;
+            top: 20px;
+            right: 120px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .image-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .slide-image {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            width: 300px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: none;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+            padding: 1rem;
+            color: #BDC3C7;
+            font-style: italic;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-image.visible {
+            display: flex;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #3498DB;
+            font-weight: bold;
+        }
+
+        .emphasis {
+            color: #FFD700;
+            font-weight: 600;
+        }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide Counter -->
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">16</span>
+        </div>
+
+        <!-- Image Toggle -->
+        <div class="image-toggle" onclick="toggleImage()">📷</div>
+        <div class="slide-image" id="slide-image">
+            Associated visual content would appear here
+        </div>
+
+        <!-- Slide 1: Title Slide -->
+        <div class="slide active">
+            <div class="slide-header">
+                <h1 class="slide-title">🌍 Global Technological and Cultural Revolution</h1>
+                <h2 class="slide-subtitle">The Interwar Period (1918-1939): Beyond Cars, Radios, and Electricity</h2>
+            </div>
+            
+            <div class="connection-box revealed">
+                <h3>The Great Transformation</h3>
+                <p style="font-size: 1.4rem; line-height: 1.6;">
+                    The interwar period witnessed the most rapid technological and cultural transformation in human history. While cars, radios, and electricity are well-known, this presentation explores the deeper innovations that reshaped societies across the globe - from scientific breakthroughs to artistic revolutions, from new forms of communication to fundamental changes in how people lived, worked, and understood their world.
+                </p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card revealed">
+                    <div class="card-header">
+                        <span class="card-icon">🔬</span>
+                        <span>Scientific Revolution</span>
+                    </div>
+                    <p>Quantum physics, antibiotics, vitamins, and medical advances that doubled life expectancy in many regions</p>
+                </div>
+                
+                <div class="content-card revealed">
+                    <div class="card-header">
+                        <span class="card-icon">🎨</span>
+                        <span>Cultural Explosion</span>
+                    </div>
+                    <p>Modernist art, jazz, new literature, changing gender roles, and mass entertainment transformed global culture</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Scientific and Medical Breakthroughs -->
+        <div class="slide hidden">
+            <div class="slide-header">
+                <h1 class="slide-title">🔬 Scientific Revolution: The Foundation of Modern Life</h1>
+                <h2 class="slide-subtitle">Discoveries That Changed Everything</h2>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h4>🧬 Quantum Physics (1920s)</h4>
+                    <p><span class="emphasis">Heisenberg, Schrödinger, Born:</span> Revolutionary understanding of atomic structure led to electronics, computers, and nuclear technology. <span class="highlight-stat">Foundation for all modern technology</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>💊 Antibiotics Discovery</h4>
+                    <p><span class="emphasis">Fleming's Penicillin (1928):</span> Reduced death rates from infection by 75%. Sulfa drugs (1935) further revolutionized medicine. <span class="highlight-stat">Saved millions of lives</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>🍎 Vitamin Science</h4>
+                    <p><span class="emphasis">Vitamins A, B, C, D identified:</span> Eliminated scurvy, rickets, beriberi. Fortified foods improved nutrition globally. <span class="highlight-stat">Doubled life expectancy in developing regions</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>🩺 Medical Technology</h4>
+                    <p><span class="emphasis">X-rays, ECG, blood typing:</span> Modern diagnostic medicine emerged. Blood transfusions became safe. <span class="highlight-stat">Surgery survival rates increased 300%</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>🔬 Insulin Treatment (1922)</h4>
+                    <p><span class="emphasis">Banting & Best in Canada:</span> Transformed diabetes from fatal disease to manageable condition. <span class="highlight-stat">Saved 100+ million lives worldwide</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>🧪 Chemical Industry</h4>
+                    <p><span class="emphasis">Synthetic materials:</span> Plastics, artificial dyes, synthetic rubber. Haber-Bosch process revolutionized fertilizer production. <span class="highlight-stat">Agricultural yields increased 400%</span></p>
+                </div>
+            </div>
+
+            <div class="connection-box">
+                <h3>🌍 Global Impact</h3>
+                <p>These scientific advances didn't just improve life in wealthy countries - they spread rapidly worldwide through colonial medical services, international research cooperation, and commercial distribution networks.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Communication Revolution -->
+        <div class="slide hidden">
+            <div class="slide-header">
+                <h1 class="slide-title">📡 Communication Revolution: Connecting the World</h1>
+                <h2 class="slide-subtitle">Beyond Radio - The Information Age Begins</h2>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h4>📞 Telephone Networks</h4>
+                    <p><span class="emphasis">Automatic switching (1920s):</span> Long-distance calls became common. International calls possible by 1930. <span class="highlight-stat">Phone lines increased 300% globally</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>📺 Early Television</h4>
+                    <p><span class="emphasis">BBC broadcasts begin (1929):</span> Regular TV service in London. 30-line mechanical scanning. <span class="highlight-stat">10,000 TV sets in Britain by 1939</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>📻 Shortwave Radio</h4>
+                    <p><span class="emphasis">Global broadcasting:</span> BBC World Service (1932), Voice of America. International news became immediate. <span class="highlight-stat">Reached 500 million people worldwide</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>📸 Photography Revolution</h4>
+                    <p><span class="emphasis">35mm cameras, color film:</span> Kodachrome (1935) brought color photography to masses. Photojournalism emerged. <span class="highlight-stat">100 million cameras sold globally</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4">⚡ Electronic Recording</h4>
+                    <p><span class="emphasis">Magnetic tape, microphones:</span> High-quality sound recording. Music industry transformed. <span class="highlight-stat">Record sales increased 2000%</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>📰 Mass Media</h4>
+                    <p><span class="emphasis">Rotary printing presses:</span> Newspapers reached millions daily. Magazine circulation exploded. <span class="highlight-stat">Literacy rates increased 200% globally</span></p>
+                </div>
+            </div>
+
+            <div class="connection-box">
+                <h3>🔗 Creating Global Consciousness</h3>
+                <p>For the first time in history, people everywhere could experience events simultaneously - from sports matches to political speeches to cultural performances. This created the foundation for modern global culture.</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Transportation Beyond Cars -->
+        <div class="slide hidden">
+            <div class="slide-header">
+                <h1 class="slide-title">✈️ Transportation Revolution: Shrinking the World</h1>
+                <h2 class="slide-subtitle">Aviation, Ships, and Mass Transit Transform Mobility</h2>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h4>✈️ Commercial Aviation</h4>
+                    <p><span class="emphasis">First airlines (1920s):</span> Pan Am, Imperial Airways. Transatlantic flights by 1939. <span class="highlight-stat">Flight time London-India: 7 days</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>🚢 Ocean Liner Revolution</h4>
+                    <p><span class="emphasis">Diesel engines, stabilizers:</span> Faster, more comfortable ships. Queen Mary (1936) crossed Atlantic in 4 days. <span class="highlight-stat">10 million passengers annually</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>🚇 Urban Mass Transit</h4>
+                    <p><span class="emphasis">Subway expansion:</span> London Underground doubled. New York subway connected boroughs. <span class="highlight-stat">200 million riders annually in major cities</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>🚂 High-Speed Trains</h4>
+                    <p><span class="emphasis">Streamlined locomotives:</span> German Flying Hamburger (1933) reached 160 km/h. Express services connected major cities. <span class="highlight-stat">Travel time Berlin-Hamburg: 2.5 hours</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>🚌 Bus Networks</h4>
+                    <p><span class="emphasis">Rural connectivity:</span> Bus services reached remote areas. Greyhound in US, similar services globally. <span class="highlight-stat">Connected 15,000 towns in US alone</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>🚁 Helicopter Development</h4>
+                    <p><span class="emphasis">Autogyros and early helicopters:</span> Vertical flight achieved. Medical and rescue applications. <span class="highlight-stat">First practical helicopters by 1939</span></p>
+                </div>
+            </div>
+
+            <div class="connection-box">
+                <h3>🌐 Mobility Transforms Society</h3>
+                <p>Increased mobility didn't just make travel faster - it fundamentally changed where people could live and work, enabled global business, and made possible the concept of international tourism and cultural exchange.</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Industrial and Chemical Innovations -->
+        <div class="slide hidden">
+            <div class="slide-header">
+                <h1 class="slide-title">🏭 Industrial Revolution 2.0: Chemistry and Automation</h1>
+                <h2 class="slide-subtitle">New Materials and Manufacturing Transform Daily Life</h2>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h4>🧪 Synthetic Materials</h4>
+                    <p><span class="emphasis">Bakelite (1920), Nylon (1935):</span> First fully synthetic materials. Revolutionized manufacturing. <span class="highlight-stat">1000+ new synthetic compounds created</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>⚙️ Assembly Line Innovation</h4>
+                    <p><span class="emphasis">Conveyor belt systems:</span> Beyond cars to appliances, electronics. Production speed increased dramatically. <span class="highlight-stat">Manufacturing costs dropped 75%</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4">🔋 Battery Technology</h4>
+                    <p><span class="emphasis">Portable power sources:</span> Dry cell batteries, alkaline batteries. Enabled portable radios, flashlights. <span class="highlight-stat">Battery production increased 500%</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>🏠 Home Appliances</h4>
+                    <p><span class="emphasis">Refrigerators, washing machines:</span> Electric appliances transformed domestic life. Time-saving devices. <span class="highlight-stat">50% of American homes had refrigerators by 1939</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>🛠️ Precision Manufacturing</h4>
+                    <p><span class="emphasis">Machine tools, quality control:</span> Standardized parts, interchangeable components. Mass production perfected. <span class="highlight-stat">Precision improved 1000-fold</span></p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>💡 Lighting Revolution</h4>
+                    <p><span class="emphasis">Fluorescent lighting (1938):</span> More efficient than incandescent. Neon lighting for advertising. <span class="highlight-stat">Energy consumption for lighting dropped 60%</span></p>
+                </div>
+            </div>
+
+            <div class="connection-box">
+                <h3>🏘️ Transforming Daily Life</h3>
+                <p>These innovations didn't just change factories - they revolutionized homes, making possible the modern lifestyle with labor-saving devices, new materials, and reliable electrical appliances.</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: United States - Innovation Powerhouse -->
+        <div class="slide hidden">
+            <div class="slide-header">
+                <h1 class="slide-title">🇺🇸 United States: Innovation and Cultural Leadership</h1>
+                <h2 class="slide-subtitle">From Roaring Twenties to New Deal Transformation</h2>
+            </div>
+
+            <div class="country-section revealed">
+                <div class="country-header">
+                    <span class="country-flag">🇺🇸</span>
+                    <span class="country-name">America: Global Innovation Hub</span>
+                </div>
+
+                <div class="content-grid">
+                    <div class="content-card revealed">
+                        <div class="card-header">
+                            <span class="card-icon">🔬</span>
+                            <span>Technological Leadership</span>
+                        </div>
+                        <ul>
+                            <li><span class="emphasis">Bell Labs (1925):</span> Systematic industrial research. Transistor development begins</li>
+                            <li><span class="emphasis">Aviation industry:</span> Boeing, Douglas aircraft. Commercial aviation pioneers</li>
+                            <li><span class="emphasis">Consumer electronics:</span> RCA, General Electric innovations</li>
+                            <li><span class="highlight-stat">Patent applications increased 400%</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card revealed">
+                        <div class="card-header">
+                            <span class="card-icon">🎭</span>
+                            <span>Cultural Revolution</span>
+                        </div>
+                        <ul>
+                            <li><span class="emphasis">Jazz Age:</span> Louis Armstrong, Duke Ellington spread globally</li>
+                            <li><span class="emphasis">Hollywood dominance:</span> 80% of global film market by 1930</li>
+                            <li><span class="emphasis">Harlem Renaissance:</span> African American cultural flowering</li>
+                            <li><span class="highlight-stat">40 million movie tickets sold weekly</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cultural-grid">
+                    <div class="cultural-item">
+                        <h4>🎵 Musical Innovation</h4>
+                        <p>Jazz evolved from New Orleans to swing. Electric recording technology. Radio broadcasts spread American music globally.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4>👗 Fashion Revolution</h4>
+                        <p>Flapper style, shorter skirts, bobbed hair. Women's fashion reflected changing social roles and freedoms.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4>🏎️ Consumer Culture</h4>
+                        <p>Mass production made cars, appliances affordable. Credit buying created modern consumer economy.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4>📚 Literary Modernism</h4>
+                        <p>Hemingway, Fitzgerald, Faulkner. New writing styles reflected post-war disillusionment and social change.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connection-box">
+                <h3>🌟 Global Cultural Influence</h3>
+                <p>American culture - from jazz to movies to consumer goods - became the first truly global popular culture, spreading through radio, cinema, and mass media to influence lifestyles worldwide.</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Soviet Union - Socialist Innovation -->
+        <div class="slide hidden">
+            <div class="slide-header">
+                <h1 class="slide-title">🇷🇺 Soviet Union: Socialist Science and Culture</h1>
+                <h2 class="slide-subtitle">Revolutionary Society, Revolutionary Innovation</h2>
+            </div>
+
+            <div class="country-section">
+                <div class="country-header">
+                    <span class="country-flag">🇷🇺</span>
+                    <span class="country-name">USSR: Alternative Modernity</span>
+                </div>
+
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="card-header">
+                            <span class="card-icon">🚀</span>
+                            <span>Scientific Achievements</span>
+                        </div>
+                        <ul>
+                            <li><span class="emphasis">Rocket technology:</span> Tsiolkovsky's theories, liquid fuel rockets</li>
+                            <li><span class="emphasis">Aviation advances:</span> World's largest aircraft, polar exploration</li>
+                            <li><span class="emphasis">Industrial chemistry:</span> Synthetic rubber, advanced metallurgy</li>
+                            <li><span class="highlight-stat">Science spending: 15% of budget</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <span class="card-icon">🎨</span>
+                            <span>Cultural Revolution</span>
+                        </div>
+                        <ul>
+                            <li><span class="emphasis">Constructivism:</span> Revolutionary art movement influenced global design</li>
+                            <li><span class="emphasis">Soviet cinema:</span> Eisenstein's montage technique revolutionized filmmaking</li>
+                            <li><span class="emphasis">Mass literacy:</span> From 24% to 75% literacy in 20 years</li>
+                            <li><span class="highlight-stat">20,000 new schools built</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cultural-grid">
+                    <div class="cultural-item">
+                        <h4>🏭 Industrial Culture</h4>
+                        <p>Worker heroism, industrial achievement celebrated. "Shock brigades" exceeded production quotas. Socialist realism in art.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4>👩‍⚕️ Women's Liberation</h4>
+                        <p>Equal rights, professional careers. First country with female doctors, engineers in large numbers.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4>🎭 Avant-Garde Theater</h4>
+                        <p>Meyerhold's biomechanics, constructivist stage design. Theater as tool for social transformation.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">📻 Socialist Broadcasting</h4>
+                        <p>Radio Moscow reached global audience. Propaganda combined with education, cultural programming.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connection-box">
+                <h3>⚡ Socialist Alternative</h3>
+                <p>The Soviet model demonstrated that rapid modernization was possible outside capitalism, inspiring liberation movements worldwide while creating an alternative vision of technological progress.</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Germany - Engineering Excellence and Cultural Conflict -->
+        <div class="slide hidden">
+            <div class="slide-header">
+                <h1 class="slide-title">🇩🇪 Germany: Engineering Genius and Cultural Crisis</h1>
+                <h2 class="slide-subtitle">Weimar Innovation to Nazi Rearmament</h2>
+            </div>
+
+            <div class="country-section">
+                <div class="country-header">
+                    <span class="country-flag">🇩🇪</span>
+                    <span class="country-name">Germany: Precision and Turmoil</span>
+                </div>
+
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="card-header">
+                            <span class="card-icon">⚙️</span>
+                            <span>Engineering Excellence</span>
+                        </div>
+                        <ul>
+                            <li><span class="emphasis">Precision manufacturing:</span> Leica cameras, Mercedes engines, Siemens electronics</li>
+                            <li><span class="emphasis">Chemical industry:</span> BASF, Bayer innovations in synthetic materials</li>
+                            <li><span class="emphasis">Transportation:</span> Autobahn highways, high-speed trains</li>
+                            <li><span class="highlight-stat">World's most advanced manufacturing</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <span class="card-icon">🎭</span>
+                            <span>Cultural Innovation</span>
+                        </div>
+                        <ul>
+                            <li><span class="emphasis">Bauhaus movement:</span> Modern design principles influenced global architecture</li>
+                            <li><span class="emphasis">Weimar cinema:</span> Expressionist films influenced Hollywood</li>
+                            <li><span class="emphasis">Scientific research:</span> Quantum physics, Einstein's theories</li>
+                            <li><span class="highlight-stat">30% of Nobel Prizes 1918-1933</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cultural-grid">
+                    <div class="cultural-item">
+                        <h4>🏛️ Bauhaus Design</h4>
+                        <p>Form follows function. Mass production aesthetics. Influenced global architecture and industrial design.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4>🎬 Film Innovation</h4>
+                        <p>Expressionist cinema, advanced camera techniques. UFA studios competed with Hollywood until Nazi takeover.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4>🎵 Musical Revolution</h4>
+                        <p>Atonal music, electronic instruments. Weimar cabaret culture influenced entertainment globally.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">📚 Intellectual Life</h4>
+                        <p>Frankfurt School, critical theory. German universities led in philosophy, sociology, psychology.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connection-box">
+                <h3>⚠️ Innovation Interrupted</h3>
+                <p>Germany's technical excellence and cultural creativity were hijacked by Nazi ideology, demonstrating how political extremism can pervert technological progress for destructive purposes.</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Britain - Imperial Technology and Social Change -->
+        <div class="slide hidden">
+            <div class="slide-header">
+                <h1 class="slide-title">🇬🇧 Britain: Imperial Innovation and Social Evolution</h1>
+                <h2 class="slide-subtitle">Broadcasting Empire and Gradual Modernization</h2>
+            </div>
+
+            <div class="country-section">
+                <div class="country-header">
+                    <span class="country-flag">🇬🇧</span>
+                    <span class="country-name">Britain: Traditional Innovation</span>
+                </div>
+
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="card-header">
+                            <span class="card-icon">📡</span>
+                            <span>Communication Leadership</span>
+                        </div>
+                        <ul>
+                            <li><span class="emphasis">BBC innovation:</span> First regular TV broadcasts (1929), global radio service</li>
+                            <li><span class="emphasis">Radar development:</span> Early warning systems, navigational aids</li>
+                            <li><span class="emphasis">Imperial communications:</span> Submarine cables, shortwave radio networks</li>
+                            <li><span class="highlight-stat">Connected global empire instantly</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <span class="card-icon">🎭</span>
+                            <span>Cultural Influence</span>
+                        </div>
+                        <ul>
+                            <li><span class="emphasis">Literary modernism:</span> Woolf, Joyce, Eliot revolutionized literature</li>
+                            <li><span class="emphasis">Broadcasting culture:</span> BBC created model for public media</li>
+                            <li><span class="emphasis">Scientific culture:</span> Popular science writing, museums</li>
+                            <li><span class="highlight-stat">English became global lingua franca</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cultural-grid">
+                    <div class="cultural-item">
+                        <h4>📻 Public Broadcasting</h4>
+                        <p>BBC model of education, information, entertainment. Influenced broadcasting worldwide.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">🎓 University Expansion</h4>
+                        <p>Red brick universities, scientific research. Democratization of higher education.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">👗 Fashion Evolution</h4>
+                        <p>Practical clothing, women's professional wear. Sports clothing for active lifestyles.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">🏛️ Social Reform</h4>
+                        <p>Garden city movement, council housing. Early welfare state development.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connection-box">
+                <h3>🌍 Imperial Network Effects</h3>
+                <p>British innovations spread rapidly through the Empire, creating global networks of communication, technology transfer, and cultural exchange that lasted beyond decolonization.</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Japan - Modernization and Militarization -->
+        <div class="slide hidden">
+            <div class="slide-header">
+                <h1 class="slide-title">🇯🇵 Japan: Eastern Modernization and Imperial Ambition</h1>
+                <h2 class="slide-subtitle">Technology in Service of Empire</h2>
+            </div>
+
+            <div class="country-section">
+                <div class="country-header">
+                    <span class="country-flag">🇯🇵</span>
+                    <span class="country-name">Japan: Alternative Path to Modernity</span>
+                </div>
+
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="card-header">
+                            <span class="card-icon">⚡</span>
+                            <span>Industrial Innovation</span>
+                        </div>
+                        <ul>
+                            <li><span class="emphasis">Shipbuilding mastery:</span> World's third-largest navy by 1930</li>
+                            <li><span class="emphasis">Precision optics:</span> Nikon, Canon founded. Advanced microscopes</li>
+                            <li><span class="emphasis">Textile machinery:</span> Dominated Asian markets, competed globally</li>
+                            <li><span class="highlight-stat">Industrial output increased 250%</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <span class="card-icon">🎌</span>
+                            <span>Cultural Synthesis</span>
+                        </div>
+                        <ul>
+                            <li><span class="emphasis">Modern architecture:</span> Combining traditional and Western styles</li>
+                            <li><span class="emphasis">Mass media:</span> Newspapers, radio reached millions</li>
+                            <li><span class="emphasis">Educational expansion:</span> Nearly universal literacy achieved</li>
+                            <li><span class="highlight-stat">99% literacy rate by 1935</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cultural-grid">
+                    <div class="cultural-item">
+                        <h4">🏭 Corporate Culture</h4>
+                        <p>Zaibatsu system combined traditional loyalty with modern efficiency. Lifetime employment concepts.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">🎨 Artistic Modernism</h4>
+                        <p>Mingei folk craft movement, modern photography. Traditional arts adapted Western techniques.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">⚔️ Military Culture</h4>
+                        <p>Bushido revival, emperor worship. Traditional values mobilized for modern warfare.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">🎬 Cinema Development</h4>
+                        <p>Japanese film industry grew rapidly. Silent films with benshi narrators created unique entertainment.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connection-box">
+                <h3>🌸 Eastern Alternative</h3>
+                <p>Japan proved that modernization didn't require Westernization, creating a unique synthesis that influenced Asian development while demonstrating the dangers of militaristic nationalism.</p>
+            </div>
+        </div>
+
+        <!-- Slide 11: France - Cultural Leadership and Innovation -->
+        <div class="slide hidden">
+            <div class="slide-header">
+                <h1 class="slide-title">🇫🇷 France: Cultural Capital and Scientific Excellence</h1>
+                <h2 class="slide-subtitle">Art, Science, and Gradual Modernization</h2>
+            </div>
+
+            <div class="country-section">
+                <div class="country-header">
+                    <span class="country-flag">🇫🇷</span>
+                    <span class="country-name">France: Elegance and Innovation</span>
+                </div>
+
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="card-header">
+                            <span class="card-icon">🔬</span>
+                            <span>Scientific Leadership</span>
+                        </div>
+                        <ul>
+                            <li><span class="emphasis">Curie Institute:</span> Radioactivity research, cancer treatment advances</li>
+                            <li><span class="emphasis">Aviation pioneers:</span> Blériot aircraft, Air France established</li>
+                            <li><span class="emphasis">Medical research:</span> Pasteur Institute continued global leadership</li>
+                            <li><span class="highlight-stat">25% of scientific Nobel Prizes</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <span class="card-icon">🎨</span>
+                            <span>Cultural Innovation</span>
+                        </div>
+                        <ul>
+                            <li><span class="emphasis">Artistic movements:</span> Surrealism, Art Deco influenced global design</li>
+                            <li><span class="emphasis">Fashion leadership:</span> Chanel, Dior revolutionized women's clothing</li>
+                            <li><span class="emphasis">Cinema achievements:</span> Avant-garde filmmaking, documentary innovation</li>
+                            <li><span class="highlight-stat">Paris remained global cultural center</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cultural-grid">
+                    <div class="cultural-item">
+                        <h4">🎭 Artistic Revolution</h4>
+                        <p>Surrealism, cubism evolved. Paris attracted global artists. Modern art movements influenced worldwide.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">👗 Fashion Innovation</h4>
+                        <p>Coco Chanel liberated women's fashion. Simple elegance replaced Victorian complexity.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">🍷 Cultural Exports</h4>
+                        <p>French cuisine, wine culture spread globally. Michelin Guide established quality standards.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">📚 Intellectual Life</h4>
+                        <p>Philosophy, literature continued French intellectual leadership. Existentialism emerged.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connection-box">
+                <h3>🌹 Cultural Soft Power</h3>
+                <p>France maintained global cultural influence through art, fashion, cuisine, and intellectual life, demonstrating how cultural innovation could sustain international prestige even as economic power shifted.</p>
+            </div>
+        </div>
+
+        <!-- Slide 12: Brazil and Latin America - Cultural Renaissance -->
+        <div class="slide hidden">
+            <div class="slide-header">
+                <h1 class="slide-title">🇧🇷 Latin America: Cultural Renaissance and Industrial Growth</h1>
+                <h2 class="slide-subtitle">Brazil, Argentina, and Mexico Lead Regional Innovation</h2>
+            </div>
+
+            <div class="country-section">
+                <div class="country-header">
+                    <span class="country-flag">🇧🇷</span>
+                    <span class="country-name">Latin America: Cultural Awakening</span>
+                </div>
+
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="card-header">
+                            <span class="card-icon">🏭</span>
+                            <span>Industrial Development</span>
+                        </div>
+                        <ul>
+                            <li><span class="emphasis">Import substitution:</span> Textile, steel industries established</li>
+                            <li><span class="emphasis">Infrastructure expansion:</span> Railways, roads, electrification</li>
+                            <li><span class="emphasis">Urban growth:</span> São Paulo, Buenos Aires became major cities</li>
+                            <li><span class="highlight-stat">Industrial output tripled 1920-1940</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <span class="card-icon">🎵</span>
+                            <span>Cultural Explosion</span>
+                        </div>
+                        <ul>
+                            <li><span class="emphasis">Musical innovation:</span> Samba, tango, mariachi gained global popularity</li>
+                            <li><span class="emphasis">Literary renaissance:</span> Magical realism movements began</li>
+                            <li><span class="emphasis">Radio culture:</span> National broadcasting networks established</li>
+                            <li><span class="highlight-stat">Cultural exports reached worldwide</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cultural-grid">
+                    <div class="cultural-item">
+                        <h4">🎭 Modernist Movements</h4>
+                        <p>Brazilian modernism, Mexican muralism. Indigenous themes combined with contemporary techniques.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">⚽ Sports Culture</h4>
+                        <p>Football became national passion. World Cup (1930) in Uruguay established global tournament.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">🎬 Cinema Growth</h4>
+                        <p>National film industries developed. Mexican cinema's Golden Age began in late 1930s.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">🏛️ Architectural Innovation</h4>
+                        <p>Art Deco buildings, modernist architecture. National architectural styles emerged.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connection-box">
+                <h3>🌎 Regional Identity</h3>
+                <p>Latin America developed distinctive cultural expressions that combined indigenous traditions with modern techniques, creating unique artistic movements that influenced global culture.</p>
+            </div>
+        </div>
+
+        <!-- Slide 13: China and India - Awakening Giants -->
+        <div class="slide hidden">
+            <div class="slide-header">
+                <h1 class="slide-title">🇨🇳🇮🇳 Asia: Awakening Giants Amid Colonial Constraints</h1>
+                <h2 class="slide-subtitle">Innovation Despite Imperial Control</h2>
+            </div>
+
+            <div class="country-section">
+                <div class="country-header">
+                    <span class="country-flag">🇨🇳</span>
+                    <span class="country-name">China & India: Constrained Innovation</span>
+                </div>
+
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="card-header">
+                            <span class="card-icon">🏭</span>
+                            <span>Industrial Beginnings</span>
+                        </div>
+                        <ul>
+                            <li><span class="emphasis">Textile mills:</span> Modern factories in Shanghai, Bombay</li>
+                            <li><span class="emphasis">Transportation:</span> Railway networks expanded rapidly</li>
+                            <li><span class="emphasis">Steel production:</span> Tata Steel (1907) in India, early Chinese mills</li>
+                            <li><span class="highlight-stat">Railway mileage doubled in both countries</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <span class="card-icon">📚</span>
+                            <span>Cultural Renaissance</span>
+                        </div>
+                        <ul>
+                            <li><span class="emphasis">Educational reform:</span> Modern universities, technical schools</li>
+                            <li><span class="emphasis">Literary movements:</span> New vernacular literature, journalism</li>
+                            <li><span class="emphasis">Cultural nationalism:</span> Revival of traditional arts</li>
+                            <li><span class="highlight-stat">Literacy rates increased 300%</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cultural-grid">
+                    <div class="cultural-item">
+                        <h4">🎭 Cinema Industries</h4>
+                        <p>Bollywood began in 1930s. Chinese cinema developed in Shanghai. Silent films with local themes.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">📰 Print Revolution</h4>
+                        <p>Vernacular newspapers, magazines proliferated. Modern printing technology spread literacy.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">🎨 Artistic Synthesis</h4>
+                        <p>Traditional art forms adapted modern techniques. Nationalist themes in contemporary styles.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">⚔️ Independence Movements</h4>
+                        <p>Gandhi's non-violence, Chinese nationalism. Modern technology served liberation struggles.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connection-box">
+                <h3>🔓 Breaking Colonial Bonds</h3>
+                <p>Despite colonial constraints, China and India developed modern industries, educational systems, and cultural movements that laid foundations for future independence and development.</p>
+            </div>
+        </div>
+
+        <!-- Slide 14: Africa and Middle East - Tradition Meets Modernity -->
+        <div class="slide hidden">
+            <div class="slide-header">
+                <h1 class="slide-title">🌍 Africa and Middle East: Tradition Meets Colonial Technology</h1>
+                <h2 class="slide-subtitle">Innovation Within Imperial Constraints</h2>
+            </div>
+
+            <div class="country-section">
+                <div class="country-header">
+                    <span class="country-flag">🌍</span>
+                    <span class="country-name">Africa & Middle East: Resilient Innovation</span>
+                </div>
+
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="card-header">
+                            <span class="card-icon">🛢️</span>
+                            <span>Resource Extraction</span>
+                        </div>
+                        <ul>
+                            <li><span class="emphasis">Oil discoveries:</span> Iraq, Iran, Saudi Arabia transformed</li>
+                            <li><span class="emphasis">Mining technology:</span> Gold, diamonds, copper extraction mechanized</li>
+                            <li><span class="emphasis">Agricultural innovation:</span> Irrigation systems, cash crop expansion</li>
+                            <li><span class="highlight-stat">Export revenues increased 500%</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <span class="card-icon">🎓</span>
+                            <span>Cultural Awakening</span>
+                        </div>
+                        <ul>
+                            <li><span class="emphasis">Educational expansion:</span> Modern schools, universities established</li>
+                            <li><span class="emphasis">Press development:</span> Arabic, African language newspapers</li>
+                            <li><span class="emphasis">Religious reform:</span> Islamic modernism, Christian missions</li>
+                            <li><span class="highlight-stat">Urban literacy rates tripled</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cultural-grid">
+                    <div class="cultural-item">
+                        <h4">🎵 Musical Fusion</h4>
+                        <p>Traditional African music influenced jazz. Arabic music adapted Western instruments and recording.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">🏛️ Architectural Synthesis</h4>
+                        <p>Colonial buildings incorporated local styles. Art Deco influenced urban architecture.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">📻 Radio Networks</h4>
+                        <p>Colonial and nationalist radio services. Local languages gained broadcasting presence.</p>
+                    </div>
+
+                    <div class="cultural-item">
+                        <h4">✊ Independence Movements</h4>
+                        <p>Modern communications enabled organization. Nationalist leaders used new media effectively.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connection-box">
+                <h3>🌱 Seeds of Liberation</h3>
+                <p>Colonial technology transfer, while serving imperial interests, also provided tools and knowledge that independence movements would later use to achieve liberation and development.</p>
+            </div>
+        </div>
+
+        <!-- Slide 15: Global Synthesis - Technology and Culture Intertwined -->
+        <div class="slide hidden">
+            <div class="slide-header">
+                <h1 class="slide-title">🌐 Global Synthesis: Technology and Culture Intertwined</h1>
+                <h2 class="slide-subtitle">How Innovation Transformed Human Experience Worldwide</h2>
+            </div>
+
+            <div class="synthesis-grid">
+                <div class="synthesis-card">
+                    <div class="card-header">
+                        <span class="card-icon">🔗</span>
+                        <span>Interconnected Revolution</span>
+                    </div>
+                    <p><span class="emphasis">Technological advances didn't happen in isolation</span> - they created feedback loops with cultural change. Radio enabled mass culture, which created demand for consumer goods, which drove industrial innovation, which generated wealth for more cultural production.</p>
+                </div>
+
+                <div class="synthesis-card">
+                    <div class="card-header">
+                        <span class="card-icon">🌍</span>
+                        <span>Global Networks</span>
+                    </div>
+                    <p><span class="emphasis">Ideas and innovations spread rapidly</span> through new communication technologies. Jazz from New Orleans influenced musicians in Paris, Berlin, and Tokyo. Scientific discoveries in Germany spread to labs worldwide within months.</p>
+                </div>
+
+                <div class="synthesis-card">
+                    <div class="card-header">
+                        <span class="card-icon">⚡</span>
+                        <span>Acceleration Effect</span>
+                    </div>
+                    <p><span class="emphasis">The pace of change accelerated dramatically</span>. More technological innovation occurred in the 1920s-1930s than in the entire previous century. Cultural movements that once took decades to spread now reached global audiences in years.</p>
+                </div>
+
+                <div class="synthesis-card">
+                    <div class="card-header">
+                        <span class="card-icon">🎭</span>
+                        <span>Cultural Democracy</span>
+                    </div>
+                    <p><span class="emphasis">Mass media democratized culture</span>. For the first time, ordinary people could access the same entertainment, information, and cultural experiences as elites. This fundamentally changed social structures worldwide.</p>
+                </div>
+            </div>
+
+            <div class="connection-box">
+                <h3>🔄 The Great Transformation</h3>
+                <p>The interwar period created the template for our modern world: rapid technological change driving cultural transformation, global communication networks spreading ideas instantly, and the tension between tradition and modernity that continues to shape societies worldwide.</p>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h4>🏠 Daily Life Revolution</h4>
+                    <p>Electric appliances, radio entertainment, improved transportation, and new consumer goods fundamentally changed how people lived, worked, and spent leisure time.</p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>👥 Social Mobility</h4>
+                    <p>New technologies created new professions, educational opportunities, and pathways to advancement that broke down traditional class barriers.</p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>🎨 Cultural Expression</h4>
+                    <p>Recording technology, photography, cinema, and radio created new art forms and enabled artists to reach global audiences for the first time.</p>
+                </div>
+
+                <div class="tech-item">
+                    <h4>🗺️ Global Consciousness</h4>
+                    <p>Instantaneous communication created awareness of worldwide events and cultures, laying groundwork for modern international cooperation and conflict.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Legacy and Lessons -->
+        <div class="slide hidden">
+            <div class="slide-header">
+                <h1 class="slide-title">🎯 Legacy and Lessons: Interwar Innovation's Enduring Impact</h1>
+                <h2 class="slide-subtitle">What the Period Teaches Us About Technology, Culture, and Human Progress</h2>
+            </div>
+
+            <div class="synthesis-grid">
+                <div class="synthesis-card">
+                    <div class="card-header">
+                        <span class="card-icon">🔮</span>
+                        <span>Foundations of Today</span>
+                    </div>
+                    <p><span class="emphasis">The interwar period established patterns we still live with:</span> Global communication networks, consumer culture, mass media, international scientific cooperation, and the complex relationship between technological progress and human welfare.</p>
+                </div>
+
+                <div class="synthesis-card">
+                    <div class="card-header">
+                        <span class="card-icon">⚖️</span>
+                        <span>Double-Edged Progress</span>
+                    </div>
+                    <p><span class="emphasis">Innovation was neither purely beneficial nor destructive.</span> The same radio technology that spread education also enabled propaganda. Aviation connected the world but also made bombing possible. Chemistry saved lives and created weapons.</p>
+                </div>
+
+                <div class="synthesis-card">
+                    <div class="card-header">
+                        <span class="card-icon">🌍</span>
+                        <span>Uneven Development</span>
+                    </div>
+                    <p><span class="emphasis">Technological progress didn't eliminate inequality - it often increased it.</span> Countries and regions that embraced innovation gained advantages, while others fell further behind, creating patterns of global inequality that persist today.</p>
+                </div>
+
+                <div class="synthesis-card">
+                    <div class="card-header">
+                        <span class="card-icon">🤝</span>
+                        <span>Cultural Resilience</span>
+                    </div>
+                    <p><span class="emphasis">Traditional cultures adapted rather than disappeared.</span> Societies found ways to incorporate new technologies while maintaining cultural identity, creating diverse paths to modernity that challenged Western assumptions about progress.</p>
+                </div>
+            </div>
+
+            <div class="connection-box">
+                <h3>📚 Essential Historical Thinking Questions</h3>
+                <div style="text-align: left; margin-top: 2rem;">
+                    <p><strong>Continuity and Change:</strong> How do the technological and cultural patterns of the interwar period continue to influence our world today?</p>
+                    
+                    <p><strong>Cause and Consequence:</strong> What were the intended and unintended consequences of rapid technological change during this period?</p>
+                    
+                    <p><strong>Perspective:</strong> How did different societies experience and respond to the same technological innovations?</p>
+                    
+                    <p><strong>Significance:</strong> Which interwar innovations had the most lasting impact on human civilization?</p>
+                    
+                    <p><strong>Ethical Judgment:</strong> How should societies balance technological progress with cultural preservation and human welfare?</p>
+                </div>
+            </div>
+
+            <div class="connection-box" style="background: linear-gradient(135deg, #27AE60, #2ECC71);">
+                <h3>🎓 Your Turn to Analyze</h3>
+                <p>Consider a current technological innovation (AI, smartphones, social media, renewable energy). How might it be creating similar patterns of cultural change, global connection, and uneven development that we saw in the interwar period? What lessons from 1918-1939 might help us navigate our own era of rapid change?</p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button class="control-btn" onclick="previousSlide()">◀ Previous</button>
+            <button class="control-btn" onclick="nextSlide()">Next ▶</button>
+            <button class="control-btn" onclick="revealAll()">Reveal All</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+        
+        let revealIndex = 0;
+        let allRevealed = false;
+
+        function updateSlideCounter() {
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            revealIndex = 0;
+            allRevealed = false;
+            updateSlideCounter();
+            
+            // Auto-reveal items marked as "revealed"
+            const autoRevealItems = slides[index].querySelectorAll('.revealed');
+            autoRevealItems.forEach(item => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0) translateX(0) scale(1) rotateY(0deg)';
+            });
+        }
+
+        function nextSlide() {
+            if (allRevealed || revealIndex === 0) {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                showSlide(currentSlide);
+            } else {
+                revealNext();
+            }
+        }
+
+        function previousSlide() {
+            if (revealIndex === 0) {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                showSlide(currentSlide);
+            } else {
+                revealIndex = 0;
+                allRevealed = false;
+                // Hide all non-auto-reveal items
+                const revealItems = slides[currentSlide].querySelectorAll('.tech-item, .cultural-item, .content-card:not(.revealed), .country-section, .connection-box:not(.revealed), .synthesis-card');
+                revealItems.forEach(item => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px) translateX(-20px) scale(0.95) rotateY(90deg)';
+                });
+            }
+        }
+
+        function revealNext() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.tech-item, .cultural-item, .content-card:not(.revealed), .country-section, .connection-box:not(.revealed), .synthesis-card');
+            
+            if (revealIndex < revealItems.length) {
+                revealItems[revealIndex].style.opacity = '1';
+                revealItems[revealIndex].style.transform = 'translateY(0) translateX(0) scale(1) rotateY(0deg)';
+                revealIndex++;
+            }
+            
+            if (revealIndex >= revealItems.length) {
+                allRevealed = true;
+            }
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.tech-item, .cultural-item, .content-card:not(.revealed), .country-section, .connection-box:not(.revealed), .synthesis-card');
+            
+            revealItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0) translateX(0) scale(1) rotateY(0deg)';
+                }, index * 100);
+            });
+            
+            revealIndex = revealItems.length;
+            allRevealed = true;
+        }
+
+        function toggleImage() {
+            const imageElement = document.getElementById('slide-image');
+            imageElement.classList.toggle('visible');
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(event) {
+            switch(event.key) {
+                case 'ArrowRight':
+                    if (allRevealed) {
+                        nextSlide();
+                    } else {
+                        revealNext();
+                    }
+                    break;
+                case 'ArrowLeft':
+                    if (revealIndex === 0) {
+                        previousSlide();
+                    } else {
+                        previousSlide(); // Reset to beginning of slide
+                    }
+                    break;
+                case ',':
+                    previousSlide();
+                    break;
+                case '.':
+                    nextSlide();
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+
+        // Progressive disclosure for items on slide load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Stagger animation of initially revealed items
+            slides.forEach(slide => {
+                const revealedItems = slide.querySelectorAll('.revealed');
+                revealedItems.forEach((item, index) => {
+                    item.style.animationDelay = `${index * 0.1}s`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

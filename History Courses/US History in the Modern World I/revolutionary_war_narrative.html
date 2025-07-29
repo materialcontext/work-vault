@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>American Revolutionary War - Military Narrative</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 50%, #5c6bc0 100%);
+            color: #ffffff;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .presentation-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .slide {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 1;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .slide.hidden {
+            display: none;
+        }
+
+        .slide-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .lesson-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ffc107, #ff9800);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #fff3c4;
+            font-style: italic;
+            background: rgba(255,255,255,0.1);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #ffc107;
+            line-height: 1.6;
+        }
+
+        .slide h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #ffc107;
+        }
+
+        .slide h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #ffc107;
+        }
+
+        .war-timeline {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-phase {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid #ffc107;
+            text-align: center;
+        }
+
+        .phase-title {
+            font-size: 1.6rem;
+            color: #ffc107;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .phase-years {
+            font-size: 1.3rem;
+            color: #fff3c4;
+            margin-bottom: 1rem;
+        }
+
+        .phase-description {
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .battle-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .battle-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255,193,7,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .battle-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,193,7,0.5);
+        }
+
+        .battle-name {
+            font-size: 1.6rem;
+            color: #ffc107;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .battle-date {
+            font-size: 1.2rem;
+            color: #fff3c4;
+            margin-bottom: 1rem;
+        }
+
+        .battle-description {
+            font-size: 1.1rem;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .battle-significance {
+            font-size: 1rem;
+            color: #fff3c4;
+            font-style: italic;
+        }
+
+        .campaign-section {
+            background: rgba(255,193,7,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #ffc107;
+            margin: 2rem 0;
+        }
+
+        .campaign-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .campaign-event {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #fff3c4;
+        }
+
+        .event-date {
+            font-size: 1.2rem;
+            color: #ffc107;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-name {
+            font-size: 1.1rem;
+            color: #fff3c4;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-outcome {
+            font-size: 1rem;
+            line-height: 1.3;
+        }
+
+        .turning-point {
+            background: linear-gradient(45deg, rgba(255,193,7,0.2), rgba(255,152,0,0.2));
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid #ff9800;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .turning-point h3 {
+            color: #ffc107;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .auto-reveal, .reveal-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.revealed, .reveal-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255,193,7,0.3);
+            transform: translateY(-2px);
+            border-color: #ffc107;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .indicator-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator-dot.active {
+            background: #ffc107;
+            transform: scale(1.2);
+        }
+
+        .major-figures {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .figure-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid #ffc107;
+            text-align: center;
+        }
+
+        .figure-name {
+            font-size: 1.4rem;
+            color: #ffc107;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .figure-role {
+            font-size: 1.1rem;
+            color: #fff3c4;
+            margin-bottom: 1rem;
+        }
+
+        .figure-contribution {
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .treaty-details {
+            background: rgba(255,193,7,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #ffc107;
+            margin: 2rem 0;
+        }
+
+        .treaty-terms {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .treaty-term {
+            background: rgba(255,255,255,0.1);
+            padding: 1.2rem;
+            border-radius: 10px;
+            border: 2px solid #fff3c4;
+        }
+
+        .term-title {
+            font-size: 1.3rem;
+            color: #ffc107;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+        }
+
+        .term-description {
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.2rem;
+            border-radius: 10px;
+            border: 2px solid #ffc107;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: #ffc107;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #fff3c4;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide" data-reveal-count="2">
+            <div class="slide-header auto-reveal">
+                <div class="lesson-title">American Revolutionary War</div>
+                <div class="subtitle">Military Narrative and Key Events (1775-1783)</div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="text-align: center; color: #ffc107; margin: 2rem 0;">Overview of the War</h3>
+                <p style="text-align: center; font-size: 1.3rem; margin-bottom: 2rem;">Eight years of armed conflict that transformed thirteen British colonies into an independent nation through strategic military campaigns, international alliances, and decisive battles</p>
+                
+                <div class="summary-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Years of War</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">~25,000</div>
+                        <div class="stat-label">American Deaths</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Major European Powers Involved</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">13</div>
+                        <div class="stat-label">Colonies Gained Independence</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Three Phases of the War -->
+        <div class="slide hidden" data-reveal-count="2">
+            <h2>📅 Three Phases of the Revolutionary War</h2>
+            
+            <div class="war-timeline auto-reveal">
+                <div class="timeline-phase">
+                    <div class="phase-title">Phase 1: New England Focus</div>
+                    <div class="phase-years">(1775-1776)</div>
+                    <div class="phase-description">War begins around Boston; British try to crush rebellion quickly; Americans struggle to organize Continental Army and gain international recognition</div>
+                </div>
+                <div class="timeline-phase">
+                    <div class="phase-title">Phase 2: Middle Colonies</div>
+                    <div class="phase-years">(1776-1778)</div>
+                    <div class="phase-description">British focus on New York and Philadelphia; Washington's survival strategy; French alliance transforms conflict into global war</div>
+                </div>
+                <div class="timeline-phase">
+                    <div class="phase-title">Phase 3: Southern Strategy</div>
+                    <div class="phase-years">(1778-1781)</div>
+                    <div class="phase-description">British shift to South seeking Loyalist support; guerrilla warfare intensifies; French naval power enables Yorktown victory</div>
+                </div>
+            </div>
+            
+            <div class="turning-point auto-reveal">
+                <h3>Key Strategic Turning Point</h3>
+                <p style="font-size: 1.2rem;">French entry in 1778 transforms colonial rebellion into global conflict, forcing Britain to defend empire worldwide while Americans gain crucial military and naval support</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Phase 1 - New England (1775-1776) -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>⚔️ Phase 1: New England Campaign (1775-1776)</h2>
+            
+            <div class="campaign-section auto-reveal">
+                <h3>Early Battles and Continental Army Formation</h3>
+                <div class="campaign-grid">
+                    <div class="campaign-event">
+                        <div class="event-date">April 19, 1775</div>
+                        <div class="event-name">Lexington & Concord</div>
+                        <div class="event-outcome">First shots fired; British retreat to Boston under harassment</div>
+                    </div>
+                    <div class="campaign-event">
+                        <div class="event-date">June 17, 1775</div>
+                        <div class="event-name">Bunker Hill</div>
+                        <div class="event-outcome">Costly British victory; proves Americans can fight regular army</div>
+                    </div>
+                    <div class="campaign-event">
+                        <div class="event-date">July 1775</div>
+                        <div class="event-name">Washington Takes Command</div>
+                        <div class="event-outcome">Continental Army organized; siege of Boston continues</div>
+                    </div>
+                    <div class="campaign-event">
+                        <div class="event-date">March 1776</div>
+                        <div class="event-name">British Evacuate Boston</div>
+                        <div class="event-outcome">Artillery from Fort Ticonderoga forces British withdrawal</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="battle-grid auto-reveal">
+                <div class="battle-card">
+                    <div class="battle-name">Siege of Boston</div>
+                    <div class="battle-date">April 1775 - March 1776</div>
+                    <div class="battle-description">11-month siege traps British army in Boston; American forces learn military organization and discipline</div>
+                    <div class="battle-significance">Proves Americans can maintain long-term military pressure</div>
+                </div>
+                <div class="battle-card">
+                    <div class="battle-name">Failed Canadian Invasion</div>
+                    <div class="battle-date">Fall 1775 - Spring 1776</div>
+                    <div class="battle-description">Benedict Arnold and Richard Montgomery attempt to capture Quebec; invasion fails with Montgomery's death</div>
+                    <div class="battle-significance">Shows limits of American military capability</div>
+                </div>
+            </div>
+            
+            <div class="turning-point auto-reveal">
+                <h3>Declaration of Independence (July 4, 1776)</h3>
+                <p style="font-size: 1.2rem;">Transforms military rebellion into war for independence; enables diplomatic efforts to gain international support</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Phase 2 - Middle Colonies (1776-1778) -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>🗽 Phase 2: Fight for Middle Colonies (1776-1778)</h2>
+            
+            <div class="campaign-section auto-reveal">
+                <h3>British Conquest and American Survival</h3>
+                <div class="campaign-grid">
+                    <div class="campaign-event">
+                        <div class="event-date">Aug 1776</div>
+                        <div class="event-name">Battle of Long Island</div>
+                        <div class="event-outcome">Massive British victory; Washington barely escapes with army</div>
+                    </div>
+                    <div class="campaign-event">
+                        <div class="event-date">Dec 26, 1776</div>
+                        <div class="event-name">Trenton</div>
+                        <div class="event-outcome">Washington crosses Delaware; surprise victory boosts morale</div>
+                    </div>
+                    <div class="campaign-event">
+                        <div class="event-date">Oct 17, 1777</div>
+                        <div class="event-name">Saratoga</div>
+                        <div class="event-outcome">American victory captures entire British army under Burgoyne</div>
+                    </div>
+                    <div class="campaign-event">
+                        <div class="event-date">Feb 6, 1778</div>
+                        <div class="event-name">French Alliance</div>
+                        <div class="event-outcome">France enters war; provides military and naval support</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="battle-grid auto-reveal">
+                <div class="battle-card">
+                    <div class="battle-name">New York Campaign</div>
+                    <div class="battle-date">Summer-Fall 1776</div>
+                    <div class="battle-description">British capture New York City with overwhelming force; Washington conducts fighting retreat across New Jersey</div>
+                    <div class="battle-significance">Demonstrates British conventional military superiority</div>
+                </div>
+                <div class="battle-card">
+                    <div class="battle-name">Saratoga Campaign</div>
+                    <div class="battle-date">Summer-Fall 1777</div>
+                    <div class="battle-description">British General Burgoyne advances from Canada; surrounded and forced to surrender entire army</div>
+                    <div class="battle-significance">Convinces France that Americans can win; leads to crucial alliance</div>
+                </div>
+            </div>
+            
+            <div class="turning-point auto-reveal">
+                <h3>Valley Forge Winter (1777-1778)</h3>
+                <p style="font-size: 1.2rem;">Continental Army survives brutal winter; Baron von Steuben provides professional military training; emerges as disciplined fighting force</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Phase 3 - Southern Strategy (1778-1781) -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>🏛️ Phase 3: Southern Campaign (1778-1781)</h2>
+            
+            <div class="campaign-section auto-reveal">
+                <h3>British Southern Strategy and American Victory</h3>
+                <div class="campaign-grid">
+                    <div class="campaign-event">
+                        <div class="event-date">Dec 1778</div>
+                        <div class="event-name">Savannah Falls</div>
+                        <div class="event-outcome">British capture Savannah; begin conquest of Georgia</div>
+                    </div>
+                    <div class="campaign-event">
+                        <div class="event-date">May 1780</div>
+                        <div class="event-name">Charleston Captured</div>
+                        <div class="event-outcome">Largest American surrender of war; 5,000 troops lost</div>
+                    </div>
+                    <div class="campaign-event">
+                        <div class="event-date">Jan 1781</div>
+                        <div class="event-name">Cowpens</div>
+                        <div class="event-outcome">Daniel Morgan's tactical masterpiece destroys British force</div>
+                    </div>
+                    <div class="campaign-event">
+                        <div class="event-date">Oct 19, 1781</div>
+                        <div class="event-name">Yorktown</div>
+                        <div class="event-outcome">Cornwallis surrenders; effective end of major fighting</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="battle-grid auto-reveal">
+                <div class="battle-card">
+                    <div class="battle-name">Southern Guerrilla War</div>
+                    <div class="battle-date">1779-1781</div>
+                    <div class="battle-description">Francis Marion, Thomas Sumter lead partisan warfare; British struggle with irregular tactics and hostile population</div>
+                    <div class="battle-significance">Demonstrates American adaptation to British conventional superiority</div>
+                </div>
+                <div class="battle-card">
+                    <div class="battle-name">Siege of Yorktown</div>
+                    <div class="battle-date">September-October 1781</div>
+                    <div class="battle-description">Franco-American forces trap Cornwallis; French fleet prevents British naval rescue</div>
+                    <div class="battle-significance">Decisive victory leads to British decision to end war</div>
+                </div>
+            </div>
+            
+            <div class="turning-point auto-reveal">
+                <h3>French Naval Power Crucial</h3>
+                <p style="font-size: 1.2rem;">French Admiral de Grasse's fleet controls Chesapeake Bay, preventing British escape from Yorktown and ensuring American victory</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Key Military Leaders -->
+        <div class="slide hidden" data-reveal-count="2">
+            <h2>🌟 Key Military Leaders</h2>
+            
+            <div class="major-figures auto-reveal">
+                <div class="figure-card">
+                    <div class="figure-name">George Washington</div>
+                    <div class="figure-role">Commander-in-Chief</div>
+                    <div class="figure-contribution">Kept Continental Army together through defeats; strategic patience and survival-focused strategy proved decisive</div>
+                </div>
+                <div class="figure-card">
+                    <div class="figure-name">Marquis de Lafayette</div>
+                    <div class="figure-role">French Volunteer</div>
+                    <div class="figure-contribution">Young French aristocrat who served without pay; symbol of international support for American cause</div>
+                </div>
+                <div class="figure-card">
+                    <div class="figure-name">Nathanael Greene</div>
+                    <div class="figure-role">Southern Theater Commander</div>
+                    <div class="figure-contribution">Strategic genius in South; used tactical retreats and guerrilla warfare to exhaust British forces</div>
+                </div>
+                <div class="figure-card">
+                    <div class="figure-name">Benedict Arnold</div>
+                    <div class="figure-role">American General (turned traitor)</div>
+                    <div class="figure-contribution">Brilliant early war hero; later attempted to surrender West Point to British in 1780</div>
+                </div>
+                <div class="figure-card">
+                    <div class="figure-name">Lord Cornwallis</div>
+                    <div class="figure-role">British General</div>
+                    <div class="figure-contribution">Led Southern campaign; aggressive tactics initially successful but ultimately trapped at Yorktown</div>
+                </div>
+                <div class="figure-card">
+                    <div class="figure-name">Comte de Rochambeau</div>
+                    <div class="figure-role">French Army Commander</div>
+                    <div class="figure-contribution">Led French expeditionary force; coordinated with Washington for Yorktown campaign</div>
+                </div>
+            </div>
+            
+            <div class="turning-point auto-reveal">
+                <h3>Washington's Strategic Genius</h3>
+                <p style="font-size: 1.2rem;">Understood that keeping the Continental Army in existence was more important than winning battles; avoided decisive defeat while waiting for British political will to collapse</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Treaty of Paris and War's End -->
+        <div class="slide hidden" data-reveal-count="2">
+            <h2>📜 Treaty of Paris (1783)</h2>
+            
+            <div class="treaty-details auto-reveal">
+                <h3>Terms of Peace</h3>
+                <div class="treaty-terms">
+                    <div class="treaty-term">
+                        <div class="term-title">Independence Recognition</div>
+                        <div class="term-description">Britain formally recognizes United States as sovereign nation with full independence</div>
+                    </div>
+                    <div class="treaty-term">
+                        <div class="term-title">Territorial Boundaries</div>
+                        <div class="term-description">U.S. territory extends from Atlantic to Mississippi River, Great Lakes to Florida</div>
+                    </div>
+                    <div class="treaty-term">
+                        <div class="term-title">Fishing Rights</div>
+                        <div class="term-description">Americans retain fishing rights off Newfoundland and Nova Scotia</div>
+                    </div>
+                    <div class="treaty-term">
+                        <div class="term-title">Debts and Property</div>
+                        <div class="term-description">Pre-war debts to be honored; Loyalist property compensation recommended</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="text-align: center; color: #ffc107; margin: 2rem 0;">War's Immediate Consequences</h3>
+                <div class="summary-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">828,000</div>
+                        <div class="stat-label">Square Miles Gained</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">60,000</div>
+                        <div class="stat-label">Loyalists Fled to Canada</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$27M</div>
+                        <div class="stat-label">War Debt (Continental Congress)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2.8M</div>
+                        <div class="stat-label">Population of New Nation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: War's Legacy and Impact -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>🎯 Military Lessons and Legacy</h2>
+            
+            <div class="battle-grid auto-reveal">
+                <div class="battle-card">
+                    <div class="battle-name">Strategic Insights</div>
+                    <div class="battle-description"><strong>Geography matters:</strong> 3,000-mile distance made British control difficult<br><strong>Popular support:</strong> Guerrilla warfare requires local population backing<br><strong>International alliances:</strong> French support proved decisive</div>
+                </div>
+                <div class="battle-card">
+                    <div class="battle-name">Military Innovation</div>
+                    <div class="battle-description"><strong>Citizen soldiers:</strong> Continental Army combined militia enthusiasm with professional training<br><strong>Adaptive tactics:</strong> Americans learned to avoid British strengths while exploiting weaknesses</div>
+                </div>
+            </div>
+            
+            <div class="turning-point auto-reveal">
+                <h3>Why Americans Won</h3>
+                <p style="font-size: 1.2rem;"><strong>1. Strategic patience:</strong> Washington avoided decisive defeat<br><strong>2. International support:</strong> French alliance provided crucial aid<br><strong>3. Geographic advantages:</strong> Vast territory difficult to control<br><strong>4. Political commitment:</strong> American will to continue fighting outlasted British political support</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="text-align: center; color: #ffc107; margin: 2rem 0;">From Military Victory to Nation-Building</h3>
+                <p style="text-align: center; font-size: 1.2rem;">Military success created independent nation, but challenges of governing vast territory with diverse population would test whether revolutionary political ideals could work in practice</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()" aria-label="Previous">← Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()" aria-label="Next">Next →</button>
+    </div>
+
+    <!-- Slide Indicators -->
+    <div class="slide-indicator" role="tablist" aria-label="Slide navigation">
+        <div class="indicator-dot active" onclick="goToSlide(0)" role="tab" aria-label="Slide 1"></div>
+        <div class="indicator-dot" onclick="goToSlide(1)" role="tab" aria-label="Slide 2"></div>
+        <div class="indicator-dot" onclick="goToSlide(2)" role="tab" aria-label="Slide 3"></div>
+        <div class="indicator-dot" onclick="goToSlide(3)" role="tab" aria-label="Slide 4"></div>
+        <div class="indicator-dot" onclick="goToSlide(4)" role="tab" aria-label="Slide 5"></div>
+        <div class="indicator-dot" onclick="goToSlide(5)" role="tab" aria-label="Slide 6"></div>
+        <div class="indicator-dot" onclick="goToSlide(6)" role="tab" aria-label="Slide 7"></div>
+        <div class="indicator-dot" onclick="goToSlide(7)" role="tab" aria-label="Slide 8"></div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentReveal = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlideIndicators() {
+            const indicators = document.querySelectorAll('.indicator-dot');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function showSlide(slideIndex) {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('hidden', index !== slideIndex);
+            });
+            
+            currentReveal = 0;
+            updateSlideIndicators();
+            revealNextItem();
+        }
+
+        function nextSlide() {
+            const currentSlideElement = slides[currentSlide];
+            const maxReveals = parseInt(currentSlideElement.dataset.revealCount) || 1;
+            
+            if (currentReveal < maxReveals) {
+                revealNextItem();
+            } else if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentReveal > 0) {
+                hideCurrentItem();
+            } else if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+                // Reveal all items on previous slide
+                const prevSlideElement = slides[currentSlide];
+                const maxReveals = parseInt(prevSlideElement.dataset.revealCount) || 1;
+                currentReveal = maxReveals;
+                showAllReveals();
+            }
+        }
+
+        function revealNextItem() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.auto-reveal, .reveal-item');
+            
+            if (currentReveal < revealItems.length) {
+                revealItems[currentReveal].classList.add('revealed');
+                currentReveal++;
+            }
+        }
+
+        function hideCurrentItem() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.auto-reveal, .reveal-item');
+            
+            if (currentReveal > 0) {
+                currentReveal--;
+                revealItems[currentReveal].classList.remove('revealed');
+            }
+        }
+
+        function showAllReveals() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.auto-reveal, .reveal-item');
+            revealItems.forEach(item => item.classList.add('revealed'));
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(event) {
+            switch(event.key) {
+                case 'ArrowLeft':
+                    previousSlide();
+                    break;
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+                case ',':
+                    if (currentSlide > 0) {
+                        currentSlide--;
+                        showSlide(currentSlide);
+                        const maxReveals = parseInt(slides[currentSlide].dataset.revealCount) || 1;
+                        currentReveal = maxReveals;
+                        showAllReveals();
+                    }
+                    break;
+                case '.':
+                    if (currentSlide < totalSlides - 1) {
+                        currentSlide++;
+                        showSlide(currentSlide);
+                    }
+                    break;
+                case 'Enter':
+                    showAllReveals();
+                    const maxReveals = parseInt(slides[currentSlide].dataset.revealCount) || 1;
+                    currentReveal = maxReveals;
+                    break;
+            }
+        });
+
+        // Initialize presentation
+        showSlide(0);
+    </script>
+</body>
+</html>
