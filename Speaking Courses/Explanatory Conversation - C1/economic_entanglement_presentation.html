@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>America's Economic Path to War: Financial Entanglement Chain</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+	    font-size: 20px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .slide-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            z-index: 1000;
+        }
+
+        .image-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 215, 0, 0.3);
+            border: 2px solid #ffd700;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .image-toggle:hover {
+            background: rgba(255, 215, 0, 0.5);
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .slide {
+            display: none;
+            height: 100vh;
+            padding: 4rem;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #ffd700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #87ceeb;
+        }
+
+        .central-concept {
+            background: linear-gradient(135deg, #ff8c00, #ff6347);
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(255, 140, 0, 0.3);
+            max-width: 80%;
+        }
+
+        .language-frame-display {
+            background: linear-gradient(135deg, #228b22, #32cd32);
+            border: 3px solid #ffd700;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #ffd700;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(34, 139, 34, 0.4);
+        }
+
+        .economic-stage {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: left;
+            max-width: 90%;
+            backdrop-filter: blur(10px);
+        }
+
+        .stage-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .stage-element {
+            margin: 1rem 0;
+            padding: 0.8rem;
+            border-left: 4px solid #ff8c00;
+            background: rgba(255, 140, 0, 0.1);
+        }
+
+        .stage-label {
+            font-weight: bold;
+            color: #ff8c00;
+            margin-bottom: 0.5rem;
+        }
+
+        .financial-data {
+            background: rgba(34, 139, 34, 0.2);
+            border: 2px solid #32cd32;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            width: 100%;
+            max-width: 90%;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .money-flow-visual {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .money-node {
+            background: linear-gradient(135deg, #32cd32, #228b22);
+            border-radius: 15px;
+            padding: 1.5rem;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            flex: 1;
+            min-width: 180px;
+            position: relative;
+        }
+
+        .money-node::after {
+            content: "💰";
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
+
+        .money-node:last-child::after {
+            display: none;
+        }
+
+        .critique-box {
+            background: rgba(220, 20, 60, 0.2);
+            border: 2px solid #dc143c;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+
+        .quote-highlight {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+            font-size: 1.3rem;
+            max-width: 80%;
+        }
+
+        .economic-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-box {
+            background: rgba(255, 140, 0, 0.2);
+            border: 2px solid #ff8c00;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #ffffff;
+            margin-top: 0.5rem;
+        }
+
+        .practice-scenario {
+            background: linear-gradient(135deg, #228b22, #32cd32);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 2px solid #ffd700;
+            max-width: 85%;
+        }
+
+        .scenario-title {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .skills-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skills-list li {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+            font-size: 1.1rem;
+        }
+
+        .skills-list li::before {
+            content: "💼 ";
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 2rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .money-flow-visual {
+                flex-direction: column;
+            }
+            
+            .money-node::after {
+                content: "↓💰";
+                right: 50%;
+                top: auto;
+                bottom: -20px;
+                transform: translateX(50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="slide-indicator" id="slideIndicator">1 / 9</div>
+        <div class="image-toggle" id="imageToggle">💰 Economic Data</div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <h1>💰 America's Economic Path to War</h1>
+            <div class="central-concept auto-reveal">
+                <h3>How Financial Decisions Made Neutrality Impossible</h3>
+                <p style="font-size: 1.4rem; margin-top: 1rem;">The decision-consequence chain that transformed America from neutral trader to economic stakeholder in Allied victory</p>
+            </div>
+            <div class="quote-highlight auto-reveal">
+                <p>"The poor, sir, who are the ones called upon to rot in the trenches, have no organized power... to pay the interest on the nontaxable bonds held by [J.P.] Morgan and his combinations."</p>
+                <p style="margin-top: 1rem; font-size: 1rem; text-align: right;">- Senator Robert La Follette, 1917</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Language Frame for Economic Analysis -->
+        <div class="slide">
+            <h2>🧱 Our Economic Decision Frame</h2>
+            <div class="language-frame-display auto-reveal">
+                "When <strong>[economic opportunity]</strong> emerged, America faced a choice between... 
+                The decision to <strong>[financial policy]</strong> led to <strong>[economic dependency]</strong>, 
+                which then created a new situation where..."
+            </div>
+            <div class="central-concept auto-reveal">
+                <h3>Understanding Economic Entanglement</h3>
+                <p>This frame shows how <strong>economic choices created financial dependencies</strong>, and <strong>dependencies made neutrality economically devastating</strong>.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Starting Point - 1914 Economic Context -->
+        <div class="slide">
+            <h2>📊 Stage 0: The Pre-War Economic Baseline (1914)</h2>
+            <div class="economic-stats auto-reveal">
+                <div class="stat-box">
+                    <div class="stat-number">$824.8M</div>
+                    <div class="stat-label">US exports to all belligerents (1913)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">$169.3M</div>
+                    <div class="stat-label">US trade with Germany (1914)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">$1.5B</div>
+                    <div class="stat-label">US exports to Europe (1914)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">Minimal</div>
+                    <div class="stat-label">US foreign loans</div>
+                </div>
+            </div>
+            <div class="central-concept auto-reveal">
+                <h3>The Neutral Starting Point</h3>
+                <p>America began WWI with balanced trade relationships and minimal financial entanglements - true neutrality was still economically possible.</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Stage 1 - The Trade Boom Decision -->
+        <div class="slide">
+            <h2>🚢 Stage 1: The Trade Boom Decision (1914-1915)</h2>
+            <div class="economic-stage auto-reveal">
+                <div class="stage-title">Choosing Profit Over Strict Neutrality</div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">ECONOMIC OPPORTUNITY:</div>
+                    European war creates massive demand for American goods - food, raw materials, manufactured products
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">CHOICE:</div>
+                    Strict neutrality (embargo all belligerents) vs. Selective trade vs. Open commerce with all buyers
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">DECISION:</div>
+                    Allow unrestricted trade with all belligerents while maintaining "legal" neutrality
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">CONSEQUENCE:</div>
+                    British blockade eliminates German trade; American prosperity becomes tied to Allied purchases
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">NEW SITUATION:</div>
+                    American farmers, manufacturers, and workers dependent on continued Allied demand
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Stage 2 - The Lending Decision -->
+        <div class="slide">
+            <h2>🏦 Stage 2: The Lending Decision (1915-1916)</h2>
+            <div class="economic-stage auto-reveal">
+                <div class="stage-title">From Trade to Financial Stakeholder</div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">ECONOMIC OPPORTUNITY:</div>
+                    Allies need massive loans to continue purchasing American goods and fighting the war
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">CHOICE:</div>
+                    Prohibit all loans to belligerents vs. Allow private lending vs. Government lending
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">DECISION:</div>
+                    Reverse Bryan's loan ban - allow private banks to finance Allied purchases
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">CONSEQUENCE:</div>
+                    J.P. Morgan organizes $500M loan (largest in Wall Street history) - American banks now stakeholders in Allied victory
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">NEW SITUATION:</div>
+                    Allied defeat would trigger American financial crisis - neutrality becomes economically dangerous
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Stage 3 - The Morgan Web Deepens -->
+        <div class="slide">
+            <h2>🕸️ Stage 3: The Morgan Web Expands (1916-1917)</h2>
+            <div class="economic-stage auto-reveal">
+                <div class="stage-title">Creating Systemic Financial Dependency</div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">ECONOMIC OPPORTUNITY:</div>
+                    Allies need even more financing as war costs escalate beyond initial projections
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">CHOICE:</div>
+                    Limit further lending vs. Gradual expansion vs. Unlimited financial support
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">DECISION:</div>
+                    Allow J.P. Morgan to organize $2.5B in Allied loans vs. only $27M to Central Powers
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">CONSEQUENCE:</div>
+                    American financial system becomes dependent on Allied success - Morgan earns $30M in commissions from $3B in purchases
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">NEW SITUATION:</div>
+                    Allied defeat means collapse of American banking system and economic depression
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Stage 4 - The Economic Point of No Return -->
+        <div class="slide">
+            <h2>⚠️ Stage 4: Economic Point of No Return (1917)</h2>
+            <div class="economic-stage auto-reveal">
+                <div class="stage-title">When Neutrality Becomes Economic Suicide</div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">ECONOMIC CRISIS:</div>
+                    German submarine warfare threatens to cut off Allied ability to pay back loans and continue purchases
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">CHOICE:</div>
+                    Accept economic collapse vs. Find face-saving exit vs. Ensure Allied victory through war
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">DECISION:</div>
+                    War declaration to protect American financial stability by ensuring Allied victory
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">CONSEQUENCE:</div>
+                    American entry tips balance toward Allied victory, protecting $2.5B in loans and trade relationships
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">FINAL RESULT:</div>
+                    America emerges as global financial power, but critics argue war fought for Wall Street profits
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: The Money Flow Visualization -->
+        <div class="slide">
+            <h2>💸 The Complete Financial Entanglement Chain</h2>
+            <div class="economic-stats auto-reveal">
+                <div class="stat-box">
+                    <div class="stat-number">$1.5B→$3.8B</div>
+                    <div class="stat-label">US exports to Europe (1914→1916)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">$169M→$1.2M</div>
+                    <div class="stat-label">US trade with Germany (decline)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">$2.5B</div>
+                    <div class="stat-label">Total Allied loans by 1917</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">$30M</div>
+                    <div class="stat-label">Morgan's commissions</div>
+                </div>
+            </div>
+            <div class="money-flow-visual auto-reveal">
+                <div class="money-node">
+                    <strong>1914</strong><br>
+                    Balanced Trade<br>
+                    No Loans
+                </div>
+                <div class="money-node">
+                    <strong>1915</strong><br>
+                    Allied Dependency<br>
+                    First Major Loans
+                </div>
+                <div class="money-node">
+                    <strong>1916</strong><br>
+                    Financial Web<br>
+                    $2.5B Committed
+                </div>
+                <div class="money-node">
+                    <strong>1917</strong><br>
+                    Economic War<br>
+                    No Choice Left
+                </div>
+            </div>
+            <div class="critique-box auto-reveal">
+                <h3>🎯 The Opposition's Economic Argument</h3>
+                <p><strong>Senator La Follette's critique:</strong> War serves Wall Street investors rather than national interests - "the poor... rot in the trenches" to protect "nontaxable bonds held by Morgan and his combinations."</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Practice Application -->
+        <div class="slide">
+            <h2>🎯 Your Economic Decision-Chain Analysis</h2>
+            <div class="practice-scenario auto-reveal">
+                <div class="scenario-title">Apply the Economic Decision Frame</div>
+                <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">
+                    Use our economic language frame to analyze any situation where financial choices create dependencies:
+                </p>
+                <div class="language-frame-display" style="font-size: 1.4rem;">
+                    "When <strong>[economic opportunity]</strong> emerged, <strong>[decision-maker]</strong> faced a choice between... 
+                    The decision to <strong>[financial policy]</strong> led to <strong>[economic dependency]</strong>, 
+                    which then created a new situation where..."
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🗣️ Economic Language Skills</h3>
+                    <ul class="skills-list">
+                        <li>Financial dependency vocabulary</li>
+                        <li>Trade relationship analysis</li>
+                        <li>Economic consequence language</li>
+                        <li>Stakeholder interest description</li>
+                        <li>Cost-benefit decision making</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>📈 Transferable Applications</h3>
+                    <ul class="skills-list">
+                        <li>Corporate investment decisions</li>
+                        <li>Personal financial choices</li>
+                        <li>Government economic policy</li>
+                        <li>International trade relations</li>
+                        <li>Business partnership risks</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn" onclick="previousSlide()">←</button>
+            <button class="control-btn" onclick="nextSlide()">→</button>
+            <button class="control-btn" onclick="revealAll()">All</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+
+        function updateSlideIndicator() {
+            document.getElementById('slideIndicator').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            
+            // Reset and show auto-reveal elements
+            const autoRevealElements = slides[index].querySelectorAll('.auto-reveal');
+            autoRevealElements.forEach((element, i) => {
+                element.classList.remove('show');
+                setTimeout(() => {
+                    element.classList.add('show');
+                }, i * 300);
+            });
+            
+            revealIndex = 0;
+            updateSlideIndicator();
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            autoRevealElements.forEach(element => {
+                element.classList.add('show');
+            });
+        }
+
+        function progressiveReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < autoRevealElements.length) {
+                autoRevealElements[revealIndex].classList.add('show');
+                revealIndex++;
+            } else {
+                nextSlide();
+            }
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowLeft':
+                case ',':
+                    if (revealIndex === 0) {
+                        previousSlide();
+                    }
+                    break;
+                case 'ArrowRight':
+                case '.':
+                    const currentSlideElement = slides[currentSlide];
+                    const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+                    const allRevealed = Array.from(autoRevealElements).every(el => el.classList.contains('show'));
+                    
+                    if (allRevealed) {
+                        nextSlide();
+                    } else {
+                        progressiveReveal();
+                    }
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+            }
+        });
+
+        // Image toggle functionality
+        document.getElementById('imageToggle').addEventListener('click', function() {
+            // This would show/hide economic data visualizations
+            // For now, just provide visual feedback
+            this.style.background = this.style.background === 'rgba(255, 215, 0, 0.5)' ? 
+                'rgba(255, 215, 0, 0.3)' : 'rgba(255, 215, 0, 0.5)';
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

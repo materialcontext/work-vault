@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 5: Timed Writing and Test Preparation Mastery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #be185d 0%, #db2777 25%, #ec4899 50%, #f472b6 75%, #fbbf24 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .slide-content {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .slide h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fbbf24, #f472b6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.1;
+        }
+
+        .slide h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .slide h3 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide p, .slide li {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #e2e8f0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question {
+            background: rgba(251, 191, 36, 0.15);
+            backdrop-filter: blur(20px);
+            border: 3px solid rgba(251, 191, 36, 0.4);
+            border-radius: 30px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 15px 50px rgba(251, 191, 36, 0.2);
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question h3 {
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .timer-display {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: #ffffff;
+            padding: 2rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            font-weight: 700;
+            font-size: 2.5rem;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            border: 4px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .writing-prompt {
+            background: rgba(99, 102, 241, 0.2);
+            border: 3px solid #6366f1;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.3);
+            text-align: left;
+        }
+
+        .writing-prompt h4 {
+            color: #a5b4fc;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .objective-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.3);
+            border-color: rgba(251, 191, 36, 0.6);
+        }
+
+        .objective-card:hover::before {
+            left: 100%;
+        }
+
+        .objective-card h3 {
+            color: #fbbf24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .timed-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .timed-flow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #fbbf24, #f472b6, #ec4899, #be185d);
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        .flow-step {
+            background: linear-gradient(135deg, #ffffff, #f1f5f9);
+            color: #be185d;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 3;
+            border: 3px solid rgba(251, 191, 36, 0.6);
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .flow-step:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4);
+        }
+
+        .time-management-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .time-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .planning-card {
+            border-color: rgba(34, 197, 94, 0.4);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .drafting-card {
+            border-color: rgba(99, 102, 241, 0.4);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .revision-card {
+            border-color: rgba(245, 158, 11, 0.4);
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .planning-card h3 {
+            color: #86efac;
+        }
+
+        .drafting-card h3 {
+            color: #a5b4fc;
+        }
+
+        .revision-card h3 {
+            color: #fcd34d;
+        }
+
+        .time-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.3);
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #ec4899, #be185d);
+            color: #ffffff;
+            padding: 2rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            font-weight: 600;
+            font-size: 1.4rem;
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .test-strategies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .strategy-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .sat-strategy {
+            border-color: rgba(147, 51, 234, 0.4);
+            background: rgba(147, 51, 234, 0.1);
+        }
+
+        .ap-strategy {
+            border-color: rgba(239, 68, 68, 0.4);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .sat-strategy h3 {
+            color: #c084fc;
+        }
+
+        .ap-strategy h3 {
+            color: #fca5a5;
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.3);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(251, 191, 36, 0.9);
+            border: none;
+            color: #be185d;
+            padding: 1.2rem 1.8rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-btn:hover {
+            background: rgba(251, 191, 36, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.6);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(251, 191, 36, 0.9);
+            color: #be185d;
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
+            z-index: 1000;
+        }
+
+        .emoji-large {
+            font-size: 4rem;
+            margin: 1rem 0;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+            color: #e2e8f0;
+        }
+
+        li {
+            margin: 0.8rem 0;
+            padding-left: 1rem;
+            color: #e2e8f0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        strong {
+            color: #fbbf24;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .step-indicator {
+            display: inline-block;
+            background: #fbbf24;
+            color: #be185d;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-right: 1rem;
+            text-shadow: none;
+        }
+
+        .practice-box {
+            background: rgba(147, 51, 234, 0.2);
+            border: 2px solid rgba(147, 51, 234, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+        }
+
+        .practice-box h4 {
+            color: #c084fc;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .timer-instructions {
+            background: rgba(220, 38, 38, 0.2);
+            border: 3px solid #dc2626;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+        }
+
+        .timer-instructions h4 {
+            color: #fca5a5;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .checklist-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .checklist-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.3);
+            border-color: rgba(251, 191, 36, 0.6);
+        }
+
+        .checklist-card h4 {
+            color: #fbbf24;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        @media (min-width: 1920px) {
+            .slide {
+                padding: 3rem 4rem;
+            }
+            
+            .slide-content {
+                max-width: 1600px;
+            }
+        }
+
+        @media (min-width: 2560px) {
+            .slide {
+                padding: 4rem 6rem;
+            }
+            
+            .slide-content {
+                max-width: 2000px;
+            }
+            
+            .objectives-grid {
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            }
+            
+            .test-strategies {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-height: 800px) {
+            .slide {
+                padding: 1rem 2rem;
+                justify-content: flex-start;
+                padding-top: 2rem;
+            }
+            
+            .slide h1 {
+                font-size: clamp(2rem, 4vw, 3rem);
+                margin-bottom: 0.5rem;
+            }
+            
+            .slide h2 {
+                font-size: clamp(1.5rem, 3vw, 2.5rem);
+                margin-bottom: 1rem;
+            }
+            
+            .objectives-grid,
+            .time-management-grid,
+            .test-strategies {
+                gap: 1rem;
+                margin: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 13</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="reveal-btn" onclick="toggleRevealAll()">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1 class="auto-reveal">Week 5: Timed Writing & Test Preparation Mastery</h1>
+            <div class="emoji-large auto-reveal">⏰</div>
+            <div class="central-question auto-reveal">
+                <h3>Speed + Sophistication Under Pressure</h3>
+                <p><em>Apply all your academic writing skills quickly and effectively for tests, exams, and in-class assignments</em></p>
+            </div>
+            <div class="timed-flow auto-reveal">
+                <div class="flow-step">Quick Planning</div>
+                <div class="flow-step">Efficient Drafting</div>
+                <div class="flow-step">Speed Revision</div>
+                <div class="flow-step">Test Success</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Learning Objectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Session Objectives</h2>
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h3>⚡ Rapid Planning</h3>
+                    <p>Master 5-minute thesis development and essay organization for any timed writing situation</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>🏃 Efficient Drafting</h3>
+                    <p>Write sophisticated academic arguments quickly without losing quality or complexity</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>✨ Speed Revision</h3>
+                    <p>Implement essential editing and improvement techniques within strict time constraints</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>📝 Test Strategies</h3>
+                    <p>Excel at SAT essays, AP exams, and in-class writing assignments with confidence</p>
+                </div>
+            </div>
+            <div class="central-question auto-reveal">
+                <h3>Central Question</h3>
+                <p><em>"How do we write sophisticated academic arguments quickly and effectively under pressure?"</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Timed Writing Diagnostic -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⏱️ Diagnostic Timed Writing</h2>
+            
+            <div class="timer-display auto-reveal">
+                <div>⏰ 18 MINUTES</div>
+                <div style="font-size: 1.2rem; margin-top: 0.5rem;">Complete Essay + Self-Assessment</div>
+            </div>
+
+            <div class="writing-prompt auto-reveal">
+                <h4>📝 Prompt: Technology and Learning</h4>
+                <p><strong>Background:</strong> Schools increasingly use technology for education, from laptops in classrooms to online learning platforms. Some educators argue technology enhances learning through interactive content and personalized instruction. Others contend that technology distracts students and reduces critical thinking skills.</p>
+                
+                <p><strong>Your Task:</strong> Write an essay in which you argue whether technology primarily helps or hinders student learning. Use specific examples and reasoning to support your position.</p>
+                
+                <p><strong>Requirements:</strong></p>
+                <ul>
+                    <li>Clear thesis statement in introduction</li>
+                    <li>At least 3 supporting reasons with examples</li>
+                    <li>Address one counterargument</li>
+                    <li>Proper conclusion</li>
+                    <li>Academic vocabulary and tone</li>
+                </ul>
+            </div>
+
+            <div class="timer-instructions auto-reveal">
+                <h4>⚡ Time Management Strategy</h4>
+                <p><span class="step-indicator">Minutes 1-3</span><strong>Plan:</strong> Choose position, brainstorm 3 reasons, outline structure</p>
+                <p><span class="step-indicator">Minutes 4-14</span><strong>Draft:</strong> Write complete essay focusing on content and argument</p>
+                <p><span class="step-indicator">Minutes 15-17</span><strong>Revise:</strong> Quick content fixes, better word choices, check logic</p>
+                <p><span class="step-indicator">Minute 18</span><strong>Proofread:</strong> Final grammar/spelling check</p>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Assessment Goal:</strong> This diagnostic shows your current timed writing level. Don't worry about perfection—focus on applying Weeks 1-4 skills as best you can under time pressure!
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Why Timed Writing Matters -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🚀 Why Timed Writing Excellence Matters</h2>
+            
+            <div class="test-strategies">
+                <div class="strategy-card sat-strategy auto-reveal">
+                    <h3>📝 SAT Essay (50 minutes)</h3>
+                    <ul>
+                        <li>Analyze rhetorical strategies in provided passage</li>
+                        <li>Write sophisticated analysis with evidence</li>
+                        <li>Demonstrate reading comprehension and writing skills</li>
+                        <li>Scored on reading, analysis, and writing</li>
+                    </ul>
+                    <p><strong>Success Factor:</strong> Clear thesis + specific evidence + sophisticated analysis</p>
+                </div>
+                
+                <div class="strategy-card ap-strategy auto-reveal">
+                    <h3>📚 AP Exams (Various times)</h3>
+                    <ul>
+                        <li><strong>AP History:</strong> Document-based questions, long essays</li>
+                        <li><strong>AP English:</strong> Poetry analysis, prose analysis, argumentative essays</li>
+                        <li><strong>AP Science:</strong> Data analysis and explanation essays</li>
+                        <li>All require academic argumentation under pressure</li>
+                    </ul>
+                    <p><strong>Success Factor:</strong> Quick planning + efficient writing + content mastery</p>
+                </div>
+            </div>
+
+            <div class="time-management-grid auto-reveal">
+                <div class="time-card planning-card">
+                    <h3>🏫 In-Class Essays</h3>
+                    <ul>
+                        <li>45-90 minute class periods</li>
+                        <li>Literature analysis essays</li>
+                        <li>Historical argument essays</li>
+                        <li>Science lab report conclusions</li>
+                    </ul>
+                </div>
+                
+                <div class="time-card drafting-card">
+                    <h3>🎓 College Applications</h3>
+                    <ul>
+                        <li>Timed essay components</li>
+                        <li>Scholarship application essays</li>
+                        <li>Honors program writing samples</li>
+                        <li>Interview follow-up essays</li>
+                    </ul>
+                </div>
+                
+                <div class="time-card revision-card">
+                    <h3>💼 Real-World Skills</h3>
+                    <ul>
+                        <li>Professional email communication</li>
+                        <li>Business proposal writing</li>
+                        <li>Quick report generation</li>
+                        <li>Meeting summary creation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Core Truth:</strong> High school and college success requires writing sophisticated arguments quickly. Master this skill once, use it everywhere!
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Rapid Planning Strategies -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚡ 5-Minute Planning Mastery</h2>
+            
+            <div class="timer-instructions auto-reveal">
+                <h4>🎯 The 5-Minute Planning Process</h4>
+                <p><span class="step-indicator">Minute 1</span><strong>Read + Choose Position:</strong> Understand prompt, pick strongest argument side</p>
+                <p><span class="step-indicator">Minute 2</span><strong>Brainstorm Reasons:</strong> List 4-5 supporting points, choose best 3</p>
+                <p><span class="step-indicator">Minute 3</span><strong>Create Thesis:</strong> Craft clear argument with 3 preview points</p>
+                <p><span class="step-indicator">Minute 4</span><strong>Plan Body Paragraphs:</strong> Topic sentence + example for each reason</p>
+                <p><span class="step-indicator">Minute 5</span><strong>Counterargument + Conclusion:</strong> One opposing view + synthesis ending</p>
+            </div>
+
+            <div class="checklist-grid">
+                <div class="checklist-card auto-reveal">
+                    <h4>✅ Position Selection</h4>
+                    <ul>
+                        <li>Choose side with most examples</li>
+                        <li>Pick position you can argue confidently</li>
+                        <li>Consider which has stronger evidence</li>
+                        <li>Don't waste time on fence-sitting</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>💡 Quick Brainstorming</h4>
+                    <ul>
+                        <li>Write down every idea quickly</li>
+                        <li>Don't edit while brainstorming</li>
+                        <li>Think of specific examples and evidence</li>
+                        <li>Choose 3 strongest, most provable points</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>📝 Thesis Construction</h4>
+                    <ul>
+                        <li>Use Week 1 thesis formulas</li>
+                        <li>Include 3 preview points clearly</li>
+                        <li>Make it arguable and specific</li>
+                        <li>Keep it under 2 sentences</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>🗂️ Organization Planning</h4>
+                    <ul>
+                        <li>Arrange points from strongest to weakest</li>
+                        <li>Match examples to each main point</li>
+                        <li>Plan one clear counterargument</li>
+                        <li>Outline conclusion synthesis</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Planning Practice</h4>
+                <p><strong>Prompt:</strong> "Should high schools require students to take a foreign language?"</p>
+                <p><strong>Your Challenge:</strong> Complete the 5-minute planning process. Focus on speed while maintaining quality thinking!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Efficient Drafting Techniques -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏃 Efficient Drafting Without Quality Loss</h2>
+            
+            <div class="time-management-grid">
+                <div class="time-card planning-card auto-reveal">
+                    <h3>📝 Introduction (3-4 minutes)</h3>
+                    <ul>
+                        <li>Hook: One engaging sentence</li>
+                        <li>Background: 2-3 context sentences</li>
+                        <li>Thesis: Your planned argument statement</li>
+                        <li>Don't overthink—write and move forward</li>
+                    </ul>
+                </div>
+                
+                <div class="time-card drafting-card auto-reveal">
+                    <h3>📊 Body Paragraphs (4-5 minutes each)</h3>
+                    <ul>
+                        <li>Topic sentence stating main point</li>
+                        <li>2-3 specific examples or evidence</li>
+                        <li>Analysis connecting to thesis</li>
+                        <li>Quick transition to next paragraph</li>
+                    </ul>
+                </div>
+                
+                <div class="time-card revision-card auto-reveal">
+                    <h3>⚖️ Counterargument (4-5 minutes)</h3>
+                    <ul>
+                        <li>Present opposing view fairly</li>
+                        <li>Acknowledge its validity briefly</li>
+                        <li>Refute with evidence</li>
+                        <li>Strengthen your original argument</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <h3>Drafting Efficiency Strategies</h3>
+                <p><span class="step-indicator">1</span><strong>Write in order:</strong> Don't jump around—complete each paragraph before moving on</p>
+                <p><span class="step-indicator">2</span><strong>Use academic vocabulary naturally:</strong> Apply Week 4 sophisticated language automatically</p>
+                <p><span class="step-indicator">3</span><strong>Don't stop for perfect words:</strong> Keep writing momentum, improve in revision</p>
+                <p><span class="step-indicator">4</span><strong>Trust your planning:</strong> Follow your outline rather than second-guessing mid-draft</p>
+            </div>
+
+            <div class="timer-instructions auto-reveal">
+                <h4>⚡ Speed Writing Techniques</h4>
+                <ul>
+                    <li><strong>Abbreviate first, expand later:</strong> "b/c" → "because" in revision</li>
+                    <li><strong>Use transition words immediately:</strong> Furthermore, however, consequently</li>
+                    <li><strong>Write specific examples quickly:</strong> Don't research perfect details</li>
+                    <li><strong>Maintain academic tone:</strong> Use Week 1-4 vocabulary automatically</li>
+                </ul>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Drafting Challenge</h4>
+                <p>Using your foreign language planning, draft a complete essay in 12 minutes. Focus on getting all ideas down clearly while maintaining academic voice!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Speed Revision Essentials -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>✨ 3-Minute Speed Revision</h2>
+            
+            <div class="timer-instructions auto-reveal">
+                <h4>🎯 Speed Revision Priority System</h4>
+                <p><span class="step-indicator">Minute 1</span><strong>Content Check:</strong> Thesis clear? All points support it? Counterargument included?</p>
+                <p><span class="step-indicator">Minute 2</span><strong>Language Upgrade:</strong> Replace weak words, add sophisticated vocabulary, improve transitions</p>
+                <p><span class="step-indicator">Minute 3</span><strong>Error Elimination:</strong> Fix obvious grammar, spelling, punctuation mistakes</p>
+            </div>
+
+            <div class="checklist-grid">
+                <div class="checklist-card auto-reveal">
+                    <h4>🎯 Content Priorities</h4>
+                    <ul>
+                        <li>Is thesis statement clear and arguable?</li>
+                        <li>Does each body paragraph advance thesis?</li>
+                        <li>Is counterargument addressed?</li>
+                        <li>Does conclusion synthesize rather than repeat?</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>🎭 Language Quick Fixes</h4>
+                    <ul>
+                        <li>Replace "shows" with "demonstrates"</li>
+                        <li>Change "a lot" to "numerous" or "substantial"</li>
+                        <li>Upgrade "things" to "factors" or "elements"</li>
+                        <li>Add sophisticated transitions between paragraphs</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>🔧 Error Detection</h4>
+                    <ul>
+                        <li>Subject-verb agreement throughout</li>
+                        <li>Consistent verb tenses</li>
+                        <li>Proper punctuation in complex sentences</li>
+                        <li>Spelling of key academic vocabulary</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>⚡ Emergency Improvements</h4>
+                    <ul>
+                        <li>Strengthen weakest body paragraph</li>
+                        <li>Add one more sophisticated vocabulary word</li>
+                        <li>Improve one transition between ideas</li>
+                        <li>Fix most obvious grammatical error</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Speed Revision Mantra:</strong> Perfect is the enemy of good under time pressure. Make essential improvements that have maximum impact rather than trying to fix everything!
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Revision Challenge</h4>
+                <p>Apply 3-minute speed revision to your foreign language essay. Focus on highest-impact improvements that make your argument more convincing!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: SAT Essay Mastery -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📝 SAT Essay Excellence</h2>
+            
+            <div class="writing-prompt auto-reveal">
+                <h4>SAT Essay Structure (50 minutes)</h4>
+                <p><strong>Task:</strong> Analyze how an author builds an argument in a provided passage</p>
+                <p><strong>Focus:</strong> Evidence, reasoning, and stylistic elements that make the argument persuasive</p>
+                <p><strong>NOT:</strong> Whether you agree with the author's position</p>
+            </div>
+
+            <div class="time-management-grid">
+                <div class="time-card planning-card auto-reveal">
+                    <h3>📖 Reading + Planning (10 min)</h3>
+                    <ul>
+                        <li>Read passage carefully, noting argument structure</li>
+                        <li>Identify 3-4 persuasive techniques used</li>
+                        <li>Plan thesis analyzing author's rhetorical strategy</li>
+                        <li>Choose specific textual evidence for each technique</li>
+                    </ul>
+                </div>
+                
+                <div class="time-card drafting-card auto-reveal">
+                    <h3>✍️ Drafting (35 min)</h3>
+                    <ul>
+                        <li><strong>Introduction (5 min):</strong> Summarize argument + thesis about techniques</li>
+                        <li><strong>Body paragraphs (25 min):</strong> One technique per paragraph with quotes</li>
+                        <li><strong>Conclusion (5 min):</strong> Synthesize how techniques work together</li>
+                    </ul>
+                </div>
+                
+                <div class="time-card revision-card auto-reveal">
+                    <h3>🔍 Final Review (5 min)</h3>
+                    <ul>
+                        <li>Check that analysis focuses on HOW not WHAT</li>
+                        <li>Ensure specific evidence supports each claim</li>
+                        <li>Fix obvious errors that hurt credibility</li>
+                        <li>Verify sophisticated academic language</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <h3>SAT Essay Success Formula</h3>
+                <p><strong>Thesis Pattern:</strong> "In [title], [author] builds a persuasive argument for [position] through [technique 1], [technique 2], and [technique 3], effectively convincing readers that [main claim]."</p>
+                <p><strong>Body Pattern:</strong> [Author] uses [technique] to [effect]. For example, [specific quote/example]. This [technique] is effective because [analysis of impact on audience].</p>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 SAT Strategy Practice</h4>
+                <p>Common rhetorical techniques to identify: emotional appeals, logical reasoning, credible evidence, expert testimony, statistical data, personal anecdotes, repetition, rhetorical questions, vivid imagery</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: AP Exam Strategies -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📚 AP Exam Writing Excellence</h2>
+            
+            <div class="test-strategies">
+                <div class="strategy-card sat-strategy auto-reveal">
+                    <h3>📜 AP History Essays</h3>
+                    <p><strong>Document-Based Questions (DBQ):</strong></p>
+                    <ul>
+                        <li>Analyze 7 historical documents</li>
+                        <li>Create thesis using documents as evidence</li>
+                        <li>Address counterarguments from documents</li>
+                        <li>Include outside historical knowledge</li>
+                    </ul>
+                    <p><strong>Time Strategy:</strong> 15 min planning + 40 min writing + 5 min review</p>
+                </div>
+                
+                <div class="strategy-card ap-strategy auto-reveal">
+                    <h3>📖 AP English Essays</h3>
+                    <p><strong>Literary Analysis:</strong></p>
+                    <ul>
+                        <li>Analyze literary techniques in provided passage</li>
+                        <li>Connect techniques to meaning/theme</li>
+                        <li>Use specific textual evidence with line numbers</li>
+                        <li>Demonstrate sophisticated interpretation</li>
+                    </ul>
+                    <p><strong>Time Strategy:</strong> 5 min planning + 35 min writing + 5 min review</p>
+                </div>
+            </div>
+
+            <div class="checklist-grid">
+                <div class="checklist-card auto-reveal">
+                    <h4>📈 AP History Success</h4>
+                    <ul>
+                        <li>Contextualize argument in historical period</li>
+                        <li>Use at least 6 of 7 documents effectively</li>
+                        <li>Include 2-3 pieces of outside evidence</li>
+                        <li>Address complexity through counterarguments</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>🎭 AP English Success</h4>
+                    <ul>
+                        <li>Focus on HOW author creates meaning</li>
+                        <li>Use literary terminology accurately</li>
+                        <li>Quote selectively with line numbers</li>
+                        <li>Connect techniques to larger themes</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>⏱️ Time Management</h4>
+                    <ul>
+                        <li>Stick to planned time allocations</li>
+                        <li>Don't spend too long on introduction</li>
+                        <li>Save time for conclusion synthesis</li>
+                        <li>Quick proofread for major errors only</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>🎯 Scoring Priorities</h4>
+                    <ul>
+                        <li>Clear, defensible thesis statement</li>
+                        <li>Specific evidence supporting claims</li>
+                        <li>Sophisticated analysis of evidence</li>
+                        <li>Complex understanding of topic</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>AP Success Key:</strong> Use all your Weeks 1-4 skills (structure, evidence integration, complex arguments, academic voice) but adapted for specific AP requirements and time constraints!
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Anxiety Management -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🧘 Managing Test Writing Anxiety</h2>
+            
+            <div class="time-management-grid">
+                <div class="time-card planning-card auto-reveal">
+                    <h3>🎯 Before the Test</h3>
+                    <ul>
+                        <li><strong>Practice regularly:</strong> Timed writing weekly builds confidence</li>
+                        <li><strong>Know the format:</strong> Understand exactly what's expected</li>
+                        <li><strong>Prepare materials:</strong> Multiple pens, watch, comfortable clothes</li>
+                        <li><strong>Get good sleep:</strong> Brain needs rest for optimal performance</li>
+                    </ul>
+                </div>
+                
+                <div class="time-card drafting-card auto-reveal">
+                    <h3>⚡ During the Test</h3>
+                    <ul>
+                        <li><strong>Read carefully:</strong> Understand prompt before starting</li>
+                        <li><strong>Trust your skills:</strong> Use Weeks 1-4 techniques automatically</li>
+                        <li><strong>Stay calm if stuck:</strong> Move to next section, return if time allows</li>
+                        <li><strong>Watch time but don't panic:</strong> Frequent quick time checks</li>
+                    </ul>
+                </div>
+                
+                <div class="time-card revision-card auto-reveal">
+                    <h3>🔄 When Things Go Wrong</h3>
+                    <ul>
+                        <li><strong>Blank mind:</strong> Start with basic outline, ideas will come</li>
+                        <li><strong>Running out of time:</strong> Focus on completing argument, skip polish</li>
+                        <li><strong>Realize mistake:</strong> Quick fix if time allows, otherwise continue</li>
+                        <li><strong>Feeling overwhelmed:</strong> Deep breath, focus on next sentence</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <h3>Confidence Building Mantras</h3>
+                <p><span class="step-indicator">✓</span><strong>"I know how to structure arguments"</strong> - Week 1 skills are automatic</p>
+                <p><span class="step-indicator">✓</span><strong>"I can find and use evidence effectively"</strong> - Week 2 research skills transfer</p>
+                <p><span class="step-indicator">✓</span><strong>"I can handle complex arguments"</strong> - Week 3 counterargument mastery</p>
+                <p><span class="step-indicator">✓</span><strong>"I write with sophisticated academic voice"</strong> - Week 4 language skills</p>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Anxiety Reduction Strategies</h4>
+                <ul>
+                    <li><strong>Breathing technique:</strong> 4 counts in, 4 counts hold, 4 counts out</li>
+                    <li><strong>Progressive muscle relaxation:</strong> Tense and release shoulder muscles</li>
+                    <li><strong>Positive visualization:</strong> Picture yourself writing confidently</li>
+                    <li><strong>Self-talk adjustment:</strong> "I'm prepared" instead of "I hope I pass"</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Practice Session -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🏋️ Intensive Practice Session</h2>
+            
+            <div class="timer-display auto-reveal">
+                <div>⏰ 25 MINUTES</div>
+                <div style="font-size: 1.2rem; margin-top: 0.5rem;">Complete Timed Essay Practice</div>
+            </div>
+
+            <div class="writing-prompt auto-reveal">
+                <h4>📝 Practice Prompt: Social Media and Democracy</h4>
+                <p><strong>Background:</strong> Social media platforms have fundamentally changed how people access news and participate in political discussions. Some argue these platforms strengthen democracy by giving everyone a voice and increasing political engagement. Others contend that social media spreads misinformation and creates dangerous political polarization.</p>
+                
+                <p><strong>Your Task:</strong> Write an essay arguing whether social media platforms primarily strengthen or weaken democratic participation. Use specific examples and address counterarguments.</p>
+            </div>
+
+            <div class="timer-instructions auto-reveal">
+                <h4>⚡ Applied Time Management</h4>
+                <p><span class="step-indicator">Minutes 1-5</span><strong>Strategic Planning:</strong> Position, 3 reasons, thesis, counterargument, outline</p>
+                <p><span class="step-indicator">Minutes 6-20</span><strong>Efficient Drafting:</strong> Introduction, 3 body paragraphs, counterargument, conclusion</p>
+                <p><span class="step-indicator">Minutes 21-24</span><strong>Speed Revision:</strong> Content check, language upgrade, error fixes</p>
+                <p><span class="step-indicator">Minute 25</span><strong>Final Review:</strong> One last read for clarity and impact</p>
+            </div>
+
+            <div class="checklist-grid auto-reveal">
+                <div class="checklist-card">
+                    <h4>✅ Planning Checklist</h4>
+                    <ul>
+                        <li>Clear position chosen</li>
+                        <li>3 strong supporting reasons</li>
+                        <li>Specific examples for each reason</li>
+                        <li>One counterargument identified</li>
+                        <li>Thesis statement drafted</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card">
+                    <h4>✅ Drafting Checklist</h4>
+                    <ul>
+                        <li>Introduction with clear thesis</li>
+                        <li>Each body paragraph advances argument</li>
+                        <li>Counterargument addressed fairly</li>
+                        <li>Academic vocabulary used naturally</li>
+                        <li>Conclusion synthesizes argument</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Practice Goal:</strong> Apply all 5 weeks of skills automatically under time pressure. Focus on demonstrating mastery of structure, evidence, complexity, and voice!
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Self-Assessment -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📊 Timed Writing Self-Assessment</h2>
+            
+            <div class="checklist-grid">
+                <div class="checklist-card auto-reveal">
+                    <h4>🎯 Content Evaluation</h4>
+                    <ul>
+                        <li>Did I create a clear, arguable thesis?</li>
+                        <li>Do all paragraphs support my main argument?</li>
+                        <li>Did I address a counterargument effectively?</li>
+                        <li>Are my examples specific and convincing?</li>
+                        <li>Does my conclusion synthesize rather than repeat?</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>🎭 Academic Voice Check</h4>
+                    <ul>
+                        <li>Did I use sophisticated vocabulary naturally?</li>
+                        <li>Are my sentences varied and complex?</li>
+                        <li>Is my tone consistently professional?</li>
+                        <li>Did I avoid weak language ("I think," "a lot")?</li>
+                        <li>Do I sound like a confident academic writer?</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>⏱️ Time Management Review</h4>
+                    <ul>
+                        <li>Did I spend appropriate time planning?</li>
+                        <li>Was I able to complete the full essay?</li>
+                        <li>Did I leave time for revision?</li>
+                        <li>Could I improve my time allocation?</li>
+                        <li>Did I maintain quality under pressure?</li>
+                    </ul>
+                </div>
+                
+                <div class="checklist-card auto-reveal">
+                    <h4>🚀 Growth Identification</h4>
+                    <ul>
+                        <li>What improved from my diagnostic essay?</li>
+                        <li>Which Week 1-4 skills transferred well?</li>
+                        <li>What needs more practice under time pressure?</li>
+                        <li>How confident do I feel about timed writing now?</li>
+                        <li>What's my next improvement priority?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timed-flow auto-reveal">
+                <div class="flow-step">Diagnostic<br>Assessment</div>
+                <div class="flow-step">Skill<br>Application</div>
+                <div class="flow-step">Practice<br>Session</div>
+                <div class="flow-step">Growth<br>Measurement</div>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Improvement Planning</h4>
+                <p>Based on your self-assessment, identify:</p>
+                <ul>
+                    <li><strong>One strength to maintain:</strong> What worked well under pressure?</li>
+                    <li><strong>One area to improve:</strong> What needs focused practice?</li>
+                    <li><strong>Next practice goal:</strong> Specific target for improvement</li>
+                    <li><strong>Confidence level:</strong> How ready do you feel for real timed writing?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Mastery and Next Steps -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Timed Writing Mastery and Future Success</h2>
+            
+            <div class="formula-box auto-reveal">
+                <h3>Your Complete Toolkit</h3>
+                <p><strong>Weeks 1-4 Foundation + Week 5 Speed Application = Academic Writing Excellence Under Any Conditions!</strong></p>
+            </div>
+
+            <div class="time-management-grid">
+                <div class="time-card planning-card auto-reveal">
+                    <h3>🎓 High School Readiness</h3>
+                    <ul>
+                        <li>In-class essay assignments</li>
+                        <li>Standardized test writing sections</li>
+                        <li>AP exam essay components</li>
+                        <li>College application essays with deadlines</li>
+                    </ul>
+                </div>
+                
+                <div class="time-card drafting-card auto-reveal">
+                    <h3>📈 Continued Practice</h3>
+                    <ul>
+                        <li>Weekly 20-minute writing practice</li>
+                        <li>SAT/AP prep with timed components</li>
+                        <li>Current events opinion essays</li>
+                        <li>Cross-subject timed writing practice</li>
+                    </ul>
+                </div>
+                
+                <div class="time-card revision-card auto-reveal">
+                    <h3>🚀 Advanced Applications</h3>
+                    <ul>
+                        <li>College-level timed writing</li>
+                        <li>Professional communication skills</li>
+                        <li>Quick report and memo writing</li>
+                        <li>Lifelong academic and career success</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>🎉 Week 5 Success!</h3>
+                <p><em>You can now write sophisticated academic arguments quickly and effectively under pressure. You're ready for any timed writing challenge high school can offer!</em></p>
+            </div>
+
+            <div class="timed-flow auto-reveal">
+                <div class="flow-step">Week 1-4<br>Foundation</div>
+                <div class="flow-step">Week 5<br>Speed Skills</div>
+                <div class="flow-step">Test<br>Confidence</div>
+                <div class="flow-step">Academic<br>Success</div>
+            </div>
+
+            <div class="timer-instructions auto-reveal">
+                <h4>🎯 Next Week Preview: Extended Research Projects</h4>
+                <p>Week 6 will teach you to apply these same skills to longer, more complex research papers—the capstone projects that demonstrate true academic mastery!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+        let allRevealed = false;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            allRevealed = false;
+            resetReveal();
+            updateRevealButton();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                
+                if (revealIndex >= elements.length) {
+                    allRevealed = true;
+                    updateRevealButton();
+                }
+                return true;
+            }
+            return false;
+        }
+
+        function toggleRevealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (!allRevealed) {
+                // Reveal all remaining elements
+                for (let i = revealIndex; i < elements.length; i++) {
+                    elements[i].classList.add('show');
+                }
+                revealIndex = elements.length;
+                allRevealed = true;
+            } else {
+                // Hide all elements
+                elements.forEach(el => {
+                    el.classList.remove('show');
+                });
+                revealIndex = 0;
+                allRevealed = false;
+            }
+            updateRevealButton();
+        }
+
+        function updateRevealButton() {
+            const btn = document.getElementById('reveal-btn');
+            btn.textContent = allRevealed ? 'Hide All' : 'Reveal All';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                const revealed = revealNextElement();
+                if (!revealed && allRevealed) {
+                    nextSlide();
+                }
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (revealIndex === 0) {
+                    previousSlide();
+                } else {
+                    // Go back one element
+                    const currentSlideElement = slides[currentSlide];
+                    const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+                    if (revealIndex > 0) {
+                        revealIndex--;
+                        elements[revealIndex].classList.remove('show');
+                        allRevealed = false;
+                        updateRevealButton();
+                    }
+                }
+            } else if (e.key === ' ') {
+                e.preventDefault();
+                revealNextElement();
+            }
+        });
+
+        // Click anywhere to reveal next element
+        document.addEventListener('click', function(e) {
+            // Skip navigation elements
+            if (e.target.closest('.navigation') || 
+                e.target.closest('.slide-indicator')) {
+                return;
+            }
+            
+            const currentSlideElement = slides[currentSlide];
+            if (currentSlideElement && !currentSlideElement.classList.contains('hidden')) {
+                revealNextElement();
+            }
+        });
+
+        // Initialize
+        document.getElementById('slide-counter').textContent = `1 / ${totalSlides}`;
+        updateRevealButton();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 10: Constitutional Innovation and Economic Transformation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 50%, #5c6bc0 100%);
+            color: #ffffff;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .presentation-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .slide {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 1;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .slide.hidden {
+            display: none;
+        }
+
+        .slide-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .unit-title {
+            font-size: 1.6rem;
+            color: #4caf50;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .lesson-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #4caf50, #8bc34a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .central-question {
+            font-size: 1.8rem;
+            color: #c8e6c9;
+            font-style: italic;
+            background: rgba(255,255,255,0.1);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #4caf50;
+            line-height: 1.6;
+        }
+
+        .slide h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #4caf50;
+        }
+
+        .slide h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #4caf50;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .concept-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(76,175,80,0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(76,175,80,0.5);
+        }
+
+        .concept-card h3 {
+            color: #4caf50;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .concept-card p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .primary-source {
+            background: rgba(200,230,201,0.2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #c8e6c9;
+            margin: 1.5rem 0;
+            font-style: italic;
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        .primary-source strong {
+            color: #c8e6c9;
+            font-style: normal;
+            font-size: 1.4rem;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .analysis-card {
+            background: rgba(255,255,255,0.08);
+            padding: 1.2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(76,175,80,0.2);
+            text-align: center;
+        }
+
+        .analysis-card h4 {
+            color: #4caf50;
+            margin-bottom: 0.8rem;
+            font-size: 1.5rem;
+        }
+
+        .analysis-card p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .question-highlight {
+            background: linear-gradient(45deg, rgba(76,175,80,0.2), rgba(139,195,74,0.2));
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid #8bc34a;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.4rem;
+            color: #4caf50;
+            line-height: 1.6;
+        }
+
+        .connecting-thread {
+            background: rgba(76,175,80,0.15);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid #4caf50;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        .connecting-thread h3 {
+            color: #4caf50;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .auto-reveal, .reveal-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.revealed, .reveal-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .nav-btn:hover {
+            background: rgba(76,175,80,0.3);
+            transform: translateY(-2px);
+            border-color: #4caf50;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            max-width: 200px;
+        }
+
+        .indicator-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator-dot.active {
+            background: #4caf50;
+            transform: scale(1.2);
+        }
+
+        .image-tab {
+            position: fixed;
+            top: 20px;
+            right: 100px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .image-tab:hover {
+            background: rgba(76,175,80,0.3);
+            border-color: #4caf50;
+        }
+
+        .constitutional-timeline {
+            background: rgba(76,175,80,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #4caf50;
+            margin: 2rem 0;
+        }
+
+        .timeline-events {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .timeline-event {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #c8e6c9;
+        }
+
+        .event-year {
+            font-size: 1.3rem;
+            color: #4caf50;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-title {
+            font-size: 1.1rem;
+            color: #c8e6c9;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-description {
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .problems-solutions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .problem-solution-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(76,175,80,0.3);
+        }
+
+        .card-title {
+            font-size: 1.6rem;
+            color: #4caf50;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .problem-list, .solution-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .problem-list li, .solution-list li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .problem-list li:before {
+            content: "⚠️";
+            position: absolute;
+            left: 0;
+        }
+
+        .solution-list li:before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+
+        .constitutional-innovations {
+            background: linear-gradient(45deg, rgba(76,175,80,0.1), rgba(139,195,74,0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #4caf50;
+            margin: 2rem 0;
+        }
+
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .innovation-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #c8e6c9;
+        }
+
+        .innovation-title {
+            font-size: 1.4rem;
+            color: #4caf50;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+        }
+
+        .innovation-description {
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .industrial-revolution {
+            background: rgba(76,175,80,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #4caf50;
+            margin: 2rem 0;
+        }
+
+        .industrial-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .industrial-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.2rem;
+            border-radius: 10px;
+            border: 2px solid #c8e6c9;
+        }
+
+        .industrial-card h4 {
+            color: #4caf50;
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+        }
+
+        .industrial-card p {
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .hamilton-program {
+            background: rgba(76,175,80,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #4caf50;
+            margin: 2rem 0;
+        }
+
+        .program-elements {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .program-element {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #c8e6c9;
+        }
+
+        .element-title {
+            font-size: 1.2rem;
+            color: #4caf50;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .element-description {
+            font-size: 1rem;
+            line-height: 1.3;
+        }
+
+        .comparative-systems {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .system-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(76,175,80,0.3);
+        }
+
+        .system-card h4 {
+            color: #4caf50;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1.6rem;
+        }
+
+        .system-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .system-features li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .system-features li:before {
+            content: "▶";
+            color: #c8e6c9;
+            position: absolute;
+            left: 0;
+        }
+
+        .auto-reveal p, .reveal-item p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .image-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .image-content {
+            max-width: 80%;
+            max-height: 80%;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title and Central Question -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-header auto-reveal">
+                <div class="unit-title">UNIT III: REVOLUTIONARY TRANSFORMATION</div>
+                <div class="lesson-title">Week 10: Constitutional Innovation and Economic Transformation</div>
+                <div class="central-question">How did American constitutional experimentation and British industrial development create new models of political and economic organization?</div>
+            </div>
+            
+            <div class="content-grid">
+                <div class="concept-card auto-reveal">
+                    <h3>🔑 Key Concept</h3>
+                    <p>Constitutional federalism and economic modernization - understanding how political and economic revolutions interact to create new models of social organization</p>
+                </div>
+                
+                <div class="concept-card auto-reveal">
+                    <h3>🌍 Geographic Focus</h3>
+                    <p>American constitutional development alongside British industrial revolution - comparing different approaches to modernization in the Atlantic world</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Today's Challenge:</strong> Understanding how revolutionary military victory creates the practical challenges of building new governmental and economic systems - and how these innovations influence global development
+            </div>
+        </div>
+
+        <!-- Slide 2: Connecting from Revolutionary War -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>🔗 From Military Victory to Practical Governance</h2>
+            
+            <div class="auto-reveal">
+                <h3>The Challenge: How Do You Govern a Revolution?</h3>
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h4>🎖️ Military Success</h4>
+                        <p>Americans won independence through strategic persistence and international support</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>🏛️ Political Challenge</h4>
+                        <p>Victory creates need for new governmental systems based on revolutionary principles</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>💰 Economic Reality</h4>
+                        <p>War debt and economic disruption require new approaches to finance and development</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #4caf50; text-align: center; margin: 1.5rem 0;">The Revolutionary Paradox</h3>
+                <p style="text-align: center; font-size: 1.3rem;">Revolutionary principles of popular sovereignty and limited government must be translated into practical institutions capable of governing a large, diverse territory</p>
+            </div>
+
+            <div class="question-highlight auto-reveal">
+                How do you create effective government while preventing the tyranny that sparked the revolution in the first place? This becomes the central challenge of the post-revolutionary period.
+            </div>
+        </div>
+
+        <!-- Slide 3: Articles of Confederation Problems -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>⚠️ Articles of Confederation: Revolutionary Ideals vs. Practical Governance</h2>
+            
+            <div class="auto-reveal">
+                <h3>The First Constitutional Experiment (1777-1789)</h3>
+            </div>
+            
+            <div class="problems-solutions auto-reveal">
+                <div class="problem-solution-card">
+                    <div class="card-title">❌ Problems with Articles</div>
+                    <ul class="problem-list">
+                        <li><strong>No taxation power:</strong> Congress cannot force states to pay their share</li>
+                        <li><strong>No executive branch:</strong> No way to enforce congressional decisions</li>
+                        <li><strong>No national courts:</strong> No system to resolve interstate disputes</li>
+                        <li><strong>Unanimous amendment:</strong> Constitutional change nearly impossible</li>
+                        <li><strong>State sovereignty:</strong> States act like independent nations</li>
+                        <li><strong>Economic chaos:</strong> Different currencies, trade barriers between states</li>
+                    </ul>
+                </div>
+                
+                <div class="problem-solution-card">
+                    <div class="card-title">💡 Revolutionary Logic Behind Problems</div>
+                    <ul class="solution-list">
+                        <li><strong>Fear of tyranny:</strong> Recent experience with British authority</li>
+                        <li><strong>State independence:</strong> Each state sees itself as sovereign</li>
+                        <li><strong>Local control:</strong> Belief that government closest to people governs best</li>
+                        <li><strong>Limited government:</strong> Preference for weak central authority</li>
+                        <li><strong>Democratic suspicion:</strong> Distrust of concentrated power</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="constitutional-timeline auto-reveal">
+                <h3>Crisis Points Leading to Constitutional Convention</h3>
+                <div class="timeline-events">
+                    <div class="timeline-event">
+                        <div class="event-year">1783-1786</div>
+                        <div class="event-title">Economic Depression</div>
+                        <div class="event-description">Post-war economic collapse; states unable to pay debts or support Congress</div>
+                    </div>
+                    <div class="timeline-event">
+                        <div class="event-year">1786</div>
+                        <div class="event-title">Shays' Rebellion</div>
+                        <div class="event-description">Armed uprising by debt-ridden farmers in Massachusetts</div>
+                    </div>
+                    <div class="timeline-event">
+                        <div class="event-year">1786</div>
+                        <div class="event-title">Annapolis Convention</div>
+                        <div class="event-description">Failed meeting to address trade issues; calls for broader convention</div>
+                    </div>
+                    <div class="timeline-event">
+                        <div class="event-year">1787</div>
+                        <div class="event-title">Constitutional Convention</div>
+                        <div class="event-description">Philadelphia meeting to "revise" Articles; creates entirely new system</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How do you strengthen government enough to be effective while maintaining revolutionary principles of popular sovereignty and limited authority?
+            </div>
+        </div>
+
+        <!-- Slide 4: Constitutional Convention and Innovations -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>🏛️ Constitutional Convention: The "Miracle at Philadelphia"</h2>
+            
+            <div class="constitutional-innovations auto-reveal">
+                <h3>Revolutionary Constitutional Innovations (1787)</h3>
+                <div class="innovation-grid">
+                    <div class="innovation-card">
+                        <div class="innovation-title">🗳️ Federalism</div>
+                        <div class="innovation-description">Power divided between national and state governments - both derive authority from people</div>
+                    </div>
+                    <div class="innovation-card">
+                        <div class="innovation-title">⚖️ Separation of Powers</div>
+                        <div class="innovation-description">Legislative, executive, judicial branches check and balance each other</div>
+                    </div>
+                    <div class="innovation-card">
+                        <div class="innovation-title">🏛️ Bicameralism</div>
+                        <div class="innovation-description">House represents population, Senate represents states equally</div>
+                    </div>
+                    <div class="innovation-card">
+                        <div class="innovation-title">👥 Popular Sovereignty</div>
+                        <div class="innovation-description">"We the People" as ultimate source of governmental authority</div>
+                    </div>
+                    <div class="innovation-card">
+                        <div class="innovation-title">📜 Written Constitution</div>
+                        <div class="innovation-description">Supreme law in written document with amendment process</div>
+                    </div>
+                    <div class="innovation-card">
+                        <div class="innovation-title">🔄 Judicial Review</div>
+                        <div class="innovation-description">Courts can declare laws unconstitutional (implied power)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #4caf50; text-align: center;">Key Compromises</h3>
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h4>🏘️ Great Compromise</h4>
+                        <p><strong>Problem:</strong> Large vs. small state representation<br><strong>Solution:</strong> House by population, Senate equal representation</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>⛓️ Three-Fifths Compromise</h4>
+                        <p><strong>Problem:</strong> Should enslaved people count for representation?<br><strong>Solution:</strong> Count 3/5 of enslaved population for both representation and taxation</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>🗳️ Electoral College</h4>
+                        <p><strong>Problem:</strong> How to elect president?<br><strong>Solution:</strong> Indirect election through state-appointed electors</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="primary-source auto-reveal">
+                <strong>Federalist #10 (James Madison, 1787):</strong><br>
+                "If men were angels, no government would be necessary... In framing a government which is to be administered by men over men, the great difficulty lies in this: you must first enable the government to control the governed; and in the next place oblige it to control itself."
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How does Madison's constitutional theory solve the problem of creating effective government while preventing tyranny through institutional design rather than relying on virtuous leaders?
+            </div>
+        </div>
+
+        <!-- Slide 5: Federalist vs. Anti-Federalist Debate -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>⚔️ The Great Debate: Federalists vs. Anti-Federalists</h2>
+            
+            <div class="auto-reveal">
+                <h3>Ratification Struggle (1787-1788)</h3>
+            </div>
+            
+            <div class="problems-solutions auto-reveal">
+                <div class="problem-solution-card">
+                    <div class="card-title">✅ Federalist Arguments</div>
+                    <ul class="solution-list">
+                        <li><strong>Effective government:</strong> Articles too weak to address national problems</li>
+                        <li><strong>Economic prosperity:</strong> Strong national government can regulate commerce</li>
+                        <li><strong>National defense:</strong> Unity essential for security in dangerous world</li>
+                        <li><strong>Separation of powers:</strong> Constitutional structure prevents tyranny</li>
+                        <li><strong>Extended republic:</strong> Large territory prevents factional control</li>
+                        <li><strong>Key advocates:</strong> Hamilton, Madison, Jay, Washington</li>
+                    </ul>
+                </div>
+                
+                <div class="problem-solution-card">
+                    <div class="card-title">❌ Anti-Federalist Arguments</div>
+                    <ul class="problem-list">
+                        <li><strong>Too much power:</strong> National government will become tyrannical</li>
+                        <li><strong>No Bill of Rights:</strong> Individual liberties not protected</li>
+                        <li><strong>Distant government:</strong> Republic too large for representative democracy</li>
+                        <li><strong>Elite control:</strong> Complex system favors wealthy and educated</li>
+                        <li><strong>State sovereignty:</strong> Federal system undermines state authority</li>
+                        <li><strong>Key advocates:</strong> Patrick Henry, George Mason, Samuel Adams</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Resolution:</strong> Federalists promise Bill of Rights to secure ratification; Constitution adopted by narrow margins in key states (Virginia: 89-79, New York: 30-27)
+            </div>
+        </div>
+
+        <!-- Slide 6: British Industrial Revolution Context -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>🏭 Meanwhile in Britain: Industrial Revolution (1760-1840)</h2>
+            
+            <div class="auto-reveal">
+                <h3>Economic Revolution Transforms Production</h3>
+            </div>
+            
+            <div class="industrial-revolution auto-reveal">
+                <h3>Key Features of Industrial Revolution</h3>
+                <div class="industrial-features">
+                    <div class="industrial-card">
+                        <h4>🏭 Factory System</h4>
+                        <p><strong>Innovation:</strong> Centralized production with division of labor<br><strong>Impact:</strong> Replaces cottage industry and artisan production<br><strong>Technology:</strong> Water and steam power drive machinery</p>
+                    </div>
+                    <div class="industrial-card">
+                        <h4>🚂 Transportation Revolution</h4>
+                        <p><strong>Canals:</strong> Connect industrial centers to markets<br><strong>Turnpikes:</strong> Improved roads reduce transport costs<br><strong>Early railroads:</strong> Steam locomotion by 1820s</p>
+                    </div>
+                    <div class="industrial-card">
+                        <h4>🧵 Textile Manufacturing</h4>
+                        <p><strong>Mechanization:</strong> Spinning jenny, water frame, power loom<br><strong>Cotton:</strong> Raw material from American slave plantations<br><strong>Production:</strong> Factory system concentrates workers</p>
+                    </div>
+                    <div class="industrial-card">
+                        <h4>⚒️ Iron and Coal</h4>
+                        <p><strong>Fuel revolution:</strong> Coal replaces charcoal for iron production<br><strong>Steam power:</strong> Coal-powered engines drive machinery<br><strong>Infrastructure:</strong> Iron for rails, bridges, machinery</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="analysis-grid auto-reveal">
+                <div class="analysis-card">
+                    <h4>💰 Capital Accumulation</h4>
+                    <p>Profits from slave trade and colonial commerce provide investment capital for industrial development</p>
+                </div>
+                <div class="analysis-card">
+                    <h4>👥 Social Consequences</h4>
+                    <p>Urbanization, factory working conditions, and class formation create new social tensions</p>
+                </div>
+                <div class="analysis-card">
+                    <h4>🌍 Global Impact</h4>
+                    <p>British industrial goods flood global markets; creates demand for raw materials from colonies</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How does British industrial development create both opportunities and challenges for the new American economy trying to establish its independence?
+            </div>
+        </div>
+
+        <!-- Slide 7: Hamilton's Financial Program -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>💰 Hamilton's Financial Program: American Economic Foundation</h2>
+            
+            <div class="auto-reveal">
+                <h3>Alexander Hamilton's Vision for American Economic Development</h3>
+            </div>
+            
+            <div class="hamilton-program auto-reveal">
+                <h3>Four Pillars of Hamilton's System</h3>
+                <div class="program-elements">
+                    <div class="program-element">
+                        <div class="element-title">🏦 National Bank</div>
+                        <div class="element-description">Central bank to regulate currency, provide credit, and manage government finances</div>
+                    </div>
+                    <div class="program-element">
+                        <div class="element-title">💳 Debt Assumption</div>
+                        <div class="element-description">Federal government assumes state Revolutionary War debts to establish national credit</div>
+                    </div>
+                    <div class="program-element">
+                        <div class="element-title">📊 Protective Tariffs</div>
+                        <div class="element-description">Import duties to protect American manufacturing from British competition</div>
+                    </div>
+                    <div class="program-element">
+                        <div class="element-title">🏭 Manufacturing Promotion</div>
+                        <div class="element-description">Government support for industrial development to reduce dependence on imports</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #4caf50; text-align: center;">Constitutional and Political Tensions</h3>
+                <div class="problems-solutions">
+                    <div class="problem-solution-card">
+                        <div class="card-title">🏛️ Constitutional Questions</div>
+                        <ul class="problem-list">
+                            <li><strong>Implied powers:</strong> Does Constitution allow national bank?</li>
+                            <li><strong>Federal authority:</strong> How much can government promote economic development?</li>
+                            <li><strong>State vs. federal:</strong> Who controls economic policy?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="problem-solution-card">
+                        <div class="card-title">⚔️ Political Opposition</div>
+                        <ul class="solution-list">
+                            <li><strong>Jefferson's critique:</strong> Favors wealthy creditors over farmers</li>
+                            <li><strong>Sectional tensions:</strong> Benefits North at expense of South</li>
+                            <li><strong>Republican ideology:</strong> Creates dangerous concentration of power</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How does Hamilton's financial program represent a different vision of American development than Jefferson's agricultural republic - and what are the constitutional implications?
+            </div>
+        </div>
+
+        <!-- Slide 8: American Market Revolution -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>🛣️ American Market Revolution (1790-1820)</h2>
+            
+            <div class="auto-reveal">
+                <h3>Transportation and Commercial Development</h3>
+            </div>
+            
+            <div class="industrial-features auto-reveal">
+                <div class="industrial-card">
+                    <h4>🚢 Canal Building</h4>
+                    <p><strong>Erie Canal (begun 1817):</strong> Will connect Great Lakes to Atlantic via Hudson River<br><strong>Economic impact:</strong> Reduces transportation costs dramatically<br><strong>Sectional development:</strong> Strengthens North-South economic connections</p>
+                </div>
+                <div class="industrial-card">
+                    <h4>🏭 Early Manufacturing</h4>
+                    <p><strong>Textile mills:</strong> New England factories using British technology<br><strong>Embargo Act (1807-1809):</strong> Forces development of domestic manufacturing<br><strong>War of 1812:</strong> Further protection from British competition</p>
+                </div>
+                <div class="industrial-card">
+                    <h4>🌾 Agricultural Expansion</h4>
+                    <p><strong>Westward movement:</strong> Settlement beyond Appalachian Mountains<br><strong>Cotton gin (1793):</strong> Revolutionizes Southern agriculture<br><strong>Land policies:</strong> Federal land sales encourage expansion</p>
+                </div>
+                <div class="industrial-card">
+                    <h4>🏛️ Banking Development</h4>
+                    <p><strong>State banks:</strong> Proliferation of local banking institutions<br><strong>Credit systems:</strong> Commercial credit enables business expansion<br><strong>Currency issues:</strong> Lack of uniform national currency creates problems</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                How does American economic development create both opportunities for national prosperity and tensions between different regions and economic interests?
+            </div>
+        </div>
+
+        <!-- Slide 9: Comparative Constitutional Systems -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>🌍 American Federalism vs. European Systems</h2>
+            
+            <div class="auto-reveal">
+                <h3>Comparative Constitutional Innovation</h3>
+            </div>
+            
+            <div class="comparative-systems auto-reveal">
+                <div class="system-card">
+                    <h4>🇺🇸 American Federal System</h4>
+                    <ul class="system-features">
+                        <li><strong>Written constitution:</strong> Supreme law limiting government power</li>
+                        <li><strong>Federal structure:</strong> Power divided between national and state levels</li>
+                        <li><strong>Separation of powers:</strong> Executive, legislative, judicial branches</li>
+                        <li><strong>Popular sovereignty:</strong> Authority derives from "We the People"</li>
+                        <li><strong>Bill of Rights:</strong> Individual liberties protected from government</li>
+                        <li><strong>Judicial review:</strong> Courts can declare laws unconstitutional</li>
+                    </ul>
+                </div>
+                
+                <div class="system-card">
+                    <h4>🇬🇧 British Parliamentary System</h4>
+                    <ul class="system-features">
+                        <li><strong>Unwritten constitution:</strong> Parliamentary sovereignty supreme</li>
+                        <li><strong>Unitary system:</strong> Parliament has ultimate authority</li>
+                        <li><strong>Parliamentary government:</strong> Executive emerges from legislature</li>
+                        <li><strong>Crown-in-Parliament:</strong> Monarch as symbolic head</li>
+                        <li><strong>Common law:</strong> Judge-made law alongside statute</li>
+                        <li><strong>No judicial review:</strong> Parliament cannot be overruled</li>
+                    </ul>
+                </div>
+                
+                <div class="system-card">
+                    <h4>🇫🇷 French Revolutionary Experiments</h4>
+                    <ul class="system-features">
+                        <li><strong>Written constitutions:</strong> Multiple attempts 1791-1799</li>
+                        <li><strong>Unitary republic:</strong> Centralized national authority</li>
+                        <li><strong>Legislative supremacy:</strong> National Assembly as sovereign</li>
+                        <li><strong>Popular sovereignty:</strong> Authority from "the nation"</li>
+                        <li><strong>Rights declarations:</strong> Individual and collective rights</li>
+                        <li><strong>Political instability:</strong> Frequent constitutional changes</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                Why does American federalism prove more stable than French revolutionary experiments while maintaining more democratic participation than British parliamentary system?
+            </div>
+        </div>
+
+        <!-- Slide 10: Constitutional and Economic Innovations Create New Tensions -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>🔗 Constitutional and Economic Innovations Create New Social Tensions</h2>
+            
+            <div class="connecting-thread auto-reveal">
+                <h3>The Revolutionary Transformation</h3>
+                <p>American constitutional experimentation creates the first large-scale federal republic in the modern world, while British industrial development demonstrates new possibilities for economic organization - both innovations generate social tensions that will drive future political conflicts</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="text-align: center; color: #4caf50; margin: 1.5rem 0;">New Tensions Created by Innovation:</h3>
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h4>⚖️ Federal vs. State Power</h4>
+                        <p>Constitutional system creates ongoing tensions over the balance between national authority and state sovereignty</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>💰 Economic Development Models</h4>
+                        <p>Hamilton's financial system creates conflict between industrial/commercial and agricultural visions</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>🗳️ Democratic Participation</h4>
+                        <p>Constitutional democracy creates pressure for expanded political participation</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>⛓️ Slavery Contradiction</h4>
+                        <p>Constitutional compromises on slavery become increasingly untenable as democracy expands</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #4caf50;">Global Influence of American Constitutional Innovation</h3>
+                <p style="text-align: center; font-size: 1.2rem;">Written constitutions, federalism, and separation of powers become models for democratic movements worldwide, while industrial development creates new forms of economic and social organization</p>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <p><strong>Next Week Preview:</strong> How do industrial and democratic revolutions interact to create new social conflicts and political possibilities as both America and Britain experience rapid social change?</p>
+            </div>
+        </div>
+
+        <!-- Slide 11: Looking Forward -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>🔮 Constitutional Success Creates New Challenges</h2>
+            
+            <div class="auto-reveal">
+                <h3 style="text-align: center; color: #4caf50; margin: 1.5rem 0;">The Irony of Success</h3>
+                <p style="text-align: center; font-size: 1.3rem;">Constitutional and economic innovations solve immediate post-revolutionary problems but create new tensions that will test the durability of revolutionary institutions</p>
+            </div>
+            
+            <div class="constitutional-timeline auto-reveal">
+                <h3>Emerging Challenges for the Constitutional System</h3>
+                <div class="timeline-events">
+                    <div class="timeline-event">
+                        <div class="event-year">1790s</div>
+                        <div class="event-title">Party Formation</div>
+                        <div class="event-description">Federalists vs. Republicans emerge despite constitutional framers' hopes to avoid factions</div>
+                    </div>
+                    <div class="timeline-event">
+                        <div class="event-year">1800s</div>
+                        <div class="event-title">Westward Expansion</div>
+                        <div class="event-description">Louisiana Purchase and territorial growth strain federal system</div>
+                    </div>
+                    <div class="timeline-event">
+                        <div class="event-year">1810s</div>
+                        <div class="event-title">Economic Integration</div>
+                        <div class="event-description">Transportation revolution connects regions but creates sectional economic interests</div>
+                    </div>
+                    <div class="timeline-event">
+                        <div class="event-year">1820s</div>
+                        <div class="event-title">Democratic Pressure</div>
+                        <div class="event-description">Demand for expanded suffrage and political participation</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal" style="text-align: center; margin-top: 2rem;">
+                <h3 style="color: #4caf50;">Understanding Constitutional Innovation</h3>
+                <p style="font-size: 1.2rem;">The American Constitution and Hamilton's financial system create successful frameworks for democratic governance and economic development - but their very success generates new social and political tensions that will challenge the revolutionary generation's solutions</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()" aria-label="Previous">← Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()" aria-label="Next">Next →</button>
+    </div>
+
+    <!-- Slide Indicators -->
+    <div class="slide-indicator" role="tablist" aria-label="Slide navigation">
+        <div class="indicator-dot active" onclick="goToSlide(0)" role="tab" aria-label="Slide 1"></div>
+        <div class="indicator-dot" onclick="goToSlide(1)" role="tab" aria-label="Slide 2"></div>
+        <div class="indicator-dot" onclick="goToSlide(2)" role="tab" aria-label="Slide 3"></div>
+        <div class="indicator-dot" onclick="goToSlide(3)" role="tab" aria-label="Slide 4"></div>
+        <div class="indicator-dot" onclick="goToSlide(4)" role="tab" aria-label="Slide 5"></div>
+        <div class="indicator-dot" onclick="goToSlide(5)" role="tab" aria-label="Slide 6"></div>
+        <div class="indicator-dot" onclick="goToSlide(6)" role="tab" aria-label="Slide 7"></div>
+        <div class="indicator-dot" onclick="goToSlide(7)" role="tab" aria-label="Slide 8"></div>
+        <div class="indicator-dot" onclick="goToSlide(8)" role="tab" aria-label="Slide 9"></div>
+        <div class="indicator-dot" onclick="goToSlide(9)" role="tab" aria-label="Slide 10"></div>
+        <div class="indicator-dot" onclick="goToSlide(10)" role="tab" aria-label="Slide 11"></div>
+    </div>
+
+    <!-- Image Tab -->
+    <div class="image-tab" onclick="toggleImage()">📊 Constitutional Charts</div>
+
+    <!-- Image Overlay -->
+    <div class="image-overlay" id="imageOverlay" onclick="toggleImage()">
+        <div class="image-content">
+            <h3>Constitutional and Economic Development Charts</h3>
+            <p>Interactive diagrams showing the structure of the U.S. Constitution, comparative government systems, Hamilton's financial program, and early American industrial development. Includes flowcharts of constitutional processes and economic data visualizations.</p>
+            <button onclick="toggleImage()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #4caf50; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentReveal = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlideIndicators() {
+            const indicators = document.querySelectorAll('.indicator-dot');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function showSlide(slideIndex) {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('hidden', index !== slideIndex);
+            });
+            
+            currentReveal = 0;
+            updateSlideIndicators();
+            revealNextItem();
+        }
+
+        function nextSlide() {
+            const currentSlideElement = slides[currentSlide];
+            const maxReveals = parseInt(currentSlideElement.dataset.revealCount) || 1;
+            
+            if (currentReveal < maxReveals) {
+                revealNextItem();
+            } else if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentReveal > 0) {
+                hideCurrentItem();
+            } else if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+                // Reveal all items on previous slide
+                const prevSlideElement = slides[currentSlide];
+                const maxReveals = parseInt(prevSlideElement.dataset.revealCount) || 1;
+                currentReveal = maxReveals;
+                showAllReveals();
+            }
+        }
+
+        function revealNextItem() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.auto-reveal, .reveal-item');
+            
+            if (currentReveal < revealItems.length) {
+                revealItems[currentReveal].classList.add('revealed');
+                currentReveal++;
+            }
+        }
+
+        function hideCurrentItem() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.auto-reveal, .reveal-item');
+            
+            if (currentReveal > 0) {
+                currentReveal--;
+                revealItems[currentReveal].classList.remove('revealed');
+            }
+        }
+
+        function showAllReveals() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.auto-reveal, .reveal-item');
+            revealItems.forEach(item => item.classList.add('revealed'));
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            showSlide(currentSlide);
+        }
+
+        function toggleImage() {
+            const overlay = document.getElementById('imageOverlay');
+            overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(event) {
+            switch(event.key) {
+                case 'ArrowLeft':
+                    previousSlide();
+                    break;
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+                case ',':
+                    if (currentSlide > 0) {
+                        currentSlide--;
+                        showSlide(currentSlide);
+                        const maxReveals = parseInt(slides[currentSlide].dataset.revealCount) || 1;
+                        currentReveal = maxReveals;
+                        showAllReveals();
+                    }
+                    break;
+                case '.':
+                    if (currentSlide < totalSlides - 1) {
+                        currentSlide++;
+                        showSlide(currentSlide);
+                    }
+                    break;
+                case 'Enter':
+                    showAllReveals();
+                    const maxReveals = parseInt(slides[currentSlide].dataset.revealCount) || 1;
+                    currentReveal = maxReveals;
+                    break;
+            }
+        });
+
+        // Initialize presentation
+        showSlide(0);
+    </script>
+</body>
+</html>

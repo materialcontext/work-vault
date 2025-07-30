@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wilson's Path to War: The Decision-Consequence Chain</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+	    font-size: 20px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .slide-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            z-index: 1000;
+        }
+
+        .image-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 215, 0, 0.3);
+            border: 2px solid #ffd700;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .image-toggle:hover {
+            background: rgba(255, 215, 0, 0.5);
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .slide {
+            display: none;
+            height: 100vh;
+            padding: 4rem;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #ffd700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #87ceeb;
+        }
+
+        .central-concept {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.3);
+            max-width: 80%;
+        }
+
+        .language-frame-display {
+            background: linear-gradient(135deg, #2E8B57, #3CB371);
+            border: 3px solid #ffd700;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #ffd700;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(46, 139, 87, 0.4);
+        }
+
+        .decision-stage {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: left;
+            max-width: 90%;
+            backdrop-filter: blur(10px);
+        }
+
+        .stage-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .stage-element {
+            margin: 1rem 0;
+            padding: 0.8rem;
+            border-left: 4px solid #87ceeb;
+            background: rgba(135, 206, 235, 0.1);
+        }
+
+        .stage-label {
+            font-weight: bold;
+            color: #87ceeb;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            width: 100%;
+            max-width: 90%;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .practice-scenario {
+            background: linear-gradient(135deg, #2E8B57, #3CB371);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 2px solid #ffd700;
+            max-width: 85%;
+        }
+
+        .scenario-title {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .skills-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skills-list li {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+            font-size: 1.1rem;
+        }
+
+        .skills-list li::before {
+            content: "🎯 ";
+            margin-right: 0.5rem;
+        }
+
+        .quote-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+            font-size: 1.3rem;
+            max-width: 80%;
+        }
+
+        .chain-visual {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .chain-link {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            border-radius: 15px;
+            padding: 1rem;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+            position: relative;
+        }
+
+        .chain-link::after {
+            content: "→";
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: #ffd700;
+        }
+
+        .chain-link:last-child::after {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 2rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .chain-visual {
+                flex-direction: column;
+            }
+            
+            .chain-link::after {
+                content: "↓";
+                right: 50%;
+                top: auto;
+                bottom: -15px;
+                transform: translateX(50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="slide-indicator" id="slideIndicator">1 / 9</div>
+        <div class="image-toggle" id="imageToggle">📚 Wilson Context</div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <h1>🇺🇸 Wilson's Path to War</h1>
+            <div class="central-concept auto-reveal">
+                <h3>The Decision-Consequence Chain That Led America to WWI</h3>
+                <p style="font-size: 1.4rem; margin-top: 1rem;">How events created choices, choices created consequences, and consequences created new events in an escalating cycle toward war</p>
+            </div>
+            <div class="quote-box auto-reveal">
+                <p>"The world must be made safe for democracy" - Woodrow Wilson, April 2, 1917</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Language Frame Introduction -->
+        <div class="slide">
+            <h2>🧱 Our Language Frame</h2>
+            <div class="language-frame-display auto-reveal">
+                "When <strong>[event]</strong> happened, America faced a choice between... 
+                The decision to <strong>[choice]</strong> led to <strong>[consequence]</strong>, 
+                which then created a new situation where..."
+            </div>
+            <div class="central-concept auto-reveal">
+                <h3>The Power of This Frame</h3>
+                <p>This structure shows how <strong>events created decision points</strong>, and <strong>decisions created new events</strong>, in an escalating cycle toward war.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Wilson's Impossible Position -->
+        <div class="slide">
+            <h2>⚖️ Wilson's Political Tightrope</h2>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🗳️ Electoral Weakness</h3>
+                    <ul class="skills-list">
+                        <li>Won only 42% of vote in 1912</li>
+                        <li>Razor-thin 1916 victory (3,773 votes in California)</li>
+                        <li>Campaigned on "He Kept Us Out of War"</li>
+                        <li>No strong popular mandate</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>🌍 Coalition Pressures</h3>
+                    <ul class="skills-list">
+                        <li>German-Americans (8-10% of population)</li>
+                        <li>Irish-Americans hostile to helping Britain</li>
+                        <li>Economic interests tied to Allied victory</li>
+                        <li>Regional divisions (Midwest vs. Northeast)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="quote-box auto-reveal">
+                "Wilson lacked a strong mandate and faced complex constituencies with conflicting views on the European war"
+            </div>
+        </div>
+
+        <!-- Slide 4: Stage 1 - Lusitania Crisis -->
+        <div class="slide">
+            <h2>🚢 Stage 1: The Lusitania Crisis (1915)</h2>
+            <div class="decision-stage auto-reveal">
+                <div class="stage-title">The Decision-Consequence Chain Begins</div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">EVENT:</div>
+                    German U-boat sinks Lusitania on May 7, 1915, killing 1,195 people including 128 Americans
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">CHOICE:</div>
+                    Diplomatic protest vs. Military retaliation vs. Economic pressure
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">DECISION:</div>
+                    Strong diplomatic protest with implicit threat of future action
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">CONSEQUENCE:</div>
+                    Germany temporarily restricts submarine warfare
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">NEW SITUATION:</div>
+                    Appearance of American influence, but precedent of threats without follow-through
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Stage 2 - Sussex Incident -->
+        <div class="slide">
+            <h2>⚓ Stage 2: The Sussex Incident (1916)</h2>
+            <div class="decision-stage auto-reveal">
+                <div class="stage-title">Escalating the Pressure</div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">EVENT:</div>
+                    More ships sunk despite German promises - Sussex attacked March 1916
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">CHOICE:</div>
+                    Accept violations vs. Ultimatum vs. Break diplomatic relations
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">DECISION:</div>
+                    Sussex Pledge ultimatum - "stop unrestricted warfare or we break relations"
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">CONSEQUENCE:</div>
+                    Germany agrees to warn before attacking and ensure passenger safety
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">NEW SITUATION:</div>
+                    America committed to escalation if Germany resumes unrestricted warfare
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Stage 3 - Unrestricted Submarine Warfare Returns -->
+        <div class="slide">
+            <h2>🌊 Stage 3: Return of Unrestricted Submarine Warfare (1917)</h2>
+            <div class="decision-stage auto-reveal">
+                <div class="stage-title">The Trap Springs</div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">EVENT:</div>
+                    Germany announces resumption of unrestricted submarine warfare February 1, 1917
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">CHOICE:</div>
+                    Accept humiliation vs. Armed neutrality vs. Declare war immediately
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">DECISION:</div>
+                    Armed neutrality - arm merchant ships for self-defense
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">CONSEQUENCE:</div>
+                    Direct confrontation becomes inevitable as armed ships engage U-boats
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">NEW SITUATION:</div>
+                    America already in undeclared naval war with Germany
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Stage 4 - Zimmermann Telegram -->
+        <div class="slide">
+            <h2>📨 Stage 4: The Zimmermann Telegram (1917)</h2>
+            <div class="decision-stage auto-reveal">
+                <div class="stage-title">The Final Straw</div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">EVENT:</div>
+                    Intercepted German proposal for Mexican alliance to recover Texas, New Mexico, Arizona
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">CHOICE:</div>
+                    Keep secret vs. Limited response vs. Full war declaration
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">DECISION:</div>
+                    War declaration - "The world must be made safe for democracy"
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">CONSEQUENCE:</div>
+                    America enters European war with 373-50 House vote, 82-6 Senate vote
+                </div>
+                
+                <div class="stage-element">
+                    <div class="stage-label">FINAL RESULT:</div>
+                    Reluctant superpower born from escalating decisions, not single choice
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: The Chain Visualization -->
+        <div class="slide">
+            <h2>🔗 The Complete Decision-Consequence Chain</h2>
+            <div class="chain-visual auto-reveal">
+                <div class="chain-link">
+                    <strong>Lusitania</strong><br>
+                    Diplomatic Protest<br>
+                    ↓<br>
+                    German Restraint
+                </div>
+                <div class="chain-link">
+                    <strong>Sussex</strong><br>
+                    Ultimatum<br>
+                    ↓<br>
+                    Pledge Promise
+                </div>
+                <div class="chain-link">
+                    <strong>U-Boat Return</strong><br>
+                    Armed Neutrality<br>
+                    ↓<br>
+                    Naval War
+                </div>
+                <div class="chain-link">
+                    <strong>Zimmermann</strong><br>
+                    War Declaration<br>
+                    ↓<br>
+                    Global Power
+                </div>
+            </div>
+            <div class="central-concept auto-reveal">
+                <h3>Key Insight</h3>
+                <p>Each decision created new constraints that made the next decision more difficult and war more likely. Wilson didn't choose war in April 1917 - he chose it gradually through three years of escalating commitments.</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Practice Application -->
+        <div class="slide">
+            <h2>🎯 Your Language Frame Practice</h2>
+            <div class="practice-scenario auto-reveal">
+                <div class="scenario-title">Apply the Decision-Consequence Chain</div>
+                <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">
+                    Use our language frame to analyze ANY historical crisis or personal decision-making situation:
+                </p>
+                <div class="language-frame-display" style="font-size: 1.4rem;">
+                    "When <strong>[event]</strong> happened, <strong>[person/nation]</strong> faced a choice between... 
+                    The decision to <strong>[choice]</strong> led to <strong>[consequence]</strong>, 
+                    which then created a new situation where..."
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="content-card auto-reveal">
+                    <h3>🗣️ Language Skills Focus</h3>
+                    <ul class="skills-list">
+                        <li>Complex cause-effect chains</li>
+                        <li>Decision-making vocabulary</li>
+                        <li>Conditional language</li>
+                        <li>Escalation language</li>
+                        <li>Consequence analysis</li>
+                    </ul>
+                </div>
+                <div class="content-card auto-reveal">
+                    <h3>📈 Transferable Structure</h3>
+                    <ul class="skills-list">
+                        <li>Any historical crisis</li>
+                        <li>Personal decisions</li>
+                        <li>Policy analysis</li>
+                        <li>Business strategy</li>
+                        <li>Scientific processes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn" onclick="previousSlide()">←</button>
+            <button class="control-btn" onclick="nextSlide()">→</button>
+            <button class="control-btn" onclick="revealAll()">All</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+
+        function updateSlideIndicator() {
+            document.getElementById('slideIndicator').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            
+            // Reset and show auto-reveal elements
+            const autoRevealElements = slides[index].querySelectorAll('.auto-reveal');
+            autoRevealElements.forEach((element, i) => {
+                element.classList.remove('show');
+                setTimeout(() => {
+                    element.classList.add('show');
+                }, i * 300);
+            });
+            
+            revealIndex = 0;
+            updateSlideIndicator();
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            autoRevealElements.forEach(element => {
+                element.classList.add('show');
+            });
+        }
+
+        function progressiveReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < autoRevealElements.length) {
+                autoRevealElements[revealIndex].classList.add('show');
+                revealIndex++;
+            } else {
+                nextSlide();
+            }
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowLeft':
+                case ',':
+                    if (revealIndex === 0) {
+                        previousSlide();
+                    }
+                    break;
+                case 'ArrowRight':
+                case '.':
+                    const currentSlideElement = slides[currentSlide];
+                    const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+                    const allRevealed = Array.from(autoRevealElements).every(el => el.classList.contains('show'));
+                    
+                    if (allRevealed) {
+                        nextSlide();
+                    } else {
+                        progressiveReveal();
+                    }
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+            }
+        });
+
+        // Image toggle functionality
+        document.getElementById('imageToggle').addEventListener('click', function() {
+            // This would show/hide contextual images or documents
+            // For now, just provide visual feedback
+            this.style.background = this.style.background === 'rgba(255, 215, 0, 0.5)' ? 
+                'rgba(255, 215, 0, 0.3)' : 'rgba(255, 215, 0, 0.5)';
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

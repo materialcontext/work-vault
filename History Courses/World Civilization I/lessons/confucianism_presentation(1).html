@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Pillars of Chinese Culture</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .slide.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .slide-content {
+            width: 90%;
+            max-width: 1200px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #ffed4e;
+        }
+
+        h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        p, li {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .comparison-card:hover {
+            border-color: rgba(255, 215, 0, 0.6);
+            transform: translateY(-5px);
+        }
+
+        .evidence-box {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 5px solid #ffd700;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .central-question {
+            background: rgba(255, 237, 78, 0.1);
+            border: 2px solid #ffed4e;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-size: 1.4rem;
+            font-style: italic;
+        }
+
+        .connecting-thread {
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 5px solid #00d4ff;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .philosophy-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            text-align: left;
+            min-height: 400px;
+        }
+
+        .philosophy-card.confucian {
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .philosophy-card.legalist {
+            border-color: rgba(255, 0, 0, 0.5);
+        }
+
+        .philosophy-card.daoist {
+            border-color: rgba(0, 255, 255, 0.5);
+        }
+
+        ul {
+            text-align: left;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .auto-reveal, .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .auto-reveal.revealed, .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            z-index: 1000;
+        }
+
+        .image-tab {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 215, 0, 0.8);
+            color: #1a1a2e;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 1000;
+            display: none;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .timeline-item {
+            text-align: center;
+            flex: 1;
+            padding: 1rem;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+
+        .pillar-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .synthesis-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .synthesis-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .synthesis-confucian {
+            border: 2px solid rgba(255, 215, 0, 0.5);
+        }
+
+        .synthesis-legalist {
+            border: 2px solid rgba(255, 0, 0, 0.5);
+        }
+
+        .synthesis-daoist {
+            border: 2px solid rgba(0, 255, 255, 0.5);
+        }
+
+        .impact-timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .impact-item {
+            text-align: center;
+            flex: 1;
+            padding: 1rem;
+        }
+
+        .impact-date {
+            font-weight: bold;
+            color: #ffd700;
+            font-size: 1.1rem;
+        }
+
+        .quote-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+            font-size: 1.4rem;
+            position: relative;
+        }
+
+        .modern-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .modern-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title Slide -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1 class="auto-reveal">🏛️ Three Pillars of Chinese Culture</h1>
+                <h2 class="auto-reveal">Confucianism • Legalism • Daoism</h2>
+                <div class="evidence-box auto-reveal">
+                    <h3>📖 Essential Question</h3>
+                    <p>How did three competing philosophical schools created during China's political chaos ultimately combine to form the foundation of one of history's most enduring civilizations?</p>
+                </div>
+                <div class="connecting-thread auto-reveal">
+                    <p><strong>Connecting Thread:</strong> During the Warring States period (475-221 BCE), China's political fragmentation sparked an unprecedented intellectual flowering. Three major schools emerged with radically different solutions to social order—but their ultimate synthesis would define Chinese culture for over two millennia.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Historical Context -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h2 class="reveal">🌪️ Crisis Creates Innovation</h2>
+                
+                <div class="timeline reveal">
+                    <div class="timeline-item reveal">
+                        <div class="timeline-date">771 BCE</div>
+                        <p>Zhou Dynasty weakens</p>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-date">475 BCE</div>
+                        <p>Warring States period begins</p>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-date">221 BCE</div>
+                        <p>Qin unifies China</p>
+                    </div>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>💥 Political Collapse</h3>
+                        <ul>
+                            <li class="reveal">Zhou feudal system breaking down</li>
+                            <li class="reveal">Seven major states competing for dominance</li>
+                            <li class="reveal">Traditional aristocratic authority questioned</li>
+                            <li class="reveal">Constant warfare disrupting social order</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🧠 Intellectual Response</h3>
+                        <ul>
+                            <li class="reveal">"Hundred Schools of Thought" emerging</li>
+                            <li class="reveal">Traveling scholars offering solutions</li>
+                            <li class="reveal">Competing visions of ideal society</li>
+                            <li class="reveal">Three schools dominate: Confucian, Legalist, Daoist</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="central-question reveal">
+                    <h3>The Fundamental Challenge</h3>
+                    <p>With traditional authority collapsed and society in chaos, <strong>how should humans organize themselves?</strong> Each school offered a radically different answer to this eternal question.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Three Schools Overview -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h2 class="reveal">🏛️ Three Paths to Social Order</h2>
+                
+                <div class="philosophy-grid">
+                    <div class="philosophy-card confucian reveal">
+                        <div class="pillar-icon">☯️</div>
+                        <h3>Confucianism</h3>
+                        <p class="reveal"><strong>Core Principle:</strong> Moral cultivation</p>
+                        <p class="reveal"><strong>Method:</strong> Education and virtue</p>
+                        <p class="reveal"><strong>Goal:</strong> Harmonious relationships</p>
+                        <p class="reveal"><strong>Leadership:</strong> Rule by moral example</p>
+                    </div>
+                    <div class="philosophy-card legalist reveal">
+                        <div class="pillar-icon">⚖️</div>
+                        <h3>Legalism</h3>
+                        <p class="reveal"><strong>Core Principle:</strong> Strict laws</p>
+                        <p class="reveal"><strong>Method:</strong> Rewards and punishments</p>
+                        <p class="reveal"><strong>Goal:</strong> State power and order</p>
+                        <p class="reveal"><strong>Leadership:</strong> Rule through institutions</p>
+                    </div>
+                    <div class="philosophy-card daoist reveal">
+                        <div class="pillar-icon">🌊</div>
+                        <h3>Daoism</h3>
+                        <p class="reveal"><strong>Core Principle:</strong> Natural harmony</p>
+                        <p class="reveal"><strong>Method:</strong> Minimal intervention</p>
+                        <p class="reveal"><strong>Goal:</strong> Balance with nature</p>
+                        <p class="reveal"><strong>Leadership:</strong> Rule by non-action</p>
+                    </div>
+                </div>
+
+                <div class="central-question reveal">
+                    <h3>Three Completely Different Solutions</h3>
+                    <p>Each school started from different assumptions about <strong>human nature</strong> and reached different conclusions about <strong>ideal government</strong>. How could such opposing ideas all contribute to Chinese civilization?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Confucianism Deep Dive -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h2 class="reveal">☯️ Confucianism: The Moral Foundation</h2>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🎓 Origins & Key Figures</h3>
+                        <ul>
+                            <li class="reveal"><strong>Confucius (551-479 BCE):</strong> Founder, emphasized education</li>
+                            <li class="reveal"><strong>Mencius (372-289 BCE):</strong> Human nature is good</li>
+                            <li class="reveal"><strong>Xunzi (310-220 BCE):</strong> Human nature needs cultivation</li>
+                            <li class="reveal"><strong>Context:</strong> Response to social breakdown</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🔑 Core Concepts</h3>
+                        <ul>
+                            <li class="reveal"><strong>Ren (仁):</strong> Benevolence, treating others with empathy</li>
+                            <li class="reveal"><strong>Li (礼):</strong> Proper conduct and rituals</li>
+                            <li class="reveal"><strong>Junzi (君子):</strong> The exemplary person</li>
+                            <li class="reveal"><strong>Filial piety:</strong> Respect for parents and ancestors</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="evidence-box reveal">
+                    <h4>💡 Revolutionary Idea</h4>
+                    <p class="reveal">Confucius transformed <strong>"gentleman" (junzi)</strong> from meaning "lord's son" to meaning anyone who cultivates moral character. This created the world's first merit-based conception of leadership.</p>
+                </div>
+
+                <div class="central-question reveal">
+                    <h3>Importance Then and Now</h3>
+                    <p><strong>Warring States Era:</strong> Offered moral alternative to force. <strong>Chinese Culture:</strong> Became foundation for civil service system, family values, and educational emphasis. Still influences East Asian societies today.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Legalism Deep Dive -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h2 class="reveal">⚖️ Legalism: The Administrative System</h2>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>⚡ Origins & Key Figures</h3>
+                        <ul>
+                            <li class="reveal"><strong>Shang Yang (d. 338 BCE):</strong> Reformed Qin state</li>
+                            <li class="reveal"><strong>Han Feizi (280-233 BCE):</strong> Greatest theorist</li>
+                            <li class="reveal"><strong>Li Si (280-208 BCE):</strong> Implemented imperial system</li>
+                            <li class="reveal"><strong>Context:</strong> Pragmatic response to warfare</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🔧 Core Concepts</h3>
+                        <ul>
+                            <li class="reveal"><strong>Fa (法):</strong> Universal laws applied equally</li>
+                            <li class="reveal"><strong>Shu (術):</strong> Administrative techniques</li>
+                            <li class="reveal"><strong>Shi (勢):</strong> Positional power and authority</li>
+                            <li class="reveal"><strong>Human nature:</strong> Naturally selfish, needs control</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="evidence-box reveal">
+                    <h4>🏗️ Practical Innovation</h4>
+                    <p class="reveal">Legalists created history's first <strong>merit-based bureaucracy</strong> with standardized laws, measurements, and currency. Their administrative methods enabled the Qin to unify China in just 15 years.</p>
+                </div>
+
+                <div class="central-question reveal">
+                    <h3>Importance Then and Now</h3>
+                    <p><strong>Warring States Era:</strong> Enabled rapid military conquest and political unification. <strong>Chinese Culture:</strong> Provided administrative backbone for imperial system. Modern bureaucratic methods still reflect Legalist principles.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Daoism Deep Dive -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h2 class="reveal">🌊 Daoism: The Natural Way</h2>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🌿 Origins & Key Figures</h3>
+                        <ul>
+                            <li class="reveal"><strong>Laozi (legendary):</strong> Attributed founder of Daoism</li>
+                            <li class="reveal"><strong>Zhuangzi (369-286 BCE):</strong> Developed mystical aspects</li>
+                            <li class="reveal"><strong>Huang-Lao school:</strong> Political Daoism in early Han</li>
+                            <li class="reveal"><strong>Context:</strong> Reaction against artificial social structures</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🌱 Core Concepts</h3>
+                        <ul>
+                            <li class="reveal"><strong>Dao (道):</strong> The Way, natural order of universe</li>
+                            <li class="reveal"><strong>Wu wei (無為):</strong> Non-action, minimal intervention</li>
+                            <li class="reveal"><strong>Ziran (自然):</strong> Naturalness, spontaneous development</li>
+                            <li class="reveal"><strong>Yin-yang:</strong> Complementary forces in balance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="evidence-box reveal">
+                    <h4>🍃 Paradoxical Wisdom</h4>
+                    <p class="reveal">Daoists taught that <strong>"the best ruler is one whose existence the people are barely aware of"</strong> and that trying too hard to control society actually creates more chaos.</p>
+                </div>
+
+                <div class="central-question reveal">
+                    <h3>Importance Then and Now</h3>
+                    <p><strong>Warring States Era:</strong> Provided alternative to aggressive competition. <strong>Chinese Culture:</strong> Influenced art, medicine, martial arts, and governance philosophy. Balances Confucian activism with acceptance of natural rhythms.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Initial Competition -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h2 class="reveal">⚔️ Competing for China's Soul</h2>
+                
+                <div class="impact-timeline reveal">
+                    <div class="impact-item reveal">
+                        <div class="impact-date">Warring States</div>
+                        <p>Schools compete for influence</p>
+                    </div>
+                    <div class="impact-item reveal">
+                        <div class="impact-date">Qin Victory</div>
+                        <p>Legalism dominates</p>
+                    </div>
+                    <div class="impact-item reveal">
+                        <div class="impact-date">Qin Collapse</div>
+                        <p>Pure Legalism fails</p>
+                    </div>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🎯 What Each School Offered</h3>
+                        <ul>
+                            <li class="reveal"><strong>Confucians:</strong> Moral legitimacy and cultural continuity</li>
+                            <li class="reveal"><strong>Legalists:</strong> Administrative efficiency and military power</li>
+                            <li class="reveal"><strong>Daoists:</strong> Cosmic perspective and sustainable governance</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>❌ What Each School Lacked</h3>
+                        <ul>
+                            <li class="reveal"><strong>Confucians:</strong> Practical methods for immediate order</li>
+                            <li class="reveal"><strong>Legalists:</strong> Cultural legitimacy and popular support</li>
+                            <li class="reveal"><strong>Daoists:</strong> Concrete solutions for complex problems</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="central-question reveal">
+                    <h3>The Qin Experiment</h3>
+                    <p>The Qin Dynasty proved Legalism could <strong>unify China rapidly</strong> but couldn't <strong>create lasting stability</strong>. The dynasty collapsed within 15 years of its founder's death. What went wrong?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: The Great Synthesis -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h2 class="reveal">🔗 Han Dynasty: The Perfect Combination</h2>
+                
+                <div class="synthesis-grid">
+                    <div class="synthesis-card synthesis-confucian reveal">
+                        <h3>☯️ Confucian Contribution</h3>
+                        <p class="reveal"><strong>Social Ethics</strong></p>
+                        <ul>
+                            <li class="reveal">Moral education for officials</li>
+                            <li class="reveal">Family values and social hierarchy</li>
+                            <li class="reveal">Cultural legitimacy for imperial rule</li>
+                        </ul>
+                    </div>
+                    <div class="synthesis-card synthesis-legalist reveal">
+                        <h3>⚖️ Legalist Contribution</h3>
+                        <p class="reveal"><strong>Administrative Methods</strong></p>
+                        <ul>
+                            <li class="reveal">Standardized laws and procedures</li>
+                            <li class="reveal">Merit-based bureaucracy</li>
+                            <li class="reveal">Centralized imperial control</li>
+                        </ul>
+                    </div>
+                    <div class="synthesis-card synthesis-daoist reveal">
+                        <h3>🌊 Daoist Contribution</h3>
+                        <p class="reveal"><strong>Natural Philosophy</strong></p>
+                        <ul>
+                            <li class="reveal">Cosmic legitimacy (Mandate of Heaven)</li>
+                            <li class="reveal">Balance in governance approach</li>
+                            <li class="reveal">Spiritual cultivation practices</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="evidence-box reveal">
+                    <h4>🏛️ The Three Teachings Tradition</h4>
+                    <p class="reveal">By the medieval period, Chinese culture explicitly recognized <strong>san jiao</strong> (Three Teachings): Confucianism for social relationships, Daoism for spiritual development, and Legalism (absorbed into Confucian practice) for administration.</p>
+                </div>
+
+                <div class="central-question reveal">
+                    <h3>Why the Synthesis Worked</h3>
+                    <p>Rather than choosing one approach, Chinese civilization <strong>combined all three</strong>, using each school's strengths to compensate for the others' weaknesses. This flexibility created remarkable durability.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Long-term Cultural Impact -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h2 class="reveal">🌟 2,000+ Years of Influence</h2>
+                
+                <div class="modern-grid">
+                    <div class="modern-card reveal">
+                        <h3>🏛️ Government & Society</h3>
+                        <ul>
+                            <li class="reveal"><strong>Civil service exams:</strong> Merit-based advancement</li>
+                            <li class="reveal"><strong>Scholar-officials:</strong> Educated bureaucracy</li>
+                            <li class="reveal"><strong>Moral legitimacy:</strong> Rulers judged on virtue</li>
+                            <li class="reveal"><strong>Social stability:</strong> Hierarchy with responsibility</li>
+                        </ul>
+                    </div>
+                    <div class="modern-card reveal">
+                        <h3>👨‍👩‍👧‍👦 Family & Education</h3>
+                        <ul>
+                            <li class="reveal"><strong>Filial piety:</strong> Respect for elders</li>
+                            <li class="reveal"><strong>Educational emphasis:</strong> Learning as highest value</li>
+                            <li class="reveal"><strong>Family responsibility:</strong> Collective welfare</li>
+                            <li class="reveal"><strong>Cultural continuity:</strong> Preserving traditions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="evidence-box reveal">
+                    <h4>🌏 East Asian Influence</h4>
+                    <p class="reveal">The three-pillar synthesis spread throughout East Asia, shaping the development of <strong>Korea, Japan, Vietnam,</strong> and other societies. Modern East Asian emphasis on education, family values, and efficient administration all reflect this ancient synthesis.</p>
+                </div>
+
+                <div class="central-question reveal">
+                    <h3>Adaptability Through Balance</h3>
+                    <p>The three-pillar system's greatest strength was its <strong>flexibility</strong>. Different historical periods emphasized different aspects while maintaining the overall balance, allowing continuous adaptation without losing cultural identity.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Modern Relevance -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h2 class="reveal">🔄 Ancient Wisdom, Modern Challenges</h2>
+                
+                <div class="modern-grid">
+                    <div class="modern-card reveal">
+                        <h3>💪 Contemporary Strengths</h3>
+                        <ul>
+                            <li class="reveal"><strong>Educational excellence:</strong> East Asian academic achievement</li>
+                            <li class="reveal"><strong>Social cohesion:</strong> Strong community bonds</li>
+                            <li class="reveal"><strong>Long-term thinking:</strong> Sustainable development focus</li>
+                            <li class="reveal"><strong>Efficient governance:</strong> Professional bureaucracy</li>
+                        </ul>
+                    </div>
+                    <div class="modern-card reveal">
+                        <h3>⚠️ Modern Tensions</h3>
+                        <ul>
+                            <li class="reveal"><strong>Individual rights:</strong> vs. collective responsibility</li>
+                            <li class="reveal"><strong>Gender equality:</strong> vs. traditional roles</li>
+                            <li class="reveal"><strong>Democratic values:</strong> vs. hierarchical authority</li>
+                            <li class="reveal"><strong>Innovation:</strong> vs. conformity pressure</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="quote-box reveal">
+                    <p>The success of this ancient synthesis offers valuable insights for contemporary challenges by demonstrating how diverse intellectual traditions can be integrated rather than eliminated, creating robust cultural foundations capable of evolution without losing essential identity.</p>
+                </div>
+
+                <div class="central-question reveal">
+                    <h3>Universal Lessons</h3>
+                    <p>Can the Chinese model of <strong>philosophical synthesis</strong> rather than <strong>ideological purity</strong> offer insights for modern societies facing complex challenges? What are the benefits and costs of this approach?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Looking Forward -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <h2 class="reveal">🔗 Connecting to World Civilization</h2>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🌍 Comparative Perspective</h3>
+                        <ul>
+                            <li class="reveal"><strong>Greece:</strong> Competing city-states drove innovation</li>
+                            <li class="reveal"><strong>China:</strong> Competing philosophies drove synthesis</li>
+                            <li class="reveal"><strong>Both:</strong> Crisis periods sparked intellectual creativity</li>
+                            <li class="reveal"><strong>Difference:</strong> Integration vs. continued competition</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🔄 Enduring Questions</h3>
+                        <ul>
+                            <li class="reveal">How do we balance freedom and order?</li>
+                            <li class="reveal">What role should government play in moral education?</li>
+                            <li class="reveal">Can diverse viewpoints strengthen rather than weaken society?</li>
+                            <li class="reveal">How do civilizations maintain identity while adapting?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="connecting-thread reveal">
+                    <h3>🎯 Our Next Investigation</h3>
+                    <p>The Chinese synthesis of competing philosophies created one model for civilization. Next, we'll explore how other societies answered similar challenges. How did <strong>Greek city-states</strong> handle political competition? What about <strong>Indian caste systems</strong> or <strong>Roman imperial administration</strong>? Each civilization found different solutions to universal human problems.</p>
+                </div>
+
+                <div class="central-question reveal">
+                    <h3>The Big Picture</h3>
+                    <p>China's three-pillar system demonstrates that <strong>philosophical diversity</strong> can be a source of strength rather than weakness. When different approaches complement rather than destroy each other, the result can be remarkably durable civilization. What lessons does this hold for our interconnected modern world?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div>←/→: Navigate | ,/.: Previous/Next | Enter: Reveal All | Image Tab: Toggle</div>
+    </div>
+
+    <div class="image-tab" id="imageTab">📷</div>
+
+    <script>
+        let currentSlide = 0;
+        let revealIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.add('hidden'));
+            slides[n].classList.remove('hidden');
+            revealIndex = 0;
+            
+            // Auto-reveal elements
+            const autoRevealElements = slides[n].querySelectorAll('.auto-reveal');
+            autoRevealElements.forEach((element, index) => {
+                setTimeout(() => {
+                    element.classList.add('revealed');
+                }, index * 200);
+            });
+        }
+
+        function nextSlide() {
+            const currentSlideElement = slides[currentSlide];
+            const revealElements = currentSlideElement.querySelectorAll('.reveal');
+            
+            if (revealIndex < revealElements.length) {
+                revealElements[revealIndex].classList.add('revealed');
+                revealIndex++;
+            } else {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                showSlide(currentSlide);
+            }
+        }
+
+        function prevSlide() {
+            const currentSlideElement = slides[currentSlide];
+            const revealElements = currentSlideElement.querySelectorAll('.reveal');
+            
+            if (revealIndex > 0) {
+                revealIndex--;
+                revealElements[revealIndex].classList.remove('revealed');
+            } else {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                showSlide(currentSlide);
+                const newSlideElements = slides[currentSlide].querySelectorAll('.reveal');
+                newSlideElements.forEach(element => element.classList.add('revealed'));
+                revealIndex = newSlideElements.length;
+            }
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const revealElements = currentSlideElement.querySelectorAll('.reveal');
+            revealElements.forEach(element => element.classList.add('revealed'));
+            revealIndex = revealElements.length;
+        }
+
+        function nextPage() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function prevPage() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    prevSlide();
+                    break;
+                case ',':
+                    prevPage();
+                    break;
+                case '.':
+                    nextPage();
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
