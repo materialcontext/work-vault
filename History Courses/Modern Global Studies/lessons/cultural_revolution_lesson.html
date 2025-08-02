@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cultural Revolution and Its Lasting Impact on Modern China</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            padding: 3rem 4rem;
+            overflow-y: auto;
+            overflow-x: hidden;
+            opacity: 1;
+            transition: all 0.6s ease-in-out;
+            box-sizing: border-box;
+        }
+
+        .slide.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            min-height: 100%;
+            padding-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ef4444, #dc2626, #b91c1c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #ef4444;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #60a5fa;
+        }
+
+        h4 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #34d399;
+        }
+
+        p {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #e5e7eb;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .timeline-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-card {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.4), rgba(22, 33, 62, 0.4));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            backdrop-filter: blur(10px);
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(0);
+            border-color: rgba(239, 68, 68, 0.5);
+        }
+
+        .period-highlight {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 4px solid #ef4444;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .impact-card {
+            background: linear-gradient(135deg, rgba(22, 33, 62, 0.5), rgba(15, 52, 96, 0.5));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+
+        .primary-source {
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.1), rgba(16, 185, 129, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 4px solid #34d399;
+            font-style: italic;
+        }
+
+        .reading-suggestions {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(124, 58, 237, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .legacy-analysis {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background: rgba(15, 52, 96, 0.8);
+            border: 1px solid rgba(239, 68, 68, 0.5);
+            color: #ef4444;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(239, 68, 68, 0.2);
+            transform: scale(1.05);
+        }
+
+        .image-tab {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(15, 52, 96, 0.8);
+            border: 1px solid rgba(239, 68, 68, 0.5);
+            color: #ef4444;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        ul {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.8rem;
+            color: #e5e7eb;
+        }
+
+        strong {
+            color: #fbbf24;
+        }
+
+        .essential-question {
+            background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(239, 68, 68, 0.2));
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+            border: 2px solid rgba(244, 63, 94, 0.4);
+        }
+
+        .slide-number {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+            z-index: 1000;
+            background: rgba(15, 52, 96, 0.8);
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .quote-highlight {
+            background: rgba(239, 68, 68, 0.1);
+            padding: 1.5rem;
+            border-left: 4px solid #ef4444;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .modern-connection {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="image-tab" onclick="toggleImage()">📸 Images</div>
+        <div class="controls">
+            <button class="control-btn" onclick="previousSlide()">← Prev</button>
+            <button class="control-btn" onclick="nextSlide()">Next →</button>
+            <button class="control-btn" onclick="revealAll()">Reveal All</button>
+        </div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="slide-number">1 / 12</div>
+                <h1>📚 The Cultural Revolution and Its Lasting Impact</h1>
+                <div class="hero-section auto-reveal">
+                    <h3>Understanding China's Most Chaotic Decade</h3>
+                    <p style="font-size: 2rem; color: #ef4444;">Modern China Class 2</p>
+                </div>
+                <div class="essential-question auto-reveal">
+                    <h4>Essential Question:</h4>
+                    <p style="font-size: 2.2rem; color: #ffffff; font-weight: 600;">How does the Cultural Revolution (1966-1976) continue to shape Chinese society, politics, and attitudes toward change today?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Quick Review and Context -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">2 / 12</div>
+                <h2>🔄 Quick Review: Where We Are in Chinese History</h2>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>🏛️ Imperial Collapse (1840s-1912)</h4>
+                        <p>Century of Humiliation → Need for strong, unified government</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>🌾 Communist Victory (1949)</h4>
+                        <p>Mao's peasant revolution → Mass mobilization model</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>📈 Early Successes (1949-1957)</h4>
+                        <p>Land reform, infrastructure, education → Rising confidence</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>💥 Great Leap Forward (1958-1962)</h4>
+                        <p>Economic fantasies → Worst famine in human history</p>
+                    </div>
+                </div>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>Setting the Stage for Cultural Revolution</h3>
+                    <p>By 1966, Mao felt his revolutionary vision was being abandoned by pragmatic leaders who prioritized economic recovery over ideological purity. His response would convulse China for a decade.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: What Was the Cultural Revolution? -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">3 / 12</div>
+                <h2>❓ What Was the Cultural Revolution? (1966-1976)</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>Mao's War Against His Own Government</h3>
+                    <p>Officially called the "Great Proletarian Cultural Revolution," this was Mao's attempt to destroy what he saw as growing bureaucracy, elitism, and traditional culture that threatened permanent revolution.</p>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>🎯 Mao's Goals</h4>
+                        <ul>
+                            <li><strong>Destroy "Old Culture":</strong> Traditional ideas, customs, habits, and culture</li>
+                            <li><strong>Attack Bureaucracy:</strong> Party officials who prioritized expertise over ideology</li>
+                            <li><strong>Mobilize Youth:</strong> Students as revolutionary shock troops</li>
+                            <li><strong>Permanent Revolution:</strong> Prevent China from becoming like Soviet Union</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>👥 The Red Guards</h4>
+                        <ul>
+                            <li><strong>Who:</strong> Millions of students aged 14-18</li>
+                            <li><strong>Mission:</strong> "Destroy the Four Olds" and attack authority figures</li>
+                            <li><strong>Methods:</strong> Public humiliation, violence, destruction of cultural artifacts</li>
+                            <li><strong>Power:</strong> Could accuse teachers, parents, officials of being "enemies"</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Mao's Instructions to Red Guards (1966):</strong> "To rebel is justified! You should be concerned with state affairs and carry the great proletarian cultural revolution through to the end!"</p>
+                    <p style="margin-top: 1rem;"><em>These words unleashed chaos that Mao himself eventually couldn't control.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: The Chaos Unleashed -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">4 / 12</div>
+                <h2>🌪️ The Chaos Unleashed (1966-1969)</h2>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>When Students Attacked Their Teachers</h3>
+                    <p>Within months, normal education stopped. Students formed Red Guard units that competed to prove their revolutionary purity by attacking anyone associated with traditional culture, education, or authority.</p>
+                </div>
+                
+                <div class="impact-grid">
+                    <div class="impact-card auto-reveal">
+                        <h4>🏫 Education Destroyed</h4>
+                        <ul>
+                            <li><strong>Schools Closed:</strong> No normal classes for 3+ years</li>
+                            <li><strong>Teachers Attacked:</strong> Publicly humiliated, beaten, sometimes killed</li>
+                            <li><strong>Books Burned:</strong> Libraries destroyed as "feudal poison"</li>
+                            <li><strong>Exams Eliminated:</strong> Merit-based selection rejected as elitist</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="impact-card auto-reveal">
+                        <h4>🏛️ Culture Under Attack</h4>
+                        <ul>
+                            <li><strong>Temples Destroyed:</strong> Buddhist and Confucian sites vandalized</li>
+                            <li><strong>Art Burned:</strong> Classical paintings, books, antiques destroyed</li>
+                            <li><strong>Music Banned:</strong> Only revolutionary operas permitted</li>
+                            <li><strong>Names Changed:</strong> Streets, shops renamed with revolutionary slogans</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="quote-highlight auto-reveal">
+                    <p><strong>Red Guard Diary (1966):</strong> "Today we destroyed 2,000 books in our teacher's house. She cried and begged us to save just her poetry collection, but we knew that was exactly the kind of feudal thinking that must be eliminated."</p>
+                </div>
+                
+                <div class="legacy-analysis auto-reveal">
+                    <h4>🤔 Think About This:</h4>
+                    <p>Imagine if American high school students were suddenly told their teachers were enemies of progress and should be publicly criticized. What would happen to learning, trust, and social order?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Personal Stories and Trauma -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">5 / 12</div>
+                <h2>👤 Personal Stories: The Human Cost</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>Beyond the Politics: Individual Lives Destroyed</h3>
+                    <p>The Cultural Revolution wasn't just about political theory—it tore apart families, friendships, and communities. Understanding these personal stories helps us grasp why this period still shapes Chinese attitudes today.</p>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>💔 Family Betrayals</h4>
+                        <p><strong>Children denouncing parents:</strong> Students were encouraged to report "reactionary" thoughts at home. Some parents were imprisoned based on their own children's accusations.</p>
+                        <p style="margin-top: 1rem;"><em>How do you rebuild trust after that?</em></p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>📚 Lost Education</h4>
+                        <p><strong>"Lost Generation":</strong> Millions of young people missed years of schooling. Many were sent to rural areas to "learn from peasants" instead of attending university.</p>
+                        <p style="margin-top: 1rem;"><em>Imagine missing high school and college entirely.</em></p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>🎭 Cultural Destruction</h4>
+                        <p><strong>Artists and intellectuals targeted:</strong> Writers, painters, musicians faced persecution for "bourgeois" art. Many committed suicide rather than endure continuous criticism.</p>
+                        <p style="margin-top: 1rem;"><em>What happens when creativity becomes dangerous?</em></p>
+                    </div>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Memoir of a Cultural Revolution Survivor:</strong> "For three years, I didn't dare read anything except Mao's Little Red Book. I hid my father's calligraphy under the floorboards and told no one I could write poetry. We learned to keep our thoughts to ourselves."</p>
+                    <p style="margin-top: 1rem;"><em>The psychological impact lasted long after the political chaos ended.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: How It Finally Ended -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">6 / 12</div>
+                <h2>🛑 How It Finally Ended (1969-1976)</h2>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>Even Mao Realized It Had Gone Too Far</h3>
+                    <p>By 1969, the chaos was so complete that even Mao had to call in the army to restore order. The Cultural Revolution officially continued until his death in 1976, but the most violent phase was over.</p>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>🪖 Military Intervention (1969)</h4>
+                        <p>Red Guard factions fighting each other with weapons. Army steps in to restore basic government functions.</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>📚 Gradual Restoration (1970-1976)</h4>
+                        <p>Schools slowly reopened. Some cultural activities resumed. But fear and suspicion remained widespread.</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>💀 Mao's Death (1976)</h4>
+                        <p>With Mao gone, new leaders could officially end the Cultural Revolution and begin recovery.</p>
+                    </div>
+                </div>
+                
+                <div class="impact-grid">
+                    <div class="impact-card auto-reveal">
+                        <h4>📊 The Damage Done</h4>
+                        <ul>
+                            <li><strong>Deaths:</strong> Estimates range from 500,000 to 2 million killed</li>
+                            <li><strong>Persecution:</strong> 100+ million people subjected to political persecution</li>
+                            <li><strong>Economic Cost:</strong> GDP growth nearly stopped for a decade</li>
+                            <li><strong>Cultural Loss:</strong> Irreplaceable artifacts and knowledge destroyed</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="impact-card auto-reveal">
+                        <h4>🧠 Psychological Impact</h4>
+                        <ul>
+                            <li><strong>Trauma:</strong> Entire generation scarred by violence and betrayal</li>
+                            <li><strong>Distrust:</strong> People learned to hide true thoughts and feelings</li>
+                            <li><strong>Anti-Intellectualism:</strong> Fear of appearing too educated or cultured</li>
+                            <li><strong>Political Exhaustion:</strong> Desire for stability over ideology</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Long-term Impact on Education -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">7 / 12</div>
+                <h2>🎓 Long-term Impact: Education and Expertise</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>From "Education is Useless" to Education Obsession</h3>
+                    <p>The Cultural Revolution's attack on learning created a backlash that helps explain modern China's intense focus on education and meritocracy. Understanding this shift is crucial for grasping contemporary Chinese society.</p>
+                </div>
+                
+                <div class="impact-grid">
+                    <div class="impact-card auto-reveal">
+                        <h4>📉 The Damage (1966-1976)</h4>
+                        <ul>
+                            <li><strong>Universities Closed:</strong> No college entrance exams for 11 years</li>
+                            <li><strong>Teacher Persecution:</strong> Educated people became targets</li>
+                            <li><strong>Merit Rejected:</strong> Class background mattered more than ability</li>
+                            <li><strong>Brain Drain:</strong> Intellectuals fled or went into hiding</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="impact-card auto-reveal">
+                        <h4>📈 The Recovery (1977-Present)</h4>
+                        <ul>
+                            <li><strong>Gaokao Restored (1977):</strong> National college entrance exam returned</li>
+                            <li><strong>Merit-Based Promotion:</strong> Technical expertise valued again</li>
+                            <li><strong>Education Investment:</strong> Massive spending on schools and universities</li>
+                            <li><strong>Respect for Learning:</strong> Teachers and scholars regain social status</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="modern-connection auto-reveal">
+                    <h4>🔗 Connection to Modern China</h4>
+                    <p><strong>Why Chinese families are so focused on education today:</strong> Parents and grandparents remember when education was dangerous and worthless. Now they see it as the path to security and success.</p>
+                    <p style="margin-top: 1rem;"><strong>Why Chinese government emphasizes technical expertise:</strong> Leaders learned that ideological purity without competence leads to disaster.</p>
+                </div>
+                
+                <div class="quote-highlight auto-reveal">
+                    <p><strong>Chinese Parent (2020):</strong> "My father couldn't go to university because of the Cultural Revolution. He makes sure my daughter studies 12 hours a day so she won't miss her chance like he did."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Impact on Political Culture -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">8 / 12</div>
+                <h2>🏛️ Long-term Impact: Political Culture</h2>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>From Revolutionary Chaos to Stability Obsession</h3>
+                    <p>The Cultural Revolution taught Chinese leaders and citizens that political chaos is worse than political restrictions. This lesson profoundly shapes how modern China approaches governance and social change.</p>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>❌ What the Cultural Revolution Taught</h4>
+                        <ul>
+                            <li><strong>Mass Movements Are Dangerous:</strong> Popular enthusiasm can quickly become destructive</li>
+                            <li><strong>Ideology Without Pragmatism Fails:</strong> Economic results matter more than revolutionary purity</li>
+                            <li><strong>Attacking Institutions Has Consequences:</strong> Destroying expertise hurts everyone</li>
+                            <li><strong>Political Instability Destroys Lives:</strong> Ordinary people suffer when leaders fight</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>✅ How Modern China Responds</h4>
+                        <ul>
+                            <li><strong>Gradual Change:</strong> Reforms happen slowly and carefully</li>
+                            <li><strong>Technocratic Leadership:</strong> Leaders chosen for competence, not charisma</li>
+                            <li><strong>Economic Focus:</strong> Development priorities over ideological campaigns</li>
+                            <li><strong>Social Stability:</strong> Preventing chaos seen as government's main job</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="legacy-analysis auto-reveal">
+                    <h4>🤔 Critical Analysis</h4>
+                    <p><strong>The Trade-off:</strong> Cultural Revolution trauma created strong preference for stability over political participation. This helps explain why many Chinese citizens accept limited political freedoms in exchange for economic growth and social order.</p>
+                    <p style="margin-top: 1rem;"><strong>Different Perspectives:</strong> Some see this as wise learning from history. Others see it as using past trauma to justify current restrictions. What do you think?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Generational Impact -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">9 / 12</div>
+                <h2>👨‍👩‍👧‍👦 Generational Impact: How Families Remember</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>Three Generations, Three Different Relationships to Authority</h3>
+                    <p>Understanding how different generations of Chinese families experienced the Cultural Revolution helps explain many aspects of modern Chinese society, from family dynamics to attitudes toward government.</p>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>👴 Grandparents (born 1930s-1940s)</h4>
+                        <ul>
+                            <li><strong>Experience:</strong> Lived through revolution, Cultural Revolution, and reforms</li>
+                            <li><strong>Lesson Learned:</strong> Political stability is precious; don't rock the boat</li>
+                            <li><strong>Attitude:</strong> Grateful for current prosperity; suspicious of political change</li>
+                            <li><strong>Values:</strong> Hard work, saving money, education for grandchildren</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>👨‍👩 Parents (born 1950s-1960s)</h4>
+                        <ul>
+                            <li><strong>Experience:</strong> Children during Cultural Revolution; adults during economic boom</li>
+                            <li><strong>Lesson Learned:</strong> Focus on practical success; avoid politics</li>
+                            <li><strong>Attitude:</strong> Work hard, build wealth, give children opportunities they missed</li>
+                            <li><strong>Values:</strong> Intense focus on children's education and career success</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>👧👦 Young People (born 1990s-2000s)</h4>
+                        <ul>
+                            <li><strong>Experience:</strong> Only know prosperity and stability; global internet culture</li>
+                            <li><strong>Different Perspective:</strong> Some question intense pressure; others embrace nationalism</li>
+                            <li><strong>Tensions:</strong> Individual expression vs. family expectations</li>
+                            <li><strong>Values:</strong> Success, but also work-life balance and personal fulfillment</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="modern-connection auto-reveal">
+                    <h4>🔗 Why This Matters Today</h4>
+                    <p>Family conversations in China often reflect these different experiences. Grandparents who lived through chaos emphasize stability. Parents focus on practical success. Young people sometimes struggle with intense family pressure while seeking individual identity.</p>
+                    <p style="margin-top: 1rem;"><strong>Compare to American families:</strong> How do different generations in your family talk about major historical events? Do grandparents who lived through the Great Depression have different attitudes about money and security?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Cultural Memory and Censorship -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">10 / 12</div>
+                <h2>🤐 Cultural Memory and Sensitive Topics</h2>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>How Do Societies Remember Traumatic Events?</h3>
+                    <p>The Cultural Revolution remains a sensitive topic in China today. Understanding how and why societies choose to remember or limit discussion of difficult history helps us think critically about historical memory everywhere.</p>
+                </div>
+                
+                <div class="impact-grid">
+                    <div class="impact-card auto-reveal">
+                        <h4>🔍 Official Approach</h4>
+                        <ul>
+                            <li><strong>Limited Discussion:</strong> Brief mention in textbooks as "mistake"</li>
+                            <li><strong>Focus on Victims:</strong> Emphasis on suffering of intellectuals and officials</li>
+                            <li><strong>Lessons Learned:</strong> Used to justify current policies of stability</li>
+                            <li><strong>Mao's Legacy:</strong> "70% correct, 30% wrong" - Cultural Revolution in the 30%</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="impact-card auto-reveal">
+                        <h4>💭 Private Memory</h4>
+                        <ul>
+                            <li><strong>Family Stories:</strong> Passed down through personal accounts</li>
+                            <li><strong>Literature and Art:</strong> Indirect references in novels and films</li>
+                            <li><strong>Internet Discussions:</strong> Coded language and historical comparisons</li>
+                            <li><strong>Academic Research:</strong> Limited scholarly analysis of causes and effects</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="legacy-analysis auto-reveal">
+                    <h4>🤔 Critical Questions</h4>
+                    <ul>
+                        <li><strong>Government Perspective:</strong> Too much discussion of past mistakes might undermine current stability and legitimacy</li>
+                        <li><strong>Survivor Perspective:</strong> Full accounting necessary for healing and preventing repetition</li>
+                        <li><strong>Youth Perspective:</strong> Limited knowledge makes it hard to understand family behavior and social attitudes</li>
+                        <li><strong>Historical Perspective:</strong> How do other countries handle traumatic periods? (Germany and Holocaust education, America and slavery, etc.)</li>
+                    </ul>
+                </div>
+                
+                <div class="quote-highlight auto-reveal">
+                    <p><strong>Think About This:</strong> How does American society discuss difficult periods like slavery, Native American genocide, or Japanese American internment? What are the benefits and costs of different approaches to historical memory?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Reading Suggestions -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">11 / 12</div>
+                <h2>📚 Reading Suggestions for Deeper Understanding</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>Primary Sources and Personal Accounts</h3>
+                    <p>To truly understand the Cultural Revolution's impact, we need to read the voices of people who lived through it. Here are manageable excerpts that bring this history to life.</p>
+                </div>
+                
+                <div class="reading-suggestions auto-reveal">
+                    <h4>📖 Option 1: Personal Memoirs (Choose 1)</h4>
+                    <ul>
+                        <li><strong>Jung Chang - "Wild Swans" (Chapter on Cultural Revolution, 8-10 pages):</strong> Three generations of women in one family - grandmother, mother, and author's different experiences</li>
+                        <li><strong>Gao Yuan - "Born Red" (excerpts, 6-8 pages):</strong> A Red Guard's memoir of participating in and then questioning the movement</li>
+                        <li><strong>Nien Cheng - "Life and Death in Shanghai" (selected excerpts, 8-10 pages):</strong> A businesswoman's experience of persecution and imprisonment</li>
+                    </ul>
+                </div>
+                
+                <div class="reading-suggestions auto-reveal">
+                    <h4>🎭 Option 2: Literature and Art (Choose 1)</h4>
+                    <ul>
+                        <li><strong>Bei Dao - Selected Poems (4-5 poems with commentary):</strong> How poets used indirect language to express forbidden thoughts</li>
+                        <li><strong>Guo Xiaolu - "A Concise Chinese-English Dictionary for Lovers" (excerpts, 6 pages):</strong> How Cultural Revolution affected language and communication</li>
+                        <li><strong>Propaganda Posters Analysis (visual source + 3 pages commentary):</strong> How art was used to promote Cultural Revolution ideals</li>
+                    </ul>
+                </div>
+                
+                <div class="reading-suggestions auto-reveal">
+                    <h4>🎥 Option 3: Documentary Sources (Choose 1)</h4>
+                    <ul>
+                        <li><strong>"The Gate of Heavenly Peace" excerpts (transcript + video clips, 6-8 pages):</strong> Student perspectives from multiple historical periods</li>
+                        <li><strong>Oral History Project interviews (edited transcripts, 8-10 pages):</strong> Multiple voices from different social backgrounds</li>
+                        <li><strong>Red Guard Diaries (original excerpts with historical context, 6-8 pages):</strong> What participants wrote at the time</li>
+                    </ul>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <h4>📝 Assignment Options</h4>
+                    <p><strong>Choice 1:</strong> Write a 2-page reflection connecting your reading to our discussions about how the Cultural Revolution shapes modern Chinese attitudes.</p>
+                    <p><strong>Choice 2:</strong> Create a "then and now" comparison showing how Cultural Revolution experiences explain current Chinese policies or social behavior.</p>
+                    <p><strong>Choice 3:</strong> Write a thoughtful response to this question: "How should societies balance remembering difficult history with maintaining social stability?"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Synthesis and Next Steps -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">12 / 12</div>
+                <h2>🔗 Synthesis: Understanding Modern China Through Historical Trauma</h2>
+                
+                <div class="essential-question auto-reveal">
+                    <h4>Returning to Our Essential Question:</h4>
+                    <p style="font-size: 2rem; color: #ffffff;">How does the Cultural Revolution continue to shape Chinese society, politics, and attitudes toward change today?</p>
+                </div>
+                
+                <div class="legacy-analysis auto-reveal">
+                    <h4>🎯 Key Insights We've Discovered:</h4>
+                    <ul>
+                        <li><strong>Education Obsession:</strong> Intense focus on academic achievement reflects trauma of when learning was dangerous</li>
+                        <li><strong>Stability Over Change:</strong> Preference for gradual reform over revolutionary transformation</li>
+                        <li><strong>Technocratic Leadership:</strong> Emphasis on competence over charisma in choosing leaders</li>
+                        <li><strong>Generational Differences:</strong> Different attitudes toward authority based on family historical experience</li>
+                        <li><strong>Economic Focus:</strong> Prioritizing development over ideological campaigns</li>
+                        <li><strong>Controlled Memory:</strong> Limited public discussion to maintain social harmony</li>
+                    </ul>
+                </div>
+                
+                <div class="modern-connection auto-reveal">
+                    <h4>🌟 Looking Ahead to Our Next Classes:</h4>
+                    <p><strong>Class 3:</strong> We'll examine specific case studies of how China's development model works in practice - from special economic zones to poverty alleviation programs.</p>
+                    <p><strong>Class 4:</strong> We'll explore contemporary Chinese society and China's role in today's world, building on this foundation of historical understanding.</p>
+                    <p><strong>Final Essay:</strong> You'll be ready to write a sophisticated analysis of how China's historical experiences shaped its distinctive approach to development and governance.</p>
+                </div>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>💭 For Reflection</h3>
+                    <p>Every society is shaped by its historical traumas and triumphs. Understanding the Cultural Revolution helps us see why modern China makes certain choices that might seem puzzling to outsiders. This kind of historical empathy - understanding why people think and act the way they do based on their experiences - is a crucial skill for global citizenship.</p>
+                    <p style="margin-top: 1.5rem;"><strong>Think about your own society:</strong> What historical experiences shape how Americans think about government, individual rights, or social change?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let currentReveals = 0;
+        let maxReveals = 0;
+
+        function updateSlideDisplay() {
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.remove('hidden');
+                } else {
+                    slide.classList.add('hidden');
+                }
+            });
+            
+            // Reset reveals for new slide
+            currentReveals = 0;
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            maxReveals = autoReveals.length;
+            
+            // Hide all auto-reveal elements
+            autoReveals.forEach(element => {
+                element.classList.remove('revealed');
+            });
+            
+            // Show first auto-reveal element
+            if (autoReveals.length > 0) {
+                autoReveals[0].classList.add('revealed');
+                currentReveals = 1;
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlideDisplay();
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlideDisplay();
+            }
+        }
+
+        function revealNext() {
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            if (currentReveals < autoReveals.length) {
+                autoReveals[currentReveals].classList.add('revealed');
+                currentReveals++;
+                return true;
+            }
+            return false;
+        }
+
+        function hideReveal() {
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            if (currentReveals > 1) {
+                currentReveals--;
+                autoReveals[currentReveals].classList.remove('revealed');
+                return true;
+            }
+            return false;
+        }
+
+        function revealAll() {
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            autoReveals.forEach(element => {
+                element.classList.add('revealed');
+            });
+            currentReveals = autoReveals.length;
+        }
+
+        function toggleImage() {
+            // This would show/hide associated images if they existed
+            alert('No images associated with this slide');
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowRight':
+                    if (!revealNext()) {
+                        nextSlide();
+                    }
+                    break;
+                case 'ArrowLeft':
+                    if (!hideReveal()) {
+                        previousSlide();
+                    }
+                    break;
+                case ',':
+                    previousSlide();
+                    break;
+                case '.':
+                    nextSlide();
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        updateSlideDisplay();
+    </script>
+</body>
+</html>

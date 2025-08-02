@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Sound and Light Waves Work - Class 14</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .slide-container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .slide {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 3rem;
+            max-width: 95vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        .slide.hidden {
+            display: none;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #ffd93d;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #f8f9fa;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+            margin: 1.5rem 0;
+        }
+
+        .reveal-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .central-frame {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.3);
+            border: 3px solid #ffd700;
+        }
+
+        .frame-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .frame-text {
+            font-size: 1.6rem;
+            line-height: 1.8;
+            font-weight: 600;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .wave-visual {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            text-align: center;
+            border: 2px solid #87ceeb;
+        }
+
+        .practice-scenario {
+            background: linear-gradient(135deg, #2E8B57, #3CB371);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 3px solid #ffd700;
+        }
+
+        .scenario-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #ffd700;
+            text-align: center;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .example-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+        }
+
+        .example-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .speaking-task {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 2px solid #f8f9fa;
+        }
+
+        .task-title {
+            color: #f8f9fa;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(96, 165, 250, 0.9);
+            border: none;
+            color: #1e1b4b;
+            padding: 1.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.4rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(96, 165, 250, 0.4);
+        }
+
+        .nav-btn:hover {
+            background: rgba(96, 165, 250, 1);
+            transform: scale(1.15);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(96, 165, 250, 0.9);
+            color: #1e1b4b;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+        }
+
+        .vocab-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .vocab-list li {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 0.8rem 0;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+            font-size: 1.2rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-side {
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .sound-side {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            color: #2d3748;
+        }
+
+        .light-side {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            color: #2d3748;
+        }
+
+        .frame-practice {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            border: 2px dashed #ffd700;
+        }
+
+        .frame-step {
+            font-size: 1.3rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #f8f9fa;
+        }
+
+        .step-number {
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator" id="slide-counter">1 / 8</div>
+    
+    <!-- Slide 1: Title and Challenge -->
+    <div class="slide" id="slide-0">
+        <div class="reveal-item">
+            <h1>🌊 How Sound and Light Waves Work</h1>
+            <h3 style="text-align: center; color: #f8f9fa; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">Class 14 - ESL Physical Science Fluency Course</h3>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="central-frame">
+                <div class="frame-title">Today's Explanation Challenge</div>
+                <div class="frame-text">
+                    "Explain how sound and light are both types of waves, how they travel differently, and why we experience them differently in our daily lives."
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>🎯 Success Criteria</h3>
+                    <ul class="vocab-list">
+                        <li>Speak for 7-8 minutes</li>
+                        <li>Use the multi-step frame</li>
+                        <li>Compare sound and light</li>
+                        <li>Give specific examples</li>
+                    </ul>
+                </div>
+                <div class="content-card">
+                    <h3>🔄 Building Skills</h3>
+                    <ul class="vocab-list">
+                        <li>Process explanation</li>
+                        <li>Comparison language</li>
+                        <li>Evidence-based reasoning</li>
+                        <li>System thinking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: The Master Frame -->
+    <div class="slide hidden" id="slide-1">
+        <div class="reveal-item">
+            <h2>🎯 Your Master Language Frame</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="central-frame">
+                <div class="frame-title">Multi-Step Explanation Frame</div>
+                <div class="frame-text">
+                    "Both _____ and _____ are types of waves, but they work differently. First, let me explain how _____... Then I'll describe how _____... Finally, I'll compare how we experience them differently because..."
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-practice">
+                <h3>🔧 Why This Frame Works Perfectly</h3>
+                <div class="frame-step">
+                    <span class="step-number">1.</span> <strong>Sets up comparison:</strong> "Both... but they work differently"
+                </div>
+                <div class="frame-step">
+                    <span class="step-number">2.</span> <strong>Organizes content:</strong> "First... Then... Finally..."
+                </div>
+                <div class="frame-step">
+                    <span class="step-number">3.</span> <strong>Connects to experience:</strong> "how we experience them"
+                </div>
+                <div class="frame-step">
+                    <span class="step-number">4.</span> <strong>Shows reasoning:</strong> "because..."
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Essential Vocabulary -->
+    <div class="slide hidden" id="slide-2">
+        <div class="reveal-item">
+            <h2>📚 Essential Wave Vocabulary</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="examples-grid">
+                <div class="example-card">
+                    <div class="example-icon">🌊</div>
+                    <h3>Wave</h3>
+                    <p>Energy that travels through space or matter without carrying the matter along</p>
+                </div>
+                <div class="example-card">
+                    <div class="example-icon">📳</div>
+                    <h3>Vibration</h3>
+                    <p>Rapid back-and-forth movement that creates waves</p>
+                </div>
+                <div class="example-card">
+                    <div class="example-icon">🎵</div>
+                    <h3>Frequency</h3>
+                    <p>How fast the wave vibrates - determines pitch (sound) or color (light)</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="examples-grid">
+                <div class="example-card">
+                    <div class="example-icon">📢</div>
+                    <h3>Amplitude</h3>
+                    <p>How strong the wave is - determines volume (sound) or brightness (light)</p>
+                </div>
+                <div class="example-card">
+                    <div class="example-icon">🏃‍♂️</div>
+                    <h3>Transmission</h3>
+                    <p>How waves travel through different materials</p>
+                </div>
+                <div class="example-card">
+                    <div class="example-icon">👂</div>
+                    <h3>Perception</h3>
+                    <p>How our senses detect and interpret waves</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Sound Waves Content -->
+    <div class="slide hidden" id="slide-3">
+        <div class="reveal-item">
+            <h2>🔊 How Sound Waves Work</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="wave-visual">
+                <h3>Sound = Vibrations Through Matter</h3>
+                <p style="font-size: 1.4rem; margin: 1rem 0;">Sound waves need something to travel through - air, water, solid objects</p>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>🎸 How Sound is Created</h3>
+                    <ul class="vocab-list">
+                        <li>Objects vibrate (vocal cords, guitar strings, drums)</li>
+                        <li>Vibrations push air molecules</li>
+                        <li>Air molecules bump into nearby molecules</li>
+                        <li>Creates waves moving through the air</li>
+                    </ul>
+                </div>
+                <div class="content-card">
+                    <h3>👂 How We Hear Sound</h3>
+                    <ul class="vocab-list">
+                        <li>Sound waves enter our ears</li>
+                        <li>Vibrations move tiny bones in ear</li>
+                        <li>Brain interprets vibrations as sound</li>
+                        <li>Fast vibrations = high pitch, slow = low pitch</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-task">
+                <div class="task-title">Practice with Frame: Sound Section</div>
+                <p><strong>Fill in:</strong> "First, let me explain how <em>sound waves work</em>... Sound is created when... It travels by... We hear it because..."</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Light Waves Content -->
+    <div class="slide hidden" id="slide-4">
+        <div class="reveal-item">
+            <h2>💡 How Light Waves Work</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="wave-visual">
+                <h3>Light = Electromagnetic Waves</h3>
+                <p style="font-size: 1.4rem; margin: 1rem 0;">Light waves can travel through empty space - no matter needed!</p>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>☀️ How Light is Created</h3>
+                    <ul class="vocab-list">
+                        <li>Energy excites atoms (sun, light bulbs, fire)</li>
+                        <li>Atoms release energy as light waves</li>
+                        <li>Waves travel at incredible speed</li>
+                        <li>Can travel through space, air, water, glass</li>
+                    </ul>
+                </div>
+                <div class="content-card">
+                    <h3>👁️ How We See Light</h3>
+                    <ul class="vocab-list">
+                        <li>Light waves enter our eyes</li>
+                        <li>Different frequencies = different colors</li>
+                        <li>Eye focuses light onto retina</li>
+                        <li>Brain interprets patterns as images</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-task">
+                <div class="task-title">Practice with Frame: Light Section</div>
+                <p><strong>Fill in:</strong> "Then I'll describe how <em>light waves work</em>... Light is created when... It travels by... We see it because..."</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Key Differences -->
+    <div class="slide hidden" id="slide-5">
+        <div class="reveal-item">
+            <h2>🔄 Comparing Sound and Light</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="comparison-grid">
+                <div class="comparison-side sound-side">
+                    <h3>🔊 Sound Waves</h3>
+                    <ul class="vocab-list">
+                        <li><strong>Need matter:</strong> Can't travel through empty space</li>
+                        <li><strong>Speed:</strong> About 340 meters per second in air</li>
+                        <li><strong>Detection:</strong> We hear with ears</li>
+                        <li><strong>Properties:</strong> Pitch (frequency) and volume (amplitude)</li>
+                        <li><strong>Examples:</strong> Music, speech, thunder</li>
+                    </ul>
+                </div>
+                <div class="comparison-side light-side">
+                    <h3>💡 Light Waves</h3>
+                    <ul class="vocab-list">
+                        <li><strong>No matter needed:</strong> Can travel through space</li>
+                        <li><strong>Speed:</strong> 300 million meters per second</li>
+                        <li><strong>Detection:</strong> We see with eyes</li>
+                        <li><strong>Properties:</strong> Color (frequency) and brightness (amplitude)</li>
+                        <li><strong>Examples:</strong> Sunlight, lasers, rainbows</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-task">
+                <div class="task-title">Practice with Frame: Comparison Section</div>
+                <p><strong>Fill in:</strong> "Finally, I'll compare how we experience them differently because... Sound requires... but light can... This means that..."</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Real-World Applications -->
+    <div class="slide hidden" id="slide-6">
+        <div class="reveal-item">
+            <h2>🌟 Sound and Light in Daily Life</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="examples-grid">
+                <div class="example-card">
+                    <div class="example-icon">📱</div>
+                    <h3>Smartphones</h3>
+                    <p><strong>Sound:</strong> Speaker vibrations for calls and music</p>
+                    <p><strong>Light:</strong> Screen display and camera flash</p>
+                </div>
+                <div class="example-card">
+                    <div class="example-icon">🎵</div>
+                    <h3>Concert Hall</h3>
+                    <p><strong>Sound:</strong> Instruments create vibrations we hear as music</p>
+                    <p><strong>Light:</strong> Stage lights let us see performers and create mood</p>
+                </div>
+                <div class="example-card">
+                    <div class="example-icon">⛈️</div>
+                    <h3>Thunderstorm</h3>
+                    <p><strong>Sound:</strong> Thunder from lightning heating air rapidly</p>
+                    <p><strong>Light:</strong> Lightning electrical discharge creates bright flash</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="practice-scenario">
+                <div class="scenario-title">🎯 Full Frame Practice</div>
+                <p><strong>Challenge:</strong> Use the complete frame to explain smartphone technology</p>
+                <p style="margin-top: 1rem;"><strong>Frame:</strong> "Both sound and light are types of waves, but they work differently in my phone. First, let me explain how sound... Then I'll describe how light... Finally, I'll compare how we experience them differently because..."</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Final Challenge -->
+    <div class="slide hidden" id="slide-7">
+        <div class="reveal-item">
+            <h2>🚀 Your Complete Explanation Challenge</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="central-frame">
+                <div class="frame-title">7-8 Minute Explanation Task</div>
+                <div class="frame-text">
+                    Use the master frame to explain how sound and light waves work, comparing their properties and giving examples from daily life.
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>✅ Success Checklist</h3>
+                    <ul class="vocab-list">
+                        <li>Used the multi-step frame structure</li>
+                        <li>Explained both sound and light clearly</li>
+                        <li>Compared their differences</li>
+                        <li>Gave specific daily life examples</li>
+                        <li>Spoke for 7-8 minutes confidently</li>
+                    </ul>
+                </div>
+                <div class="content-card">
+                    <h3>🎯 Key Frame Elements</h3>
+                    <ul class="vocab-list">
+                        <li><strong>Opening:</strong> "Both... but they work differently"</li>
+                        <li><strong>Organization:</strong> "First... Then... Finally..."</li>
+                        <li><strong>Explanation:</strong> How each wave works</li>
+                        <li><strong>Comparison:</strong> Key differences</li>
+                        <li><strong>Examples:</strong> Real-world applications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-task">
+                <div class="task-title">Ready to Explain Like a Scientist!</div>
+                <p>You now have the vocabulary, concepts, and language frame to explain complex wave phenomena clearly and confidently. Use this same frame for any comparison topic!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">‹</button>
+        <button class="nav-btn" onclick="nextSlide()">›</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let totalSlides = 8;
+        let currentElement = 0;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('hidden', index !== n);
+            });
+            
+            currentElement = 0;
+            const currentSlideElement = slides[n];
+            const elements = currentSlideElement.querySelectorAll('.reveal-item');
+            elements.forEach(el => el.classList.remove('show'));
+            
+            document.getElementById('slide-counter').textContent = `${n + 1} / ${totalSlides}`;
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.reveal-item');
+            
+            if (currentElement < elements.length) {
+                elements[currentElement].classList.add('show');
+                currentElement++;
+            }
+        }
+
+        function nextSlide() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.reveal-item');
+            
+            if (currentElement < elements.length) {
+                revealNextElement();
+            } else if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                revealNextElement();
+            } else if (e.key === '.') {
+                e.preventDefault();
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            } else if (e.key === ',') {
+                e.preventDefault();
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
+            }
+        });
+
+        // Click to reveal
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.navigation') && !e.target.closest('.slide-indicator')) {
+                revealNextElement();
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
