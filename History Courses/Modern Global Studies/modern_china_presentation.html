@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern China: From Imperial Collapse to Global Power</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            padding: 3rem 4rem;
+            overflow-y: auto;
+            overflow-x: hidden;
+            opacity: 1;
+            transition: all 0.6s ease-in-out;
+            box-sizing: border-box;
+        }
+
+        .slide.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            min-height: 100%;
+            padding-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #fbbf24, #f59e0b, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #fbbf24;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #60a5fa;
+        }
+
+        h4 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #34d399;
+        }
+
+        p {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #e5e7eb;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(15, 52, 96, 0.3);
+            border-radius: 15px;
+            border: 1px solid rgba(251, 191, 36, 0.2);
+        }
+
+        .timeline-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-card {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.4), rgba(22, 33, 62, 0.4));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            backdrop-filter: blur(10px);
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(0);
+            border-color: rgba(251, 191, 36, 0.5);
+        }
+
+        .period-highlight {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 4px solid #fbbf24;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            background: linear-gradient(135deg, rgba(22, 33, 62, 0.5), rgba(15, 52, 96, 0.5));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+
+        .primary-source {
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.1), rgba(16, 185, 129, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 4px solid #34d399;
+            font-style: italic;
+        }
+
+        .key-figures {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .figure-card {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.4), rgba(22, 33, 62, 0.4));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            text-align: center;
+        }
+
+        .impact-analysis {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(124, 58, 237, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background: rgba(15, 52, 96, 0.8);
+            border: 1px solid rgba(251, 191, 36, 0.5);
+            color: #fbbf24;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(251, 191, 36, 0.2);
+            transform: scale(1.05);
+        }
+
+        .image-tab {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(15, 52, 96, 0.8);
+            border: 1px solid rgba(251, 191, 36, 0.5);
+            color: #fbbf24;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.8rem;
+            color: #e5e7eb;
+        }
+
+        strong {
+            color: #fbbf24;
+        }
+
+        .essential-question {
+            background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(239, 68, 68, 0.2));
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+            border: 2px solid rgba(244, 63, 94, 0.4);
+        }
+
+        .slide-number {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+            z-index: 1000;
+            background: rgba(15, 52, 96, 0.8);
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="image-tab" onclick="toggleImage()">📸 Images</div>
+        <div class="controls">
+            <button class="control-btn" onclick="previousSlide()">← Prev</button>
+            <button class="control-btn" onclick="nextSlide()">Next →</button>
+            <button class="control-btn" onclick="revealAll()">Reveal All</button>
+        </div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="slide-number">1 / 15</div>
+                <h1>🏮 Modern China: From Imperial Collapse to Global Power</h1>
+                <div class="hero-section auto-reveal">
+                    <h3>Understanding How History Shapes Today's China</h3>
+                    <p style="font-size: 2rem; color: #fbbf24;">Week 6: Modern Global Studies</p>
+                </div>
+                <div class="essential-question auto-reveal">
+                    <h4>Essential Question:</h4>
+                    <p style="font-size: 2.2rem; color: #ffffff; font-weight: 600;">How did China's unique historical experiences shape its distinctive path to becoming a modern global power?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Historical Foundation -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">2 / 15</div>
+                <h2>📚 Why History Matters for Understanding Modern China</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>China's Path Was Different</h3>
+                    <p>To understand why China developed differently than Western nations—or even Iran—we must first understand the historical experiences that shaped Chinese thinking about governance, development, and national strength.</p>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>🏛️ The Pattern of Collapse</h4>
+                        <p><strong>1840s-1949:</strong> China experienced over a century of imperial collapse, foreign invasion, civil war, and national humiliation that shaped deep commitments to stability and sovereignty.</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>🌾 Revolutionary Foundation</h4>
+                        <p><strong>1949-1976:</strong> The Communist Revolution succeeded by appealing to peasants, not urban intellectuals—creating a government focused on rural development and mass mobilization.</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>⚡ Reform and Opening</h4>
+                        <p><strong>1978-Present:</strong> Deng Xiaoping's reforms prioritized economic development while maintaining political control—a lesson learned from the chaos of earlier periods.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Century of Humiliation -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">3 / 15</div>
+                <h2>⚔️ The Century of Humiliation (1840s-1949)</h2>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>From World's Largest Economy to Semi-Colony</h3>
+                    <p>In 1820, China was the world's largest economy. By 1949, it was one of the poorest countries on earth, divided by civil war and occupied by foreign powers. This experience shaped everything that came after.</p>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>🚢 Opium Wars (1840s-1860s)</h4>
+                        <p>Britain forced China to accept opium imports and give up Hong Kong. The Qing Dynasty's military weakness was exposed, beginning the collapse of imperial authority.</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>💥 Taiping Rebellion (1850-1864)</h4>
+                        <p>20-30 million died in this massive civil war—more than World War I. The imperial government barely survived, showing how foreign pressure triggered internal collapse.</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>🏭 Failed Modernization</h4>
+                        <p>The "Self-Strengthening Movement" tried to adopt Western technology while keeping Chinese culture. It failed because the imperial system couldn't adapt quickly enough.</p>
+                    </div>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Li Hongzhang (1870s):</strong> "We should use foreign machines and foreign methods... but the foundation must remain Chinese learning and Chinese ways."</p>
+                    <p style="margin-top: 1rem;"><em>This attempt to separate technology from political systems would prove impossible—a lesson modern China learned well.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: The Republic That Couldn't Govern -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">4 / 15</div>
+                <h2>🏛️ The Republic That Couldn't Govern (1912-1949)</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>Why Democracy Failed in China</h3>
+                    <p>The 1911 Revolution created a republic, but China quickly fragmented into warlord territories. Western-style democracy couldn't provide the stability and unity that China desperately needed.</p>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card auto-reveal">
+                        <h4>📊 The Problems</h4>
+                        <ul>
+                            <li><strong>Warlord Period:</strong> Hundreds of local military leaders controlled different regions</li>
+                            <li><strong>Foreign Occupation:</strong> Japan invaded Manchuria (1931) then launched full-scale war (1937)</li>
+                            <li><strong>Economic Collapse:</strong> Hyperinflation destroyed the middle class</li>
+                            <li><strong>Weak Central Government:</strong> Beijing couldn't control the provinces</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card auto-reveal">
+                        <h4>🎭 Cultural Crisis</h4>
+                        <ul>
+                            <li><strong>May Fourth Movement (1919):</strong> Students demanded "Mr. Science" and "Mr. Democracy"</li>
+                            <li><strong>Intellectual Debate:</strong> Should China copy the West or find its own path?</li>
+                            <li><strong>Generational Conflict:</strong> Young educated Chinese rejected traditional Confucian values</li>
+                            <li><strong>Identity Crisis:</strong> What did it mean to be Chinese in the modern world?</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Lu Xun, "Diary of a Madman" (1918):</strong> "I looked through the pages of Chinese history and found two words written over every page: 'Cannibalism.'"</p>
+                    <p style="margin-top: 1rem;"><em>China's greatest modern writer argued that traditional Chinese culture was holding back progress—but what should replace it?</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Mao's Revolutionary Strategy -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">5 / 15</div>
+                <h2>🌾 Mao's Revolutionary Strategy: Mobilizing the Peasants</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>A Different Kind of Revolution</h3>
+                    <p>While Iran's revolution in 1979 was urban-centered, Mao's Communist revolution succeeded by organizing China's 500 million peasants. This peasant base would shape how Communist China governed for decades.</p>
+                </div>
+                
+                <div class="key-figures">
+                    <div class="figure-card auto-reveal">
+                        <h4>🚩 Mao's Insight</h4>
+                        <p><strong>"Political power grows out of the barrel of a gun, but the gun must be wielded by the masses."</strong></p>
+                        <p>Unlike urban intellectuals, peasants experienced landlord exploitation daily. They had real grievances that revolution could address.</p>
+                    </div>
+                    
+                    <div class="figure-card auto-reveal">
+                        <h4>📍 Base Areas Strategy</h4>
+                        <p>The Communists created "liberated zones" in rural areas where they demonstrated land reform, literacy campaigns, and fair taxation.</p>
+                        <p>Peasants could see the benefits before committing to revolution.</p>
+                    </div>
+                    
+                    <div class="figure-card auto-reveal">
+                        <h4>⚡ Mass Line</h4>
+                        <p><strong>"From the masses, to the masses"</strong> - policies should reflect popular needs, not elite theories.</p>
+                        <p>This principle would later shape China's pragmatic approach to economic development.</p>
+                    </div>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Mao Zedong, "Report on the Peasant Movement in Hunan" (1927):</strong></p>
+                    <p>"In a very short time, several hundred million peasants will rise like a mighty storm... They will sweep all the imperialists, warlords, corrupt officials, local tyrants and evil gentry into their graves."</p>
+                    <p style="margin-top: 1rem;"><em>This was written 22 years before victory—showing how long-term revolutionary strategy required deep understanding of Chinese conditions.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: The Long March and Revolutionary Victory -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">6 / 15</div>
+                <h2>🗻 The Long March: Forging Revolutionary Leadership</h2>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>6,000 Miles of Strategic Retreat (1934-1935)</h3>
+                    <p>When Nationalist forces nearly destroyed the Communist base, 80,000 people began a fighting retreat across China's most difficult terrain. Only 8,000 survived, but they emerged as hardened revolutionaries with unbreakable unity.</p>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>🏔️ The Journey</h4>
+                        <p>Across 18 mountain ranges and 24 rivers, fighting 400 skirmishes while recruiting peasants in each province. The march became a mobile political campaign.</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>🎖️ Leadership Forged</h4>
+                        <p>Mao emerged as undisputed leader during the march. The survivors became the core leadership of Communist China for the next 40 years.</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>📖 Revolutionary Myth</h4>
+                        <p>The Long March proved the Communists could overcome impossible odds through unity, sacrifice, and serving the people. This story would inspire Chinese development for generations.</p>
+                    </div>
+                </div>
+                
+                <div class="impact-analysis auto-reveal">
+                    <h4>Why This Matters for Modern China:</h4>
+                    <ul>
+                        <li><strong>Self-Reliance:</strong> China learned it couldn't depend on foreign help—it had to find its own path</li>
+                        <li><strong>Unity Under Pressure:</strong> External threats required absolute political unity to survive</li>
+                        <li><strong>Mass Mobilization:</strong> Great achievements required organizing hundreds of millions of people</li>
+                        <li><strong>Pragmatic Adaptation:</strong> Rigid ideology was less important than "seeking truth from facts"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Victory and Early Mistakes -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">7 / 15</div>
+                <h2>🎯 Victory and Early Mistakes (1949-1976)</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>The People's Republic of China</h3>
+                    <p>In 1949, Mao declared "The Chinese people have stood up!" But standing up was easier than building a modern nation. Early successes were followed by devastating mistakes that taught crucial lessons.</p>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card auto-reveal">
+                        <h4>✅ Early Successes (1949-1957)</h4>
+                        <ul>
+                            <li><strong>Land Reform:</strong> Distributed land to 300 million peasants</li>
+                            <li><strong>Public Health:</strong> Life expectancy rose from 35 to 65 years</li>
+                            <li><strong>Literacy:</strong> Built massive education system</li>
+                            <li><strong>Infrastructure:</strong> Connected China with roads, railways, communications</li>
+                            <li><strong>Women's Rights:</strong> Legal equality and political participation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card auto-reveal">
+                        <h4>❌ Catastrophic Mistakes (1958-1976)</h4>
+                        <ul>
+                            <li><strong>Great Leap Forward:</strong> Economic fantasies caused world's worst famine (20-45 million died)</li>
+                            <li><strong>Cultural Revolution:</strong> Attack on educated elites destroyed institutions and trust</li>
+                            <li><strong>Isolation:</strong> Broke with Soviet Union and alienated the West</li>
+                            <li><strong>Personality Cult:</strong> Mao's absolute power prevented course correction</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Deng Xiaoping's Reflection (1982):</strong> "Mao was 70% correct and 30% wrong. But his mistakes were massive mistakes that cost millions of lives. We must learn from this."</p>
+                    <p style="margin-top: 1rem;"><em>This honest assessment of revolutionary leadership prepared China for its next transformation.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Deng's Reform Revolution -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">8 / 15</div>
+                <h2>⚡ Deng's Reform Revolution (1978-1997)</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>"It Doesn't Matter if the Cat is Black or White"</h3>
+                    <p>Deng Xiaoping's famous saying captured China's new pragmatism: "As long as it catches mice, it's a good cat." Ideology mattered less than results—especially economic results that could improve people's lives.</p>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>🌾 Agricultural Reform (1978-1983)</h4>
+                        <p><strong>Household Responsibility System:</strong> Peasants could keep surplus crops after meeting quotas. Agricultural output increased 50% in 5 years, ending chronic food shortages.</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>🏭 Industrial Opening (1980s)</h4>
+                        <p><strong>Township and Village Enterprises:</strong> Local governments created businesses that competed with state companies. Foreign investment zones tested capitalist methods.</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>🌏 International Integration (1990s)</h4>
+                        <p><strong>Gradual Opening:</strong> Unlike Soviet shock therapy, China slowly integrated with global economy while maintaining political control.</p>
+                    </div>
+                </div>
+                
+                <div class="impact-analysis auto-reveal">
+                    <h4>Deng's Key Principles:</h4>
+                    <ul>
+                        <li><strong>"Seek Truth From Facts":</strong> Test policies through experiments, not ideology</li>
+                        <li><strong>"Cross the River by Feeling the Stones":</strong> Reform gradually and carefully</li>
+                        <li><strong>"Hide Your Brightness":</strong> Don't threaten other powers while building strength</li>
+                        <li><strong>Development First:</strong> Economic growth would solve most other problems</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: The Economic Miracle -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">9 / 15</div>
+                <h2>🚀 The Economic Miracle (1990s-2010s)</h2>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>From Poverty to Global Power</h3>
+                    <p>Between 1980 and 2010, China's economy grew 40 times larger. Over 800 million people escaped poverty—the fastest mass improvement in living standards in human history.</p>
+                </div>
+                
+                <div class="key-figures">
+                    <div class="figure-card auto-reveal">
+                        <h4>📊 The Numbers</h4>
+                        <ul>
+                            <li><strong>GDP Growth:</strong> Average 9.8% per year for 30 years</li>
+                            <li><strong>Poverty Reduction:</strong> 800+ million lifted above poverty line</li>
+                            <li><strong>Urban Population:</strong> Rose from 20% to 60% (400 million people)</li>
+                            <li><strong>Global Trade:</strong> From isolation to world's largest exporter</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="figure-card auto-reveal">
+                        <h4>🏗️ Infrastructure Revolution</h4>
+                        <ul>
+                            <li><strong>High-speed Rail:</strong> 25,000 miles built in 15 years</li>
+                            <li><strong>Urbanization:</strong> 160+ cities with over 1 million people</li>
+                            <li><strong>Internet:</strong> 900+ million users, digital economy boom</li>
+                            <li><strong>Ports & Airports:</strong> Connected China to global supply chains</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="figure-card auto-reveal">
+                        <h4>👥 Human Development</h4>
+                        <ul>
+                            <li><strong>Education:</strong> From 20% to 95% primary school completion</li>
+                            <li><strong>Health:</strong> Life expectancy now 76 years</li>
+                            <li><strong>Technology:</strong> World leader in mobile payments, e-commerce</li>
+                            <li><strong>Innovation:</strong> Major advances in AI, renewable energy</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Factory Worker from Leslie Chang's "Factory Girls":</strong> "My parents were peasants who never traveled 20 miles from their village. Now I work in a factory, send money home, and my daughter will go to university. This is the Chinese dream."</p>
+                    <p style="margin-top: 1rem;"><em>Personal stories reveal how rapid development transformed individual lives and family aspirations.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: The Costs of Rapid Development -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">10 / 15</div>
+                <h2>⚖️ The Costs of Rapid Development</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>Every Development Model Has Trade-offs</h3>
+                    <p>China's remarkable economic growth came with significant costs. Understanding these trade-offs helps us think critically about different approaches to development and governance.</p>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card auto-reveal">
+                        <h4>🌍 Environmental Costs</h4>
+                        <ul>
+                            <li><strong>Air Pollution:</strong> Severe smog in major cities affecting public health</li>
+                            <li><strong>Water Contamination:</strong> Industrial growth polluted rivers and groundwater</li>
+                            <li><strong>Climate Impact:</strong> World's largest carbon emitter (though also largest renewable energy investor)</li>
+                            <li><strong>Resource Depletion:</strong> Rapid mining and industrial extraction</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card auto-reveal">
+                        <h4>👥 Social Costs</h4>
+                        <ul>
+                            <li><strong>Inequality:</strong> Growing gap between rich cities and poor rural areas</li>
+                            <li><strong>Migrant Workers:</strong> 280 million people working far from home without full urban rights</li>
+                            <li><strong>Social Pressure:</strong> Intense competition for education and jobs</li>
+                            <li><strong>Cultural Loss:</strong> Traditional villages and ways of life disappearing</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="impact-analysis auto-reveal">
+                    <h4>🤔 Critical Questions for Discussion:</h4>
+                    <ul>
+                        <li>Was rapid development worth these costs? How do we weigh immediate poverty reduction against long-term environmental damage?</li>
+                        <li>Could China have developed differently? What alternative paths were possible?</li>
+                        <li>How do Chinese citizens view these trade-offs? Do their priorities differ from outsiders' judgments?</li>
+                        <li>What lessons do these costs offer other developing countries?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: China's Unique Political System -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">11 / 15</div>
+                <h2>🏛️ Understanding China's Political System</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>One-Party Rule with Chinese Characteristics</h3>
+                    <p>China's political system combines Communist Party leadership with market economics, Confucian meritocracy with modern bureaucracy. Understanding how it works requires moving beyond simple comparisons to democracy.</p>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>🎯 How It Actually Works</h4>
+                        <p><strong>Meritocratic Promotion:</strong> Officials advance through performance in lower positions. Provincial leaders compete on economic growth, poverty reduction, and stability measures.</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>🔄 Policy Experimentation</h4>
+                        <p><strong>"Pilot Programs":</strong> New policies tested in specific cities or provinces before national implementation. Local governments compete to innovate successful models.</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>📋 Performance Legitimacy</h4>
+                        <p><strong>Results-Based Governance:</strong> Government legitimacy depends on delivering economic growth, public services, and social stability rather than electoral mandates.</p>
+                    </div>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Daniel Bell, "The China Model" (2015):</strong> "China's system prioritizes good governance over democracy. The question is whether technocratic competence can substitute for political accountability."</p>
+                    <p style="margin-top: 1rem;"><em>This raises fundamental questions about different forms of legitimacy and representation in government.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Modern Chinese Society -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">12 / 15</div>
+                <h2>🎭 Modern Chinese Society: Tradition and Change</h2>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>Navigating Rapid Social Transformation</h3>
+                    <p>Chinese society today reflects the tensions between rapid modernization and cultural continuity. Young people especially face pressures that previous generations never experienced.</p>
+                </div>
+                
+                <div class="key-figures">
+                    <div class="figure-card auto-reveal">
+                        <h4>👨‍👩‍👧 Generational Changes</h4>
+                        <ul>
+                            <li><strong>One-Child Policy Legacy:</strong> Only children with intense family pressure to succeed</li>
+                            <li><strong>"Tiger Parents":</strong> Extreme educational competition starting in elementary school</li>
+                            <li><strong>Rural-Urban Divide:</strong> Different values and opportunities between city and countryside</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="figure-card auto-reveal">
+                        <h4>🎨 Cultural Expression</h4>
+                        <ul>
+                            <li><strong>Pop Culture:</strong> Chinese films, music, and literature gaining global influence</li>
+                            <li><strong>Traditional Revival:</strong> Growing interest in Confucian values and classical culture</li>
+                            <li><strong>Digital Innovation:</strong> Social media, gaming, and online communities shaping identity</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="figure-card auto-reveal">
+                        <h4>💼 Youth Perspectives</h4>
+                        <ul>
+                            <li><strong>"Lying Flat" Movement:</strong> Some young people rejecting intense competition</li>
+                            <li><strong>Entrepreneurship:</strong> Others embracing innovation and business opportunities</li>
+                            <li><strong>Global Outlook:</strong> Study abroad experiences shaping worldviews</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="impact-analysis auto-reveal">
+                    <h4>🤔 Questions for Reflection:</h4>
+                    <ul>
+                        <li>How do young Chinese people balance traditional expectations with modern opportunities?</li>
+                        <li>What are the similarities and differences with pressures facing American teenagers?</li>
+                        <li>How does rapid social change affect family relationships and cultural identity?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: China in the World Today -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">13 / 15</div>
+                <h2>🌏 China in the World Today</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>From Isolation to Global Integration</h3>
+                    <p>China's rise from isolated revolutionary state to major global power represents one of the most significant geopolitical shifts in modern history. How China uses this power shapes our entire world.</p>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>🛣️ Belt and Road Initiative</h4>
+                        <p><strong>Modern Silk Road:</strong> $1 trillion infrastructure investment across 70+ countries. China's vision for global connectivity, but critics worry about debt dependency.</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>💻 Technology Leadership</h4>
+                        <p><strong>Digital Innovation:</strong> Leading in 5G, AI, electric vehicles, and renewable energy. Competition with U.S. tech companies reshaping global technology.</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>🌱 Climate Action</h4>
+                        <p><strong>Green Development:</strong> World's largest investor in renewable energy while also largest carbon emitter. Committed to carbon neutrality by 2060.</p>
+                    </div>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card auto-reveal">
+                        <h4>🤝 China's Global Partnerships</h4>
+                        <ul>
+                            <li><strong>Africa:</strong> Major infrastructure investment and trade relationships</li>
+                            <li><strong>Europe:</strong> Economic cooperation despite political differences</li>
+                            <li><strong>Asia:</strong> Regional trade agreements and cultural exchanges</li>
+                            <li><strong>Latin America:</strong> Growing economic and diplomatic ties</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card auto-reveal">
+                        <h4>⚡ Points of Tension</h4>
+                        <ul>
+                            <li><strong>U.S. Competition:</strong> Trade wars and strategic rivalry</li>
+                            <li><strong>Human Rights:</strong> International criticism of domestic policies</li>
+                            <li><strong>Territorial Disputes:</strong> South China Sea and Taiwan tensions</li>
+                            <li><strong>Different Values:</strong> Sovereignty vs. universal rights debates</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Lessons and Comparisons -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">14 / 15</div>
+                <h2>📊 Lessons and Comparisons</h2>
+                
+                <div class="essential-question auto-reveal">
+                    <h4>Returning to Our Essential Question:</h4>
+                    <p style="font-size: 2rem; color: #ffffff;">How did China's unique historical experiences shape its distinctive path to becoming a modern global power?</p>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card auto-reveal">
+                        <h4>🇨🇳 China's Path</h4>
+                        <ul>
+                            <li><strong>Historical Foundation:</strong> Century of humiliation → commitment to sovereignty and stability</li>
+                            <li><strong>Revolutionary Base:</strong> Peasant revolution → focus on rural development and mass mobilization</li>
+                            <li><strong>Reform Strategy:</strong> Gradual economic opening while maintaining political control</li>
+                            <li><strong>Development Priority:</strong> Economic growth first, political reform secondary</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card auto-reveal">
+                        <h4>🇮🇷 Iran's Path (for Comparison)</h4>
+                        <ul>
+                            <li><strong>Historical Foundation:</strong> Foreign interference → assertion of cultural and religious independence</li>
+                            <li><strong>Revolutionary Base:</strong> Urban coalition of religious and secular groups</li>
+                            <li><strong>Reform Strategy:</strong> Religious governance with limited economic opening</li>
+                            <li><strong>Development Priority:</strong> Cultural/religious authenticity first, economic growth secondary</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="impact-analysis auto-reveal">
+                    <h4>🎯 Key Insights:</h4>
+                    <ul>
+                        <li><strong>Historical Experience Matters:</strong> Past traumas and successes shape present choices about governance and development</li>
+                        <li><strong>No Universal Model:</strong> Different societies may require different approaches to modernization and governance</li>
+                        <li><strong>Trade-offs Are Real:</strong> Every development path involves costs and benefits that must be honestly evaluated</li>
+                        <li><strong>Cultural Context Matters:</strong> Values about individual rights, collective responsibility, and government legitimacy vary across societies</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Your Analysis and Next Steps -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">15 / 15</div>
+                <h2>✍️ Your Analysis and Next Steps</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>Applying Historical Understanding</h3>
+                    <p>Now that you understand the historical foundations of modern China, you're ready to analyze complex questions about development, governance, and cultural change with sophistication and nuance.</p>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>📝 Your Writing Assignment</h4>
+                        <p><strong>5-Paragraph Analytical Essay:</strong> "How has China's historical experience shaped its approach to economic development?" Use specific historical evidence to support your analysis.</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>🤔 Critical Thinking Questions</h4>
+                        <ul>
+                            <li>What are the strengths and limitations of China's development model?</li>
+                            <li>How do Chinese citizens' priorities compare to your own values?</li>
+                            <li>What lessons might other developing countries learn from China's experience?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>📚 Further Reading</h4>
+                        <p><strong>Primary Sources:</strong> Excerpts from *Red Star Over China*, *Age of Ambition*, and *Factory Girls* will provide personal perspectives on these historical changes.</p>
+                    </div>
+                </div>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>🌟 Looking Ahead</h3>
+                    <p>Next week we'll explore diverse political and religious systems worldwide, building on this foundation of understanding how historical experience shapes different approaches to governance and development. You're developing the analytical skills to think critically about complex global issues while respecting different perspectives and values.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let currentReveals = 0;
+        let maxReveals = 0;
+
+        function updateSlideDisplay() {
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.remove('hidden');
+                } else {
+                    slide.classList.add('hidden');
+                }
+            });
+            
+            // Reset reveals for new slide
+            currentReveals = 0;
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            maxReveals = autoReveals.length;
+            
+            // Hide all auto-reveal elements
+            autoReveals.forEach(element => {
+                element.classList.remove('revealed');
+            });
+            
+            // Show first auto-reveal element
+            if (autoReveals.length > 0) {
+                autoReveals[0].classList.add('revealed');
+                currentReveals = 1;
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlideDisplay();
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlideDisplay();
+            }
+        }
+
+        function revealNext() {
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            if (currentReveals < autoReveals.length) {
+                autoReveals[currentReveals].classList.add('revealed');
+                currentReveals++;
+                return true;
+            }
+            return false;
+        }
+
+        function hideReveal() {
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            if (currentReveals > 1) {
+                currentReveals--;
+                autoReveals[currentReveals].classList.remove('revealed');
+                return true;
+            }
+            return false;
+        }
+
+        function revealAll() {
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            autoReveals.forEach(element => {
+                element.classList.add('revealed');
+            });
+            currentReveals = autoReveals.length;
+        }
+
+        function toggleImage() {
+            // This would show/hide associated images if they existed
+            alert('No images associated with this slide');
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowRight':
+                    if (!revealNext()) {
+                        nextSlide();
+                    }
+                    break;
+                case 'ArrowLeft':
+                    if (!hideReveal()) {
+                        previousSlide();
+                    }
+                    break;
+                case ',':
+                    previousSlide();
+                    break;
+                case '.':
+                    nextSlide();
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        updateSlideDisplay();
+    </script>
+</body>
+</html>

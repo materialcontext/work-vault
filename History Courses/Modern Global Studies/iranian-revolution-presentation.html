@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Iranian Revolution (1979)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #1a1a2e;
+            color: #f5f5f5;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .presentation-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            padding: 60px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #f5f5f5;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #e8e8e8;
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #d0d0d0;
+        }
+
+        p, li {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: #e0e0e0;
+        }
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .quote {
+            font-style: italic;
+            border-left: 4px solid #ff6b6b;
+            padding-left: 2rem;
+            margin: 2rem 0;
+            color: #f0f0f0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: #2a2a3e;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #3a3a4e;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 0.9rem;
+            color: #888;
+            background: rgba(26, 26, 46, 0.9);
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        .slide-number {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 1.2rem;
+            color: #999;
+        }
+
+        .image-tab {
+            position: fixed;
+            top: 20px;
+            right: 80px;
+            background: #3a3a4e;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .image-tab:hover {
+            background: #4a4a5e;
+        }
+
+        .slide-image {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            max-width: 400px;
+            max-height: 300px;
+            border-radius: 12px;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .timeline-item {
+            margin: 1.5rem 0;
+            padding-left: 3rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: #ff6b6b;
+            border-radius: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 1.5rem;
+            width: 2px;
+            height: calc(100% + 1rem);
+            background: #3a3a4e;
+        }
+
+        .emphasis {
+            color: #ff6b6b;
+            font-weight: 600;
+        }
+
+        strong {
+            color: #ffd93d;
+            font-weight: 600;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #ff6b6b;
+        }
+
+        .title-slide {
+            text-align: center;
+        }
+
+        .title-slide h1 {
+            font-size: 5rem;
+            margin-bottom: 3rem;
+        }
+
+        .title-slide .subtitle {
+            font-size: 2rem;
+            color: #aaa;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.5rem; }
+            p, li { font-size: 1.2rem; }
+            .slide { padding: 30px; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide-number"></div>
+        <div class="image-tab" onclick="toggleImage()">📷 Image</div>
+        <img class="slide-image" id="slideImage" src="" alt="Slide illustration">
+
+        <!-- Title Slide -->
+        <div class="slide active title-slide">
+            <h1>The Iranian Revolution</h1>
+            <p class="subtitle">From Ancient Persia to Islamic Republic</p>
+            <p class="subtitle">1979: A Turning Point in World History</p>
+            <div class="hidden">
+                <p style="font-size: 1.8rem; margin-top: 3rem;">How did centuries of history lead to one of the most significant revolutions of the 20th century?</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Historical Recap -->
+        <div class="slide">
+            <h2>Building on Our Journey Through Iranian History</h2>
+            <div class="timeline">
+                <div class="timeline-item hidden">
+                    <h3>Persian Foundations (550 BCE - 1500 CE)</h3>
+                    <p>Cyrus's tolerance, Zoroastrian justice, and cultural synthesis</p>
+                </div>
+                <div class="timeline-item hidden">
+                    <h3>Safavid Revolution (1501-1736)</h3>
+                    <p>Shi'a Islam becomes Iranian identity marker against foreign powers</p>
+                </div>
+                <div class="timeline-item hidden">
+                    <h3>Constitutional Revolution (1905-1911)</h3>
+                    <p>Democratic aspirations crushed by foreign intervention</p>
+                </div>
+                <div class="timeline-item hidden">
+                    <h3>Pahlavi Modernization (1925-1978)</h3>
+                    <p>Forced Westernization creates revolutionary conditions</p>
+                </div>
+            </div>
+            <div class="hidden">
+                <p class="quote">"To understand 1979, we must understand the patterns of resistance, adaptation, and identity that shaped Iran across millennia."</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Setting the Stage -->
+        <div class="slide">
+            <h2>Iran in the 1970s: A Nation at the Crossroads</h2>
+            <div class="grid">
+                <div class="card hidden">
+                    <h3>Economic Contradictions</h3>
+                    <ul>
+                        <li>Oil wealth: $20 billion annually</li>
+                        <li>But 50% lived in poverty</li>
+                        <li>Inflation reaching 25%</li>
+                        <li>Rural villages without electricity</li>
+                    </ul>
+                </div>
+                <div class="card hidden">
+                    <h3>Social Tensions</h3>
+                    <ul>
+                        <li>Western lifestyles in Tehran</li>
+                        <li>Traditional values in provinces</li>
+                        <li>Youth unemployment at 30%</li>
+                        <li>Women caught between worlds</li>
+                    </ul>
+                </div>
+                <div class="card hidden">
+                    <h3>Political Repression</h3>
+                    <ul>
+                        <li>SAVAK: 5,000 agents + 3 million informants</li>
+                        <li>All opposition parties banned</li>
+                        <li>100,000 political prisoners</li>
+                        <li>Torture systematically used</li>
+                    </ul>
+                </div>
+                <div class="card hidden">
+                    <h3>Foreign Dependence</h3>
+                    <ul>
+                        <li>50,000 American advisors</li>
+                        <li>Military equipment worth billions</li>
+                        <li>Diplomatic immunity for US personnel</li>
+                        <li>Oil controlled by Western consortium</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: The Revolutionary Coalition -->
+        <div class="slide">
+            <h2>An Unprecedented Coalition Forms</h2>
+            <p class="hidden">Never before had such diverse groups united against a common enemy:</p>
+            <div class="grid">
+                <div class="card hidden">
+                    <h3>🕌 Religious Forces</h3>
+                    <p><strong>Ayatollah Khomeini</strong> - Exiled cleric with revolutionary vision</p>
+                    <p>Traditional clerics seeing Islam threatened</p>
+                    <p>Religious students (talabeh) as street organizers</p>
+                    <p>Mosque networks providing meeting spaces</p>
+                </div>
+                <div class="card hidden">
+                    <h3>📚 Secular Intellectuals</h3>
+                    <p>University professors and students</p>
+                    <p>Writers and artists censored by regime</p>
+                    <p>Lawyers defending political prisoners</p>
+                    <p>Journalists silenced by state control</p>
+                </div>
+                <div class="card hidden">
+                    <h3>💼 Bazaar Merchants</h3>
+                    <p>Traditional traders (bazaaris) threatened by malls</p>
+                    <p>Financial backbone of opposition</p>
+                    <p>Control of 2/3 of wholesale trade</p>
+                    <p>Historic alliance with clerics</p>
+                </div>
+                <div class="card hidden">
+                    <h3>⚙️ Workers & Poor</h3>
+                    <p>Oil workers with strategic leverage</p>
+                    <p>Factory workers without unions</p>
+                    <p>Urban poor in shanty towns</p>
+                    <p>Rural migrants seeking dignity</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: The Spark -->
+        <div class="slide">
+            <h2>The Revolution Ignites: 1978</h2>
+            <div class="timeline">
+                <div class="timeline-item hidden">
+                    <h3>January 7, 1978: The Fatal Article</h3>
+                    <p>Government newspaper attacks Khomeini as "foreign agent"</p>
+                    <p>Seminary students protest in Qom - <span class="emphasis">70 killed by police</span></p>
+                </div>
+                <div class="timeline-item hidden">
+                    <h3>40-Day Cycles Begin</h3>
+                    <p>Shi'a mourning tradition creates protest rhythm</p>
+                    <p>Each memorial becomes new confrontation</p>
+                    <p>Deaths multiply: 10 → 70 → 400 → thousands</p>
+                </div>
+                <div class="timeline-item hidden">
+                    <h3>August 19: Cinema Rex Fire</h3>
+                    <p>477 people burned alive in Abadan theater</p>
+                    <p>Government blamed despite likely being arson by extremists</p>
+                    <p><strong>Turning point: Middle class joins opposition</strong></p>
+                </div>
+                <div class="timeline-item hidden">
+                    <h3>September 8: Black Friday</h3>
+                    <p>Martial law declared in Tehran</p>
+                    <p>Troops fire on protesters in Jaleh Square</p>
+                    <p>88-3,000 killed (reports vary)</p>
+                    <p><span class="emphasis">"The Shah will never recover from this"</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Revolutionary Strategy -->
+        <div class="slide">
+            <h2>The Power of Non-Violent Resistance</h2>
+            <div class="hidden">
+                <h3>Strategic Choices That Toppled a Regime</h3>
+            </div>
+            <div class="grid">
+                <div class="card hidden">
+                    <h3>🏭 Economic Warfare</h3>
+                    <p><strong>Oil Strike:</strong> Cost regime $60 million daily</p>
+                    <p>Bazaar shutdowns paralyzed commerce</p>
+                    <p>Bank employees stopped transactions</p>
+                    <p>Power plant workers created blackouts</p>
+                </div>
+                <div class="card hidden">
+                    <h3>📢 Information War</h3>
+                    <p>Cassette tapes spread Khomeini's messages</p>
+                    <p>Mosque loudspeakers coordinated protests</p>
+                    <p>Underground newspapers exposed regime</p>
+                    <p>BBC Persian became trusted news source</p>
+                </div>
+                <div class="card hidden">
+                    <h3>🕊️ Moral Authority</h3>
+                    <p>Flowers given to soldiers</p>
+                    <p>Women at front of marches</p>
+                    <p>Religious symbols vs. state violence</p>
+                    <p>"Allah-u Akbar" from rooftops nightly</p>
+                </div>
+                <div class="card hidden">
+                    <h3>🌐 International Pressure</h3>
+                    <p>Carter's human rights rhetoric</p>
+                    <p>Western media coverage of violence</p>
+                    <p>Exiled opposition lobbying</p>
+                    <p>Shah's illness hidden but suspected</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Khomeini's Vision -->
+        <div class="slide">
+            <h2>Khomeini's Revolutionary Message</h2>
+            <div class="hidden">
+                <p class="quote">"We will create a government that will be the government of God"</p>
+            </div>
+            <div class="grid">
+                <div class="card hidden">
+                    <h3>Political Theory: Velayat-e Faqih</h3>
+                    <p>Rule by Islamic jurists</p>
+                    <p>Rejection of monarchy as un-Islamic</p>
+                    <p>Democracy within Islamic framework</p>
+                    <p>Clerics as guardians of justice</p>
+                </div>
+                <div class="card hidden">
+                    <h3>Anti-Imperialism</h3>
+                    <p>"Neither East nor West"</p>
+                    <p>End foreign control of oil</p>
+                    <p>Expel American advisors</p>
+                    <p>True independence for Iran</p>
+                </div>
+                <div class="card hidden">
+                    <h3>Social Justice</h3>
+                    <p>Help for mostazafin (oppressed)</p>
+                    <p>Land reform for peasants</p>
+                    <p>Free education and healthcare</p>
+                    <p>Dignity for the poor</p>
+                </div>
+                <div class="card hidden">
+                    <h3>Cultural Authenticity</h3>
+                    <p>Return to Islamic values</p>
+                    <p>Reject Western cultural invasion</p>
+                    <p>Preserve Iranian identity</p>
+                    <p>Moral regeneration of society</p>
+                </div>
+            </div>
+            <div class="hidden">
+                <p><strong>Key insight:</strong> Khomeini spoke to all groups' grievances while keeping his ultimate plans vague</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: The Final Days -->
+        <div class="slide">
+            <h2>The Regime Collapses: December 1978 - February 1979</h2>
+            <div class="timeline">
+                <div class="timeline-item hidden">
+                    <h3>December 2: Ashura Marches</h3>
+                    <p>2 million march in Tehran alone</p>
+                    <p>17-point resolution demands Islamic Republic</p>
+                    <p>Military begins to waver</p>
+                </div>
+                <div class="timeline-item hidden">
+                    <h3>January 16, 1979: Shah Leaves</h3>
+                    <p>"Vacation" that everyone knows is permanent</p>
+                    <p>Crowds celebrate in streets</p>
+                    <p>Statues toppled across country</p>
+                </div>
+                <div class="timeline-item hidden">
+                    <h3>February 1: Khomeini Returns</h3>
+                    <p>3 million greet him at airport</p>
+                    <p>"I feel nothing" - his famous response</p>
+                    <p>Parallel government formed</p>
+                </div>
+                <div class="timeline-item hidden">
+                    <h3>February 11: Victory</h3>
+                    <p>Military declares neutrality</p>
+                    <p>Weapons depots opened to revolutionaries</p>
+                    <p>Prime Minister flees</p>
+                    <p><strong>The Islamic Republic is born</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Impact on Different Groups -->
+        <div class="slide">
+            <h2>Winners and Losers: Who Gained, Who Lost?</h2>
+            <div class="grid">
+                <div class="card hidden">
+                    <h3>👩 Women</h3>
+                    <p><strong>Lost:</strong> Mandatory hijab, job restrictions, family law changes</p>
+                    <p><strong>Gained:</strong> Higher literacy (25% → 80%), university access</p>
+                    <p>Complex legacy of restrictions and opportunities</p>
+                </div>
+                <div class="card hidden">
+                    <h3>🎓 Secular Intellectuals</h3>
+                    <p><strong>Lost:</strong> Freedom of expression, political power</p>
+                    <p>Many imprisoned or forced into exile</p>
+                    <p>Universities purged in "Cultural Revolution"</p>
+                </div>
+                <div class="card hidden">
+                    <h3>⛪ Religious Minorities</h3>
+                    <p>Jews, Christians, Zoroastrians: Protected but limited</p>
+                    <p>Baha'is: Severe persecution</p>
+                    <p>Sunni Muslims: Marginalized</p>
+                </div>
+                <div class="card hidden">
+                    <h3>🌾 Rural Poor</h3>
+                    <p><strong>Gained:</strong> Electricity, schools, clinics</p>
+                    <p>Revolutionary foundations provided services</p>
+                    <p>But economic problems persisted</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Regional Impact -->
+        <div class="slide">
+            <h2>Shockwaves Across the Middle East</h2>
+            <div class="hidden">
+                <p style="font-size: 1.8rem;">The revolution transformed not just Iran, but the entire region:</p>
+            </div>
+            <div class="grid">
+                <div class="card hidden">
+                    <h3>🇸🇦 Saudi Arabia</h3>
+                    <p>Accelerated Wahhabi influence globally</p>
+                    <p>Feared Shia uprising in Eastern Province</p>
+                    <p>Began sectarian competition with Iran</p>
+                </div>
+                <div class="card hidden">
+                    <h3>🇮🇶 Iraq</h3>
+                    <p>Invaded Iran in 1980 fearing revolution spread</p>
+                    <p>8-year war killed 1 million</p>
+                    <p>Strengthened Saddam's dictatorship</p>
+                </div>
+                <div class="card hidden">
+                    <h3>🇱🇧 Lebanon</h3>
+                    <p>Hezbollah created with Iranian support</p>
+                    <p>Shia awakening changed power balance</p>
+                    <p>Became Iran's strategic ally</p>
+                </div>
+                <div class="card hidden">
+                    <h3>🇺🇸 United States</h3>
+                    <p>Lost key regional ally</p>
+                    <p>444-day hostage crisis</p>
+                    <p>Shifted to supporting Iraq, then Saudi Arabia</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Global Consequences -->
+        <div class="slide">
+            <h2>Global Impact: Beyond the Middle East</h2>
+            <div class="grid">
+                <div class="card hidden">
+                    <h3>🛢️ Oil Crisis 2.0</h3>
+                    <p>Prices doubled: $13 → $34 per barrel</p>
+                    <p>Global recession and 15% inflation</p>
+                    <p>Changed energy politics forever</p>
+                </div>
+                <div class="card hidden">
+                    <h3>🌍 Cold War Disruption</h3>
+                    <p>"Neither East nor West" challenged bipolar world</p>
+                    <p>New model: Religious ideology as state power</p>
+                    <p>Inspired Islamic movements globally</p>
+                </div>
+                <div class="card hidden">
+                    <h3>📚 Clash of Civilizations?</h3>
+                    <p>Debate: Is Islam compatible with modernity?</p>
+                    <p>Rise of political Islam worldwide</p>
+                    <p>New forms of resistance to Western hegemony</p>
+                </div>
+                <div class="card hidden">
+                    <h3>🎭 Cultural Revolution</h3>
+                    <p>Islamic art and architecture revival</p>
+                    <p>New film industry with moral guidelines</p>
+                    <p>Literature flourished despite censorship</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Contemporary Iran -->
+        <div class="slide">
+            <h2>Iran Today: Revolution's Complex Legacy</h2>
+            <div class="grid">
+                <div class="card hidden">
+                    <h3>Political System</h3>
+                    <p><strong>Hybrid structure:</strong> Democratic + Theocratic</p>
+                    <p>Elected president and parliament</p>
+                    <p>But Supreme Leader has final say</p>
+                    <p>Guardian Council vets candidates</p>
+                </div>
+                <div class="card hidden">
+                    <h3>Youth Challenge</h3>
+                    <p>70% of population born after revolution</p>
+                    <p>Desire for freedom and opportunity</p>
+                    <p>Brain drain: 150,000 leave annually</p>
+                    <p>Underground culture thrives</p>
+                </div>
+                <div class="card hidden">
+                    <h3>Economic Struggles</h3>
+                    <p>Sanctions impact: Currency collapsed</p>
+                    <p>Youth unemployment: 25-40%</p>
+                    <p>Corruption widespread</p>
+                    <p>But self-sufficiency in many areas</p>
+                </div>
+                <div class="card hidden">
+                    <h3>Regional Power</h3>
+                    <p>"Axis of Resistance" across region</p>
+                    <p>Nuclear program advances</p>
+                    <p>Proxy forces in 5+ countries</p>
+                    <p>Land corridor to Mediterranean</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Lessons and Reflections -->
+        <div class="slide">
+            <h2>What Can We Learn from the Iranian Revolution?</h2>
+            <div class="hidden">
+                <h3>Key Insights for Understanding Revolutions</h3>
+            </div>
+            <div class="grid">
+                <div class="card hidden">
+                    <h3>🔄 Historical Patterns Matter</h3>
+                    <p>Centuries of foreign intervention created deep resentment</p>
+                    <p>Religious authority provided alternative to foreign-backed monarchy</p>
+                    <p>Cultural authenticity resonated with masses</p>
+                </div>
+                <div class="card hidden">
+                    <h3>💪 People Power Works</h3>
+                    <p>Non-violent resistance can topple powerful regimes</p>
+                    <p>Broad coalitions necessary for success</p>
+                </div>
+                <div class="card hidden">
+                    <h3>⚠️ Revolutions Are Unpredictable</h3>
+                    <p>Outcomes rarely match initial goals</p>
+                    <p>Most organized groups often win power</p>
+                    <p>Democratic hopes can be disappointed</p>
+                </div>
+                <div class="card hidden">
+                    <h3>🌐 Global Connections</h3>
+                    <p>No revolution happens in isolation</p>
+                    <p>Regional impacts can last decades</p>
+                    <p>New ideologies can reshape world order</p>
+                </div>
+            </div>
+            <div class="hidden">
+                <p class="quote">"Those who make peaceful revolution impossible will make violent revolution inevitable." - John F. Kennedy</p>
+            </div>
+        </div>
+
+        <!-- Final Slide -->
+        <div class="slide">
+            <h2>Connecting Past, Present, and Future</h2>
+            <div class="hidden">
+                <p style="font-size: 2rem; text-align: center; margin-bottom: 3rem;">The Iranian Revolution shows us how history shapes the present and future</p>
+            </div>
+            <div class="hidden">
+                <h3>Questions for Further Reflection:</h3>
+                <ul style="font-size: 1.8rem; line-height: 2.5;">
+                    <li>How do historical grievances influence modern politics?</li>
+                    <li>What conditions make revolution more likely?</li>
+                    <li>Can religious and democratic values coexist?</li>
+                    <li>How do revolutions change international relations?</li>
+                    <li>What parallels do you see with other movements today?</li>
+                </ul>
+            </div>
+            <div class="hidden">
+                <p style="text-align: center; font-size: 1.6rem; margin-top: 3rem;">
+                    <strong>Remember:</strong> Understanding the past helps us navigate the present and shape the future.
+                </p>
+            </div>
+        </div>
+
+        <div class="controls">
+            ← → Progress | , . Navigate | Enter: Reveal All
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        let imageUrls = [
+            '', // Title slide - no image
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Persepolis_Iran-2.jpg/800px-Persepolis_Iran-2.jpg', // Historical recap
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Tehran_1970s.jpg/800px-Tehran_1970s.jpg', // 1970s Iran
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/1979_Iranian_Revolution.jpg/800px-1979_Iranian_Revolution.jpg', // Coalition
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Iranian_Revolution_protesters.jpg/800px-Iranian_Revolution_protesters.jpg', // Spark
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Khomeini_portrait.jpg/600px-Khomeini_portrait.jpg', // Strategy
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Imam_Khomeini_in_Mehrabad.jpg/800px-Imam_Khomeini_in_Mehrabad.jpg', // Khomeini
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Shah_leaving_Iran.jpg/800px-Shah_leaving_Iran.jpg', // Final days
+            '', // Impact on groups
+            '', // Regional impact
+            '', // Global consequences
+            '', // Contemporary Iran
+            '', // Lessons
+            '' // Final slide
+        ];
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            updateSlideNumber();
+            
+            // Reset hidden elements
+            const hiddenElements = slides[currentSlide].querySelectorAll('.hidden');
+            hiddenElements.forEach(el => el.classList.remove('revealed'));
+            
+            // Update image
+            const imageUrl = imageUrls[currentSlide];
+            const slideImage = document.getElementById('slideImage');
+            if (imageUrl) {
+                slideImage.src = imageUrl;
+            } else {
+                slideImage.style.display = 'none';
+            }
+        }
+
+        function updateSlideNumber() {
+            document.querySelector('.slide-number').textContent = `${currentSlide + 1} / ${slides.length}`;
+        }
+
+        function revealNext() {
+            const currentSlideElement = slides[currentSlide];
+            const hiddenElements = currentSlideElement.querySelectorAll('.hidden:not(.revealed)');
+            
+            if (hiddenElements.length > 0) {
+                hiddenElements[0].classList.add('revealed');
+                hiddenElements[0].classList.remove('hidden');
+                return true;
+            }
+            return false;
+        }
+
+        function hideNext() {
+            const currentSlideElement = slides[currentSlide];
+            const revealedElements = currentSlideElement.querySelectorAll('.revealed');
+            
+            if (revealedElements.length > 0) {
+                const lastRevealed = revealedElements[revealedElements.length - 1];
+                lastRevealed.classList.add('hidden');
+                lastRevealed.classList.remove('revealed');
+                return true;
+            }
+            return false;
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const hiddenElements = currentSlideElement.querySelectorAll('.hidden');
+            hiddenElements.forEach(el => {
+                el.classList.add('revealed');
+                el.classList.remove('hidden');
+            });
+        }
+
+        function toggleImage() {
+            const slideImage = document.getElementById('slideImage');
+            if (slideImage.style.display === 'block') {
+                slideImage.style.display = 'none';
+            } else if (imageUrls[currentSlide]) {
+                slideImage.style.display = 'block';
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                    if (!revealNext()) {
+                        showSlide(currentSlide + 1);
+                    }
+                    break;
+                case 'ArrowLeft':
+                    if (!hideNext()) {
+                        showSlide(currentSlide - 1);
+                    }
+                    break;
+                case ',':
+                    showSlide(currentSlide - 1);
+                    break;
+                case '.':
+                    showSlide(currentSlide + 1);
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        updateSlideNumber();
+    </script>
+</body>
+</html>
