@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Road to World War II: Economic Crisis, Resource Wars, and Global Catastrophe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            height: 100vh;
+            user-select: none;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(ellipse at center, #2a2a2a 0%, #0a0a0a 100%);
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            padding: 60px 80px;
+            position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Typography with dark theme optimization */
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 50%, #c44569 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #f8b500;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(248, 181, 0, 0.3);
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4ecdc4;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        p, li {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+            margin-bottom: 1.2rem;
+            max-width: 900px;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #888;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        /* Slide numbering */
+        .slide-number {
+            position: fixed;
+            top: 30px;
+            right: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: #f8b500;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            border: 1px solid rgba(248, 181, 0, 0.3);
+            z-index: 100;
+        }
+
+        /* Central questions with dramatic styling */
+        .central-question {
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(248, 181, 0, 0.1) 100%);
+            border: 2px solid rgba(248, 181, 0, 0.5);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem auto;
+            font-size: 1.8rem;
+            color: #f8b500;
+            font-weight: 600;
+            text-align: center;
+            max-width: 900px;
+            box-shadow: 0 10px 40px rgba(248, 181, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .central-question::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(248, 181, 0, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        /* Interactive reveal system */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .reveal-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Image placeholders with modern design */
+        .image-placeholder {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 2rem 0;
+            text-align: center;
+            color: #888;
+            font-style: italic;
+            position: relative;
+            overflow: hidden;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            backdrop-filter: blur(5px);
+        }
+
+        .image-placeholder::before {
+            content: '🖼️';
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+
+        .image-description {
+            font-weight: 700;
+            color: #f8b500;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        /* Timeline styling */
+        .timeline {
+            position: relative;
+            margin: 3rem 0;
+            padding: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #f8b500, #ee5a24);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+            text-align: right;
+            padding-right: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: 55%;
+            padding-left: 3rem;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #f8b500;
+            border-radius: 50%;
+            top: 0;
+            box-shadow: 0 0 20px rgba(248, 181, 0, 0.6);
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        .timeline-date {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #f8b500;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Comparison grids */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .comparison-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .comparison-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(248, 181, 0, 0.5);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .comparison-item h4 {
+            font-size: 1.6rem;
+            color: #4ecdc4;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* Statistics and data visualization */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+            border: 2px solid rgba(78, 205, 196, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(78, 205, 196, 0.3);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #4ecdc4;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 10px rgba(78, 205, 196, 0.5);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Quote styling */
+        .quote {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border-left: 4px solid #f8b500;
+            padding: 2rem 2rem 2rem 3rem;
+            margin: 2rem 0;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: #e0e0e0;
+            position: relative;
+        }
+
+        .quote::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(248, 181, 0, 0.3);
+            font-family: Georgia, serif;
+        }
+
+        .quote-attribution {
+            text-align: right;
+            margin-top: 1rem;
+            color: #888;
+            font-size: 1.1rem;
+            font-style: normal;
+        }
+
+        /* Interactive elements */
+        .interactive-prompt {
+            background: rgba(78, 205, 196, 0.1);
+            border: 2px dashed rgba(78, 205, 196, 0.5);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.3rem;
+            color: #4ecdc4;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-prompt:hover {
+            background: rgba(78, 205, 196, 0.2);
+            transform: scale(1.02);
+        }
+
+        /* Maps and geographic elements */
+        .map-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            min-height: 400px;
+        }
+
+        .map-legend {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Continue indicator */
+        .continue-indicator {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #f8b500;
+            font-size: 1rem;
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeInOut 3s ease-in-out infinite;
+            text-align: center;
+            z-index: 100;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Navigation controls */
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            right: 40px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #e0e0e0;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(248, 181, 0, 0.2);
+            border-color: rgba(248, 181, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Lists with custom styling */
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #f8b500;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        /* Resource crisis visualization */
+        .resource-chart {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .resource-bar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            height: 40px;
+            margin: 1rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: linear-gradient(90deg, #ee5a24, #f8b500);
+            border-radius: 10px;
+            transition: width 1s ease-out;
+        }
+
+        .resource-label {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            font-weight: 700;
+            z-index: 1;
+        }
+
+        /* Responsive design */
+        @media (max-width: 1024px) {
+            .slide {
+                padding: 40px;
+            }
+            
+            h1 {
+                font-size: 3.5rem;
+            }
+            
+            h2 {
+                font-size: 2.5rem;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                margin-left: 0 !important;
+                padding-left: 3rem !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item::after {
+                left: 11px !important;
+                right: auto !important;
+            }
+        }
+
+        /* Image tab functionality */
+        .image-tab {
+            position: fixed;
+            top: 30px;
+            right: 180px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .image-tab:hover {
+            background: rgba(248, 181, 0, 0.2);
+            border-color: rgba(248, 181, 0, 0.5);
+        }
+
+        .image-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            cursor: pointer;
+        }
+
+        .image-overlay.active {
+            display: flex;
+        }
+
+        .image-overlay-content {
+            max-width: 90%;
+            max-height: 90%;
+            background: #000;
+            border-radius: 15px;
+            padding: 3rem;
+            text-align: center;
+            color: #e0e0e0;
+        }
+
+        /* Emphasis effects */
+        .emphasis {
+            color: #f8b500;
+            font-weight: 700;
+        }
+
+        .danger {
+            color: #ff6b6b;
+            font-weight: 700;
+        }
+
+        strong {
+            color: #4ecdc4;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active" data-reveal-count="3">
+            <div class="slide-number">1/20</div>
+            <div class="reveal-item">
+                <h1>The Road to World War II</h1>
+                <div class="subtitle">Economic Crisis, Resource Wars, and Global Catastrophe</div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="central-question">
+                    How did the world's most destructive war emerge from economic desperation and the scramble for resources?
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.5rem; color: #888;">
+                    A journey through the 1930s when democracy failed, empires clashed, and the world descended into total war
+                </p>
+            </div>
+            
+            <div class="continue-indicator">Press → to begin</div>
+        </div>
+
+        <!-- Slide 2: Setting the Stage -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">2/20</div>
+            
+            <div class="reveal-item">
+                <h2>October 1929: The World Changes Forever</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="image-placeholder">
+                    <div class="image-description">Wall Street Panic, October 1929</div>
+                    <div>Black and white photograph showing crowds gathering outside the New York Stock Exchange, men in suits and hats looking distressed, newspapers with headlines about market crash</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">30%</div>
+                        <div class="stat-label">Global Trade Collapse</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">25M</div>
+                        <div class="stat-label">Americans Unemployed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50%</div>
+                        <div class="stat-label">German Industrial Decline</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">⅔</div>
+                        <div class="stat-label">of World Affected</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.4rem;">
+                    The Great Depression didn't just destroy economies—it <span class="emphasis">shattered faith in democracy</span> and created desperate populations willing to embrace <span class="danger">radical solutions</span>.
+                </p>
+            </div>
+            
+            <div class="continue-indicator">Press → to continue</div>
+        </div>
+
+        <!-- Slide 3: Two Theaters of Crisis -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">3/20</div>
+            
+            <div class="reveal-item">
+                <h2>A World Divided: Two Theaters of Crisis</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h4>Europe: The Fascist Surge</h4>
+                        <ul>
+                            <li>Germany: 6 million unemployed by 1932</li>
+                            <li>Italy: Mussolini's model state</li>
+                            <li>Spain: Civil war as testing ground</li>
+                            <li>Fear of communist revolution everywhere</li>
+                        </ul>
+                        <div class="image-placeholder" style="min-height: 150px;">
+                            <div class="image-description">Nazi Rally</div>
+                            <div style="font-size: 0.9rem;">Nuremberg stadium filled with uniformed masses</div>
+                        </div>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>Asia: The Imperial Expansion</h4>
+                        <ul>
+                            <li>Japan: 65 million people, few resources</li>
+                            <li>China: Fragmented and vulnerable</li>
+                            <li>Manchuria: The resource prize</li>
+                            <li>Western colonies: Tempting targets</li>
+                        </ul>
+                        <div class="image-placeholder" style="min-height: 150px;">
+                            <div class="image-description">Japanese Troops</div>
+                            <div style="font-size: 0.9rem;">Soldiers marching into Manchuria, 1931</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; color: #f8b500; font-size: 1.3rem;">
+                    Two separate crises would merge into one global catastrophe
+                </p>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    💭 Think: What makes people support extreme political movements during economic crisis?
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Press → to explore Europe's descent</div>
+        </div>
+
+        <!-- Slide 4: Germany's Desperate Gamble -->
+        <div class="slide" data-reveal-count="5">
+            <div class="slide-number">4/20</div>
+            
+            <div class="reveal-item">
+                <h2>Germany's Desperate Gamble</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote">
+                    "We are not a world power. We must become one, or we will cease to exist."
+                    <div class="quote-attribution">— Adolf Hitler, 1937</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Resource Trap</h3>
+                <div class="resource-chart">
+                    <div class="resource-bar">
+                        <div class="resource-fill" style="width: 25%"></div>
+                        <div class="resource-label">Oil: 25% domestic</div>
+                    </div>
+                    <div class="resource-bar">
+                        <div class="resource-fill" style="width: 48%"></div>
+                        <div class="resource-label">Iron Ore: 48% domestic</div>
+                    </div>
+                    <div class="resource-bar">
+                        <div class="resource-fill" style="width: 20%"></div>
+                        <div class="resource-label">Rubber: 20% domestic</div>
+                    </div>
+                    <div class="resource-bar">
+                        <div class="resource-fill" style="width: 33%"></div>
+                        <div class="resource-label">Food: 67% dependent on imports</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p><strong>The Paradox:</strong> Germany needed resources to build an army, but needed an army to seize resources. Time was running out as America grew stronger.</p>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="map-container">
+                    <div class="image-placeholder">
+                        <div class="image-description">Germany's Geographic Predicament</div>
+                        <div>Map showing Germany surrounded by potential enemies, with arrows indicating resource dependencies and vulnerable supply routes</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Press → to see Hitler's solution</div>
+        </div>
+
+        <!-- Slide 5: The Technology of Destruction -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">5/20</div>
+            
+            <div class="reveal-item">
+                <h2>Technology as Destiny: The New Warfare</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h4>The Tank Revolution</h4>
+                        <div class="image-placeholder" style="min-height: 200px;">
+                            <div class="image-description">Panzer Division</div>
+                            <div>German tanks in formation, showcasing mobility</div>
+                        </div>
+                        <p>Blitzkrieg: Speed + Surprise = Victory</p>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>Terror from Above</h4>
+                        <div class="image-placeholder" style="min-height: 200px;">
+                            <div class="image-description">Stuka Dive Bomber</div>
+                            <div>German aircraft with distinctive gull wings and sirens</div>
+                        </div>
+                        <p>Psychological warfare through technology</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">3%</div>
+                        <div class="stat-label">GDP on Defense (1933)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">20%</div>
+                        <div class="stat-label">GDP on Defense (1939)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.4rem;">
+                    New technology didn't just change warfare—it <span class="emphasis">changed politics</span>. 
+                    Fascist movements used machines as symbols of their power to transform society.
+                </p>
+            </div>
+            
+            <div class="continue-indicator">Press → to witness the Spanish testing ground</div>
+        </div>
+
+        <!-- Slide 6: Spain - The Rehearsal -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">6/20</div>
+            
+            <div class="reveal-item">
+                <h2>Spain 1936: The World War's Rehearsal</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="image-placeholder">
+                    <div class="image-description">Guernica After the Bombing</div>
+                    <div>Destroyed buildings, rubble-filled streets, civilians searching through ruins - the first modern aerial terror bombing of a city</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>What Spain Taught the World:</h3>
+                <ul>
+                    <li><strong>Total War</strong> - Civilians were now targets</li>
+                    <li><strong>Technology Terror</strong> - Aircraft could destroy cities</li>
+                    <li><strong>Ideology Wars</strong> - Fascism vs. Communism vs. Democracy</li>
+                    <li><strong>International Failure</strong> - The world watched but didn't act</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote">
+                    "The Spanish Civil War was the opening battle of World War II"
+                    <div class="quote-attribution">— Contemporary historian</div>
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Press → to journey to Asia</div>
+        </div>
+
+        <!-- Slide 7: Japan's Resource Crisis -->
+        <div class="slide" data-reveal-count="5">
+            <div class="slide-number">7/20</div>
+            
+            <div class="reveal-item">
+                <h2>Japan: An Empire's Desperate Need</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">90%</div>
+                        <div class="stat-label">Oil Imported</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">88%</div>
+                        <div class="stat-label">Iron Ore Imported</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Rubber Imported</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">65M</div>
+                        <div class="stat-label">People to Feed</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Island Prison</h3>
+                <p>Japan faced an impossible choice: <span class="danger">Accept permanent weakness</span> or <span class="emphasis">seize resources by force</span>.</p>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="map-container">
+                    <div class="image-placeholder">
+                        <div class="image-description">Japan's Resource Map</div>
+                        <div>Map showing Japan's home islands with arrows pointing to: Manchuria (coal/iron), Indonesia (oil/rubber), Southeast Asia (rice/tin)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    💭 Consider: How does resource scarcity drive nations to war?
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Press → to see Japan's solution</div>
+        </div>
+
+        <!-- Slide 8: Manchuria - The First Domino -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">8/20</div>
+            
+            <div class="reveal-item">
+                <h2>1931: The Manchurian Laboratory</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="image-placeholder">
+                    <div class="image-description">The Fushun Coal Mine</div>
+                    <div>Massive open-pit mine, the largest in Asia, with industrial machinery and thousands of workers visible, smoke stacks in background</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>What Manchuria Provided:</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li>1/6 of all Japan's coal</li>
+                            <li>Iron ore from Anshan</li>
+                            <li>Agricultural products</li>
+                            <li>Living space for settlers</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>Lessons</h4>
+                        <ul>
+                            <li>Conquest could work</li>
+                            <li>The League of Nations was weak</li>
+                            <li>Resources justified brutality</li>
+                            <li>More expansion was needed</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.4rem; color: #ff6b6b;">
+                    Success in Manchuria convinced Japan that empire was the answer—but it only created hunger for more.
+                </p>
+            </div>
+            
+            <div class="continue-indicator">Press → to see the human cost</div>
+        </div>
+
+        <!-- Slide 9: The Human Cost of Resources -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">9/20</div>
+            
+            <div class="reveal-item">
+                <h2>The Human Price of Coal and Steel</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote">
+                    "We thought machines would replace workers. Instead, the machines demanded even more human suffering."
+                    <div class="quote-attribution">— Fushun mine survivor</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Pingdingshan Massacre, 1932</h3>
+                <div class="image-placeholder">
+                    <div class="image-description">Memorial Site</div>
+                    <div>Solemn memorial with flowers, photographs of victims, Japanese soldiers had killed 3,000 Chinese civilians near the mines</div>
+                </div>
+                <p>Resource extraction was inseparable from violence. The quest for coal, iron, and oil would cost millions of lives.</p>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">20,000</div>
+                        <div class="stat-label">Workers at Fushun</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">16-hour</div>
+                        <div class="stat-label">Work days</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">Countless</div>
+                        <div class="stat-label">Deaths from exhaustion</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Press → to return to Europe</div>
+        </div>
+
+        <!-- Slide 10: The Nazi Economic Miracle? -->
+        <div class="slide" data-reveal-count="5">
+            <div class="slide-number">10/20</div>
+            
+            <div class="reveal-item">
+                <h2>The Nazi "Economic Miracle" Exposed</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>What Germans Saw:</h3>
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">6M → 1M</div>
+                        <div class="stat-label">Unemployment Drop</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">Autobahn</div>
+                        <div class="stat-label">Highway System</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">Stability</div>
+                        <div class="stat-label">After Chaos</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Hidden Truth:</h3>
+                <ul>
+                    <li><span class="danger">Massive rearmament</span> drove employment</li>
+                    <li><span class="danger">Synthetic fuel plants</span> consumed enormous resources</li>
+                    <li><span class="danger">Food imports</span> still required foreign currency</li>
+                    <li><span class="danger">Time was running out</span> - the economy would collapse without conquest</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote">
+                    "Germany's problem could be solved only by the use of force"
+                    <div class="quote-attribution">— Hitler's secret admission, 1937</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.4rem;">
+                    The "miracle" was a <span class="emphasis">ticking time bomb</span>. War wasn't a choice—it was an economic necessity.
+                </p>
+            </div>
+            
+            <div class="continue-indicator">Press → to see the ideology of expansion</div>
+        </div>
+
+        <!-- Slide 11: Competing Visions of Empire -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">11/20</div>
+            
+            <div class="reveal-item">
+                <h2>Two Visions of Empire</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h4>German Lebensraum</h4>
+                        <div class="image-placeholder" style="min-height: 150px;">
+                            <div class="image-description">Eastern Europe Map</div>
+                            <div>Arrows showing planned German expansion eastward</div>
+                        </div>
+                        <ul>
+                            <li>"Living space" in Eastern Europe</li>
+                            <li>Enslavement of Slavic peoples</li>
+                            <li>Agricultural colonies</li>
+                            <li>Racial hierarchy</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>Japanese Co-Prosperity Sphere</h4>
+                        <div class="image-placeholder" style="min-height: 150px;">
+                            <div class="image-description">Asia Map</div>
+                            <div>Japanese empire spanning from Manchuria to Indonesia</div>
+                        </div>
+                        <ul>
+                            <li>"Asia for Asians"</li>
+                            <li>Expel Western powers</li>
+                            <li>Resource extraction</li>
+                            <li>Japanese leadership</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.3rem; color: #f8b500;">
+                    Both empires promised liberation but delivered brutal exploitation
+                </p>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    💭 Reflect: How do nations justify conquest to their own people?
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Press → to see democracy's failure</div>
+        </div>
+
+        <!-- Slide 12: The Failure of Peace -->
+        <div class="slide" data-reveal-count="5">
+            <div class="slide-number">12/20</div>
+            
+            <div class="reveal-item">
+                <h2>Why Democracy Failed to Stop Them</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">1931</div>
+                        <div class="timeline-content">
+                            <strong>Japan invades Manchuria</strong><br>
+                            League of Nations: Condemns but takes no action
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1935</div>
+                        <div class="timeline-content">
+                            <strong>Italy invades Ethiopia</strong><br>
+                            Weak sanctions that Italy ignores
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1936</div>
+                        <div class="timeline-content">
+                            <strong>Germany remilitarizes Rhineland</strong><br>
+                            France and Britain do nothing
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1938</div>
+                        <div class="timeline-content">
+                            <strong>Munich Agreement</strong><br>
+                            Czechoslovakia sacrificed for "peace"
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Why Didn't They Act?</h3>
+                <ul>
+                    <li><strong>War exhaustion</strong> - WWI memories paralyzed action</li>
+                    <li><strong>Economic depression</strong> - No money for military</li>
+                    <li><strong>Fear of communism</strong> - Some saw fascism as lesser evil</li>
+                    <li><strong>Misunderstanding</strong> - Didn't grasp fascist ideology</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote">
+                    "Each act of appeasement made the next aggression more likely"
+                    <div class="quote-attribution">— Historical consensus</div>
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Press → to see the economic stranglehold</div>
+        </div>
+
+        <!-- Slide 13: The Resource Wars Intensify -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">13/20</div>
+            
+            <div class="reveal-item">
+                <h2>1940-1941: The Resource Noose Tightens</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Germany's Gamble</h3>
+                <div class="resource-chart">
+                    <p><strong>After failing to defeat Britain:</strong></p>
+                    <div class="resource-bar">
+                        <div class="resource-fill" style="width: 85%"></div>
+                        <div class="resource-label">Need: Soviet oil and grain</div>
+                    </div>
+                    <p style="margin-top: 1rem;">Solution: <span class="danger">Invade the Soviet Union</span> before running out of resources</p>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Japan's Countdown</h3>
+                <div class="resource-chart">
+                    <p><strong>After U.S. oil embargo, July 1941:</strong></p>
+                    <div class="resource-bar">
+                        <div class="resource-fill" style="width: 100%; background: linear-gradient(90deg, #ff6b6b, #ee5a24);"></div>
+                        <div class="resource-label">18 months of oil remaining</div>
+                    </div>
+                    <p style="margin-top: 1rem;">Solution: <span class="danger">Seize Dutch East Indies oil</span> before naval fuel runs out</p>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.5rem; color: #ff6b6b;">
+                    Both powers faced the same calculation:<br>
+                    <strong>Attack now or collapse later</strong>
+                </p>
+            </div>
+            
+            <div class="continue-indicator">Press → to see global war begin</div>
+        </div>
+
+        <!-- Slide 14: The Wars Merge -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">14/20</div>
+            
+            <div class="reveal-item">
+                <h2>1941: Two Wars Become One</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">June 22, 1941</div>
+                        <div class="timeline-content">
+                            <strong>Operation Barbarossa</strong><br>
+                            Germany invades USSR for oil and grain
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">December 7, 1941</div>
+                        <div class="timeline-content">
+                            <strong>Pearl Harbor</strong><br>
+                            Japan strikes to secure Pacific resources
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="map-container">
+                    <div class="image-placeholder">
+                        <div class="image-description">World at War - December 1941</div>
+                        <div>Global map showing Axis powers (black), Allies (light), and resource flows/military movements connecting both theaters</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.4rem;">
+                    The scramble for resources had created a truly <span class="emphasis">global conflict</span>.<br>
+                    What started as economic desperation became history's <span class="danger">deadliest war</span>.
+                </p>
+            </div>
+            
+            <div class="continue-indicator">Press → to understand the lessons</div>
+        </div>
+
+        <!-- Slide 15: The Fatal Contradictions -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">15/20</div>
+            
+            <div class="reveal-item">
+                <h2>The Fatal Contradictions</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Impossible Math of Conquest</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h4>What They Needed</h4>
+                        <ul>
+                            <li>Quick victories</li>
+                            <li>Captured resources intact</li>
+                            <li>Cooperative populations</li>
+                            <li>Isolated enemies</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>What They Got</h4>
+                        <ul>
+                            <li>Prolonged resistance</li>
+                            <li>Destroyed infrastructure</li>
+                            <li>Guerrilla warfare</li>
+                            <li>Global alliance against them</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote">
+                    "We thought technology would save us from needing workers. Instead, every machine demanded more human suffering."
+                    <div class="quote-attribution">— German engineer, post-war testimony</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.4rem; color: #f8b500;">
+                    The very brutality required for resource extraction guaranteed resistance that made exploitation impossible
+                </p>
+            </div>
+            
+            <div class="continue-indicator">Press → to see the human cost</div>
+        </div>
+
+        <!-- Slide 16: The Price in Lives -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">16/20</div>
+            
+            <div class="reveal-item">
+                <h2>The Ultimate Cost</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stat-grid">
+                    <div class="stat-card" style="border-color: rgba(255, 107, 107, 0.5);">
+                        <div class="stat-number" style="color: #ff6b6b;">70-85M</div>
+                        <div class="stat-label">Total Deaths</div>
+                    </div>
+                    <div class="stat-card" style="border-color: rgba(255, 107, 107, 0.5);">
+                        <div class="stat-number" style="color: #ff6b6b;">27M</div>
+                        <div class="stat-label">Soviet Deaths</div>
+                    </div>
+                    <div class="stat-card" style="border-color: rgba(255, 107, 107, 0.5);">
+                        <div class="stat-number" style="color: #ff6b6b;">20M</div>
+                        <div class="stat-label">Chinese Deaths</div>
+                    </div>
+                    <div class="stat-card" style="border-color: rgba(255, 107, 107, 0.5);">
+                        <div class="stat-number" style="color: #ff6b6b;">6M</div>
+                        <div class="stat-label">Holocaust Victims</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="image-placeholder">
+                    <div class="image-description">The Human Face of War</div>
+                    <div>Collage of faces - soldiers, civilians, children from all nations affected, representing the global human tragedy</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.5rem;">
+                    Behind every ton of coal, every barrel of oil, every piece of conquered land<br>
+                    were <span class="danger">human beings who suffered and died</span>
+                </p>
+            </div>
+            
+            <div class="continue-indicator">Press → to explore the lessons</div>
+        </div>
+
+        <!-- Slide 17: Historical Lessons -->
+        <div class="slide" data-reveal-count="5">
+            <div class="slide-number">17/20</div>
+            
+            <div class="reveal-item">
+                <h2>What History Teaches Us</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Key Insights from Historians</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote">
+                    "Hitler's aggression stemmed not from strength but from weakness—a desperate race against time before American power became insurmountable"
+                    <div class="quote-attribution">— Adam Tooze, The Wages of Destruction</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote">
+                    "Carbon technocracy—the belief that technology and extraction could solve all problems—drove both Germany and Japan toward catastrophe"
+                    <div class="quote-attribution">— Victor Seow, Carbon Technocracy</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Pattern:</h3>
+                <ul>
+                    <li><strong>Economic crisis</strong> creates desperation</li>
+                    <li><strong>Resource scarcity</strong> drives expansion</li>
+                    <li><strong>Technology</strong> promises false solutions</li>
+                    <li><strong>Democracy fails</strong> when people lose faith</li>
+                    <li><strong>War becomes</strong> the only option left</li>
+                </ul>
+            </div>
+            
+            <div class="continue-indicator">Press → for modern connections</div>
+        </div>
+
+        <!-- Slide 18: Contemporary Relevance -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">18/20</div>
+            
+            <div class="reveal-item">
+                <h2>Why This Matters Today</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Modern Parallels</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h4>Then</h4>
+                        <ul>
+                            <li>Competition for oil and coal</li>
+                            <li>Economic nationalism</li>
+                            <li>Technology as salvation</li>
+                            <li>Democratic institutions under stress</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>Now</h4>
+                        <ul>
+                            <li>Competition for rare earth minerals</li>
+                            <li>Trade wars and sanctions</li>
+                            <li>AI and green tech promises</li>
+                            <li>Democracy facing new challenges</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    💭 Critical Question: How can we prevent resource competition from leading to conflict?
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.4rem; color: #4ecdc4;">
+                    Understanding how economic desperation led to global catastrophe<br>
+                    helps us recognize <span class="emphasis">warning signs</span> and choose <span class="emphasis">different paths</span>
+                </p>
+            </div>
+            
+            <div class="continue-indicator">Press → for discussion questions</div>
+        </div>
+
+        <!-- Slide 19: Discussion and Reflection -->
+        <div class="slide" data-reveal-count="5">
+            <div class="slide-number">19/20</div>
+            
+            <div class="reveal-item">
+                <h2>Questions for Deep Thinking</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Economic Factors</h3>
+                <div class="interactive-prompt">
+                    How does economic hardship make people vulnerable to extremist ideologies?
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Resource Politics</h3>
+                <div class="interactive-prompt">
+                    Should access to resources ever justify military action? Where do we draw the line?
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Technology's Role</h3>
+                <div class="interactive-prompt">
+                    Can technology solve resource scarcity, or does it create new dependencies?
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Preventing Future Wars</h3>
+                <div class="interactive-prompt">
+                    What international systems could prevent resource wars in the 21st century?
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Press → for final thoughts</div>
+        </div>
+
+        <!-- Slide 20: Conclusion -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">20/20</div>
+            
+            <div class="reveal-item">
+                <h2>The Road to World War II: Final Thoughts</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote">
+                    "Those who cannot remember the past are condemned to repeat it"
+                    <div class="quote-attribution">— George Santayana</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Remember:</h3>
+                <ul>
+                    <li>World War II wasn't inevitable—it resulted from <strong>specific choices</strong></li>
+                    <li>Economic desperation and resource scarcity created <strong>dangerous conditions</strong></li>
+                    <li>Democratic institutions failed when people <strong>lost faith</strong> in them</li>
+                    <li>The human cost of resource wars is always <strong>catastrophic</strong></li>
+                    <li>Understanding this history helps us make <strong>better choices</strong> today</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.6rem; color: #4ecdc4; margin-top: 3rem;">
+                    The path to war was paved with <span class="danger">desperation</span>,<br>
+                    built with <span class="emphasis">false promises</span>,<br>
+                    and paid for with <span class="danger">millions of lives</span>.<br><br>
+                    Let us learn, remember, and choose differently.
+                </p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Slide management
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        // Navigation functions
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+                if (i === index) {
+                    resetRevealItems(slide);
+                }
+            });
+        }
+
+        function nextSlide() {
+            const activeSlide = slides[currentSlide];
+            const revealItems = activeSlide.querySelectorAll('.reveal-item');
+            const revealedItems = activeSlide.querySelectorAll('.reveal-item.revealed');
+            
+            if (revealedItems.length < revealItems.length) {
+                // Reveal next item in current slide
+                revealNextItem(activeSlide);
+            } else if (currentSlide < totalSlides - 1) {
+                // Move to next slide
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function prevSlide() {
+            const activeSlide = slides[currentSlide];
+            const revealedItems = activeSlide.querySelectorAll('.reveal-item.revealed');
+            
+            if (revealedItems.length === 0 && currentSlide > 0) {
+                // Move to previous slide
+                currentSlide--;
+                showSlide(currentSlide);
+                // Reveal all items in previous slide
+                const prevSlide = slides[currentSlide];
+                const prevItems = prevSlide.querySelectorAll('.reveal-item');
+                prevItems.forEach(item => item.classList.add('revealed'));
+            } else if (revealedItems.length > 0) {
+                // Hide last revealed item
+                const lastRevealed = revealedItems[revealedItems.length - 1];
+                lastRevealed.classList.remove('revealed');
+            }
+        }
+
+        function revealNextItem(slide) {
+            const items = slide.querySelectorAll('.reveal-item:not(.revealed)');
+            if (items.length > 0) {
+                items[0].classList.add('revealed');
+            }
+        }
+
+        function revealAllItems(slide) {
+            const items = slide.querySelectorAll('.reveal-item');
+            items.forEach(item => item.classList.add('revealed'));
+        }
+
+        function resetRevealItems(slide) {
+            const items = slide.querySelectorAll('.reveal-item');
+            items.forEach((item, index) => {
+                item.classList.remove('revealed');
+                // Auto-reveal first item
+                if (index === 0) {
+                    setTimeout(() => item.classList.add('revealed'), 100);
+                }
+            });
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+		case 'ArrowLeft':
+                    prevSlide();
+                    break;
+                case 'Enter':
+                    revealAllItems(slides[currentSlide]);
+                    break;
+                case ',':
+                case '<':
+                    if (currentSlide > 0) {
+                        currentSlide--;
+                        showSlide(currentSlide);
+                    }
+                    break;
+                case '.':
+                case '>':
+                    if (currentSlide < totalSlides - 1) {
+                        currentSlide++;
+                        showSlide(currentSlide);
+                    }
+                    break;
+
+            }
+        });
+
+        // Button controls
+        document.getElementById('nextBtn').addEventListener('click', nextSlide);
+        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+        document.getElementById('revealBtn').addEventListener('click', () => {
+            revealAllItems(slides[currentSlide]);
+        });
+
+        // Image tab functionality
+        document.getElementById('imageTab').addEventListener('click', () => {
+            document.getElementById('imageOverlay').classList.add('active');
+        });
+
+        document.getElementById('imageOverlay').addEventListener('click', () => {
+            document.getElementById('imageOverlay').classList.remove('active');
+        });
+
+        // Animate resource bars when they become visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const fills = entry.target.querySelectorAll('.resource-fill');
+                    fills.forEach(fill => {
+                        const width = fill.style.width;
+                        fill.style.width = '0';
+                        setTimeout(() => {
+                            fill.style.width = width;
+                        }, 300);
+                    });
+                }
+            });
+        });
+
+        document.querySelectorAll('.resource-chart').forEach(chart => {
+            observer.observe(chart);
+        });
+
+        // Initialize first slide
+        showSlide(0);
+
+        // Touch support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide(); // Swipe left
+            }
+            if (touchEndX > touchStartX + 50) {
+                prevSlide(); // Swipe right
+            }
+        }
+
+        // Add visual feedback for interactive elements
+        document.querySelectorAll('.interactive-prompt').forEach(prompt => {
+            prompt.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1.02)';
+                }, 100);
+            });
+        });
+
+        // Preload reveal animation for smoother experience
+        window.addEventListener('load', () => {
+            // Add subtle entrance animation to first slide
+            setTimeout(() => {
+                const firstItems = slides[0].querySelectorAll('.reveal-item');
+                if (firstItems.length > 0) {
+                    firstItems[0].classList.add('revealed');
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>

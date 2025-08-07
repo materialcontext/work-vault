@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Second Punic War: Rome's Trial by Fire</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a0f0f 0%, #2d1a1a 50%, #0f1a1a 100%);
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            height: 100vh;
+            padding: 2rem;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 5.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d, #74c0fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 4.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #ff6b6b;
+            text-shadow: 0 2px 8px rgba(255, 107, 107, 0.4);
+            line-height: 1.2;
+        }
+
+        h3 {
+            font-size: 3.5rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #ffd93d;
+            line-height: 1.3;
+        }
+
+        h4 {
+            font-size: 2.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #74c0fc;
+            line-height: 1.3;
+        }
+
+        p, li {
+            font-size: 2.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #e9ecef;
+        }
+
+        .hero-section {
+            margin-bottom: 3rem;
+        }
+
+        .central-question {
+            background: rgba(255, 107, 107, 0.1);
+            border: 2px solid #ff6b6b;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .central-question h3 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff6b6b;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.2);
+        }
+
+        .timeline-section {
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .timeline-card {
+            background: rgba(116, 192, 252, 0.1);
+            border: 1px solid #74c0fc;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .battle-card {
+            background: rgba(255, 211, 61, 0.1);
+            border: 1px solid #ffd93d;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .political-analysis {
+            background: rgba(154, 109, 215, 0.1);
+            border: 1px solid #9a6dd7;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.8rem;
+        }
+
+        th {
+            background: rgba(255, 107, 107, 0.2);
+            font-weight: 600;
+            font-size: 2rem;
+            color: #ff6b6b;
+        }
+
+        ul {
+            text-align: left;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 1rem;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: autoReveal 0.8s ease forwards;
+        }
+
+        @keyframes autoReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: rgba(255, 107, 107, 0.2);
+            border: 1px solid #ff6b6b;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: #ff6b6b;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 107, 107, 0.3);
+            transform: scale(1.1);
+        }
+
+        .image-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 107, 107, 0.2);
+            border: 1px solid #ff6b6b;
+            border-radius: 10px;
+            padding: 10px 15px;
+            color: #ff6b6b;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .image-toggle:hover {
+            background: rgba(255, 107, 107, 0.3);
+        }
+
+        .narrative-thread {
+            background: rgba(116, 192, 252, 0.1);
+            border-left: 4px solid #74c0fc;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+
+        .evidence-box {
+            background: rgba(255, 211, 61, 0.1);
+            border: 1px solid #ffd93d;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            h1 { font-size: 4.5rem; }
+            h2 { font-size: 3.8rem; }
+            h3 { font-size: 3rem; }
+            h4 { font-size: 2.4rem; }
+            p, li { font-size: 1.9rem; }
+            th, td { font-size: 1.6rem; }
+            th { font-size: 1.8rem; }
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 { font-size: 3.5rem; }
+            h2 { font-size: 3rem; }
+            h3 { font-size: 2.5rem; }
+            h4 { font-size: 2rem; }
+            p, li { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="slide-content">
+                <div class="hero-section">
+                    <h1 class="auto-reveal">The Second Punic War</h1>
+                    <h2 class="auto-reveal">Rome's Trial by Fire</h2>
+                    <div class="auto-reveal" style="margin-top: 2rem;">
+                        <h3>How Republican Institutions Survived Existential Crisis</h3>
+                        <p style="font-size: 2.5rem; color: #ffd93d; margin-top: 2rem;">218-201 BCE</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Central Question -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="central-question">
+                    <h2 class="reveal">Central Question</h2>
+                    <div class="reveal">
+                        <h3>How did the Second Punic War transform Rome from a regional Italian power into the dominant Mediterranean empire, and what does this reveal about the nature of republican institutions under extreme pressure?</h3>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <h4>Course Context</h4>
+                    <p>This war represents the ultimate test of Roman republican innovations against Carthaginian commercial-military expertise - the collision of two fundamentally different approaches to Mediterranean dominance.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Setting the Stage - Two Powers -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Rivals: 220 BCE</h2>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🏛️ Rome</h3>
+                        <ul>
+                            <li class="reveal"><strong>Government:</strong> Republican institutions with checks and balances</li>
+                            <li class="reveal"><strong>Military:</strong> Citizen legions + Italian allies</li>
+                            <li class="reveal"><strong>Strength:</strong> Seemingly infinite manpower reserves</li>
+                            <li class="reveal"><strong>Weakness:</strong> Limited naval experience</li>
+                            <li class="reveal"><strong>Strategy:</strong> Control through alliance networks</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🚢 Carthage</h3>
+                        <ul>
+                            <li class="reveal"><strong>Government:</strong> Commercial oligarchy with elected suffetes</li>
+                            <li class="reveal"><strong>Military:</strong> Professional armies + mercenaries</li>
+                            <li class="reveal"><strong>Strength:</strong> Superior naval power and wealth</li>
+                            <li class="reveal"><strong>Weakness:</strong> Dependence on hired soldiers</li>
+                            <li class="reveal"><strong>Strategy:</strong> Control through trade networks</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="evidence-box reveal">
+                    <p><strong>Key Insight:</strong> Two different models of expansion - Roman territorial/alliance-based vs. Carthaginian commercial/mercenary-based</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: The Barcid Strategy -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Barcid Revolution</h2>
+                <div class="hero-section reveal">
+                    <h3>Transforming Carthaginian Strategy</h3>
+                </div>
+                <div class="timeline-section">
+                    <div class="timeline-card reveal">
+                        <h4>🏺 Hamilcar Barca in Spain (237-229 BCE)</h4>
+                        <p>After the First Punic War defeat, Hamilcar took his young son Hannibal to Spain to build a new territorial empire. This represented a fundamental shift from traditional Carthaginian commercial strategy to territorial conquest.</p>
+                    </div>
+                    <div class="timeline-card reveal">
+                        <h4>⚔️ Hasdrubal's Consolidation (229-221 BCE)</h4>
+                        <p>Hamilcar's son-in-law founded Carthago Nova (New Carthage) and signed the Ebro Treaty with Rome, establishing spheres of influence.</p>
+                    </div>
+                    <div class="timeline-card reveal">
+                        <h4>🛡️ Hannibal's Appointment (221 BCE)</h4>
+                        <p>At age 26, Hannibal became commander. His oath of eternal enmity to Rome, sworn as a child, would drive the coming conflict.</p>
+                    </div>
+                </div>
+                <div class="political-analysis reveal">
+                    <h4>🧠 Strategic Innovation</h4>
+                    <p>The Barcids recognized that Carthage could no longer compete with Rome through traditional commercial means. They needed territorial depth and citizen-soldiers, not just mercenaries and trading posts.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Saguntum Crisis and War Declaration -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Crisis of Saguntum</h2>
+                <div class="central-question reveal">
+                    <h3>How did a local conflict escalate into a world war?</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🏛️ Roman Position</h3>
+                        <ul>
+                            <li class="reveal">Saguntum was a Roman ally</li>
+                            <li class="reveal">Located south of Ebro River</li>
+                            <li class="reveal">Demanded Hannibal's withdrawal</li>
+                            <li class="reveal">Ultimately demanded his extradition</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🛡️ Carthaginian Position</h3>
+                        <ul>
+                            <li class="reveal">Saguntum threatened Spanish empire</li>
+                            <li class="reveal">City was within Carthaginian sphere</li>
+                            <li class="reveal">Refused Roman demands</li>
+                            <li class="reveal">Supported Hannibal's actions</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="battle-card reveal">
+                    <h4>⚔️ The Siege (219 BCE)</h4>
+                    <p>Hannibal's 8-month siege of Saguntum was a calculated risk. He knew it meant war with Rome, but believed a decisive victory in Italy could force Rome to terms before their superior resources could be mobilized.</p>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>Course Connection:</strong> Like the Greek city-states facing Persia, this represents the moment when local conflicts become civilization-defining struggles.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Hannibal's Audacious Strategy -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The March to Italy</h2>
+                <div class="hero-section reveal">
+                    <h3>One of History's Greatest Military Gambles</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>📊 The Numbers</h3>
+                        <ul>
+                            <li class="reveal"><strong>Starting force:</strong> 90,000 infantry, 12,000 cavalry, 40 elephants</li>
+                            <li class="reveal"><strong>Distance:</strong> 1,000+ miles through hostile territory</li>
+                            <li class="reveal"><strong>Arrived with:</strong> 20,000 infantry, 6,000 cavalry</li>
+                            <li class="reveal"><strong>Time:</strong> 5 months (May-November 218)</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🎯 Strategic Logic</h3>
+                        <ul>
+                            <li class="reveal">Avoid Roman naval superiority</li>
+                            <li class="reveal">Strike where Rome was unprepared</li>
+                            <li class="reveal">Rally Italian allies against Rome</li>
+                            <li class="reveal">Force quick negotiated settlement</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="political-analysis reveal">
+                    <h4>🧠 The Fatal Assumption</h4>
+                    <p>Hannibal assumed that a few victories would break Rome's alliance system, as had happened in the Greek world. He underestimated Roman institutional resilience and the loyalty their alliance system commanded.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Early Victories - Ticinus to Trasimene -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Hannibal's Tactical Mastery</h2>
+                <div class="timeline-section">
+                    <div class="battle-card reveal">
+                        <h4>⚔️ Battle of Ticinus (November 218 BCE)</h4>
+                        <p><strong>First blood:</strong> Hannibal's cavalry routed Roman cavalry. Publius Scipio (Africanus's father) barely escaped. This victory brought Gallic tribes to Hannibal's side.</p>
+                    </div>
+                    <div class="battle-card reveal">
+                        <h4>❄️ Battle of Trebia (December 218 BCE)</h4>
+                        <p><strong>Perfect ambush:</strong> Hannibal lured consul Sempronius across a freezing river into a carefully prepared trap. 30,000+ Romans killed or captured. Only 10,000 escaped.</p>
+                    </div>
+                    <div class="battle-card reveal">
+                        <h4>🌊 Battle of Lake Trasimene (June 217 BCE)</h4>
+                        <p><strong>Masterpiece of deception:</strong> Hannibal ambushed consul Flaminius in a narrow pass. 40,000+ Romans killed, including the consul. The worst Roman defeat since the Gallic sack.</p>
+                    </div>
+                </div>
+                <div class="central-question reveal">
+                    <h3>Why didn't Rome surrender after these catastrophic defeats?</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Roman Institutional Response -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Republican Resilience</h2>
+                <div class="hero-section reveal">
+                    <h3>How Roman Institutions Adapted to Crisis</h3>
+                </div>
+                <div class="political-analysis reveal">
+                    <h4>🏛️ Constitutional Innovation Under Pressure</h4>
+                    <div class="comparison-grid">
+                        <div class="comparison-card">
+                            <h4>Traditional Response</h4>
+                            <ul>
+                                <li class="reveal">Elected dictator (Fabius Maximus)</li>
+                                <li class="reveal">Suspended normal politics</li>
+                                <li class="reveal">Concentrated authority</li>
+                                <li class="reveal">Long-term strategic thinking</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-card">
+                            <h4>Popular Pressure</h4>
+                            <ul>
+                                <li class="reveal">Citizens wanted aggressive action</li>
+                                <li class="reveal">Criticized "Fabius the Delayer"</li>
+                                <li class="reveal">Elected war hawks as consuls</li>
+                                <li class="reveal">Demanded decisive battle</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="evidence-box reveal">
+                    <p><strong>Key Insight:</strong> Roman institutions could balance emergency powers with popular oversight - exactly what Polybius admired about the "mixed constitution"</p>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>Fabian Strategy:</strong> Avoid direct confrontation, protect allies, wear down enemy through attrition. This required political courage to resist popular pressure for immediate action.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Cannae - The Perfect Battle -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Cannae: The Art of Destruction</h2>
+                <div class="central-question reveal">
+                    <h3>August 2, 216 BCE - Hannibal's Greatest Victory</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>📊 The Forces</h3>
+                        <ul>
+                            <li class="reveal"><strong>Roman:</strong> 86,000 men (largest army in Roman history)</li>
+                            <li class="reveal"><strong>Carthaginian:</strong> 50,000 men</li>
+                            <li class="reveal"><strong>Roman advantage:</strong> Nearly 2:1 in infantry</li>
+                            <li class="reveal"><strong>Carthaginian advantage:</strong> Superior cavalry</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🎯 The Tactics</h3>
+                        <ul>
+                            <li class="reveal">Romans formed deep columns to break center</li>
+                            <li class="reveal">Hannibal placed weak troops in center</li>
+                            <li class="reveal">Strong African infantry on wings</li>
+                            <li class="reveal">Cavalry to encircle from behind</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="battle-card reveal">
+                    <h4>⚔️ The Perfect Double Envelopment</h4>
+                    <p>As Romans pushed through the weak center, African infantry wheeled inward from the wings while cavalry completed the encirclement. <strong>Result:</strong> 50,000+ Roman dead, including consul Paullus. Only 14,000 Romans escaped.</p>
+                </div>
+                <div class="political-analysis reveal">
+                    <h4>🧠 Strategic Consequences</h4>
+                    <p>Cannae is still studied in military academies as the perfect tactical victory. Yet it failed strategically because Rome's alliance system held firm and their institutions adapted to continue the war.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Italy Divided - Alliances and Defections -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Battle for Italian Hearts</h2>
+                <div class="hero-section reveal">
+                    <h3>Would Rome's Alliance System Collapse?</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🔗 Stayed with Rome</h3>
+                        <ul>
+                            <li class="reveal"><strong>Latin colonies:</strong> Core allies with shared citizenship</li>
+                            <li class="reveal"><strong>Central Italian tribes:</strong> Samnites, Sabines</li>
+                            <li class="reveal"><strong>Greek cities:</strong> Neapolis, Rhegium</li>
+                            <li class="reveal"><strong>Northern allies:</strong> Recent Roman settlements</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>⚔️ Joined Hannibal</h3>
+                        <ul>
+                            <li class="reveal"><strong>Capua:</strong> Second largest city in Italy</li>
+                            <li class="reveal"><strong>Southern Italian cities:</strong> Greek-influenced</li>
+                            <li class="reveal"><strong>Bruttians and Lucanians:</strong> Mountain peoples</li>
+                            <li class="reveal"><strong>Some Gallic tribes:</strong> Recent Roman enemies</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="political-analysis reveal">
+                    <h4>🧠 Why Most Allies Stayed Loyal</h4>
+                    <ul>
+                        <li class="reveal"><strong>Integration:</strong> Many had Roman citizenship or clear path to it</li>
+                        <li class="reveal"><strong>Mutual benefit:</strong> Shared in conquests and trade</li>
+                        <li class="reveal"><strong>Fear:</strong> Rome's reputation for treating rebels harshly</li>
+                        <li class="reveal"><strong>Local rivalries:</strong> Some preferred Rome to local enemies</li>
+                    </ul>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>Critical Difference:</strong> Unlike Greek city-states or Hellenistic kingdoms, Rome's alliance system was based on mutual benefit and integration, not just fear or tribute.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Roman Internal Politics - Crisis Management -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Politics in Crisis</h2>
+                <div class="hero-section reveal">
+                    <h3>How the Roman Republic Managed Existential Threat</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🏛️ Conservative Faction</h3>
+                        <ul>
+                            <li class="reveal"><strong>Leader:</strong> Fabius Maximus "Cunctator"</li>
+                            <li class="reveal"><strong>Strategy:</strong> Defensive, avoid battle</li>
+                            <li class="reveal"><strong>Logic:</strong> Time favors Rome's superior resources</li>
+                            <li class="reveal"><strong>Support:</strong> Older senators, experienced generals</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>⚔️ Aggressive Faction</h3>
+                        <ul>
+                            <li class="reveal"><strong>Leaders:</strong> Varro, Paullus, Marcellus</li>
+                            <li class="reveal"><strong>Strategy:</strong> Seek decisive battle</li>
+                            <li class="reveal"><strong>Logic:</strong> Roman honor demands action</li>
+                            <li class="reveal"><strong>Support:</strong> Popular assemblies, younger citizens</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="political-analysis reveal">
+                    <h4>🧠 Institutional Flexibility</h4>
+                    <p>The Roman system allowed both approaches to be tested. After Cannae proved the risks of aggressive tactics, the focus shifted back to Fabian strategy while still allowing aggressive commanders like Marcellus to harass Hannibal.</p>
+                </div>
+                <div class="evidence-box reveal">
+                    <p><strong>Key Innovation:</strong> Multiple armies in the field simultaneously - Rome fielded 20+ legions at peak, allowing both defensive and offensive operations</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Carthaginian Internal Politics -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Carthaginian Political Struggles</h2>
+                <div class="central-question reveal">
+                    <h3>Why couldn't Carthage support Hannibal's success?</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🛡️ War Party (Barcids)</h3>
+                        <ul>
+                            <li class="reveal"><strong>Leaders:</strong> Hannibal, Hasdrubal, Mago</li>
+                            <li class="reveal"><strong>Base:</strong> Military commanders, Spanish interests</li>
+                            <li class="reveal"><strong>Strategy:</strong> Aggressive expansion, total war</li>
+                            <li class="reveal"><strong>Problem:</strong> Distant from Carthage</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🏛️ Peace Party (Hanno faction)</h3>
+                        <ul>
+                            <li class="reveal"><strong>Leaders:</strong> Hanno "the Great," wealthy merchants</li>
+                            <li class="reveal"><strong>Base:</strong> Carthaginian senate, commercial interests</li>
+                            <li class="reveal"><strong>Strategy:</strong> Minimize losses, protect African territories</li>
+                            <li class="reveal"><strong>Problem:</strong> Underestimated Roman threat</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="political-analysis reveal">
+                    <h4>🧠 Fatal Division</h4>
+                    <p>Unlike Rome's ability to unite in crisis, Carthaginian politics remained divided. The peace party controlled the home government and limited support for Hannibal, while the war party was literally fighting on distant frontiers.</p>
+                </div>
+                <div class="timeline-section">
+                    <div class="timeline-card reveal">
+                        <h4>📊 Resource Allocation Crisis</h4>
+                        <p><strong>Reinforcements sent to Hannibal:</strong> Minimal - mostly blocked by Roman naval superiority<br>
+                        <strong>Reinforcements sent to Spain:</strong> Substantial - to protect commercial interests<br>
+                        <strong>Reinforcements sent to Sicily:</strong> Major effort - closer to home</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: The War of Attrition - Italy 216-211 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Grinding Years</h2>
+                <div class="hero-section reveal">
+                    <h3>Five Years of Stalemate in Southern Italy</h3>
+                </div>
+                <div class="timeline-section">
+                    <div class="battle-card reveal">
+                        <h4>🏰 Sieges and City Warfare (216-214 BCE)</h4>
+                        <p>Hannibal couldn't take major ports (Neapolis, Brundisium) or Rome itself. Romans slowly recaptured defected cities. Neither side could deliver knockout blow.</p>
+                    </div>
+                    <div class="battle-card reveal">
+                        <h4>⚔️ Marcellus "The Sword of Rome" (214-212 BCE)</h4>
+                        <p>While Fabius avoided battle, Marcellus pioneered aggressive harassment tactics. Multiple victories at Nola showed Romans could fight Hannibal and win in small engagements.</p>
+                    </div>
+                    <div class="battle-card reveal">
+                        <h4>🏛️ Siege of Syracuse (214-212 BCE)</h4>
+                        <p>Major Roman effort to prevent Syracuse from joining Carthage. Despite Archimedes' defensive innovations, Rome captured the city, showing they could conduct major operations while containing Hannibal.</p>
+                    </div>
+                </div>
+                <div class="political-analysis reveal">
+                    <h4>🧠 Strategic Shift</h4>
+                    <p>By 212 BCE, it became clear that Hannibal couldn't win decisively in Italy without naval support and major reinforcements. Rome's strategy was working - superior resources were telling.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: The Spanish Front - Rome's Counter-Strategy -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Striking at Carthage's Heart</h2>
+                <div class="central-question reveal">
+                    <h3>How did the war in Spain decide the Italian campaign?</h3>
+                </div>
+                <div class="timeline-section">
+                    <div class="battle-card reveal">
+                        <h4>💀 Disaster in Spain (211 BCE)</h4>
+                        <p>Both Scipio brothers (Publius and Gnaeus) killed in separate defeats. Roman position in Spain nearly collapsed. Carthaginians bribed Roman mercenaries to desert.</p>
+                    </div>
+                    <div class="battle-card reveal">
+                        <h4>🌟 Scipio Africanus Takes Command (210 BCE)</h4>
+                        <p>At age 25, young Publius Cornelius Scipio given unprecedented command. His first target: Carthago Nova, the Spanish capital and main base.</p>
+                    </div>
+                    <div class="battle-card reveal">
+                        <h4>⚡ Capture of Carthago Nova (209 BCE)</h4>
+                        <p>Brilliant combined land-sea assault captured the seemingly impregnable fortress in one day. Gained Spanish silver mines, hostages, and naval base.</p>
+                    </div>
+                </div>
+                <div class="political-analysis reveal">
+                    <h4>🧠 Scipio's Innovation</h4>
+                    <p>Unlike traditional Roman commanders, Scipio studied Hannibal's tactics and adapted them. He also understood that winning Spanish tribes as allies was as important as defeating Carthaginian armies.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: The Tide Turns - Metaurus and Spain -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Decisive Moments</h2>
+                <div class="hero-section reveal">
+                    <h3>When Hannibal's Last Hopes Died</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="battle-card reveal">
+                        <h3>💀 Battle of the Metaurus (207 BCE)</h3>
+                        <ul>
+                            <li class="reveal">Hasdrubal crossed Alps to reinforce Hannibal</li>
+                            <li class="reveal">Roman armies under Livius and Nero converged</li>
+                            <li class="reveal">Hasdrubal killed, army destroyed</li>
+                            <li class="reveal">His head thrown into Hannibal's camp</li>
+                        </ul>
+                    </div>
+                    <div class="battle-card reveal">
+                        <h3>⚔️ Battle of Ilipa (206 BCE)</h3>
+                        <ul>
+                            <li class="reveal">Scipio's masterpiece in Spain</li>
+                            <li class="reveal">Used Hannibal's own tactics against Carthaginians</li>
+                            <li class="reveal">Last major Carthaginian army in Spain destroyed</li>
+                            <li class="reveal">Spanish empire lost forever</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="political-analysis reveal">
+                    <h4>🧠 Strategic Consequences</h4>
+                    <p>With Spain lost and no reinforcements possible, Hannibal was isolated in southern Italy. Rome could now contemplate the ultimate strategy: invasion of Africa itself.</p>
+                </div>
+                <div class="evidence-box reveal">
+                    <p><strong>The Turning Point:</strong> These victories in 207-206 BCE marked the moment when Roman victory became inevitable, though it would take five more years to achieve.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Scipio's African Strategy -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Taking the War to Africa</h2>
+                <div class="central-question reveal">
+                    <h3>How did Scipio force Hannibal out of Italy?</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🏛️ Political Challenge</h3>
+                        <ul>
+                            <li class="reveal">Senate feared abandoning Italy</li>
+                            <li class="reveal">Memory of Regulus's disaster in Africa</li>
+                            <li class="reveal">Fabius opposed the plan</li>
+                            <li class="reveal">Scipio had to use volunteer army</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🎯 Strategic Preparation</h3>
+                        <ul>
+                            <li class="reveal">Alliance with Numidian king Masinissa</li>
+                            <li class="reveal">Sicily used as staging ground</li>
+                            <li class="reveal">Training in new cavalry tactics</li>
+                            <li class="reveal">Intelligence about Carthaginian politics</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-section">
+                    <div class="timeline-card reveal">
+                        <h4>🚢 The Invasion (204 BCE)</h4>
+                        <p>Scipio landed in Africa with 30,000 men. His first victory came through a daring night attack that destroyed two Carthaginian armies simultaneously.</p>
+                    </div>
+                    <div class="timeline-card reveal">
+                        <h4>📞 Hannibal Recalled (203 BCE)</h4>
+                        <p>After 15 years in Italy, Hannibal was finally forced to return to defend Carthage. His departure marked the end of the Italian campaign.</p>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>Strategic Genius:</strong> Scipio understood that the only way to defeat Hannibal was to threaten what Hannibal couldn't afford to lose - Carthage itself.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 17: The Final Confrontation - Zama -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Zama: The Reckoning</h2>
+                <div class="central-question reveal">
+                    <h3>October 202 BCE - Master vs. Student</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🛡️ Hannibal's Forces</h3>
+                        <ul>
+                            <li class="reveal">Veterans from Italy + new African recruits</li>
+                            <li class="reveal">80 war elephants (untrained)</li>
+                            <li class="reveal">Weak in cavalry (Numidians defected)</li>
+                            <li class="reveal">Fighting for Carthage's survival</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🏛️ Scipio's Forces</h3>
+                        <ul>
+                            <li class="reveal">Battle-tested legions + Spanish allies</li>
+                            <li class="reveal">Superior Numidian cavalry under Masinissa</li>
+                            <li class="reveal">Tactical innovations learned from Hannibal</li>
+                            <li class="reveal">Fighting for Roman dominance</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="battle-card reveal">
+                    <h4>⚔️ The Battle Unfolds</h4>
+                    <p><strong>Phase 1:</strong> Scipio neutralized elephants with corridors in Roman formation<br>
+                    <strong>Phase 2:</strong> Infantry clash - evenly matched initially<br>
+                    <strong>Phase 3:</strong> Roman cavalry returned to attack Carthaginian rear<br>
+                    <strong>Result:</strong> 20,000 Carthaginians dead, 1,500 Romans dead</p>
+                </div>
+                <div class="political-analysis reveal">
+                    <h4>🧠 The Student Surpasses the Master</h4>
+                    <p>Scipio used Hannibal's own tactical principles against him, but with superior cavalry and better-integrated forces. The irony was complete - Roman institutional learning had triumphed.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 18: The Peace Settlement -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Rome's New Order</h2>
+                <div class="hero-section reveal">
+                    <h3>How Victory Reshaped the Mediterranean</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>📜 Terms of Peace (201 BCE)</h3>
+                        <ul>
+                            <li class="reveal">Carthage lost all overseas territories</li>
+                            <li class="reveal">10,000 talent indemnity over 50 years</li>
+                            <li class="reveal">Fleet limited to 10 ships</li>
+                            <li class="reveal">No war without Roman permission</li>
+                            <li class="reveal">Hannibal remained in Carthage</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🌍 Strategic Consequences</h3>
+                        <ul>
+                            <li class="reveal">Rome now controlled western Mediterranean</li>
+                            <li class="reveal">Spanish silver funded future expansion</li>
+                            <li class="reveal">Carthage reduced to client state</li>
+                            <li class="reveal">Stage set for eastern expansion</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="political-analysis reveal">
+                    <h4>🧠 Hannibal's Final Service</h4>
+                    <p>Remarkably, Hannibal urged the Carthaginian senate to accept these harsh terms. He understood that further resistance would mean the city's destruction - as indeed happened in the Third Punic War.</p>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>Historical Irony:</strong> The general who nearly destroyed Rome became the voice of pragmatic acceptance of Roman supremacy.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 19: Impact on Roman Republic -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Transformation of the Republic</h2>
+                <div class="central-question reveal">
+                    <h3>How did survival change Roman government and society?</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🏛️ Institutional Changes</h3>
+                        <ul>
+                            <li class="reveal">Permanent overseas commands</li>
+                            <li class="reveal">Professional armies emerging</li>
+                            <li class="reveal">Extended imperium for successful generals</li>
+                            <li class="reveal">Provincial administration system</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>👥 Social Transformation</h3>
+                        <ul>
+                            <li class="reveal">Massive slave influx from conquests</li>
+                            <li class="reveal">Wealth concentration in senatorial class</li>
+                            <li class="reveal">Italian allies seeking citizenship</li>
+                            <li class="reveal">Rural decline, urban growth</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="political-analysis reveal">
+                    <h4>🧠 The Seeds of Later Crisis</h4>
+                    <p>Victory brought new challenges that republican institutions struggled to handle: governing vast territories, managing enormous wealth, and controlling ambitious generals with loyal armies.</p>
+                </div>
+                <div class="timeline-section">
+                    <div class="timeline-card reveal">
+                        <h4>📈 The Numbers Tell the Story</h4>
+                        <p><strong>Roman citizens (264 BCE):</strong> ~290,000<br>
+                        <strong>Roman citizens (204 BCE):</strong> ~214,000 (despite territorial gains!)<br>
+                        <strong>War dead estimate:</strong> 300,000+ Romans and allies<br>
+                        <strong>Economic cost:</strong> Nearly bankrupted the state multiple times</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 20: The Road to Empire -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">From Survival to Supremacy</h2>
+                <div class="hero-section reveal">
+                    <h3>How the Second Punic War Created the Roman Empire</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🗺️ Territorial Expansion</h3>
+                        <ul>
+                            <li class="reveal">Spain became two Roman provinces</li>
+                            <li class="reveal">Sicily and Sardinia fully Roman</li>
+                            <li class="reveal">Italian alliance system strengthened</li>
+                            <li class="reveal">Naval dominance established</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>💡 Strategic Lessons Learned</h3>
+                        <ul>
+                            <li class="reveal">Importance of loyal allies</li>
+                            <li class="reveal">Need for flexible tactics</li>
+                            <li class="reveal">Value of persistent institutions</li>
+                            <li class="reveal">Power of taking initiative</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="political-analysis reveal">
+                    <h4>🧠 The Imperial Trajectory</h4>
+                    <p>Success in the Second Punic War convinced Romans that they were destined to rule. The methods that defeated Hannibal - military excellence, diplomatic skill, institutional persistence - would be applied to conquer the entire Mediterranean.</p>
+                </div>
+                <div class="evidence-box reveal">
+                    <p><strong>The Turning Point:</strong> The Second Punic War was the moment Rome stopped being an Italian power and became a Mediterranean empire. Everything that followed - the conquest of Greece, Asia, Gaul, Egypt - flowed from this victory.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 21: Course Synthesis -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Answering Our Central Question</h2>
+                <div class="central-question reveal">
+                    <h3>How did the Second Punic War transform Rome and reveal the nature of republican institutions under pressure?</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🏛️ Institutional Resilience</h3>
+                        <ul>
+                            <li class="reveal">Republican system adapted to crisis</li>
+                            <li class="reveal">Balance between emergency powers and oversight</li>
+                            <li class="reveal">Alliance system proved stronger than expected</li>
+                            <li class="reveal">Capacity for long-term strategic thinking</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🌍 Mediterranean Transformation</h3>
+                        <ul>
+                            <li class="reveal">From regional to imperial power</li>
+                            <li class="reveal">End of Carthaginian challenge</li>
+                            <li class="reveal">Stage set for eastern expansion</li>
+                            <li class="reveal">Roman model of integration succeeded</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <h4>🔗 Connection to Course Themes</h4>
+                    <p><strong>Institutional Innovation:</strong> Rome's republican system proved more adaptable than Carthaginian oligarchy<br>
+                    <strong>Geographic Advantage:</strong> Italian peninsula and alliance system provided strategic depth<br>
+                    <strong>Cultural Exchange:</strong> Roman victory spread Roman legal and political concepts<br>
+                    <strong>Individual vs. Collective:</strong> Roman institutions balanced personal ambition with state needs</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 22: Historical Significance -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Why This War Matters</h2>
+                <div class="hero-section reveal">
+                    <h3>The Second Punic War as Turning Point in World History</h3>
+                </div>
+                <div class="political-analysis reveal">
+                    <h4>🌍 World Historical Impact</h4>
+                    <div class="comparison-grid">
+                        <div class="comparison-card">
+                            <h4>If Hannibal Had Won</h4>
+                            <ul>
+                                <li class="reveal">Carthaginian commercial empire</li>
+                                <li class="reveal">Different model of Mediterranean unity</li>
+                                <li class="reveal">Perhaps no Roman law or institutions</li>
+                                <li class="reveal">Alternative path to "civilization"</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-card">
+                            <h4>Roman Victory's Consequences</h4>
+                            <ul>
+                                <li class="reveal">Roman law and governance spread</li>
+                                <li class="reveal">Latin language and culture</li>
+                                <li class="reveal">Infrastructure and urbanization</li>
+                                <li class="reveal">Foundation for Christian expansion</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="evidence-box reveal">
+                    <p><strong>Historical Contingency:</strong> This war shows how close-run historical processes can be. Several times - after Cannae, after Capua's defection, after Hasdrubal's invasion - Rome's survival hung in the balance.</p>
+                </div>
+                <div class="timeline-section">
+                    <div class="timeline-card reveal">
+                        <h4>🎓 Lessons for Understanding History</h4>
+                        <p>The Second Punic War demonstrates how institutions, leadership, alliance systems, and geographic factors interact in determining historical outcomes. Neither side's victory was inevitable - it was earned through adaptation, persistence, and strategic insight.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Slide -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="hero-section">
+                    <h1 class="auto-reveal">The Second Punic War</h1>
+                    <h2 class="auto-reveal">Rome's Trial by Fire</h2>
+                    <div class="auto-reveal" style="margin-top: 3rem;">
+                        <h3>From this crucible of conflict emerged the Roman Empire that would shape Western civilization for a millennium</h3>
+                    </div>
+                    <div class="narrative-thread auto-reveal" style="margin-top: 2rem;">
+                        <p><strong>Next:</strong> How will Roman republican institutions adapt to governing a Mediterranean empire? What challenges will success bring that survival couldn't?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()" title="Previous slide (← or ,)">←</button>
+        <button class="nav-btn" onclick="nextSlide()" title="Next slide (→ or .)">→</button>
+    </div>
+
+    <!-- Image Toggle -->
+    <div class="image-toggle" onclick="toggleImage()" title="Toggle images (tab)">📷</div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        let revealIndex = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            revealIndex = 0;
+            resetReveals();
+        }
+
+        function nextSlide() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal:not(.show)');
+            if (reveals.length > 0) {
+                revealNext();
+            } else if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal.show');
+            if (reveals.length > 0) {
+                hideReveal();
+            } else if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+                revealAll();
+            }
+        }
+
+        function revealNext() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            if (revealIndex < reveals.length) {
+                reveals[revealIndex].classList.add('show');
+                revealIndex++;
+            }
+        }
+
+        function hideReveal() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            if (revealIndex > 0) {
+                revealIndex--;
+                reveals[revealIndex].classList.remove('show');
+            }
+        }
+
+        function revealAll() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            reveals.forEach(reveal => reveal.classList.add('show'));
+            revealIndex = reveals.length;
+        }
+
+        function resetReveals() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            reveals.forEach(reveal => reveal.classList.remove('show'));
+        }
+
+        function toggleImage() {
+            // Placeholder for image toggle functionality
+            console.log('Image toggle functionality would be implemented here');
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                case '.':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                case ',':
+                    e.preventDefault();
+                    previousSlide();
+                    break;
+                case 'Enter':
+                    e.preventDefault();
+                    revealAll();
+                    break;
+                case 'Tab':
+                    e.preventDefault();
+                    toggleImage();
+                    break;
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communist Ideas and the Chinese Revolution</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #7c2d12, #991b1b, #dc2626);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            padding: 3rem 4rem;
+            overflow-y: auto;
+            overflow-x: hidden;
+            opacity: 1;
+            transition: all 0.6s ease-in-out;
+            box-sizing: border-box;
+        }
+
+        .slide.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            min-height: 100%;
+            padding-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #fbbf24, #f59e0b, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #fbbf24;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #60a5fa;
+        }
+
+        h4 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #34d399;
+        }
+
+        p {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #e5e7eb;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(251, 191, 36, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .ideology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .ideology-card {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.4), rgba(22, 33, 62, 0.4));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            backdrop-filter: blur(10px);
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .ideology-card:hover {
+            transform: translateY(0);
+            border-color: rgba(251, 191, 36, 0.5);
+        }
+
+        .timeline-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-card {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.4), rgba(22, 33, 62, 0.4));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            backdrop-filter: blur(10px);
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(0);
+            border-color: rgba(251, 191, 36, 0.5);
+        }
+
+        .period-highlight {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 4px solid #fbbf24;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            background: linear-gradient(135deg, rgba(22, 33, 62, 0.5), rgba(15, 52, 96, 0.5));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+
+        .primary-source {
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.1), rgba(16, 185, 129, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 4px solid #34d399;
+            font-style: italic;
+        }
+
+        .key-concepts {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(124, 58, 237, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .chinese-adaptation {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(185, 28, 28, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 1px solid rgba(220, 38, 38, 0.3);
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background: rgba(15, 52, 96, 0.8);
+            border: 1px solid rgba(251, 191, 36, 0.5);
+            color: #fbbf24;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(251, 191, 36, 0.2);
+            transform: scale(1.05);
+        }
+
+        .image-tab {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(15, 52, 96, 0.8);
+            border: 1px solid rgba(251, 191, 36, 0.5);
+            color: #fbbf24;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        ul {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.8rem;
+            color: #e5e7eb;
+        }
+
+        strong {
+            color: #fbbf24;
+        }
+
+        .essential-question {
+            background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(239, 68, 68, 0.2));
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+            border: 2px solid rgba(244, 63, 94, 0.4);
+        }
+
+        .slide-number {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+            z-index: 1000;
+            background: rgba(15, 52, 96, 0.8);
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .quote-highlight {
+            background: rgba(251, 191, 36, 0.1);
+            padding: 1.5rem;
+            border-left: 4px solid #fbbf24;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="image-tab" onclick="toggleImage()">📸 Images</div>
+        <div class="controls">
+            <button class="control-btn" onclick="previousSlide()">← Prev</button>
+            <button class="control-btn" onclick="nextSlide()">Next →</button>
+            <button class="control-btn" onclick="revealAll()">Reveal All</button>
+        </div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="slide-number">1 / 10</div>
+                <h1>🚩 Communist Ideas and the Chinese Revolution</h1>
+                <div class="hero-section auto-reveal">
+                    <h3>Understanding the Ideology Behind Modern China</h3>
+                    <p style="font-size: 2rem; color: #fbbf24;">Modern China Class 1b: Ideological Foundations</p>
+                </div>
+                <div class="essential-question auto-reveal">
+                    <h4>Essential Question:</h4>
+                    <p style="font-size: 2.2rem; color: #ffffff; font-weight: 600;">How did communist ideas appeal to Chinese revolutionaries, and how did Mao adapt these ideas to Chinese conditions?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Big Three Ideologies -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">2 / 10</div>
+                <h2>💭 The Big Three: Ideologies Shaping the Modern World</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>Competing Visions of How Society Should Work</h3>
+                    <p>Before diving into Chinese communism, let's quickly understand the three major ideologies that shaped the 20th century. Each offers different answers to fundamental questions about power, economics, and human nature.</p>
+                </div>
+                
+                <div class="ideology-grid">
+                    <div class="ideology-card auto-reveal">
+                        <h4>💰 Capitalism</h4>
+                        <ul>
+                            <li><strong>Core Idea:</strong> Free markets and private property create prosperity</li>
+                            <li><strong>Who Benefits:</strong> Entrepreneurs, investors, consumers</li>
+                            <li><strong>Key Problem:</strong> Inequality and exploitation of workers</li>
+                            <li><strong>Solution:</strong> Competition and innovation will lift everyone</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="ideology-card auto-reveal">
+                        <h4>🚩 Communism</h4>
+                        <ul>
+                            <li><strong>Core Idea:</strong> Workers should own the means of production</li>
+                            <li><strong>Who Benefits:</strong> Working class, peasants, oppressed people</li>
+                            <li><strong>Key Problem:</strong> Rich exploit poor through private ownership</li>
+                            <li><strong>Solution:</strong> Revolution to create classless society</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="ideology-card auto-reveal">
+                        <h4>🏴 Nationalism</h4>
+                        <ul>
+                            <li><strong>Core Idea:</strong> National unity and independence come first</li>
+                            <li><strong>Who Benefits:</strong> The nation/ethnic group as a whole</li>
+                            <li><strong>Key Problem:</strong> Foreign domination and internal division</li>
+                            <li><strong>Solution:</strong> Strong national government and cultural unity</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>🤔 The Chinese Question</h3>
+                    <p>Which of these ideologies would appeal most to a Chinese peasant in 1920 whose family had been poor for generations, who lived under warlord rule, and whose country was dominated by foreign powers?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Marx's Original Vision -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">3 / 10</div>
+                <h2>📚 Marx's Original Vision (1840s-1880s)</h2>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>The Theory That Started It All</h3>
+                    <p>Karl Marx wrote his theories while watching industrial capitalism develop in Europe. His analysis of class struggle and revolution would later inspire movements worldwide - but often in ways he never imagined.</p>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card auto-reveal">
+                        <h4>🏭 Marx's Analysis of Capitalism</h4>
+                        <ul>
+                            <li><strong>Bourgeoisie (owners):</strong> Control factories, land, and capital</li>
+                            <li><strong>Proletariat (workers):</strong> Sell their labor to survive</li>
+                            <li><strong>Exploitation:</strong> Workers create value but owners keep profits</li>
+                            <li><strong>Contradiction:</strong> System needs workers but treats them poorly</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card auto-reveal">
+                        <h4>🔄 Marx's Prediction</h4>
+                        <ul>
+                            <li><strong>Industrial Development:</strong> Capitalism creates large working class</li>
+                            <li><strong>Class Consciousness:</strong> Workers realize their shared interests</li>
+                            <li><strong>Revolution:</strong> Workers overthrow capitalist system</li>
+                            <li><strong>Communist Society:</strong> Classless, stateless, abundant society</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Chinese Peasant, interviewed 1949:</strong> "The Communists gave us land and taught us to read. They said we were equal to any landlord or official. For the first time in my family's history, we had hope that our children could have a better life."</p>
+                    <p style="margin-top: 1rem;"><em>This combination of practical benefits and ideological empowerment proved irresistible to millions.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: From Communist Theory to Chinese Practice -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">9 / 10</div>
+                <h2>🔄 From Communist Theory to Chinese Practice</h2>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>The Gap Between Theory and Reality (1949-Present)</h3>
+                    <p>Once in power, Chinese leaders discovered that communist theory provided less guidance for actually governing a huge, poor country. This tension between ideology and practical needs continues to shape modern China.</p>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card auto-reveal">
+                        <h4>📚 What Communist Theory Predicted</h4>
+                        <ul>
+                            <li><strong>Rapid Industrialization:</strong> Socialist planning would outpace capitalist countries</li>
+                            <li><strong>Economic Equality:</strong> Eliminate class differences through collective ownership</li>
+                            <li><strong>International Revolution:</strong> Worldwide communist movement would support China</li>
+                            <li><strong>Withering State:</strong> Eventually government would become unnecessary</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card auto-reveal">
+                        <h4>🌍 What Actually Happened</h4>
+                        <ul>
+                            <li><strong>Development Challenges:</strong> Great Leap Forward disaster showed planning limitations</li>
+                            <li><strong>Persistent Inequality:</strong> Rural-urban gaps, regional differences continued</li>
+                            <li><strong>International Isolation:</strong> Broke with Soviet Union, alienated from West</li>
+                            <li><strong>Strong Party State:</strong> Government control increased rather than decreased</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="chinese-adaptation auto-reveal">
+                    <h4>🔧 Chinese Adaptations of Communist Ideas</h4>
+                    <ul>
+                        <li><strong>Market Socialist Economy:</strong> Private enterprise within Communist Party political control</li>
+                        <li><strong>Gradual Reform:</strong> "Cross the river by feeling the stones" rather than revolutionary transformation</li>
+                        <li><strong>Nationalism Integration:</strong> Communist ideology combined with Chinese cultural pride</li>
+                        <li><strong>Pragmatic Ideology:</strong> "Seek truth from facts" rather than rigid doctrine</li>
+                    </ul>
+                </div>
+                
+                <div class="key-concepts auto-reveal">
+                    <h4>🤔 Critical Analysis</h4>
+                    <p><strong>Is modern China still communist?</strong> This question has no simple answer. China maintains Communist Party rule and socialist rhetoric, but uses market mechanisms and allows private wealth. Understanding this evolution requires grasping both the appeal of original communist ideas and the practical challenges of governing.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Connecting to Our Study of Modern China -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">10 / 10</div>
+                <h2>🔗 Connecting to Our Study of Modern China</h2>
+                
+                <div class="essential-question auto-reveal">
+                    <h4>Returning to Our Essential Question:</h4>
+                    <p style="font-size: 2rem; color: #ffffff;">How did communist ideas appeal to Chinese revolutionaries, and how did Mao adapt these ideas to Chinese conditions?</p>
+                </div>
+                
+                <div class="key-concepts auto-reveal">
+                    <h4>🎯 Key Insights for Understanding Modern China:</h4>
+                    <ul>
+                        <li><strong>Revolutionary Legitimacy:</strong> Communist Party's right to rule based on liberating peasants and expelling imperialists</li>
+                        <li><strong>Peasant Focus:</strong> Explains continued emphasis on rural development and poverty alleviation</li>
+                        <li><strong>Mass Line:</strong> Influences how government conducts policy experiments and public consultation</li>
+                        <li><strong>Anti-Imperialism:</strong> Shapes defensive attitudes toward foreign criticism and interference</li>
+                        <li><strong>Unity Emphasis:</strong> Justifies priority on stability and national cohesion over individual rights</li>
+                        <li><strong>Practical Adaptation:</strong> Explains pragmatic approach to economic and social policies</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>🔮 Looking Ahead: Cultural Revolution</h4>
+                        <p>Now that you understand communist ideological foundations, we can explore how Mao's commitment to "continuous revolution" led to the Cultural Revolution's attack on expertise, education, and traditional culture.</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>📈 Looking Ahead: Economic Reforms</h4>
+                        <p>Understanding original communist goals helps us analyze how Deng Xiaoping's market reforms represented both a departure from and continuation of revolutionary objectives.</p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>🌏 Looking Ahead: Global Role</h4>
+                        <p>Communist anti-imperialist ideology influences how modern China approaches international relations and positions itself as leader of developing countries.</p>
+                    </div>
+                </div>
+                
+                <div class="chinese-adaptation auto-reveal">
+                    <h4>💭 For Discussion and Reflection</h4>
+                    <p><strong>Critical Thinking:</strong> How do ideological commitments shape policy choices? How do practical challenges force adaptation of original ideas? What happens when revolutionary movements become governing parties?</p>
+                    <p style="margin-top: 1rem;"><strong>Personal Connection:</strong> How do the ideals that motivate social movements change when those movements gain power? Can you think of examples from American history or contemporary politics?</p>
+                </div>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>🚀 Ready for the Cultural Revolution</h3>
+                    <p>With this foundation in communist ideology and Mao's theoretical contributions, you're now prepared to understand why the Cultural Revolution happened, why it took the specific form it did, and how it continues to influence Chinese politics and society today.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let currentReveals = 0;
+        let maxReveals = 0;
+
+        function updateSlideDisplay() {
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.remove('hidden');
+                } else {
+                    slide.classList.add('hidden');
+                }
+            });
+            
+            // Reset reveals for new slide
+            currentReveals = 0;
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            maxReveals = autoReveals.length;
+            
+            // Hide all auto-reveal elements
+            autoReveals.forEach(element => {
+                element.classList.remove('revealed');
+            });
+            
+            // Show first auto-reveal element
+            if (autoReveals.length > 0) {
+                autoReveals[0].classList.add('revealed');
+                currentReveals = 1;
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlideDisplay();
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlideDisplay();
+            }
+        }
+
+        function revealNext() {
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            if (currentReveals < autoReveals.length) {
+                autoReveals[currentReveals].classList.add('revealed');
+                currentReveals++;
+                return true;
+            }
+            return false;
+        }
+
+        function hideReveal() {
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            if (currentReveals > 1) {
+                currentReveals--;
+                autoReveals[currentReveals].classList.remove('revealed');
+                return true;
+            }
+            return false;
+        }
+
+        function revealAll() {
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            autoReveals.forEach(element => {
+                element.classList.add('revealed');
+            });
+            currentReveals = autoReveals.length;
+        }
+
+        function toggleImage() {
+            // This would show/hide associated images if they existed
+            alert('No images associated with this slide');
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowRight':
+                    if (!revealNext()) {
+                        nextSlide();
+                    }
+                    break;
+                case 'ArrowLeft':
+                    if (!hideReveal()) {
+                        previousSlide();
+                    }
+                    break;
+                case ',':
+                    previousSlide();
+                    break;
+                case '.':
+                    nextSlide();
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        updateSlideDisplay();
+    </script>
+</body>
+</html>Marx and Engels, "The Communist Manifesto" (1848):</strong> "The history of all hitherto existing society is the history of class struggles... The proletarians have nothing to lose but their chains. They have a world to win. Workers of the world, unite!"</p>
+                </div>
+                
+                <div class="key-concepts auto-reveal">
+                    <h4>🎯 The Problem for China</h4>
+                    <p>Marx expected communist revolution in <strong>industrialized</strong> countries with large working classes. But China in 1920 was overwhelmingly agricultural with hundreds of millions of peasants. How could Marx's ideas apply to a non-industrial society?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Lenin's Adaptation -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">4 / 10</div>
+                <h2>⚡ Lenin's Adaptation: Revolution in a Backward Country</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>From Theory to Practice in Russia (1917)</h3>
+                    <p>Vladimir Lenin faced the same problem as Chinese revolutionaries: how to make communist revolution in a largely agricultural country. His solutions would directly influence Mao's strategy.</p>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>🎯 Lenin's Key Innovations</h4>
+                        <ul>
+                            <li><strong>Vanguard Party:</strong> Small group of professional revolutionaries leads the masses</li>
+                            <li><strong>Peasant Alliance:</strong> Workers and peasants unite against landlords and capitalists</li>
+                            <li><strong>Revolutionary War:</strong> Use violence to seize power quickly</li>
+                            <li><strong>State Control:</strong> Communist party controls government and economy during transition</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>🌾 The Peasant Question</h4>
+                        <ul>
+                            <li><strong>Marx's View:</strong> Peasants are conservative, want private property</li>
+                            <li><strong>Lenin's Insight:</strong> Peasants want land reform, will support revolution</li>
+                            <li><strong>Strategy:</strong> Promise "Peace, Land, Bread" to gain peasant support</li>
+                            <li><strong>Result:</strong> Bolsheviks win Russian Civil War with peasant backing</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Lenin, "What Is To Be Done?" (1902):</strong> "The working class, exclusively by its own effort, is able to develop only trade union consciousness... Revolutionary consciousness must be brought to the workers from outside."</p>
+                    <p style="margin-top: 1rem;"><em>This idea - that professional revolutionaries must lead the masses - would become central to Chinese communist strategy.</em></p>
+                </div>
+                
+                <div class="chinese-adaptation auto-reveal">
+                    <h4>🔗 Connection to China</h4>
+                    <p>Chinese intellectuals studying in Europe and Japan read Lenin's writings about revolution in agricultural societies. His success in Russia proved that Marx's ideas could work in non-industrial countries - if adapted correctly.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Communist Ideas Reach China -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">5 / 10</div>
+                <h2>🌏 Communist Ideas Reach China (1920s)</h2>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>Why Communism Appealed to Chinese Intellectuals</h3>
+                    <p>After the 1911 Revolution failed to strengthen China, and World War I showed the brutality of Western "civilization," Chinese intellectuals were looking for new solutions. Communist ideas offered both a critique of imperialism and a path to national strength.</p>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card auto-reveal">
+                        <h4>🔍 What Chinese Revolutionaries Saw</h4>
+                        <ul>
+                            <li><strong>Foreign Exploitation:</strong> Western powers and Japan controlling Chinese resources</li>
+                            <li><strong>Internal Oppression:</strong> Landlords and warlords exploiting peasants</li>
+                            <li><strong>Weakness and Division:</strong> China couldn't defend itself or unite</li>
+                            <li><strong>Failed Western Models:</strong> Democracy and capitalism hadn't helped China</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card auto-reveal">
+                        <h4>✅ What Communism Offered</h4>
+                        <ul>
+                            <li><strong>Anti-Imperialism:</strong> Theory explaining why foreign powers exploited China</li>
+                            <li><strong>Social Justice:</strong> Promise to help poor peasants and workers</li>
+                            <li><strong>National Strength:</strong> United party could build strong, modern country</li>
+                            <li><strong>Proven Success:</strong> Soviet Union was becoming industrial power</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>📅 Key Dates</h4>
+                        <ul>
+                            <li><strong>1919:</strong> May Fourth Movement - students demand "Mr. Science and Mr. Democracy"</li>
+                            <li><strong>1921:</strong> Chinese Communist Party founded in Shanghai</li>
+                            <li><strong>1924-1927:</strong> Alliance with Nationalists against warlords</li>
+                            <li><strong>1927:</strong> Nationalist massacre of Communists → independent Communist strategy</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Chen Duxiu, founding member of Chinese Communist Party (1920):</strong> "We must have a great union of the popular masses to struggle against capitalism... Democracy has not brought equality; it has only brought the substitution of democratic for autocratic politics."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Mao's Revolutionary Innovation -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">6 / 10</div>
+                <h2>🌾 Mao's Revolutionary Innovation: Peasant-Centered Communism</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>Going Beyond Marx and Lenin</h3>
+                    <p>While Marx focused on industrial workers and Lenin combined workers and peasants, Mao made peasants the center of revolution. This was his most important theoretical contribution to communist thought.</p>
+                </div>
+                
+                <div class="chinese-adaptation auto-reveal">
+                    <h4>🎯 Mao's Analysis of Chinese Society</h4>
+                    <ul>
+                        <li><strong>Industrial Workers:</strong> Only 2-3 million in a population of 500 million</li>
+                        <li><strong>Peasants:</strong> 400+ million, mostly poor and landless</li>
+                        <li><strong>Landlords:</strong> Small elite owning most of the land</li>
+                        <li><strong>National Bourgeoisie:</strong> Weak, dependent on foreign capital</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>Mao's Conclusion:</strong> Revolution must be based on peasants, not workers.</p>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card auto-reveal">
+                        <h4>🏭 Traditional Marxist Strategy</h4>
+                        <ul>
+                            <li><strong>Base:</strong> Urban industrial workers</li>
+                            <li><strong>Target:</strong> Capitalist factory owners</li>
+                            <li><strong>Method:</strong> General strikes and urban uprising</li>
+                            <li><strong>Goal:</strong> Seize government in major cities</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card auto-reveal">
+                        <h4>🌾 Mao's Chinese Strategy</h4>
+                        <ul>
+                            <li><strong>Base:</strong> Rural peasants in remote areas</li>
+                            <li><strong>Target:</strong> Landlords and foreign imperialists</li>
+                            <li><strong>Method:</strong> Guerrilla warfare and land reform</li>
+                            <li><strong>Goal:</strong> Surround cities from countryside</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Mao Zedong, "Report on the Peasant Movement in Hunan" (1927):</strong> "In a very short time, several hundred million peasants will rise like a mighty storm... They will sweep all the imperialists, warlords, corrupt officials, local tyrants and evil gentry into their graves."</p>
+                    <p style="margin-top: 1rem;"><em>This was written 22 years before Communist victory - showing Mao's long-term confidence in peasant revolution.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Mao's Theoretical Contributions -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">7 / 10</div>
+                <h2>💡 Mao's Theoretical Contributions to Communist Thought</h2>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>More Than Just Strategy: New Communist Theory</h3>
+                    <p>Mao didn't just adapt communist tactics to Chinese conditions - he developed new theoretical concepts that influenced communist movements worldwide and shaped how modern China approaches development and governance.</p>
+                </div>
+                
+                <div class="key-concepts auto-reveal">
+                    <h4>🎯 Mao's Key Theoretical Innovations</h4>
+                    <div class="timeline-section">
+                        <div class="timeline-card">
+                            <h4>📊 Contradictions Theory</h4>
+                            <p><strong>Core Idea:</strong> Society always contains contradictions (conflicts between different groups)</p>
+                            <p><strong>Application:</strong> Some contradictions are "antagonistic" (require revolution), others are "non-antagonistic" (can be resolved through discussion)</p>
+                            <p><strong>Modern Relevance:</strong> Helps explain China's approach to managing social tensions today</p>
+                        </div>
+                        
+                        <div class="timeline-card">
+                            <h4>🌊 Mass Line</h4>
+                            <p><strong>Core Idea:</strong> "From the masses, to the masses" - policies should reflect popular needs</p>
+                            <p><strong>Application:</strong> Leaders must listen to people, develop policies, then explain them back to people</p>
+                            <p><strong>Modern Relevance:</strong> Influences how Chinese government conducts policy experiments and public consultation</p>
+                        </div>
+                        
+                        <div class="timeline-card">
+                            <h4>🔄 Continuous Revolution</h4>
+                            <p><strong>Core Idea:</strong> Revolution doesn't end when Communists take power</p>
+                            <p><strong>Application:</strong> Must constantly struggle against bureaucracy and inequality</p>
+                            <p><strong>Dangerous Result:</strong> Led to Cultural Revolution's attack on expertise and institutions</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chinese-adaptation auto-reveal">
+                    <h4>🤔 Critical Thinking Question</h4>
+                    <p>Which of Mao's theoretical contributions seem useful for governing a large, diverse country? Which seem potentially dangerous? How might these ideas influence modern Chinese leaders?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Communist Success in China -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">8 / 10</div>
+                <h2>🏆 Why Communist Ideas Succeeded in China</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>From Theory to Victory (1927-1949)</h3>
+                    <p>Understanding why communist ideas appealed to millions of Chinese peasants helps explain not just the revolution's success, but also the legitimacy challenges and opportunities that shaped modern China.</p>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>🎯 Practical Appeals to Peasants</h4>
+                        <ul>
+                            <li><strong>Land Reform:</strong> Promised to redistribute landlord property to poor farmers</li>
+                            <li><strong>Debt Relief:</strong> Would cancel crushing debts to landlords and moneylenders</li>
+                            <li><strong>Social Equality:</strong> Peasants could become leaders and officials</li>
+                            <li><strong>National Defense:</strong> Strong government could protect against Japanese invasion</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>💭 Ideological Appeals to Intellectuals</h4>
+                        <ul>
+                            <li><strong>Anti-Imperialism:</strong> Theory explaining China's weakness and how to overcome it</li>
+                            <li><strong>Modernization:</strong> Scientific, rational approach to development</li>
+                            <li><strong>Social Justice:</strong> Moral purpose beyond just nationalism</li>
+                            <li><strong>International Movement:</strong> China would join global progressive forces</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>🌍 National Appeals to All Chinese</h4>
+                        <ul>
+                            <li><strong>Unity:</strong> End warlord period and create strong central government</li>
+                            <li><strong>Independence:</strong> Expel foreign powers and reclaim sovereignty</li>
+                            <li><strong>Strength:</strong> Build modern industry and military</li>
+                            <li><strong>Dignity:</strong> Restore China's place as great civilization</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>

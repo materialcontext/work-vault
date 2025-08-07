@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Iron Age and Greek Expansion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100vh;
+            padding: 3rem;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ff6b35, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .slide h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #ff6b35;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide h4 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #ffd700;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.4rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            color: #f1f5f9;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .slide ul {
+            text-align: left;
+            max-width: 900px;
+            margin: 0 auto 1rem auto;
+        }
+
+        .slide li {
+            margin-bottom: 0.8rem;
+            padding-left: 1rem;
+        }
+
+        /* Progressive disclosure elements */
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Visual elements */
+        .hero-section {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border: 3px solid #ff6b35;
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 1rem 0;
+            box-shadow: 0 25px 80px rgba(255, 107, 53, 0.3);
+            max-width: 800px;
+        }
+
+        .central-question {
+            background: rgba(15, 23, 42, 0.9);
+            border: 3px solid #ffd700;
+            border-radius: 25px;
+            padding: 2rem;
+            margin: 1rem auto;
+            max-width: 900px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.2);
+        }
+
+        .central-question h3 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .timeline-point {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 107, 53, 0.2);
+            border-radius: 15px;
+            margin: 0 0.3rem;
+            border: 2px solid rgba(255, 107, 53, 0.3);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .timeline-point:hover {
+            background: rgba(255, 107, 53, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 1.5rem 0;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .comparison-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 2px solid #64748b;
+            border-radius: 20px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff6b35;
+            box-shadow: 0 25px 60px rgba(255, 107, 53, 0.3);
+        }
+
+        .evidence-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+            border: 2px solid #ffd700;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1.5rem auto;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
+        }
+
+        .connecting-thread {
+            background: rgba(255, 69, 0, 0.15);
+            border: 3px solid rgba(255, 69, 0, 0.3);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1.5rem auto;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
+        }
+
+        .connecting-thread h3 {
+            color: #FF4500;
+            margin-bottom: 1rem;
+        }
+
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .innovation-card {
+            background: rgba(34, 197, 94, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 2px solid rgba(34, 197, 94, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .innovation-card:hover {
+            background: rgba(34, 197, 94, 0.3);
+            transform: scale(1.02);
+        }
+
+        .dramatic-highlight {
+            background: rgba(220, 38, 127, 0.2);
+            border: 3px solid rgba(220, 38, 127, 0.4);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1.5rem auto;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
+        }
+
+        .dramatic-highlight h4 {
+            color: #ec4899;
+            margin-bottom: 1rem;
+        }
+
+        strong {
+            color: #ffd700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Navigation controls */
+        .nav-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 107, 53, 0.8);
+            border-color: #ff6b35;
+            transform: translateY(-2px);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        /* Image tab indicator */
+        .image-tab {
+            position: fixed;
+            top: 30px;
+            right: 150px;
+            background: rgba(255, 107, 53, 0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .image-tab:hover {
+            background: rgba(255, 107, 53, 1);
+            transform: scale(1.05);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .slide h1 { font-size: 3rem; }
+            .slide h2 { font-size: 2.2rem; }
+            .slide h3 { font-size: 1.8rem; }
+            .slide h4 { font-size: 1.4rem; }
+            .slide p, .slide li { font-size: 1.2rem; }
+            .comparison-grid { grid-template-columns: 1fr; }
+            .innovation-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .slide { padding: 1.5rem; }
+            .slide h1 { font-size: 2.5rem; }
+            .slide h2 { font-size: 1.8rem; }
+            .slide h3 { font-size: 1.5rem; }
+            .slide h4 { font-size: 1.3rem; }
+            .slide p, .slide li { font-size: 1.1rem; }
+            .timeline { flex-direction: column; gap: 1rem; }
+            .timeline-point { margin: 0.2rem 0; }
+        }
+
+        /* Animations */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="hero-section">
+                <h1 class="auto-reveal">🔥 The Iron Age and Greek Expansion</h1>
+                <h2 class="auto-reveal">1200-336 BCE</h2>
+                <div class="auto-reveal">
+                    <h3>How Collapse Created Opportunity</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Central Question -->
+        <div class="slide">
+            <div class="central-question">
+                <h2 class="auto-reveal">Central Question</h2>
+                <div class="auto-reveal">
+                    <h3>How did the Iron Age collapse create new models of expansion and cultural spread?</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Great Collapse -->
+        <div class="slide">
+            <h2 class="auto-reveal">💥 The Bronze Age Collapse (1200 BCE)</h2>
+            
+            <div class="dramatic-highlight auto-reveal">
+                <h4>Civilizational Catastrophe</h4>
+                <p class="auto-reveal">Within 50 years, the entire Eastern Mediterranean world collapsed. Cities burned, trade networks vanished, and writing systems disappeared.</p>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🏛️ What Fell</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Mycenaean Greece:</strong> Palaces destroyed, Linear B writing lost</li>
+                        <li class="auto-reveal"><strong>Hittite Empire:</strong> Capital Hattusa abandoned forever</li>
+                        <li class="auto-reveal"><strong>Egyptian New Kingdom:</strong> Invasions and internal collapse</li>
+                        <li class="auto-reveal"><strong>Mesopotamian cities:</strong> Trade networks severed</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🌊 The "Sea Peoples"</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Mysterious invaders:</strong> Identity still debated</li>
+                        <li class="auto-reveal"><strong>Coordinated attacks:</strong> Hit multiple regions simultaneously</li>
+                        <li class="auto-reveal"><strong>Total destruction:</strong> Unlike typical raids or conquests</li>
+                        <li class="auto-reveal"><strong>Population movements:</strong> Massive migrations followed</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🏺 Archaeological Evidence</h4>
+                <p class="auto-reveal">Destruction layers at dozens of sites show the same pattern: <strong>sudden burning, abandonment, and population disappearance</strong> around 1200 BCE.</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: The Iron Age Response -->
+        <div class="slide">
+            <h2 class="auto-reveal">⚔️ Iron: The Democratic Metal</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>Why Iron Changed Everything</h3>
+                <p>Iron ore was everywhere. Bronze required rare tin that had to be traded across vast distances. When trade networks collapsed, iron became the survival technology.</p>
+            </div>
+
+            <div class="innovation-grid">
+                <div class="innovation-card auto-reveal">
+                    <h3>🛠️ Technological Revolution</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Superior weapons:</strong> Iron swords cut bronze</li>
+                        <li class="auto-reveal"><strong>Better tools:</strong> Iron plows, axes, construction tools</li>
+                        <li class="auto-reveal"><strong>Local production:</strong> No need for long-distance trade</li>
+                        <li class="auto-reveal"><strong>Mass production:</strong> Cheaper, more available</li>
+                    </ul>
+                </div>
+                <div class="innovation-card auto-reveal">
+                    <h3>🏺 Social Revolution</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Military democratization:</strong> More people could afford weapons</li>
+                        <li class="auto-reveal"><strong>Agricultural improvement:</strong> Better farming tools</li>
+                        <li class="auto-reveal"><strong>Craft specialization:</strong> Blacksmithing becomes crucial skill</li>
+                        <li class="auto-reveal"><strong>New power structures:</strong> Warrior bands replace palace bureaucracies</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="connecting-thread auto-reveal">
+                <h3>🔗 The Great Leveling</h3>
+                <p>Iron technology broke the monopolies of Bronze Age elites. Small groups with iron weapons could challenge established powers, creating space for new civilizations to emerge.</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Greek Dark Age Recovery -->
+        <div class="slide">
+            <h2 class="auto-reveal">🌅 Greece: Rising from the Ashes (1100-800 BCE)</h2>
+            
+            <div class="timeline auto-reveal">
+                <div class="timeline-point">1200 BCE<br>Mycenaean Collapse</div>
+                <div class="timeline-point">1100-800 BCE<br>Greek Dark Age</div>
+                <div class="timeline-point">800 BCE<br>Homer & Revival</div>
+                <div class="timeline-point">750 BCE<br>Colonization Begins</div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>💀 The Dark Age Reality</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Population crash:</strong> 90% decline in some regions</li>
+                        <li class="auto-reveal"><strong>Lost technologies:</strong> Writing, monumental architecture</li>
+                        <li class="auto-reveal"><strong>Tribal society:</strong> Small villages, warrior chiefs</li>
+                        <li class="auto-reveal"><strong>Subsistence living:</strong> Survival-focused economy</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🌱 Seeds of Recovery</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Iron adoption:</strong> Local weapon and tool production</li>
+                        <li class="auto-reveal"><strong>Geographic advantages:</strong> Islands and mountains provide security</li>
+                        <li class="auto-reveal"><strong>Cultural memory:</strong> Oral traditions preserve heroic past</li>
+                        <li class="auto-reveal"><strong>Political innovation:</strong> Small-scale, participatory communities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>📜 Homer's Evidence</h4>
+                <p class="auto-reveal">The <em>Iliad</em> and <em>Odyssey</em> preserve memories of the Bronze Age world while reflecting Dark Age values: <strong>warrior honor, personal loyalty, and heroic achievement</strong>.</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: The Polis Revolution -->
+        <div class="slide">
+            <h2 class="auto-reveal">🏛️ The Polis: Greece's Political Innovation (800-500 BCE)</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>Revolutionary Concept</h3>
+                <p>The polis wasn't just a city - it was a community of citizens who <strong>governed themselves</strong>. This was unprecedented in human history.</p>
+            </div>
+
+            <div class="innovation-grid">
+                <div class="innovation-card auto-reveal">
+                    <h3>🗳️ What Made It Work</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Right size:</strong> Small enough for face-to-face politics</li>
+                        <li class="auto-reveal"><strong>Geographic protection:</strong> Mountains and seas provided security</li>
+                        <li class="auto-reveal"><strong>Citizen-soldiers:</strong> Those who fight have say in decisions</li>
+                        <li class="auto-reveal"><strong>Shared identity:</strong> Common gods, laws, customs</li>
+                    </ul>
+                </div>
+                <div class="innovation-card auto-reveal">
+                    <h3>⚔️ Military Innovation</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Hoplite warfare:</strong> Citizen militias in formation</li>
+                        <li class="auto-reveal"><strong>Iron equipment:</strong> Affordable for middle-class farmers</li>
+                        <li class="auto-reveal"><strong>Collective defense:</strong> Everyone has stake in community</li>
+                        <li class="auto-reveal"><strong>Political participation:</strong> Military service = voting rights</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dramatic-highlight auto-reveal">
+                <h4>🎯 Key Insight</h4>
+                <p class="auto-reveal">The Greeks discovered that <strong>small, independent communities could be stronger than large empires</strong> if their citizens were truly committed to defending them.</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Greek Colonial Expansion -->
+        <div class="slide">
+            <h2 class="auto-reveal">🚢 The Great Colonization (750-550 BCE)</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>Why Greeks Left Home</h3>
+                <p>Population growth, land shortage, political conflicts, and trade opportunities drove Greeks to establish new poleis across the Mediterranean.</p>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🗺️ Where They Went</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Sicily & Southern Italy:</strong> "Magna Graecia" (Greater Greece)</li>
+                        <li class="auto-reveal"><strong>Black Sea:</strong> Grain supply and trade routes</li>
+                        <li class="auto-reveal"><strong>France & Spain:</strong> Massalia (Marseilles) and eastern coast</li>
+                        <li class="auto-reveal"><strong>North Africa:</strong> Cyrenaica and trading posts</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🏛️ How Colonization Worked</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Independent settlements:</strong> New poleis, not provinces</li>
+                        <li class="auto-reveal"><strong>Cultural connection:</strong> Greek language, gods, customs</li>
+                        <li class="auto-reveal"><strong>Trade networks:</strong> Economic ties to mother cities</li>
+                        <li class="auto-reveal"><strong>Political independence:</strong> Self-governing communities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🌍 Global Impact</h4>
+                <p class="auto-reveal">By 500 BCE, Greek settlements stretched from <strong>Spain to the Caucasus</strong>, creating a connected world of Greek-speaking communities that shared culture while maintaining political independence.</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Persian Wars -->
+        <div class="slide">
+            <h2 class="auto-reveal">⚔️ The Persian Challenge (500-479 BCE)</h2>
+            
+            <div class="dramatic-highlight auto-reveal">
+                <h4>David vs. Goliath</h4>
+                <p class="auto-reveal">The Persian Empire - the largest state in human history - invaded tiny, divided Greece. What happened next changed world history.</p>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🏺 Greek Advantages</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Fighting for home:</strong> Existential motivation</li>
+                        <li class="auto-reveal"><strong>Superior armor:</strong> Hoplite bronze vs. Persian leather</li>
+                        <li class="auto-reveal"><strong>Naval innovation:</strong> Athenian triremes</li>
+                        <li class="auto-reveal"><strong>Tactical flexibility:</strong> Small units, quick decisions</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🏹 Persian Challenges</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Distance from home:</strong> Long supply lines</li>
+                        <li class="auto-reveal"><strong>Diverse forces:</strong> Different languages, equipment, motivation</li>
+                        <li class="auto-reveal"><strong>Unfamiliar terrain:</strong> Greek geography favored defenders</li>
+                        <li class="auto-reveal"><strong>Overconfidence:</strong> Expected easy victory like other conquests</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline auto-reveal">
+                <div class="timeline-point">490 BCE<br>Marathon Victory</div>
+                <div class="timeline-point">480 BCE<br>Thermopylae & Salamis</div>
+                <div class="timeline-point">479 BCE<br>Plataea Victory</div>
+                <div class="timeline-point">478 BCE<br>Delian League</div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Classical Achievement -->
+        <div class="slide">
+            <h2 class="auto-reveal">🌟 The Classical Golden Age (479-336 BCE)</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>Victory's Confidence</h3>
+                <p>Defeating the Persian Empire gave Greeks unprecedented cultural confidence. If their small communities could defeat the world's greatest power, what else was possible?</p>
+            </div>
+
+            <div class="innovation-grid">
+                <div class="innovation-card auto-reveal">
+                    <h3>🏛️ Political Innovation</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Athenian democracy:</strong> Direct citizen participation</li>
+                        <li class="auto-reveal"><strong>Constitutional experiments:</strong> Different models across poleis</li>
+                        <li class="auto-reveal"><strong>Political theory:</strong> Analyzing government systems</li>
+                        <li class="auto-reveal"><strong>Citizenship concepts:</strong> Rights and responsibilities</li>
+                    </ul>
+                </div>
+                <div class="innovation-card auto-reveal">
+                    <h3>🧠 Intellectual Revolution</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Philosophy:</strong> Socrates, Plato, Aristotle</li>
+                        <li class="auto-reveal"><strong>Science:</strong> Mathematics, medicine, astronomy</li>
+                        <li class="auto-reveal"><strong>History:</strong> Herodotus and Thucydides</li>
+                        <li class="auto-reveal"><strong>Drama:</strong> Tragedy and comedy as art forms</li>
+                    </ul>
+                </div>
+                <div class="innovation-card auto-reveal">
+                    <h3>🎨 Cultural Achievement</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Architecture:</strong> Parthenon and temple design</li>
+                        <li class="auto-reveal"><strong>Sculpture:</strong> Realistic human representation</li>
+                        <li class="auto-reveal"><strong>Athletics:</strong> Olympic Games and physical excellence</li>
+                        <li class="auto-reveal"><strong>Education:</strong> Paideia - complete human development</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Internal Conflicts -->
+        <div class="slide">
+            <h2 class="auto-reveal">⚔️ Success Breeds Conflict (479-336 BCE)</h2>
+            
+            <div class="dramatic-highlight auto-reveal">
+                <h4>The Irony of Victory</h4>
+                <p class="auto-reveal">Defeating Persia made Athens so powerful that other Greeks feared Athenian domination more than foreign invasion.</p>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>🏛️ Athenian Empire</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Delian League:</strong> Anti-Persian alliance becomes Athenian empire</li>
+                        <li class="auto-reveal"><strong>Tribute collection:</strong> "Allies" forced to pay Athens</li>
+                        <li class="auto-reveal"><strong>Naval supremacy:</strong> Athens controls sea routes</li>
+                        <li class="auto-reveal"><strong>Democratic imperialism:</strong> Freedom at home, empire abroad</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>⚔️ Spartan Response</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Peloponnesian League:</strong> Counter-alliance against Athens</li>
+                        <li class="auto-reveal"><strong>Land-based power:</strong> Sparta's military strength</li>
+                        <li class="auto-reveal"><strong>Conservative values:</strong> Opposing Athenian innovation</li>
+                        <li class="auto-reveal"><strong>Persian support:</strong> Enemy of my enemy is my friend</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🏺 Thucydides' Analysis</h4>
+                <p class="auto-reveal">The Peloponnesian War (431-404 BCE) was caused by <strong>"the growth of Athenian power and the fear this caused in Sparta."</strong> Success created the conditions for its own destruction.</p>
+            </div>
+        </div>
+
+        <!-- Slide 11: Alexander's Revolution -->
+        <div class="slide">
+            <h2 class="auto-reveal">👑 Alexander: Greek Power Goes Global (336-323 BCE)</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>From City-States to World Empire</h3>
+                <p>Alexander of Macedon took Greek military and cultural innovations and spread them across three continents, creating the first truly global civilization.</p>
+            </div>
+
+            <div class="timeline auto-reveal">
+                <div class="timeline-point">336 BCE<br>Becomes King</div>
+                <div class="timeline-point">334 BCE<br>Invades Asia</div>
+                <div class="timeline-point">331 BCE<br>Defeats Persia</div>
+                <div class="timeline-point">326 BCE<br>Reaches India</div>
+                <div class="timeline-point">323 BCE<br>Dies in Babylon</div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>⚔️ Military Genius</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Macedonian phalanx:</strong> Longer spears, better discipline</li>
+                        <li class="auto-reveal"><strong>Combined arms:</strong> Infantry, cavalry, siege engines</li>
+                        <li class="auto-reveal"><strong>Tactical brilliance:</strong> Never lost a battle</li>
+                        <li class="auto-reveal"><strong>Speed and mobility:</strong> Covered 22,000 miles in 13 years</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🌍 Cultural Vision</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Fusion policy:</strong> Greek and Persian cooperation</li>
+                        <li class="auto-reveal"><strong>City founding:</strong> 70+ new cities across empire</li>
+                        <li class="auto-reveal"><strong>Cultural exchange:</strong> Encouraged intermarriage</li>
+                        <li class="auto-reveal"><strong>Universal monarchy:</strong> One ruler for all peoples</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dramatic-highlight auto-reveal">
+                <h4>🎯 Revolutionary Impact</h4>
+                <p class="auto-reveal">Alexander didn't just conquer - he <strong>transplanted Greek civilization</strong> to Egypt, Mesopotamia, Central Asia, and India, creating a new cosmopolitan world.</p>
+            </div>
+        </div>
+
+        <!-- Slide 12: Hellenistic World -->
+        <div class="slide">
+            <h2 class="auto-reveal">🌐 The Hellenistic Achievement (323-146 BCE)</h2>
+            
+            <div class="central-question auto-reveal">
+                <h3>Greek Culture Goes Global</h3>
+                <p>After Alexander's death, his empire split into kingdoms, but Greek culture spread and evolved throughout the known world.</p>
+            </div>
+
+            <div class="innovation-grid">
+                <div class="innovation-card auto-reveal">
+                    <h3>🏛️ Political Innovation</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Ptolemaic Egypt:</strong> Greek pharaohs ruling ancient kingdom</li>
+                        <li class="auto-reveal"><strong>Seleucid Empire:</strong> Greek administration over diverse peoples</li>
+                        <li class="auto-reveal"><strong>Antigonid Macedonia:</strong> Greek homeland under new dynasty</li>
+                        <li class="auto-reveal"><strong>Independent kingdoms:</strong> Pergamon, Bactria, others</li>
+                    </ul>
+                </div>
+                <div class="innovation-card auto-reveal">
+                    <h3>🔬 Scientific Revolution</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Alexandria:</strong> Greatest library and research center</li>
+                        <li class="auto-reveal"><strong>Mathematics:</strong> Euclid's geometry, Archimedes' physics</li>
+                        <li class="auto-reveal"><strong>Astronomy:</strong> Aristarchus proposes heliocentric theory</li>
+                        <li class="auto-reveal"><strong>Medicine:</strong> Human dissection, surgical advances</li>
+                    </ul>
+                </div>
+                <div class="innovation-card auto-reveal">
+                    <h3>🎨 Cultural Fusion</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Art synthesis:</strong> Greek techniques + local traditions</li>
+                        <li class="auto-reveal"><strong>Religious blending:</strong> Greek gods + Egyptian/Persian deities</li>
+                        <li class="auto-reveal"><strong>Trade networks:</strong> Greek merchants from Spain to India</li>
+                        <li class="auto-reveal"><strong>Common language:</strong> Greek as lingua franca</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="evidence-box auto-reveal">
+                <h4>🌍 Global Reach</h4>
+                <p class="auto-reveal">Greek became the common language from <strong>Sicily to Afghanistan</strong>. Greek cities, theaters, and gymnasiums appeared from the Black Sea to the Persian Gulf.</p>
+            </div>
+        </div>
+
+        <!-- Slide 13: Setting the Stage -->
+        <div class="slide">
+            <h2 class="auto-reveal">🎭 Looking Forward: The Stage is Set</h2>
+            
+            <div class="connecting-thread auto-reveal">
+                <h3>🔗 What Greece Created</h3>
+                <p>By 336 BCE, Greek innovations had fundamentally changed the ancient world. The Iron Age collapse had created space for new civilizations, and Greece had filled that space with revolutionary ideas.</p>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card auto-reveal">
+                    <h3>💡 Greek Innovations</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Political participation:</strong> Citizens governing themselves</li>
+                        <li class="auto-reveal"><strong>Rational inquiry:</strong> Philosophy and science</li>
+                        <li class="auto-reveal"><strong>Territorial expansion:</strong> Colonization model</li>
+                        <li class="auto-reveal"><strong>Cultural confidence:</strong> Belief in Greek superiority</li>
+                    </ul>
+                </div>
+                <div class="comparison-card auto-reveal">
+                    <h3>🌍 Mediterranean Reality by 300 BCE</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Greek kingdoms:</strong> Controlling Eastern Mediterranean</li>
+                        <li class="auto-reveal"><strong>Carthaginian empire:</strong> Dominating Western trade</li>
+                        <li class="auto-reveal"><strong>Rising Rome:</strong> Controlling Italian peninsula</li>
+                        <li class="auto-reveal"><strong>Competition inevitable:</strong> Three expansion models meet</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dramatic-highlight auto-reveal">
+                <h4>🎯 Next Question</h4>
+                <p class="auto-reveal">Greek territorial expansion through colonization and conquest had created one model for organizing the Mediterranean world. But what happened when this model collided with <strong>other approaches to power</strong>?</p>
+            </div>
+        </div>
+
+        <!-- Slide 14: Synthesis -->
+        <div class="slide">
+            <h2 class="auto-reveal">🎯 The Iron Age Revolution Complete</h2>
+            
+            <div class="hero-section auto-reveal">
+                <h3>From Collapse to Renaissance</h3>
+                <p>In 400 years, the Mediterranean world went from Bronze Age collapse to a sophisticated network of Greek-influenced civilizations spanning three continents.</p>
+            </div>
+
+            <div class="innovation-grid">
+                <div class="innovation-card auto-reveal">
+                    <h3>🔄 The Pattern</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Crisis creates opportunity:</strong> Collapse opens space for innovation</li>
+                        <li class="auto-reveal"><strong>Technology enables change:</strong> Iron democratizes power</li>
+                        <li class="auto-reveal"><strong>Small beats big:</strong> City-states defeat empire</li>
+                        <li class="auto-reveal"><strong>Success creates new challenges:</strong> Victory leads to internal conflict</li>
+                    </ul>
+                </div>
+                <div class="innovation-card auto-reveal">
+                    <h3>🌟 Greek Legacy</h3>
+                    <ul>
+                        <li class="auto-reveal"><strong>Political concepts:</strong> Democracy, citizenship, constitutions</li>
+                        <li class="auto-reveal"><strong>Intellectual methods:</strong> Philosophy, science, history</li>
+                        <li class="auto-reveal"><strong>Cultural forms:</strong> Art, literature, architecture</li>
+                        <li class="auto-reveal"><strong>Expansion model:</strong> Territorial colonization with cultural unity</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>Essential Understanding</h3>
+                <p>The Iron Age collapse wasn't just destruction - it was <strong>creative destruction</strong> that made space for new civilizations to experiment with different ways of organizing human society.</p>
+            </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="nav-controls">
+            <button id="prevBtn" class="nav-btn">◀ Prev</button>
+            <button id="revealBtn" class="nav-btn">Reveal All</button>
+            <button id="nextBtn" class="nav-btn">Next ▶</button>
+        </div>
+
+        <!-- Slide Indicator -->
+        <div class="slide-indicator">
+            <span id="slideCounter">1 / 14</span>
+        </div>
+
+        <!-- Image Tab Indicator -->
+        <div class="image-tab" id="imageTab">📷 Images</div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentReveal = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        // Get all auto-reveal elements for current slide
+        function getAutoRevealElements() {
+            return slides[currentSlide].querySelectorAll('.auto-reveal');
+        }
+        
+        // Update slide counter
+        function updateCounter() {
+            document.getElementById('slideCounter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+        
+        // Show current slide
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            currentReveal = 0;
+            
+            // Hide all auto-reveal elements in new slide
+            const autoRevealElements = getAutoRevealElements();
+            autoRevealElements.forEach(el => el.classList.remove('revealed'));
+            
+            updateCounter();
+            updateButtons();
+        }
+        
+        // Show next reveal element
+        function showNextReveal() {
+            const autoRevealElements = getAutoRevealElements();
+            if (currentReveal < autoRevealElements.length) {
+                autoRevealElements[currentReveal].classList.add('revealed');
+                currentReveal++;
+                updateButtons();
+                return true;
+            }
+            return false;
+        }
+        
+        // Show all reveal elements on current slide
+        function showAllReveals() {
+            const autoRevealElements = getAutoRevealElements();
+            autoRevealElements.forEach(el => el.classList.add('revealed'));
+            currentReveal = autoRevealElements.length;
+            updateButtons();
+        }
+        
+        // Hide previous reveal element
+        function hidePreviousReveal() {
+            const autoRevealElements = getAutoRevealElements();
+            if (currentReveal > 0) {
+                currentReveal--;
+                autoRevealElements[currentReveal].classList.remove('revealed');
+                updateButtons();
+                return true;
+            }
+            return false;
+        }
+        
+        // Update button states
+        function updateButtons() {
+            const autoRevealElements = getAutoRevealElements();
+            const allRevealed = currentReveal >= autoRevealElements.length;
+            const noneRevealed = currentReveal === 0;
+            
+            document.getElementById('prevBtn').style.opacity = (currentSlide === 0 && noneRevealed) ? '0.5' : '1';
+            document.getElementById('nextBtn').style.opacity = (currentSlide === totalSlides - 1 && allRevealed) ? '0.5' : '1';
+        }
+        
+        // Navigation functions
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+        
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+        
+        // Event listeners
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (!showNextReveal()) {
+                nextSlide();
+            }
+        });
+        
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (!hidePreviousReveal()) {
+                previousSlide();
+            }
+        });
+        
+        document.getElementById('revealBtn').addEventListener('click', showAllReveals);
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                    if (!showNextReveal()) {
+                        nextSlide();
+                    }
+                    break;
+                case 'ArrowLeft':
+                    if (!hidePreviousReveal()) {
+                        previousSlide();
+                    }
+                    break;
+                case ',':
+                    previousSlide();
+                    break;
+                case '.':
+                    nextSlide();
+                    break;
+                case 'Enter':
+                    showAllReveals();
+                    break;
+            }
+        });
+        
+        // Image tab functionality (placeholder)
+        document.getElementById('imageTab').addEventListener('click', () => {
+            alert('Image gallery would be implemented here with relevant historical images, maps, and archaeological evidence.');
+        });
+        
+        // Initialize
+        updateCounter();
+        updateButtons();
+        
+        // Auto-reveal first slide elements with delay
+        setTimeout(() => {
+            showAllReveals();
+        }, 500);
+    </script>
+</body>
+</html>
