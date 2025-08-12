@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cold War Conflicts: Global Tensions and Transformation (1945-1991)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+	    font-size: 20px;
+	    overflow-y: hidden;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: #f8fafc;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.8);
+            color: #f8fafc;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: rgba(6, 182, 212, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .image-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 150px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #f8fafc;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .slide h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .slide h2 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #06b6d4;
+        }
+
+        .slide h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #3b82f6;
+        }
+
+        .slide p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #e2e8f0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .objective-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 2px solid rgba(6, 182, 212, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(15px);
+        }
+
+        .objective-card:hover {
+            border-color: rgba(6, 182, 212, 0.6);
+            transform: translateY(-5px);
+        }
+
+        .objective-card h3 {
+            color: #06b6d4;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .objective-card ul {
+            text-align: left;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .objective-card li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .objective-card li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        .timeline-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 15px;
+            border-left: 4px solid #06b6d4;
+            backdrop-filter: blur(15px);
+        }
+
+        .timeline-year {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #06b6d4;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-event {
+            font-size: 0.95rem;
+            color: #e2e8f0;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            border-color: rgba(59, 130, 246, 0.6);
+            transform: translateY(-3px);
+        }
+
+        .concept-card h4 {
+            color: #3b82f6;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .continue-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(6, 182, 212, 0.8);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        .formula-box {
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid rgba(16, 185, 129, 0.4);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+        }
+
+        .formula-box strong {
+            color: #10b981;
+            font-size: 1.1rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+        }
+
+        .comparison-card.usa {
+            border: 2px solid rgba(59, 130, 246, 0.5);
+        }
+
+        .comparison-card.ussr {
+            border: 2px solid rgba(239, 68, 68, 0.5);
+        }
+
+        .comparison-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-card.usa h4 {
+            color: #3b82f6;
+        }
+
+        .comparison-card.ussr h4 {
+            color: #ef4444;
+        }
+
+        .image-container {
+            position: fixed;
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 15px;
+            padding: 1rem;
+            max-width: 400px;
+            max-height: 500px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(6, 182, 212, 0.3);
+            display: none;
+            z-index: 999;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .image-caption {
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .strategy-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            backdrop-filter: blur(15px);
+        }
+
+        .strategy-card h5 {
+            color: #8b5cf6;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 1920px) {
+            .slide {
+                padding: 3rem 4rem;
+            }
+            
+            .slide-content {
+                max-width: 1600px;
+            }
+        }
+
+        @media (max-height: 800px) {
+            .slide {
+                padding: 1rem 2rem;
+                justify-content: flex-start;
+                padding-top: 2rem;
+            }
+            
+            .slide h1 {
+                font-size: clamp(2rem, 4vw, 3rem);
+                margin-bottom: 0.5rem;
+            }
+            
+            .slide h2 {
+                font-size: clamp(1.5rem, 3vw, 2.5rem);
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 18</span>
+    </div>
+
+    <button class="image-toggle" onclick="toggleImage()">📸 Images</button>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Previous</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" onclick="showAll()">Show All</button>
+    </div>
+
+    <div class="image-container" id="imageContainer">
+        <!-- Images will be populated by JavaScript -->
+    </div>
+
+    <!-- Slide 1: Title Slide -->
+    <div class="slide active" data-reveal-count="1">
+        <div class="slide-content">
+            <div class="reveal-item revealed">
+                <h1>Cold War Conflicts</h1>
+                <h2>Global Tensions and Transformation (1945-1991)</h2>
+                <p>How did ideological competition between superpowers reshape global politics, economics, and society?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Learning Objectives -->
+    <div class="slide" data-reveal-count="4">
+        <div class="slide-content">
+            <div class="reveal-item">
+                <h2>📚 Session Learning Objectives</h2>
+            </div>
+            
+            <div class="objectives-grid">
+                <div class="objective-card reveal-item">
+                    <h3>🏛️ Analyze Origins</h3>
+                    <ul>
+                        <li>Examine post-WWII power vacuum</li>
+                        <li>Evaluate competing visions of world order</li>
+                        <li>Assess role of nuclear weapons</li>
+                    </ul>
+                </div>
+                
+                <div class="objective-card reveal-item">
+                    <h3>🌍 Global Impact</h3>
+                    <ul>
+                        <li>Trace Cold War effects on decolonization</li>
+                        <li>Analyze proxy conflicts worldwide</li>
+                        <li>Evaluate Non-Aligned Movement responses</li>
+                    </ul>
+                </div>
+                
+                <div class="objective-card reveal-item">
+                    <h3>📈 Historical Significance</h3>
+                    <ul>
+                        <li>Assess long-term consequences</li>
+                        <li>Connect to contemporary global tensions</li>
+                        <li>Evaluate multiple perspectives on outcomes</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Post-War Power Vacuum -->
+    <div class="slide" data-reveal-count="3">
+        <div class="slide-content">
+            <div class="reveal-item">
+                <h2>⚡ The Superpower Divided</h2>
+            </div>
+            
+            <div class="comparison-grid reveal-item">
+                <div class="comparison-card usa">
+                    <h4>🇺🇸 United States Vision</h4>
+                    <ul>
+                        <li><strong>Economic:</strong> Free market capitalism</li>
+                        <li><strong>Political:</strong> Democratic governance</li>
+                        <li><strong>International:</strong> Open trade, collective security</li>
+                        <li><strong>Goal:</strong> Peaceful coexistence through prosperity</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card ussr">
+                    <h4>🇷🇺 Soviet Union Vision</h4>
+                    <ul>
+                        <li><strong>Economic:</strong> Socialist command economy</li>
+                        <li><strong>Political:</strong> Communist party leadership</li>
+                        <li><strong>International:</strong> Socialist solidarity, security zones</li>
+                        <li><strong>Goal:</strong> Global revolution against imperialism</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="formula-box reveal-item">
+                <strong>Key Question:</strong> Were these competing visions fundamentally incompatible, or could compromise have been achieved?
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Origins Timeline -->
+    <div class="slide" data-reveal-count="6">
+        <div class="slide-content">
+            <div class="reveal-item">
+                <h2>📅 Cold War Origins (1945-1949)</h2>
+            </div>
+            
+            <div class="timeline-container">
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">1945</div>
+                    <div class="timeline-event">Yalta & Potsdam Conferences: Disagreements over Eastern Europe</div>
+                </div>
+                
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">1946</div>
+                    <div class="timeline-event">Churchill's "Iron Curtain" speech warns of Soviet expansion</div>
+                </div>
+                
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">1947</div>
+                    <div class="timeline-event">Truman Doctrine: US pledges to contain communist expansion</div>
+                </div>
+                
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">1948</div>
+                    <div class="timeline-event">Berlin Blockade tests Western resolve; Marshall Plan launches</div>
+                </div>
+                
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">1949</div>
+                    <div class="timeline-event">NATO formation & Soviet nuclear bomb end US monopoly</div>
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Containment Strategy -->
+    <div class="slide" data-reveal-count="4">
+        <div class="slide-content">
+            <div class="reveal-item">
+                <h2>🛡️ Containment: The American Strategy</h2>
+            </div>
+            
+            <div class="strategy-grid">
+                <div class="strategy-card reveal-item">
+                    <h5>💰 Economic Tools</h5>
+                    <p><strong>Marshall Plan:</strong> $12 billion to rebuild Western Europe and create markets for US goods while preventing communist appeal</p>
+                </div>
+                
+                <div class="strategy-card reveal-item">
+                    <h5>🤝 Military Alliances</h5>
+                    <p><strong>NATO (1949):</strong> Collective defense against Soviet expansion, later matched by Warsaw Pact (1955)</p>
+                </div>
+                
+                <div class="strategy-card reveal-item">
+                    <h5>🎭 Propaganda War</h5>
+                    <p><strong>Cultural Competition:</strong> Radio Free Europe, cultural exchanges, demonstrating "superiority" of American way of life</p>
+                </div>
+            </div>
+            
+            <div class="formula-box reveal-item">
+                <strong>George Kennan's Long Telegram (1946):</strong> Soviet leaders were "paranoid" and "committed to war against capitalism" - containment must be "strong resistance"
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+    </div>
+
+    <!-- Slide 6: The Chinese Revolution -->
+    <div class="slide" data-reveal-count="4">
+        <div class="slide-content">
+            <div class="reveal-item">
+                <h2>🇨🇳 The Spread of Communism: China</h2>
+            </div>
+            
+            <div class="concept-grid">
+                <div class="concept-card reveal-item">
+                    <h4>🔄 Chinese Civil War (1945-1949)</h4>
+                    <ul>
+                        <li><strong>Nationalists (GMD):</strong> Led by Chiang Kai-shek, supported by US</li>
+                        <li><strong>Communists (CCP):</strong> Led by Mao Zedong, gained peasant support</li>
+                        <li><strong>Outcome:</strong> CCP victory, People's Republic established 1949</li>
+                    </ul>
+                </div>
+                
+                <div class="concept-card reveal-item">
+                    <h4>🌾 Why Communists Won</h4>
+                    <ul>
+                        <li>Land reform appealed to majority peasant population</li>
+                        <li>Disciplined forces, effective leadership</li>
+                        <li>Nationalist corruption and economic mismanagement</li>
+                        <li>Japanese invasion weakened Nationalist control</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="formula-box reveal-item">
+                <strong>Global Impact:</strong> China's fall to communism convinced many Americans that containment was failing - led to more aggressive Cold War policies
+            </div>
+            
+            <div class="reveal-item">
+                <p><em>"The Chinese people have stood up!" - Mao Zedong, October 1, 1949</em></p>
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Korean War -->
+    <div class="slide" data-reveal-count="5">
+        <div class="slide-content">
+            <div class="reveal-item">
+                <h2>⚔️ The Korean War (1950-1953)</h2>
+                <p>The first "hot war" of the Cold War era</p>
+            </div>
+            
+            <div class="timeline-container">
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">June 1950</div>
+                    <div class="timeline-event">North Korea invades South Korea across 38th parallel</div>
+                </div>
+                
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">Sept 1950</div>
+                    <div class="timeline-event">UN/US forces land at Incheon, push north toward China</div>
+                </div>
+                
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">Oct 1950</div>
+                    <div class="timeline-event">Chinese forces enter war, push UN forces back south</div>
+                </div>
+                
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">1953</div>
+                    <div class="timeline-event">Armistice signed, Korea remains divided at 38th parallel</div>
+                </div>
+            </div>
+            
+            <div class="formula-box reveal-item">
+                <strong>Significance:</strong> Established pattern of "proxy wars" - superpowers supporting opposing sides without direct confrontation. Cost: ~3 million dead, Korea permanently divided
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Nuclear Arms Race -->
+    <div class="slide" data-reveal-count="4">
+        <div class="slide-content">
+            <div class="reveal-item">
+                <h2>☢️ The Nuclear Arms Race</h2>
+            </div>
+            
+            <div class="timeline-container">
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">1945</div>
+                    <div class="timeline-event">US drops atomic bombs on Japan, nuclear monopoly begins</div>
+                </div>
+                
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">1949</div>
+                    <div class="timeline-event">Soviet Union detonates first atomic bomb, ending US monopoly</div>
+                </div>
+                
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">1952-1953</div>
+                    <div class="timeline-event">Both superpowers develop hydrogen bombs, 1000x more powerful</div>
+                </div>
+                
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">1957</div>
+                    <div class="timeline-event">Soviet Sputnik launch demonstrates ICBM capability</div>
+                </div>
+            </div>
+            
+            <div class="formula-box reveal-item">
+                <strong>Mutually Assured Destruction (MAD):</strong> Both sides could destroy each other completely, creating a "balance of terror" that paradoxically prevented nuclear war
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Non-Aligned Movement -->
+    <div class="slide" data-reveal-count="4">
+        <div class="slide-content">
+            <div class="reveal-item">
+                <h2>🌍 The Non-Aligned Movement</h2>
+                <p>A "Third Way" between capitalist and communist blocs</p>
+            </div>
+            
+            <div class="concept-grid">
+                <div class="concept-card reveal-item">
+                    <h4>🏛️ Key Leaders</h4>
+                    <ul>
+                        <li><strong>Josip Broz Tito (Yugoslavia):</strong> Broke with Stalin, independent socialism</li>
+                        <li><strong>Jawaharlal Nehru (India):</strong> Democratic socialism, peaceful coexistence</li>
+                        <li><strong>Gamal Abdel Nasser (Egypt):</strong> Arab nationalism, Cold War neutrality</li>
+                        <li><strong>Sukarno (Indonesia):</strong> Guided democracy, anti-imperialism</li>
+                    </ul>
+                </div>
+                
+                <div class="concept-card reveal-item">
+                    <h4>🎯 Core Principles</h4>
+                    <ul>
+                        <li>Rejection of military alliances with superpowers</li>
+                        <li>Support for decolonization and self-determination</li>
+                        <li>Economic development without Cold War alignment</li>
+                        <li>Nuclear disarmament and peaceful coexistence</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="formula-box reveal-item">
+                <strong>Bandung Conference (1955):</strong> 29 African and Asian nations met to coordinate anti-colonial and non-aligned policies - demonstrated emerging "Third World" as independent force
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Cold War in Global South -->
+    <div class="slide" data-reveal-count="5">
+        <div class="slide-content">
+            <div class="reveal-item">
+                <h2>🌍 Cold War in the Global South</h2>
+            </div>
+            
+            <div class="concept-grid">
+                <div class="concept-card reveal-item">
+                    <h4>🇻🇳 Vietnam (1955-1975)</h4>
+                    <p>French decolonization becomes US-Soviet proxy war. Ho Chi Minh's communist nationalism defeats US-backed South Vietnam.</p>
+                </div>
+                
+                <div class="concept-card reveal-item">
+                    <h4>🇨🇺 Cuba (1959-1962)</h4>
+                    <p>Castro's revolution brings socialism to Western Hemisphere. Cuban Missile Crisis (1962) brings world closest to nuclear war.</p>
+                </div>
+                
+                <div class="concept-card reveal-item">
+                    <h4>🇦🇫 Afghanistan (1979-1989)</h4>
+                    <p>Soviet invasion supports communist government. US arms mujahideen resistance, contributing to Soviet collapse.</p>
+                </div>
+                
+                <div class="concept-card reveal-item">
+                    <h4>🌍 Africa & Latin America</h4>
+                    <p>Decolonization creates opportunities for superpower competition. Angola, Nicaragua, Chile become Cold War battlegrounds.</p>
+                </div>
+            </div>
+            
+            <div class="formula-box reveal-item">
+                <strong>Pattern:</strong> Local conflicts became global proxy wars as superpowers provided weapons, advisors, and funding to opposing sides
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Decolonization and Cold War -->
+    <div class="slide" data-reveal-count="4">
+        <div class="slide-content">
+            <div class="reveal-item">
+                <h2>🏛️ Decolonization and Cold War Dynamics</h2>
+            </div>
+            
+            <div class="comparison-grid reveal-item">
+                <div class="comparison-card usa">
+                    <h4>🇺🇸 US Approach</h4>
+                    <ul>
+                        <li><strong>Strategy:</strong> Support anti-communist leaders regardless of democracy</li>
+                        <li><strong>Economics:</strong> Open markets, foreign investment</li>
+                        <li><strong>Examples:</strong> South Korea, South Vietnam, Chile under Pinochet</li>
+                        <li><strong>Contradiction:</strong> Supporting dictators while promoting "freedom"</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card ussr">
+                    <h4>🇷🇺 Soviet Approach</h4>
+                    <ul>
+                        <li><strong>Strategy:</strong> Support "national liberation" movements</li>
+                        <li><strong>Economics:</strong> State-controlled development models</li>
+                        <li><strong>Examples:</strong> North Vietnam, Cuba, Angola, Nicaragua</li>
+                        <li><strong>Appeal:</strong> Anti-imperialism resonated with colonized peoples</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="formula-box reveal-item">
+                <strong>Irony:</strong> Both superpowers claimed to support "liberation" while often imposing their own forms of control on newly independent nations
+            </div>
+            
+            <div class="reveal-item">
+                <p><em>"We welcome the wind of change" - British PM Harold Macmillan, 1960</em></p>
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Space Race -->
+    <div class="slide" data-reveal-count="5">
+        <div class="slide-content">
+            <div class="reveal-item">
+                <h2>🚀 The Space Race: Cold War in the Cosmos</h2>
+            </div>
+            
+            <div class="timeline-container">
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">1957</div>
+                    <div class="timeline-event">🇷🇺 Sputnik I - First artificial satellite shocks America</div>
+                </div>
+                
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">1961</div>
+                    <div class="timeline-event">🇷🇺 Yuri Gagarin - First human in space</div>
+                </div>
+                
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">1969</div>
+                    <div class="timeline-event">🇺🇸 Apollo 11 - First moon landing</div>
+                </div>
+                
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">1975</div>
+                    <div class="timeline-event">Apollo-Soyuz Test Project - Joint mission signals détente</div>
+                </div>
+            </div>
+            
+            <div class="formula-box reveal-item">
+                <strong>Significance:</strong> Space achievements demonstrated technological superiority and military capabilities (ICBMs). Also showed peaceful competition was possible.
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Cultural Cold War -->
+    <div class="slide" data-reveal-count="4">
+        <div class="slide-content">
+            <div class="reveal-item">
+                <h2>🎭 The Cultural Cold War</h2>
+            </div>
+            
+            <div class="strategy-grid">
+                <div class="strategy-card reveal-item">
+                    <h5>📻 Propaganda War</h5>
+                    <ul>
+                        <li><strong>US:</strong> Voice of America, Radio Free Europe</li>
+                        <li><strong>USSR:</strong> Radio Moscow, emphasis on US racism</li>
+                        <li><strong>Battle:</strong> Competing visions of "freedom" and "justice"</li>
+                    </ul>
+                </div>
+                
+                <div class="strategy-card reveal-item">
+                    <h5>🏅 Sports Competition</h5>
+                    <ul>
+                        <li><strong>Olympics:</strong> Medal counts as national prestige</li>
+                        <li><strong>Cultural exchanges:</strong> Athletes as ambassadors</li>
+                        <li><strong>Boycotts:</strong> 1980 Moscow, 1984 Los Angeles</li>
+                    </ul>
+                </div>
+                
+                <div class="strategy-card reveal-item">
+                    <h5>🎵 Arts and Ideas</h5>
+                    <ul>
+                        <li><strong>US:</strong> Jazz as "freedom music," abstract art</li>
+                        <li><strong>USSR:</strong> Classical music, socialist realism</li>
+                        <li><strong>Irony:</strong> US promoted Black artists abroad while segregation existed at home</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="formula-box reveal-item">
+                <strong>Key Insight:</strong> Cultural competition exposed contradictions in both systems - US racial inequality, Soviet lack of artistic freedom
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Détente Period -->
+    <div class="slide" data-reveal-count="4">
+        <div class="slide-content">
+            <div class="reveal-item">
+                <h2>🕊️ Détente: Cooling the Cold War (1970s)</h2>
+            </div>
+            
+            <div class="concept-grid">
+                <div class="concept-card reveal-item">
+                    <h4>🤝 Key Agreements</h4>
+                    <ul>
+                        <li><strong>SALT I (1972):</strong> Limited nuclear weapons growth</li>
+                        <li><strong>Helsinki Accords (1975):</strong> Human rights, European borders</li>
+                        <li><strong>Trade Expansion:</strong> Economic interdependence</li>
+                    </ul>
+                </div>
+                
+                <div class="concept-card reveal-item">
+                    <h4>🌍 Why Détente?</h4>
+                    <ul>
+                        <li><strong>Nuclear Parity:</strong> Both sides feared mutual destruction</li>
+                        <li><strong>Economic Costs:</strong> Arms race straining both economies</li>
+                        <li><strong>Vietnam/Afghanistan:</strong> Proxy wars proving costly</li>
+                        <li><strong>Sino-Soviet Split:</strong> China-USSR tensions changed dynamics</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="formula-box reveal-item">
+                <strong>Nixon's Strategy:</strong> "Linkage" - connect issues to create incentives for cooperation. Open relations with China to pressure USSR.
+            </div>
+            
+            <div class="reveal-item">
+                <p><em>"Only Nixon could go to China" - Recognition that anti-communist credentials allowed bold diplomacy</em></p>
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+    </div>
+
+    <!-- Slide 15: Reagan and Second Cold War -->
+    <div class="slide" data-reveal-count="4">
+        <div class="slide-content">
+            <div class="reveal-item">
+                <h2>⚡ Reagan and the "Second Cold War" (1980s)</h2>
+            </div>
+            
+            <div class="strategy-grid">
+                <div class="strategy-card reveal-item">
+                    <h5>💪 Military Buildup</h5>
+                    <ul>
+                        <li>Massive defense spending increase</li>
+                        <li>Strategic Defense Initiative ("Star Wars")</li>
+                        <li>New nuclear weapons deployment</li>
+                    </ul>
+                </div>
+                
+                <div class="strategy-card reveal-item">
+                    <h5>🎯 Reagan Doctrine</h5>
+                    <ul>
+                        <li>Support anti-communist forces globally</li>
+                        <li>Nicaragua, Afghanistan, Angola</li>
+                        <li>"Roll back" not just contain communism</li>
+                    </ul>
+                </div>
+                
+                <div class="strategy-card reveal-item">
+                    <h5>💬 Ideological Offensive</h5>
+                    <ul>
+                        <li>"Evil Empire" rhetoric</li>
+                        <li>Moral clarity vs. détente pragmatism</li>
+                        <li>Democracy promotion worldwide</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="formula-box reveal-item">
+                <strong>Strategy:</strong> Force USSR to choose between matching US military spending (bankrupting economy) or accepting strategic disadvantage
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+    </div>
+
+    <!-- Slide 16: Soviet Collapse -->
+    <div class="slide" data-reveal-count="5">
+        <div class="slide-content">
+            <div class="reveal-item">
+                <h2>📉 The Collapse of Communism (1985-1991)</h2>
+            </div>
+            
+            <div class="timeline-container">
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">1985</div>
+                    <div class="timeline-event">Gorbachev introduces glasnost (openness) and perestroika (restructuring)</div>
+                </div>
+                
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">1989</div>
+                    <div class="timeline-event">Berlin Wall falls; Eastern European communist governments collapse</div>
+                </div>
+                
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">1990</div>
+                    <div class="timeline-event">German reunification; free elections across Eastern Europe</div>
+                </div>
+                
+                <div class="timeline-item reveal-item">
+                    <div class="timeline-year">1991</div>
+                    <div class="timeline-event">Soviet Union dissolves into 15 independent republics</div>
+                </div>
+            </div>
+            
+            <div class="formula-box reveal-item">
+                <strong>Why Did USSR Collapse?</strong> Economic stagnation, political reforms unleashed uncontrollable forces, ethnic nationalism, military overstretch, loss of legitimacy
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+    </div>
+
+    <!-- Slide 17: Historical Thinking Questions -->
+    <div class="slide" data-reveal-count="4">
+        <div class="slide-content">
+            <div class="reveal-item">
+                <h2>🤔 Historical Thinking: Multiple Perspectives</h2>
+            </div>
+            
+            <div class="objectives-grid">
+                <div class="objective-card reveal-item">
+                    <h3>📊 Cause and Consequence</h3>
+                    <ul>
+                        <li>Was the Cold War inevitable after WWII?</li>
+                        <li>Which factors were most important in Soviet collapse?</li>
+                        <li>How did nuclear weapons change international relations?</li>
+                    </ul>
+                </div>
+                
+                <div class="objective-card reveal-item">
+                    <h3>👁️ Perspective Analysis</h3>
+                    <ul>
+                        <li>How did Global South nations view the Cold War?</li>
+                        <li>Were both superpowers equally "imperialist"?</li>
+                        <li>How do Russian and American accounts differ today?</li>
+                    </ul>
+                </div>
+                
+                <div class="objective-card reveal-item">
+                    <h3>⚖️ Ethical Judgment</h3>
+                    <ul>
+                        <li>Was US support for dictators justified by anti-communism?</li>
+                        <li>Did nuclear deterrence prevent or increase dangers?</li>
+                        <li>How should we evaluate proxy war interventions?</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="formula-box reveal-item">
+                <strong>Contemporary Relevance:</strong> How do Cold War patterns help us understand current US-China tensions, NATO expansion debates, or nuclear proliferation concerns?
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+    </div>
+
+    <!-- Slide 18: Legacy and Synthesis -->
+    <div class="slide" data-reveal-count="4">
+        <div class="slide-content">
+            <div class="reveal-item">
+                <h2>🌍 Cold War Legacy: A World Transformed</h2>
+            </div>
+            
+            <div class="concept-grid">
+                <div class="concept-card reveal-item">
+                    <h4>🏛️ Political Legacy</h4>
+                    <ul>
+                        <li>Decolonization accelerated by superpower competition</li>
+                        <li>International institutions strengthened (UN, regional blocs)</li>
+                        <li>Human rights became global political language</li>
+                        <li>Democracy expanded but remained contested</li>
+                    </ul>
+                </div>
+                
+                <div class="concept-card reveal-item">
+                    <h4>💼 Economic Legacy</h4>
+                    <ul>
+                        <li>Globalization of markets and production</li>
+                        <li>Technology revolution sparked by competition</li>
+                        <li>Development models debated worldwide</li>
+                        <li>Inequality within and between nations</li>
+                    </ul>
+                </div>
+                
+                <div class="concept-card reveal-item">
+                    <h4>🎭 Cultural Legacy</h4>
+                    <ul>
+                        <li>Universal ideas of freedom and justice</li>
+                        <li>Cultural exchanges and cosmopolitanism</li>
+                        <li>Competing narratives about progress</li>
+                        <li>Environmental consciousness emerged</li>
+                    </ul>
+                </div>
+                
+                <div class="concept-card reveal-item">
+                    <h4>⚡ Unresolved Questions</h4>
+                    <ul>
+                        <li>Nuclear weapons and proliferation</li>
+                        <li>Great power competition continues</li>
+                        <li>Democracy vs. authoritarianism globally</li>
+                        <li>Economic inequality and sustainability</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="formula-box reveal-item">
+                <strong>Essential Question:</strong> Did the Cold War's end represent the triumph of one ideology, or the beginning of new forms of global competition and cooperation?
+            </div>
+            
+            <div class="reveal-item">
+                <p><strong>Next Session Preview:</strong> How did scientific advances during the Cold War period create new possibilities for both human cooperation and conflict?</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let currentRevealIndex = 0;
+        let imageVisible = false;
+
+        // Image data for each slide
+        const slideImages = {
+            3: {
+                src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23f3f4f6' width='400' height='300'/%3E%3Ctext x='200' y='150' text-anchor='middle' fill='%23374151' font-family='Arial' font-size='16'%3EChurchill's Iron Curtain Speech%3C/text%3E%3C/svg%3E",
+                caption: "Winston Churchill delivering his famous 'Iron Curtain' speech in Fulton, Missouri, March 1946"
+            },
+            4: {
+                src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23f3f4f6' width='400' height='300'/%3E%3Ctext x='200' y='150' text-anchor='middle' fill='%23374151' font-family='Arial' font-size='16'%3EBerlin Airlift%3C/text%3E%3C/svg%3E",
+                caption: "Berlin Airlift - Western allies supply West Berlin during Soviet blockade, 1948-1949"
+            },
+            6: {
+                src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23f3f4f6' width='400' height='300'/%3E%3Ctext x='200' y='150' text-anchor='middle' fill='%23374151' font-family='Arial' font-size='16'%3EMao Proclaims PRC%3C/text%3E%3C/svg%3E",
+                caption: "Mao Zedong proclaims the founding of the People's Republic of China, October 1, 1949"
+            },
+            7: {
+                src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23f3f4f6' width='400' height='300'/%3E%3Ctext x='200' y='150' text-anchor='middle' fill='%23374151' font-family='Arial' font-size='16'%3EKorean War Maps%3C/text%3E%3C/svg%3E",
+                caption: "Korean War progression - showing the changing front lines from 1950-1953"
+            },
+            12: {
+                src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23f3f4f6' width='400' height='300'/%3E%3Ctext x='200' y='150' text-anchor='middle' fill='%23374151' font-family='Arial' font-size='16'%3ESputnik Launch%3C/text%3E%3C/svg%3E",
+                caption: "Soviet Sputnik satellite launch, October 1957 - shocked America and began Space Race"
+            },
+            16: {
+                src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23f3f4f6' width='400' height='300'/%3E%3Ctext x='200' y='150' text-anchor='middle' fill='%23374151' font-family='Arial' font-size='16'%3EBerlin Wall Falls%3C/text%3E%3C/svg%3E",
+                caption: "Fall of the Berlin Wall, November 1989 - symbolizing the end of the Cold War"
+            }
+        };
+
+        function updateSlideCounter() {
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            currentRevealIndex = 0;
+            updateSlideCounter();
+            updateImageDisplay();
+        }
+
+        function updateImageDisplay() {
+            const imageContainer = document.getElementById('imageContainer');
+            const slideImage = slideImages[currentSlide + 1];
+            
+            if (slideImage && imageVisible) {
+                imageContainer.innerHTML = `
+                    <img src="${slideImage.src}" alt="Historical image">
+                    <div class="image-caption">${slideImage.caption}</div>
+                `;
+                imageContainer.style.display = 'block';
+            } else {
+                imageContainer.style.display = 'none';
+            }
+        }
+
+        function toggleImage() {
+            imageVisible = !imageVisible;
+            updateImageDisplay();
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        function revealNext() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.reveal-item');
+            const totalReveals = parseInt(currentSlideElement.dataset.revealCount) || revealItems.length;
+            
+            if (currentRevealIndex < totalReveals) {
+                if (currentRevealIndex < revealItems.length) {
+                    revealItems[currentRevealIndex].classList.add('revealed');
+                }
+                currentRevealIndex++;
+                
+                // Hide continue indicator when all items are revealed
+                if (currentRevealIndex >= totalReveals) {
+                    const continueIndicator = currentSlideElement.querySelector('.continue-indicator');
+                    if (continueIndicator) {
+                        continueIndicator.style.display = 'none';
+                    }
+                }
+            } else {
+                nextSlide();
+            }
+        }
+
+        function showAll() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.reveal-item');
+            revealItems.forEach(item => item.classList.add('revealed'));
+            
+            const continueIndicator = currentSlideElement.querySelector('.continue-indicator');
+            if (continueIndicator) {
+                continueIndicator.style.display = 'none';
+            }
+            
+            currentRevealIndex = parseInt(currentSlideElement.dataset.revealCount) || revealItems.length;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            switch(event.key) {
+                case 'ArrowRight':
+                    event.preventDefault();
+                    revealNext();
+                    break;
+                case 'ArrowLeft':
+                    event.preventDefault();
+                    if (currentRevealIndex === 0) {
+                        previousSlide();
+                    }
+                    break;
+                case ',':
+                    event.preventDefault();
+                    previousSlide();
+                    break;
+                case '.':
+                    event.preventDefault();
+                    nextSlide();
+                    break;
+                case 'Enter':
+                    event.preventDefault();
+                    showAll();
+                    break;
+            }
+        });
+
+        // Click to advance
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.navigation') && !event.target.closest('.image-toggle')) {
+                revealNext();
+            }
+        });
+
+        // Initialize
+        updateSlideCounter();
+        updateImageDisplay();
+    </script>
+</body>
+</html>

@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WWII Timeline and Context - Class 15</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .slide-container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .slide {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 3rem;
+            max-width: 95vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        .slide.hidden {
+            display: none;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #e74c3c, #f39c12);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #f39c12;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #f8f9fa;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+            margin: 1.5rem 0;
+        }
+
+        .reveal-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .frame-showcase {
+            background: linear-gradient(135deg, #8b4513, #a0522d);
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(139, 69, 19, 0.3);
+            border: 3px solid #daa520;
+        }
+
+        .frame-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #daa520;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .frame-text {
+            font-size: 1.6rem;
+            line-height: 1.8;
+            font-weight: 600;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .frames-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .frame-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .frame-card h4 {
+            color: #f39c12;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .frame-example {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 4px solid #f39c12;
+            font-style: italic;
+        }
+
+        .timeline-visual {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            text-align: center;
+            border: 2px solid #f8f9fa;
+        }
+
+        .timeline-events {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .event-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+        }
+
+        .event-year {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #f39c12;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #f8f9fa;
+        }
+
+        .event-description {
+            font-size: 1rem;
+            color: #ecf0f1;
+        }
+
+        .practice-scenario {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 3px solid #f8f9fa;
+        }
+
+        .scenario-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #f8f9fa;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .context-examples {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .context-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .context-card h4 {
+            color: #f39c12;
+            margin-bottom: 1rem;
+        }
+
+        .speaking-task {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 2px solid #f8f9fa;
+        }
+
+        .task-title {
+            color: #f8f9fa;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(96, 165, 250, 0.9);
+            border: none;
+            color: #1e1b4b;
+            padding: 1.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.4rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(96, 165, 250, 0.4);
+        }
+
+        .nav-btn:hover {
+            background: rgba(96, 165, 250, 1);
+            transform: scale(1.15);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(96, 165, 250, 0.9);
+            color: #1e1b4b;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+        }
+
+        .vocab-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .vocab-list li {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 0.8rem 0;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #f39c12;
+            font-size: 1.2rem;
+        }
+
+        .frame-breakdown {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            border: 2px dashed #f39c12;
+        }
+
+        .frame-step {
+            font-size: 1.3rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #f8f9fa;
+        }
+
+        .step-number {
+            color: #f8f9fa;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 3px solid #f8f9fa;
+            text-align: center;
+        }
+
+        .major-events {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .major-event {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+        }
+
+        .major-event h4 {
+            color: #f39c12;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator" id="slide-counter">1 / 8</div>
+    
+    <!-- Slide 1: Title and Purpose -->
+    <div class="slide" id="slide-0">
+        <div class="reveal-item">
+            <h1>🗓️ WWII Timeline and Context</h1>
+            <h3 style="text-align: center; color: #f8f9fa; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">Class 15 - Simple Explanatory Frames for History</h3>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-showcase">
+                <div class="frame-title">Today's Focus</div>
+                <div class="frame-text">
+                    Learn simple, powerful frames for ordering historical events and explaining context - perfect for demonstrating you understand the basic facts and their sequence.
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frames-grid">
+                <div class="frame-card">
+                    <h4>🔢 Ordering Events Frame</h4>
+                    <div class="frame-example">
+                        "The war progressed through several major phases: first... then... next... finally..."
+                    </div>
+                </div>
+                <div class="frame-card">
+                    <h4>🌍 Context Frame</h4>
+                    <div class="frame-example">
+                        "This happened because... which led to... resulting in..."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: The Ordering Frame -->
+    <div class="slide hidden" id="slide-1">
+        <div class="reveal-item">
+            <h2>🔢 Frame 1: Ordering Events</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-showcase">
+                <div class="frame-title">Simple Ordering Frame</div>
+                <div class="frame-text">
+                    "The war progressed through several major phases: first _____, then _____, next _____, and finally _____."
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-breakdown">
+                <h3>🔧 Why This Frame Works</h3>
+                <div class="frame-step">
+                    <span class="step-number">1.</span> <strong>Sets up sequence:</strong> "progressed through several major phases"
+                </div>
+                <div class="frame-step">
+                    <span class="step-number">2.</span> <strong>Clear organization:</strong> "first... then... next... finally"
+                </div>
+                <div class="frame-step">
+                    <span class="step-number">3.</span> <strong>Shows understanding:</strong> Demonstrates you know the order
+                </div>
+                <div class="frame-step">
+                    <span class="step-number">4.</span> <strong>Easy to remember:</strong> Simple sequence words
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-task">
+                <div class="task-title">Variations You Can Use</div>
+                <ul class="vocab-list">
+                    <li>"The conflict developed in stages: initially... subsequently... later... ultimately..."</li>
+                    <li>"Several key events shaped the war: at the beginning... in the middle... toward the end..."</li>
+                    <li>"The timeline shows: early in the war... as time went on... by the end..."</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: The Context Frame -->
+    <div class="slide hidden" id="slide-2">
+        <div class="reveal-item">
+            <h2>🌍 Frame 2: Explaining Context</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-showcase">
+                <div class="frame-title">Simple Context Frame</div>
+                <div class="frame-text">
+                    "This happened because _____, which led to _____, resulting in _____."
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-breakdown">
+                <h3>🔧 Why This Frame Works</h3>
+                <div class="frame-step">
+                    <span class="step-number">1.</span> <strong>Shows causation:</strong> "This happened because..."
+                </div>
+                <div class="frame-step">
+                    <span class="step-number">2.</span> <strong>Links events:</strong> "which led to..."
+                </div>
+                <div class="frame-step">
+                    <span class="step-number">3.</span> <strong>Shows consequences:</strong> "resulting in..."
+                </div>
+                <div class="frame-step">
+                    <span class="step-number">4.</span> <strong>Demonstrates analysis:</strong> You understand connections
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-task">
+                <div class="task-title">Alternative Context Frames</div>
+                <ul class="vocab-list">
+                    <li>"The situation developed when... causing... and ultimately..."</li>
+                    <li>"Due to..., the countries involved... which meant that..."</li>
+                    <li>"Since..., this created conditions where... therefore..."</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: WWII Major Events Overview -->
+    <div class="slide hidden" id="slide-3">
+        <div class="reveal-item">
+            <h2>⚔️ WWII Major Events to Order</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="timeline-visual">
+                <h3>Key Events You Should Know</h3>
+                <p style="font-size: 1.4rem; margin: 1rem 0;">These are the major events students typically need to order and explain</p>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="major-events">
+                <div class="major-event">
+                    <h4>1939</h4>
+                    <p><strong>Germany invades Poland</strong></p>
+                    <p>Britain and France declare war</p>
+                </div>
+                <div class="major-event">
+                    <h4>1940</h4>
+                    <p><strong>Fall of France</strong></p>
+                    <p>Battle of Britain begins</p>
+                </div>
+                <div class="major-event">
+                    <h4>1941</h4>
+                    <p><strong>Germany invades USSR</strong></p>
+                    <p>Pearl Harbor attack</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="major-events">
+                <div class="major-event">
+                    <h4>1942</h4>
+                    <p><strong>Stalingrad begins</strong></p>
+                    <p>Midway naval battle</p>
+                </div>
+                <div class="major-event">
+                    <h4>1943</h4>
+                    <p><strong>Italy surrenders</strong></p>
+                    <p>Stalingrad victory for USSR</p>
+                </div>
+                <div class="major-event">
+                    <h4>1944-45</h4>
+                    <p><strong>D-Day landing</strong></p>
+                    <p>Germany surrenders, atomic bombs</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Practice with Ordering Frame -->
+    <div class="slide hidden" id="slide-4">
+        <div class="reveal-item">
+            <h2>🎯 Practice: Using the Ordering Frame</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="practice-scenario">
+                <div class="scenario-title">Practice Example: European Theater</div>
+                <p style="color: #f8f9fa; font-size: 1.3rem; margin: 1rem 0;">
+                    <strong>Frame:</strong> "The war progressed through several major phases: first _____, then _____, next _____, and finally _____."
+                </p>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-example" style="background: rgba(46, 204, 113, 0.2); border-left: 4px solid #2ecc71;">
+                <strong>Student Example:</strong><br>
+                "The war progressed through several major phases: first Germany invaded Poland in 1939, then Germany conquered France and attacked Britain in 1940, next Germany invaded the Soviet Union in 1941, and finally the Allies invaded Europe and defeated Germany in 1944-45."
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="context-examples">
+                <div class="context-card">
+                    <h4>✅ What This Shows</h4>
+                    <ul class="vocab-list">
+                        <li>You know the basic sequence</li>
+                        <li>You understand major turning points</li>
+                        <li>You can organize information clearly</li>
+                        <li>You use appropriate transition words</li>
+                    </ul>
+                </div>
+                <div class="context-card">
+                    <h4>🎯 Perfect For</h4>
+                    <ul class="vocab-list">
+                        <li>Test questions about chronology</li>
+                        <li>Showing basic factual knowledge</li>
+                        <li>Opening statements in essays</li>
+                        <li>Building confidence with structure</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Practice with Context Frame -->
+    <div class="slide hidden" id="slide-5">
+        <div class="reveal-item">
+            <h2>🌍 Practice: Using the Context Frame</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="practice-scenario">
+                <div class="scenario-title">Practice Example: Pearl Harbor</div>
+                <p style="color: #f8f9fa; font-size: 1.3rem; margin: 1rem 0;">
+                    <strong>Frame:</strong> "This happened because _____, which led to _____, resulting in _____."
+                </p>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-example" style="background: rgba(46, 204, 113, 0.2); border-left: 4px solid #2ecc71;">
+                <strong>Student Example:</strong><br>
+                "This happened because Japan needed resources and the US was blocking Japanese expansion, which led to Japan's surprise attack on Pearl Harbor, resulting in the United States entering World War II."
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="context-examples">
+                <div class="context-card">
+                    <h4>🔗 Cause and Effect Chain</h4>
+                    <ul class="vocab-list">
+                        <li><strong>Cause:</strong> Japan needs resources + US opposition</li>
+                        <li><strong>Action:</strong> Pearl Harbor attack</li>
+                        <li><strong>Result:</strong> US enters the war</li>
+                        <li><strong>Connection:</strong> Each part leads to the next</li>
+                    </ul>
+                </div>
+                <div class="context-card">
+                    <h4>💡 Shows Understanding</h4>
+                    <ul class="vocab-list">
+                        <li>You know why events happened</li>
+                        <li>You see connections between events</li>
+                        <li>You understand consequences</li>
+                        <li>You can explain historical logic</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Combining Both Frames -->
+    <div class="slide hidden" id="slide-6">
+        <div class="reveal-item">
+            <h2>🔄 Combining Both Frames</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="challenge-box">
+                <h3>Advanced Strategy: Order + Context</h3>
+                <p style="font-size: 1.4rem; margin: 1rem 0;">Use the ordering frame to show you know the sequence, then use the context frame to explain why events happened</p>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-example" style="background: rgba(155, 89, 182, 0.2); border-left: 4px solid #9b59b6;">
+                <strong>Combined Example:</strong><br>
+                "The Pacific War progressed through several phases: first Japan attacked Pearl Harbor, then the US fought back at Midway, next the US island-hopped toward Japan, and finally the atomic bombs ended the war.<br><br>
+                The atomic bombs happened because the US wanted to avoid a costly invasion of Japan, which led to the decision to use this new weapon, resulting in Japan's quick surrender."
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-task">
+                <div class="task-title">Power of Simple Frames</div>
+                <p>These simple frames let you demonstrate solid understanding without complex analysis. Perfect for building confidence and showing you know the essential facts and connections.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Practice 1 - Fill in the Frame -->
+    <div class="slide hidden" id="slide-7">
+        <div class="reveal-item">
+            <h2>🎯 Practice 1: Fill in the Ordering Frame</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="practice-scenario">
+                <div class="scenario-title">European Theater Timeline</div>
+                <p style="color: #f8f9fa; font-size: 1.4rem; margin: 1rem 0;">
+                    <strong>Your task:</strong> Fill in this frame with the major events
+                </p>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-showcase">
+                <div class="frame-title">Complete This Frame</div>
+                <div class="frame-text">
+                    "The European war progressed through several major phases: first _____, then _____, next _____, and finally _____."
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="context-examples">
+                <div class="context-card">
+                    <h4>📝 Your Events to Use</h4>
+                    <ul class="vocab-list">
+                        <li>Germany invaded Poland (September 1939)</li>
+                        <li>Germany conquered France (May-June 1940)</li>
+                        <li>Germany invaded Soviet Union (June 1941)</li>
+                        <li>Allies invaded Europe at D-Day (June 1944)</li>
+                    </ul>
+                </div>
+                <div class="context-card">
+                    <h4>🎤 Practice Speaking</h4>
+                    <ul class="vocab-list">
+                        <li>Say the complete frame out loud</li>
+                        <li>Use clear transition words</li>
+                        <li>Practice 2-3 times until smooth</li>
+                        <li>Time yourself: aim for 1-2 minutes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-task">
+                <div class="task-title">🎯 Speaking Practice Time</div>
+                <p><strong>Now practice:</strong> Use the frame to explain the European theater timeline. Speak for 1-2 minutes using the events provided.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Practice 2 - Context Frame -->
+    <div class="slide hidden" id="slide-8">
+        <div class="reveal-item">
+            <h2>🌍 Practice 2: Explain Pearl Harbor Context</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="practice-scenario">
+                <div class="scenario-title">Why Pearl Harbor Happened</div>
+                <p style="color: #f8f9fa; font-size: 1.4rem; margin: 1rem 0;">
+                    <strong>Your task:</strong> Use the context frame to explain Pearl Harbor
+                </p>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-showcase">
+                <div class="frame-title">Complete This Frame</div>
+                <div class="frame-text">
+                    "This happened because _____, which led to _____, resulting in _____."
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="context-examples">
+                <div class="context-card">
+                    <h4>🔍 Background Information</h4>
+                    <ul class="vocab-list">
+                        <li><strong>Cause:</strong> Japan needed oil and resources</li>
+                        <li><strong>Problem:</strong> US imposed economic sanctions</li>
+                        <li><strong>Action:</strong> Japan attacked Pearl Harbor</li>
+                        <li><strong>Result:</strong> US entered World War II</li>
+                    </ul>
+                </div>
+                <div class="context-card">
+                    <h4>💡 Fill-in Strategy</h4>
+                    <ul class="vocab-list">
+                        <li><strong>Because:</strong> Japan's resource needs + US sanctions</li>
+                        <li><strong>Led to:</strong> Japan's surprise attack on Pearl Harbor</li>
+                        <li><strong>Resulting in:</strong> United States joining the war</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-task">
+                <div class="task-title">🎯 Speaking Practice Time</div>
+                <p><strong>Now practice:</strong> Complete the context frame about Pearl Harbor. Explain the cause-and-effect chain clearly in 1-2 minutes.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Practice 3 - Combined Challenge -->
+    <div class="slide hidden" id="slide-9">
+        <div class="reveal-item">
+            <h2>🔄 Practice 3: Pacific War - Both Frames</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="challenge-box">
+                <h3>Combined Challenge</h3>
+                <p style="font-size: 1.4rem; margin: 1rem 0;">Use BOTH frames to explain the Pacific War: first order the events, then explain the context</p>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="timeline-visual">
+                <h3>Pacific War Key Events</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                    <div style="text-align: center;">
+                        <strong>1941</strong><br>Pearl Harbor Attack
+                    </div>
+                    <div style="text-align: center;">
+                        <strong>1942</strong><br>Battle of Midway
+                    </div>
+                    <div style="text-align: center;">
+                        <strong>1943-44</strong><br>Island Hopping Campaign
+                    </div>
+                    <div style="text-align: center;">
+                        <strong>1945</strong><br>Atomic Bombs & Surrender
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frames-grid">
+                <div class="frame-card">
+                    <h4>🔢 Step 1: Ordering Frame</h4>
+                    <div class="frame-example">
+                        "The Pacific war progressed through several major phases: first _____, then _____, next _____, and finally _____."
+                    </div>
+                </div>
+                <div class="frame-card">
+                    <h4>🌍 Step 2: Context Frame</h4>
+                    <div class="frame-example">
+                        "The atomic bombs happened because _____, which led to _____, resulting in _____."
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-task">
+                <div class="task-title">🎯 Extended Speaking Practice</div>
+                <p><strong>Your challenge:</strong> Spend 3-4 minutes total. Use the ordering frame (2 minutes), then the context frame focusing on how the war ended (1-2 minutes).</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Practice 4 - Free Choice -->
+    <div class="slide hidden" id="slide-10">
+        <div class="reveal-item">
+            <h2>🚀 Practice 4: Your Choice Topic</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-showcase">
+                <div class="frame-title">Independent Practice</div>
+                <div class="frame-text">
+                    Choose any WWII topic and demonstrate your understanding using one or both frames
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="major-events">
+                <div class="major-event">
+                    <h4>🇪🇺 European Theater</h4>
+                    <p><strong>Order:</strong> Poland → France → Britain → USSR → D-Day</p>
+                    <p><strong>Context:</strong> Why Germany expanded, what stopped them</p>
+                </div>
+                <div class="major-event">
+                    <h4>🏭 Holocaust</h4>
+                    <p><strong>Order:</strong> Discrimination → Ghettos → Camps → Liberation</p>
+                    <p><strong>Context:</strong> Nazi ideology, implementation, consequences</p>
+                </div>
+                <div class="major-event">
+                    <h4>🏠 Home Front</h4>
+                    <p><strong>Order:</strong> Mobilization → Production → Rationing → Victory</p>
+                    <p><strong>Context:</strong> Why society changed, how people adapted</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="context-examples">
+                <div class="context-card">
+                    <h4>✅ Success Checklist</h4>
+                    <ul class="vocab-list">
+                        <li>Choose one clear topic</li>
+                        <li>Use at least one frame completely</li>
+                        <li>Include specific facts and dates</li>
+                        <li>Speak for 2-4 minutes</li>
+                        <li>Show you understand the basic sequence</li>
+                    </ul>
+                </div>
+                <div class="context-card">
+                    <h4>🎯 Frame Reminders</h4>
+                    <ul class="vocab-list">
+                        <li><strong>Ordering:</strong> "progressed through phases: first... then... next... finally..."</li>
+                        <li><strong>Context:</strong> "happened because... led to... resulting in..."</li>
+                        <li>You can modify the language slightly</li>
+                        <li>Focus on being clear and confident</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-task">
+                <div class="task-title">🎯 Final Speaking Challenge</div>
+                <p><strong>Your turn:</strong> Choose your topic and demonstrate your WWII knowledge using these simple but powerful frames. Show that you understand the basic facts and their connections!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">‹</button>
+        <button class="nav-btn" onclick="nextSlide()">›</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let totalSlides = 8;
+        let currentElement = 0;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('hidden', index !== n);
+            });
+            
+            currentElement = 0;
+            const currentSlideElement = slides[n];
+            const elements = currentSlideElement.querySelectorAll('.reveal-item');
+            elements.forEach(el => el.classList.remove('show'));
+            
+            document.getElementById('slide-counter').textContent = `${n + 1} / ${totalSlides}`;
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.reveal-item');
+            
+            if (currentElement < elements.length) {
+                elements[currentElement].classList.add('show');
+                currentElement++;
+            }
+        }
+
+        function nextSlide() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.reveal-item');
+            
+            if (currentElement < elements.length) {
+                revealNextElement();
+            } else if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                revealNextElement();
+            } else if (e.key === '.') {
+                e.preventDefault();
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            } else if (e.key === ',') {
+                e.preventDefault();
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
+            }
+        });
+
+        // Click to reveal
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.navigation') && !e.target.closest('.slide-indicator')) {
+                revealNextElement();
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

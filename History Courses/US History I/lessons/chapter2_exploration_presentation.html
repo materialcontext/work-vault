@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>European Exploration and Colonization of the Americas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #8b4513 0%, #d2691e 100%);
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px;
+            position: relative;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .focus-question {
+            background: rgba(255, 215, 0, 0.2);
+            border-left: 5px solid #ffd700;
+            padding: 20px;
+            margin: 2rem 0;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .three-column-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .two-column-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .explorer-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+            height: 100%;
+        }
+
+        .explorer-card h3 {
+            color: #ffd700;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .explorer-card ul {
+            list-style: none;
+        }
+
+        .explorer-card li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .explorer-card li::before {
+            content: "⚓";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+        }
+
+        .exploration-route {
+            background: linear-gradient(45deg, #8b0000, #b22222);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .exploration-route h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .big-idea {
+            background: linear-gradient(45deg, #4169e1, #0000cd);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            font-size: 1.3rem;
+            font-weight: 500;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .big-question {
+            background: rgba(255, 69, 0, 0.2);
+            border: 2px solid #ff4500;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .vocabulary-box {
+            background: rgba(34, 139, 34, 0.2);
+            border: 2px solid #228b22;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .vocabulary-box h4 {
+            color: #32cd32;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .activity-prompt {
+            background: rgba(138, 43, 226, 0.3);
+            border: 2px solid #8a2be2;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-size: 1.1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .map-description {
+            background: rgba(70, 130, 180, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            font-size: 1.1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .spice-trade-box {
+            background: linear-gradient(45deg, #daa520, #b8860b);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .consequences-box {
+            background: rgba(220, 20, 60, 0.2);
+            border: 2px solid #dc143c;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .consequences-box h4 {
+            color: #dc143c;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .progress-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background: #ffd700;
+            transform: scale(1.2);
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .reveal-status {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 10px 15px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .image-tab {
+            position: absolute;
+            top: 20px;
+            right: 100px;
+            background: rgba(255, 215, 0, 0.8);
+            color: #8b4513;
+            border-radius: 10px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .image-tab:hover {
+            background: rgba(255, 215, 0, 1);
+            transform: scale(1.05);
+        }
+
+        .slide-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 85%;
+            max-height: 85%;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            display: none;
+            z-index: 1000;
+        }
+
+        .slide-image.visible {
+            display: block;
+        }
+
+        .trade-routes {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .trade-routes h4 {
+            color: #ffd700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-box {
+            background: linear-gradient(45deg, #2f4f4f, #708090);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .timeline-box h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .encounter-box {
+            background: rgba(255, 140, 0, 0.2);
+            border: 2px solid #ff8c00;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .encounter-box h4 {
+            color: #ff8c00;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <!-- Slide 1: Title Slide -->
+        <div class="slide active">
+            <div class="slide-content">
+                <h1>⛵ European Exploration and Colonization of the Americas</h1>
+                <p class="subtitle">Chapter 2: How European Exploration Changed the World</p>
+                <div class="focus-question auto-reveal">
+                    <strong>Today's Focus Question:</strong><br>
+                    How did the spice trade work? Arab traders sailed east to trading centers in India. Calon would travel overland, bringing up their ships...
+                </div>
+                <div class="big-question auto-reveal">
+                    <strong>The Big Question:</strong> What were the motivations that drove the exploration of the Americas?
+                </div>
+            </div>
+            <div class="image-tab" onclick="toggleImage(0)">🗺️ View Spice Trade Map</div>
+        </div>
+
+        <!-- Slide 2: Medieval Europe and Spice Trade -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🌶️ In Medieval Europe, People Relied on</h2>
+                
+                <div class="spice-trade-box auto-reveal">
+                    <h3>🧂 The Spice Trade Was Essential</h3>
+                    <p>In medieval Europe, people relied on spices not only to flavor their food but also as a way to preserve it. Without refrigerators and other old storage, spices were needed to help the Arab traders preserve and extend the time period during which meat, and other perishable food, could be consumed.</p>
+                </div>
+
+                <div class="trade-routes auto-reveal">
+                    <h4>🐪 How the Spice Trade Worked</h4>
+                    <p><strong>Arab traders</strong> sailed east to trading centers in India. Calon would travel overland, bringing up their ships. They controlled the entire market.</p>
+                </div>
+
+                <div class="two-column-grid">
+                    <div class="explorer-card auto-reveal">
+                        <h3>🌿 What Spices Were Traded</h3>
+                        <ul>
+                            <li class="auto-reveal">Pepper, cinnamon, cloves</li>
+                            <li class="auto-reveal">Ginger, nutmeg, cardamom</li>
+                            <li class="auto-reveal">Used for preservation and flavor</li>
+                            <li class="auto-reveal">Worth more than gold sometimes</li>
+                        </ul>
+                    </div>
+                    <div class="explorer-card auto-reveal">
+                        <h3>💰 Why Europeans Wanted Control</h3>
+                        <ul>
+                            <li class="auto-reveal">Arab middlemen made huge profits</li>
+                            <li class="auto-reveal">Europeans wanted direct access</li>
+                            <li class="auto-reveal">Could make fortune bypassing Arabs</li>
+                            <li class="auto-reveal">Led to search for new routes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="image-tab" onclick="toggleImage(1)">🌶️ View Spices</div>
+        </div>
+
+        <!-- Slide 3: The Age of Exploration -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🧭 The Age of Exploration</h2>
+                
+                <div class="timeline-box auto-reveal">
+                    <h3>📅 The Need for Spice Continued Alongside</h3>
+                    <p>The need for spice continued alongside an expansion of trade and trading relationships between Europe and other countries throughout history.</p>
+                </div>
+
+                <div class="big-idea auto-reveal">
+                    In the Middle Ages, generations of Europeans received the Middle East they received the spices. They saw that Islamic colonization was much more advanced than they had been led to believe it would.
+                </div>
+
+                <div class="three-column-grid">
+                    <div class="explorer-card auto-reveal">
+                        <h3>🇵🇹 Portugal Leads the Way</h3>
+                        <ul>
+                            <li class="auto-reveal">Prince Henry the Navigator</li>
+                            <li class="auto-reveal">Improved ship design and navigation</li>
+                            <li class="auto-reveal">Explored African coast</li>
+                            <li class="auto-reveal">Found sea route to Asia</li>
+                        </ul>
+                    </div>
+                    <div class="explorer-card auto-reveal">
+                        <h3>🇪🇸 Spain Joins Competition</h3>
+                        <ul>
+                            <li class="auto-reveal">Wanted their own route to Asia</li>
+                            <li class="auto-reveal">Sponsored Columbus's western route</li>
+                            <li class="auto-reveal">Accidentally found the Americas</li>
+                            <li class="auto-reveal">Created Spanish Empire</li>
+                        </ul>
+                    </div>
+                    <div class="explorer-card auto-reveal">
+                        <h3>⚖️ The Crusades Impact</h3>
+                        <ul>
+                            <li class="auto-reveal">Europeans learned about luxury spices</li>
+                            <li class="auto-reveal">Saw advanced Middle Eastern science</li>
+                            <li class="auto-reveal">Realized they had been held to Europe</li>
+                            <li class="auto-reveal">Motivated to seek their own routes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="image-tab" onclick="toggleImage(2)">🧭 View Navigation Tools</div>
+        </div>
+
+        <!-- Slide 4: The Turkish Trade Route Barrier -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🚫 The Turkish Trade Route Barrier</h2>
+                
+                <div class="exploration-route auto-reveal">
+                    <h3>🔒 Just as European city-states such as Venice established trade routes to Arab and established the exchange, trade goods for valuable goods for gold or silver Asia trading centers; Arab and European traders, they made huge in territory.</h3>
+                </div>
+
+                <div class="two-column-grid">
+                    <div class="explorer-card auto-reveal">
+                        <h3>🏰 Turkish Control Problem</h3>
+                        <ul>
+                            <li class="auto-reveal">Ottoman Empire controlled key routes</li>
+                            <li class="auto-reveal">Made trade expensive and difficult</li>
+                            <li class="auto-reveal">Europeans needed alternative paths</li>
+                            <li class="auto-reveal">Forced innovation in exploration</li>
+                        </ul>
+                    </div>
+                    <div class="explorer-card auto-reveal">
+                        <h3>💡 European Solutions</h3>
+                        <ul>
+                            <li class="auto-reveal">Seek all-water route to Asia</li>
+                            <li class="auto-reveal">Improve ship technology</li>
+                            <li class="auto-reveal">Better navigation instruments</li>
+                            <li class="auto-reveal">Government-sponsored expeditions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="vocabulary-box auto-reveal">
+                    <h4>📚 Key Terms</h4>
+                    <p><strong>Ottoman Empire:</strong> Turkish empire that controlled trade routes between Europe and Asia</p>
+                    <p><strong>Caravel:</strong> New type of ship that could sail better in open ocean</p>
+                    <p><strong>Astrolabe:</strong> Navigation instrument using stars to determine location</p>
+                </div>
+            </div>
+            <div class="image-tab" onclick="toggleImage(3)">🗺️ View Ottoman Empire</div>
+        </div>
+
+        <!-- Slide 5: The Travels of Marco Polo -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>📖 The Travels of Marco Polo</h2>
+                
+                <div class="exploration-route auto-reveal">
+                    <h3>🐪 Marco Polo and Nicolo Polo were potions who lived in Venice in the second half of the 1200s. The Polos were traders and travelers.</h3>
+                </div>
+
+                <div class="big-idea auto-reveal">
+                    Marco Polo's book inspired generations of Europeans to seek new routes to the wealth of Asia. His descriptions made exotic spices, silks, gems, porcelain, and other treasures sound incredibly valuable.
+                </div>
+
+                <div class="two-column-grid">
+                    <div class="explorer-card auto-reveal">
+                        <h3>🛤️ The Polo Journey</h3>
+                        <ul>
+                            <li class="auto-reveal">Traveled overland to China via Silk Road</li>
+                            <li class="auto-reveal">Spent years at court of Kublai Khan</li>
+                            <li class="auto-reveal">Learned about Asian wealth and trade</li>
+                            <li class="auto-reveal">Returned with amazing stories</li>
+                        </ul>
+                    </div>
+                    <div class="explorer-card auto-reveal">
+                        <h3>📚 Impact of His Book</h3>
+                        <ul>
+                            <li class="auto-reveal">Described incredible Asian riches</li>
+                            <li class="auto-reveal">Made Europeans want direct access</li>
+                            <li class="auto-reveal">Inspired future explorers like Columbus</li>
+                            <li class="auto-reveal">Showed benefits of Asian trade</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="activity-prompt auto-reveal">
+                    <strong>Think About It:</strong> If you were a European merchant reading Marco Polo's descriptions of Asian wealth, what would motivate you to risk dangerous ocean voyages?
+                </div>
+            </div>
+            <div class="image-tab" onclick="toggleImage(4)">🐪 View Silk Road</div>
+        </div>
+
+        <!-- Slide 6: Columbus and the Discovery -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🌍 Columbus and the "Discovery"</h2>
+                
+                <div class="exploration-route auto-reveal">
+                    <h3>⛵ Columbus made subsequent voyages to America in five years following his initial venture. None of them were as successful as his first. But Columbus did manage as his life. But Columbus did manage to establish permanent settlements in the Caribbean.</h3>
+                </div>
+
+                <div class="encounter-box auto-reveal">
+                    <h4>🤝 First Contact: 1492</h4>
+                    <p>During his first voyage Columbus made a landing place on a trading center in the Caribbean, he saw that small fishing village while being spaced around 100 until 1400, the Arabs managed to keep the Caribbean, he controlled that passage would control the route to China and its spices and jewels.</p>
+                </div>
+
+                <div class="two-column-grid">
+                    <div class="explorer-card auto-reveal">
+                        <h3>📍 Columbus's Mistake</h3>
+                        <ul>
+                            <li class="auto-reveal">Thought he had reached Asia</li>
+                            <li class="auto-reveal">Called native people "Indians"</li>
+                            <li class="auto-reveal">Never realized he found new continent</li>
+                            <li class="auto-reveal">Died believing he reached Asia</li>
+                        </ul>
+                    </div>
+                    <div class="explorer-card auto-reveal">
+                        <h3>🌎 What He Actually Found</h3>
+                        <ul>
+                            <li class="auto-reveal">Caribbean islands with native peoples</li>
+                            <li class="auto-reveal">Complex civilizations already there</li>
+                            <li class="auto-reveal">No spices, but other valuable resources</li>
+                            <li class="auto-reveal">Gateway to entire new world</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="consequences-box auto-reveal">
+                    <h4>⚡ The Consequences of "Discovery"</h4>
+                    <p>Columbus made subsequent voyages to find more islands, but never as successful as his first. However, he managed to establish permanent settlements that would begin European colonization of the Americas.</p>
+                </div>
+            </div>
+            <div class="image-tab" onclick="toggleImage(5)">⛵ View Columbus Ships</div>
+        </div>
+
+        <!-- Slide 7: Exploration Fever Spreads -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🔥 Exploration Fever Spreads</h2>
+                
+                <div class="timeline-box auto-reveal">
+                    <h3>🌊 New of Spanish Adventure in the Americas and the wealth that the conquistadors gained from the slave trade made conquistadors made the attempt to the slave trade made Spain very big when it came to European conquest, conquistadors gained a good sail. He was in able to trade easily.</h3>
+                </div>
+
+                <div class="three-column-grid">
+                    <div class="explorer-card auto-reveal">
+                        <h3>🇪🇸 Spanish Conquistadors</h3>
+                        <ul>
+                            <li class="auto-reveal">Hernán Cortés conquered Aztec Empire</li>
+                            <li class="auto-reveal">Francisco Pizarro defeated Incas</li>
+                            <li class="auto-reveal">Brought back enormous wealth</li>
+                            <li class="auto-reveal">Established Spanish colonial empire</li>
+                        </ul>
+                    </div>
+                    <div class="explorer-card auto-reveal">
+                        <h3>🇫🇷 French Explorers</h3>
+                        <ul>
+                            <li class="auto-reveal">Samuel de Champlain in Canada</li>
+                            <li class="auto-reveal">Jacques Cartier explored St. Lawrence</li>
+                            <li class="auto-reveal">Focused on fur trade</li>
+                            <li class="auto-reveal">Established New France</li>
+                        </ul>
+                    </div>
+                    <div class="explorer-card auto-reveal">
+                        <h3>🏴󠁧󠁢󠁥󠁮󠁧󠁿 English Colonization</h3>
+                        <ul>
+                            <li class="auto-reveal">John Cabot explored North America</li>
+                            <li class="auto-reveal">Sir Francis Drake circumnavigated globe</li>
+                            <li class="auto-reveal">Established permanent colonies</li>
+                            <li class="auto-reveal">Competed with Spanish empire</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="big-idea auto-reveal">
+                    European nations raced to establish colonies and claim territory in the Americas, driven by stories of gold, land, and new opportunities for trade and wealth.
+                </div>
+            </div>
+            <div class="image-tab" onclick="toggleImage(6)">⚔️ View Conquistadors</div>
+        </div>
+
+        <!-- Slide 8: Building Colonies -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🏘️ Building Colonies</h2>
+                
+                <div class="exploration-route auto-reveal">
+                    <h3>🏗️ In the 1500s, Spain conquered Mexico and accumulated great fortune in gold. They used their American colonies, and also from their American colonies.</h3>
+                </div>
+
+                <div class="two-column-grid">
+                    <div class="explorer-card auto-reveal">
+                        <h3>🏛️ Spanish Colonial System</h3>
+                        <ul>
+                            <li class="auto-reveal">Encomienda system for native labor</li>
+                            <li class="auto-reveal">Catholic missions to convert natives</li>
+                            <li class="auto-reveal">Strict colonial government from Spain</li>
+                            <li class="auto-reveal">Extraction of gold and silver</li>
+                        </ul>
+                    </div>
+                    <div class="explorer-card auto-reveal">
+                        <h3>🌾 Other Colonial Approaches</h3>
+                        <ul>
+                            <li class="auto-reveal">English: permanent settlement and farming</li>
+                            <li class="auto-reveal">French: fur trading partnerships</li>
+                            <li class="auto-reveal">Dutch: commercial trading posts</li>
+                            <li class="auto-reveal">Different relationships with natives</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="consequences-box auto-reveal">
+                    <h4>⚡ Long-term Consequences</h4>
+                    <p>European colonization brought disease, warfare, and cultural destruction to native peoples, but also created new societies and transformed global trade patterns that would shape the modern world.</p>
+                </div>
+
+                <div class="activity-prompt auto-reveal">
+                    <strong>Your Investigation:</strong> Compare how different European nations approached colonization. What were the advantages and disadvantages of each system for both Europeans and native peoples?
+                </div>
+            </div>
+            <div class="image-tab" onclick="toggleImage(7)">🏘️ View Colonial Settlement</div>
+        </div>
+
+        <!-- Progress indicator -->
+        <div class="progress-indicator">
+            <div class="progress-dot active"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            ← → : Navigate slides<br>
+            ↑ ↓ : Progressive disclosure<br>
+            Enter: Reveal all<br>
+            , . : Quick navigation
+        </div>
+
+        <!-- Reveal status -->
+        <div class="reveal-status">
+            <span id="revealCount">0</span> / <span id="totalRevealCount">0</span> revealed
+        </div>
+
+    </div>
+
+    <!-- Hidden slide images -->
+    <img class="slide-image" id="slideImage0" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f4f4f4'/%3E%3Ctext x='400' y='250' text-anchor='middle' font-family='Arial' font-size='20' fill='%23666'%3ESpice Trade Routes Map%3C/text%3E%3Ctext x='400' y='280' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3EShowing Arab control of%3C/text%3E%3Ctext x='400' y='310' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3Etrade routes to Asia%3C/text%3E%3C/svg%3E" alt="Medieval spice trade routes">
+    
+    <img class="slide-image" id="slideImage1" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f4f4f4'/%3E%3Ctext x='400' y='250' text-anchor='middle' font-family='Arial' font-size='20' fill='%23666'%3EMedieval Spices%3C/text%3E%3Ctext x='400' y='280' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3EPepper, cinnamon, cloves%3C/text%3E%3Ctext x='400' y='310' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3Eand other valuable spices%3C/text%3E%3C/svg%3E" alt="Medieval spices and trade goods">
+    
+    <img class="slide-image" id="slideImage2" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f4f4f4'/%3E%3Ctext x='400' y='250' text-anchor='middle' font-family='Arial' font-size='20' fill='%23666'%3ENavigation Tools%3C/text%3E%3Ctext x='400' y='280' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3EAstrolabe, compass, and%3C/text%3E%3Ctext x='400' y='310' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3Eimproved ship designs%3C/text%3E%3C/svg%3E" alt="Medieval navigation instruments">
+    
+    <img class="slide-image" id="slideImage3" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f4f4f4'/%3E%3Ctext x='400' y='250' text-anchor='middle' font-family='Arial' font-size='20' fill='%23666'%3EOttoman Empire Control%3C/text%3E%3Ctext x='400' y='280' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3ETurkish control of trade%3C/text%3E%3Ctext x='400' y='310' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3Eroutes to Asia%3C/text%3E%3C/svg%3E" alt="Ottoman Empire trade control">
+    
+    <img class="slide-image" id="slideImage4" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f4f4f4'/%3E%3Ctext x='400' y='250' text-anchor='middle' font-family='Arial' font-size='20' fill='%23666'%3ESilk Road Trade Route%3C/text%3E%3Ctext x='400' y='280' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3EMarco Polo's journey%3C/text%3E%3Ctext x='400' y='310' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3Eto China and back%3C/text%3E%3C/svg%3E" alt="Marco Polo's route on Silk Road">
+    
+    <img class="slide-image" id="slideImage5" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f4f4f4'/%3E%3Ctext x='400' y='250' text-anchor='middle' font-family='Arial' font-size='20' fill='%23666'%3EColumbus Ships%3C/text%3E%3Ctext x='400' y='280' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3ENiña, Pinta, and%3C/text%3E%3Ctext x='400' y='310' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3ESanta María%3C/text%3E%3C/svg%3E" alt="Columbus's three ships">
+    
+    <img class="slide-image" id="slideImage6" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f4f4f4'/%3E%3Ctext x='400' y='250' text-anchor='middle' font-family='Arial' font-size='20' fill='%23666'%3ESpanish Conquistadors%3C/text%3E%3Ctext x='400' y='280' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3ECortés and Pizarro%3C/text%3E%3Ctext x='400' y='310' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3Econquering the Americas%3C/text%3E%3C/svg%3E" alt="Spanish conquistadors and conquest">
+    
+    <img class="slide-image" id="slideImage7" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f4f4f4'/%3E%3Ctext x='400' y='250' text-anchor='middle' font-family='Arial' font-size='20' fill='%23666'%3EEarly Colonial Settlements%3C/text%3E%3Ctext x='400' y='280' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3ESpanish, French, and%3C/text%3E%3Ctext x='400' y='310' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3EEnglish colonies%3C/text%3E%3C/svg%3E" alt="Early European colonial settlements">
+
+    <script>
+        let currentSlide = 0;
+        let currentRevealIndex = 0;
+        let allRevealed = false;
+        let currentImage = null;
+        const totalSlides = 8;
+
+        function showSlide(index) {
+            // Hide all slides
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Show target slide
+            const slides = document.querySelectorAll('.slide');
+            if (index >= 0 && index < slides.length) {
+                slides[index].classList.add('active');
+                currentSlide = index;
+                
+                // Reset reveal state
+                resetSlideReveals();
+                updateProgressIndicator();
+                
+                // Hide any visible images
+                hideAllImages();
+            }
+        }
+
+        function resetSlideReveals() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            // Hide all reveals
+            autoRevealElements.forEach(element => {
+                element.classList.remove('revealed');
+            });
+            
+            currentRevealIndex = 0;
+            allRevealed = false;
+            updateRevealStatus();
+        }
+
+        function revealNext() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (currentRevealIndex < autoRevealElements.length) {
+                autoRevealElements[currentRevealIndex].classList.add('revealed');
+                currentRevealIndex++;
+                updateRevealStatus();
+                
+                if (currentRevealIndex === autoRevealElements.length) {
+                    allRevealed = true;
+                }
+            }
+        }
+
+        function revealPrevious() {
+            if (currentRevealIndex > 0) {
+                currentRevealIndex--;
+                const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+                const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+                autoRevealElements[currentRevealIndex].classList.remove('revealed');
+                allRevealed = false;
+                updateRevealStatus();
+            }
+        }
+
+        function revealAll() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (!allRevealed) {
+                // Reveal all with staggered animation
+                autoRevealElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('revealed');
+                    }, index * 150);
+                });
+                currentRevealIndex = autoRevealElements.length;
+                allRevealed = true;
+                
+                // Update status after animation completes
+                setTimeout(() => {
+                    updateRevealStatus();
+                }, autoRevealElements.length * 150);
+            } else {
+                // Hide all
+                autoRevealElements.forEach(element => {
+                    element.classList.remove('revealed');
+                });
+                currentRevealIndex = 0;
+                allRevealed = false;
+                updateRevealStatus();
+            }
+        }
+
+        function updateRevealStatus() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            document.getElementById('revealCount').textContent = currentRevealIndex;
+            document.getElementById('totalRevealCount').textContent = autoRevealElements.length;
+        }
+
+        function updateProgressIndicator() {
+            const dots = document.querySelectorAll('.progress-dot');
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function toggleImage(slideIndex) {
+            const imageId = `slideImage${slideIndex}`;
+            const image = document.getElementById(imageId);
+            
+            if (currentImage && currentImage !== image) {
+                currentImage.classList.remove('visible');
+            }
+            
+            if (image.classList.contains('visible')) {
+                image.classList.remove('visible');
+                currentImage = null;
+            } else {
+                image.classList.add('visible');
+                currentImage = image;
+            }
+        }
+
+        function hideAllImages() {
+            document.querySelectorAll('.slide-image').forEach(img => {
+                img.classList.remove('visible');
+            });
+            currentImage = null;
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(event) {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            switch(event.key) {
+                case 'ArrowRight':
+                    if (currentRevealIndex < autoRevealElements.length) {
+                        revealNext();
+                    } else if (currentSlide < totalSlides - 1) {
+                        showSlide(currentSlide + 1);
+                    }
+                    break;
+                case 'ArrowLeft':
+                    if (currentRevealIndex > 0) {
+                        revealPrevious();
+                    } else if (currentSlide > 0) {
+                        showSlide(currentSlide - 1);
+                    }
+                    break;
+                case 'ArrowDown':
+                    revealNext();
+                    break;
+                case 'ArrowUp':
+                    revealPrevious();
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+                case ',':
+                    if (currentSlide > 0) {
+                        showSlide(currentSlide - 1);
+                    }
+                    break;
+                case '.':
+                    if (currentSlide < totalSlides - 1) {
+                        showSlide(currentSlide + 1);
+                    }
+                    break;
+                case 'Escape':
+                    hideAllImages();
+                    break;
+            }
+        });
+
+        // Click outside image to close
+        document.addEventListener('click', function(event) {
+            if (currentImage && !event.target.classList.contains('image-tab') && !event.target.classList.contains('slide-image')) {
+                hideAllImages();
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

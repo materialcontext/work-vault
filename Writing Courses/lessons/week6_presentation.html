@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6: Research Paper Writing Mastery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f766e 0%, #0d9488 25%, #14b8a6 50%, #2dd4bf 75%, #5eead4 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .slide-content {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .slide h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #5eead4, #2dd4bf, #14b8a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.1;
+        }
+
+        .slide h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #5eead4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .slide h3 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide p, .slide li {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #e2e8f0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question {
+            background: rgba(94, 234, 212, 0.15);
+            backdrop-filter: blur(20px);
+            border: 3px solid rgba(94, 234, 212, 0.4);
+            border-radius: 30px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 15px 50px rgba(94, 234, 212, 0.2);
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .central-question h3 {
+            color: #5eead4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .objective-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(94, 234, 212, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(94, 234, 212, 0.3);
+            border-color: rgba(94, 234, 212, 0.6);
+        }
+
+        .objective-card:hover::before {
+            left: 100%;
+        }
+
+        .objective-card h3 {
+            color: #5eead4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .research-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .research-flow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #5eead4, #2dd4bf, #14b8a6, #0d9488);
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        .flow-step {
+            background: linear-gradient(135deg, #ffffff, #f1f5f9);
+            color: #0f766e;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 3;
+            border: 3px solid rgba(94, 234, 212, 0.6);
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .flow-step:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(94, 234, 212, 0.4);
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .week1-phase {
+            border-color: rgba(239, 68, 68, 0.4);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .week2-phase {
+            border-color: rgba(245, 158, 11, 0.4);
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .week3-phase {
+            border-color: rgba(34, 197, 94, 0.4);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .week4-phase {
+            border-color: rgba(59, 130, 246, 0.4);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .week1-phase h4 {
+            color: #fca5a5;
+        }
+
+        .week2-phase h4 {
+            color: #fcd34d;
+        }
+
+        .week3-phase h4 {
+            color: #86efac;
+        }
+
+        .week4-phase h4 {
+            color: #93c5fd;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(94, 234, 212, 0.3);
+        }
+
+        .timeline-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #14b8a6, #0d9488);
+            color: #ffffff;
+            padding: 2rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            font-weight: 600;
+            font-size: 1.4rem;
+            box-shadow: 0 10px 30px rgba(20, 184, 166, 0.4);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .source-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .source-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .source-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(94, 234, 212, 0.3);
+            border-color: rgba(94, 234, 212, 0.6);
+        }
+
+        .source-card h4 {
+            color: #5eead4;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .synthesis-example {
+            background: rgba(99, 102, 241, 0.2);
+            border-left: 6px solid #6366f1;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .before-example {
+            background: rgba(239, 68, 68, 0.2);
+            border-left: 6px solid #ef4444;
+            padding: 1.5rem;
+            border-radius: 0 15px 15px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .after-example {
+            background: rgba(34, 197, 94, 0.2);
+            border-left: 6px solid #22c55e;
+            padding: 1.5rem;
+            border-radius: 0 15px 15px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .example-label {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .before-example .example-label {
+            color: #fca5a5;
+        }
+
+        .after-example .example-label {
+            color: #86efac;
+        }
+
+        .organization-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .org-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .org-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(94, 234, 212, 0.3);
+            border-color: rgba(94, 234, 212, 0.6);
+        }
+
+        .org-card h4 {
+            color: #5eead4;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(94, 234, 212, 0.9);
+            border: none;
+            color: #0f766e;
+            padding: 1.2rem 1.8rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(94, 234, 212, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-btn:hover {
+            background: rgba(94, 234, 212, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(94, 234, 212, 0.6);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(94, 234, 212, 0.9);
+            color: #0f766e;
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(94, 234, 212, 0.4);
+            z-index: 1000;
+        }
+
+        .emoji-large {
+            font-size: 4rem;
+            margin: 1rem 0;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .auto-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            text-align: left;
+            margin: 1rem 0;
+            color: #e2e8f0;
+        }
+
+        li {
+            margin: 0.8rem 0;
+            padding-left: 1rem;
+            color: #e2e8f0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        strong {
+            color: #5eead4;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .step-indicator {
+            display: inline-block;
+            background: #5eead4;
+            color: #0f766e;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-right: 1rem;
+            text-shadow: none;
+        }
+
+        .practice-box {
+            background: rgba(147, 51, 234, 0.2);
+            border: 2px solid rgba(147, 51, 234, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+        }
+
+        .practice-box h4 {
+            color: #c084fc;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-showcase {
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid rgba(16, 185, 129, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(15px);
+        }
+
+        .project-showcase h4 {
+            color: #10b981;
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-tracker {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            height: 20px;
+            margin: 0.5rem 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #5eead4, #14b8a6);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        @media (min-width: 1920px) {
+            .slide {
+                padding: 3rem 4rem;
+            }
+            
+            .slide-content {
+                max-width: 1600px;
+            }
+        }
+
+        @media (min-width: 2560px) {
+            .slide {
+                padding: 4rem 6rem;
+            }
+            
+            .slide-content {
+                max-width: 2000px;
+            }
+            
+            .objectives-grid {
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            }
+            
+            .timeline-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-height: 800px) {
+            .slide {
+                padding: 1rem 2rem;
+                justify-content: flex-start;
+                padding-top: 2rem;
+            }
+            
+            .slide h1 {
+                font-size: clamp(2rem, 4vw, 3rem);
+                margin-bottom: 0.5rem;
+            }
+            
+            .slide h2 {
+                font-size: clamp(1.5rem, 3vw, 2.5rem);
+                margin-bottom: 1rem;
+            }
+            
+            .objectives-grid,
+            .timeline-grid,
+            .source-types {
+                gap: 1rem;
+                margin: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator">
+        <span id="slide-counter">1 / 14</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="reveal-btn" onclick="toggleRevealAll()">Reveal All</button>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-content">
+            <h1 class="auto-reveal">Week 6: Research Paper Writing Mastery</h1>
+            <div class="emoji-large auto-reveal">📚</div>
+            <div class="central-question auto-reveal">
+                <h3>Extended Academic Research Projects</h3>
+                <p><em>Master complex, multi-source research papers that demonstrate sophisticated academic thinking</em></p>
+            </div>
+            <div class="research-flow auto-reveal">
+                <div class="flow-step">Project Planning</div>
+                <div class="flow-step">Advanced Sources</div>
+                <div class="flow-step">Synthesis Writing</div>
+                <div class="flow-step">Independent Mastery</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Learning Objectives -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎯 Session Objectives</h2>
+            <div class="objectives-grid">
+                <div class="objective-card auto-reveal">
+                    <h3>📋 Project Management</h3>
+                    <p>Master systematic approaches to planning and executing extended research projects over multiple weeks</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>🔍 Advanced Research</h3>
+                    <p>Locate and evaluate sophisticated sources including archives, databases, and expert interviews</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>🧩 Synthesis Mastery</h3>
+                    <p>Weave multiple sources into coherent arguments while maintaining your analytical voice throughout</p>
+                </div>
+                <div class="objective-card auto-reveal">
+                    <h3>📖 Extended Writing</h3>
+                    <p>Organize and sustain complex arguments across 8-15 page papers with sophisticated academic presentation</p>
+                </div>
+            </div>
+            <div class="central-question auto-reveal">
+                <h3>Central Question</h3>
+                <p><em>"How do we plan, research, and write extended academic papers that demonstrate sophisticated thinking and scholarly engagement?"</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Research Project Timeline -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📅 4-Week Research Project Timeline</h2>
+            
+            <div class="timeline-grid">
+                <div class="timeline-card week1-phase auto-reveal">
+                    <h4>🎯 Week 1: Planning & Question Development</h4>
+                    <ul>
+                        <li>Choose broad topic area</li>
+                        <li>Develop focused research question</li>
+                        <li>Create preliminary thesis</li>
+                        <li>Begin source gathering</li>
+                        <li>Set timeline and milestones</li>
+                    </ul>
+                    <div class="progress-tracker">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 25%;"></div>
+                        </div>
+                        <p><strong>Goal:</strong> Clear direction and initial sources</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-card week2-phase auto-reveal">
+                    <h4>🔍 Week 2: Deep Research & Source Analysis</h4>
+                    <ul>
+                        <li>Locate primary and secondary sources</li>
+                        <li>Take detailed research notes</li>
+                        <li>Evaluate source credibility</li>
+                        <li>Refine research question</li>
+                        <li>Create detailed outline</li>
+                    </ul>
+                    <div class="progress-tracker">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 50%;"></div>
+                        </div>
+                        <p><strong>Goal:</strong> Comprehensive source base and plan</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-card week3-phase auto-reveal">
+                    <h4>✍️ Week 3: Drafting & Synthesis</h4>
+                    <ul>
+                        <li>Write complete first draft</li>
+                        <li>Integrate sources smoothly</li>
+                        <li>Develop complex arguments</li>
+                        <li>Address counterarguments</li>
+                        <li>Create works cited page</li>
+                    </ul>
+                    <div class="progress-tracker">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%;"></div>
+                        </div>
+                        <p><strong>Goal:</strong> Complete draft with all sources</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-card week4-phase auto-reveal">
+                    <h4>✨ Week 4: Revision & Presentation</h4>
+                    <ul>
+                        <li>Systematic content revision</li>
+                        <li>Academic voice refinement</li>
+                        <li>Citation accuracy check</li>
+                        <li>Final proofreading</li>
+                        <li>Presentation preparation</li>
+                    </ul>
+                    <div class="progress-tracker">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%;"></div>
+                        </div>
+                        <p><strong>Goal:</strong> Polished, professional final paper</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Success Strategy:</strong> Break large projects into weekly goals with specific deadlines. This prevents last-minute rushing and ensures consistent quality throughout the process.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Advanced Source Discovery -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🔍 Advanced Source Discovery</h2>
+            
+            <div class="source-types">
+                <div class="source-card auto-reveal">
+                    <h4>🏛️ Primary Source Archives</h4>
+                    <ul>
+                        <li><strong>Digital archives:</strong> Library of Congress, National Archives</li>
+                        <li><strong>University collections:</strong> Specialized historical documents</li>
+                        <li><strong>Government databases:</strong> Official records and statistics</li>
+                        <li><strong>Contemporary accounts:</strong> Newspapers, diaries, letters</li>
+                    </ul>
+                    <p><strong>Research tip:</strong> Contact librarians for access to restricted collections</p>
+                </div>
+                
+                <div class="source-card auto-reveal">
+                    <h4>📊 Academic Databases</h4>
+                    <ul>
+                        <li><strong>JSTOR:</strong> Scholarly articles across disciplines</li>
+                        <li><strong>Project MUSE:</strong> Literature and humanities</li>
+                        <li><strong>Google Scholar:</strong> Free academic search engine</li>
+                        <li><strong>Subject databases:</strong> Specialized by field</li>
+                    </ul>
+                    <p><strong>Research tip:</strong> Use advanced search features and citation tracking</p>
+                </div>
+                
+                <div class="source-card auto-reveal">
+                    <h4>🎤 Expert Interviews</h4>
+                    <ul>
+                        <li><strong>University professors:</strong> Specialists in your topic</li>
+                        <li><strong>Professional practitioners:</strong> Real-world experience</li>
+                        <li><strong>Community leaders:</strong> Local knowledge and perspectives</li>
+                        <li><strong>Email outreach:</strong> Professional inquiry techniques</li>
+                    </ul>
+                    <p><strong>Research tip:</strong> Prepare specific questions and follow up promptly</p>
+                </div>
+                
+                <div class="source-card auto-reveal">
+                    <h4>📈 Data and Statistics</h4>
+                    <ul>
+                        <li><strong>Government agencies:</strong> Census, labor statistics</li>
+                        <li><strong>International organizations:</strong> UN, World Bank data</li>
+                        <li><strong>Research institutions:</strong> Think tanks and policy centers</li>
+                        <li><strong>Survey data:</strong> Polling and social research</li>
+                    </ul>
+                    <p><strong>Research tip:</strong> Verify data collection methods and sample sizes</p>
+                </div>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Source Discovery Challenge</h4>
+                <p>For your research topic, find at least one source from each category:</p>
+                <ul>
+                    <li>One primary source from a digital archive</li>
+                    <li>Two scholarly articles from academic databases</li>
+                    <li>One expert contact for potential interview</li>
+                    <li>One statistical source with relevant data</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Research Question Evolution -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>❓ Research Question Evolution</h2>
+            
+            <div class="research-flow auto-reveal">
+                <div class="flow-step">Broad Interest</div>
+                <div class="flow-step">Focused Topic</div>
+                <div class="flow-step">Specific Question</div>
+                <div class="flow-step">Arguable Thesis</div>
+            </div>
+
+            <div class="synthesis-example auto-reveal">
+                <h4>Research Question Development Example</h4>
+                <p><span class="step-indicator">1</span><strong>Broad Interest:</strong> "Social media and teenagers"</p>
+                <p><span class="step-indicator">2</span><strong>Focused Topic:</strong> "Social media's impact on teenage mental health"</p>
+                <p><span class="step-indicator">3</span><strong>Specific Question:</strong> "How does Instagram use specifically affect teenage body image and self-esteem among high school students?"</p>
+                <p><span class="step-indicator">4</span><strong>Arguable Thesis:</strong> "Instagram's emphasis on visual perfection significantly damages teenage body image through constant social comparison, algorithmic amplification of unrealistic standards, and the psychological pressure of public validation, requiring immediate intervention in school social media education programs."</p>
+            </div>
+
+            <div class="before-after">
+                <div class="before-example auto-reveal">
+                    <div class="example-label">❌ Too Broad</div>
+                    <p><em>"How has technology affected society?"</em></p>
+                    <p><strong>Problems:</strong> Impossible to research comprehensively, no clear argument direction, too many variables</p>
+                </div>
+                
+                <div class="after-example auto-reveal">
+                    <div class="example-label">✅ Appropriately Focused</div>
+                    <p><em>"How has smartphone adoption affected face-to-face conversation skills among American teenagers from 2010-2020?"</em></p>
+                    <p><strong>Strengths:</strong> Specific technology, defined population, clear timeframe, measurable outcomes</p>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <h3>Question Refinement Criteria</h3>
+                <p><span class="step-indicator">1</span><strong>Researchable:</strong> Sources exist to investigate the question</p>
+                <p><span class="step-indicator">2</span><strong>Arguable:</strong> Reasonable people could disagree about the answer</p>
+                <p><span class="step-indicator">3</span><strong>Significant:</strong> The answer matters to academic or social understanding</p>
+                <p><span class="step-indicator">4</span><strong>Manageable:</strong> Can be thoroughly addressed in your page limit</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Synthesis vs. Patchwork Writing -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🧩 Synthesis vs. Patchwork Writing</h2>
+            
+            <div class="before-after">
+                <div class="before-example auto-reveal">
+                    <div class="example-label">❌ Patchwork Writing</div>
+                    <p><em>"According to Smith, social media affects teenagers negatively (Smith 45). However, Johnson argues that social media has positive effects (Johnson 23). Williams also studied social media and found mixed results (Williams 67). Therefore, social media has both positive and negative effects."</em></p>
+                    <p><strong>Problems:</strong> Sources don't talk to each other, no original analysis, just stringing quotes together</p>
+                </div>
+                
+                <div class="after-example auto-reveal">
+                    <div class="example-label">✅ True Synthesis</div>
+                    <p><em>"While Smith's research demonstrates clear psychological harm from excessive social media use, particularly among vulnerable teenagers (Smith 45), Johnson's contrasting findings reveal benefits primarily in carefully moderated contexts with strong adult guidance (Johnson 23). Williams's longitudinal study helps resolve this apparent contradiction by showing that outcomes depend heavily on usage patterns, with passive consumption proving harmful while active community engagement showing positive effects (Williams 67). This suggests that intervention strategies should focus on changing how teenagers use social media rather than simply limiting access."</em></p>
+                    <p><strong>Strengths:</strong> Sources inform each other, original analysis emerges, creates new understanding</p>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <h3>Synthesis Writing Strategies</h3>
+                <p><span class="step-indicator">1</span><strong>Compare sources:</strong> How do different experts agree or disagree?</p>
+                <p><span class="step-indicator">2</span><strong>Find patterns:</strong> What themes emerge across multiple sources?</p>
+                <p><span class="step-indicator">3</span><strong>Identify gaps:</strong> What questions do sources leave unanswered?</p>
+                <p><span class="step-indicator">4</span><strong>Add analysis:</strong> What do you conclude from combining sources?</p>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Synthesis Practice Exercise</h4>
+                <p>Take three sources on your topic that seem to contradict each other. Write one paragraph that:</p>
+                <ul>
+                    <li>Explains how they differ and why</li>
+                    <li>Finds any common ground between them</li>
+                    <li>Develops your own interpretation of the evidence</li>
+                    <li>Advances your overall thesis argument</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Extended Essay Organization -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📖 Extended Essay Organization</h2>
+            
+            <div class="organization-levels">
+                <div class="org-card auto-reveal">
+                    <h4>📄 8-10 Page Paper Structure</h4>
+                    <ul>
+                        <li><strong>Introduction (1-1.5 pages):</strong> Hook, context, thesis, preview</li>
+                        <li><strong>Literature Review (1 page):</strong> What scholars have said</li>
+                        <li><strong>Body Section 1 (2 pages):</strong> First major argument</li>
+                        <li><strong>Body Section 2 (2 pages):</strong> Second major argument</li>
+                        <li><strong>Counterarguments (1 page):</strong> Address opposition</li>
+                        <li><strong>Conclusion (1 page):</strong> Synthesis and implications</li>
+                    </ul>
+                </div>
+                
+                <div class="org-card auto-reveal">
+                    <h4>📚 12-15 Page Paper Structure</h4>
+                    <ul>
+                        <li><strong>Introduction (1.5 pages):</strong> Extended context and thesis</li>
+                        <li><strong>Literature Review (2 pages):</strong> Scholarly conversation</li>
+                        <li><strong>Methodology (1 page):</strong> Research approach</li>
+                        <li><strong>Argument 1 (2-3 pages):</strong> First major section</li>
+                        <li><strong>Argument 2 (2-3 pages):</strong> Second major section</li>
+                        <li><strong>Argument 3 (2-3 pages):</strong> Third major section</li>
+                        <li><strong>Counterarguments (1 page):</strong> Opposition and response</li>
+                        <li><strong>Conclusion (1.5 pages):</strong> Synthesis and significance</li>
+                    </ul>
+                </div>
+                
+                <div class="org-card auto-reveal">
+                    <h4>🏗️ Section Development Strategy</h4>
+                    <ul>
+                        <li><strong>Opening paragraph:</strong> Section thesis and preview</li>
+                        <li><strong>Evidence paragraphs:</strong> 2-4 paragraphs with sources</li>
+                        <li><strong>Analysis paragraph:</strong> Your interpretation</li>
+                        <li><strong>Transition paragraph:</strong> Connect to next section</li>
+                    </ul>
+                    <p><strong>Key:</strong> Each section should feel like a mini-essay supporting your main thesis</p>
+                </div>
+                
+                <div class="org-card auto-reveal">
+                    <h4>🔗 Coherence Strategies</h4>
+                    <ul>
+                        <li><strong>Consistent terminology:</strong> Use same key terms throughout</li>
+                        <li><strong>Clear signposting:</strong> "First," "Furthermore," "In conclusion"</li>
+                        <li><strong>Thesis reminders:</strong> Connect back to main argument</li>
+                        <li><strong>Section previews:</strong> Tell readers what's coming</li>
+                    </ul>
+                    <p><strong>Goal:</strong> Readers never lose track of your overall argument</p>
+                </div>
+            </div>
+
+            <div class="project-showcase auto-reveal">
+                <h4>📊 Page Allocation Guide</h4>
+                <div class="research-flow">
+                    <div class="flow-step">15% Intro</div>
+                    <div class="flow-step">60% Body</div>
+                    <div class="flow-step">10% Counter</div>
+                    <div class="flow-step">15% Conclusion</div>
+                </div>
+                <p style="margin-top: 1.5rem;"><strong>Remember:</strong> These are guidelines, not rigid rules. Adjust based on your argument's needs and complexity.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Citation Mastery for Complex Projects -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📝 Advanced Citation Mastery</h2>
+            
+            <div class="source-types">
+                <div class="source-card auto-reveal">
+                    <h4>📚 Complex Source Types</h4>
+                    <ul>
+                        <li><strong>Multiple authors:</strong> Smith, Jones, and Williams</li>
+                        <li><strong>Corporate authors:</strong> American Psychological Association</li>
+                        <li><strong>No author:</strong> Use title or abbreviation</li>
+                        <li><strong>Same author, multiple works:</strong> (Smith, "First Title"; Smith, "Second Title")</li>
+                        <li><strong>Indirect sources:</strong> (qtd. in Johnson 45)</li>
+                    </ul>
+                </div>
+                
+                <div class="source-card auto-reveal">
+                    <h4>🌐 Digital and Modern Sources</h4>
+                    <ul>
+                        <li><strong>Online articles:</strong> Include URL and access date</li>
+                        <li><strong>Database sources:</strong> Include database name</li>
+                        <li><strong>Social media:</strong> Platform and post details</li>
+                        <li><strong>Interviews:</strong> Personal communication format</li>
+                        <li><strong>Government documents:</strong> Agency and publication info</li>
+                    </ul>
+                </div>
+                
+                <div class="source-card auto-reveal">
+                    <h4>🎯 Citation Management</h4>
+                    <ul>
+                        <li><strong>Zotero:</strong> Free citation management software</li>
+                        <li><strong>Mendeley:</strong> Research organization and citation</li>
+                        <li><strong>Citation spreadsheets:</strong> Track sources systematically</li>
+                        <li><strong>Note-taking systems:</strong> Connect citations to arguments</li>
+                        <li><strong>Consistency checking:</strong> Same format throughout</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <h3>Citation Strategy for Long Papers</h3>
+                <p><span class="step-indicator">1</span><strong>Cite as you write:</strong> Never leave citations for later</p>
+                <p><span class="step-indicator">2</span><strong>Over-cite rather than under-cite:</strong> Better safe than sorry</p>
+                <p><span class="step-indicator">3</span><strong>Use citation management tools:</strong> Avoid formatting errors</p>
+                <p><span class="step-indicator">4</span><strong>Double-check accuracy:</strong> Verify all source information</p>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Citation Accuracy Challenge</h4>
+                <p>Create a "practice works cited" page with these challenging source types:</p>
+                <ul>
+                    <li>An article with 4+ authors from an online database</li>
+                    <li>A government report with no individual author</li>
+                    <li>An interview you conducted via email</li>
+                    <li>A social media post relevant to your topic</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Managing Multiple Drafts -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📂 Managing Multiple Drafts</h2>
+            
+            <div class="timeline-grid">
+                <div class="timeline-card week1-phase auto-reveal">
+                    <h4>🔧 Draft 1: Content Focus</h4>
+                    <ul>
+                        <li><strong>Goal:</strong> Get all ideas and evidence down</li>
+                        <li><strong>Don't worry about:</strong> Perfect sentences, transitions</li>
+                        <li><strong>Focus on:</strong> Argument development, source integration</li>
+                        <li><strong>Length:</strong> Often 20-30% longer than final</li>
+                    </ul>
+                    <p><strong>Mindset:</strong> "Better to have too much than too little"</p>
+                </div>
+                
+                <div class="timeline-card week2-phase auto-reveal">
+                    <h4>✨ Draft 2: Structure & Flow</h4>
+                    <ul>
+                        <li><strong>Goal:</strong> Organize and streamline arguments</li>
+                        <li><strong>Revise:</strong> Paragraph order, section transitions</li>
+                        <li><strong>Cut:</strong> Redundant or weak evidence</li>
+                        <li><strong>Add:</strong> Missing connections and analysis</li>
+                    </ul>
+                    <p><strong>Mindset:</strong> "Make the argument crystal clear"</p>
+                </div>
+                
+                <div class="timeline-card week3-phase auto-reveal">
+                    <h4>🎭 Draft 3: Voice & Style</h4>
+                    <ul>
+                        <li><strong>Goal:</strong> Polish academic voice and language</li>
+                        <li><strong>Enhance:</strong> Vocabulary, sentence variety</li>
+                        <li><strong>Eliminate:</strong> Weak language, repetition</li>
+                        <li><strong>Strengthen:</strong> Topic sentences, conclusions</li>
+                    </ul>
+                    <p><strong>Mindset:</strong> "Make it sound sophisticated and professional"</p>
+                </div>
+                
+                <div class="timeline-card week4-phase auto-reveal">
+                    <h4>🔍 Draft 4: Final Polish</h4>
+                    <ul>
+                        <li><strong>Goal:</strong> Eliminate all errors and inconsistencies</li>
+                        <li><strong>Check:</strong> Citations, grammar, formatting</li>
+                        <li><strong>Verify:</strong> Page requirements, assignment criteria</li>
+                        <li><strong>Proofread:</strong> Read aloud for final review</li>
+                    </ul>
+                    <p><strong>Mindset:</strong> "Perfect presentation of strong ideas"</p>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <h3>File Management System</h3>
+                <p><strong>Naming convention:</strong> "LastName_ProjectTitle_Draft1_Date"</p>
+                <p><strong>Backup strategy:</strong> Save in multiple locations (computer, cloud, email)</p>
+                <p><strong>Version control:</strong> Never delete earlier drafts until project complete</p>
+                <p><strong>Comments/notes:</strong> Use document comments for revision reminders</p>
+            </div>
+
+            <div class="project-showcase auto-reveal">
+                <h4>🎯 Revision Schedule Example</h4>
+                <ul>
+                    <li><strong>Monday:</strong> Complete Draft 2, focus on argument structure</li>
+                    <li><strong>Wednesday:</strong> Peer review and feedback incorporation</li>
+                    <li><strong>Friday:</strong> Draft 3 with voice and style improvements</li>
+                    <li><strong>Sunday:</strong> Final draft with complete citation check</li>
+                </ul>
+                <p><strong>Key:</strong> Plan revision time as carefully as writing time!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Independent Project Development -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🚀 Independent Project Development</h2>
+            
+            <div class="project-showcase auto-reveal">
+                <h4>Your Research Project Proposal</h4>
+                <p>Design your own 10-12 page research project using all skills from Weeks 1-6:</p>
+                
+                <div class="research-flow" style="margin: 2rem 0;">
+                    <div class="flow-step">Choose Topic</div>
+                    <div class="flow-step">Develop Question</div>
+                    <div class="flow-step">Find Sources</div>
+                    <div class="flow-step">Create Timeline</div>
+                </div>
+            </div>
+
+            <div class="organization-levels">
+                <div class="org-card auto-reveal">
+                    <h4>📋 Project Proposal Requirements</h4>
+                    <ul>
+                        <li><strong>Topic statement:</strong> What area interests you?</li>
+                        <li><strong>Research question:</strong> Specific, arguable, researchable</li>
+                        <li><strong>Preliminary thesis:</strong> Your initial argument</li>
+                        <li><strong>Source plan:</strong> Types of sources you'll use</li>
+                        <li><strong>Timeline:</strong> Week-by-week goals</li>
+                    </ul>
+                </div>
+                
+                <div class="org-card auto-reveal">
+                    <h4>🎯 Topic Selection Criteria</h4>
+                    <ul>
+                        <li><strong>Personal interest:</strong> Something you want to explore</li>
+                        <li><strong>Source availability:</strong> Enough research exists</li>
+                        <li><strong>Appropriate scope:</strong> Manageable in 10-12 pages</li>
+                        <li><strong>Academic relevance:</strong> Contributes to scholarly conversation</li>
+                        <li><strong>Original angle:</strong> Your unique perspective</li>
+                    </ul>
+                </div>
+                
+                <div class="org-card auto-reveal">
+                    <h4>📚 Suggested Topic Areas</h4>
+                    <ul>
+                        <li><strong>Historical analysis:</strong> Causes, effects, interpretations</li>
+                        <li><strong>Social issues:</strong> Current problems and solutions</li>
+                        <li><strong>Scientific research:</strong> Recent discoveries and implications</li>
+                        <li><strong>Cultural studies:</strong> Literature, art, media analysis</li>
+                        <li><strong>Policy analysis:</strong> Government programs and effectiveness</li>
+                    </ul>
+                </div>
+                
+                <div class="org-card auto-reveal">
+                    <h4>✅ Success Indicators</h4>
+                    <ul>
+                        <li><strong>Clear argument:</strong> Readers understand your position</li>
+                        <li><strong>Strong evidence:</strong> Multiple credible sources</li>
+                        <li><strong>Synthesis mastery:</strong> Sources support your analysis</li>
+                        <li><strong>Academic voice:</strong> Professional, sophisticated tone</li>
+                        <li><strong>Proper citations:</strong> Perfect MLA format</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>🎯 Project Proposal Workshop</h4>
+                <p>Complete your research project proposal:</p>
+                <ul>
+                    <li>Write 2-3 sentences describing your topic area</li>
+                    <li>Formulate a specific, arguable research question</li>
+                    <li>Draft a preliminary thesis statement</li>
+                    <li>List 5 potential source types you'll investigate</li>
+                    <li>Create a 4-week timeline with specific goals</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Avoiding Common Research Pitfalls -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>⚠️ Avoiding Common Research Pitfalls</h2>
+            
+            <div class="before-after">
+                <div class="before-example auto-reveal">
+                    <div class="example-label">❌ Research Pitfall: Topic Too Broad</div>
+                    <p><em>"The Effects of War on Society"</em></p>
+                    <p><strong>Problem:</strong> Could fill multiple books, impossible to research thoroughly in one paper</p>
+                    <p><strong>Solution:</strong> Focus on specific war, specific society, specific type of effect</p>
+                </div>
+                
+                <div class="after-example auto-reveal">
+                    <div class="example-label">✅ Properly Focused Topic</div>
+                    <p><em>"How World War II Factory Work Changed Women's Economic Independence in Rural Tennessee Communities, 1940-1950"</em></p>
+                    <p><strong>Strengths:</strong> Specific conflict, defined location, measurable outcome, clear timeframe</p>
+                </div>
+            </div>
+
+            <div class="source-types">
+                <div class="source-card auto-reveal">
+                    <h4>🚫 Pitfall: Confirmation Bias</h4>
+                    <ul>
+                        <li><strong>Problem:</strong> Only seeking sources that support your thesis</li>
+                        <li><strong>Result:</strong> Weak, one-sided arguments</li>
+                        <li><strong>Solution:</strong> Actively search for conflicting evidence</li>
+                        <li><strong>Benefit:</strong> Stronger arguments that address opposition</li>
+                    </ul>
+                </div>
+                
+                <div class="source-card auto-reveal">
+                    <h4>📚 Pitfall: Source Overload</h4>
+                    <ul>
+                        <li><strong>Problem:</strong> Collecting sources without analyzing them</li>
+                        <li><strong>Result:</strong> Patchwork writing, no original thinking</li>
+                        <li><strong>Solution:</strong> Take detailed notes with your reactions</li>
+                        <li><strong>Benefit:</strong> True synthesis and original analysis</li>
+                    </ul>
+                </div>
+                
+                <div class="source-card auto-reveal">
+                    <h4>⏰ Pitfall: Poor Time Management</h4>
+                    <ul>
+                        <li><strong>Problem:</strong> Leaving everything until the last week</li>
+                        <li><strong>Result:</strong> Rushed work, superficial analysis</li>
+                        <li><strong>Solution:</strong> Break project into weekly goals</li>
+                        <li><strong>Benefit:</strong> Thoughtful development and strong results</li>
+                    </ul>
+                </div>
+                
+                <div class="source-card auto-reveal">
+                    <h4>🎯 Pitfall: Losing Focus</h4>
+                    <ul>
+                        <li><strong>Problem:</strong> Thesis drift during research process</li>
+                        <li><strong>Result:</strong> Unfocused paper with unclear argument</li>
+                        <li><strong>Solution:</strong> Regularly return to research question</li>
+                        <li><strong>Benefit:</strong> Coherent, persuasive final argument</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Success Mindset:</strong> Great research papers emerge from focused questions, diverse sources, systematic analysis, and consistent effort over time. Avoid shortcuts and embrace the process!
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Presentation and Dissemination -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>📢 Research Presentation Mastery</h2>
+            
+            <div class="organization-levels">
+                <div class="org-card auto-reveal">
+                    <h4>🎤 10-Minute Research Presentation</h4>
+                    <ul>
+                        <li><strong>Hook (1 min):</strong> Engage audience with compelling opening</li>
+                        <li><strong>Question & Context (2 min):</strong> Why this research matters</li>
+                        <li><strong>Main Argument (3 min):</strong> Your thesis and key evidence</li>
+                        <li><strong>Counterarguments (2 min):</strong> Address opposition briefly</li>
+                        <li><strong>Conclusions (2 min):</strong> Significance and implications</li>
+                    </ul>
+                </div>
+                
+                <div class="org-card auto-reveal">
+                    <h4>📊 Visual Aid Strategy</h4>
+                    <ul>
+                        <li><strong>Slide 1:</strong> Title and compelling question</li>
+                        <li><strong>Slide 2:</strong> Research question and thesis</li>
+                        <li><strong>Slides 3-5:</strong> Key evidence with visuals</li>
+                        <li><strong>Slide 6:</strong> Counterargument acknowledgment</li>
+                        <li><strong>Slide 7:</strong> Conclusions and broader significance</li>
+                    </ul>
+                </div>
+                
+                <div class="org-card auto-reveal">
+                    <h4>🗣️ Delivery Best Practices</h4>
+                    <ul>
+                        <li><strong>Eye contact:</strong> Connect with your audience</li>
+                        <li><strong>Clear speech:</strong> Slower than normal conversation</li>
+                        <li><strong>Confident posture:</strong> Stand tall, use gestures</li>
+                        <li><strong>Time management:</strong> Practice with timer</li>
+                        <li><strong>Q&A preparation:</strong> Anticipate audience questions</li>
+                    </ul>
+                </div>
+                
+                <div class="org-card auto-reveal">
+                    <h4>💡 Beyond the Classroom</h4>
+                    <ul>
+                        <li><strong>Student conferences:</strong> Present at academic meetings</li>
+                        <li><strong>Community presentations:</strong> Share with local groups</li>
+                        <li><strong>Online publication:</strong> Blog posts or school website</li>
+                        <li><strong>Contest submissions:</strong> Research competitions</li>
+                        <li><strong>College applications:</strong> Demonstrate academic capability</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="project-showcase auto-reveal">
+                <h4>🎯 Presentation Workshop</h4>
+                <p>Prepare a 5-minute presentation of your research project:</p>
+                <ul>
+                    <li>Create 3-4 slides highlighting your main argument</li>
+                    <li>Practice delivering without reading directly from slides</li>
+                    <li>Prepare answers to 2-3 likely questions</li>
+                    <li>Time your presentation and adjust as needed</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Course Integration and Mastery -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🎓 Complete Academic Writing Mastery</h2>
+            
+            <div class="project-showcase auto-reveal">
+                <h4>Your Complete Academic Writing Toolkit</h4>
+                <div class="research-flow">
+                    <div class="flow-step">Week 1<br>Structure</div>
+                    <div class="flow-step">Week 2<br>Research</div>
+                    <div class="flow-step">Week 3<br>Arguments</div>
+                    <div class="flow-step">Week 4<br>Voice</div>
+                    <div class="flow-step">Week 5<br>Speed</div>
+                    <div class="flow-step">Week 6<br>Projects</div>
+                </div>
+                <p style="margin-top: 2rem;"><strong>Result:</strong> You can now handle any academic writing challenge from 5-paragraph essays to 15-page research papers!</p>
+            </div>
+
+            <div class="organization-levels">
+                <div class="org-card auto-reveal">
+                    <h4>🧪 Science Research</h4>
+                    <p>Lab reports, literature reviews, scientific poster presentations using same research and presentation skills</p>
+                </div>
+                
+                <div class="org-card auto-reveal">
+                    <h4>📚 English Projects</h4>
+                    <p>Literary analysis papers, author studies, comparative literature using same synthesis and argumentation</p>
+                </div>
+                
+                <div class="org-card auto-reveal">
+                    <h4>🌍 Social Studies</h4>
+                    <p>Historical research papers, policy analysis, current events research using same source evaluation and organization</p>
+                </div>
+                
+                <div class="org-card auto-reveal">
+                    <h4>🎓 College Preparation</h4>
+                    <p>Admissions essays, scholarship applications, advanced coursework using same academic voice and project management</p>
+                </div>
+            </div>
+
+            <div class="practice-box auto-reveal">
+                <h4>✍️ Final Self-Assessment</h4>
+                <p>Can you now confidently:</p>
+                <ul>
+                    <li>✓ Plan and execute extended research projects independently?</li>
+                    <li>✓ Find, evaluate, and synthesize complex academic sources?</li>
+                    <li>✓ Write sophisticated arguments across 8-15 pages?</li>
+                    <li>✓ Present your research professionally to academic audiences?</li>
+                    <li>✓ Apply these skills to any academic subject or context?</li>
+                </ul>
+            </div>
+
+            <div class="central-question auto-reveal">
+                <h3>🎉 Academic Writing Mastery Complete!</h3>
+                <p><em>You have developed the complete range of academic writing skills needed for high school excellence, college preparation, and lifelong scholarly success!</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Final Project Launch -->
+    <div class="slide hidden">
+        <div class="slide-content">
+            <h2>🚀 Independent Research Project Launch</h2>
+            
+            <div class="timeline-grid">
+                <div class="timeline-card week1-phase auto-reveal">
+                    <h4>📅 Your Project Timeline</h4>
+                    <p><strong>Week 1:</strong> Proposal development and approval</p>
+                    <p><strong>Week 2:</strong> Source gathering and research notes</p>
+                    <p><strong>Week 3:</strong> First draft and peer review</p>
+                    <p><strong>Week 4:</strong> Revision, presentation, and celebration!</p>
+                </div>
+                
+                <div class="timeline-card week2-phase auto-reveal">
+                    <h4>📋 Project Requirements</h4>
+                    <ul>
+                        <li>10-12 pages of sophisticated academic writing</li>
+                        <li>8-12 credible sources properly integrated</li>
+                        <li>Clear thesis with complex argumentation</li>
+                        <li>Professional MLA citation throughout</li>
+                        <li>10-minute presentation to class</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-card week3-phase auto-reveal">
+                    <h4>🎯 Success Criteria</h4>
+                    <ul>
+                        <li><strong>Argument:</strong> Clear, sophisticated, well-supported</li>
+                        <li><strong>Sources:</strong> Diverse, credible, skillfully integrated</li>
+                        <li><strong>Organization:</strong> Logical flow, smooth transitions</li>
+                        <li><strong>Voice:</strong> Academic, professional, confident</li>
+                        <li><strong>Presentation:</strong> Clear, engaging, well-timed</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-card week4-phase auto-reveal">
+                    <h4>🌟 Beyond This Course</h4>
+                    <ul>
+                        <li>Apply skills to all high school subjects</li>
+                        <li>Excel in AP coursework and exams</li>
+                        <li>Prepare strong college application materials</li>
+                        <li>Succeed in university-level research</li>
+                        <li>Develop lifelong learning capabilities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box auto-reveal">
+                <strong>Your Academic Writing Journey:</strong> From basic 5-paragraph essays to sophisticated research projects, you've built the complete skillset for academic success. Now apply these skills with confidence!
+            </div>
+
+            <div class="project-showcase auto-reveal">
+                <h4>🎓 Ready for Academic Excellence</h4>
+                <p>You are now prepared for:</p>
+                <div class="research-flow">
+                    <div class="flow-step">High School<br>Success</div>
+                    <div class="flow-step">College<br>Readiness</div>
+                    <div class="flow-step">Lifelong<br>Learning</div>
+                    <div class="flow-step">Professional<br>Excellence</div>
+                </div>
+                <p style="margin-top: 2rem;"><strong>Congratulations on completing this comprehensive academic writing mastery program!</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+        let allRevealed = false;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.remove('hidden');
+            document.getElementById('slide-counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            // Reset reveal for new slide
+            revealIndex = 0;
+            allRevealed = false;
+            resetReveal();
+            updateRevealButton();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function resetReveal() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            elements.forEach(el => {
+                el.classList.remove('show');
+            });
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (revealIndex < elements.length) {
+                elements[revealIndex].classList.add('show');
+                revealIndex++;
+                
+                if (revealIndex >= elements.length) {
+                    allRevealed = true;
+                    updateRevealButton();
+                }
+                return true;
+            }
+            return false;
+        }
+
+        function toggleRevealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (!allRevealed) {
+                // Reveal all remaining elements
+                for (let i = revealIndex; i < elements.length; i++) {
+                    elements[i].classList.add('show');
+                }
+                revealIndex = elements.length;
+                allRevealed = true;
+            } else {
+                // Hide all elements
+                elements.forEach(el => {
+                    el.classList.remove('show');
+                });
+                revealIndex = 0;
+                allRevealed = false;
+            }
+            updateRevealButton();
+        }
+
+        function updateRevealButton() {
+            const btn = document.getElementById('reveal-btn');
+            btn.textContent = allRevealed ? 'Hide All' : 'Reveal All';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                const revealed = revealNextElement();
+                if (!revealed && allRevealed) {
+                    nextSlide();
+                }
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (revealIndex === 0) {
+                    previousSlide();
+                } else {
+                    // Go back one element
+                    const currentSlideElement = slides[currentSlide];
+                    const elements = currentSlideElement.querySelectorAll('.auto-reveal');
+                    if (revealIndex > 0) {
+                        revealIndex--;
+                        elements[revealIndex].classList.remove('show');
+                        allRevealed = false;
+                        updateRevealButton();
+                    }
+                }
+            } else if (e.key === ' ') {
+                e.preventDefault();
+                revealNextElement();
+            }
+        });
+
+        // Click anywhere to reveal next element
+        document.addEventListener('click', function(e) {
+            // Skip navigation elements
+            if (e.target.closest('.navigation') || 
+                e.target.closest('.slide-indicator')) {
+                return;
+            }
+            
+            const currentSlideElement = slides[currentSlide];
+            if (currentSlideElement && !currentSlideElement.classList.contains('hidden')) {
+                revealNextElement();
+            }
+        });
+
+        // Initialize
+        document.getElementById('slide-counter').textContent = `1 / ${totalSlides}`;
+        updateRevealButton();
+    </script>
+</body>
+</html>

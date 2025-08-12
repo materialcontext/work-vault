@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 2: Civil War as Revolutionary Culmination</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 50%, #5c6bc0 100%);
+            color: #ffffff;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .presentation-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .slide {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 1;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .slide.hidden {
+            display: none;
+        }
+
+        .slide-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .unit-title {
+            font-size: 1.6rem;
+            color: #d32f2f;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .lesson-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #d32f2f, #f44336);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .central-question {
+            font-size: 1.8rem;
+            color: #ffcdd2;
+            font-style: italic;
+            background: rgba(255,255,255,0.1);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #d32f2f;
+            line-height: 1.6;
+        }
+
+        .slide h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #d32f2f;
+        }
+
+        .slide h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #d32f2f;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .concept-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(211,47,47,0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(211,47,47,0.5);
+        }
+
+        .concept-card h3 {
+            color: #d32f2f;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .concept-card p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .primary-source {
+            background: rgba(255,205,210,0.2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #ffcdd2;
+            margin: 1.5rem 0;
+            font-style: italic;
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        .primary-source strong {
+            color: #ffcdd2;
+            font-style: normal;
+            font-size: 1.4rem;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .analysis-card {
+            background: rgba(255,255,255,0.08);
+            padding: 1.2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(211,47,47,0.2);
+            text-align: center;
+        }
+
+        .analysis-card h4 {
+            color: #d32f2f;
+            margin-bottom: 0.8rem;
+            font-size: 1.5rem;
+        }
+
+        .analysis-card p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .question-highlight {
+            background: linear-gradient(45deg, rgba(211,47,47,0.2), rgba(244,67,54,0.2));
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid #f44336;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.4rem;
+            color: #d32f2f;
+            line-height: 1.6;
+        }
+
+        .connecting-thread {
+            background: rgba(211,47,47,0.15);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid #d32f2f;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        .connecting-thread h3 {
+            color: #d32f2f;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .auto-reveal, .reveal-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.revealed, .reveal-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .nav-btn:hover {
+            background: rgba(211,47,47,0.3);
+            transform: translateY(-2px);
+            border-color: #d32f2f;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            max-width: 200px;
+        }
+
+        .indicator-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator-dot.active {
+            background: #d32f2f;
+            transform: scale(1.2);
+        }
+
+        .image-tab {
+            position: fixed;
+            top: 20px;
+            right: 100px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .image-tab:hover {
+            background: rgba(211,47,47,0.3);
+            border-color: #d32f2f;
+        }
+
+        .semester-synthesis {
+            background: rgba(211,47,47,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #d32f2f;
+            margin: 2rem 0;
+        }
+
+        .synthesis-timeline {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .synthesis-point {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #ffcdd2;
+        }
+
+        .synthesis-era {
+            font-size: 1.1rem;
+            color: #d32f2f;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .synthesis-theme {
+            font-size: 1rem;
+            color: #ffcdd2;
+            margin-bottom: 0.5rem;
+        }
+
+        .synthesis-connection {
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+
+        .crisis-escalation {
+            background: linear-gradient(45deg, rgba(211,47,47,0.1), rgba(244,67,54,0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #d32f2f;
+            margin: 2rem 0;
+        }
+
+        .escalation-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .escalation-step {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #ffcdd2;
+        }
+
+        .step-year {
+            font-size: 1.2rem;
+            color: #d32f2f;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-event {
+            font-size: 1.1rem;
+            color: #ffcdd2;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-impact {
+            font-size: 1rem;
+            line-height: 1.3;
+        }
+
+        .civil-war-revolution {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .revolution-aspect {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(211,47,47,0.3);
+        }
+
+        .aspect-title {
+            color: #d32f2f;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
+
+        .aspect-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .aspect-features li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .aspect-features li:before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+        }
+
+        .emancipation-transformation {
+            background: rgba(211,47,47,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #d32f2f;
+            margin: 2rem 0;
+        }
+
+        .transformation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .transformation-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #ffcdd2;
+        }
+
+        .transformation-title {
+            font-size: 1.3rem;
+            color: #d32f2f;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+        }
+
+        .transformation-description {
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .global-impact {
+            background: linear-gradient(45deg, rgba(211,47,47,0.1), rgba(244,67,54,0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #d32f2f;
+            margin: 2rem 0;
+        }
+
+        .global-connections {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .global-connection {
+            background: rgba(255,255,255,0.1);
+            padding: 1.2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #ffcdd2;
+        }
+
+        .global-connection h4 {
+            color: #d32f2f;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .global-connection p {
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .course-completion {
+            background: rgba(211,47,47,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #d32f2f;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .completion-message {
+            font-size: 1.4rem;
+            color: #d32f2f;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        .final-synthesis {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 1rem 0;
+        }
+
+        .auto-reveal p, .reveal-item p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .image-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .image-content {
+            max-width: 80%;
+            max-height: 80%;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title and Complete Course Narrative -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-header auto-reveal">
+                <div class="unit-title">COURSE CULMINATION - FINAL CLASS</div>
+                <div class="lesson-title">Civil War as Revolutionary Culmination</div>
+                <div class="central-question">How did the Civil War represent both the completion and transformation of American revolutionary principles - and resolve the contradictions that began with colonial expansion?</div>
+            </div>
+            
+            <div class="content-grid">
+                <div class="concept-card auto-reveal">
+                    <h3>🔑 Central Theme</h3>
+                    <p>The Civil War as the second American revolution - completing the transformation that began in 1776 by finally resolving the slavery contradiction through force</p>
+                </div>
+                
+                <div class="concept-card auto-reveal">
+                    <h3>🌍 Full Circle</h3>
+                    <p>From environmental pressures driving European expansion (Week 1) to American revolutionary success creating pressures requiring a second revolution to resolve foundational contradictions</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Today's Mission:</strong> Understanding how the Civil War completes the revolutionary transformation that began with colonial experiments, providing resolution to all the major contradictions we've studied this semester
+            </div>
+        </div>
+
+        <!-- Slide 2: Complete Course Synthesis -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>🔄 The Complete Revolutionary Cycle (1450-1865)</h2>
+            
+            <div class="semester-synthesis auto-reveal">
+                <h3>Our Semester's Narrative Arc - Full Circle</h3>
+                <div class="synthesis-timeline">
+                    <div class="synthesis-point">
+                        <div class="synthesis-era">1450-1550</div>
+                        <div class="synthesis-theme">Environmental Crisis</div>
+                        <div class="synthesis-connection">Little Ice Age forces European expansion and colonial experiments</div>
+                    </div>
+                    <div class="synthesis-point">
+                        <div class="synthesis-era">1600-1750</div>
+                        <div class="synthesis-theme">Imperial Systems</div>
+                        <div class="synthesis-connection">Atlantic slave trade creates global economic integration with built-in contradictions</div>
+                    </div>
+                    <div class="synthesis-point">
+                        <div class="synthesis-era">1775-1800</div>
+                        <div class="synthesis-theme">Revolutionary Birth</div>
+                        <div class="synthesis-connection">American Revolution creates constitutional democracy but compromises on slavery</div>
+                    </div>
+                    <div class="synthesis-point">
+                        <div class="synthesis-era">1800-1850</div>
+                        <div class="synthesis-theme">Success & Contradiction</div>
+                        <div class="synthesis-connection">Democratic and economic success makes slavery contradiction unbearable</div>
+                    </div>
+                    <div class="synthesis-point">
+                        <div class="synthesis-era">1861-1865</div>
+                        <div class="synthesis-theme">Revolutionary Completion</div>
+                        <div class="synthesis-connection">Civil War resolves contradictions through second American revolution</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #d32f2f; text-align: center; margin: 1.5rem 0;">The Pattern of Revolutionary Change</h3>
+                <p style="text-align: center; font-size: 1.3rem;">Environmental pressures → Innovation and expansion → Success creates contradictions → Crisis forces revolutionary transformation → New stability with transformed principles</p>
+            </div>
+
+            <div class="auto-reveal">
+                <h3 style="color: #d32f2f;">Why Civil War Becomes Inevitable</h3>
+                <p style="text-align: center; font-size: 1.2rem;">Every success of American revolutionary principles - democracy, economic growth, territorial expansion, constitutional government - makes the slavery contradiction more obvious and politically impossible to maintain</p>
+            </div>
+
+            <div class="question-highlight auto-reveal">
+                The Civil War represents the ultimate test of whether a nation "conceived in liberty and dedicated to the proposition that all men are created equal" can survive its founding contradictions
+            </div>
+        </div>
+
+        <!-- Slide 3: The Final Crisis (1850-1860) -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>💥 The Final Decade: When Compromise Dies (1850-1860)</h2>
+            
+            <div class="auto-reveal">
+                <h3>Constitutional System Reaches Breaking Point</h3>
+            </div>
+            
+            <div class="crisis-escalation auto-reveal">
+                <h3>The Escalating Crisis - No More Compromises Possible</h3>
+                <div class="escalation-steps">
+                    <div class="escalation-step">
+                        <div class="step-year">1850</div>
+                        <div class="step-event">Compromise of 1850</div>
+                        <div class="step-impact">Last attempt at sectional balance; temporary peace but deeper tensions</div>
+                    </div>
+                    <div class="escalation-step">
+                        <div class="step-year">1854</div>
+                        <div class="step-event">Kansas-Nebraska Act</div>
+                        <div class="step-impact">"Popular sovereignty" leads to "Bleeding Kansas" - democracy produces violence</div>
+                    </div>
+                    <div class="escalation-step">
+                        <div class="step-year">1857</div>
+                        <div class="step-event">Dred Scott Decision</div>
+                        <div class="step-impact">Supreme Court rules Congress cannot ban slavery anywhere - constitutional system fails</div>
+                    </div>
+                    <div class="escalation-step">
+                        <div class="step-year">1860</div>
+                        <div class="step-event">Lincoln's Election</div>
+                        <div class="step-impact">Republican victory on slavery restriction triggers secession crisis</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="primary-source auto-reveal">
+                <strong>Abraham Lincoln, "House Divided" Speech (1858):</strong><br>
+                "A house divided against itself cannot stand. I believe this government cannot endure, permanently half slave and half free... It will become all one thing, or all the other."
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #d32f2f; text-align: center;">Why the Constitutional System Failed</h3>
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h4>⚖️ Moral vs. Legal</h4>
+                        <p>Constitutional compromises cannot resolve fundamental moral contradictions about human rights</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>🗳️ Democratic Paradox</h4>
+                        <p>Democratic majorities in each section support incompatible systems</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>🌍 Territorial Pressure</h4>
+                        <p>Every new state forces the slavery question - expansion makes compromise impossible</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Constitutional Crisis Becomes Revolutionary Moment:</strong> When democratic processes and constitutional law cannot resolve fundamental contradictions, only revolutionary transformation remains
+            </div>
+        </div>
+
+        <!-- Slide 4: Secession and the Question of Revolutionary Legitimacy -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>⚡ Secession: Competing Claims to Revolutionary Legitimacy</h2>
+            
+            <div class="auto-reveal">
+                <h3>Both Sides Claim Revolutionary Principles</h3>
+            </div>
+            
+            <div class="civil-war-revolution auto-reveal">
+                <div class="revolution-aspect">
+                    <div class="aspect-title">🏛️ Confederate Argument</div>
+                    <ul class="aspect-features">
+                        <li>Right of revolution: States can withdraw consent from federal government</li>
+                        <li>Self-determination: Southern people have right to govern themselves</li>
+                        <li>Constitutional compact: Union is agreement between sovereign states</li>
+                        <li>Minority rights: Protect Southern interests from Northern majority tyranny</li>
+                        <li>Property rights: Federal government cannot confiscate slave property</li>
+                        <li>States' rights: Federal power threatens local self-government</li>
+                    </ul>
+                </div>
+                
+                <div class="revolution-aspect">
+                    <div class="aspect-title">🇺🇸 Union Argument</div>
+                    <ul class="aspect-features">
+                        <li>Popular sovereignty: "We the People" created permanent union</li>
+                        <li>Democratic majority: Lincoln won constitutional election</li>
+                        <li>Rule of law: Secession violates constitutional processes</li>
+                        <li>Human equality: Slavery contradicts Declaration of Independence</li>
+                        <li>National democracy: Federal government represents all the people</li>
+                        <li>Revolutionary completion: Civil War fulfills 1776 promises</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>The Ultimate Revolutionary Question:</strong> Who has legitimate authority to interpret revolutionary principles - and what happens when democratic processes produce results one section cannot accept?
+            </div>
+        </div>
+
+        <!-- Slide 5: Civil War as Revolutionary War -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>⚔️ Civil War as the Second American Revolution</h2>
+            
+            <div class="auto-reveal">
+                <h3>Why This Constitutes Revolutionary Transformation</h3>
+            </div>
+            
+            <div class="emancipation-transformation auto-reveal">
+                <h3>Revolutionary Changes Through War</h3>
+                <div class="transformation-grid">
+                    <div class="transformation-card">
+                        <div class="transformation-title">⛓️ Emancipation</div>
+                        <div class="transformation-description">4 million enslaved people freed - largest emancipation in human history</div>
+                    </div>
+                    <div class="transformation-card">
+                        <div class="transformation-title">🏛️ Federal Power</div>
+                        <div class="transformation-description">National government gains unprecedented authority over states and individuals</div>
+                    </div>
+                    <div class="transformation-card">
+                        <div class="transformation-title">💰 Economic Revolution</div>
+                        <div class="transformation-description">Industrial capitalism replaces slave-based agriculture as dominant system</div>
+                    </div>
+                    <div class="transformation-card">
+                        <div class="transformation-title">👥 Citizenship</div>
+                        <div class="transformation-description">14th Amendment defines national citizenship with equal rights</div>
+                    </div>
+                    <div class="transformation-card">
+                        <div class="transformation-title">🗳️ Democratic Expansion</div>
+                        <div class="transformation-description">15th Amendment extends voting rights regardless of race</div>
+                    </div>
+                    <div class="transformation-card">
+                        <div class="transformation-title">🌍 Global Impact</div>
+                        <div class="transformation-description">American success influences global movements for democracy and abolition</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="primary-source auto-reveal">
+                <strong>Gettysburg Address (Abraham Lincoln, 1863):</strong><br>
+                "Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal... that this nation, under God, shall have a new birth of freedom."
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #d32f2f; text-align: center;">"New Birth of Freedom" - Revolutionary Transformation</h3>
+                <p style="text-align: center; font-size: 1.2rem;">Lincoln explicitly connects Civil War to completing the revolutionary transformation begun in 1776 - finally making "all men are created equal" a practical reality rather than just an aspiration</p>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Revolutionary Success:</strong> The Civil War resolves the central contradiction of American revolutionary principles through force when constitutional processes prove inadequate
+            </div>
+        </div>
+
+        <!-- Slide 6: Global Context - American Civil War and World Revolutionary Movements -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>🌍 American Civil War in Global Revolutionary Context</h2>
+            
+            <div class="auto-reveal">
+                <h3>Full Circle: Back to Week 1's Global Context</h3>
+            </div>
+            
+            <div class="global-impact auto-reveal">
+                <h3>American Success Influences Global Democratic Development</h3>
+                <div class="global-connections">
+                    <div class="global-connection">
+                        <h4>🇪🇺 European Revolutions</h4>
+                        <p><strong>1848 revolutions:</strong> American federal model influences liberal movements<br><strong>Union victory:</strong> Proves democratic government can survive civil war</p>
+                    </div>
+                    <div class="global-connection">
+                        <h4>⛓️ Global Abolition</h4>
+                        <p><strong>Emancipation:</strong> American abolition accelerates global anti-slavery movements<br><strong>Moral authority:</strong> U.S. joins Britain in anti-slavery leadership</p>
+                    </div>
+                    <div class="global-connection">
+                        <h4>🗳️ Democratic Expansion</h4>
+                        <p><strong>Constitutional model:</strong> Written constitutions and federalism spread worldwide<br><strong>Suffrage expansion:</strong> American precedent for broader political participation</p>
+                    </div>
+                    <div class="global-connection">
+                        <h4>🏭 Industrial Development</h4>
+                        <p><strong>Free labor:</strong> Union victory validates industrial capitalism over slave labor<br><strong>Economic integration:</strong> American market becomes global force</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #d32f2f; text-align: center; margin: 1.5rem 0;">Connecting Back to Course Beginning</h3>
+                <p style="text-align: center; font-size: 1.3rem;">Remember Week 1's question: "Why might European maritime ventures have different long-term consequences?" The American experiment that grew from those ventures now influences global political development</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #d32f2f;">Revolutionary Cycle Complete</h3>
+                <p style="text-align: center; font-size: 1.2rem;">From environmental pressures driving European expansion to American revolutionary success influencing global democratic movements - the cycle of revolutionary transformation continues worldwide</p>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Global Revolutionary Impact:</strong> American success in resolving constitutional democracy's greatest crisis provides model for democratic movements worldwide facing their own fundamental contradictions
+            </div>
+        </div>
+
+        <!-- Slide 7: Resolution of Course Themes -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>✅ Resolution of All Major Course Contradictions</h2>
+            
+            <div class="auto-reveal">
+                <h3>How Civil War Resolves Each Major Course Theme</h3>
+            </div>
+            
+            <div class="semester-synthesis auto-reveal">
+                <h3>Course Contradictions Finally Resolved</h3>
+                <div class="synthesis-timeline">
+                    <div class="synthesis-point">
+                        <div class="synthesis-era">Economic</div>
+                        <div class="synthesis-theme">Slave vs. Free Labor</div>
+                        <div class="synthesis-connection">Industrial capitalism definitively defeats slave-based agriculture</div>
+                    </div>
+                    <div class="synthesis-point">
+                        <div class="synthesis-era">Political</div>
+                        <div class="synthesis-theme">States vs. Federal</div>
+                        <div class="synthesis-connection">National government establishes supremacy over state sovereignty claims</div>
+                    </div>
+                    <div class="synthesis-point">
+                        <div class="synthesis-era">Constitutional</div>
+                        <div class="synthesis-theme">Equality vs. Property</div>
+                        <div class="synthesis-connection">Human equality takes precedence over property rights in enslaved people</div>
+                    </div>
+                    <div class="synthesis-point">
+                        <div class="synthesis-era">Social</div>
+                        <div class="synthesis-theme">White Democracy vs. Racial Slavery</div>
+                        <div class="synthesis-connection">Democratic principles extended across racial lines (though imperfectly)</div>
+                    </div>
+                    <div class="synthesis-point">
+                        <div class="synthesis-era">Global</div>
+                        <div class="synthesis-theme">Revolutionary Model</div>
+                        <div class="synthesis-connection">American success validates democratic government for global movements</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #d32f2f; text-align: center; margin: 1.5rem 0;">The Revolutionary Achievement</h3>
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h4>⛓️ Slavery Abolished</h4>
+                        <p>The economic system from Week 6 that created global wealth and American contradiction finally eliminated</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>🏛️ Democracy Preserved</h4>
+                        <p>Constitutional government from Week 10 survives its greatest test and emerges stronger</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>🌍 Revolutionary Principles Fulfilled</h4>
+                        <p>The ideals from Week 9's Declaration finally applied consistently (though work remains)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Revolutionary Completion:</strong> The Civil War completes the revolutionary transformation that environmental pressures began in the 1450s - creating a democratic, industrial, unified nation committed to human equality
+            </div>
+        </div>
+
+        <!-- Slide 8: Legacy and Ongoing Challenges -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>🔮 Revolutionary Legacy and Unfinished Business</h2>
+            
+            <div class="auto-reveal">
+                <h3>What the Civil War Achieved and What It Left Undone</h3>
+            </div>
+            
+            <div class="civil-war-revolution auto-reveal">
+                <div class="revolution-aspect">
+                    <div class="aspect-title">✅ Revolutionary Achievements</div>
+                    <ul class="aspect-features">
+                        <li>Slavery permanently abolished throughout United States</li>
+                        <li>Federal authority established over state sovereignty claims</li>
+                        <li>Democratic government proves it can survive existential crisis</li>
+                        <li>Constitutional amendments guarantee equal citizenship and voting rights</li>
+                        <li>Industrial capitalism becomes dominant economic system</li>
+                        <li>American model influences global democratic movements</li>
+                        <li>United States emerges as unified nation rather than confederation</li>
+                    </ul>
+                </div>
+                
+                <div class="revolution-aspect">
+                    <div class="aspect-title">⚠️ Unfinished Revolutionary Work</div>
+                    <ul class="aspect-features">
+                        <li>Racial equality in practice remains incomplete despite constitutional promises</li>
+                        <li>Women's political rights not addressed by war's revolutionary changes</li>
+                        <li>Indigenous peoples continue to face displacement and cultural destruction</li>
+                        <li>Economic inequality increases with industrial capitalism</li>
+                        <li>Sectional reconciliation requires abandoning some revolutionary gains</li>
+                        <li>Global influence creates new imperial responsibilities and contradictions</li>
+                        <li>Democratic institutions must adapt to industrial, urban society</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>The Pattern Continues:</strong> Revolutionary success creates new conditions that will require future generations to continue adapting democratic principles to changing circumstances
+            </div>
+        </div>
+
+        <!-- Slide 9: Course Conclusion - Understanding Revolutionary Change -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>🎓 What We've Learned About Revolutionary Change</h2>
+            
+            <div class="auto-reveal">
+                <h3>Key Insights from Our Semester Journey</h3>
+            </div>
+            
+            <div class="course-completion auto-reveal">
+                <div class="completion-message">Understanding How Revolutionary Change Actually Works</div>
+                <div class="final-synthesis">
+                    <strong>1. Environmental pressures create opportunities:</strong> Crises force innovation and experimentation with new forms of organization<br><br>
+                    
+                    <strong>2. Success creates new contradictions:</strong> Revolutionary achievements generate new problems that require further transformation<br><br>
+                    
+                    <strong>3. Contradictions eventually demand resolution:</strong> Temporary compromises cannot indefinitely postpone fundamental conflicts<br><br>
+                    
+                    <strong>4. Revolutionary cycles repeat:</strong> Each resolution creates conditions for new challenges and adaptations<br><br>
+                    
+                    <strong>5. Global context matters:</strong> Revolutionary changes spread across societies and influence each other<br><br>
+                    
+                    <strong>6. Human agency shapes outcomes:</strong> While pressures create opportunities, human choices determine specific results
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #d32f2f; text-align: center; margin: 1.5rem 0;">The American Revolutionary Experience</h3>
+                <p style="text-align: center; font-size: 1.2rem;">From environmental crisis to constitutional democracy to civil war resolution - America's story illustrates how revolutionary change works across time and how each generation must adapt inherited principles to new conditions</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #d32f2f;">Historical Thinking Skills Developed</h3>
+                <p style="text-align: center; font-size: 1.2rem;"><strong>Contingency:</strong> Understanding alternative possibilities<br><strong>Causation:</strong> Tracing complex relationships across time<br><strong>Context:</strong> Placing events within broader patterns<br><strong>Comparison:</strong> Analyzing different approaches to similar challenges<br><strong>Synthesis:</strong> Connecting themes across chronological periods</p>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Final Question for Reflection:</strong> How does understanding the American revolutionary experience from 1450-1865 help us think about contemporary challenges and the ongoing work of democratic societies?
+            </div>
+        </div>
+
+        <!-- Slide 10: Final Reflection -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>🌟 The Revolutionary Story Continues</h2>
+            
+            <div class="connecting-thread auto-reveal">
+                <h3>From Environmental Crisis to Democratic Revolution</h3>
+                <p>We began with environmental pressures in the 1450s forcing European innovation and expansion. We end with the American Civil War completing a revolutionary transformation that influenced global democratic development. The story of revolutionary change continues into our own time.</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="text-align: center; color: #d32f2f; margin: 1.5rem 0;">The Enduring Questions</h3>
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h4>🏛️ Democratic Governance</h4>
+                        <p>How do democratic societies balance majority rule with minority rights and individual liberty?</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>💰 Economic Justice</h4>
+                        <p>How do societies balance economic development with social equality and human dignity?</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>🌍 Global Responsibility</h4>
+                        <p>How do successful societies use their influence to promote human freedom worldwide?</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal" style="text-align: center; margin-top: 2rem;">
+                <h3 style="color: #d32f2f;">Thank You for the Journey</h3>
+                <p style="font-size: 1.4rem; font-weight: bold; margin: 1rem 0;">From the Little Ice Age to the Civil War</p>
+                <p style="font-size: 1.2rem;">You've traced one of the most important stories in human history - how environmental pressures can drive revolutionary transformations that reshape the world</p>
+                <p style="font-size: 1.1rem; margin-top: 1.5rem; font-style: italic;">The work of building just and free societies continues in every generation, including your own.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()" aria-label="Previous">← Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()" aria-label="Next">Next →</button>
+    </div>
+
+    <!-- Slide Indicators -->
+    <div class="slide-indicator" role="tablist" aria-label="Slide navigation">
+        <div class="indicator-dot active" onclick="goToSlide(0)" role="tab" aria-label="Slide 1"></div>
+        <div class="indicator-dot" onclick="goToSlide(1)" role="tab" aria-label="Slide 2"></div>
+        <div class="indicator-dot" onclick="goToSlide(2)" role="tab" aria-label="Slide 3"></div>
+        <div class="indicator-dot" onclick="goToSlide(3)" role="tab" aria-label="Slide 4"></div>
+        <div class="indicator-dot" onclick="goToSlide(4)" role="tab" aria-label="Slide 5"></div>
+        <div class="indicator-dot" onclick="goToSlide(5)" role="tab" aria-label="Slide 6"></div>
+        <div class="indicator-dot" onclick="goToSlide(6)" role="tab" aria-label="Slide 7"></div>
+        <div class="indicator-dot" onclick="goToSlide(7)" role="tab" aria-label="Slide 8"></div>
+        <div class="indicator-dot" onclick="goToSlide(8)" role="tab" aria-label="Slide 9"></div>
+        <div class="indicator-dot" onclick="goToSlive(9)" role="tab" aria-label="Slide 10"></div>
+    </div>
+
+    <!-- Image Tab -->
+    <div class="image-tab" onclick="toggleImage()">⚔️ Civil War Maps</div>
+
+    <!-- Image Overlay -->
+    <div class="image-overlay" id="imageOverlay" onclick="toggleImage()">
+        <div class="image-content">
+            <h3>Civil War and Reconstruction Maps</h3>
+            <p>Interactive maps showing secession crisis, major Civil War battles, emancipation progress, and Reconstruction policies. Includes data visualizations on casualties, economic transformation, and the expansion of federal power.</p>
+            <button onclick="toggleImage()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #d32f2f; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentReveal = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlideIndicators() {
+            const indicators = document.querySelectorAll('.indicator-dot');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function showSlide(slideIndex) {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('hidden', index !== slideIndex);
+            });
+            
+            currentReveal = 0;
+            updateSlideIndicators();
+            revealNextItem();
+        }
+
+        function nextSlide() {
+            const currentSlideElement = slides[currentSlide];
+            const maxReveals = parseInt(currentSlideElement.dataset.revealCount) || 1;
+            
+            if (currentReveal < maxReveals) {
+                revealNextItem();
+            } else if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentReveal > 0) {
+                hideCurrentItem();
+            } else if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+                // Reveal all items on previous slide
+                const prevSlideElement = slides[currentSlide];
+                const maxReveals = parseInt(prevSlideElement.dataset.revealCount) || 1;
+                currentReveal = maxReveals;
+                showAllReveals();
+            }
+        }
+
+        function revealNextItem() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.auto-reveal, .reveal-item');
+            
+            if (currentReveal < revealItems.length) {
+                revealItems[currentReveal].classList.add('revealed');
+                currentReveal++;
+            }
+        }
+
+        function hideCurrentItem() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.auto-reveal, .reveal-item');
+            
+            if (currentReveal > 0) {
+                currentReveal--;
+                revealItems[currentReveal].classList.remove('revealed');
+            }
+        }
+
+        function showAllReveals() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.auto-reveal, .reveal-item');
+            revealItems.forEach(item => item.classList.add('revealed'));
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            showSlide(currentSlide);
+        }
+
+        function toggleImage() {
+            const overlay = document.getElementById('imageOverlay');
+            overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(event) {
+            switch(event.key) {
+                case 'ArrowLeft':
+                    previousSlide();
+                    break;
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+                case ',':
+                    if (currentSlide > 0) {
+                        currentSlide--;
+                        showSlide(currentSlide);
+                        const maxReveals = parseInt(slides[currentSlide].dataset.revealCount) || 1;
+                        currentReveal = maxReveals;
+                        showAllReveals();
+                    }
+                    break;
+                case '.':
+                    if (currentSlide < totalSlides - 1) {
+                        currentSlide++;
+                        showSlide(currentSlide);
+                    }
+                    break;
+                case 'Enter':
+                    showAllReveals();
+                    const maxReveals = parseInt(slides[currentSlide].dataset.revealCount) || 1;
+                    currentReveal = maxReveals;
+                    break;
+            }
+        });
+
+        // Initialize presentation
+        showSlide(0);
+    </script>
+</body>
+</html>

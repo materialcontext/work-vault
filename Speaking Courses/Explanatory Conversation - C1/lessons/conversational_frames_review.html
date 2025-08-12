@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversational Frames Review - Speaking Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+	    font-size: 20px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            height: 100vh;
+        }
+
+        .slide-container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .slide {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 3rem;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .slide.hidden {
+            display: none;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #ffd93d;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #f8f9fa;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+            margin: 1.5rem 0;
+        }
+
+        .reveal-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .conversation-showcase {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(76, 175, 80, 0.3);
+            border: 3px solid #ffd93d;
+        }
+
+        .conversation-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #ffd93d;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .conversation-text {
+            font-size: 1.6rem;
+            line-height: 1.8;
+            font-weight: 600;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .dialogue-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .speaker {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .teacher {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            margin-left: 2rem;
+            border-left: 4px solid #ffd93d;
+        }
+
+        .student {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            margin-right: 2rem;
+            border-right: 4px solid #ffd93d;
+        }
+
+        .speaker-label {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #ffd93d;
+        }
+
+        .frame-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .frame-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .frame-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffd93d;
+            box-shadow: 0 10px 30px rgba(255, 217, 61, 0.3);
+        }
+
+        .frame-card h4 {
+            color: #ffd93d;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .frame-pattern {
+            background: rgba(255, 217, 61, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            font-style: italic;
+            border-left: 4px solid #ffd93d;
+        }
+
+        .practice-activity {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 3px solid #f8f9fa;
+        }
+
+        .activity-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #f8f9fa;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .speaking-challenge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 2px solid #f8f9fa;
+        }
+
+        .challenge-title {
+            color: #f8f9fa;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(96, 165, 250, 0.9);
+            border: none;
+            color: #1e1b4b;
+            padding: 1.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.4rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(96, 165, 250, 0.4);
+        }
+
+        .nav-btn:hover {
+            background: rgba(96, 165, 250, 1);
+            transform: scale(1.15);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(96, 165, 250, 0.9);
+            color: #1e1b4b;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            z-index: 1000;
+        }
+
+        .vocab-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .vocab-list li {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 0.8rem 0;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #ffd93d;
+            font-size: 1.2rem;
+        }
+
+        .rapid-fire {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .timer-display {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 1rem 0;
+        }
+
+        .conversation-flow {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .flow-step {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+        }
+
+        .frame-mixer {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 2px solid #ffd93d;
+        }
+
+        .mixer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .mixer-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid #ffd93d;
+            color: #ffffff;
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .mixer-button:hover {
+            background: rgba(255, 217, 61, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .confidence-meter {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .meter-bar {
+            background: rgba(255, 255, 255, 0.3);
+            height: 20px;
+            border-radius: 10px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .meter-fill {
+            background: #ffd93d;
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator" id="slide-counter">1 / 10</div>
+    
+    <!-- Slide 1: Welcome to Frame Review -->
+    <div class="slide" id="slide-0">
+        <div class="reveal-item">
+            <h1>🗣️ Conversational Frame Review</h1>
+            <h3 style="text-align: center; color: #f8f9fa; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">Practice All Your Language Frames in Natural Conversations</h3>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="conversation-showcase">
+                <div class="conversation-title">Ready to Use Your Frames Like a Pro?</div>
+                <div class="conversation-text">
+                    Today we're practicing all the language patterns you've learned - but in real conversations, not isolated exercises!
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-cards">
+                <div class="frame-card">
+                    <h4>🔬 Science Frames</h4>
+                    <p>Explanation patterns, evidence language, process descriptions</p>
+                </div>
+                <div class="frame-card">
+                    <h4>📚 History Frames</h4>
+                    <p>Context setting, event ordering, cause-and-effect</p>
+                </div>
+                <div class="frame-card">
+                    <h4>🌊 Wave Explanations</h4>
+                    <p>Comparison patterns, scientific reasoning</p>
+                </div>
+                <div class="frame-card">
+                    <h4>❄️ WWII Events</h4>
+                    <p>Timeline language, conflict descriptions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Warm-up Dialogue Practice -->
+    <div class="slide hidden" id="slide-1">
+        <div class="reveal-item">
+            <h2>🎭 Warm-up: Natural Dialogue Practice</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="conversation-showcase">
+                <div class="conversation-title">Frame Challenge</div>
+                <div class="conversation-text">
+                    I'll ask natural questions - you respond using any frame that fits!
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="dialogue-container">
+                <div class="speaker teacher">
+                    <div class="speaker-label">👩‍🏫 Teacher:</div>
+                    <p>"So, what's the difference between when ice melts and when wood burns?"</p>
+                </div>
+                
+                <div class="speaker student">
+                    <div class="speaker-label">🎓 Your Response Options:</div>
+                    <div class="frame-pattern">
+                        <strong>Classification Frame:</strong> "These are two different types of changes..."
+                    </div>
+                    <div class="frame-pattern">
+                        <strong>Evidence Frame:</strong> "You can tell the difference because..."
+                    </div>
+                    <div class="frame-pattern">
+                        <strong>Process Frame:</strong> "When ice melts... but when wood burns..."
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-challenge">
+                <div class="challenge-title">🎯 Your Turn</div>
+                <p><strong>Challenge:</strong> Answer the teacher's question using at least 2 different frames. Speak naturally - don't just recite patterns!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Frame Mixing Practice -->
+    <div class="slide hidden" id="slide-2">
+        <div class="reveal-item">
+            <h2>🎲 Frame Mixer Challenge</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-mixer">
+                <h3 style="text-align: center; color: #ffd93d;">Random Frame Generator</h3>
+                <p style="text-align: center; margin: 1rem 0;">Click any two frames, then explain a topic using both patterns</p>
+                
+                <div class="mixer-grid">
+                    <div class="mixer-button" onclick="selectFrame(this, 'context')">🌍 Context Frame</div>
+                    <div class="mixer-button" onclick="selectFrame(this, 'process')">⚙️ Process Frame</div>
+                    <div class="mixer-button" onclick="selectFrame(this, 'evidence')">🔍 Evidence Frame</div>
+                    <div class="mixer-button" onclick="selectFrame(this, 'comparison')">🔄 Comparison Frame</div>
+                    <div class="mixer-button" onclick="selectFrame(this, 'cause-effect')">➡️ Cause-Effect Frame</div>
+                    <div class="mixer-button" onclick="selectFrame(this, 'sequence')">📍 Sequence Frame</div>
+                    <div class="mixer-button" onclick="selectFrame(this, 'definition')">📖 Definition Frame</div>
+                    <div class="mixer-button" onclick="selectFrame(this, 'example')">💡 Example Frame</div>
+                </div>
+                
+                <div id="selected-frames" style="text-align: center; margin: 1rem 0; font-weight: bold; color: #ffd93d;"></div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="conversation-flow">
+                <div class="flow-step">
+                    <h4>📝 Topic Options</h4>
+                    <ul style="text-align: left;">
+                        <li>How sound travels</li>
+                        <li>The Cuban Missile Crisis</li>
+                        <li>Chemical vs physical changes</li>
+                        <li>The Berlin Wall</li>
+                    </ul>
+                </div>
+                <div class="flow-step">
+                    <h4>🎯 Challenge Goal</h4>
+                    <p>Use your two selected frames to explain one topic. Speak for 2-3 minutes, making it sound natural and conversational!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Rapid-Fire Frame Practice -->
+    <div class="slide hidden" id="slide-3">
+        <div class="reveal-item">
+            <h2>⚡ Rapid-Fire Frame Responses</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="rapid-fire">
+                <h3>30-Second Response Challenge</h3>
+                <div class="timer-display" id="timer">0:30</div>
+                <p>I'll give you a prompt - respond immediately using any appropriate frame!</p>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-cards">
+                <div class="frame-card">
+                    <h4>⚡ Quick Prompts</h4>
+                    <ul class="vocab-list">
+                        <li>"Why did the Cold War start?"</li>
+                        <li>"How do we know a chemical reaction happened?"</li>
+                        <li>"What's the difference between sound and light?"</li>
+                        <li>"Why was the Korean War important?"</li>
+                    </ul>
+                </div>
+                <div class="frame-card">
+                    <h4>🎯 Success Strategy</h4>
+                    <ul class="vocab-list">
+                        <li>Don't overthink - use the first frame that fits</li>
+                        <li>Start talking immediately</li>
+                        <li>Build confidence through speed</li>
+                        <li>Focus on fluency, not perfection</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-challenge">
+                <div class="challenge-title">🚀 Ready?</div>
+                <p><strong>Goal:</strong> When I say a prompt, start talking within 3 seconds using any frame pattern. Keep going for 30 seconds!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Conversational Transitions -->
+    <div class="slide hidden" id="slide-4">
+        <div class="reveal-item">
+            <h2>🔗 Smooth Frame Transitions</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="conversation-showcase">
+                <div class="conversation-title">Flow Like a Native Speaker</div>
+                <div class="conversation-text">
+                    Learn to connect your frames naturally in longer explanations
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="dialogue-container">
+                <div class="speaker teacher">
+                    <div class="speaker-label">👩‍🏫 Teacher:</div>
+                    <p>"Can you explain the whole space race from start to finish?"</p>
+                </div>
+                
+                <div class="speaker student">
+                    <div class="speaker-label">🎓 Frame Chain Example:</div>
+                    <div class="frame-pattern">
+                        <strong>Context → Event → Cause → Result</strong><br>
+                        "After WWII ended... → This led to... → The main reason was... → By the end..."
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="conversation-flow">
+                <div class="flow-step">
+                    <h4>🔗 Transition Words</h4>
+                    <ul style="text-align: left;">
+                        <li>"Building on that..."</li>
+                        <li>"What's interesting is..."</li>
+                        <li>"Another way to think about it..."</li>
+                        <li>"The key point here..."</li>
+                    </ul>
+                </div>
+                <div class="flow-step">
+                    <h4>🌊 Natural Flow</h4>
+                    <p>Don't announce your frames - just use them! Let one idea flow naturally into the next.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-challenge">
+                <div class="challenge-title">🎯 Practice Challenge</div>
+                <p><strong>Task:</strong> Choose any major topic we've studied. Give a 3-4 minute explanation using 4+ different frames with smooth transitions.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Question Response Practice -->
+    <div class="slide hidden" id="slide-5">
+        <div class="reveal-item">
+            <h2>❓ Responding to Different Question Types</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-cards">
+                <div class="frame-card">
+                    <h4>🤔 "What" Questions</h4>
+                    <div class="frame-pattern">"What is photosynthesis?"</div>
+                    <p><strong>Best frames:</strong> Definition, Process, Example</p>
+                </div>
+                <div class="frame-card">
+                    <h4>🤔 "Why" Questions</h4>
+                    <div class="frame-pattern">"Why did the Cold War happen?"</div>
+                    <p><strong>Best frames:</strong> Cause-Effect, Context, Evidence</p>
+                </div>
+                <div class="frame-card">
+                    <h4>🤔 "How" Questions</h4>
+                    <div class="frame-pattern">"How do sound waves work?"</div>
+                    <p><strong>Best frames:</strong> Process, Sequence, Comparison</p>
+                </div>
+                <div class="frame-card">
+                    <h4>🤔 "Compare" Questions</h4>
+                    <div class="frame-pattern">"What's the difference between..."</div>
+                    <p><strong>Best frames:</strong> Comparison, Evidence, Examples</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="practice-activity">
+                <div class="activity-title">🎲 Question Roulette</div>
+                <p style="text-align: center; font-size: 1.3rem; margin: 1rem 0;">
+                    I'll ask different types of questions - you identify the question type and choose the best frame to answer!
+                </p>
+                
+                <div class="conversation-flow">
+                    <div class="flow-step">
+                        <h4>📝 Sample Questions</h4>
+                        <ul style="text-align: left;">
+                            <li>"Why was Berlin divided?"</li>
+                            <li>"How do chemical reactions differ from physical changes?"</li>
+                            <li>"What caused the Cuban Missile Crisis?"</li>
+                            <li>"How does light travel differently than sound?"</li>
+                        </ul>
+                    </div>
+                    <div class="flow-step">
+                        <h4>🎯 Your Strategy</h4>
+                        <ol style="text-align: left;">
+                            <li>Listen to the question type</li>
+                            <li>Choose appropriate frame(s)</li>
+                            <li>Start speaking within 5 seconds</li>
+                            <li>Give a complete 1-2 minute answer</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Confidence Building -->
+    <div class="slide hidden" id="slide-6">
+        <div class="reveal-item">
+            <h2>💪 Building Speaking Confidence</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="confidence-meter">
+                <h3>Your Frame Mastery Level</h3>
+                <div class="meter-bar">
+                    <div class="meter-fill" style="width: 85%"></div>
+                </div>
+                <p style="margin: 1rem 0;">You've come so far! Let's push that confidence even higher.</p>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-cards">
+                <div class="frame-card">
+                    <h4>✅ What You Can Do Now</h4>
+                    <ul class="vocab-list">
+                        <li>Explain complex scientific processes</li>
+                        <li>Describe historical events clearly</li>
+                        <li>Use academic language naturally</li>
+                        <li>Respond quickly to questions</li>
+                        <li>Connect different ideas smoothly</li>
+                    </ul>
+                </div>
+                <div class="frame-card">
+                    <h4>🚀 Confidence Boosters</h4>
+                    <ul class="vocab-list">
+                        <li>You have 10+ different frame patterns</li>
+                        <li>You can mix and match them</li>
+                        <li>You sound like an expert</li>
+                        <li>You can explain anything</li>
+                        <li>Your English keeps improving!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-challenge">
+                <div class="challenge-title">🎉 Celebration Challenge</div>
+                <p><strong>Task:</strong> Pick your favorite topic from our entire course. Give a confident 4-5 minute explanation showing off all your best frames!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Real-World Application -->
+    <div class="slide hidden" id="slide-7">
+        <div class="reveal-item">
+            <h2>🌍 Using Frames in Real Life</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="conversation-showcase">
+                <div class="conversation-title">Beyond the Classroom</div>
+                <div class="conversation-text">
+                    These frames work for ANY explanation - in school, with friends, in presentations!
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-cards">
+                <div class="frame-card">
+                    <h4>📚 In Other Classes</h4>
+                    <ul class="vocab-list">
+                        <li>Math: "This process works by..."</li>
+                        <li>Literature: "The main conflict was..."</li>
+                        <li>Geography: "This happened because..."</li>
+                        <li>Art: "You can see the difference..."</li>
+                    </ul>
+                </div>
+                <div class="frame-card">
+                    <h4>🗣️ In Conversations</h4>
+                    <ul class="vocab-list">
+                        <li>Explaining how something works</li>
+                        <li>Describing what happened</li>
+                        <li>Comparing different options</li>
+                        <li>Giving your opinion with reasons</li>
+                    </ul>
+                </div>
+                <div class="frame-card">
+                    <h4>🎤 In Presentations</h4>
+                    <ul class="vocab-list">
+                        <li>Clear structure and organization</li>
+                        <li>Professional academic language</li>
+                        <li>Confident explanations</li>
+                        <li>Smooth transitions between ideas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="practice-activity">
+                <div class="activity-title">🎭 Real-World Scenarios</div>
+                <div class="conversation-flow">
+                    <div class="flow-step">
+                        <h4>📝 Scenario 1</h4>
+                        <p>A friend asks you to explain why their phone battery dies so fast</p>
+                    </div>
+                    <div class="flow-step">
+                        <h4>📝 Scenario 2</h4>
+                        <p>You need to present a history project to your class</p>
+                    </div>
+                    <div class="flow-step">
+                        <h4>📝 Scenario 4</h4>
+                        <p>You're helping a younger student with homework</p>
+                    </div>
+                </div>
+                <p style="text-align: center; margin: 1rem 0; font-size: 1.3rem;">
+                    <strong>Challenge:</strong> Pick one scenario and practice explaining using your frames!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Advanced Frame Combinations -->
+    <div class="slide hidden" id="slide-8">
+        <div class="reveal-item">
+            <h2>🧠 Advanced Frame Mastery</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="conversation-showcase">
+                <div class="conversation-title">Expert-Level Challenge</div>
+                <div class="conversation-text">
+                    Ready to use multiple frames in one flowing explanation like a pro?
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="dialogue-container">
+                <div class="speaker teacher">
+                    <div class="speaker-label">👩‍🏫 Complex Question:</div>
+                    <p>"Explain how the Cold War affected the space race, and why that's similar to how scientists study chemical reactions."</p>
+                </div>
+                
+                <div class="speaker student">
+                    <div class="speaker-label">🎓 Frame Strategy:</div>
+                    <div class="frame-pattern">
+                        <strong>Context Frame:</strong> Set up Cold War background
+                    </div>
+                    <div class="frame-pattern">
+                        <strong>Cause-Effect Frame:</strong> Show how tension led to competition
+                    </div>
+                    <div class="frame-pattern">
+                        <strong>Comparison Frame:</strong> Connect to scientific methodology
+                    </div>
+                    <div class="frame-pattern">
+                        <strong>Evidence Frame:</strong> Support the comparison with examples
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-cards">
+                <div class="frame-card">
+                    <h4>🎯 Advanced Techniques</h4>
+                    <ul class="vocab-list">
+                        <li>Use 4+ frames in one explanation</li>
+                        <li>Connect different subjects smoothly</li>
+                        <li>Make surprising but logical connections</li>
+                        <li>Sound natural while being academic</li>
+                    </ul>
+                </div>
+                <div class="frame-card">
+                    <h4>🌟 Expert Speakers Do This</h4>
+                    <ul class="vocab-list">
+                        <li>They don't announce their structure</li>
+                        <li>They use frames unconsciously</li>
+                        <li>They adapt to their audience</li>
+                        <li>They make complex ideas simple</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-challenge">
+                <div class="challenge-title">🚀 Master's Challenge</div>
+                <p><strong>Ultimate Task:</strong> Answer the complex question above using 4+ frames in a 5-6 minute explanation. Make it sound effortless!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Celebration and Next Steps -->
+    <div class="slide hidden" id="slide-9">
+        <div class="reveal-item">
+            <h2>🎉 Amazing Progress!</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="conversation-showcase">
+                <div class="conversation-title">You're Now a Frame Master!</div>
+                <div class="conversation-text">
+                    From simple patterns to complex explanations - you can handle anything!
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="confidence-meter">
+                <h3>Your Speaking Journey</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+                    <div style="text-align: center;">
+                        <h4>🌱 Beginning</h4>
+                        <div class="meter-bar"><div class="meter-fill" style="width: 20%"></div></div>
+                        <p>Learning basic frames</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <h4>🌿 Developing</h4>
+                        <div class="meter-bar"><div class="meter-fill" style="width: 60%"></div></div>
+                        <p>Practicing with content</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <h4>🌳 Mastering</h4>
+                        <div class="meter-bar"><div class="meter-fill" style="width: 95%"></div></div>
+                        <p>Natural conversations!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-cards">
+                <div class="frame-card">
+                    <h4>✨ What You've Accomplished</h4>
+                    <ul class="vocab-list">
+                        <li>Mastered 10+ language frame patterns</li>
+                        <li>Can explain science and history fluently</li>
+                        <li>Respond confidently to any question</li>
+                        <li>Use academic English naturally</li>
+                        <li>Connect ideas across different subjects</li>
+                    </ul>
+                </div>
+                <div class="frame-card">
+                    <h4>🚀 Keep Growing</h4>
+                    <ul class="vocab-list">
+                        <li>Use frames in all your classes</li>
+                        <li>Practice with family and friends</li>
+                        <li>Try explaining new topics you learn</li>
+                        <li>Record yourself to track progress</li>
+                        <li>Be proud of how far you've come!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="practice-activity">
+                <div class="activity-title">🎊 Final Celebration Challenge</div>
+                <p style="text-align: center; font-size: 1.4rem; margin: 1rem 0;">
+                    Choose ANY topic - something you're passionate about, curious about, or just learned. 
+                    Give a 5-minute explanation using all your frame skills. 
+                    Show off everything you can do!
+                </p>
+                
+                <div class="conversation-flow">
+                    <div class="flow-step">
+                        <h4>🌟 Your Choice</h4>
+                        <p>Music, sports, video games, movies, food, travel, technology - anything you want to explain!</p>
+                    </div>
+                    <div class="flow-step">
+                        <h4>🎯 Show Your Skills</h4>
+                        <p>Use multiple frames, sound confident, make it interesting, and enjoy speaking English!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="confidence-meter">
+                <h3 style="color: #ffd93d;">🎉 Congratulations! 🎉</h3>
+                <p style="font-size: 1.4rem; margin: 1rem 0;">
+                    You now have powerful tools for clear, confident communication in English. 
+                    These frames will serve you well in all your academic and personal conversations!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">‹</button>
+        <button class="nav-btn" onclick="nextSlide()">›</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let totalSlides = 10;
+        let currentElement = 0;
+        let selectedFrames = [];
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('hidden', index !== n);
+            });
+            
+            currentElement = 0;
+            const currentSlideElement = slides[n];
+            const elements = currentSlideElement.querySelectorAll('.reveal-item');
+            elements.forEach(el => el.classList.remove('show'));
+            
+            document.getElementById('slide-counter').textContent = `${n + 1} / ${totalSlides}`;
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.reveal-item');
+            
+            if (currentElement < elements.length) {
+                elements[currentElement].classList.add('show');
+                currentElement++;
+            }
+        }
+
+        function nextSlide() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.reveal-item');
+            
+            if (currentElement < elements.length) {
+                revealNextElement();
+            } else if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        function selectFrame(button, frameType) {
+            if (selectedFrames.length < 2) {
+                button.style.background = 'rgba(255, 217, 61, 0.5)';
+                selectedFrames.push(frameType);
+                
+                if (selectedFrames.length === 2) {
+                    document.getElementById('selected-frames').innerHTML = 
+                        `Selected: ${selectedFrames[0]} + ${selectedFrames[1]} - Now explain a topic using both!`;
+                }
+            }
+        }
+
+        function resetFrameSelection() {
+            selectedFrames = [];
+            document.querySelectorAll('.mixer-button').forEach(btn => {
+                btn.style.background = 'rgba(255, 255, 255, 0.2)';
+            });
+            document.getElementById('selected-frames').innerHTML = '';
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                revealNextElement();
+            } else if (e.key === '.') {
+                e.preventDefault();
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            } else if (e.key === ',') {
+                e.preventDefault();
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
+            } else if (e.key === 'r' || e.key === 'R') {
+                e.preventDefault();
+                resetFrameSelection();
+            }
+        });
+
+        // Click to reveal
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.navigation') && 
+                !e.target.closest('.slide-indicator') && 
+                !e.target.closest('.mixer-button')) {
+                revealNextElement();
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

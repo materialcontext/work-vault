@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 1: Democratic Expansion and the Slavery Question</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 50%, #5c6bc0 100%);
+            color: #ffffff;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .presentation-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .slide {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 1;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .slide.hidden {
+            display: none;
+        }
+
+        .slide-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .unit-title {
+            font-size: 1.6rem;
+            color: #e91e63;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .lesson-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #e91e63, #f06292);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .central-question {
+            font-size: 1.8rem;
+            color: #fce4ec;
+            font-style: italic;
+            background: rgba(255,255,255,0.1);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #e91e63;
+            line-height: 1.6;
+        }
+
+        .slide h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #e91e63;
+        }
+
+        .slide h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #e91e63;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .concept-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(233,30,99,0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(233,30,99,0.5);
+        }
+
+        .concept-card h3 {
+            color: #e91e63;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .concept-card p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .primary-source {
+            background: rgba(252,228,236,0.2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #fce4ec;
+            margin: 1.5rem 0;
+            font-style: italic;
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        .primary-source strong {
+            color: #fce4ec;
+            font-style: normal;
+            font-size: 1.4rem;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .analysis-card {
+            background: rgba(255,255,255,0.08);
+            padding: 1.2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(233,30,99,0.2);
+            text-align: center;
+        }
+
+        .analysis-card h4 {
+            color: #e91e63;
+            margin-bottom: 0.8rem;
+            font-size: 1.5rem;
+        }
+
+        .analysis-card p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .question-highlight {
+            background: linear-gradient(45deg, rgba(233,30,99,0.2), rgba(240,98,146,0.2));
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid #f06292;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.4rem;
+            color: #e91e63;
+            line-height: 1.6;
+        }
+
+        .connecting-thread {
+            background: rgba(233,30,99,0.15);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid #e91e63;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        .connecting-thread h3 {
+            color: #e91e63;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .auto-reveal, .reveal-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.revealed, .reveal-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .nav-btn:hover {
+            background: rgba(233,30,99,0.3);
+            transform: translateY(-2px);
+            border-color: #e91e63;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            max-width: 200px;
+        }
+
+        .indicator-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator-dot.active {
+            background: #e91e63;
+            transform: scale(1.2);
+        }
+
+        .image-tab {
+            position: fixed;
+            top: 20px;
+            right: 100px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .image-tab:hover {
+            background: rgba(233,30,99,0.3);
+            border-color: #e91e63;
+        }
+
+        .course-connections {
+            background: rgba(233,30,99,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #e91e63;
+            margin: 2rem 0;
+        }
+
+        .connection-timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .connection-point {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #fce4ec;
+        }
+
+        .connection-week {
+            font-size: 1.1rem;
+            color: #e91e63;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .connection-theme {
+            font-size: 1rem;
+            color: #fce4ec;
+            margin-bottom: 0.5rem;
+        }
+
+        .connection-link {
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+
+        .democratic-expansion {
+            background: linear-gradient(45deg, rgba(233,30,99,0.1), rgba(240,98,146,0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #e91e63;
+            margin: 2rem 0;
+        }
+
+        .expansion-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .expansion-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.2rem;
+            border-radius: 10px;
+            border: 2px solid #fce4ec;
+        }
+
+        .expansion-card h4 {
+            color: #e91e63;
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+        }
+
+        .expansion-card p {
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .sectional-development {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .sectional-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(233,30,99,0.3);
+        }
+
+        .sectional-card h4 {
+            color: #e91e63;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1.6rem;
+        }
+
+        .sectional-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sectional-features li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .sectional-features li:before {
+            content: "▶";
+            color: #fce4ec;
+            position: absolute;
+            left: 0;
+        }
+
+        .missouri-compromise {
+            background: rgba(233,30,99,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #e91e63;
+            margin: 2rem 0;
+        }
+
+        .compromise-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .compromise-element {
+            background: rgba(255,255,255,0.1);
+            padding: 1.2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #fce4ec;
+        }
+
+        .element-title {
+            font-size: 1.3rem;
+            color: #e91e63;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+        }
+
+        .element-description {
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .contradiction-analysis {
+            background: linear-gradient(45deg, rgba(233,30,99,0.2), rgba(240,98,146,0.2));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #f06292;
+            margin: 2rem 0;
+        }
+
+        .contradiction-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .contradiction-side {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid #fce4ec;
+        }
+
+        .side-title {
+            font-size: 1.5rem;
+            color: #e91e63;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .transportation-revolution {
+            background: rgba(233,30,99,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #e91e63;
+            margin: 2rem 0;
+        }
+
+        .transport-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .transport-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #fce4ec;
+        }
+
+        .transport-title {
+            font-size: 1.3rem;
+            color: #e91e63;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+        }
+
+        .transport-description {
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .auto-reveal p, .reveal-item p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .image-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .image-content {
+            max-width: 80%;
+            max-height: 80%;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title and Course Connection -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-header auto-reveal">
+                <div class="unit-title">COURSE CULMINATION - CLASS 1</div>
+                <div class="lesson-title">Democratic Expansion and the Slavery Question</div>
+                <div class="central-question">How did democratic expansion and industrial development intensify the contradictions over slavery that revolutionary America had tried to avoid?</div>
+            </div>
+            
+            <div class="content-grid">
+                <div class="concept-card auto-reveal">
+                    <h3>🔑 Central Theme</h3>
+                    <p>The success of American revolutionary principles creates the very tensions that threaten to destroy the union - democratic expansion and economic development make slavery contradictions impossible to ignore</p>
+                </div>
+                
+                <div class="concept-card auto-reveal">
+                    <h3>🌍 Narrative Arc</h3>
+                    <p>From environmental crisis driving European expansion (Week 1) to American territorial expansion driving sectional crisis - the same forces of change that began our story now threaten revolutionary achievements</p>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Today's Challenge:</strong> Understanding how the revolutionary innovations we've studied throughout the semester create the contradictions that will require a second American revolution to resolve
+            </div>
+        </div>
+
+        <!-- Slide 2: Course Connections - Revolutionary Success Creates New Problems -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>🔗 How Revolutionary Success Creates Revolutionary Crisis</h2>
+            
+            <div class="course-connections auto-reveal">
+                <h3>Connecting Our Semester's Narrative Arc</h3>
+                <div class="connection-timeline">
+                    <div class="connection-point">
+                        <div class="connection-week">Weeks 6-7</div>
+                        <div class="connection-theme">Atlantic Slave Trade</div>
+                        <div class="connection-link">Economic revolution creates profitable slave system integrated with global capitalism</div>
+                    </div>
+                    <div class="connection-point">
+                        <div class="connection-week">Week 9</div>
+                        <div class="connection-theme">Revolutionary Principles</div>
+                        <div class="connection-link">"All men created equal" - but Constitution compromises on slavery for unity</div>
+                    </div>
+                    <div class="connection-point">
+                        <div class="connection-week">Week 10</div>
+                        <div class="connection-theme">Constitutional Innovation</div>
+                        <div class="connection-link">Federal system and economic development create powerful national government</div>
+                    </div>
+                    <div class="connection-point">
+                        <div class="connection-week">Today</div>
+                        <div class="connection-theme">Democratic Success</div>
+                        <div class="connection-link">Expansion of democracy and economy make slavery compromises unsustainable</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #e91e63; text-align: center; margin: 1.5rem 0;">The Revolutionary Paradox</h3>
+                <p style="text-align: center; font-size: 1.3rem;">Every success of the American revolutionary experiment - democratic participation, economic growth, territorial expansion, constitutional government - makes the slavery contradiction more obvious and more unbearable</p>
+            </div>
+
+            <div class="auto-reveal">
+                <h3 style="color: #e91e63;">Environmental Pressures Drive Change (Full Circle from Week 1)</h3>
+                <p style="text-align: center; font-size: 1.2rem;">Just as environmental crisis drove European expansion in 1450, American population growth and economic development drive westward expansion that forces the slavery question</p>
+            </div>
+
+            <div class="question-highlight auto-reveal">
+                The same revolutionary forces that created American independence now threaten to tear the nation apart - how does democratic and economic success make the original compromises impossible to maintain?
+            </div>
+        </div>
+
+        <!-- Slide 3: Jacksonian Democracy - Democratic Revolution Continues -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>🗳️ Jacksonian Democracy: The Revolutionary Spirit Continues (1828-1840)</h2>
+            
+            <div class="auto-reveal">
+                <h3>Democratic Revolution Accelerates</h3>
+            </div>
+            
+            <div class="democratic-expansion auto-reveal">
+                <h3>Expansion of Democratic Participation</h3>
+                <div class="expansion-features">
+                    <div class="expansion-card">
+                        <h4>🗳️ Suffrage Extension</h4>
+                        <p><strong>Property requirements eliminated:</strong> Most white men can vote by 1830<br><strong>Political participation:</strong> Voter turnout increases from 25% to 80%<br><strong>Popular politics:</strong> Mass rallies, parades, campaign songs</p>
+                    </div>
+                    <div class="expansion-card">
+                        <h4>👥 Popular Political Culture</h4>
+                        <p><strong>Common man ideology:</strong> Rejection of elite privilege<br><strong>Party organization:</strong> Democratic and Whig parties mobilize voters<br><strong>Mass media:</strong> Newspapers spread political ideas</p>
+                    </div>
+                    <div class="expansion-card">
+                        <h4>🏛️ Democratic Ideology</h4>
+                        <p><strong>Equality principle:</strong> All (white) men created equal in practice<br><strong>Limited government:</strong> Suspicion of concentrated power<br><strong>Majority rule:</strong> Popular will should govern</p>
+                    </div>
+                    <div class="expansion-card">
+                        <h4>⚖️ Jackson's Presidency</h4>
+                        <p><strong>Spoils system:</strong> Common men can hold office<br><strong>Bank War:</strong> Destroys "aristocratic" national bank<br><strong>Indian removal:</strong> Democratic majority overrides minority rights</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #e91e63; text-align: center;">Connection to Our Course Themes</h3>
+                <p style="text-align: center; font-size: 1.2rem;">Remember Week 3's colonial democratic experiments? Jacksonian democracy fulfills the promise of broader political participation that began in colonial assemblies - but for white men only</p>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>The Democratic Paradox:</strong> Expansion of democracy for white men makes exclusion of enslaved people more glaring and morally indefensible - how can a democratic society based on equality maintain slavery?
+            </div>
+        </div>
+
+        <!-- Slide 4: Industrial Development Creates Sectional Differences -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>🏭 Industrial Revolution Creates Two Different Americas</h2>
+            
+            <div class="auto-reveal">
+                <h3>Economic Development Deepens Sectional Divisions</h3>
+            </div>
+            
+            <div class="sectional-development auto-reveal">
+                <div class="sectional-card">
+                    <h4>🏭 Northern Industrial Society</h4>
+                    <ul class="sectional-features">
+                        <li><strong>Factory system:</strong> Mechanized production concentrates workers in cities</li>
+                        <li><strong>Wage labor:</strong> Free labor ideology celebrates individual opportunity</li>
+                        <li><strong>Immigration:</strong> European immigrants provide industrial workforce</li>
+                        <li><strong>Transportation:</strong> Canals and railroads connect markets</li>
+                        <li><strong>Education:</strong> Public schools and literacy spread</li>
+                        <li><strong>Reform movements:</strong> Abolition, temperance, women's rights</li>
+                        <li><strong>Economic diversity:</strong> Manufacturing, commerce, agriculture</li>
+                    </ul>
+                </div>
+                
+                <div class="sectional-card">
+                    <h4>🌾 Southern Agricultural Society</h4>
+                    <ul class="sectional-features">
+                        <li><strong>Plantation system:</strong> Large-scale cotton production for export</li>
+                        <li><strong>Slave labor:</strong> 4 million enslaved people by 1860</li>
+                        <li><strong>Cotton gin revolution:</strong> Makes cotton extremely profitable</li>
+                        <li><strong>Limited industry:</strong> Few factories or cities</li>
+                        <li><strong>Planter elite:</strong> Small group controls wealth and politics</li>
+                        <li><strong>Defensive culture:</strong> Justifies slavery as "positive good"</li>
+                        <li><strong>Economic specialization:</strong> Depends on Northern industry and finance</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #e91e63; text-align: center;">Connecting Back to Week 6: Atlantic Slave Trade</h3>
+                <p style="text-align: center; font-size: 1.2rem;">The "revolutionary economic system" of Atlantic slave trade reaches its peak - cotton cultivation makes slavery more profitable and entrenched than ever before</p>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Economic Integration Creates Political Conflict:</strong> The more economically connected North and South become, the more their different labor systems create irreconcilable political tensions
+            </div>
+        </div>
+
+        <!-- Slide 5: Transportation Revolution Connects and Divides -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>🚂 Transportation Revolution: Connecting America, Intensifying Conflict</h2>
+            
+            <div class="transportation-revolution auto-reveal">
+                <h3>The Market Revolution Transforms American Life</h3>
+                <div class="transport-grid">
+                    <div class="transport-card">
+                        <div class="transport-title">🚢 Canal System</div>
+                        <div class="transport-description"><strong>Erie Canal (1825):</strong> Connects Great Lakes to Atlantic<br><strong>Economic impact:</strong> Reduces shipping costs 95%<br><strong>Regional growth:</strong> New York becomes commercial center</div>
+                    </div>
+                    <div class="transport-card">
+                        <div class="transport-title">🚂 Railroad Expansion</div>
+                        <div class="transport-description"><strong>Rapid growth:</strong> 30,000 miles of track by 1860<br><strong>Time compression:</strong> Days of travel become hours<br><strong>National markets:</strong> Regional specialization possible</div>
+                    </div>
+                    <div class="transport-card">
+                        <div class="transport-title">📬 Communication</div>
+                        <div class="transport-description"><strong>Telegraph system:</strong> Instant long-distance communication<br><strong>Newspapers:</strong> National news spreads rapidly<br><strong>Political mobilization:</strong> Ideas travel faster than ever</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #e91e63; text-align: center; margin: 1.5rem 0;">The Contradiction of Connection</h3>
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h4>📈 Economic Integration</h4>
+                        <p>North and South become more economically interdependent than ever before</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>⚔️ Political Division</h4>
+                        <p>Better communication spreads sectional arguments faster and more widely</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>🗺️ Territorial Pressure</h4>
+                        <p>Railroads make western territories accessible, forcing slavery question</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Historical Parallel:</strong> Just as global trade networks in Week 6 spread slavery worldwide, transportation revolution spreads the slavery debate nationwide - technology intensifies rather than resolves political conflicts
+            </div>
+        </div>
+
+        <!-- Slide 6: Missouri Compromise - First Great Sectional Crisis -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>⚖️ Missouri Compromise (1820): The "Fire Bell in the Night"</h2>
+            
+            <div class="auto-reveal">
+                <h3>Territorial Expansion Forces the Slavery Question</h3>
+            </div>
+            
+            <div class="missouri-compromise auto-reveal">
+                <h3>The Crisis and Its Resolution</h3>
+                <div class="compromise-details">
+                    <div class="compromise-element">
+                        <div class="element-title">🔥 The Crisis</div>
+                        <div class="element-description">Missouri applies for statehood as slave state; would upset balance of 11 free vs 11 slave states in Senate</div>
+                    </div>
+                    <div class="compromise-element">
+                        <div class="element-title">📜 The Solution</div>
+                        <div class="element-description">Maine enters as free state; Missouri as slave state; 36°30' line divides future territories</div>
+                    </div>
+                    <div class="compromise-element">
+                        <div class="element-title">⚖️ The Balance</div>
+                        <div class="element-description">Maintains sectional balance in Senate; slavery prohibited north of Missouri's southern border</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="primary-source auto-reveal">
+                <strong>Thomas Jefferson on Missouri Compromise (1820):</strong><br>
+                "This momentous question, like a fire bell in the night, awakened and filled me with terror. I considered it at once as the knell of the Union."
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #e91e63; text-align: center;">Why This Crisis Matters for Our Course</h3>
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h4>🏛️ Constitutional Limits</h4>
+                        <p>First major test of whether constitutional system can handle sectional conflict</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>🌍 Territorial Expansion</h4>
+                        <p>Like European expansion in Week 1, American expansion creates new conflicts</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>⏰ Temporary Solution</h4>
+                        <p>Compromise delays but doesn't resolve fundamental contradiction</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>The Pattern Emerges:</strong> Each attempt to expand slavery into new territories creates national crisis - territorial growth that built American power now threatens American unity
+            </div>
+        </div>
+
+        <!-- Slide 7: The Abolition Movement and Southern Response -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>✊ Abolition Movement vs. Pro-Slavery Ideology</h2>
+            
+            <div class="auto-reveal">
+                <h3>Democratic Expansion Empowers Both Sides</h3>
+            </div>
+            
+            <div class="contradiction-analysis auto-reveal">
+                <h3>The Moral and Political Battle Intensifies</h3>
+                <div class="contradiction-grid">
+                    <div class="contradiction-side">
+                        <div class="side-title">✊ Abolition Movement</div>
+                        <ul class="sectional-features">
+                            <li><strong>Moral argument:</strong> Slavery violates Christian principles and natural rights</li>
+                            <li><strong>Democratic argument:</strong> Slavery contradicts Declaration of Independence</li>
+                            <li><strong>Economic argument:</strong> Free labor more efficient than slave labor</li>
+                            <li><strong>Key leaders:</strong> William Lloyd Garrison, Frederick Douglass, Sojourner Truth</li>
+                            <li><strong>Political strategy:</strong> Petitions, newspapers, Underground Railroad</li>
+                            <li><strong>Growing support:</strong> Northern churches, women's groups join movement</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="contradiction-side">
+                        <div class="side-title">🏛️ Pro-Slavery Response</div>
+                        <ul class="sectional-features">
+                            <li><strong>"Positive good" theory:</strong> Slavery benefits both races</li>
+                            <li><strong>Constitutional argument:</strong> Property rights protected by Constitution</li>
+                            <li><strong>Economic necessity:</strong> Cotton economy requires slave labor</li>
+                            <li><strong>Racial ideology:</strong> White supremacy justifies enslavement</li>
+                            <li><strong>Political defense:</strong> Gag rule, fugitive slave laws</li>
+                            <li><strong>Southern unity:</strong> Non-slaveholders support system</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #e91e63; text-align: center;">Democratic Participation Intensifies the Conflict</h3>
+                <p style="text-align: center; font-size: 1.2rem;">As more white men gain political voice through Jacksonian democracy, both abolitionists and pro-slavery advocates can mobilize larger constituencies - democracy amplifies rather than moderates sectional tensions</p>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Revolutionary Principles vs. Revolutionary Economics:</strong> The egalitarian ideals from Week 9 clash directly with the profitable slave system from Week 6 - compromise becomes increasingly impossible
+            </div>
+        </div>
+
+        <!-- Slide 8: Economic and Political Tensions Reach Breaking Point -->
+        <div class="slide hidden" data-reveal-count="4">
+            <h2>💥 The 1840s: All Contradictions Converge</h2>
+            
+            <div class="auto-reveal">
+                <h3>Multiple Revolutionary Forces Create Perfect Storm</h3>
+            </div>
+            
+            <div class="course-connections auto-reveal">
+                <h3>How All Our Course Themes Come Together</h3>
+                <div class="connection-timeline">
+                    <div class="connection-point">
+                        <div class="connection-week">Environmental Pressure</div>
+                        <div class="connection-theme">Population Growth</div>
+                        <div class="connection-link">American population doubles 1820-1850; drives westward expansion</div>
+                    </div>
+                    <div class="connection-point">
+                        <div class="connection-week">Economic Revolution</div>
+                        <div class="connection-theme">Market Integration</div>
+                        <div class="connection-link">Transportation revolution makes slavery debate national rather than regional</div>
+                    </div>
+                    <div class="connection-point">
+                        <div class="connection-week">Democratic Revolution</div>
+                        <div class="connection-theme">Political Mobilization</div>
+                        <div class="connection-link">Mass democracy gives voice to both abolitionists and slavery defenders</div>
+                    </div>
+                    <div class="connection-point">
+                        <div class="connection-week">Constitutional Crisis</div>
+                        <div class="connection-theme">System Breakdown</div>
+                        <div class="connection-link">Federal system cannot resolve fundamental moral contradiction</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="color: #e91e63; text-align: center; margin: 1.5rem 0;">The Success Trap</h3>
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h4>🏛️ Constitutional Success</h4>
+                        <p>Federal system works so well it expands rapidly westward, forcing slavery question repeatedly</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>💰 Economic Success</h4>
+                        <p>Both Northern industry and Southern agriculture thrive, making each section more committed to its system</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>🗳️ Democratic Success</h4>
+                        <p>Political participation spreads so widely that moral arguments reach mass audiences</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-highlight auto-reveal">
+                <strong>Setting Up Our Final Class:</strong> By 1850, the very success of American revolutionary principles makes the slavery contradiction impossible to ignore or compromise away - a second revolution becomes inevitable
+            </div>
+        </div>
+
+        <!-- Slide 9: Looking Forward to Civil War -->
+        <div class="slide hidden" data-reveal-count="3">
+            <h2>⚡ From Compromise to Crisis: The Path to Civil War</h2>
+            
+            <div class="connecting-thread auto-reveal">
+                <h3>The Revolutionary Cycle Repeats</h3>
+                <p>Just as environmental pressures in the 1450s forced European innovation and expansion, American success by 1850 creates pressures that will force a second American revolution through civil war</p>
+            </div>
+            
+            <div class="auto-reveal">
+                <h3 style="text-align: center; color: #e91e63; margin: 1.5rem 0;">Course Themes Culminate in Sectional Crisis:</h3>
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h4>🌍 Environmental Forces</h4>
+                        <p>Population growth and territorial expansion create same pressures that drove European colonization</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>💰 Economic Revolution</h4>
+                        <p>Slave-based cotton economy vs. industrial free labor creates irreconcilable economic systems</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>🏛️ Constitutional Innovation</h4>
+                        <p>Federal system reaches limits when fundamental moral questions divide the nation</p>
+                    </div>
+                    <div class="analysis-card">
+                        <h4>🗳️ Democratic Transformation</h4>
+                        <p>Mass political participation means slavery debate cannot be confined to elite compromise</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auto-reveal" style="text-align: center; margin-top: 2rem;">
+                <h3 style="color: #e91e63;">Preview of Next Class</h3>
+                <p style="font-size: 1.3rem;">The Compromise of 1850 will be the last attempt to resolve slavery through constitutional means - when it fails, the sectional crisis will lead to civil war as the second American revolution</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()" aria-label="Previous">← Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()" aria-label="Next">Next →</button>
+    </div>
+
+    <!-- Slide Indicators -->
+    <div class="slide-indicator" role="tablist" aria-label="Slide navigation">
+        <div class="indicator-dot active" onclick="goToSlide(0)" role="tab" aria-label="Slide 1"></div>
+        <div class="indicator-dot" onclick="goToSlide(1)" role="tab" aria-label="Slide 2"></div>
+        <div class="indicator-dot" onclick="goToSlide(2)" role="tab" aria-label="Slide 3"></div>
+        <div class="indicator-dot" onclick="goToSlide(3)" role="tab" aria-label="Slide 4"></div>
+        <div class="indicator-dot" onclick="goToSlide(4)" role="tab" aria-label="Slide 5"></div>
+        <div class="indicator-dot" onclick="goToSlide(5)" role="tab" aria-label="Slide 6"></div>
+        <div class="indicator-dot" onclick="goToSlide(6)" role="tab" aria-label="Slide 7"></div>
+        <div class="indicator-dot" onclick="goToSlide(7)" role="tab" aria-label="Slide 8"></div>
+        <div class="indicator-dot" onclick="goToSlide(8)" role="tab" aria-label="Slide 9"></div>
+    </div>
+
+    <!-- Image Tab -->
+    <div class="image-tab" onclick="toggleImage()">🗺️ Sectional Maps</div>
+
+    <!-- Image Overlay -->
+    <div class="image-overlay" id="imageOverlay" onclick="toggleImage()">
+        <div class="image-content">
+            <h3>Sectional Development and Crisis Maps</h3>
+            <p>Interactive maps showing industrial vs. agricultural development, transportation networks, Missouri Compromise line, and the growing sectional divide between North and South (1820-1850).</p>
+            <button onclick="toggleImage()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #e91e63; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentReveal = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlideIndicators() {
+            const indicators = document.querySelectorAll('.indicator-dot');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function showSlide(slideIndex) {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('hidden', index !== slideIndex);
+            });
+            
+            currentReveal = 0;
+            updateSlideIndicators();
+            revealNextItem();
+        }
+
+        function nextSlide() {
+            const currentSlideElement = slides[currentSlide];
+            const maxReveals = parseInt(currentSlideElement.dataset.revealCount) || 1;
+            
+            if (currentReveal < maxReveals) {
+                revealNextItem();
+            } else if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentReveal > 0) {
+                hideCurrentItem();
+            } else if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+                // Reveal all items on previous slide
+                const prevSlideElement = slides[currentSlide];
+                const maxReveals = parseInt(prevSlideElement.dataset.revealCount) || 1;
+                currentReveal = maxReveals;
+                showAllReveals();
+            }
+        }
+
+        function revealNextItem() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.auto-reveal, .reveal-item');
+            
+            if (currentReveal < revealItems.length) {
+                revealItems[currentReveal].classList.add('revealed');
+                currentReveal++;
+            }
+        }
+
+        function hideCurrentItem() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.auto-reveal, .reveal-item');
+            
+            if (currentReveal > 0) {
+                currentReveal--;
+                revealItems[currentReveal].classList.remove('revealed');
+            }
+        }
+
+        function showAllReveals() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.auto-reveal, .reveal-item');
+            revealItems.forEach(item => item.classList.add('revealed'));
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            showSlide(currentSlide);
+        }
+
+        function toggleImage() {
+            const overlay = document.getElementById('imageOverlay');
+            overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(event) {
+            switch(event.key) {
+                case 'ArrowLeft':
+                    previousSlide();
+                    break;
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+                case ',':
+                    if (currentSlide > 0) {
+                        currentSlide--;
+                        showSlide(currentSlide);
+                        const maxReveals = parseInt(slides[currentSlide].dataset.revealCount) || 1;
+                        currentReveal = maxReveals;
+                        showAllReveals();
+                    }
+                    break;
+                case '.':
+                    if (currentSlide < totalSlides - 1) {
+                        currentSlide++;
+                        showSlide(currentSlide);
+                    }
+                    break;
+                case 'Enter':
+                    showAllReveals();
+                    const maxReveals = parseInt(slides[currentSlide].dataset.revealCount) || 1;
+                    currentReveal = maxReveals;
+                    break;
+            }
+        });
+
+        // Initialize presentation
+        showSlide(0);
+    </script>
+</body>
+</html>

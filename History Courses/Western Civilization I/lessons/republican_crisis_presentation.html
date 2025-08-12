@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Republican Innovation and Crisis: The Seeds of Empire</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            height: 100vh;
+            padding: 2rem;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 5.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #e74c3c, #f39c12, #3498db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 4.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #e74c3c;
+            text-shadow: 0 2px 8px rgba(231, 76, 60, 0.4);
+            line-height: 1.2;
+        }
+
+        h3 {
+            font-size: 3.5rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #f39c12;
+            line-height: 1.3;
+        }
+
+        h4 {
+            font-size: 2.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #3498db;
+            line-height: 1.3;
+        }
+
+        p, li {
+            font-size: 2.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #ecf0f1;
+        }
+
+        .hero-section {
+            margin-bottom: 3rem;
+        }
+
+        .central-question {
+            background: rgba(231, 76, 60, 0.1);
+            border: 2px solid #e74c3c;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .central-question h3 {
+            color: #e74c3c;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            border-color: #e74c3c;
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.2);
+        }
+
+        .government-structure {
+            background: rgba(52, 152, 219, 0.1);
+            border: 1px solid #3498db;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .social-hierarchy {
+            background: rgba(243, 156, 18, 0.1);
+            border: 1px solid #f39c12;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .crisis-analysis {
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid #e74c3c;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-section {
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .timeline-card {
+            background: rgba(52, 152, 219, 0.1);
+            border: 1px solid #3498db;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .breakdown-card {
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid #e74c3c;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.8rem;
+        }
+
+        th {
+            background: rgba(231, 76, 60, 0.2);
+            font-weight: 600;
+            font-size: 2rem;
+            color: #e74c3c;
+        }
+
+        ul {
+            text-align: left;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 1rem;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: autoReveal 0.8s ease forwards;
+        }
+
+        @keyframes autoReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: rgba(231, 76, 60, 0.2);
+            border: 1px solid #e74c3c;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: #e74c3c;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(231, 76, 60, 0.3);
+            transform: scale(1.1);
+        }
+
+        .image-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(231, 76, 60, 0.2);
+            border: 1px solid #e74c3c;
+            border-radius: 10px;
+            padding: 10px 15px;
+            color: #e74c3c;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .image-toggle:hover {
+            background: rgba(231, 76, 60, 0.3);
+        }
+
+        .narrative-thread {
+            background: rgba(52, 152, 219, 0.1);
+            border-left: 4px solid #3498db;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+
+        .evidence-box {
+            background: rgba(243, 156, 18, 0.1);
+            border: 1px solid #f39c12;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .three-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .stats-box {
+            background: rgba(155, 89, 182, 0.1);
+            border: 1px solid #9b59b6;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            h1 { font-size: 4.5rem; }
+            h2 { font-size: 3.8rem; }
+            h3 { font-size: 3rem; }
+            h4 { font-size: 2.4rem; }
+            p, li { font-size: 1.9rem; }
+            th, td { font-size: 1.6rem; }
+            th { font-size: 1.8rem; }
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid, .three-columns {
+                grid-template-columns: 1fr;
+            }
+            h1 { font-size: 3.5rem; }
+            h2 { font-size: 3rem; }
+            h3 { font-size: 2.5rem; }
+            h4 { font-size: 2rem; }
+            p, li { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="slide-content">
+                <div class="hero-section">
+                    <h1 class="auto-reveal">Republican Innovation and Crisis</h1>
+                    <h2 class="auto-reveal">The Seeds of Empire</h2>
+                    <div class="auto-reveal" style="margin-top: 2rem;">
+                        <h3>How Success Destroyed the System That Created It</h3>
+                        <p style="font-size: 2.5rem; color: #f39c12; margin-top: 2rem;">200-49 BCE</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Central Question -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="central-question">
+                    <h2 class="reveal">Central Question</h2>
+                    <div class="reveal">
+                        <h3>How did Rome's republican institutions both enable Mediterranean conquest and contain the seeds of their own transformation?</h3>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <h4>The Paradox of Success</h4>
+                    <p>The same adaptability and institutional flexibility that enabled Rome to survive Hannibal and conquer the Mediterranean created contradictions that would ultimately transform the republic into an empire.</p>
+                </div>
+                <div class="evidence-box reveal">
+                    <h4>Three Fatal Contradictions</h4>
+                    <p><strong>1.</strong> Military Success vs. Civic Values<br>
+                    <strong>2.</strong> Territorial Expansion vs. City-State Government<br>
+                    <strong>3.</strong> Wealth & Status vs. Republican Equality</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: How Roman Government Worked -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Roman Republican System</h2>
+                <div class="hero-section reveal">
+                    <h3>Understanding the Machine Before Its Breakdown</h3>
+                </div>
+                <div class="government-structure reveal">
+                    <h4>🏛️ Constitutional Structure</h4>
+                    <div class="comparison-grid">
+                        <div class="comparison-card">
+                            <h4>Executive Power</h4>
+                            <ul>
+                                <li class="reveal"><strong>Consuls (2):</strong> Chief executives, military commanders</li>
+                                <li class="reveal"><strong>Praetors:</strong> Justice administration</li>
+                                <li class="reveal"><strong>Quaestors:</strong> Financial management</li>
+                                <li class="reveal"><strong>Aediles:</strong> City administration</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-card">
+                            <h4>Legislative Power</h4>
+                            <ul>
+                                <li class="reveal"><strong>Senate:</strong> ~300 former magistrates, foreign policy</li>
+                                <li class="reveal"><strong>Comitia Centuriata:</strong> Military assembly, war/peace</li>
+                                <li class="reveal"><strong>Comitia Tributa:</strong> Tribal assembly, most laws</li>
+                                <li class="reveal"><strong>Concilium Plebis:</strong> Plebeian assembly</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-card">
+                            <h4>Protective Power</h4>
+                            <ul>
+                                <li class="reveal"><strong>Tribunes (10):</strong> Veto power over magistrates</li>
+                                <li class="reveal"><strong>Collegiality:</strong> Shared offices prevent tyranny</li>
+                                <li class="reveal"><strong>Annual Terms:</strong> Rotation prevents power concentration</li>
+                                <li class="reveal"><strong>Provocatio:</strong> Right of appeal to assemblies</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="evidence-box reveal">
+                    <p><strong>Polybius:</strong> "The Roman constitution combines monarchy (consuls), aristocracy (senate), and democracy (assemblies) in perfect balance"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Roman Social Structure -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Traditional Roman Society</h2>
+                <div class="hero-section reveal">
+                    <h3>The Social Order That Conquest Would Transform</h3>
+                </div>
+                <div class="social-hierarchy reveal">
+                    <h4>👥 Social Classes & Values</h4>
+                    <div class="comparison-grid">
+                        <div class="comparison-card">
+                            <h4>Social Structure</h4>
+                            <ul>
+                                <li class="reveal"><strong>Patricians:</strong> Original aristocracy, hereditary privilege</li>
+                                <li class="reveal"><strong>Plebeians:</strong> Common citizens with political rights</li>
+                                <li class="reveal"><strong>Equites:</strong> Wealthy business class, originally cavalry</li>
+                                <li class="reveal"><strong>Citizens:</strong> Legal rights, military duties</li>
+                                <li class="reveal"><strong>Allies:</strong> Treaties, path to citizenship</li>
+                                <li class="reveal"><strong>Slaves:</strong> Property, but manumission possible</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-card">
+                            <h4>Traditional Values (*Mos Maiorum*)</h4>
+                            <ul>
+                                <li class="reveal"><strong>Virtus:</strong> Courage and military excellence</li>
+                                <li class="reveal"><strong>Dignitas:</strong> Personal honor and social standing</li>
+                                <li class="reveal"><strong>Auctoritas:</strong> Moral authority from achievement</li>
+                                <li class="reveal"><strong>Pietas:</strong> Duty to gods, family, state</li>
+                                <li class="reveal"><strong>Gravitas:</strong> Serious responsibility</li>
+                                <li class="reveal"><strong>Clementia:</strong> Mercy to defeated enemies</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>Key Insight:</strong> This system worked when Rome was a face-to-face community of citizen-farmers. Conquest would strain every element of this traditional order.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Constitutional Innovations for Empire -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Adapting for Empire</h2>
+                <div class="central-question reveal">
+                    <h3>How did city-state institutions govern a continental empire?</h3>
+                </div>
+                <div class="timeline-section">
+                    <div class="timeline-card reveal">
+                        <h4>🗺️ Provincial System (241 BCE onward)</h4>
+                        <p><strong>Innovation:</strong> Ex-magistrates as governors with *imperium* outside Rome<br>
+                        <strong>Problem Solved:</strong> Direct administration of conquered territories<br>
+                        <strong>Problem Created:</strong> Governors with near-absolute power away from oversight</p>
+                    </div>
+                    <div class="timeline-card reveal">
+                        <h4>⏰ Extended Commands (*Prorogatio*)</h4>
+                        <p><strong>Innovation:</strong> Extending military commands beyond annual terms<br>
+                        <strong>Problem Solved:</strong> Continuity in long campaigns<br>
+                        <strong>Problem Created:</strong> Powerful generals independent of state control</p>
+                    </div>
+                    <div class="timeline-card reveal">
+                        <h4>⚖️ Legal Adaptations (*Ius Gentium*)</h4>
+                        <p><strong>Innovation:</strong> Law of peoples for governing diverse populations<br>
+                        <strong>Problem Solved:</strong> Justice for non-Romans<br>
+                        <strong>Problem Created:</strong> Multiple legal systems, complexity</p>
+                    </div>
+                </div>
+                <div class="crisis-analysis reveal">
+                    <h4>🧠 The Constitutional Paradox</h4>
+                    <p>Every innovation that made empire possible weakened the republican principles that had created Rome's power. Success required abandoning the limitations that ensured liberty.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Economic Revolution -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Wealth Revolution</h2>
+                <div class="hero-section reveal">
+                    <h3>How Conquest Wealth Destroyed Traditional Society</h3>
+                </div>
+                <div class="stats-box reveal">
+                    <h4>📊 Scale of Economic Change</h4>
+                    <div class="three-columns">
+                        <div>
+                            <h4>Spanish Silver</h4>
+                            <p>200,000 pounds annually at peak</p>
+                        </div>
+                        <div>
+                            <h4>Slave Population</h4>
+                            <p>2-3 million in Italy alone</p>
+                        </div>
+                        <div>
+                            <h4>Urban Growth</h4>
+                            <p>Rome: 400k → 900k citizens</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-grid">
+                    <div class="breakdown-card reveal">
+                        <h4>💰 Winners: The New Elite</h4>
+                        <ul>
+                            <li class="reveal">Senatorial families controlling provincial commands</li>
+                            <li class="reveal">Equites profiting from tax collection and trade</li>
+                            <li class="reveal">Successful generals accumulating massive wealth</li>
+                            <li class="reveal">Urban merchants and money-lenders</li>
+                        </ul>
+                    </div>
+                    <div class="breakdown-card reveal">
+                        <h4>💔 Losers: Traditional Citizens</h4>
+                        <ul>
+                            <li class="reveal">Small farmers: military service → farm abandonment</li>
+                            <li class="reveal">Rural communities displaced by slave estates</li>
+                            <li class="reveal">Urban poor dependent on grain subsidies</li>
+                            <li class="reveal">Veterans struggling to reintegrate</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="evidence-box reveal">
+                    <p><strong>Cato the Elder:</strong> "I fear we have caught the enemy's vices more than we have conquered the enemy"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Military Transformation -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Military Revolution</h2>
+                <div class="central-question reveal">
+                    <h3>From Citizen-Soldiers to Professional Armies</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🏛️ Traditional System</h3>
+                        <ul>
+                            <li class="reveal"><strong>Citizen-farmers:</strong> Property owners serving in emergencies</li>
+                            <li class="reveal"><strong>Seasonal campaigns:</strong> Return to farms after fighting</li>
+                            <li class="reveal"><strong>Self-equipped:</strong> Citizens provided own weapons</li>
+                            <li class="reveal"><strong>Civic duty:</strong> Service as citizenship obligation</li>
+                            <li class="reveal"><strong>Local loyalty:</strong> Community-based recruitment</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>⚔️ Marian System (107 BCE)</h3>
+                        <ul>
+                            <li class="reveal"><strong>Professional soldiers:</strong> Urban poor seeking career</li>
+                            <li class="reveal"><strong>Multi-year campaigns:</strong> 16-year service terms</li>
+                            <li class="reveal"><strong>State-equipped:</strong> Government provides arms, standards</li>
+                            <li class="reveal"><strong>Economic necessity:</strong> Service for survival</li>
+                            <li class="reveal"><strong>Personal loyalty:</strong> Veterans depend on commanders</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="crisis-analysis reveal">
+                    <h4>🧠 Political Consequences</h4>
+                    <ul>
+                        <li class="reveal"><strong>Armies following generals:</strong> Personal loyalty over institutional loyalty</li>
+                        <li class="reveal"><strong>Veterans as political force:</strong> Organized pressure for land and benefits</li>
+                        <li class="reveal"><strong>Military vs. civil authority:</strong> Generals with independent resources</li>
+                        <li class="reveal"><strong>Civil war precedent:</strong> Roman armies fighting Roman armies</li>
+                    </ul>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>The Fatal Trade-off:</strong> Military efficiency that conquered the Mediterranean created political instability that would destroy the republic.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Cultural Revolution -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Cultural Revolution</h2>
+                <div class="hero-section reveal">
+                    <h3>"Captured Greece Capturing Rome"</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🏛️ Greek Influence</h3>
+                        <ul>
+                            <li class="reveal"><strong>Education:</strong> Elite Romans studying in Athens, Rhodes</li>
+                            <li class="reveal"><strong>Philosophy:</strong> Stoicism, Epicureanism replacing traditional religion</li>
+                            <li class="reveal"><strong>Art & Architecture:</strong> Greek styles transforming Rome</li>
+                            <li class="reveal"><strong>Literature:</strong> Epic poetry, drama, history in Greek forms</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🌍 Eastern Religions</h3>
+                        <ul>
+                            <li class="reveal"><strong>Mystery cults:</strong> Dionysiac scandal (186 BCE)</li>
+                            <li class="reveal"><strong>Personal salvation:</strong> Individual faith over state religion</li>
+                            <li class="reveal"><strong>Luxury and display:</strong> Eastern standards of refinement</li>
+                            <li class="reveal"><strong>Moral anxiety:</strong> Conservative backlash led by Cato</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="crisis-analysis reveal">
+                    <h4>🧠 Identity Crisis</h4>
+                    <p><strong>Elite Cosmopolitanism:</strong> Shared Mediterranean culture<br>
+                    <strong>Cultural Competition:</strong> Spectacular displays of wealth and learning<br>
+                    <strong>Traditional Authority Questioned:</strong> Old Roman ways vs. sophisticated Greek culture<br>
+                    <strong>Generational Conflict:</strong> Youth embracing change, elders resisting</p>
+                </div>
+                <div class="evidence-box reveal">
+                    <p><strong>Horace:</strong> "Captured Greece has captured her savage captor"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: The Gracchi Crisis -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Gracchi: Constitutional Breakdown Begins</h2>
+                <div class="central-question reveal">
+                    <h3>When Traditional Procedures Can't Handle New Problems</h3>
+                </div>
+                <div class="breakdown-card reveal">
+                    <h4>🚨 The Land Crisis</h4>
+                    <p><strong>Problem:</strong> Veterans returning to ruined farms, wealthy illegally occupying public land<br>
+                    <strong>Consequence:</strong> Rural poor flooding Rome, recruitment crisis as citizens too poor for military service<br>
+                    <strong>Traditional Solution Failed:</strong> Senate blocked all attempts at land redistribution</p>
+                </div>
+                <div class="timeline-section">
+                    <div class="timeline-card reveal">
+                        <h4>⚡ Tiberius Gracchus (163-133 BCE)</h4>
+                        <p><strong>Constitutional Innovations:</strong> Bypassed senate, took proposal directly to tribal assembly<br>
+                        <strong>Escalation:</strong> When colleague vetoed, had him deposed by assembly vote<br>
+                        <strong>Final Break:</strong> Used Pergamene treasury without senatorial approval<br>
+                        <strong>Resolution:</strong> Tiberius and 300 supporters killed by senatorial mob</p>
+                    </div>
+                    <div class="timeline-card reveal">
+                        <h4>🔥 Gaius Gracchus (153-121 BCE)</h4>
+                        <p><strong>Systematic Challenge:</strong> Built broader coalition, more comprehensive program<br>
+                        <strong>Grain Law:</strong> State subsidized food - *panem et circenses* begins<br>
+                        <strong>Judicial Law:</strong> Transferred courts from senators to equites<br>
+                        <strong>Final Crisis:</strong> Armed conflict, 3,000 killed including Gaius</p>
+                    </div>
+                </div>
+                <div class="crisis-analysis reveal">
+                    <h4>🧠 Constitutional Significance</h4>
+                    <p><strong>Violence Enters Politics:</strong> First political murders in centuries<br>
+                    <strong>Popular vs. Senatorial Authority:</strong> Direct appeals vs. traditional procedure<br>
+                    <strong>Emergency Powers:</strong> *Senatus consultum ultimum* suspending legal protections</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Marius vs Sulla -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Marius vs. Sulla: The First Civil War</h2>
+                <div class="hero-section reveal">
+                    <h3>When Roman Armies Fight Roman Armies</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>👨‍⚔️ Gaius Marius (157-86 BCE)</h3>
+                        <ul>
+                            <li class="reveal"><strong>Background:</strong> *Novus homo* from rural Italy</li>
+                            <li class="reveal"><strong>Jugurthine War:</strong> Exposed senatorial corruption</li>
+                            <li class="reveal"><strong>Military Reforms:</strong> Professional army loyal to commanders</li>
+                            <li class="reveal"><strong>Political Alliance:</strong> Popular assemblies vs. senate</li>
+                            <li class="reveal"><strong>Crisis:</strong> Granted citizenship illegally after Social War</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🏛️ Lucius Cornelius Sulla (138-78 BCE)</h3>
+                        <ul>
+                            <li class="reveal"><strong>Background:</strong> Patrician defending senatorial authority</li>
+                            <li class="reveal"><strong>Eastern Success:</strong> Victories against Mithridates</li>
+                            <li class="reveal"><strong>Constitutional Crisis:</strong> Stripped of command by assembly</li>
+                            <li class="reveal"><strong>Response:</strong> First march on Rome with army</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="breakdown-card reveal">
+                    <h4>⚔️ The Civil Wars (88-82 BCE)</h4>
+                    <p><strong>Competing Legitimacies:</strong> Popular assemblies vs. senate, new citizens vs. old<br>
+                    <strong>Escalating Violence:</strong> Massacres, proscriptions, constitutional breakdown<br>
+                    <strong>Geographic Division:</strong> Italy split between competing armies<br>
+                    <strong>Military Loyalty:</strong> Soldiers following generals, not state</p>
+                </div>
+                <div class="evidence-box reveal">
+                    <p><strong>Appian:</strong> "From this time the city was divided into factions and the constitution was overturned"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Sulla's Dictatorship -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Sulla's Constitutional Restoration</h2>
+                <div class="central-question reveal">
+                    <h3>Using Absolute Power to Restore Limited Government</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🔪 The Proscriptions</h3>
+                        <ul>
+                            <li class="reveal">Systematic murder of political enemies</li>
+                            <li class="reveal">Property confiscation to fund veterans</li>
+                            <li class="reveal">Terror to eliminate opposition</li>
+                            <li class="reveal">Lists posted in Forum - death sentences</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🏛️ Constitutional Reforms</h3>
+                        <ul>
+                            <li class="reveal">Senate strengthened: 600 members, control of courts</li>
+                            <li class="reveal">Tribunes weakened: no veto, no higher office</li>
+                            <li class="reveal">Assemblies limited: senatorial approval required</li>
+                            <li class="reveal">Provincial commands: strict term limits</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="crisis-analysis reveal">
+                    <h4>🧠 Why Restoration Failed (78-70 BCE)</h4>
+                    <ul>
+                        <li class="reveal"><strong>Immediate Challenges:</strong> Lepidus revolt, Sertorius in Spain, Spartacus rebellion</li>
+                        <li class="reveal"><strong>Pompey's Rise:</strong> Extraordinary commands violating Sullan constitution</li>
+                        <li class="reveal"><strong>Popular Pressure:</strong> Tribunes' rights restored by demand</li>
+                        <li class="reveal"><strong>Fundamental Problem:</strong> Empire still needed extraordinary measures</li>
+                    </ul>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>The Pattern Established:</strong> Constitutional crisis → strongman solution → temporary success → institutional damage → cycle repeats</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: The Late Republic Pattern -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Pattern of Breakdown</h2>
+                <div class="hero-section reveal">
+                    <h3>When Constitutions Become Inadequate</h3>
+                </div>
+                <div class="timeline-section">
+                    <div class="breakdown-card reveal">
+                        <h4>📋 The Cycle of Crisis</h4>
+                        <p><strong>1. Imperial Problem Emerges:</strong> Pirates, eastern wars, provincial revolts<br>
+                        <strong>2. Normal Procedures Fail:</strong> Annual commands, limited resources inadequate<br>
+                        <strong>3. Extraordinary Solution:</strong> Individual given special powers<br>
+                        <strong>4. Success Achieved:</strong> Problem solved, hero emerges<br>
+                        <strong>5. Constitutional Precedent Set:</strong> Normal limitations ignored<br>
+                        <strong>6. Next Crisis Repeats Cycle:</strong> Each violation makes next one easier</p>
+                    </div>
+                    <div class="breakdown-card reveal">
+                        <h4>🌊 Examples of System Breakdown</h4>
+                        <p><strong>Pompey's Commands:</strong> Against pirates (67 BCE), in East (66 BCE) - unprecedented scope<br>
+                        <strong>Caesar's Consulship (59 BCE):</strong> Ignoring colleague's veto, using violence<br>
+                        <strong>First Triumvirate (60 BCE):</strong> Informal division of empire outside constitution</p>
+                    </div>
+                </div>
+                <div class="crisis-analysis reveal">
+                    <h4>🧠 Why Constitutional Reform Failed</h4>
+                    <p>Republican institutions were designed for a face-to-face community of citizen-farmers defending Italy. Imperial scale required continuous warfare, professional armies, and concentrated authority - all incompatible with republican principles.</p>
+                </div>
+                <div class="evidence-box reveal">
+                    <p><strong>Tacitus:</strong> "Augustus found a solution that Sulla could not - how to exercise power without appearing to overthrow the constitution"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Synthesis - Answering the Central Question -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Paradox of Success</h2>
+                <div class="central-question reveal">
+                    <h3>How Republican Institutions Both Enabled and Destroyed Themselves</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>✅ Enabling Conquest</h3>
+                        <ul>
+                            <li class="reveal"><strong>Flexibility:</strong> Adapting to new challenges</li>
+                            <li class="reveal"><strong>Incentives:</strong> Glory and wealth motivating excellence</li>
+                            <li class="reveal"><strong>Integration:</strong> Incorporating allies and enemies</li>
+                            <li class="reveal"><strong>Persistence:</strong> Institutional continuity through crisis</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>💥 Seeds of Transformation</h3>
+                        <ul>
+                            <li class="reveal"><strong>Scale Problem:</strong> City-state institutions governing empire</li>
+                            <li class="reveal"><strong>Military Changes:</strong> Professional armies with personal loyalty</li>
+                            <li class="reveal"><strong>Social Revolution:</strong> Wealth destroying traditional relationships</li>
+                            <li class="reveal"><strong>Political Violence:</strong> Constitutional norms breaking down</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="crisis-analysis reveal">
+                    <h4>🧠 The Central Contradiction</h4>
+                    <p>The very adaptability that made conquest possible made constitutional stability impossible. Each successful adaptation to imperial needs undermined the republican principles that had created Rome's power.</p>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>Looking Forward:</strong> Augustus will claim to "restore the republic" while creating a system that solves these contradictions. Understanding these problems helps us evaluate whether his solution was necessary, inevitable, or opportunistic.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Slide: Transition -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="hero-section">
+                    <h1 class="auto-reveal">Republican Innovation and Crisis</h1>
+                    <h2 class="auto-reveal">The Seeds of Empire</h2>
+                    <div class="auto-reveal" style="margin-top: 3rem;">
+                        <h3>Success created the problems that only imperial transformation could solve</h3>
+                    </div>
+                    <div class="narrative-thread auto-reveal" style="margin-top: 2rem;">
+                        <p><strong>Next Question:</strong> How will Augustus preserve republican forms while exercising imperial power? Can constitutional change be evolutionary rather than revolutionary?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()" title="Previous slide (← or ,)">←</button>
+        <button class="nav-btn" onclick="nextSlide()" title="Next slide (→ or .)">→</button>
+    </div>
+
+    <!-- Image Toggle -->
+    <div class="image-toggle" onclick="toggleImage()" title="Toggle images (tab)">📷</div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        let revealIndex = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            revealIndex = 0;
+            resetReveals();
+        }
+
+        function nextSlide() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal:not(.show)');
+            if (reveals.length > 0) {
+                revealNext();
+            } else if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal.show');
+            if (reveals.length > 0) {
+                hideReveal();
+            } else if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+                revealAll();
+            }
+        }
+
+        function revealNext() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            if (revealIndex < reveals.length) {
+                reveals[revealIndex].classList.add('show');
+                revealIndex++;
+            }
+        }
+
+        function hideReveal() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            if (revealIndex > 0) {
+                revealIndex--;
+                reveals[revealIndex].classList.remove('show');
+            }
+        }
+
+        function revealAll() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            reveals.forEach(reveal => reveal.classList.add('show'));
+            revealIndex = reveals.length;
+        }
+
+        function resetReveals() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            reveals.forEach(reveal => reveal.classList.remove('show'));
+        }
+
+        function toggleImage() {
+            // Placeholder for image toggle functionality
+            console.log('Image toggle functionality would be implemented here');
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                case '.':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                case ',':
+                    e.preventDefault();
+                    previousSlide();
+                    break;
+                case 'Enter':
+                    e.preventDefault();
+                    revealAll();
+                    break;
+                case 'Tab':
+                    e.preventDefault();
+                    toggleImage();
+                    break;
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

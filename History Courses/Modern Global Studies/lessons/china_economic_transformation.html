@@ -1,0 +1,1297 @@
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>China's Economic Transformation: From Mao's Death to Global Power</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #065f46, #047857, #059669);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            padding: 3rem 4rem;
+            overflow-y: auto;
+            overflow-x: hidden;
+            opacity: 1;
+            transition: all 0.6s ease-in-out;
+            box-sizing: border-box;
+        }
+
+        .slide.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            min-height: 100%;
+            padding-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #34d399, #10b981, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #34d399;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #60a5fa;
+        }
+
+        h4 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #fbbf24;
+        }
+
+        p {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #e5e7eb;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(52, 211, 153, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+
+        .timeline-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-card {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.4), rgba(22, 33, 62, 0.4));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            backdrop-filter: blur(10px);
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(0);
+            border-color: rgba(52, 211, 153, 0.5);
+        }
+
+        .period-highlight {
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.1), rgba(16, 185, 129, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 4px solid #34d399;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            background: linear-gradient(135deg, rgba(22, 33, 62, 0.5), rgba(15, 52, 96, 0.5));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .primary-source {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 4px solid #fbbf24;
+            font-style: italic;
+        }
+
+        .economic-data {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(124, 58, 237, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .modern-analysis {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background: rgba(15, 52, 96, 0.8);
+            border: 1px solid rgba(52, 211, 153, 0.5);
+            color: #34d399;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(52, 211, 153, 0.2);
+            transform: scale(1.05);
+        }
+
+        .image-tab {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(15, 52, 96, 0.8);
+            border: 1px solid rgba(52, 211, 153, 0.5);
+            color: #34d399;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        ul {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.8rem;
+            color: #e5e7eb;
+        }
+
+        strong {
+            color: #fbbf24;
+        }
+
+        .essential-question {
+            background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(239, 68, 68, 0.2));
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+            border: 2px solid rgba(244, 63, 94, 0.4);
+        }
+
+        .slide-number {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+            z-index: 1000;
+            background: rgba(15, 52, 96, 0.8);
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+
+        .quote-highlight {
+            background: rgba(52, 211, 153, 0.1);
+            padding: 1.5rem;
+            border-left: 4px solid #34d399;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.3), rgba(22, 33, 62, 0.3));
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(52, 211, 153, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #34d399;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #e5e7eb;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="image-tab" onclick="toggleImage()">📸 Images</div>
+        <div class="controls">
+            <button class="control-btn" onclick="previousSlide()">← Prev</button>
+            <button class="control-btn" onclick="nextSlide()">Next →</button>
+            <button class="control-btn" onclick="revealAll()">Reveal All</button>
+        </div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="slide-number">1 / 14</div>
+                <h1>📈 China's Economic Transformation</h1>
+                <div class="hero-section auto-reveal">
+                    <h3>From Mao's Death to Global Power (1976-Present)</h3>
+                    <p style="font-size: 2rem; color: #34d399;">Modern China Class 3: Development in Practice</p>
+                </div>
+                <div class="essential-question auto-reveal">
+                    <h4>Essential Question:</h4>
+                    <p style="font-size: 2.2rem; color: #ffffff; font-weight: 600;">How did China transform from a poor, isolated communist country into the world's second-largest economy in just four decades?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Gang of Four and Transition -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">2 / 14</div>
+                <h2>⚖️ The Gang of Four: End of an Era (1976-1978)</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>Clearing the Path for Change</h3>
+                    <p>When Mao died in September 1976, China faced a critical choice: continue the Cultural Revolution's radical policies or change direction. The arrest of the "Gang of Four" one month later signaled the end of ideological extremism.</p>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card auto-reveal">
+                        <h4>👥 Who Were the Gang of Four?</h4>
+                        <ul>
+                            <li><strong>Jiang Qing:</strong> Mao's wife, leader of radical faction</li>
+                            <li><strong>Zhang Chunqiao:</strong> Shanghai radical, attacked expertise</li>
+                            <li><strong>Yao Wenyuan:</strong> Propaganda chief, promoted class struggle</li>
+                            <li><strong>Wang Hongwen:</strong> Young radical, represented worker militancy</li>
+                        </ul>
+                        <p style="margin-top: 1rem;"><em>They wanted to continue the Cultural Revolution indefinitely.</em></p>
+                    </div>
+                    
+                    <div class="comparison-card auto-reveal">
+                        <h4>🔄 What Their Arrest Meant</h4>
+                        <ul>
+                            <li><strong>End of Ideology-First Politics:</strong> No more campaigns against expertise</li>
+                            <li><strong>Rehabilitation of Victims:</strong> Purged officials could return to work</li>
+                            <li><strong>Economic Focus:</strong> Development could become the priority</li>
+                            <li><strong>International Opening:</strong> China could engage with the world</li>
+                        </ul>
+                        <p style="margin-top: 1rem;"><em>This cleared the way for pragmatic leaders to take control.</em></p>
+                    </div>
+                </div>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>🔑 Key Transition (1976-1978)</h3>
+                    <p><strong>Hua Guofeng</strong> briefly led China as Mao's chosen successor, but lacked support. By 1978, <strong>Deng Xiaoping</strong> - twice purged during the Cultural Revolution - had emerged as the real power behind economic reform.</p>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Chinese Poster (1976):</strong> "Smash the Gang of Four! Long Live the People's Victory!"</p>
+                    <p style="margin-top: 1rem;"><em>The speed of their downfall showed how isolated radical policies had become.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Deng Xiaoping's Vision -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">3 / 14</div>
+                <h2>🎯 Deng Xiaoping: The Pragmatic Revolutionary</h2>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>From Purged Politician to Reform Architect</h3>
+                    <p>Deng Xiaoping (1904-1997) had lived through China's entire modern transformation. Purged twice during the Cultural Revolution for being a "capitalist roader," he returned with hard-earned wisdom about what worked and what didn't.</p>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>🧠 Deng's Key Insights</h4>
+                        <ul>
+                            <li><strong>Ideology vs. Results:</strong> "It doesn't matter if the cat is black or white, as long as it catches mice"</li>
+                            <li><strong>Gradual Change:</strong> "Cross the river by feeling the stones" - careful experimentation</li>
+                            <li><strong>Learning from Others:</strong> Study successful countries without losing Chinese identity</li>
+                            <li><strong>Economic Foundation:</strong> Development first, other reforms would follow</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>📋 Deng's Four Modernizations</h4>
+                        <ul>
+                            <li><strong>Agriculture:</strong> Feed the people, increase rural incomes</li>
+                            <li><strong>Industry:</strong> Build modern manufacturing capacity</li>
+                            <li><strong>Technology:</strong> Catch up with advanced countries</li>
+                            <li><strong>Defense:</strong> Protect China's sovereignty and development</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Deng Xiaoping (1978):</strong> "Poverty is not socialism. To be rich is glorious. We must liberate our thinking and seek truth from facts."</p>
+                    <p style="margin-top: 1rem;"><em>This was revolutionary thinking after decades of attacking wealth and expertise.</em></p>
+                </div>
+                
+                <div class="modern-analysis auto-reveal">
+                    <h4>🤔 Why Deng Succeeded</h4>
+                    <p><strong>Personal Authority:</strong> Revolutionary veteran with unquestionable loyalty</p>
+                    <p><strong>Practical Experience:</strong> Had seen both the costs of radical policies and benefits of careful reform</p>
+                    <p><strong>Coalition Building:</strong> United pragmatic officials around shared economic goals</p>
+                    <p><strong>Gradual Approach:</strong> Avoided threatening vested interests with sudden changes</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Early Reforms (1978-1985) -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">4 / 14</div>
+                <h2>🌱 Early Reforms: Agriculture First (1978-1985)</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>Starting Where It Mattered Most</h3>
+                    <p>Deng began reforms in agriculture because 80% of Chinese were peasants, food shortages were common, and success here would build support for broader changes. The results exceeded all expectations.</p>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card auto-reveal">
+                        <h4>❌ Before Reform: People's Communes</h4>
+                        <ul>
+                            <li><strong>Collective Farming:</strong> All land owned by the commune</li>
+                            <li><strong>No Individual Incentives:</strong> Everyone got same share regardless of work</li>
+                            <li><strong>Political Control:</strong> Planting decisions made by party officials</li>
+                            <li><strong>Low Productivity:</strong> Chronic food shortages and rural poverty</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card auto-reveal">
+                        <h4>✅ After Reform: Household Responsibility System</h4>
+                        <ul>
+                            <li><strong>Family Farming:</strong> Households lease land from state</li>
+                            <li><strong>Individual Incentives:</strong> Keep surplus after meeting quotas</li>
+                            <li><strong>Economic Decisions:</strong> Farmers choose what to plant and when</li>
+                            <li><strong>High Productivity:</strong> Agricultural output increased 47% in 6 years</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="stats-grid auto-reveal">
+                    <div class="stat-card">
+                        <span class="stat-number">47%</span>
+                        <div class="stat-label">Agricultural output increase (1978-1984)</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">170M</span>
+                        <div class="stat-label">People lifted out of absolute poverty</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">2x</span>
+                        <div class="stat-label">Rural incomes doubled</div>
+                    </div>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Peasant from Anhui Province (1982):</strong> "Before reform, we worked for the commune but stayed hungry. Now we work for ourselves and have enough to eat. My family even bought a bicycle!"</p>
+                    <p style="margin-top: 1rem;"><em>Personal stories showed how economic incentives transformed daily life.</em></p>
+                </div>
+                
+                <div class="modern-analysis auto-reveal">
+                    <h4>🔑 Why Agricultural Reform Worked</h4>
+                    <ul>
+                        <li><strong>Aligned Individual and National Interests:</strong> Farmers' prosperity helped the whole country</li>
+                        <li><strong>Built on Existing Knowledge:</strong> Peasants knew how to farm efficiently</li>
+                        <li><strong>Created Political Support:</strong> Success generated momentum for further reforms</li>
+                        <li><strong>Freed Labor:</strong> More productive agriculture released workers for industry</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Special Economic Zones -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">5 / 14</div>
+                <h2>🏙️ Special Economic Zones: Capitalism with Chinese Characteristics</h2>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>Deng's Bold Experiment (1980-1990s)</h3>
+                    <p>While maintaining socialism nationwide, Deng created special zones where foreign investment, private enterprise, and market mechanisms could operate freely. These became laboratories for testing capitalist methods under communist rule.</p>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>🎯 The Original Four SEZs (1980)</h4>
+                        <ul>
+                            <li><strong>Shenzhen:</strong> Border with Hong Kong - became the showcase</li>
+                            <li><strong>Zhuhai:</strong> Near Macau - focused on high-tech industry</li>
+                            <li><strong>Shantou:</strong> Attracted overseas Chinese investment</li>
+                            <li><strong>Xiamen:</strong> Coastal trade and Taiwan connections</li>
+                        </ul>
+                        <p style="margin-top: 1rem;"><em>Location was strategic - close to capitalist territories for learning and investment.</em></p>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>🏗️ The Shenzhen Miracle</h4>
+                        <ul>
+                            <li><strong>1980:</strong> Fishing village of 30,000 people</li>
+                            <li><strong>1990:</strong> Manufacturing city of 1 million</li>
+                            <li><strong>2000:</strong> Tech hub of 7 million</li>
+                            <li><strong>2020:</strong> Global innovation center of 13 million</li>
+                        </ul>
+                        <p style="margin-top: 1rem;"><em>Fastest urban growth in human history.</em></p>
+                    </div>
+                </div>
+                
+                <div class="economic-data auto-reveal">
+                    <h4>📊 SEZ Economic Impact</h4>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number">40%</span>
+                            <div class="stat-label">Annual GDP growth in Shenzhen (1980s)</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">$2T</span>
+                            <div class="stat-label">Foreign investment attracted (1980-2020)</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">14</span>
+                            <div class="stat-label">SEZs established by 1992</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Deng Xiaoping visiting Shenzhen (1984):</strong> "The development and experience of Shenzhen have proved that our policy of establishing special economic zones is correct."</p>
+                    <p style="margin-top: 1rem;"><em>Success silenced critics who called SEZs "betrayal of socialism."</em></p>
+                </div>
+                
+                <div class="modern-analysis auto-reveal">
+                    <h4>🧠 The SEZ Strategy</h4>
+                    <ul>
+                        <li><strong>Controlled Experimentation:</strong> Test capitalism in limited areas before expanding</li>
+                        <li><strong>Technology Transfer:</strong> Foreign companies brought advanced methods and equipment</li>
+                        <li><strong>Export Orientation:</strong> Earn foreign currency to fund development</li>
+                        <li><strong>Demonstration Effect:</strong> Success would justify broader market reforms</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Industrial Reform and TVEs -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">6 / 14</div>
+                <h2>🏭 Industrial Reform: Township and Village Enterprises</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>Capitalism Grows from the Grassroots</h3>
+                    <p>While state-owned enterprises remained politically sensitive, Deng allowed local governments to create "Township and Village Enterprises" (TVEs). These became China's industrial revolution engine during the 1980s and 1990s.</p>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card auto-reveal">
+                        <h4>🏭 State-Owned Enterprises (SOEs)</h4>
+                        <ul>
+                            <li><strong>Political Priority:</strong> Provided jobs and social services</li>
+                            <li><strong>Inefficient:</strong> Guaranteed employment regardless of productivity</li>
+                            <li><strong>Protected:</strong> Government subsidies covered losses</li>
+                            <li><strong>Slow to Reform:</strong> Changes threatened worker stability</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card auto-reveal">
+                        <h4>🌾 Township and Village Enterprises</h4>
+                        <ul>
+                            <li><strong>Market Oriented:</strong> Competed for customers and profits</li>
+                            <li><strong>Efficient:</strong> Hired and fired based on performance</li>
+                            <li><strong>Self-Financing:</strong> Succeeded or failed on their own</li>
+                            <li><strong>Rapidly Growing:</strong> Doubled output every few years</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="economic-data auto-reveal">
+                    <h4>📈 TVE Growth Explosion</h4>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number">135M</span>
+                            <div class="stat-label">People employed by TVEs (1996 peak)</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">40%</span>
+                            <div class="stat-label">Share of industrial output by 1990s</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">20%</span>
+                            <div class="stat-label">Annual growth rate (1980s-1990s)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>🔑 Why TVEs Were Brilliant</h3>
+                    <ul>
+                        <li><strong>Politically Acceptable:</strong> Officially "collective" enterprises, not private capitalism</li>
+                        <li><strong>Competitive Pressure:</strong> Forced SOEs to improve efficiency to survive</li>
+                        <li><strong>Rural Development:</strong> Created jobs in countryside, reducing urban migration pressure</li>
+                        <li><strong>Technology Learning:</strong> Absorbed and improved upon foreign techniques</li>
+                        <li><strong>Export Growth:</strong> Competitive products that could sell internationally</li>
+                    </ul>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>TVE Manager (1990):</strong> "We're not socialist and we're not capitalist. We're just trying to make good products and earn money for our village. If that's capitalism, then capitalism works!"</p>
+                    <p style="margin-top: 1rem;"><em>Pragmatic approach avoided ideological debates while achieving results.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: The 1990s - Deeper Reforms -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">7 / 14</div>
+                <h2>⚡ The 1990s: Deepening Reforms Under Pressure</h2>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>After Tiananmen: Economic Reform Without Political Reform</h3>
+                    <p>The 1989 Tiananmen protests created a crisis for Chinese leadership. Their response: accelerate economic reforms to build legitimacy through prosperity while maintaining tight political control.</p>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>🌊 Deng's Southern Tour (1992)</h4>
+                        <ul>
+                            <li><strong>Context:</strong> Reform momentum stalled after Tiananmen</li>
+                            <li><strong>Message:</strong> "Development is the absolute principle"</li>
+                            <li><strong>Action:</strong> Visited Shenzhen and other successful reform areas</li>
+                            <li><strong>Result:</strong> Renewed commitment to market-oriented reforms</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>🏢 SOE Reform Challenge</h4>
+                        <ul>
+                            <li><strong>Problem:</strong> State enterprises becoming massive loss-makers</li>
+                            <li><strong>Solution:</strong> "Grasp the large, release the small"</li>
+                        <h4>🏢 SOE Reform Challenge</h4>
+                        <ul>
+                            <li><strong>Problem:</strong> State enterprises becoming massive loss-makers</li>
+                            <li><strong>Solution:</strong> "Grasp the large, release the small"</li>>
+                            <li><strong>Policy:</strong> Keep strategic SOEs, privatize or close smaller ones</li>
+                            <li><strong>Cost:</strong> 40+ million SOE workers laid off (1990s-2000s)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>💰 Financial System Development</h4>
+                        <ul>
+                            <li><strong>Banking Reform:</strong> Central bank separated from commercial banks</li>
+                            <li><strong>Stock Markets:</strong> Shanghai (1990) and Shenzhen (1991) exchanges opened</li>
+                            <li><strong>Private Investment:</strong> Individuals could buy shares and bonds</li>
+                            <li><strong>Foreign Banks:</strong> Limited entry to bring expertise</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="economic-data auto-reveal">
+                    <h4>📊 1990s Economic Performance</h4>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number">9.3%</span>
+                            <div class="stat-label">Average annual GDP growth</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">200M</span>
+                            <div class="stat-label">Additional people lifted from poverty</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">5x</span>
+                            <div class="stat-label">Export value increase (1990-2000)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Deng Xiaoping, Southern Tour (1992):</strong> "If we don't continue reform and opening up, and if we don't develop the economy, our modernization cause and socialist cause will come to nothing."</p>
+                    <p style="margin-top: 1rem;"><em>Economic development became the source of government legitimacy.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Path to WTO Membership -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">8 / 14</div>
+                <h2>🌍 The Long Road to WTO Membership (1986-2001)</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>15 Years of Negotiations</h3>
+                    <p>China's application to join the World Trade Organization began in 1986 as a bid to rejoin the global economy. The complex negotiations required China to transform its entire economic system to meet international standards.</p>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>🎯 Why China Wanted WTO Membership</h4>
+                        <ul>
+                            <li><strong>Market Access:</strong> Guaranteed access to foreign markets for Chinese exports</li>
+                            <li><strong>Foreign Investment:</strong> Attract more technology and capital</li>
+                            <li><strong>Reform Pressure:</strong> External requirements would force domestic reforms</li>
+                            <li><strong>Global Respect:</strong> Recognition as legitimate member of international community</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>🔒 What WTO Required</h4>
+                        <ul>
+                            <li><strong>Tariff Reduction:</strong> Lower import barriers across all industries</li>
+                            <li><strong>Market Opening:</strong> Allow foreign companies to compete in domestic markets</li>
+                            <li><strong>Legal Reforms:</strong> Transparent, rule-based economic governance</li>
+                            <li><strong>Intellectual Property:</strong> Protect foreign patents and copyrights</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card auto-reveal">
+                        <h4>🚧 Major Obstacles</h4>
+                        <ul>
+                            <li><strong>US Opposition:</strong> Concerns about human rights and trade deficits</li>
+                            <li><strong>European Skepticism:</strong> Doubts about China's market economy status</li>
+                            <li><strong>Domestic Resistance:</strong> Protected industries feared foreign competition</li>
+                            <li><strong>Agricultural Issues:</strong> Rural constituencies worried about food security</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card auto-reveal">
+                        <h4>🔧 How China Adapted</h4>
+                        <ul>
+                            <li><strong>Legal System:</strong> Rewrote thousands of laws and regulations</li>
+                            <li><strong>Banking Reform:</strong> Prepared financial sector for foreign competition</li>
+                            <li><strong>Subsidy Reduction:</strong> Decreased government support for inefficient industries</li>
+                            <li><strong>Transparency:</strong> Published trade policies and administrative procedures</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>🎉 Finally Achieved: December 11, 2001</h3>
+                    <p>After 15 years of negotiations, China became the 143rd member of the WTO. Premier Zhu Rongji called it "a win-win situation" that would benefit both China and the world economy.</p>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Chinese negotiator (2001):</strong> "WTO membership is not the end goal, but the beginning. Now we must prove that China can be a responsible member of the global trading system."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Post-WTO Economic Explosion -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">9 / 14</div>
+                <h2>🚀 Post-WTO Economic Explosion (2001-2008)</h2>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>China Becomes "The World's Factory"</h3>
+                    <p>WTO membership unleashed China's manufacturing potential. Guaranteed market access, combined with low labor costs and improving infrastructure, made China the preferred destination for global manufacturing.</p>
+                </div>
+                
+                <div class="economic-data auto-reveal">
+                    <h4>📈 The Numbers Tell the Story</h4>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number">10.5%</span>
+                            <div class="stat-label">Average annual GDP growth (2001-2007)</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">6x</span>
+                            <div class="stat-label">Export growth in 7 years</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">$3T</span>
+                            <div class="stat-label">GDP by 2008 (world's 3rd largest)</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">150M</span>
+                            <div class="stat-label">Rural workers migrated to cities</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>🏭 Manufacturing Dominance</h4>
+                        <ul>
+                            <li><strong>Electronics:</strong> Became world's largest producer of computers and phones</li>
+                            <li><strong>Textiles:</strong> Dominated global clothing and fabric markets</li>
+                            <li><strong>Machinery:</strong> Major exporter of industrial equipment</li>
+                            <li><strong>Toys & Furniture:</strong> China-made products filled global stores</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>🌆 Urbanization Acceleration</h4>
+                        <ul>
+                            <li><strong>Migrant Workers:</strong> 150+ million moved from farms to factories</li>
+                            <li><strong>New Cities:</strong> Dozens of cities grew beyond 1 million people</li>
+                            <li><strong>Infrastructure Boom:</strong> Highways, airports, ports built rapidly</li>
+                            <li><strong>Real Estate:</strong> Urban housing prices soared</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="modern-analysis auto-reveal">
+                    <h4>🔄 The Global Impact</h4>
+                    <ul>
+                        <li><strong>Consumer Benefits:</strong> Cheaper goods for consumers worldwide</li>
+                        <li><strong>Supply Chain Revolution:</strong> Global companies restructured around Chinese manufacturing</li>
+                        <li><strong>Job Displacement:</strong> Manufacturing jobs moved from developed countries to China</li>
+                        <li><strong>Commodity Boom:</strong> Chinese demand drove up prices for oil, steel, copper</li>
+                        <li><strong>Trade Imbalances:</strong> Growing tensions over China's export surplus</li>
+                    </ul>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Factory Worker in Guangdong (2005):</strong> "Five years ago I was farming rice in Hunan. Now I make cell phones that are sold in America. My salary supports my parents and pays for my daughter's school. This is the Chinese dream."</p>
+                    <p style="margin-top: 1rem;"><em>Individual stories revealed the human impact of rapid industrialization.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Global Financial Crisis Response -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">10 / 14</div>
+                <h2>💥 Global Financial Crisis: China's Response (2008-2010)</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>When the World Economy Collapsed, China Stepped Up</h3>
+                    <p>The 2008 global financial crisis tested China's economic model. While Western economies contracted, China launched a massive stimulus program that not only sustained its own growth but helped stabilize the global economy.</p>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card auto-reveal">
+                        <h4>🌍 Global Crisis Impact</h4>
+                        <ul>
+                            <li><strong>Export Collapse:</strong> Chinese exports fell 25% in early 2009</li>
+                            <li><strong>Factory Closures:</strong> Millions of migrant workers lost jobs</li>
+                            <li><strong>Investment Freeze:</strong> Foreign companies postponed expansion plans</li>
+                            <li><strong>Growth Threat:</strong> GDP growth slowed to 6.2% (lowest in decades)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card auto-reveal">
+                        <h4>🛡️ China's Stimulus Response</h4>
+                        <ul>
+                            <li><strong>Massive Scale:</strong> $586 billion stimulus (12% of GDP)</li>
+                            <li><strong>Infrastructure Focus:</strong> High-speed rail, highways, airports</li>
+                            <li><strong>Bank Lending:</strong> State banks provided credit to key projects</li>
+                            <li><strong>Quick Implementation:</strong> Projects launched within months</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="economic-data auto-reveal">
+                    <h4>📊 Stimulus Results</h4>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number">9.2%</span>
+                            <div class="stat-label">GDP growth in 2009 (vs. -2.8% in US)</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">25,000</span>
+                            <div class="stat-label">Miles of high-speed rail built</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">35%</span>
+                            <div class="stat-label">Share of global growth (2009-2011)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>🌟 China as Global Economic Stabilizer</h3>
+                    <p>China's continued growth during the crisis helped prevent a global depression. Its demand for commodities supported resource-rich countries, while its manufacturing kept global supply chains functioning. This marked China's emergence as a crucial pillar of the world economy.</p>
+                </div>
+                
+                <div class="modern-analysis auto-reveal">
+                    <h4>🤔 Long-term Consequences</h4>
+                    <ul>
+                        <li><strong>Debt Accumulation:</strong> Local governments borrowed heavily to fund projects</li>
+                        <li><strong>Real Estate Bubble:</strong> Property prices soared in major cities</li>
+                        <li><strong>Industrial Overcapacity:</strong> Too much investment in steel, cement, solar panels</li>
+                        <li><strong>Environmental Costs:</strong> Rapid construction worsened pollution</li>
+                        <li><strong>Global Influence:</strong> Proved China's importance to world economy</li>
+                    </ul>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>World Bank President (2009):</strong> "China's stimulus response was crucial for global recovery. Without China's growth, the world recession would have been much deeper and longer."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: The New Normal Era (2010-Present) -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">11 / 14</div>
+                <h2>⚖️ The "New Normal" Era (2010-Present)</h2>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>From Quantity to Quality Growth</h3>
+                    <p>By 2010, China faced new challenges: an aging workforce, environmental degradation, rising inequality, and the middle-income trap. Leaders recognized that the old model of rapid, investment-driven growth was no longer sustainable.</p>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>📉 Why Growth Had to Slow</h4>
+                        <ul>
+                            <li><strong>Demographic Shift:</strong> Working-age population peaked in 2012</li>
+                            <li><strong>Rising Wages:</strong> Labor costs increased 10-15% annually</li>
+                            <li><strong>Environmental Limits:</strong> Air and water pollution reached crisis levels</li>
+                            <li><strong>Debt Concerns:</strong> Corporate and government debt soared</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>🎯 New Development Strategy</h4>
+                        <ul>
+                            <li><strong>Innovation-Driven:</strong> Shift from copying to creating</li>
+                            <li><strong>Service Economy:</strong> Grow finance, healthcare, education sectors</li>
+                            <li><strong>Consumption-Led:</strong> Domestic demand rather than exports</li>
+                            <li><strong>Sustainable Growth:</strong> Environmental protection and efficiency</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="economic-data auto-reveal">
+                    <h4>📊 Structural Changes (2010-2020)</h4>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number">6.7%</span>
+                            <div class="stat-label">Average GDP growth (vs. 10% in 2000s)</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">54%</span>
+                            <div class="stat-label">Services share of economy (2020)</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">400M</span>
+                            <div class="stat-label">Middle class consumers</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">#2</span>
+                            <div class="stat-label">Largest economy by GDP (2010)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modern-analysis auto-reveal">
+                    <h4>🔧 Key Policy Shifts</h4>
+                    <ul>
+                        <li><strong>Technology Upgrade:</strong> "Made in China 2025" plan for high-tech manufacturing</li>
+                        <li><strong>Financial Reform:</strong> Liberalize interest rates and currency exchange</li>
+                        <li><strong>Urbanization:</strong> Integrate 100 million migrant workers into cities</li>
+                        <li><strong>Poverty Alleviation:</strong> Targeted programs to eliminate absolute poverty</li>
+                        <li><strong>Environmental Protection:</strong> War on pollution and carbon neutrality goals</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card auto-reveal">
+                        <h4>✅ Achievements</h4>
+                        <ul>
+                            <li><strong>Poverty Elimination:</strong> Removed 800+ million from absolute poverty</li>
+                            <li><strong>Tech Innovation:</strong> Leaders in 5G, AI, electric vehicles</li>
+                            <li><strong>Infrastructure:</strong> World's largest high-speed rail network</li>
+                            <li><strong>Global Influence:</strong> Belt and Road Initiative across 70+ countries</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card auto-reveal">
+                        <h4>⚠️ Challenges</h4>
+                        <ul>
+                            <li><strong>Debt Burden:</strong> Corporate debt reached 160% of GDP</li>
+                            <li><strong>Trade Tensions:</strong> Growing conflicts with US and Europe</li>
+                            <li><strong>Inequality:</strong> Income gaps between rich and poor regions</li>
+                            <li><strong>Demographic Crisis:</strong> Rapidly aging population</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: China Today - Global Economic Power -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">12 / 14</div>
+                <h2>🌏 China Today: Global Economic Powerhouse</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>From Poor Agricultural Country to Economic Superpower</h3>
+                    <p>In just 45 years since reform began, China has achieved the fastest sustained economic growth in human history. Today it's the world's second-largest economy and a major force in global trade, technology, and finance.</p>
+                </div>
+                
+                <div class="economic-data auto-reveal">
+                    <h4>📊 China by the Numbers (2023)</h4>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number">$17.7T</span>
+                            <div class="stat-label">GDP (world's 2nd largest)</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">18%</span>
+                            <div class="stat-label">Share of global GDP</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">#1</span>
+                            <div class="stat-label">Largest trading nation</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">1.4B</span>
+                            <div class="stat-label">People lifted to middle-income status</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-section">
+                    <div class="timeline-card auto-reveal">
+                        <h4>🏆 Global Leadership Areas</h4>
+                        <ul>
+                            <li><strong>Manufacturing:</strong> 28% of global production</li>
+                            <li><strong>Technology:</strong> 5G networks, AI research, quantum computing</li>
+                            <li><strong>Renewable Energy:</strong> 50% of global solar panel production</li>
+                            <li><strong>Infrastructure:</strong> High-speed rail, digital payments, smart cities</li>
+                            <li><strong>Space Program:</strong> Mars rover, space station, moon missions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-card auto-reveal">
+                        <h4>🌐 Global Economic Impact</h4>
+                        <ul>
+                            <li><strong>Trade Partner:</strong> #1 or #2 trading partner for 120+ countries</li>
+                            <li><strong>Investment Source:</strong> Major foreign direct investor worldwide</li>
+                            <li><strong>Financial Influence:</strong> Yuan becoming international reserve currency</li>
+                            <li><strong>Development Leader:</strong> Belt and Road Initiative in 70+ countries</li>
+                            <li><strong>Climate Action:</strong> Largest investor in clean energy</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="modern-analysis auto-reveal">
+                    <h4>🤔 What Made This Transformation Possible?</h4>
+                    <ul>
+                        <li><strong>Pragmatic Leadership:</strong> Focus on results over ideology after Cultural Revolution</li>
+                        <li><strong>Gradual Reform:</strong> "Crossing the river by feeling the stones" approach</li>
+                        <li><strong>Learning from Others:</strong> Studied and adapted successful models worldwide</li>
+                        <li><strong>Investment in Infrastructure:</strong> Built foundation for economic growth</li>
+                        <li><strong>Education Priority:</strong> Massive expansion of schooling and technical training</li>
+                        <li><strong>Global Integration:</strong> Embraced international trade and investment</li>
+                        <li><strong>Long-term Planning:</strong> Consistent policies across multiple decades</li>
+                    </ul>
+                </div>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>🌟 Historical Perspective</h3>
+                    <p>China's rise represents the largest reduction in poverty and fastest economic development in human history. What took Western countries 200 years to achieve, China accomplished in 40 years. This transformation has reshaped the global economy and challenged assumptions about development models.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Lessons and Challenges -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">13 / 14</div>
+                <h2>📚 Lessons Learned and Future Challenges</h2>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>What Can Other Countries Learn from China's Experience?</h3>
+                    <p>China's economic transformation offers important lessons about development strategy, but also reveals the challenges that come with rapid growth. Understanding both successes and problems helps us think critically about different paths to prosperity.</p>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card auto-reveal">
+                        <h4>✅ Key Success Factors</h4>
+                        <ul>
+                            <li><strong>Pragmatic Experimentation:</strong> Test policies before national implementation</li>
+                            <li><strong>Infrastructure Investment:</strong> Build foundation before expecting growth</li>
+                            <li><strong>Education and Skills:</strong> Invest heavily in human capital development</li>
+                            <li><strong>Gradual Opening:</strong> Integrate with global economy at manageable pace</li>
+                            <li><strong>Political Stability:</strong> Consistent long-term economic policies</li>
+                            <li><strong>Learning Mindset:</strong> Study and adapt from successful countries</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card auto-reveal">
+                        <h4>⚠️ Major Challenges</h4>
+                        <ul>
+                            <li><strong>Environmental Costs:</strong> Severe air and water pollution</li>
+                            <li><strong>Rising Inequality:</strong> Growing gap between rich and poor</li>
+                            <li><strong>Demographic Crisis:</strong> Aging population and shrinking workforce</li>
+                            <li><strong>Debt Burden:</strong> High corporate and local government debt</li>
+                            <li><strong>Trade Tensions:</strong> Conflicts with major trading partners</li>
+                            <li><strong>Innovation Challenge:</strong> Moving from copying to creating</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="modern-analysis auto-reveal">
+                    <h4>🌍 Applicability to Other Countries</h4>
+                    <ul>
+                        <li><strong>Universal Principles:</strong> Investment in education, infrastructure, and institutions matters everywhere</li>
+                        <li><strong>Context Matters:</strong> China's size, culture, and history shaped its specific path</li>
+                        <li><strong>Political Systems:</strong> Democratic countries may need different approaches</li>
+                        <li><strong>Resource Differences:</strong> Not all countries have China's labor force and market size</li>
+                        <li><strong>Timing Factors:</strong> Global economic conditions in 1980s-2000s were unique</li>
+                    </ul>
+                </div>
+                
+                <div class="economic-data auto-reveal">
+                    <h4>🔮 Future Questions</h4>
+                    <ul>
+                        <li><strong>Sustainability:</strong> Can China's model work with environmental constraints?</li>
+                        <li><strong>Innovation:</strong> Will China successfully transition to innovation-driven growth?</li>
+                        <li><strong>Global Relations:</strong> How will trade tensions affect China's development?</li>
+                        <li><strong>Social Stability:</strong> Can the government manage rising expectations and inequality?</li>
+                        <li><strong>Demographic Transition:</strong> How will an aging society affect economic growth?</li>
+                    </ul>
+                </div>
+                
+                <div class="primary-source auto-reveal">
+                    <p><strong>Chinese Economist (2023):</strong> "We've solved the problem of absolute poverty, but now we face the challenges of middle-income countries. The next 30 years will test whether we can avoid the middle-income trap and become a truly advanced economy."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Synthesis and Next Steps -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">14 / 14</div>
+                <h2>🔗 Synthesis: Understanding China's Development Model</h2>
+                
+                <div class="essential-question auto-reveal">
+                    <h4>Returning to Our Essential Question:</h4>
+                    <p style="font-size: 2rem; color: #ffffff;">How did China transform from a poor, isolated communist country into the world's second-largest economy in just four decades?</p>
+                </div>
+                
+                <div class="period-highlight auto-reveal">
+                    <h3>🎯 The Chinese Development Formula</h3>
+                    <ul>
+                        <li><strong>Pragmatic Leadership:</strong> Learn from disasters, focus on results over ideology</li>
+                        <li><strong>Gradual Experimentation:</strong> Test reforms in limited areas before expanding</li>
+                        <li><strong>Infrastructure First:</strong> Build foundation for growth through massive investment</li>
+                        <li><strong>Global Integration:</strong> Embrace international trade while maintaining sovereignty</li>
+                        <li><strong>Education Investment:</strong> Develop human capital as basis for development</li>
+                        <li><strong>Long-term Consistency:</strong> Maintain core policies across decades</li>
+                        <li><strong>Adaptive Governance:</strong> Adjust strategies as conditions change</li>
+                    </ul>
+                </div>
+                
+                <div class="modern-analysis auto-reveal">
+                    <h4>🌟 Looking Ahead to Our Final Class</h4>
+                    <p><strong>Class 4:</strong> We'll explore what all this economic transformation means for contemporary Chinese society and China's role in today's world. How do ordinary Chinese citizens experience this rapid change? What are China's ambitions and challenges as a global power?</p>
+                    <p><strong>Final Essay Preparation:</strong> You now have the historical foundation (imperial collapse, communist revolution, Cultural Revolution) and economic understanding (reform process, development model) to write a sophisticated analysis of modern China's distinctive path.</p>
+                </div>
+                
+                <div class="economic-data auto-reveal">
+                    <h4>🤔 Critical Thinking Questions</h4>
+                    <ul>
+                        <li>What aspects of China's development model could work in other countries? What aspects are uniquely Chinese?</li>
+                        <li>How do the costs of rapid development (environmental damage, inequality) compare to the benefits (poverty reduction, modernization)?</li>
+                        <li>What role did historical experience (Century of Humiliation, Cultural Revolution) play in shaping reform strategies?</li>
+                        <li>How might China's future development challenges differ from its past successes?</li>
+                    </ul>
+                </div>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>💭 For Reflection</h3>
+                    <p>China's economic transformation represents both remarkable achievement and ongoing challenges. Understanding this journey helps us think critically about development, globalization, and the relationship between economic growth and human welfare. These aren't just Chinese questions - they're fundamental questions about how societies can improve people's lives while navigating the complexities of a changing world.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let currentReveals = 0;
+        let maxReveals = 0;
+
+        function updateSlideDisplay() {
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.remove('hidden');
+                } else {
+                    slide.classList.add('hidden');
+                }
+            });
+            
+            // Reset reveals for new slide
+            currentReveals = 0;
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            maxReveals = autoReveals.length;
+            
+            // Hide all auto-reveal elements
+            autoReveals.forEach(element => {
+                element.classList.remove('revealed');
+            });
+            
+            // Show first auto-reveal element
+            if (autoReveals.length > 0) {
+                autoReveals[0].classList.add('revealed');
+                currentReveals = 1;
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlideDisplay();
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlideDisplay();
+            }
+        }
+
+        function revealNext() {
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            if (currentReveals < autoReveals.length) {
+                autoReveals[currentReveals].classList.add('revealed');
+                currentReveals++;
+                return true;
+            }
+            return false;
+        }
+
+        function hideReveal() {
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            if (currentReveals > 1) {
+                currentReveals--;
+                autoReveals[currentReveals].classList.remove('revealed');
+                return true;
+            }
+            return false;
+        }
+
+        function revealAll() {
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            autoReveals.forEach(element => {
+                element.classList.add('revealed');
+            });
+            currentReveals = autoReveals.length;
+        }
+
+        function toggleImage() {
+            // This would show/hide associated images if they existed
+            alert('No images associated with this slide');
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowRight':
+                    if (!revealNext()) {
+                        nextSlide();
+                    }
+                    break;
+                case 'ArrowLeft':
+                    if (!hideReveal()) {
+                        previousSlide();
+                    }
+                    break;
+                case ',':
+                    previousSlide();
+                    break;
+                case '.':
+                    nextSlide();
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        updateSlideDisplay();
+    </script>
+</body>

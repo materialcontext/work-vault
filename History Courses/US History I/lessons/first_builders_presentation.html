@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Early Americans and the First Europeans</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+	    font-size: 20px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px;
+            position: relative;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #f39c12;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .focus-question {
+            background: rgba(52, 152, 219, 0.2);
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 2rem 0;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .three-column-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .two-column-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .culture-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+            height: 100%;
+        }
+
+        .culture-card h3 {
+            color: #f39c12;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .culture-card ul {
+            list-style: none;
+        }
+
+        .culture-card li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .culture-card li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+        }
+
+        .migration-route {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .migration-route h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .big-idea {
+            background: linear-gradient(45deg, #9b59b6, #8e44ad);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            font-size: 1.3rem;
+            font-weight: 500;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .evidence-box {
+            background: rgba(46, 204, 113, 0.2);
+            border: 2px solid #2ecc71;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .evidence-box h4 {
+            color: #2ecc71;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .vocabulary-box {
+            background: rgba(230, 126, 34, 0.2);
+            border: 2px solid #e67e22;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .vocabulary-box h4 {
+            color: #e67e22;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .activity-prompt {
+            background: rgba(155, 89, 182, 0.3);
+            border: 2px solid #9b59b6;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-size: 1.1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .map-description {
+            background: rgba(52, 152, 219, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            font-size: 1.1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .think-twice {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .progress-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background: #f39c12;
+            transform: scale(1.2);
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .reveal-status {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 10px 15px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .image-tab {
+            position: absolute;
+            top: 20px;
+            right: 100px;
+            background: rgba(52, 152, 219, 0.8);
+            border-radius: 10px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .image-tab:hover {
+            background: rgba(52, 152, 219, 1);
+            transform: scale(1.05);
+        }
+
+        .slide-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 85%;
+            max-height: 85%;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            display: none;
+            z-index: 1000;
+        }
+
+        .slide-image.visible {
+            display: block;
+        }
+
+        .contact-scenario {
+            background: rgba(231, 76, 60, 0.2);
+            border: 2px solid #e74c3c;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-scenario h4 {
+            color: #e74c3c;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-table {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .comparison-header {
+            font-weight: bold;
+            color: #f39c12;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <!-- Slide 1: Title Slide -->
+        <div class="slide active">
+            <div class="slide-content">
+                <h1>🌍 Early Americans and the First Europeans</h1>
+                <p class="subtitle">How People Came to America</p>
+                <div class="focus-question auto-reveal">
+                    <strong>Today's Focus Question:</strong><br>
+                    How did the Americas' first civilization emerge differently from Old World patterns?
+                </div>
+                <div class="big-idea auto-reveal">
+                    Today we'll discover how the first people arrived in the Americas and built sophisticated societies thousands of years before Columbus!
+                </div>
+            </div>
+            <div class="image-tab" onclick="toggleImage(0)">🗺️ View Migration Map</div>
+        </div>
+
+        <!-- Slide 2: The Big Question -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>❓ The Big Question</h2>
+                
+                <div class="map-description auto-reveal">
+                    <strong>What were some of the similarities and differences between the early civilizations of Native Americans and the Europeans?</strong>
+                </div>
+
+                <div class="vocabulary-box auto-reveal">
+                    <h4>📚 Key Terms to Know</h4>
+                    <p><strong>Beringia:</strong> The land bridge between Asia and North America during the Ice Age</p>
+                    <p><strong>Land Bridge Theory:</strong> How scientists think the first people came to America</p>
+                    <p><strong>Migrate:</strong> To move from one place to another</p>
+                </div>
+
+                <div class="think-twice auto-reveal">
+                    🤔 <strong>Think Twice:</strong><br>
+                    Why might it be difficult to truly understand how people originally migrated to the Americas?
+                </div>
+            </div>
+            <div class="image-tab" onclick="toggleImage(1)">🧊 View Ice Age Map</div>
+        </div>
+
+        <!-- Slide 3: How People Came to America -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🚶‍♂️ How People Came to America</h2>
+                
+                <div class="migration-route auto-reveal">
+                    <h3>🌉 The Long-Held Explanation of How</h3>
+                    <p>As many as eight to one hundred million indigenous people lived in the Americas by the time Christopher Columbus arrived. They occupied lands throughout the North and South American continents ranging from the Arctic—now Alaska and northern Canada—south to the tip of South America, and all points in between.</p>
+                </div>
+
+                <div class="two-column-grid">
+                    <div class="culture-card auto-reveal">
+                        <h3>🧊 The Land Bridge Theory</h3>
+                        <ul>
+                            <li class="auto-reveal">During Ice Age, sea levels were much lower</li>
+                            <li class="auto-reveal">Land bridge connected Asia and North America</li>
+                            <li class="auto-reveal">People followed animal herds across</li>
+                            <li class="auto-reveal">This happened around 15,000-20,000 years ago</li>
+                        </ul>
+                    </div>
+                    <div class="culture-card auto-reveal">
+                        <h3>🌊 Alternative Theories</h3>
+                        <ul>
+                            <li class="auto-reveal">Some may have come by boat along the coast</li>
+                            <li class="auto-reveal">Multiple waves of migration over time</li>
+                            <li class="auto-reveal">Archaeological evidence still being discovered</li>
+                            <li class="auto-reveal">Native oral traditions tell different stories</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="evidence-box auto-reveal">
+                    <h4>🔍 What the Evidence Shows</h4>
+                    <p>Archaeologists have found tools, bones, and other artifacts that help piece together this ancient migration. But new discoveries keep changing our understanding!</p>
+                </div>
+            </div>
+            <div class="image-tab" onclick="toggleImage(2)">🗿 View Artifacts</div>
+        </div>
+
+        <!-- Slide 4: Indigenous People of Central and South America -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🏛️ Indigenous People of Central and South America</h2>
+                
+                <div class="big-idea auto-reveal">
+                    Three of the most highly established and recognized indigenous groups of the Americas were the Maya, Aztec, and the Inca.
+                </div>
+
+                <div class="three-column-grid">
+                    <div class="culture-card auto-reveal">
+                        <h3>🏗️ Maya</h3>
+                        <ul>
+                            <li class="auto-reveal">Mexico, Honduras, and northern Guatemala</li>
+                            <li class="auto-reveal">Sophisticated calendar system</li>
+                            <li class="auto-reveal">Advanced mathematics (concept of zero)</li>
+                            <li class="auto-reveal">Impressive pyramids, which they used for astronomy</li>
+                            <li class="auto-reveal">Only fully developed writing system in pre-Columbian America</li>
+                        </ul>
+                    </div>
+                    <div class="culture-card auto-reveal">
+                        <h3>⚔️ Aztec</h3>
+                        <ul>
+                            <li class="auto-reveal">Central Mexico region</li>
+                            <li class="auto-reveal">Powerful military empire</li>
+                            <li class="auto-reveal">Built Tenochtitlan on a lake</li>
+                            <li class="auto-reveal">Advanced engineering and agriculture</li>
+                            <li class="auto-reveal">Complex religious and social systems</li>
+                        </ul>
+                    </div>
+                    <div class="culture-card auto-reveal">
+                        <h3>🏔️ Inca</h3>
+                        <ul>
+                            <li class="auto-reveal">Andes Mountains of South America</li>
+                            <li class="auto-reveal">Massive road network across mountains</li>
+                            <li class="auto-reveal">Incredible stone architecture (Machu Picchu)</li>
+                            <li class="auto-reveal">Quipu system for record-keeping</li>
+                            <li class="auto-reveal">Terraced farming in steep terrain</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="image-tab" onclick="toggleImage(3)">🏛️ View Civilizations</div>
+        </div>
+
+        <!-- Slide 5: The American Southwest -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🏜️ The American Southwest</h2>
+                
+                <div class="vocabulary-box auto-reveal">
+                    <h4>📍 Geographic Focus</h4>
+                    <p>The American Southwest includes what is now Arizona, New Mexico, Colorado, Utah, and parts of Texas and California.</p>
+                </div>
+
+                <div class="two-column-grid">
+                    <div class="culture-card auto-reveal">
+                        <h3>🏺 Ancestral Puebloans (Anasazi)</h3>
+                        <ul>
+                            <li class="auto-reveal">Lived from about 100 to 1300 CE</li>
+                            <li class="auto-reveal">Built amazing cliff dwellings</li>
+                            <li class="auto-reveal">Mesa Verde and Canyon de Chelly</li>
+                            <li class="auto-reveal">Advanced pottery and basket weaving</li>
+                            <li class="auto-reveal">Mysteriously abandoned their cities around 1300</li>
+                        </ul>
+                    </div>
+                    <div class="culture-card auto-reveal">
+                        <h3>🌽 Pueblo Peoples</h3>
+                        <ul>
+                            <li class="auto-reveal">Descendants of Ancestral Puebloans</li>
+                            <li class="auto-reveal">Hopi, Zuni, and Rio Grande Pueblos</li>
+                            <li class="auto-reveal">Adobe buildings and community plazas</li>
+                            <li class="auto-reveal">Sophisticated farming in desert environment</li>
+                            <li class="auto-reveal">Still living in the Southwest today</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="evidence-box auto-reveal">
+                    <h4>🏗️ Architectural Marvels</h4>
+                    <p>The cliff dwellings at Mesa Verde show incredible engineering skills - built into steep canyon walls with rooms that stayed cool in summer and warm in winter!</p>
+                </div>
+            </div>
+            <div class="image-tab" onclick="toggleImage(4)">🏔️ View Cliff Dwellings</div>
+        </div>
+
+        <!-- Slide 6: Europeans in America -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>⛵ The Earliest Europeans in America</h2>
+                
+                <div class="migration-route auto-reveal">
+                    <h3>🧭 Before Columbus</h3>
+                    <p>Quite possibly, the first Europeans to make the Atlantic journey across to North America were not Christopher Columbus and the Spanish, but the Norwegian sailors and explorers.</p>
+                </div>
+
+                <div class="two-column-grid">
+                    <div class="culture-card auto-reveal">
+                        <h3>⚔️ Vikings (Norse)</h3>
+                        <ul>
+                            <li class="auto-reveal">Led by Erik the Red and Leif Erikson</li>
+                            <li class="auto-reveal">Reached North America around 1000 CE</li>
+                            <li class="auto-reveal">Established settlements in Greenland</li>
+                            <li class="auto-reveal">Evidence of settlements in Newfoundland</li>
+                            <li class="auto-reveal">500 years before Columbus!</li>
+                        </ul>
+                    </div>
+                    <div class="culture-card auto-reveal">
+                        <h3>🌍 Why Vikings Were First</h3>
+                        <ul>
+                            <li class="auto-reveal">Excellent shipbuilding and navigation</li>
+                            <li class="auto-reveal">Used "island hopping" route via Iceland</li>
+                            <li class="auto-reveal">Shorter ocean distances than southern routes</li>
+                            <li class="auto-reveal">Established base in Greenland first</li>
+                            <li class="auto-reveal">Left archaeological evidence at L'Anse aux Meadows</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="think-twice auto-reveal">
+                    🤔 <strong>Think Twice:</strong><br>
+                    Why might the Vikings' discovery not have led to the same global impact as Columbus's voyages?
+                </div>
+            </div>
+            <div class="image-tab" onclick="toggleImage(5)">⛵ View Viking Routes</div>
+        </div>
+
+        <!-- Slide 7: Shared Cultural Traits and Sources of Conflict -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🤝 Shared Cultural Traits and Sources of Conflict</h2>
+                
+                <div class="comparison-table auto-reveal">
+                    <div class="comparison-row">
+                        <div class="comparison-header">Aspect</div>
+                        <div class="comparison-header">Native Americans</div>
+                        <div class="comparison-header">Europeans</div>
+                    </div>
+                    <div class="comparison-row auto-reveal">
+                        <div><strong>Religion</strong></div>
+                        <div>Spiritual connection to nature; multiple beliefs</div>
+                        <div>Christianity (Catholic/Protestant)</div>
+                    </div>
+                    <div class="comparison-row auto-reveal">
+                        <div><strong>Land Use</strong></div>
+                        <div>Shared use; seasonal migration</div>
+                        <div>Individual ownership; permanent settlement</div>
+                    </div>
+                    <div class="comparison-row auto-reveal">
+                        <div><strong>Technology</strong></div>
+                        <div>Stone, bone, wood tools; no metal working</div>
+                        <div>Metal tools, gunpowder, horses</div>
+                    </div>
+                    <div class="comparison-row auto-reveal">
+                        <div><strong>Social Structure</strong></div>
+                        <div>Tribal; consensus-based decisions</div>
+                        <div>Hierarchical; kings and nobility</div>
+                    </div>
+                </div>
+
+                <div class="contact-scenario auto-reveal">
+                    <h4>⚡ Sources of Conflict</h4>
+                    <p>It is important for us to remember that the people we now refer to as Native Americans or indigenous peoples had to deal with many groups: they were forced from their home in the Southeast to a place on Earth they'd never seen</p>
+                </div>
+            </div>
+            <div class="image-tab" onclick="toggleImage(6)">🗺️ View Contact Map</div>
+        </div>
+
+        <!-- Slide 8: What Can We Learn? -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🎓 What Can We Learn?</h2>
+                
+                <div class="big-idea auto-reveal">
+                    Religion was one steel wire between two groups that could not fold between the Native Americans and Europeans
+                </div>
+
+                <div class="activity-prompt auto-reveal">
+                    <h3>🔍 Your Investigation Mission</h3>
+                    <p><strong>Using what you learned today:</strong></p>
+                    <ul style="text-align: left; margin: 1rem 0;">
+                        <li>Choose one Native American civilization we discussed</li>
+                        <li>Research one specific achievement or innovation</li>
+                        <li>Compare it to what Europeans were doing at the same time</li>
+                        <li>Explain why this shows sophistication and complexity</li>
+                    </ul>
+                </div>
+
+                <div class="evidence-box auto-reveal">
+                    <h4>🤔 Essential Questions for Next Time</h4>
+                    <p>As we continue exploring early American civilizations: <strong>How did different environments shape the way people lived?</strong> And <strong>what happens when very different cultures meet for the first time?</strong></p>
+                </div>
+
+                <div class="vocabulary-box auto-reveal">
+                    <h4>📚 Words to Remember</h4>
+                    <p><strong>Migration, Beringia, Indigenous, Civilization, Cultural Exchange, Conflict</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress indicator -->
+        <div class="progress-indicator">
+            <div class="progress-dot active"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            ← → : Navigate slides<br>
+            ↑ ↓ : Progressive disclosure<br>
+            Enter: Reveal all<br>
+            , . : Quick navigation
+        </div>
+
+        <!-- Reveal status -->
+        <div class="reveal-status">
+            <span id="revealCount">0</span> / <span id="totalRevealCount">0</span> revealed
+        </div>
+
+    </div>
+
+    <!-- Hidden slide images (placeholders for actual content from PDF) -->
+    <img class="slide-image" id="slideImage0" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f4f4f4'/%3E%3Ctext x='400' y='250' text-anchor='middle' font-family='Arial' font-size='20' fill='%23666'%3EMigration Routes Map%3C/text%3E%3Ctext x='400' y='280' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3EShowing Beringia land bridge%3C/text%3E%3Ctext x='400' y='310' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3Eand migration patterns%3C/text%3E%3C/svg%3E" alt="Migration routes from Asia to Americas">
+    
+    <img class="slide-image" id="slideImage1" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f4f4f4'/%3E%3Ctext x='400' y='250' text-anchor='middle' font-family='Arial' font-size='20' fill='%23666'%3EIce Age World Map%3C/text%3E%3Ctext x='400' y='280' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3EShowing lower sea levels%3C/text%3E%3Ctext x='400' y='310' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3Eand exposed land bridges%3C/text%3E%3C/svg%3E" alt="Ice Age map showing Beringia">
+    
+    <img class="slide-image" id="slideImage2" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f4f4f4'/%3E%3Ctext x='400' y='250' text-anchor='middle' font-family='Arial' font-size='20' fill='%23666'%3EEarly American Artifacts%3C/text%3E%3Ctext x='400' y='280' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3ETools, weapons, and pottery%3C/text%3E%3Ctext x='400' y='310' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3Efrom indigenous peoples%3C/text%3E%3C/svg%3E" alt="Archaeological artifacts">
+    
+    <img class="slide-image" id="slideImage3" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f4f4f4'/%3E%3Ctext x='400' y='230' text-anchor='middle' font-family='Arial' font-size='20' fill='%23666'%3EMaya, Aztec, and Inca%3C/text%3E%3Ctext x='400' y='260' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3ECivilizations Map%3C/text%3E%3Ctext x='400' y='290' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3EShowing territories and%3C/text%3E%3Ctext x='400' y='320' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3Emajor achievements%3C/text%3E%3C/svg%3E" alt="Maya, Aztec, and Inca civilizations">
+    
+    <img class="slide-image" id="slideImage4" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f4f4f4'/%3E%3Ctext x='400' y='250' text-anchor='middle' font-family='Arial' font-size='20' fill='%23666'%3ESouthwest Cliff Dwellings%3C/text%3E%3Ctext x='400' y='280' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3EMesa Verde and%3C/text%3E%3Ctext x='400' y='310' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3EAncestral Puebloan sites%3C/text%3E%3C/svg%3E" alt="Ancestral Puebloan cliff dwellings">
+    
+    <img class="slide-image" id="slideImage5" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f4f4f4'/%3E%3Ctext x='400' y='250' text-anchor='middle' font-family='Arial' font-size='20' fill='%23666'%3EViking Exploration Routes%3C/text%3E%3Ctext x='400' y='280' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3EIceland to Greenland%3C/text%3E%3Ctext x='400' y='310' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3Eto North America%3C/text%3E%3C/svg%3E" alt="Viking exploration routes">
+    
+    <img class="slide-image" id="slideImage6" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f4f4f4'/%3E%3Ctext x='400' y='250' text-anchor='middle' font-family='Arial' font-size='20' fill='%23666'%3EEuropean-Native Contact%3C/text%3E%3Ctext x='400' y='280' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3EAreas of early interaction%3C/text%3E%3Ctext x='400' y='310' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3Eand cultural exchange%3C/text%3E%3C/svg%3E" alt="European and Native American contact zones">
+
+    <script>
+        let currentSlide = 0;
+        let currentRevealIndex = 0;
+        let allRevealed = false;
+        let currentImage = null;
+        const totalSlides = 8;
+
+        function showSlide(index) {
+            // Hide all slides
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Show target slide
+            const slides = document.querySelectorAll('.slide');
+            if (index >= 0 && index < slides.length) {
+                slides[index].classList.add('active');
+                currentSlide = index;
+                
+                // Reset reveal state
+                resetSlideReveals();
+                updateProgressIndicator();
+                
+                // Hide any visible images
+                hideAllImages();
+            }
+        }
+
+        function resetSlideReveals() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            // Hide all reveals
+            autoRevealElements.forEach(element => {
+                element.classList.remove('revealed');
+            });
+            
+            currentRevealIndex = 0;
+            allRevealed = false;
+            updateRevealStatus();
+        }
+
+        function revealNext() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (currentRevealIndex < autoRevealElements.length) {
+                autoRevealElements[currentRevealIndex].classList.add('revealed');
+                currentRevealIndex++;
+                updateRevealStatus();
+                
+                if (currentRevealIndex === autoRevealElements.length) {
+                    allRevealed = true;
+                }
+            }
+        }
+
+        function revealPrevious() {
+            if (currentRevealIndex > 0) {
+                currentRevealIndex--;
+                const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+                const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+                autoRevealElements[currentRevealIndex].classList.remove('revealed');
+                allRevealed = false;
+                updateRevealStatus();
+            }
+        }
+
+        function revealAll() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (!allRevealed) {
+                // Reveal all with staggered animation
+                autoRevealElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('revealed');
+                    }, index * 150);
+                });
+                currentRevealIndex = autoRevealElements.length;
+                allRevealed = true;
+                
+                // Update status after animation completes
+                setTimeout(() => {
+                    updateRevealStatus();
+                }, autoRevealElements.length * 150);
+            } else {
+                // Hide all
+                autoRevealElements.forEach(element => {
+                    element.classList.remove('revealed');
+                });
+                currentRevealIndex = 0;
+                allRevealed = false;
+                updateRevealStatus();
+            }
+        }
+
+        function updateRevealStatus() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            document.getElementById('revealCount').textContent = currentRevealIndex;
+            document.getElementById('totalRevealCount').textContent = autoRevealElements.length;
+        }
+
+        function updateProgressIndicator() {
+            const dots = document.querySelectorAll('.progress-dot');
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function toggleImage(slideIndex) {
+            const imageId = `slideImage${slideIndex}`;
+            const image = document.getElementById(imageId);
+            
+            if (currentImage && currentImage !== image) {
+                currentImage.classList.remove('visible');
+            }
+            
+            if (image.classList.contains('visible')) {
+                image.classList.remove('visible');
+                currentImage = null;
+            } else {
+                image.classList.add('visible');
+                currentImage = image;
+            }
+        }
+
+        function hideAllImages() {
+            document.querySelectorAll('.slide-image').forEach(img => {
+                img.classList.remove('visible');
+            });
+            currentImage = null;
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(event) {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            switch(event.key) {
+                case 'ArrowRight':
+                    if (currentRevealIndex < autoRevealElements.length) {
+                        revealNext();
+                    } else if (currentSlide < totalSlides - 1) {
+                        showSlide(currentSlide + 1);
+                    }
+                    break;
+                case 'ArrowLeft':
+                    if (currentRevealIndex > 0) {
+                        revealPrevious();
+                    } else if (currentSlide > 0) {
+                        showSlide(currentSlide - 1);
+                    }
+                    break;
+                case 'ArrowDown':
+                    revealNext();
+                    break;
+                case 'ArrowUp':
+                    revealPrevious();
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+                case ',':
+                    if (currentSlide > 0) {
+                        showSlide(currentSlide - 1);
+                    }
+                    break;
+                case '.':
+                    if (currentSlide < totalSlides - 1) {
+                        showSlide(currentSlide + 1);
+                    }
+                    break;
+                case 'Escape':
+                    hideAllImages();
+                    break;
+            }
+        });
+
+        // Click outside image to close
+        document.addEventListener('click', function(event) {
+            if (currentImage && !event.target.classList.contains('image-tab') && !event.target.classList.contains('slide-image')) {
+                hideAllImages();
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

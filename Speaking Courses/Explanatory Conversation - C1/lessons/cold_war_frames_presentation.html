@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cold War History - Language Frames</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+	    font-size: 22px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .slide-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .slide {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 3rem;
+            width: 100vw;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .slide.hidden {
+            display: none;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #e74c3c, #f39c12);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #f39c12;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #f8f9fa;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+            margin: 1.5rem 0;
+        }
+
+        .reveal-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .frame-showcase {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(192, 57, 43, 0.3);
+            border: 3px solid #f39c12;
+        }
+
+        .frame-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #f39c12;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .frame-text {
+            font-size: 1.6rem;
+            line-height: 1.8;
+            font-weight: 600;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .frames-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .frame-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .frame-card h4 {
+            color: #f39c12;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .frame-example {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 4px solid #f39c12;
+            font-style: italic;
+        }
+
+        .timeline-visual {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            text-align: center;
+            border: 2px solid #f8f9fa;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .event-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+        }
+
+        .event-year {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #f39c12;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #f8f9fa;
+        }
+
+        .practice-scenario {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 3px solid #f8f9fa;
+        }
+
+        .scenario-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #f8f9fa;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .speaking-task {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 2px solid #f8f9fa;
+        }
+
+        .task-title {
+            color: #f8f9fa;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(96, 165, 250, 0.9);
+            border: none;
+            color: #1e1b4b;
+            padding: 1.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.4rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(96, 165, 250, 0.4);
+        }
+
+        .nav-btn:hover {
+            background: rgba(96, 165, 250, 1);
+            transform: scale(1.15);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(96, 165, 250, 0.9);
+            color: #1e1b4b;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            z-index: 1000;
+        }
+
+        .vocab-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .vocab-list li {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 0.8rem 0;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #f39c12;
+            font-size: 1.2rem;
+        }
+
+        .key-concepts {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+        }
+
+        .concept-card h4 {
+            color: #f39c12;
+            margin-bottom: 1rem;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 3px solid #f8f9fa;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-indicator" id="slide-counter">1 / 12</div>
+    
+    <!-- Slide 1: Title and Overview -->
+    <div class="slide" id="slide-0">
+        <div class="reveal-item">
+            <h1>❄️ Cold War History</h1>
+            <h3 style="text-align: center; color: #f8f9fa; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">Simple Language Frames for Historical Explanation</h3>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-showcase">
+                <div class="frame-title">Master These 4 Core Frames</div>
+                <div class="frame-text">
+                    Learn simple patterns to explain complex historical events clearly and confidently
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="key-concepts">
+                <div class="concept-card">
+                    <h4>🌍 Context Frame</h4>
+                    <p>"After WWII ended..."</p>
+                </div>
+                <div class="concept-card">
+                    <h4>⚔️ Conflict Frame</h4>
+                    <p>"The main conflict was..."</p>
+                </div>
+                <div class="concept-card">
+                    <h4>📍 Event Frame</h4>
+                    <p>"This led to..."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Context Frame - Post-War Setup -->
+    <div class="slide hidden" id="slide-1">
+        <div class="reveal-item">
+            <h2>🌍 Context Frame: Setting the Stage</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-showcase">
+                <div class="frame-title">Pattern: "After WWII ended..."</div>
+                <div class="frame-text">
+                    "After WWII ended, _____ became the problem because _____."
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frames-grid">
+                <div class="frame-card">
+                    <h4>Post-War Situation</h4>
+                    <div class="frame-example">
+                        "After WWII ended, Europe was destroyed and needed rebuilding."
+                    </div>
+                    <div class="frame-example">
+                        "After WWII ended, only two superpowers remained strong."
+                    </div>
+                </div>
+                <div class="frame-card">
+                    <h4>Key Problems</h4>
+                    <div class="frame-example">
+                        "After WWII ended, controlling Germany became the main issue."
+                    </div>
+                    <div class="frame-example">
+                        "After WWII ended, different ideologies created tension."
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-task">
+                <div class="task-title">🎯 Practice Time</div>
+                <p><strong>Your turn:</strong> Complete this frame about post-war conditions: "After WWII ended, _____ became a major challenge because _____."</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Conflict Frame - Cold War Tensions -->
+    <div class="slide hidden" id="slide-2">
+        <div class="reveal-item">
+            <h2>⚔️ Conflict Frame: The Cold War</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-showcase">
+                <div class="frame-title">Pattern: "The main conflict was..."</div>
+                <div class="frame-text">
+                    "The main conflict was between _____ and _____ over _____."
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="timeline-visual">
+                <h3>Cold War = Competition Without Direct Fighting</h3>
+                <p style="font-size: 1.4rem; margin: 1rem 0;">USA vs USSR competed through allies and ideas, not direct war</p>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frames-grid">
+                <div class="frame-card">
+                    <h4>Basic Conflict</h4>
+                    <div class="frame-example">
+                        "The main conflict was between the USA and USSR over political control."
+                    </div>
+                    <div class="frame-example">
+                        "The main conflict was between capitalism and communism."
+                    </div>
+                </div>
+                <div class="frame-card">
+                    <h4>Specific Issues</h4>
+                    <div class="frame-example">
+                        "The main conflict was between East and West over Berlin."
+                    </div>
+                    <div class="frame-example">
+                        "The main conflict was between democracy and communist rule."
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div name="speaking-task">
+                <div class="task-title">🎯 Practice Time</div>
+                <p><strong>Your turn:</strong> Use the conflict frame to explain nuclear weapons: "The main conflict was between _____ and _____ over _____."</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Event Frame - Major Events -->
+    <div class="slide hidden" id="slide-3">
+        <div class="reveal-item">
+            <h2>📍 Event Frame: Key Moments</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-showcase">
+                <div class="frame-title">Pattern: "This led to..."</div>
+                <div class="frame-text">
+                    "This led to _____ in _____ (year) when _____."
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-year">1947</div>
+                    <div class="event-title">Truman Doctrine</div>
+                    <p>USA promises to stop communism</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-year">1948</div>
+                    <div class="event-title">Berlin Blockade</div>
+                    <p>USSR blocks access to West Berlin</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-year">1949</div>
+                    <div class="event-title">NATO Created</div>
+                    <p>Western military alliance formed</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frames-grid">
+                <div class="frame-card">
+                    <h4>Cause → Effect</h4>
+                    <div class="frame-example">
+                        "This led to the Marshall Plan in 1947 when Europe needed economic help."
+                    </div>
+                    <div class="frame-example">
+                        "This led to the Berlin Airlift in 1948 when the USSR blocked the city."
+                    </div>
+                </div>
+                <div class="frame-card">
+                    <h4>Chain Reactions</h4>
+                    <div class="frame-example">
+                        "This led to NATO in 1949 when Western countries needed protection."
+                    </div>
+                    <div class="frame-example">
+                        "This led to the Warsaw Pact in 1955 when the USSR responded."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Korean War Practice -->
+    <div class="slide hidden" id="slide-4">
+        <div class="reveal-item">
+            <h2>🇰🇷 Practice: Korean War (1950-1953)</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="practice-scenario">
+                <div class="scenario-title">Apply All Three Frames</div>
+                <p style="color: #f8f9fa; font-size: 1.3rem; margin: 1rem 0;">
+                    Use context, conflict, and event frames to explain the Korean War
+                </p>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="key-concepts">
+                <div class="concept-card">
+                    <h4>📋 Context</h4>
+                    <p><strong>Setup:</strong> Korea divided at 38th parallel</p>
+                    <p><strong>Frame:</strong> "After WWII ended..."</p>
+                </div>
+                <div class="concept-card">
+                    <h4>⚔️ Conflict</h4>
+                    <p><strong>Issue:</strong> North vs South Korea</p>
+                    <p><strong>Frame:</strong> "The main conflict was..."</p>
+                </div>
+                <div class="concept-card">
+                    <h4>📍 Event</h4>
+                    <p><strong>Result:</strong> UN intervention, stalemate</p>
+                    <p><strong>Frame:</strong> "This led to..."</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-task">
+                <div class="task-title">🎯 2-Minute Challenge</div>
+                <p><strong>Task:</strong> Explain the Korean War using all three frames. Include: division of Korea, North's invasion, UN response, and final result.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Cuban Missile Crisis -->
+    <div class="slide hidden" id="slide-5">
+        <div class="reveal-item">
+            <h2>🚀 Practice: Cuban Missile Crisis (1962)</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="timeline-visual">
+                <h3>Closest the World Came to Nuclear War</h3>
+                <p style="font-size: 1.4rem; margin: 1rem 0;">13 days when nuclear war almost happened</p>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-title">Context</div>
+                    <p>USSR puts missiles in Cuba</p>
+                    <p><em>"After the Bay of Pigs failed..."</em></p>
+                </div>
+                <div class="event-card">
+                    <div class="event-title">Conflict</div>
+                    <p>USA demands removal</p>
+                    <p><em>"The main conflict was over..."</em></p>
+                </div>
+                <div class="event-card">
+                    <div class="event-title">Resolution</div>
+                    <p>Secret deal reached</p>
+                    <p><em>"This led to..."</em></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-card">
+                <h4>Complete Frame Example</h4>
+                <div class="frame-example">
+                    "After the Bay of Pigs invasion failed, Cuba became closer to the USSR. The main conflict was between Kennedy and Khrushchev over nuclear missiles in Cuba. This led to a naval blockade in 1962 when the USA discovered the missiles."
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-task">
+                <div class="task-title">🎯 Practice Time</div>
+                <p><strong>Your turn:</strong> Use the frames to explain why the Cuban Missile Crisis was so dangerous and how it ended.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Vietnam War -->
+    <div class="slide hidden" id="slide-6">
+        <div class="reveal-item">
+            <h2>🇻🇳 Practice: Vietnam War (1955-1975)</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-showcase">
+                <div class="frame-title">Proxy War Pattern</div>
+                <div class="frame-text">
+                    Superpowers fight through smaller countries instead of directly
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frames-grid">
+                <div class="frame-card">
+                    <h4>Context Setup</h4>
+                    <div class="frame-example">
+                        "After France lost control of Vietnam, the country was divided into North and South."
+                    </div>
+                </div>
+                <div class="frame-card">
+                    <h4>Cold War Connection</h4>
+                    <div class="frame-example">
+                        "The main conflict was between communist North Vietnam (supported by USSR/China) and South Vietnam (supported by USA)."
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="key-concepts">
+                <div class="concept-card">
+                    <h4>🎯 Key Point</h4>
+                    <p>USA wanted to stop "domino theory" - if one country becomes communist, others will follow</p>
+                </div>
+                <div class="concept-card">
+                    <h4>📊 Result</h4>
+                    <p>USA withdrew in 1975, Vietnam became unified under communist rule</p>
+                </div>
+                <div class="concept-card">
+                    <h4>💭 Lesson</h4>
+                    <p>Showed limits of American power in Cold War</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-task">
+                <div class="task-title">🎯 Practice Challenge</div>
+                <p><strong>Explain:</strong> Why did the USA get involved in Vietnam? Use context and conflict frames, then explain the final outcome.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Space Race -->
+    <div class="slide hidden" id="slide-7">
+        <div class="reveal-item">
+            <h2>🚀 Practice: Space Race (1957-1969)</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="timeline-visual">
+                <h3>Competition Beyond Earth</h3>
+                <p style="font-size: 1.4rem; margin: 1rem 0;">Cold War competition moved to space technology</p>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-year">1957</div>
+                    <div class="event-title">Sputnik</div>
+                    <p>USSR launches first satellite</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-year">1961</div>
+                    <div class="event-title">First Human</div>
+                    <p>USSR puts first man in space</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-year">1969</div>
+                    <div class="event-title">Moon Landing</div>
+                    <p>USA wins race to the moon</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-card">
+                <h4>Apply the Frames</h4>
+                <div class="frame-example">
+                    <strong>Context:</strong> "After WWII ended, both superpowers wanted to show technological superiority."
+                </div>
+                <div class="frame-example">
+                    <strong>Conflict:</strong> "The main conflict was between USA and USSR over space technology advancement."
+                </div>
+                <div class="frame-example">
+                    <strong>Event:</strong> "This led to the moon landing in 1969 when the USA finally took the lead."
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: End of Cold War -->
+    <div class="slide hidden" id="slide-8">
+        <div class="reveal-item">
+            <h2>🏁 The Cold War Ends (1989-1991)</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-showcase">
+                <div class="frame-title">New Frame: "By the end..."</div>
+                <div class="frame-text">
+                    "By the end of the 1980s, _____ changed because _____."
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="key-concepts">
+                <div class="concept-card">
+                    <h4>🔄 Economic Problems</h4>
+                    <p>USSR couldn't keep up with military spending</p>
+                </div>
+                <div class="concept-card">
+                    <h4>👤 New Leader</h4>
+                    <p>Gorbachev wanted reforms (glasnost, perestroika)</p>
+                </div>
+                <div class="concept-card">
+                    <h4>🧱 Berlin Wall</h4>
+                    <p>Falls in 1989, symbolizing end of division</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frames-grid">
+                <div class="frame-card">
+                    <h4>Ending Pattern</h4>
+                    <div class="frame-example">
+                        "By the end of the 1980s, the USSR was collapsing because it couldn't afford the arms race."
+                    </div>
+                    <div class="frame-example">
+                        "By the end of 1991, the Cold War was over because the Soviet Union no longer existed."
+                    </div>
+                </div>
+                <div class="frame-card">
+                    <h4>Results</h4>
+                    <div class="frame-example">
+                        "This led to German reunification in 1990 when the Berlin Wall came down."
+                    </div>
+                    <div class="frame-example">
+                        "This led to the USA becoming the only superpower in 1991."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Decolonization Frame -->
+    <div class="slide hidden" id="slide-9">
+        <div class="reveal-item">
+            <h2>🌍 Practice: Decolonization During Cold War</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-showcase">
+                <div class="frame-title">Independence Frame</div>
+                <div class="frame-text">
+                    "After WWII ended, many colonies wanted independence because _____."
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="key-concepts">
+                <div class="concept-card">
+                    <h4>🇮🇳 India (1947)</h4>
+                    <p>Gained independence from Britain</p>
+                    <p>Tried to stay neutral in Cold War</p>
+                </div>
+                <div class="concept-card">
+                    <h4>🌍 Africa (1950s-60s)</h4>
+                    <p>Many African countries became independent</p>
+                    <p>Superpowers competed for influence</p>
+                </div>
+                <div class="concept-card">
+                    <h4>🤝 Non-Aligned Movement</h4>
+                    <p>Countries that didn't want to choose sides</p>
+                    <p>Led by India, Egypt, Yugoslavia</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-card">
+                <h4>Cold War Connection</h4>
+                <div class="frame-example">
+                    "After WWII ended, European powers were too weak to control their colonies. The main conflict was between USA and USSR over influence in these new countries. This led to proxy wars in many developing nations."
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-task">
+                <div class="task-title">🎯 Practice Time</div>
+                <p><strong>Choose one:</strong> India's independence, African decolonization, or the Non-Aligned Movement. Use the frames to explain its connection to the Cold War.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Summary Practice -->
+    <div class="slide hidden" id="slide-10">
+        <div class="reveal-item">
+            <h2>📝 Master All Frames Together</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="challenge-box">
+                <h3>Complete Cold War Explanation Challenge</h3>
+                <p style="font-size: 1.4rem; margin: 1rem 0;">Use all four frames to give a complete 5-6 minute explanation of the Cold War</p>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frames-grid">
+                <div class="frame-card">
+                    <h4>🌍 Context Frame</h4>
+                    <div class="frame-example">
+                        <strong>Start:</strong> "After WWII ended..."<br>
+                        <strong>Use for:</strong> Setting up the post-war situation
+                    </div>
+                </div>
+                <div class="frame-card">
+                    <h4>⚔️ Conflict Frame</h4>
+                    <div class="frame-example">
+                        <strong>Pattern:</strong> "The main conflict was..."<br>
+                        <strong>Use for:</strong> USA vs USSR tensions
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frames-grid">
+                <div class="frame-card">
+                    <h4>📍 Event Frame</h4>
+                    <div class="frame-example">
+                        <strong>Pattern:</strong> "This led to..."<br>
+                        <strong>Use for:</strong> Specific events and consequences
+                    </div>
+                </div>
+                <div class="frame-card">
+                    <h4>🏁 Ending Frame</h4>
+                    <div class="frame-example">
+                        <strong>Pattern:</strong> "By the end..."<br>
+                        <strong>Use for:</strong> How the Cold War concluded
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="speaking-task">
+                <div class="task-title">🎯 Complete Challenge Topics</div>
+                <ul class="vocab-list">
+                    <li><strong>Must include:</strong> Origins, major events (Korea, Cuba, Vietnam), space race, and ending</li>
+                    <li><strong>Use all frames:</strong> Context → Conflict → Events → Ending</li>
+                    <li><strong>Time goal:</strong> 5-6 minutes of clear explanation</li>
+                    <li><strong>Success criteria:</strong> Someone who knows nothing about the Cold War should understand</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Final Application -->
+    <div class="slide hidden" id="slide-11">
+        <div class="reveal-item">
+            <h2>🚀 Apply These Frames to Any Historical Topic</h2>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frame-showcase">
+                <div class="frame-title">Universal Historical Patterns</div>
+                <div class="frame-text">
+                    These four frames work for explaining any historical period or event
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="key-concepts">
+                <div class="concept-card">
+                    <h4>📚 World Wars</h4>
+                    <p>Context → Causes → Events → Results</p>
+                </div>
+                <div class="concept-card">
+                    <h4>🏛️ Revolutions</h4>
+                    <p>Background → Conflicts → Actions → Outcomes</p>
+                </div>
+                <div class="concept-card">
+                    <h4>🌍 Any Historical Period</h4>
+                    <p>Setup → Problems → Key Events → Resolution</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="frames-grid">
+                <div class="frame-card">
+                    <h4>✅ What You've Mastered</h4>
+                    <ul class="vocab-list">
+                        <li>Context setting with "After... ended"</li>
+                        <li>Conflict identification with "The main conflict was"</li>
+                        <li>Event explanation with "This led to"</li>
+                        <li>Period conclusion with "By the end"</li>
+                    </ul>
+                </div>
+                <div class="frame-card">
+                    <h4>🎯 Ready for Advanced History</h4>
+                    <ul class="vocab-list">
+                        <li>Any historical analysis questions</li>
+                        <li>Essay writing with clear structure</li>
+                        <li>Confident historical discussions</li>
+                        <li>Complex cause-and-effect explanations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reveal-item">
+            <div class="challenge-box">
+                <h3>🎉 Congratulations!</h3>
+                <p>You now have powerful tools for explaining any historical topic clearly and confidently. These frames will work for all your history classes!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">‹</button>
+        <button class="nav-btn" onclick="nextSlide()">›</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let totalSlides = 12;
+        let currentElement = 0;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('hidden', index !== n);
+            });
+            
+            currentElement = 0;
+            const currentSlideElement = slides[n];
+            const elements = currentSlideElement.querySelectorAll('.reveal-item');
+            elements.forEach(el => el.classList.remove('show'));
+            
+            document.getElementById('slide-counter').textContent = `${n + 1} / ${totalSlides}`;
+        }
+
+        function revealNextElement() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.reveal-item');
+            
+            if (currentElement < elements.length) {
+                elements[currentElement].classList.add('show');
+                currentElement++;
+            }
+        }
+
+        function nextSlide() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const elements = currentSlideElement.querySelectorAll('.reveal-item');
+            
+            if (currentElement < elements.length) {
+                revealNextElement();
+            } else if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                revealNextElement();
+            } else if (e.key === '.') {
+                e.preventDefault();
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            } else if (e.key === ',') {
+                e.preventDefault();
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
+            }
+        });
+
+        // Click to reveal
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.navigation') && !e.target.closest('.slide-indicator')) {
+                revealNextElement();
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

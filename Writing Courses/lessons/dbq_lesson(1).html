@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document-Based Questions: Analyzing Historical Evidence</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #374151, #4b5563, #6b7280);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            padding: 3rem 4rem;
+            overflow-y: auto;
+            overflow-x: hidden;
+            opacity: 1;
+            transition: all 0.6s ease-in-out;
+            box-sizing: border-box;
+        }
+
+        .slide.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            min-height: 100%;
+            padding-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #f59e0b, #d97706, #b45309);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #f59e0b;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #60a5fa;
+        }
+
+        h4 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #34d399;
+        }
+
+        p {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #e5e7eb;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .step-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .step-card {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.4), rgba(22, 33, 62, 0.4));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            backdrop-filter: blur(10px);
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(0);
+            border-color: rgba(245, 158, 11, 0.5);
+        }
+
+        .document-example {
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.1), rgba(16, 185, 129, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 4px solid #34d399;
+        }
+
+        .analysis-framework {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(124, 58, 237, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .essay-structure {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background: rgba(15, 52, 96, 0.8);
+            border: 1px solid rgba(245, 158, 11, 0.5);
+            color: #f59e0b;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(245, 158, 11, 0.2);
+            transform: scale(1.05);
+        }
+
+        .image-tab {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(15, 52, 96, 0.8);
+            border: 1px solid rgba(245, 158, 11, 0.5);
+            color: #f59e0b;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        ul {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.8rem;
+            color: #e5e7eb;
+        }
+
+        strong {
+            color: #fbbf24;
+        }
+
+        .slide-number {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+            z-index: 1000;
+            background: rgba(15, 52, 96, 0.8);
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .example-doc {
+            background: rgba(245, 158, 11, 0.1);
+            padding: 1.5rem;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-style: italic;
+        }
+
+        .good-bad-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .good-example {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .bad-example {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .practice-section {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(147, 51, 234, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="image-tab" onclick="toggleImage()">📸 Images</div>
+        <div class="controls">
+            <button class="control-btn" onclick="previousSlide()">← Prev</button>
+            <button class="control-btn" onclick="nextSlide()">Next →</button>
+            <button class="control-btn" onclick="revealAll()">Reveal All</button>
+        </div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="slide-number">1 / 8</div>
+                <h1>📜 Document-Based Questions (DBQs)</h1>
+                <div class="hero-section auto-reveal">
+                    <h3>Analyzing Historical Evidence Like a Historian</h3>
+                    <p style="font-size: 2rem; color: #f59e0b;">Essential Skills for Historical Thinking</p>
+                </div>
+                
+                <div class="document-example auto-reveal">
+                    <h4>What You'll Learn:</h4>
+                    <ul>
+                        <li>What Document-Based Questions are and why historians use them</li>
+                        <li>How to analyze different types of historical documents</li>
+                        <li>Step-by-step approach to writing DBQ responses</li>
+                        <li>Common mistakes to avoid and strategies for success</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: What is a DBQ? -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">2 / 8</div>
+                <h2>🤔 What is a Document-Based Question?</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>Thinking Like a Detective</h3>
+                    <p>A DBQ gives you a collection of historical documents (letters, speeches, images, charts) and asks you to use them as evidence to answer a specific historical question. You become a historical detective, piecing together clues to understand the past.</p>
+                </div>
+                
+                <div class="step-section">
+                    <div class="step-card auto-reveal">
+                        <h4>📋 What DBQs Include</h4>
+                        <ul>
+                            <li><strong>A Historical Question:</strong> Something you need to analyze or evaluate</li>
+                            <li><strong>5-7 Documents:</strong> Primary and secondary sources</li>
+                            <li><strong>Background Information:</strong> Context to help you understand</li>
+                            <li><strong>Instructions:</strong> What kind of response is expected</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step-card auto-reveal">
+                        <h4>🎯 What DBQs Test</h4>
+                        <ul>
+                            <li><strong>Document Analysis:</strong> Can you understand what sources say?</li>
+                            <li><strong>Historical Context:</strong> Do you understand the time period?</li>
+                            <li><strong>Evidence Integration:</strong> Can you use documents to support arguments?</li>
+                            <li><strong>Critical Thinking:</strong> Can you evaluate different perspectives?</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="example-doc auto-reveal">
+                    <p><strong>Example DBQ Question:</strong> "How did the Cultural Revolution affect Chinese education? Use the documents to support your analysis."</p>
+                    <p style="margin-top: 1rem;"><em>Then you'd get documents like: Red Guard speeches, teacher memoirs, government policies, photographs, statistics, etc.</em></p>
+                </div>
+                
+                <div class="analysis-framework auto-reveal">
+                    <h4>🔍 Why DBQs Matter</h4>
+                    <p>DBQs teach you to work with evidence the way real historians do - analyzing sources, considering bias, and building arguments based on available evidence rather than just memorizing facts.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Types of Documents -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">3 / 8</div>
+                <h2>📚 Types of Historical Documents</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>Each Type Offers Different Insights</h3>
+                    <p>Understanding what different types of documents can and can't tell you is crucial for effective analysis. Each type has strengths and limitations you need to consider.</p>
+                </div>
+                
+                <div class="step-section">
+                    <div class="step-card auto-reveal">
+                        <h4>🗣️ Speeches & Statements</h4>
+                        <ul>
+                            <li><strong>What they show:</strong> Official positions, public rhetoric, intended messages</li>
+                            <li><strong>Questions to ask:</strong> Who was the audience? What was the speaker trying to achieve?</li>
+                            <li><strong>Example:</strong> Mao's speech to Red Guards</li>
+                            <li><strong>Limitations:</strong> May not reflect true beliefs or private thoughts</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step-card auto-reveal">
+                        <h4>📝 Personal Letters & Diaries</h4>
+                        <ul>
+                            <li><strong>What they show:</strong> Private thoughts, personal experiences, emotions</li>
+                            <li><strong>Questions to ask:</strong> Is this typical or exceptional? What's the person's background?</li>
+                            <li><strong>Example:</strong> Cultural Revolution victim's diary</li>
+                            <li><strong>Limitations:</strong> Individual perspective, may not represent broader experience</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step-card auto-reveal">
+                        <h4>📊 Statistics & Data</h4>
+                        <ul>
+                            <li><strong>What they show:</strong> Quantitative trends, scale of changes, comparisons</li>
+                            <li><strong>Questions to ask:</strong> Who collected this data? Is it reliable? What's missing?</li>
+                            <li><strong>Example:</strong> Educational enrollment figures</li>
+                            <li><strong>Limitations:</strong> May be incomplete, manipulated, or lack context</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step-card auto-reveal">
+                        <h4>🖼️ Images & Propaganda</h4>
+                        <ul>
+                            <li><strong>What they show:</strong> Visual messages, cultural values, intended impressions</li>
+                            <li><strong>Questions to ask:</strong> What symbols are used? Who created this and why?</li>
+                            <li><strong>Example:</strong> Cultural Revolution posters</li>
+                            <li><strong>Limitations:</strong> Highly selective, may distort reality</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step-card auto-reveal">
+                        <h4>📜 Laws & Policies</h4>
+                        <ul>
+                            <li><strong>What they show:</strong> Official rules, government intentions, legal frameworks</li>
+                            <li><strong>Questions to ask:</strong> Was this enforced? How did people respond?</li>
+                            <li><strong>Example:</strong> Education reform policies</li>
+                            <li><strong>Limitations:</strong> Policy vs. practice often differs significantly</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step-card auto-reveal">
+                        <h4>📖 Secondary Sources</h4>
+                        <ul>
+                            <li><strong>What they show:</strong> Historian's interpretation, analysis of patterns, broader context</li>
+                            <li><strong>Questions to ask:</strong> What evidence did the historian use? Do other historians agree?</li>
+                            <li><strong>Example:</strong> Scholarly article on Cultural Revolution</li>
+                            <li><strong>Limitations:</strong> Interpretation, not direct evidence; may have historian's bias</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: The APPARTS Method -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">4 / 8</div>
+                <h2>🔍 The APPARTS Method for Document Analysis</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>A Systematic Approach to Understanding Sources</h3>
+                    <p>APPARTS gives you a framework for analyzing any historical document systematically. Use this method to dig deeper than just reading the surface content.</p>
+                </div>
+                
+                <div class="analysis-framework auto-reveal">
+                    <h4>🅰️ A - AUTHOR</h4>
+                    <ul>
+                        <li>Who wrote or created this document?</li>
+                        <li>What was their role, position, or background?</li>
+                        <li>How might this affect their perspective?</li>
+                    </ul>
+                </div>
+                
+                <div class="analysis-framework auto-reveal">
+                    <h4>🅿️ P - PLACE & TIME</h4>
+                    <ul>
+                        <li>When and where was this created?</li>
+                        <li>What was happening historically at this time?</li>
+                        <li>How might the context influence the content?</li>
+                    </ul>
+                </div>
+                
+                <div class="analysis-framework auto-reveal">
+                    <h4>🅿️ P - PRIOR KNOWLEDGE</h4>
+                    <ul>
+                        <li>What do you already know about this topic/period?</li>
+                        <li>How does this document fit with your existing knowledge?</li>
+                        <li>What background information helps you understand it?</li>
+                    </ul>
+                </div>
+                
+                <div class="analysis-framework auto-reveal">
+                    <h4>🅰️ A - AUDIENCE</h4>
+                    <ul>
+                        <li>Who was this document intended for?</li>
+                        <li>Was it public or private?</li>
+                        <li>How might the intended audience affect the content?</li>
+                    </ul>
+                </div>
+                
+                <div class="analysis-framework auto-reveal">
+                    <h4>🆁 R - REASON</h4>
+                    <ul>
+                        <li>Why was this document created?</li>
+                        <li>What was the author trying to accomplish?</li>
+                        <li>Was it meant to inform, persuade, record, or entertain?</li>
+                    </ul>
+                </div>
+                
+                <div class="analysis-framework auto-reveal">
+                    <h4>🆃 T - THE MAIN IDEA</h4>
+                    <ul>
+                        <li>What is the document's central message or argument?</li>
+                        <li>What evidence or examples does it provide?</li>
+                        <li>What can you learn from this source?</li>
+                    </ul>
+                </div>
+                
+                <div class="analysis-framework auto-reveal">
+                    <h4>🆂 S - SIGNIFICANCE</h4>
+                    <ul>
+                        <li>Why is this document historically important?</li>
+                        <li>How does it help answer the DBQ question?</li>
+                        <li>What are its limitations as a source?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Step-by-Step DBQ Process -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">5 / 8</div>
+                <h2>📝 Step-by-Step DBQ Process</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>A Strategic Approach to Success</h3>
+                    <p>Follow these steps systematically to manage your time effectively and produce a strong response. Don't skip steps - each one builds toward your final answer.</p>
+                </div>
+                
+                <div class="step-section">
+                    <div class="step-card auto-reveal">
+                        <h4>1️⃣ Read the Question First (2 minutes)</h4>
+                        <ul>
+                            <li>Understand what you're being asked to analyze or evaluate</li>
+                            <li>Identify key terms and concepts</li>
+                            <li>Note any time periods or geographic regions</li>
+                            <li>Think about what kind of evidence you'll need</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step-card auto-reveal">
+                        <h4>2️⃣ Analyze Each Document (15 minutes)</h4>
+                        <ul>
+                            <li>Use APPARTS method for each document</li>
+                            <li>Take notes on what each document contributes</li>
+                            <li>Consider how documents relate to each other</li>
+                            <li>Think about bias, reliability, and limitations</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step-card auto-reveal">
+                        <h4>3️⃣ Group Documents by Theme (5 minutes)</h4>
+                        <ul>
+                            <li>Which documents support similar points?</li>
+                            <li>Which documents offer contrasting perspectives?</li>
+                            <li>What patterns emerge across the sources?</li>
+                            <li>How can you organize your evidence logically?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step-card auto-reveal">
+                        <h4>4️⃣ Plan Your Response (5 minutes)</h4>
+                        <ul>
+                            <li>Develop a clear thesis that answers the question</li>
+                            <li>Outline your main arguments</li>
+                            <li>Decide which documents support each point</li>
+                            <li>Consider counterarguments or complexity</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step-card auto-reveal">
+                        <h4>5️⃣ Write Your Response (20 minutes)</h4>
+                        <ul>
+                            <li>Start with a clear introduction and thesis</li>
+                            <li>Use documents as evidence for your arguments</li>
+                            <li>Analyze, don't just quote or summarize</li>
+                            <li>Address document reliability when relevant</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step-card auto-reveal">
+                        <h4>6️⃣ Review and Revise (3 minutes)</h4>
+                        <ul>
+                            <li>Check that you answered the question directly</li>
+                            <li>Ensure you used most/all documents</li>
+                            <li>Verify your thesis is clear and supported</li>
+                            <li>Fix any obvious errors or unclear sentences</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Writing Strong DBQ Responses -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">6 / 8</div>
+                <h2>✍️ Writing Strong DBQ Responses</h2>
+                
+                <div class="essay-structure auto-reveal">
+                    <h4>📋 Basic Essay Structure</h4>
+                    <ul>
+                        <li><strong>Introduction:</strong> Context + Thesis statement that answers the question</li>
+                        <li><strong>Body Paragraphs:</strong> 2-3 paragraphs, each with a main argument supported by document evidence</li>
+                        <li><strong>Conclusion:</strong> Restate thesis and synthesize your analysis</li>
+                    </ul>
+                </div>
+                
+                <div class="good-bad-grid">
+                    <div class="good-example auto-reveal">
+                        <h4>✅ Strong Document Use</h4>
+                        <p><strong>Example:</strong> "Document 3, a Red Guard's diary entry from 1967, reveals how students genuinely believed they were saving China by attacking their teachers, writing 'We must destroy old ideas to build the new society.' This shows how ideological fervor motivated participants, but the diary's private nature also suggests the writer felt free to express doubts that wouldn't appear in public statements."</p>
+                        <p style="margin-top: 1rem;"><strong>Why it works:</strong> Analyzes content, considers source and bias, connects to broader argument</p>
+                    </div>
+                    
+                    <div class="bad-example auto-reveal">
+                        <h4>❌ Weak Document Use</h4>
+                        <p><strong>Example:</strong> "Document 3 says Red Guards destroyed old ideas. This shows the Cultural Revolution was bad for education."</p>
+                        <p style="margin-top: 1rem;"><strong>Why it's weak:</strong> Just summarizes, doesn't analyze, ignores source context, oversimplifies</p>
+                    </div>
+                </div>
+                
+                <div class="analysis-framework auto-reveal">
+                    <h4>🎯 Key Writing Strategies</h4>
+                    <ul>
+                        <li><strong>Analyze, Don't Summarize:</strong> Explain what documents reveal about your question, don't just describe them</li>
+                        <li><strong>Group Documents:</strong> Use multiple documents together to support the same point</li>
+                        <li><strong>Consider Perspective:</strong> Discuss how author's position affects reliability</li>
+                        <li><strong>Address Complexity:</strong> Acknowledge different viewpoints or limitations in evidence</li>
+                        <li><strong>Use Your Knowledge:</strong> Connect documents to broader historical context you know</li>
+                    </ul>
+                </div>
+                
+                <div class="example-doc auto-reveal">
+                    <p><strong>Strong Thesis Example:</strong> "The Cultural Revolution devastated Chinese education by empowering students to attack teachers and destroy learning materials, but the movement's impact varied by region and social class, with some rural areas experiencing less disruption than urban centers."</p>
+                    <p style="margin-top: 1rem;"><em>This thesis takes a clear position while acknowledging complexity - exactly what good historical analysis does.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Common Mistakes and How to Avoid Them -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">7 / 8</div>
+                <h2>⚠️ Common Mistakes and How to Avoid Them</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>Learn from Others' Mistakes</h3>
+                    <p>Understanding common pitfalls helps you avoid them and write stronger responses. These mistakes are fixable with practice and awareness.</p>
+                </div>
+                
+                <div class="good-bad-grid">
+                    <div class="bad-example auto-reveal">
+                        <h4>❌ Mistake #1: Not Answering the Question</h4>
+                        <p><strong>Problem:</strong> Writing everything you know about the topic instead of focusing on what's being asked</p>
+                        <p><strong>Solution:</strong> Keep referring back to the question; every paragraph should clearly connect to answering it</p>
+                    </div>
+                    
+                    <div class="bad-example auto-reveal">
+                        <h4>❌ Mistake #2: Just Summarizing Documents</h4>
+                        <p><strong>Problem:</strong> "Document 1 says X, Document 2 says Y, Document 3 says Z"</p>
+                        <p><strong>Solution:</strong> Analyze what documents reveal about your question; use them as evidence for arguments</p>
+                    </div>
+                </div>
+                
+                <div class="good-bad-grid">
+                    <div class="bad-example auto-reveal">
+                        <h4>❌ Mistake #3: Ignoring Document Context</h4>
+                        <p><strong>Problem:</strong> Treating all documents as equally reliable without considering source</p>
+                        <p><strong>Solution:</strong> Use APPARTS; discuss how author's position affects reliability</p>
+                    </div>
+                    
+                    <div class="bad-example auto-reveal">
+                        <h4>❌ Mistake #4: No Clear Thesis</h4>
+                        <p><strong>Problem:</strong> Vague introduction that doesn't take a position</p>
+                        <p><strong>Solution:</strong> Write a specific thesis that directly answers the question and can be supported with evidence</p>
+                    </div>
+                </div>
+                
+                <div class="good-bad-grid">
+                    <div class="bad-example auto-reveal">
+                        <h4>❌ Mistake #5: Not Using All Documents</h4>
+                        <p><strong>Problem:</strong> Ignoring documents that don't fit your argument</p>
+                        <p><strong>Solution:</strong> Address conflicting evidence; explain why some sources might be less reliable or show complexity</p>
+                    </div>
+                    
+                    <div class="bad-example auto-reveal">
+                        <h4>❌ Mistake #6: Poor Time Management</h4>
+                        <p><strong>Problem:</strong> Spending too long reading, not enough time writing</p>
+                        <p><strong>Solution:</strong> Follow the time guidelines; practice with timed exercises</p>
+                    </div>
+                </div>
+                
+                <div class="analysis-framework auto-reveal">
+                    <h4>🎯 Success Strategies</h4>
+                    <ul>
+                        <li><strong>Practice with Real Examples:</strong> Work through sample DBQs to build familiarity</li>
+                        <li><strong>Time Yourself:</strong> Get comfortable with the pacing</li>
+                        <li><strong>Read Actively:</strong> Always think about how documents connect to the question</li>
+                        <li><strong>Plan Before Writing:</strong> A few minutes of outlining saves time later</li>
+                        <li><strong>Cite Documents:</strong> Make it clear which evidence comes from which source</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Practice and Application -->
+        <div class="slide hidden">
+            <div class="slide-content">
+                <div class="slide-number">8 / 8</div>
+                <h2>🎯 Practice and Application</h2>
+                
+                <div class="hero-section auto-reveal">
+                    <h3>Ready to Try It Yourself</h3>
+                    <p>Now that you understand the process, let's think about how to apply these skills to your upcoming China essay and future historical analysis.</p>
+                </div>
+                
+                <div class="practice-section auto-reveal">
+                    <h4>🇨🇳 Applying DBQ Skills to Your China Essay</h4>
+                    <p>Your upcoming China essay will ask you to analyze how historical experiences shaped China's development model. Think about how you could use DBQ skills:</p>
+                    <ul>
+                        <li><strong>Primary Sources:</strong> Mao's speeches, Deng's reforms, peasant accounts, economic data</li>
+                        <li><strong>Analysis Framework:</strong> Consider author perspective, historical context, intended audience</li>
+                        <li><strong>Evidence Integration:</strong> Use specific examples to support your arguments about China's path</li>
+                        <li><strong>Multiple Perspectives:</strong> Consider different viewpoints on China's successes and challenges</li>
+                    </ul>
+                </div>
+                
+                <div class="step-section">
+                    <div class="step-card auto-reveal">
+                        <h4>📝 Quick Practice: Document Analysis</h4>
+                        <p><strong>Sample Document:</strong> "Deng Xiaoping (1978): 'Poverty is not socialism. To be rich is glorious. We must seek truth from facts, not ideology.'"</p>
+                        <p><strong>Try This:</strong> Use APPARTS to analyze this quote. What does it reveal about China's shift from Mao's policies?</p>
+                    </div>
+                    
+                    <div class="step-card auto-reveal">
+                        <h4>🤔 Critical Thinking Questions</h4>
+                        <ul>
+                            <li>How might this quote be viewed differently by a Cultural Revolution victim vs. a pragmatic economist?</li>
+                            <li>What historical context makes this statement significant?</li>
+                            <li>What are the limitations of using leader's speeches as historical evidence?</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="analysis-framework auto-reveal">
+                    <h4>🚀 Next Steps for Skill Development</h4>
+                    <ul>
+                        <li><strong>Practice Regularly:</strong> Analyze documents from all our units - Iranian Revolution, Cultural Revolution, economic reforms</li>
+                        <li><strong>Read Critically:</strong> Apply APPARTS to news articles, social media posts, any source of information</li>
+                        <li><strong>Question Everything:</strong> Always ask: Who created this? Why? What's their perspective? What might be missing?</li>
+                        <li><strong>Build Arguments:</strong> Practice using evidence to support specific claims rather than just describing</li>
+                    </ul>
+                </div>
+                
+                <div class="essay-structure auto-reveal">
+                    <h4>🎓 Why These Skills Matter Beyond History Class</h4>
+                    <p>DBQ skills teach you to evaluate evidence, consider multiple perspectives, and build well-supported arguments - exactly what you need for college research, career success, and informed citizenship in a world full of competing claims and biased sources.</p>
+                </div>
+                
+                <div class="document-example auto-reveal">
+                    <h4>💡 Remember: Historians are Detectives</h4>
+                    <p>Every document is a clue. Your job is to piece together those clues to understand what really happened and why it matters. The more you practice, the better you'll become at seeing patterns, questioning sources, and building convincing arguments based on evidence.</p>
+                    <p style="margin-top: 1rem;"><strong>You're ready to tackle your China essay with these tools!</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let currentReveals = 0;
+        let maxReveals = 0;
+
+        function updateSlideDisplay() {
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.remove('hidden');
+                } else {
+                    slide.classList.add('hidden');
+                }
+            });
+            
+            // Reset reveals for new slide
+            currentReveals = 0;
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            maxReveals = autoReveals.length;
+            
+            // Hide all auto-reveal elements
+            autoReveals.forEach(element => {
+                element.classList.remove('revealed');
+            });
+            
+            // Show first auto-reveal element
+            if (autoReveals.length > 0) {
+                autoReveals[0].classList.add('revealed');
+                currentReveals = 1;
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlideDisplay();
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlideDisplay();
+            }
+        }
+
+        function revealNext() {
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            if (currentReveals < autoReveals.length) {
+                autoReveals[currentReveals].classList.add('revealed');
+                currentReveals++;
+                return true;
+            }
+            return false;
+        }
+
+        function hideReveal() {
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            if (currentReveals > 1) {
+                currentReveals--;
+                autoReveals[currentReveals].classList.remove('revealed');
+                return true;
+            }
+            return false;
+        }
+
+        function revealAll() {
+            const autoReveals = slides[currentSlide].querySelectorAll('.auto-reveal');
+            autoReveals.forEach(element => {
+                element.classList.add('revealed');
+            });
+            currentReveals = autoReveals.length;
+        }
+
+        function toggleImage() {
+            // This would show/hide associated images if they existed
+            alert('No images associated with this slide');
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowRight':
+                    if (!revealNext()) {
+                        nextSlide();
+                    }
+                    break;
+                case 'ArrowLeft':
+                    if (!hideReveal()) {
+                        previousSlide();
+                    }
+                    break;
+                case ',':
+                    previousSlide();
+                    break;
+                case '.':
+                    nextSlide();
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        updateSlideDisplay();
+    </script>
+</body>
+</html>

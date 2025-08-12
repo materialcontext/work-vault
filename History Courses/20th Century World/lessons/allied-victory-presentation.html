@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victory and Its Shadows: How the Allies Won WWII and Shaped the Post-War World</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            overflow: hidden;
+            height: 100vh;
+            user-select: none;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(ellipse at center, #1a2332 0%, #0a0a0a 100%);
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            padding: 60px 80px;
+            position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Typography - Victory theme with blue/gold/silver */
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #4169E1 0%, #FFD700 50%, #C0C0C0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #4169E1;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(65, 105, 225, 0.3);
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #FFD700;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        h4 {
+            font-size: 1.6rem;
+            color: #87CEEB;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        p, li {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+            margin-bottom: 1.2rem;
+            max-width: 900px;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #999;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        /* Slide numbering */
+        .slide-number {
+            position: fixed;
+            top: 30px;
+            right: 40px;
+            background: rgba(65, 105, 225, 0.2);
+            backdrop-filter: blur(10px);
+            color: #87CEEB;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            border: 1px solid rgba(135, 206, 235, 0.3);
+            z-index: 100;
+        }
+
+        /* Central questions - victory theme */
+        .central-question {
+            background: linear-gradient(135deg, rgba(65, 105, 225, 0.1) 0%, rgba(255, 215, 0, 0.1) 100%);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem auto;
+            font-size: 1.8rem;
+            color: #FFD700;
+            font-weight: 600;
+            text-align: center;
+            max-width: 900px;
+            box-shadow: 0 10px 40px rgba(65, 105, 225, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .central-question::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        /* Interactive reveal system */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .reveal-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Image placeholders */
+        .image-placeholder {
+            background: linear-gradient(135deg, rgba(65, 105, 225, 0.05) 0%, rgba(255, 215, 0, 0.02) 100%);
+            border: 2px solid rgba(135, 206, 235, 0.2);
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 2rem 0;
+            text-align: center;
+            color: #999;
+            font-style: italic;
+            position: relative;
+            overflow: hidden;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            backdrop-filter: blur(5px);
+        }
+
+        .image-placeholder::before {
+            content: '🖼️';
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+
+        .image-description {
+            font-weight: 700;
+            color: #87CEEB;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        /* Timeline styling */
+        .timeline {
+            position: relative;
+            margin: 3rem 0;
+            padding: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #4169E1, #FFD700);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+            text-align: right;
+            padding-right: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: 55%;
+            padding-left: 3rem;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #FFD700;
+            border-radius: 50%;
+            top: 0;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        .timeline-date {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #87CEEB;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content {
+            background: rgba(65, 105, 225, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(135, 206, 235, 0.2);
+        }
+
+        /* Comparison grids */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .comparison-item {
+            background: rgba(65, 105, 225, 0.05);
+            border: 2px solid rgba(135, 206, 235, 0.2);
+            border-radius: 15px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .comparison-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.5);
+            box-shadow: 0 15px 40px rgba(65, 105, 225, 0.3);
+        }
+
+        /* Statistics and data visualization */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(65, 105, 225, 0.1) 0%, rgba(255, 215, 0, 0.1) 100%);
+            border: 2px solid rgba(135, 206, 235, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(65, 105, 225, 0.3);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #87CEEB;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 10px rgba(135, 206, 235, 0.5);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Quote styling */
+        .quote {
+            background: linear-gradient(135deg, rgba(65, 105, 225, 0.05) 0%, rgba(255, 215, 0, 0.02) 100%);
+            border-left: 4px solid #FFD700;
+            padding: 2rem 2rem 2rem 3rem;
+            margin: 2rem 0;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: #e0e0e0;
+            position: relative;
+        }
+
+        .quote::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(255, 215, 0, 0.3);
+            font-family: Georgia, serif;
+        }
+
+        .quote-attribution {
+            text-align: right;
+            margin-top: 1rem;
+            color: #999;
+            font-size: 1.1rem;
+            font-style: normal;
+        }
+
+        /* Interactive elements */
+        .interactive-prompt {
+            background: rgba(135, 206, 235, 0.1);
+            border: 2px dashed rgba(135, 206, 235, 0.5);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.3rem;
+            color: #87CEEB;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-prompt:hover {
+            background: rgba(135, 206, 235, 0.2);
+            transform: scale(1.02);
+        }
+
+        /* Production charts */
+        .production-chart {
+            background: rgba(65, 105, 225, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .production-bar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            height: 40px;
+            margin: 1rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .production-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: linear-gradient(90deg, #4169E1, #87CEEB);
+            border-radius: 10px;
+            transition: width 1.5s ease-out;
+        }
+
+        .production-label {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            font-weight: 700;
+            z-index: 1;
+        }
+
+        /* Atomic styling */
+        .atomic-warning {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.1) 0%, rgba(255, 165, 0, 0.1) 100%);
+            border: 2px solid rgba(255, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            animation: warningPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes warningPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 165, 0, 0.5); }
+        }
+
+        /* Continue indicator */
+        .continue-indicator {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #87CEEB;
+            font-size: 1rem;
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeInOut 3s ease-in-out infinite;
+            text-align: center;
+            z-index: 100;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Navigation controls */
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            right: 40px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background: rgba(65, 105, 225, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(135, 206, 235, 0.3);
+            color: #e0e0e0;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Lists with custom styling */
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #87CEEB;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        /* Emphasis classes */
+        .emphasis {
+            color: #FFD700;
+            font-weight: 700;
+        }
+
+        .danger {
+            color: #ff6b6b;
+            font-weight: 700;
+        }
+
+        .success {
+            color: #4ecdc4;
+            font-weight: 700;
+        }
+
+        strong {
+            color: #87CEEB;
+            font-weight: 700;
+        }
+
+        /* Responsive design */
+        @media (max-width: 1024px) {
+            .slide {
+                padding: 40px;
+            }
+            
+            h1 {
+                font-size: 3.5rem;
+            }
+            
+            h2 {
+                font-size: 2.5rem;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                margin-left: 0 !important;
+                padding-left: 3rem !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item::after {
+                left: 11px !important;
+                right: auto !important;
+            }
+        }
+
+        /* Image tab functionality */
+        .image-tab {
+            position: fixed;
+            top: 30px;
+            right: 180px;
+            background: rgba(65, 105, 225, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            border: 1px solid rgba(135, 206, 235, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .image-tab:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .image-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            cursor: pointer;
+        }
+
+        .image-overlay.active {
+            display: flex;
+        }
+
+        .image-overlay-content {
+            max-width: 90%;
+            max-height: 90%;
+            background: #000;
+            border-radius: 15px;
+            padding: 3rem;
+            text-align: center;
+            color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="slide-number">1/18</div>
+            <div class="reveal-item">
+                <h1>Victory and Its Shadows</h1>
+                <div class="subtitle">How the Allies Won WWII and Shaped the Post-War World</div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="central-question">
+                    How did industrial might, scientific breakthrough, and strategic sacrifice combine to defeat fascism—and what world emerged from the ashes?
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.5rem; color: #999;">
+                    From the Arsenal of Democracy to the Atomic Age
+                </p>
+            </div>
+            
+            <div class="continue-indicator">Press → to begin</div>
+        </div>
+
+        <!-- Slide 2: The Grand Strategy -->
+        <div class="slide">
+            <div class="slide-number">2/18</div>
+            
+            <div class="reveal-item">
+                <h2>December 1941: Planning Victory</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote">
+                    "The primary objective is the defeat of Germany. The defeat of Japan will follow."
+                    <div class="quote-attribution">— Allied Strategic Decision, January 1942</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The "Germany First" Strategy</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h4>Why Germany First?</h4>
+                        <ul>
+                            <li>Most dangerous enemy industrially</li>
+                            <li>Threatening Soviet collapse</li>
+                            <li>U-boats strangling Britain</li>
+                            <li>Could develop advanced weapons</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>Pacific Strategy</h4>
+                        <ul>
+                            <li>Hold defensive line</li>
+                            <li>Island-hopping when possible</li>
+                            <li>Submarine warfare on shipping</li>
+                            <li>Build for decisive offensive later</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.4rem;">
+                    This decision shaped everything: <span class="emphasis">where resources went</span>, 
+                    <span class="emphasis">which battles were fought</span>, and <span class="emphasis">how victory was achieved</span>
+                </p>
+            </div>
+            
+            <div class="continue-indicator">Press → to see the Arsenal of Democracy</div>
+        </div>
+
+        <!-- Slide 3: US Industrial Miracle -->
+        <div class="slide">
+            <div class="slide-number">3/18</div>
+            
+            <div class="reveal-item">
+                <h2>The Arsenal of Democracy Unleashed</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">$183B</div>
+                        <div class="stat-label">War Production Value</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2.6M</div>
+                        <div class="stat-label">Military Vehicles</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">300K</div>
+                        <div class="stat-label">Military Aircraft</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">8,800</div>
+                        <div class="stat-label">Naval Vessels</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Production Revolution</h3>
+                <div class="production-chart">
+                    <div class="production-bar">
+                        <div class="production-fill" style="width: 95%"></div>
+                        <div class="production-label">Aircraft: 12,000 → 300,000 (1940-1945)</div>
+                    </div>
+                    <div class="production-bar">
+                        <div class="production-fill" style="width: 90%"></div>
+                        <div class="production-label">Ships: 1 per year → 1 per day</div>
+                    </div>
+                    <div class="production-bar">
+                        <div class="production-fill" style="width: 85%"></div>
+                        <div class="production-label">Tanks: 330 → 88,000+ produced</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="image-placeholder">
+                    <div class="image-description">Detroit Assembly Line, 1943</div>
+                    <div>Automobile factory converted to bomber production, showing B-24 Liberators being assembled by workers including many women</div>
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Press → to see global impact</div>
+        </div>
+
+        <!-- Slide 4: How America Outproduced Everyone -->
+        <div class="slide">
+            <div class="slide-number">4/18</div>
+            
+            <div class="reveal-item">
+                <h2>The Mathematics of Victory</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>By 1944, US Production vs Axis Powers</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h4>United States Alone</h4>
+                        <ul>
+                            <li><strong>40%</strong> of world's total production</li>
+                            <li><strong>2x</strong> more than all Axis combined</li>
+                            <li><strong>50%</strong> of global GDP</li>
+                            <li>Zero bombing damage to factories</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>Germany + Japan Combined</h4>
+                        <ul>
+                            <li>Factories under constant bombing</li>
+                            <li>Resource shortages worsening</li>
+                            <li>Slave labor inefficient</li>
+                            <li>Technology couldn't overcome numbers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote">
+                    "The war was won on the assembly lines of Detroit and Pittsburgh before it was won on the battlefields of Europe."
+                    <div class="quote-attribution">— Joseph Stalin, 1943</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.4rem;">
+                    <span class="success">Key Innovation:</span> America turned war into a <span class="emphasis">production problem</span>, 
+                    not just a military one
+                </p>
+            </div>
+            
+            <div class="continue-indicator">Press → to see Lend-Lease in action</div>
+        </div>
+
+        <!-- Slide 5: Lend-Lease - The Lifeline -->
+        <div class="slide">
+            <div class="slide-number">5/18</div>
+            
+            <div class="reveal-item">
+                <h2>Lend-Lease: The Lifeline of Victory</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>$50 Billion in Aid (=$690 Billion today)</h3>
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">$31.4B</div>
+                        <div class="stat-label">To Britain</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$11.3B</div>
+                        <div class="stat-label">To Soviet Union</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$3.2B</div>
+                        <div class="stat-label">To France</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$1.6B</div>
+                        <div class="stat-label">To China</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>What Lend-Lease Provided to USSR</h3>
+                <ul>
+                    <li><strong>400,000 trucks</strong> - Entire Red Army became mobile</li>
+                    <li><strong>13,000 tanks</strong> - 20% of Soviet tank force</li>
+                    <li><strong>11,000 aircraft</strong> - Crucial air support</li>
+                    <li><strong>2.7 million tons of petroleum</strong> - Kept armies moving</li>
+                    <li><strong>4.5 million tons of food</strong> - Fed the war effort</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote">
+                    "Without American trucks, we wouldn't have had anything to pull our artillery with."
+                    <div class="quote-attribution">— Marshal Georgy Zhukov, 1963</div>
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Press → to see the Soviet sacrifice</div>
+        </div>
+
+        <!-- Slide 6: The Soviet War -->
+        <div class="slide">
+            <div class="slide-number">6/18</div>
+            
+            <div class="reveal-item">
+                <h2>The Eastern Front: Where the War Was Won</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stat-grid">
+                    <div class="stat-card" style="border-color: rgba(255, 0, 0, 0.5);">
+                        <div class="stat-number" style="color: #ff6b6b;">27 Million</div>
+                        <div class="stat-label">Soviet Deaths</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">80%</div>
+                        <div class="stat-label">of German Casualties</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">1,710</div>
+                        <div class="stat-label">Cities Destroyed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4 Years</div>
+                        <div class="stat-label">of Brutal Combat</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Turning Points</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">December 1941</div>
+                        <div class="timeline-content">
+                            <strong>Moscow</strong><br>
+                            First German defeat, blitzkrieg fails
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">February 1943</div>
+                        <div class="timeline-content">
+                            <strong>Stalingrad</strong><br>
+                            Entire German army destroyed
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">July 1943</div>
+                        <div class="timeline-content">
+                            <strong>Kursk</strong><br>
+                            Germany loses offensive capability
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">June 1944</div>
+                        <div class="timeline-content">
+                            <strong>Operation Bagration</strong><br>
+                            Destroys Army Group Center
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.4rem; color: #ff6b6b;">
+                    While D-Day grabbed headlines, the Red Army was destroying <span class="emphasis">10 German divisions for every 1</span> the Western Allies faced
+                </p>
+            </div>
+            
+            <div class="continue-indicator">Press → to explore the secret weapon</div>
+        </div>
+
+        <!-- Slide 7: The Manhattan Project Begins -->
+        <div class="slide">
+            <div class="slide-number">7/18</div>
+            
+            <div class="reveal-item">
+                <h2>The Ultimate Secret: Manhattan Project</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote">
+                    "I am become Death, the destroyer of worlds."
+                    <div class="quote-attribution">— J. Robert Oppenheimer, July 16, 1945</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Race Against Time</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h4>The Fear</h4>
+                        <ul>
+                            <li>Germany had split the atom first (1938)</li>
+                            <li>Werner Heisenberg leading Nazi program</li>
+                            <li>Einstein's letter warning Roosevelt</li>
+                            <li>A Nazi bomb = world domination</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>The Response</h4>
+                        <ul>
+                            <li>$2 billion budget ($28B today)</li>
+                            <li>130,000 workers at peak</li>
+                            <li>Secret cities built from scratch</li>
+                            <li>Greatest scientists assembled</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="image-placeholder">
+                    <div class="image-description">Los Alamos Laboratory, 1944</div>
+                    <div>Scientists working in secret facility in New Mexico desert, security guards visible, mountains in background</div>
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Press → to see the atomic infrastructure</div>
+        </div>
+
+        <!-- Slide 8: Manhattan Project Scale -->
+        <div class="slide">
+            <div class="slide-number">8/18</div>
+            
+            <div class="reveal-item">
+                <h2>Building the Bomb: An Industrial Miracle</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Three Secret Cities</h3>
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">75,000</div>
+                        <div class="stat-label">Oak Ridge, Tennessee<br><small>Uranium enrichment</small></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">45,000</div>
+                        <div class="stat-label">Hanford, Washington<br><small>Plutonium production</small></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">6,000</div>
+                        <div class="stat-label">Los Alamos, New Mexico<br><small>Bomb design</small></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Impossible Made Real</h3>
+                <ul>
+                    <li><strong>Uranium separation:</strong> Magnets requiring 15,000 tons of silver</li>
+                    <li><strong>Plutonium creation:</strong> Elements that didn't exist in nature</li>
+                    <li><strong>Implosion design:</strong> Microsecond precision required</li>
+                    <li><strong>Total secrecy:</strong> Even VP Truman didn't know until becoming President</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="atomic-warning">
+                    <p style="font-size: 1.4rem; color: #FFD700;">
+                        July 16, 1945 - Trinity Test<br>
+                        <span style="color: #ff6b6b;">The world enters the Atomic Age</span>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Press → to face the decision</div>
+        </div>
+
+        <!-- Slide 9: The Atomic Decision -->
+        <div class="slide">
+            <div class="slide-number">9/18</div>
+            
+            <div class="reveal-item">
+                <h2>The Fateful Decision: To Use or Not?</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Situation, July 1945</h3>
+                <ul>
+                    <li>Germany defeated, but Japan fights on</li>
+                    <li>Operation Downfall planned: Invasion of Japan</li>
+                    <li>Estimates: <span class="danger">1 million Allied casualties</span></li>
+                    <li>Japanese preparations: <span class="danger">5,000 kamikaze planes, 2 million troops</span></li>
+                    <li>Soviet entry promised for August</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Alternatives Considered</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h4>Demonstration</h4>
+                        <ul>
+                            <li>Explode bomb on uninhabited island</li>
+                            <li>Risk: What if it fails?</li>
+                            <li>Only 3 bombs available</li>
+                            <li>Japanese might not surrender anyway</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>Invasion</h4>
+                        <ul>
+                            <li>Massive casualties expected</li>
+                            <li>Japanese civilian deaths in millions</li>
+                            <li>War extends into 1946</li>
+                            <li>Soviet occupation of Japan likely</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote">
+                    "The atomic bomb was no 'great decision.' It was used in the war, and for your information, there were more people killed by fire bombs in Tokyo than dropping of the atomic bombs."
+                    <div class="quote-attribution">— President Harry Truman</div>
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Press → to witness the atomic strikes</div>
+        </div>
+
+        <!-- Slide 10: Hiroshima and Nagasaki -->
+        <div class="slide">
+            <div class="slide-number">10/18</div>
+            
+            <div class="reveal-item">
+                <h2>August 1945: The Atomic Strikes</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">August 6, 8:15 AM</div>
+                        <div class="timeline-content">
+                            <strong>Hiroshima</strong><br>
+                            "Little Boy" uranium bomb<br>
+                            80,000 immediate deaths
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">August 8</div>
+                        <div class="timeline-content">
+                            <strong>Soviet Union Enters War</strong><br>
+                            Invades Manchuria<br>
+                            Destroys Kwantung Army
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">August 9, 11:02 AM</div>
+                        <div class="timeline-content">
+                            <strong>Nagasaki</strong><br>
+                            "Fat Man" plutonium bomb<br>
+                            40,000 immediate deaths
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">August 15</div>
+                        <div class="timeline-content">
+                            <strong>Japan Surrenders</strong><br>
+                            Emperor's radio broadcast<br>
+                            War ends
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Why Two Bombs?</h3>
+                <ul>
+                    <li>Japan didn't surrender after Hiroshima</li>
+                    <li>Military leaders argued it was a one-time weapon</li>
+                    <li>Soviet entry created urgency</li>
+                    <li>Demonstration of plutonium design</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.4rem;">
+                    Total deaths from both bombs: <span class="danger">200,000+</span><br>
+                    Lives saved by avoiding invasion: <span class="success">Millions</span><br>
+                    <span style="color: #999; font-size: 1.2rem;">The debate continues to this day</span>
+                </p>
+            </div>
+            
+            <div class="continue-indicator">Press → to see the new world order</div>
+        </div>
+
+        <!-- Slide 11: The Soviet Factor -->
+        <div class="slide">
+            <div class="slide-number">11/18</div>
+            
+            <div class="reveal-item">
+                <h2>The Red Army's Final Campaign</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>August 9-20, 1945: The Forgotten Blitzkrieg</h3>
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">11 Days</div>
+                        <div class="stat-label">To Destroy Japanese Army</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">1.5M</div>
+                        <div class="stat-label">Soviet Troops</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">700,000</div>
+                        <div class="stat-label">Japanese Captured</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">All</div>
+                        <div class="stat-label">of Manchuria/Korea Occupied</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Stalin's Calculations</h3>
+                <ul>
+                    <li><strong>Promised entry:</strong> 3 months after Germany's defeat</li>
+                    <li><strong>Actual entry:</strong> Exactly on schedule - August 8</li>
+                    <li><strong>Real goal:</strong> Maximum territory before Japan surrenders</li>
+                    <li><strong>Achievement:</strong> Sets stage for divided Korea, Chinese Civil War</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote">
+                    "The Soviet entry into the war played a greater role than the atomic bombs in inducing Japan to surrender"
+                    <div class="quote-attribution">— Japanese historian Tsuyoshi Hasegawa</div>
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Press → to see the peace planning</div>
+        </div>
+
+        <!-- Slide 12: Planning the Post-War World -->
+        <div class="slide">
+            <div class="slide-number">12/18</div>
+            
+            <div class="reveal-item">
+                <h2>Building Peace: The Big Three Conferences</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Tehran 1943</div>
+                        <div class="timeline-content">
+                            <strong>First Meeting</strong><br>
+                            Second front promised, post-war cooperation discussed
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Yalta Feb 1945</div>
+                        <div class="timeline-content">
+                            <strong>Dividing Europe</strong><br>
+                            Soviet sphere recognized, UN structure agreed
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Potsdam July 1945</div>
+                        <div class="timeline-content">
+                            <strong>New Players</strong><br>
+                            Truman replaces FDR, tensions emerge
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Yalta Decisions</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h4>What Was Agreed</h4>
+                        <ul>
+                            <li>Germany divided into zones</li>
+                            <li>Free elections in liberated Europe</li>
+                            <li>Soviet entry against Japan</li>
+                            <li>United Nations creation</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>What Actually Happened</h4>
+                        <ul>
+                            <li>Germany split for 45 years</li>
+                            <li>Soviet puppet states installed</li>
+                            <li>Soviets take Manchuria/Kurils</li>
+                            <li>UN paralyzed by vetoes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.4rem; color: #FFD700;">
+                    The wartime alliance was already cracking before the war even ended
+                </p>
+            </div>
+            
+            <div class="continue-indicator">Press → to see the UN's birth</div>
+        </div>
+
+        <!-- Slide 13: Creating the United Nations -->
+        <div class="slide">
+            <div class="slide-number">13/18</div>
+            
+            <div class="reveal-item">
+                <h2>A New Hope: The United Nations</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="image-placeholder">
+                    <div class="image-description">San Francisco Conference, 1945</div>
+                    <div>Delegates from 50 nations gathering at the Opera House, flags of all nations displayed, signing ceremony</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Learning from the League's Failure</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h4>League of Nations</h4>
+                        <ul>
+                            <li>No enforcement power</li>
+                            <li>US never joined</li>
+                            <li>Required unanimous decisions</li>
+                            <li>No standing forces</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>United Nations</h4>
+                        <ul>
+                            <li>Security Council can use force</li>
+                            <li>US founding member</li>
+                            <li>Veto power for Big 5</li>
+                            <li>Peacekeeping forces authorized</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote">
+                    "We must ensure that this time, the peace lasts."
+                    <div class="quote-attribution">— Franklin D. Roosevelt's vision</div>
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Press → to see the Cold War dawn</div>
+        </div>
+
+        <!-- Slide 14: Seeds of the Cold War -->
+        <div class="slide">
+            <div class="slide-number">14/18</div>
+            
+            <div class="reveal-item">
+                <h2>From Allies to Adversaries</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Breaking Points</h3>
+                <ul>
+                    <li><strong>Poland:</strong> Stalin installs communist government despite promises</li>
+                    <li><strong>Germany:</strong> Soviets strip eastern zone of industry</li>
+                    <li><strong>Atomic secrets:</strong> US refuses to share with USSR</li>
+                    <li><strong>Eastern Europe:</strong> "Iron Curtain" descends by 1946</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stat-grid">
+                    <div class="stat-card" style="background: linear-gradient(135deg, rgba(65, 105, 225, 0.2) 0%, rgba(255, 0, 0, 0.1) 100%);">
+                        <div class="stat-number">USA</div>
+                        <div class="stat-label">Atomic Monopoly<br>Economic Dominance</div>
+                    </div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, rgba(255, 0, 0, 0.2) 0%, rgba(65, 105, 225, 0.1) 100%);">
+                        <div class="stat-number">USSR</div>
+                        <div class="stat-label">Largest Army<br>Controls Eastern Europe</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote">
+                    "From Stettin in the Baltic to Trieste in the Adriatic, an iron curtain has descended across the Continent."
+                    <div class="quote-attribution">— Winston Churchill, March 1946</div>
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Press → to see the new world</div>
+        </div>
+
+        <!-- Slide 15: The Price of Victory -->
+        <div class="slide">
+            <div class="slide-number">15/18</div>
+            
+            <div class="reveal-item">
+                <h2>The Cost of Victory</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="stat-grid">
+                    <div class="stat-card" style="border-color: rgba(255, 0, 0, 0.5);">
+                        <div class="stat-number" style="color: #ff6b6b;">70-85M</div>
+                        <div class="stat-label">Total Deaths</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$4 Trillion</div>
+                        <div class="stat-label">Economic Cost (today's $)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">Entire</div>
+                        <div class="stat-label">Cities Erased</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">Forever</div>
+                        <div class="stat-label">World Changed</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>But Victory Achieved:</h3>
+                <ul>
+                    <li><span class="success">Fascism defeated</span> - Democracy survived</li>
+                    <li><span class="success">Genocide ended</span> - Camps liberated</li>
+                    <li><span class="success">International law</span> - War crimes prosecuted</li>
+                    <li><span class="success">UN created</span> - Hope for peaceful future</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.5rem;">
+                    The Allies won through <span class="emphasis">industrial might</span>, 
+                    <span class="emphasis">strategic sacrifice</span>, and <span class="emphasis">technological breakthrough</span><br>
+                    <span style="color: #999; font-size: 1.2rem;">But victory's shadow was the Cold War to come</span>
+                </p>
+            </div>
+            
+            <div class="continue-indicator">Press → for lessons learned</div>
+        </div>
+
+        <!-- Slide 16: Transformations -->
+        <div class="slide">
+            <div class="slide-number">16/18</div>
+            
+            <div class="reveal-item">
+                <h2>How Victory Transformed the World</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The New Global Order</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h4>Before 1945</h4>
+                        <ul>
+                            <li>Multiple great powers</li>
+                            <li>Colonial empires dominant</li>
+                            <li>Limited international law</li>
+                            <li>Technology advancing slowly</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>After 1945</h4>
+                        <ul>
+                            <li>Two superpowers</li>
+                            <li>Decolonization begins</li>
+                            <li>Human rights recognized</li>
+                            <li>Nuclear age begins</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>America's New Role</h3>
+                <ul>
+                    <li><strong>Economic titan:</strong> 50% of world GDP</li>
+                    <li><strong>Military hegemon:</strong> Bases worldwide</li>
+                    <li><strong>Nuclear monopolist:</strong> Until 1949</li>
+                    <li><strong>Democratic leader:</strong> Marshall Plan for Europe</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    💭 Consider: How did winning the war shape America's view of its role in the world?
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Press → for reflection</div>
+        </div>
+
+        <!-- Slide 17: Key Insights -->
+        <div class="slide">
+            <div class="slide-number">17/18</div>
+            
+            <div class="reveal-item">
+                <h2>Understanding Victory</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Why the Allies Won</h3>
+                <ul>
+                    <li><strong>Industrial capacity:</strong> US production was insurmountable</li>
+                    <li><strong>Grand Alliance:</strong> Combined strengths overcame individual weaknesses</li>
+                    <li><strong>Technology edge:</strong> From radar to atomic weapons</li>
+                    <li><strong>Strategic patience:</strong> Avoiding decisive battle until ready</li>
+                    <li><strong>Moral cause:</strong> Fighting against genocide and tyranny</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Atomic Decision's Legacy</h3>
+                <ul>
+                    <li>Ended the war but began the nuclear age</li>
+                    <li>Saved lives but at terrible cost</li>
+                    <li>Demonstrated US power but sparked arms race</li>
+                    <li>Created deterrence but also permanent fear</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>From Hot War to Cold War</h3>
+                <p>Victory didn't bring peace but a new kind of conflict—one fought with:</p>
+                <ul>
+                    <li>Proxy wars instead of direct confrontation</li>
+                    <li>Nuclear threats instead of invasion</li>
+                    <li>Ideological competition instead of territorial conquest</li>
+                </ul>
+            </div>
+            
+            <div class="continue-indicator">Press → for final thoughts</div>
+        </div>
+
+        <!-- Slide 18: Conclusion -->
+        <div class="slide">
+            <div class="slide-number">18/18</div>
+            
+            <div class="reveal-item">
+                <h2>Victory and Its Shadows: Final Reflections</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="quote">
+                    "In war, there are no winners, only survivors."
+                    <div class="quote-attribution">— A WWII veteran</div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Paradoxes of Victory</h3>
+                <ul>
+                    <li>Won the war but <span class="emphasis">lost the peace</span> to Cold War</li>
+                    <li>Defeated fascism but <span class="emphasis">enabled new tyrannies</span></li>
+                    <li>Created UN but <span class="emphasis">paralyzed by vetoes</span></li>
+                    <li>Unleashed atomic power for <span class="danger">destruction</span> and <span class="success">progress</span></li>
+                    <li>Saved democracy but at <span class="danger">unimaginable cost</span></li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Enduring Lessons</h3>
+                <ul>
+                    <li><strong>Industrial power</strong> can overcome initial defeats</li>
+                    <li><strong>Alliances</strong> multiply strength despite differences</li>
+                    <li><strong>Technology</strong> changes everything—including moral choices</li>
+                    <li><strong>Victory</strong> requires planning for peace</li>
+                    <li><strong>Power</strong> brings responsibility for world order</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <p style="text-align: center; font-size: 1.6rem; color: #87CEEB; margin-top: 3rem;">
+                    The Allies won through <span class="emphasis">sacrifice</span>, <span class="emphasis">science</span>, and <span class="emphasis">steel</span>.<br>
+                    They reshaped the world through <span class="success">victory</span>—<br>
+                    but could not escape its <span class="danger">shadows</span>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation controls -->
+    <div class="controls">
+        <button class="control-btn" id="prevBtn">← Previous</button>
+        <button class="control-btn" id="nextBtn">Next →</button>
+        <button class="control-btn" id="revealBtn">Reveal All</button>
+    </div>
+
+    <!-- Image tab -->
+    <div class="image-tab" id="imageTab">📷 Images</div>
+    
+    <!-- Image overlay -->
+    <div class="image-overlay" id="imageOverlay">
+        <div class="image-overlay-content">
+            <p>Image details would appear here when available</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #888;">Click anywhere to close</p>
+        </div>
+    </div>
+
+    <script>
+        // Slide management
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        // Navigation functions
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+                if (i === index) {
+                    resetRevealItems(slide);
+                }
+            });
+        }
+
+        function nextSlide() {
+            const activeSlide = slides[currentSlide];
+            const revealItems = activeSlide.querySelectorAll('.reveal-item');
+            const revealedItems = activeSlide.querySelectorAll('.reveal-item.revealed');
+            
+            if (revealedItems.length < revealItems.length) {
+                // Reveal next item in current slide
+                revealNextItem(activeSlide);
+            } else if (currentSlide < totalSlides - 1) {
+                // Move to next slide
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function prevSlide() {
+            const activeSlide = slides[currentSlide];
+            const revealedItems = activeSlide.querySelectorAll('.reveal-item.revealed');
+            
+            if (revealedItems.length === 0 && currentSlide > 0) {
+                // Move to previous slide
+                currentSlide--;
+                showSlide(currentSlide);
+                // Reveal all items in previous slide
+                const prevSlide = slides[currentSlide];
+                const prevItems = prevSlide.querySelectorAll('.reveal-item');
+                prevItems.forEach(item => item.classList.add('revealed'));
+            } else if (revealedItems.length > 0) {
+                // Hide last revealed item
+                const lastRevealed = revealedItems[revealedItems.length - 1];
+                lastRevealed.classList.remove('revealed');
+            }
+        }
+
+        function revealNextItem(slide) {
+            const items = slide.querySelectorAll('.reveal-item:not(.revealed)');
+            if (items.length > 0) {
+                items[0].classList.add('revealed');
+            }
+        }
+
+        function revealAllItems(slide) {
+            const items = slide.querySelectorAll('.reveal-item');
+            items.forEach(item => item.classList.add('revealed'));
+        }
+
+        function resetRevealItems(slide) {
+            const items = slide.querySelectorAll('.reveal-item');
+            items.forEach((item, index) => {
+                item.classList.remove('revealed');
+                // Auto-reveal first item
+                if (index === 0) {
+                    setTimeout(() => item.classList.add('revealed'), 100);
+                }
+            });
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    prevSlide();
+                    break;
+                case 'Enter':
+                    revealAllItems(slides[currentSlide]);
+                    break;
+                case ',':
+                case '<':
+                    if (currentSlide > 0) {
+                        currentSlide--;
+                        showSlide(currentSlide);
+                    }
+                    break;
+                case '.':
+                case '>':
+                    if (currentSlide < totalSlides - 1) {
+                        currentSlide++;
+                        showSlide(currentSlide);
+                    }
+                    break;
+            }
+        });
+
+        // Button controls
+        document.getElementById('nextBtn').addEventListener('click', nextSlide);
+        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+        document.getElementById('revealBtn').addEventListener('click', () => {
+            revealAllItems(slides[currentSlide]);
+        });
+
+        // Image tab functionality
+        document.getElementById('imageTab').addEventListener('click', () => {
+            document.getElementById('imageOverlay').classList.add('active');
+        });
+
+        document.getElementById('imageOverlay').addEventListener('click', () => {
+            document.getElementById('imageOverlay').classList.remove('active');
+        });
+
+        // Animate production bars when they become visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const fills = entry.target.querySelectorAll('.production-fill');
+                    fills.forEach(fill => {
+                        const width = fill.style.width;
+                        fill.style.width = '0';
+                        setTimeout(() => {
+                            fill.style.width = width;
+                        }, 300);
+                    });
+                }
+            });
+        });
+
+        document.querySelectorAll('.production-chart').forEach(chart => {
+            observer.observe(chart);
+        });
+
+        // Initialize first slide
+        showSlide(0);
+
+        // Touch support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide(); // Swipe left
+            }
+            if (touchEndX > touchStartX + 50) {
+                prevSlide(); // Swipe right
+            }
+        }
+
+        // Add visual feedback for interactive elements
+        document.querySelectorAll('.interactive-prompt').forEach(prompt => {
+            prompt.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1.02)';
+                }, 100);
+            });
+        });
+
+        // Preload reveal animation for smoother experience
+        window.addEventListener('load', () => {
+            // Add subtle entrance animation to first slide
+            setTimeout(() => {
+                const firstItems = slides[0].querySelectorAll('.reveal-item');
+                if (firstItems.length > 0) {
+                    firstItems[0].classList.add('revealed');
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>
