@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Colonies Take Shape</title>
+    <style>
+        /* Base Variables and Reset */
+        :root {
+            --primary-color: #2c5530;
+            --secondary-color: #8b7355;
+            --accent-color: #c5a572;
+            --highlight-color: #d4af37;
+            --text-color: white;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --border-radius: 15px;
+            --box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            --transition: all 0.6s ease;
+            --base-font-size: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: var(--base-font-size);
+        }
+
+        /* Base Layout */
+        .presentation-container {
+            width: 100vw;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .slide {
+            width: 100%;
+            min-height: 100vh;
+            display: none;
+            position: relative;
+            padding: 60px;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Typography System */
+        .title {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, var(--highlight-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--highlight-color);
+            text-align: center;
+        }
+
+        /* Layout Components */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        /* Card System */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+            height: 100%;
+        }
+
+        .card ul {
+            list-style: none;
+        }
+
+        .card li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .card li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        /* Content Boxes */
+        .content-box {
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .big-question {
+            background: rgba(255, 69, 0, 0.2);
+            border: 2px solid #ff4500;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .big-idea {
+            background: linear-gradient(45deg, #4169e1, #0000cd);
+            font-size: 1.1rem;
+            font-weight: 500;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .evidence-box {
+            background: rgba(46, 204, 113, 0.2);
+            border: 2px solid #2ecc71;
+        }
+
+        .evidence-box h4 {
+            color: #2ecc71;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .activity-prompt {
+            background: rgba(138, 43, 226, 0.3);
+            border: 2px solid #8a2be2;
+            font-size: 0.95rem;
+        }
+
+        .timeline-box {
+            background: linear-gradient(45deg, #2f4f4f, #708090);
+            box-shadow: var(--box-shadow);
+        }
+
+        .timeline-box h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        /* Progressive Disclosure */
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .auto-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Controls and Indicators */
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 0.8rem;
+            backdrop-filter: blur(10px);
+            transition: opacity 0.3s ease;
+        }
+
+        .controls.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .reveal-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 10px 15px;
+            font-size: 0.8rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .progress-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background: var(--highlight-color);
+            transform: scale(1.2);
+        }
+
+        /* Vocabulary System */
+        .vocab-button {
+            position: fixed;
+            top: 20px;
+            right: 100px;
+            background: var(--highlight-color);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 10px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .vocab-button:hover {
+            transform: scale(1.05);
+            background: var(--accent-color);
+        }
+
+        .vocab-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--primary-color);
+            border: 2px solid var(--highlight-color);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            display: none;
+            z-index: 1000;
+            box-shadow: var(--box-shadow);
+        }
+
+        .vocab-popup.visible {
+            display: block;
+        }
+
+        .vocab-popup h3 {
+            color: var(--highlight-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .vocab-term {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .vocab-term:last-child {
+            border-bottom: none;
+        }
+
+        .vocab-word {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 0.95rem;
+        }
+
+        .vocab-definition {
+            margin-top: 0.5rem;
+            line-height: 1.4;
+        }
+
+        /* Quote Boxes */
+        .quote-box {
+            background: rgba(139, 115, 85, 0.3);
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .quote-author {
+            text-align: right;
+            margin-top: 1rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <!-- Slide 1: Title Slide -->
+        <div class="slide active">
+            <div class="slide-content">
+                <h1 class="title">🏛️ English Colonies Take Shape</h1>
+                <p class="subtitle">Chapter 3: Colonial Development and Society</p>
+                <div class="content-box big-question auto-reveal">
+                    <strong>The Big Question:</strong><br>
+                    What impact did European exploration and particularly English colonization have on the various types of North America that came to be known as the Thirteen Colonies?
+                </div>
+                <div class="content-box big-idea auto-reveal">
+                    Today we'll explore how English colonies developed distinct characteristics, faced unique challenges, and created the foundations of American society.
+                </div>
+            </div>
+            <button class="vocab-button" onclick="toggleVocab()">📚 Vocabulary</button>
+        </div>
+
+        <!-- Slide 2: Colonists Might Have Abandoned -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="section-title">⚠️ Early Colonial Struggles</h2>
+                
+                <div class="content-box timeline-box auto-reveal">
+                    <h3>The Reality of Early Settlement</h3>
+                    <p>The colonists might have abandoned their settlement if not for two things: First, Captain John Smith had become the leader of the colony. Captain Smith was an organized leader who worked hard and promoted work and farming.</p>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">🎯 Find Out the Facts</h3>
+                        <ul>
+                            <li class="auto-reveal">Research why Jamestown nearly failed in its early years</li>
+                            <li class="auto-reveal">Investigate the role of the Pocahontas and John Rolfe marriage</li>
+                            <li class="auto-reveal">Look into how tobacco saved the Virginia colony</li>
+                            <li class="auto-reveal">Compare and contrast colonists' expectations vs. reality</li>
+                        </ul>
+                    </div>
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">⚡ Think Twice</h3>
+                        <ul>
+                            <li class="auto-reveal">Why do you think such strict rules were necessary for survival?</li>
+                            <li class="auto-reveal">Other leaders continually failed. What made Captain Smith successful?</li>
+                            <li class="auto-reveal">How did the colonists' work and farming approach change the colony?</li>
+                            <li class="auto-reveal">What role did strong leadership play in colonial success?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="quote-box auto-reveal">
+                    "He who does not work does not eat"
+                    <div class="quote-author">- Captain John Smith's Rule</div>
+                </div>
+            </div>
+            <button class="vocab-button" onclick="toggleVocab()">📚 Vocabulary</button>
+        </div>
+
+        <!-- Slide 3: The Powhatan Confederacy -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="section-title">🏹 Members of the Powhatan Confederacy</h2>
+                
+                <div class="content-box evidence-box auto-reveal">
+                    <h4>🏛️ A Complex Political System</h4>
+                    <p>Members of the Powhatan Confederacy strongly resented the presence of the English. They viewed them as invaders who posed a threat to the continuation of their own indigenous culture and to their land.</p>
+                </div>
+
+                <div class="grid-3">
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">👑 Political Structure</h3>
+                        <ul>
+                            <li class="auto-reveal">Over 14,000 people under Chief Powhatan</li>
+                            <li class="auto-reveal">30+ tribes in the confederacy</li>
+                            <li class="auto-reveal">Sophisticated leadership hierarchy</li>
+                            <li class="auto-reveal">Tribute system connecting tribes</li>
+                        </ul>
+                    </div>
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">🌾 Economic System</h3>
+                        <ul>
+                            <li class="auto-reveal">Agriculture: corn, beans, squash</li>
+                            <li class="auto-reveal">Seasonal hunting and fishing</li>
+                            <li class="auto-reveal">Trade networks with other tribes</li>
+                            <li class="auto-reveal">Sustainable resource management</li>
+                        </ul>
+                    </div>
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">⚔️ English Relations</h3>
+                        <ul>
+                            <li class="auto-reveal">Initial curiosity turned to resistance</li>
+                            <li class="auto-reveal">Conflicts over land and resources</li>
+                            <li class="auto-reveal">Pocahontas as cultural bridge</li>
+                            <li class="auto-reveal">Eventually overwhelmed by numbers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content-box activity-prompt auto-reveal">
+                    <strong>Think About Perspective:</strong> How might the story of early Virginia look different if told from Powhatan's point of view rather than John Smith's?
+                </div>
+            </div>
+            <button class="vocab-button" onclick="toggleVocab()">📚 Vocabulary</button>
+        </div>
+
+        <!-- Slide 4: English Colonization Continues -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="section-title">⛵ English Colonization Continues</h2>
+                
+                <div class="content-box timeline-box auto-reveal">
+                    <h3>Maryland's Catholic Experiment</h3>
+                    <p>Because of this, landowners were indentured only the strongest and healthiest young men and women. Life was initially hard because of the working conditions, but some did become successful merchants themselves.</p>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">🏰 Maryland Colony</h3>
+                        <ul>
+                            <li class="auto-reveal">Founded by Lord Baltimore (King Charles I)</li>
+                            <li class="auto-reveal">Safe haven for English Catholics</li>
+                            <li class="auto-reveal">First proprietary colony means ownership by an individual</li>
+                            <li class="auto-reveal">Religious tolerance as founding principle</li>
+                        </ul>
+                    </div>
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">📜 Key Innovations</h3>
+                        <ul>
+                            <li class="auto-reveal">Toleration Act of 1649 protected religious freedom</li>
+                            <li class="auto-reveal">Proprietary system: Baltimore controlled land</li>
+                            <li class="auto-reveal">Encouraged both Protestant and Catholic settlement</li>
+                            <li class="auto-reveal">Established precedent for religious liberty</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content-box big-idea auto-reveal">
+                    At the 1600s were on more English colonies were established along the Atlantic Coast. In 1634 Ten years after neighbors England invaded Virginia, another neighboring settlement appeared on the North.
+                </div>
+
+                <div class="content-box evidence-box auto-reveal">
+                    <h4>🔍 What This Tells Us</h4>
+                    <p>Maryland's founding showed that English colonization was becoming more diverse and complex, with different motivations beyond just economic gain.</p>
+                </div>
+            </div>
+            <button class="vocab-button" onclick="toggleVocab()">📚 Vocabulary</button>
+        </div>
+
+        <!-- Slide 5: Slavery in the Americas -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="section-title">⛓️ Slavery in the Americas</h2>
+                
+                <div class="content-box evidence-box auto-reveal">
+                    <h4>💰 Economic Foundations</h4>
+                    <p>The system of enslavement existed before European involvement in the Atlantic. African but became armed. But Europeans used their power and wealth to change the lives of millions of people. Europeans involvement in the African slave trade began to grow after 1450.</p>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">📈 Find Out the Facts</h3>
+                        <ul>
+                            <li class="auto-reveal">Research why indigo was so valuable</li>
+                            <li class="auto-reveal">Analyze the economic expansion in Virginia and the Carolinas</li>
+                            <li class="auto-reveal">Study how slavery became institutionalized</li>
+                            <li class="auto-reveal">Examine the human cost of economic expansion</li>
+                        </ul>
+                    </div>
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">⚡ The Transformation</h3>
+                        <ul>
+                            <li class="auto-reveal">European investment in slave labor changed everything</li>
+                            <li class="auto-reveal">Cash crops required intensive labor</li>
+                            <li class="auto-reveal">Profits funded further expansion</li>
+                            <li class="auto-reveal">Legal codes institutionalized bondage</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="quote-box auto-reveal">
+                    "The work was intense and the labor varied, but enslaved Africans were vital to the growth of colonial prosperity"
+                    <div class="quote-author">- Colonial Economic Reality</div>
+                </div>
+
+                <div class="content-box activity-prompt auto-reveal">
+                    <strong>Critical Thinking:</strong> How did the economic success of southern colonies become dependent on enslaved labor, and what were the long-term consequences?
+                </div>
+            </div>
+            <button class="vocab-button" onclick="toggleVocab()">📚 Vocabulary</button>
+        </div>
+
+        <!-- Slide 6: The Carolina Colonies -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="section-title">🌾 The Carolina Colonies</h2>
+                
+                <div class="content-box big-idea auto-reveal">
+                    Maryland was a more lucky. It was meant to be a haven for English Roman Catholic, Caroline Church, Calvin who had been ostracized from English society. In 1660 the restoration of Charles II lead to a political call for large land tracts.
+                </div>
+
+                <div class="grid-3">
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">🎯 North Carolina</h3>
+                        <ul>
+                            <li class="auto-reveal">Small farming communities</li>
+                            <li class="auto-reveal">More diverse crops and livestock</li>
+                            <li class="auto-reveal">Fewer large plantations</li>
+                            <li class="auto-reveal">Different social structure</li>
+                        </ul>
+                    </div>
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">🌾 South Carolina</h3>
+                        <ul>
+                            <li class="auto-reveal">Rice and indigo plantations</li>
+                            <li class="auto-reveal">Charleston as major port</li>
+                            <li class="auto-reveal">Large enslaved population</li>
+                            <li class="auto-reveal">Wealthy planter class</li>
+                        </ul>
+                    </div>
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">👑 Georgia</h3>
+                        <ul>
+                            <li class="auto-reveal">James Oglethorpe's vision</li>
+                            <li class="auto-reveal">Buffer against Spanish Florida</li>
+                            <li class="auto-reveal">Haven for debtors and poor</li>
+                            <li class="auto-reveal">Initially banned slavery</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content-box evidence-box auto-reveal">
+                    <h4>🔍 Different Colonial Models</h4>
+                    <p>Georgia was the last of the English colonies to be established. It was meant to be a colony for displaced and indebted from England and the United States. Georgia would also be known as the Southern or coastal colonies.</p>
+                </div>
+            </div>
+            <button class="vocab-button" onclick="toggleVocab()">📚 Vocabulary</button>
+        </div>
+
+        <!-- Slide 7: Settling New England -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="section-title">🚢 Settling New England</h2>
+                
+                <div class="content-box timeline-box auto-reveal">
+                    <h3>🏰 The Mayflower Compact</h3>
+                    <p>The Southern colonies of Virginia were founded for prosperity. On the ship Virginia in the case and of the century were created for Plymouth or on hope could become the Boston.</p>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">🙏 Pilgrims' Motivation</h3>
+                        <ul>
+                            <li class="auto-reveal">Religious freedom from Church of England</li>
+                            <li class="auto-reveal">Mayflower Compact created self-government</li>
+                            <li class="auto-reveal">Plymouth colony established 1620</li>
+                            <li class="auto-reveal">Harsh first winter, Native assistance crucial</li>
+                        </ul>
+                    </div>
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">🔥 The Great Migration</h3>
+                        <ul>
+                            <li class="auto-reveal">1630s: Thousands fled religious persecution</li>
+                            <li class="auto-reveal">John Winthrop's "City upon a Hill" vision</li>
+                            <li class="auto-reveal">Massachusetts Bay Colony expansion</li>
+                            <li class="auto-reveal">Theocratic government and society</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="quote-box auto-reveal">
+                    "We shall be as a city upon a hill, the eyes of all people are upon us"
+                    <div class="quote-author">- John Winthrop, 1630</div>
+                </div>
+
+                <div class="content-box activity-prompt auto-reveal">
+                    <strong>Compare and Contrast:</strong> How did the motivations for founding New England colonies differ from those in Virginia and the Carolinas?
+                </div>
+            </div>
+            <button class="vocab-button" onclick="toggleVocab()">📚 Vocabulary</button>
+        </div>
+
+        <!-- Slide 8: From New Netherland to New York -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="section-title">🇳🇱 From New Netherland to New York</h2>
+                
+                <div class="content-box big-idea auto-reveal">
+                    Although Henry Hudson had not found wealthy, as he had hoped for the Dutch, he arrived at an island that the Native Americans owned this was New York City. Through Henry Hudson's journey, he had made an agreement that allowed them to trade.
+                </div>
+
+                <div class="grid-2">
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">🇳🇱 Dutch New Netherland</h3>
+                        <ul>
+                            <li class="auto-reveal">Founded for trade, not settlement</li>
+                            <li class="auto-reveal">Religious tolerance attracted diverse people</li>
+                            <li class="auto-reveal">Manhattan purchased from Native Americans</li>
+                            <li class="auto-reveal">Focused on fur trade with interior tribes</li>
+                        </ul>
+                    </div>
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">🏴󠁧󠁢󠁥󠁮󠁧󠁿 English Takeover</h3>
+                        <ul>
+                            <li class="auto-reveal">1664: English demanded Dutch surrender</li>
+                            <li class="auto-reveal">Renamed for Duke of York (future James II)</li>
+                            <li class="auto-reveal">Maintained Dutch tolerance and diversity</li>
+                            <li class="auto-reveal">Strategic location for English empire</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content-box evidence-box auto-reveal">
+                    <h4>🔍 A Diverse Society</h4>
+                    <p>The English land seized; ownership and title, since it was technically illegal to seize. They had to recognize land grants from the Dutch and allowed current residents to stay and even take the same as "British subjects."</p>
+                </div>
+
+                <div class="content-box activity-prompt auto-reveal">
+                    <strong>Analyze:</strong> How did Dutch policies of tolerance influence the character of New York even after English conquest?
+                </div>
+            </div>
+            <button class="vocab-button" onclick="toggleVocab()">📚 Vocabulary</button>
+        </div>
+
+        <!-- Slide 9: Pennsylvania and the Delaware Valley -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="section-title">🕊️ Pennsylvania and the Delaware Valley</h2>
+                
+                <div class="content-box timeline-box auto-reveal">
+                    <h3>🌟 William Penn's "Holy Experiment"</h3>
+                    <p>William Penn was a town planner and lawyer. Poland and his was his right oil by covenant. He set clear colonies at that time; they signed a charter to start a new colony where people who shared the Quaker religious leaders.</p>
+                </div>
+
+                <div class="grid-3">
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">✝️ Quaker Beliefs</h3>
+                        <ul>
+                            <li class="auto-reveal">Religious equality for all people</li>
+                            <li class="auto-reveal">Pacifism - opposed to violence</li>
+                            <li class="auto-reveal">Direct relationship with God</li>
+                            <li class="auto-reveal">Social justice and fair treatment</li>
+                        </ul>
+                    </div>
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">🏛️ Government Innovation</h3>
+                        <ul>
+                            <li class="auto-reveal">Representative assembly for colonists</li>
+                            <li class="auto-reveal">Religious freedom for all Christians</li>
+                            <li class="auto-reveal">Fair treatment of Native Americans</li>
+                            <li class="auto-reveal">Trial by jury and due process</li>
+                        </ul>
+                    </div>
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">🌍 Success and Growth</h3>
+                        <ul>
+                            <li class="auto-reveal">Attracted immigrants from across Europe</li>
+                            <li class="auto-reveal">Philadelphia became major port city</li>
+                            <li class="auto-reveal">Prosperous farming and trade</li>
+                            <li class="auto-reveal">Model for religious tolerance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="quote-box auto-reveal">
+                    "A good End cannot sanctify evil Means; nor must we ever do Evil, that Good may come of it"
+                    <div class="quote-author">- William Penn</div>
+                </div>
+            </div>
+            <button class="vocab-button" onclick="toggleVocab()">📚 Vocabulary</button>
+        </div>
+
+        <!-- Slide 10: Summary - Diverse Colonial Development -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="section-title">🎯 Colonial Diversity and Legacy</h2>
+                
+                <div class="content-box big-idea auto-reveal">
+                    By 1776, when the American independence and prepared for war against British rule, Philadelphia was the largest city in the British American colonies. At just over 40,000 residents.
+                </div>
+
+                <div class="grid-2">
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">🌍 Regional Differences</h3>
+                        <ul>
+                            <li class="auto-reveal"><strong>New England:</strong> Religious communities, small farms, trade</li>
+                            <li class="auto-reveal"><strong>Middle Colonies:</strong> Diversity, religious tolerance, grain production</li>
+                            <li class="auto-reveal"><strong>Southern Colonies:</strong> Plantations, slavery, cash crops</li>
+                            <li class="auto-reveal">Each region developed distinct characteristics</li>
+                        </ul>
+                    </div>
+                    <div class="card auto-reveal">
+                        <h3 class="card-title">🏛️ Common Foundations</h3>
+                        <ul>
+                            <li class="auto-reveal">Representative government and assemblies</li>
+                            <li class="auto-reveal">English legal traditions and rights</li>
+                            <li class="auto-reveal">Economic ties to Atlantic trade</li>
+                            <li class="auto-reveal">Growing sense of American identity</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content-box evidence-box auto-reveal">
+                    <h4>🔍 Why This Matters</h4>
+                    <p>The diverse colonial experiences created different economic systems, social structures, and political traditions that would later shape American independence and the formation of the United States.</p>
+                </div>
+
+                <div class="content-box activity-prompt auto-reveal">
+                    <strong>Final Investigation:</strong> How did the diverse colonial experiences contribute to both unity and conflict as Americans moved toward independence? Consider economic interests, religious differences, and political traditions.
+                </div>
+            </div>
+            <button class="vocab-button" onclick="toggleVocab()">📚 Vocabulary</button>
+        </div>
+
+        <!-- Progress indicator -->
+        <div class="progress-indicator">
+            <div class="progress-dot active"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            ← → : Navigate slides<br>
+            ↑ ↓ : Progressive disclosure<br>
+            Enter: Reveal all<br>
+            , . : Quick navigation
+        </div>
+
+        <!-- Reveal status -->
+        <div class="reveal-status">
+            <span id="revealCount">0</span> / <span id="totalRevealCount">0</span> revealed
+        </div>
+
+        <!-- Vocabulary Popup -->
+        <div class="vocab-popup" id="vocabPopup">
+            <h3>📚 Key Vocabulary - Chapter 3</h3>
+            
+            <div class="vocab-term">
+                <div class="vocab-word">Proprietary Colony</div>
+                <div class="vocab-definition">A colony owned by an individual who received it from the king. Maryland was the first proprietary colony, owned by Lord Baltimore.</div>
+            </div>
+            
+            <div class="vocab-term">
+                <div class="vocab-word">Powhatan Confederacy</div>
+                <div class="vocab-definition">A political alliance of about 30 Algonquian-speaking tribes in Virginia, led by Chief Powhatan, with over 14,000 people.</div>
+            </div>
+            
+            <div class="vocab-term">
+                <div class="vocab-word">Indentured Servants</div>
+                <div class="vocab-definition">People who worked for a set period (usually 4-7 years) to pay off their passage to America. After their service, they were free.</div>
+            </div>
+            
+            <div class="vocab-term">
+                <div class="vocab-word">Cash Crops</div>
+                <div class="vocab-definition">Crops grown specifically to sell for profit, not for personal use. Tobacco, rice, and indigo were major colonial cash crops.</div>
+            </div>
+            
+            <div class="vocab-term">
+                <div class="vocab-word">Mayflower Compact</div>
+                <div class="vocab-definition">The first written agreement for self-government in America, signed by the Pilgrims in 1620 before landing at Plymouth.</div>
+            </div>
+            
+            <div class="vocab-term">
+                <div class="vocab-word">Puritans</div>
+                <div class="vocab-definition">English Protestants who wanted to "purify" the Church of England. They founded Massachusetts Bay Colony in 1630.</div>
+            </div>
+            
+            <div class="vocab-term">
+                <div class="vocab-word">Great Migration</div>
+                <div class="vocab-definition">The movement of thousands of English Puritans to New England in the 1630s to escape religious persecution.</div>
+            </div>
+            
+            <div class="vocab-term">
+                <div class="vocab-word">Toleration Act</div>
+                <div class="vocab-definition">Maryland's 1649 law that protected religious freedom for all Christians, one of the first such laws in colonial America.</div>
+            </div>
+            
+            <div class="vocab-term">
+                <div class="vocab-word">Quakers</div>
+                <div class="vocab-definition">Members of the Religious Society of Friends who believed in equality, pacifism, and direct relationship with God. They founded Pennsylvania.</div>
+            </div>
+            
+            <div class="vocab-term">
+                <div class="vocab-word">Middle Passage</div>
+                <div class="vocab-definition">The forced voyage of enslaved Africans across the Atlantic Ocean to the Americas, part of the triangular trade system.</div>
+            </div>
+            
+            <div class="vocab-term">
+                <div class="vocab-word">House of Burgesses</div>
+                <div class="vocab-definition">Virginia's representative assembly, established in 1619. It was the first elected legislative body in colonial America.</div>
+            </div>
+            
+            <div class="vocab-term">
+                <div class="vocab-word">Plantation System</div>
+                <div class="vocab-definition">Large agricultural estates that relied on enslaved labor to grow cash crops, especially in the Southern colonies.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentRevealIndex = 0;
+        let allRevealed = false;
+        let vocabVisible = false;
+        let controlsHidden = false;
+        const totalSlides = 10;
+
+        function showSlide(index) {
+            // Hide all slides
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Show target slide
+            const slides = document.querySelectorAll('.slide');
+            if (index >= 0 && index < slides.length) {
+                slides[index].classList.add('active');
+                currentSlide = index;
+                
+                // Reset reveal state
+                resetSlideReveals();
+                updateProgressIndicator();
+                
+                // Hide vocabulary if visible
+                hideVocab();
+            }
+        }
+
+        function resetSlideReveals() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            // Hide all reveals
+            autoRevealElements.forEach(element => {
+                element.classList.remove('revealed');
+            });
+            
+            currentRevealIndex = 0;
+            allRevealed = false;
+            updateRevealStatus();
+        }
+
+        function revealNext() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (currentRevealIndex < autoRevealElements.length) {
+                autoRevealElements[currentRevealIndex].classList.add('revealed');
+                currentRevealIndex++;
+                updateRevealStatus();
+                
+                if (currentRevealIndex === autoRevealElements.length) {
+                    allRevealed = true;
+                }
+            }
+        }
+
+        function revealPrevious() {
+            if (currentRevealIndex > 0) {
+                currentRevealIndex--;
+                const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+                const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+                autoRevealElements[currentRevealIndex].classList.remove('revealed');
+                allRevealed = false;
+                updateRevealStatus();
+            }
+        }
+
+        function revealAll() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            if (!allRevealed) {
+                // Reveal all with staggered animation
+                autoRevealElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('revealed');
+                    }, index * 150);
+                });
+                currentRevealIndex = autoRevealElements.length;
+                allRevealed = true;
+                
+                // Update status after animation completes
+                setTimeout(() => {
+                    updateRevealStatus();
+                }, autoRevealElements.length * 150);
+            } else {
+                // Hide all
+                autoRevealElements.forEach(element => {
+                    element.classList.remove('revealed');
+                });
+                currentRevealIndex = 0;
+                allRevealed = false;
+                updateRevealStatus();
+            }
+        }
+
+        function updateRevealStatus() {
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            document.getElementById('revealCount').textContent = currentRevealIndex;
+            document.getElementById('totalRevealCount').textContent = autoRevealElements.length;
+        }
+
+        function updateProgressIndicator() {
+            const dots = document.querySelectorAll('.progress-dot');
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function toggleVocab() {
+            const popup = document.getElementById('vocabPopup');
+            if (vocabVisible) {
+                popup.classList.remove('visible');
+                vocabVisible = false;
+            } else {
+                popup.classList.add('visible');
+                vocabVisible = true;
+            }
+        }
+
+        function hideVocab() {
+            const popup = document.getElementById('vocabPopup');
+            popup.classList.remove('visible');
+            vocabVisible = false;
+        }
+
+        function hideControls() {
+            if (!controlsHidden) {
+                const controls = document.querySelector('.controls');
+                controls.classList.add('hidden');
+                controlsHidden = true;
+            }
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(event) {
+            // Hide controls after first key press
+            hideControls();
+            
+            const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+            const autoRevealElements = currentSlideElement.querySelectorAll('.auto-reveal');
+            
+            switch(event.key) {
+                case 'ArrowRight':
+                    if (currentRevealIndex < autoRevealElements.length) {
+                        revealNext();
+                    } else if (currentSlide < totalSlides - 1) {
+                        showSlide(currentSlide + 1);
+                    }
+                    break;
+                case 'ArrowLeft':
+                    if (currentRevealIndex > 0) {
+                        revealPrevious();
+                    } else if (currentSlide > 0) {
+                        showSlide(currentSlide - 1);
+                    }
+                    break;
+                case 'ArrowDown':
+                    revealNext();
+                    break;
+                case 'ArrowUp':
+                    revealPrevious();
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+                case ',':
+                    if (currentSlide > 0) {
+                        showSlide(currentSlide - 1);
+                    }
+                    break;
+                case '.':
+                    if (currentSlide < totalSlides - 1) {
+                        showSlide(currentSlide + 1);
+                    }
+                    break;
+                case 'Escape':
+                    hideVocab();
+                    break;
+                case 'v':
+                case 'V':
+                    toggleVocab();
+                    break;
+            }
+        });
+
+        // Click outside vocabulary to close
+        document.addEventListener('click', function(event) {
+            if (vocabVisible && !event.target.closest('.vocab-popup') && !event.target.closest('.vocab-button')) {
+                hideVocab();
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

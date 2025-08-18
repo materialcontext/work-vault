@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Roman Empire: Peak, Crisis, and Transformation (27 BCE - 476 CE)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            height: 100vh;
+            padding: 2rem;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 5.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #e67e22, #f39c12, #d35400);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 4.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #e67e22;
+            text-shadow: 0 2px 8px rgba(230, 126, 34, 0.4);
+            line-height: 1.2;
+        }
+
+        h3 {
+            font-size: 3.5rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #f39c12;
+            line-height: 1.3;
+        }
+
+        h4 {
+            font-size: 2.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #d35400;
+            line-height: 1.3;
+        }
+
+        p, li {
+            font-size: 2.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #ecf0f1;
+        }
+
+        .hero-section {
+            margin-bottom: 3rem;
+        }
+
+        .central-question {
+            background: rgba(230, 126, 34, 0.1);
+            border: 2px solid #e67e22;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .central-question h3 {
+            color: #e67e22;
+            margin-bottom: 1rem;
+        }
+
+        .theme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .theme-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .theme-card:hover {
+            transform: translateY(-5px);
+            border-color: #e67e22;
+            box-shadow: 0 10px 30px rgba(230, 126, 34, 0.2);
+        }
+
+        .dynasty-card {
+            background: rgba(52, 152, 219, 0.1);
+            border: 1px solid #3498db;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .crisis-card {
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid #e74c3c;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .transformation-card {
+            background: rgba(155, 89, 182, 0.1);
+            border: 1px solid #9b59b6;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .modern-connection {
+            background: rgba(46, 204, 113, 0.1);
+            border: 1px solid #2ecc71;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .timeline-section {
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .big-picture {
+            background: rgba(241, 196, 15, 0.1);
+            border: 2px solid #f1c40f;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            font-size: 2.4rem;
+            font-weight: 600;
+        }
+
+        .pattern-box {
+            background: rgba(52, 73, 94, 0.3);
+            border: 1px solid #34495e;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .three-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        ul {
+            text-align: left;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 1rem;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: autoReveal 0.8s ease forwards;
+        }
+
+        @keyframes autoReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: rgba(230, 126, 34, 0.2);
+            border: 1px solid #e67e22;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: #e67e22;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(230, 126, 34, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            h1 { font-size: 4.5rem; }
+            h2 { font-size: 3.8rem; }
+            h3 { font-size: 3rem; }
+            h4 { font-size: 2.4rem; }
+            p, li { font-size: 1.9rem; }
+        }
+
+        @media (max-width: 768px) {
+            .theme-grid, .three-columns {
+                grid-template-columns: 1fr;
+            }
+            h1 { font-size: 3.5rem; }
+            h2 { font-size: 3rem; }
+            h3 { font-size: 2.5rem; }
+            h4 { font-size: 2rem; }
+            p, li { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="slide-content">
+                <div class="hero-section">
+                    <h1 class="auto-reveal">The Roman Empire</h1>
+                    <h2 class="auto-reveal">Peak, Crisis, and Transformation</h2>
+                    <div class="auto-reveal" style="margin-top: 2rem;">
+                        <h3>How the World's Greatest Empire Rose and Fell</h3>
+                        <p style="font-size: 2.5rem; color: #f39c12; margin-top: 2rem;">27 BCE - 476 CE</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Central Question -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="central-question">
+                    <h2 class="reveal">Big Question</h2>
+                    <div class="reveal">
+                        <h3>What can the rise and fall of Rome teach us about how great civilizations succeed, adapt, and ultimately transform?</h3>
+                    </div>
+                </div>
+                <div class="big-picture reveal">
+                    <h4>The Roman Legacy</h4>
+                    <p>Rome's greatest achievement wasn't military conquest but creating adaptable institutions that preserved civilization through transformation. When political Rome fell, Roman law, Christian church, and cultural synthesis continued shaping world history.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: The Big Patterns -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Big Patterns of History</h2>
+                <div class="central-question reveal">
+                    <h3>How do great civilizations rise, peak, and transform?</h3>
+                </div>
+                <div class="timeline-section">
+                    <div class="dynasty-card reveal">
+                        <h4>📈 Phase 1: Innovation and Growth (27 BCE - 180 CE)</h4>
+                        <p><strong>Key Factor:</strong> Adaptive institutions solving new problems<br>
+                        <strong>Roman Example:</strong> Augustus's constitutional settlement through Five Good Emperors<br>
+                        <strong>Modern Parallel:</strong> Democratic nations, successful corporations in growth phase</p>
+                    </div>
+                    <div class="crisis-card reveal">
+                        <h4>⚖️ Phase 2: Maturity and Strain (180-284 CE)</h4>
+                        <p><strong>Key Factor:</strong> Success creates new challenges that strain existing systems<br>
+                        <strong>Roman Example:</strong> Empire too large and complex for traditional governance<br>
+                        <strong>Modern Parallel:</strong> Developed nations facing demographic, economic, environmental pressures</p>
+                    </div>
+                    <div class="transformation-card reveal">
+                        <h4>🔄 Phase 3: Crisis and Adaptation (284-476 CE)</h4>
+                        <p><strong>Key Factor:</strong> Systems either transform successfully or decline<br>
+                        <strong>Roman Example:</strong> East adapted (became Byzantine), West didn't adapt fast enough<br>
+                        <strong>Modern Parallel:</strong> Organizations/nations facing technological, social disruption</p>
+                    </div>
+                </div>
+                <div class="pattern-box reveal">
+                    <h4>🧠 Universal Principles</h4>
+                    <p><strong>Adaptation Speed:</strong> Survival depends on adapting faster than conditions change<br>
+                    <strong>Institutional Flexibility:</strong> Rigid systems break; flexible systems bend and survive<br>
+                    <strong>Cultural Resilience:</strong> Strong values help navigate transformation</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Contemporary Relevance -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Rome in the 21st Century</h2>
+                <div class="hero-section reveal">
+                    <h3>Why Ancient History Matters Now</h3>
+                </div>
+                <div class="theme-grid">
+                    <div class="modern-connection reveal">
+                        <h3>🌐 Global Challenges</h3>
+                        <ul>
+                            <li class="reveal"><strong>Climate Change:</strong> Like barbarian migrations, external pressure requiring adaptation</li>
+                            <li class="reveal"><strong>Economic Inequality:</strong> Wealth concentration threatening social stability</li>
+                            <li class="reveal"><strong>Technology Disruption:</strong> Digital revolution changing everything</li>
+                            <li class="reveal"><strong>Political Polarization:</strong> Unity vs. division in diverse societies</li>
+                        </ul>
+                    </div>
+                    <div class="modern-connection reveal">
+                        <h3>🏛️ Governance Lessons</h3>
+                        <ul>
+                            <li class="reveal"><strong>International Cooperation:</strong> Global problems need coordinated solutions</li>
+                            <li class="reveal"><strong>Institutional Reform:</strong> Updating systems for new realities</li>
+                            <li class="reveal"><strong>Leadership Transitions:</strong> Peaceful power transfer remains crucial</li>
+                            <li class="reveal"><strong>Cultural Integration:</strong> Managing diversity while maintaining unity</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="big-picture reveal">
+                    <h4>Historical Perspective</h4>
+                    <p>Rome reminds us that today's crises aren't unprecedented. Humans have faced existential challenges before and found ways to adapt, transform, and continue. The key is learning from both successes and failures of the past.</p>
+                </div>
+                <div class="pattern-box reveal">
+                    <h4>🔮 Questions for Our Time</h4>
+                    <p><strong>Can democratic institutions adapt fast enough for 21st century challenges?<br>
+                    How do we balance global cooperation with local identity?<br>
+                    What will be our civilization's legacy if current systems transform?</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Slide: The Continuing Story -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="hero-section">
+                    <h1 class="auto-reveal">The Roman Empire</h1>
+                    <h2 class="auto-reveal">Peak, Crisis, and Transformation</h2>
+                    <div class="auto-reveal" style="margin-top: 3rem;">
+                        <h3>History Doesn't Repeat, But It Rhymes</h3>
+                    </div>
+                    <div class="big-picture auto-reveal" style="margin-top: 2rem;">
+                        <p><strong>Rome's lesson:</strong> Great civilizations don't just fall - they transform. The Western Empire ended, but Roman law, Christian institutions, and cultural synthesis shaped everything that followed. Today's challenges are our opportunity to adapt and transform, guided by the wisdom of those who came before.</p>
+                    </div>
+                    <div class="pattern-box auto-reveal" style="margin-top: 2rem;">
+                        <p><strong>The story continues:</strong> We are still living with Rome's innovations - law, government, cities, Christianity, and the very idea that diverse peoples can live together under common institutions. Understanding Rome helps us write the next chapter of that story.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()" title="Previous element (←)">←</button>
+        <button class="nav-btn" onclick="nextSlide()" title="Next element (→)">→</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        let revealIndex = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            revealIndex = 0;
+            resetReveals();
+        }
+
+        function nextSlide() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal:not(.show)');
+            if (reveals.length > 0) {
+                revealNext();
+            } else if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal.show');
+            if (reveals.length > 0) {
+                hideReveal();
+            } else if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+                revealAll();
+            }
+        }
+
+        function nextPage() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousPage() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        function revealNext() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            if (revealIndex < reveals.length) {
+                reveals[revealIndex].classList.add('show');
+                revealIndex++;
+            }
+        }
+
+        function hideReveal() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            if (revealIndex > 0) {
+                revealIndex--;
+                reveals[revealIndex].classList.remove('show');
+            }
+        }
+
+        function revealAll() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            reveals.forEach(reveal => reveal.classList.add('show'));
+            revealIndex = reveals.length;
+        }
+
+        function resetReveals() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            reveals.forEach(reveal => reveal.classList.remove('show'));
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    previousSlide();
+                    break;
+                case '.':
+                    e.preventDefault();
+                    nextPage();
+                    break;
+                case ',':
+                    e.preventDefault();
+                    previousPage();
+                    break;
+                case 'Enter':
+                    e.preventDefault();
+                    revealAll();
+                    break;
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
+                    <h4>The Roman Pattern</h4>
+                    <p>Rome created the longest-lasting and most influential government in Western history through adaptive institutions, cultural synthesis, and pragmatic problem-solving. Yet these same strengths eventually became weaknesses when challenges outpaced the system's ability to adapt.</p>
+                </div>
+                <div class="pattern-box reveal">
+                    <h4>Why This Matters Today</h4>
+                    <p>Understanding Rome helps us recognize patterns in how complex societies handle success, crisis, and change - patterns we still see in modern nations and institutions.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Augustan Solution -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Principate: Government That Worked</h2>
+                <div class="hero-section reveal">
+                    <h3>27 BCE - Augustus Creates Sustainable Empire</h3>
+                </div>
+                <div class="dynasty-card reveal">
+                    <h4>🏛️ Augustus's Genius</h4>
+                    <p><strong>The Problem:</strong> Republican institutions couldn't govern a world empire<br>
+                    <strong>The Solution:</strong> Imperial power through republican forms<br>
+                    <strong>The Method:</strong> "Restored the Republic" while becoming emperor<br>
+                    <strong>The Result:</strong> System that lasted 500 years</p>
+                </div>
+                <div class="theme-grid">
+                    <div class="theme-card reveal">
+                        <h3>🎭 Political Innovation</h3>
+                        <ul>
+                            <li class="reveal">Princeps (First Citizen) - not king, but more than citizen</li>
+                            <li class="reveal">Senate kept dignity, emperor kept power</li>
+                            <li class="reveal">Professional army loyal to emperor</li>
+                            <li class="reveal">Efficient bureaucracy for empire administration</li>
+                        </ul>
+                    </div>
+                    <div class="theme-card reveal">
+                        <h3>🌍 Cultural Synthesis</h3>
+                        <ul>
+                            <li class="reveal">Roman law + Greek culture + local traditions</li>
+                            <li class="reveal">Gradual citizenship extension throughout empire</li>
+                            <li class="reveal">Religious tolerance with Roman oversight</li>
+                            <li class="reveal">Prosperity through peace (Pax Romana)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modern-connection reveal">
+                    <h4>🔗 Modern Connection</h4>
+                    <p><strong>Constitutional Monarchies:</strong> Britain, Japan, and others use Augustus's model - ceremonial tradition + practical governance<br>
+                    <strong>Federal Systems:</strong> Local autonomy within imperial framework echoes modern federalism</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: The Golden Age -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Pax Romana: The Golden Age</h2>
+                <div class="central-question reveal">
+                    <h3>96-180 CE - When the system worked perfectly</h3>
+                </div>
+                <div class="big-picture reveal">
+                    <h4>The Five Good Emperors</h4>
+                    <p>Nerva, Trajan, Hadrian, Antoninus Pius, Marcus Aurelius - 84 years of competent leadership through merit-based succession rather than heredity</p>
+                </div>
+                <div class="theme-grid">
+                    <div class="theme-card reveal">
+                        <h3>📈 Peak Achievements</h3>
+                        <ul>
+                            <li class="reveal"><strong>Geographic Maximum:</strong> Britain to Mesopotamia</li>
+                            <li class="reveal"><strong>Population:</strong> 65 million people, 20% of world</li>
+                            <li class="reveal"><strong>Economic Integration:</strong> Mediterranean-wide trade</li>
+                            <li class="reveal"><strong>Urban Development:</strong> 1,000+ cities connected by roads</li>
+                        </ul>
+                    </div>
+                    <div class="theme-card reveal">
+                        <h3>🏛️ Institutional Success</h3>
+                        <ul>
+                            <li class="reveal"><strong>Legal System:</strong> Uniform justice across cultures</li>
+                            <li class="reveal"><strong>Administrative Efficiency:</strong> Provinces well-governed</li>
+                            <li class="reveal"><strong>Military Stability:</strong> Professional legions on secure frontiers</li>
+                            <li class="reveal"><strong>Cultural Flourishing:</strong> Art, literature, philosophy</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pattern-box reveal">
+                    <h4>⚖️ What Made It Work</h4>
+                    <p><strong>Merit over Birth:</strong> Competent leaders chosen by adoption<br>
+                    <strong>Flexible Integration:</strong> Local cultures within Roman framework<br>
+                    <strong>Economic Prosperity:</strong> Trade and urbanization creating wealth</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Cracks in the System -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">When Success Breeds Problems</h2>
+                <div class="hero-section reveal">
+                    <h3>180-235 CE - The System Under Strain</h3>
+                </div>
+                <div class="crisis-card reveal">
+                    <h4>👑 The Succession Problem</h4>
+                    <p><strong>Marcus Aurelius's Fatal Decision:</strong> Left empire to incompetent son Commodus<br>
+                    <strong>End of Merit System:</strong> Return to hereditary rule<br>
+                    <strong>Political Instability:</strong> Civil wars and military emperors<br>
+                    <strong>Constitutional Weakness:</strong> No clear succession mechanism</p>
+                </div>
+                <div class="theme-grid">
+                    <div class="crisis-card reveal">
+                        <h3>💰 Economic Pressures</h3>
+                        <ul>
+                            <li class="reveal">Military costs consuming 75% of imperial budget</li>
+                            <li class="reveal">Frontier defense increasingly expensive</li>
+                            <li class="reveal">Urban populations dependent on subsidies</li>
+                            <li class="reveal">Trade declining due to insecurity</li>
+                        </ul>
+                    </div>
+                    <div class="crisis-card reveal">
+                        <h3>🛡️ Military Challenges</h3>
+                        <ul>
+                            <li class="reveal">Barbarian pressure increasing on all frontiers</li>
+                            <li class="reveal">Army more loyal to generals than emperor</li>
+                            <li class="reveal">Recruitment difficulties in traditional areas</li>
+                            <li class="reveal">Defensive strategy replacing expansion</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modern-connection reveal">
+                    <h4>🔗 Pattern Recognition</h4>
+                    <p><strong>Modern Parallel:</strong> How successful organizations/nations struggle when founding conditions change but institutions don't adapt quickly enough</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: The Crisis of the Third Century -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Crisis of the Third Century</h2>
+                <div class="central-question reveal">
+                    <h3>235-284 CE - Near Collapse and Recovery</h3>
+                </div>
+                <div class="big-picture reveal">
+                    <h4>50 Years of Chaos</h4>
+                    <p>26 emperors in 50 years, most dying violent deaths. Empire nearly disintegrated into separate regional kingdoms while facing invasion, plague, and economic collapse.</p>
+                </div>
+                <div class="theme-grid">
+                    <div class="crisis-card reveal">
+                        <h3>💥 Multiple Crises</h3>
+                        <ul>
+                            <li class="reveal"><strong>Political:</strong> Civil wars, military emperors, no stable succession</li>
+                            <li class="reveal"><strong>Economic:</strong> Currency debasement, inflation, trade collapse</li>
+                            <li class="reveal"><strong>Military:</strong> Barbarian invasions, Persian wars, frontier breakdown</li>
+                            <li class="reveal"><strong>Social:</strong> Plague, population decline, urban decay</li>
+                        </ul>
+                    </div>
+                    <div class="crisis-card reveal">
+                        <h3>🌍 External Pressures</h3>
+                        <ul>
+                            <li class="reveal">Germanic migrations pushing against frontiers</li>
+                            <li class="reveal">Persian Sassanid Empire aggressive in East</li>
+                            <li class="reveal">Climate change affecting agriculture</li>
+                            <li class="reveal">New diseases spreading along trade routes</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pattern-box reveal">
+                    <h4>🧠 Why Systems Fail</h4>
+                    <p><strong>Cascade Effect:</strong> Multiple problems overwhelm institutional capacity to respond<br>
+                    <strong>Adaptation Crisis:</strong> Old solutions don't work for new problems</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Diocletian's Revolution -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Diocletian: Revolutionary Restoration</h2>
+                <div class="hero-section reveal">
+                    <h3>284-305 CE - Rebuilding the Empire</h3>
+                </div>
+                <div class="transformation-card reveal">
+                    <h4>🔄 The Tetrarchy System</h4>
+                    <p><strong>Four-Emperor Rule:</strong> Two Augusti (senior) + Two Caesars (junior)<br>
+                    <strong>Geographic Division:</strong> East and West with separate administrations<br>
+                    <strong>Planned Succession:</strong> Abdication and promotion system<br>
+                    <strong>Military Focus:</strong> Mobile armies for rapid response</p>
+                </div>
+                <div class="theme-grid">
+                    <div class="transformation-card reveal">
+                        <h3>🏛️ Administrative Revolution</h3>
+                        <ul>
+                            <li class="reveal">Doubled the number of provinces for better control</li>
+                            <li class="reveal">Separated civil and military commands</li>
+                            <li class="reveal">Professional bureaucracy with detailed hierarchy</li>
+                            <li class="reveal">Fixed prices and wages to control inflation</li>
+                        </ul>
+                    </div>
+                    <div class="transformation-card reveal">
+                        <h3>👑 Cultural Transformation</h3>
+                        <ul>
+                            <li class="reveal">Emperor as dominus (lord) not princeps (citizen)</li>
+                            <li class="reveal">Oriental court ceremonies and divine monarchy</li>
+                            <li class="reveal">Christianity gaining imperial favor</li>
+                            <li class="reveal">Rome no longer sole center of power</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modern-connection reveal">
+                    <h4>🔗 Crisis Management Lessons</h4>
+                    <p><strong>Structural Reform:</strong> Successful crisis response requires institutional change, not just new leadership<br>
+                    <strong>Decentralization:</strong> Large systems need regional autonomy to manage complexity</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Constantine and Christianity -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Constantine: The Christian Emperor</h2>
+                <div class="central-question reveal">
+                    <h3>306-337 CE - Religious and Political Revolution</h3>
+                </div>
+                <div class="transformation-card reveal">
+                    <h4>✝️ The Great Transformation</h4>
+                    <p><strong>Battle of Milvian Bridge (312 CE):</strong> "In this sign conquer"<br>
+                    <strong>Edict of Milan (313 CE):</strong> Religious tolerance throughout empire<br>
+                    <strong>Council of Nicaea (325 CE):</strong> Imperial involvement in Christian doctrine<br>
+                    <strong>Constantinople (330 CE):</strong> "New Rome" in the East</p>
+                </div>
+                <div class="theme-grid">
+                    <div class="transformation-card reveal">
+                        <h3>🔄 Why Christianity Succeeded</h3>
+                        <ul>
+                            <li class="reveal"><strong>Universal Appeal:</strong> Salvation for all people, not just elites</li>
+                            <li class="reveal"><strong>Strong Organization:</strong> Church hierarchy parallel to imperial administration</li>
+                            <li class="reveal"><strong>Practical Benefits:</strong> Christian community support networks</li>
+                            <li class="reveal"><strong>Imperial Endorsement:</strong> Constantine's conversion legitimized faith</li>
+                        </ul>
+                    </div>
+                    <div class="transformation-card reveal">
+                        <h3>🌍 Long-term Impact</h3>
+                        <ul>
+                            <li class="reveal">Roman law fused with Christian morality</li>
+                            <li class="reveal">Church became heir to imperial authority</li>
+                            <li class="reveal">East-West division institutionalized</li>
+                            <li class="reveal">Cultural identity transformed fundamentally</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="big-picture reveal">
+                    <h4>Historical Irony</h4>
+                    <p>Rome's attempt to save itself through religious transformation ultimately created a new civilization that outlasted the empire itself</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: The Divided Empire -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">East vs. West: Permanent Division</h2>
+                <div class="hero-section reveal">
+                    <h3>395 CE - One Empire Becomes Two</h3>
+                </div>
+                <div class="theme-grid">
+                    <div class="theme-card reveal">
+                        <h3>🌅 Eastern (Byzantine) Empire</h3>
+                        <ul>
+                            <li class="reveal"><strong>Advantages:</strong> Wealthier cities, better geography, Greek education</li>
+                            <li class="reveal"><strong>Capital:</strong> Constantinople - strategic location controlling trade</li>
+                            <li class="reveal"><strong>Cultural Base:</strong> Greek-Christian synthesis</li>
+                            <li class="reveal"><strong>Survival:</strong> Lasted until 1453 CE (1000+ more years)</li>
+                        </ul>
+                    </div>
+                    <div class="theme-card reveal">
+                        <h3>🌄 Western Empire</h3>
+                        <ul>
+                            <li class="reveal"><strong>Challenges:</strong> Longer frontiers, more barbarian pressure</li>
+                            <li class="reveal"><strong>Economic Decline:</strong> Urbanization collapse, trade disruption</li>
+                            <li class="reveal"><strong>Political Weakness:</strong> Child emperors, powerful generals</li>
+                            <li class="reveal"><strong>Final Crisis:</strong> Sacked multiple times, fell 476 CE</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="crisis-card reveal">
+                    <h4>🌊 The Migration Period</h4>
+                    <p><strong>Not "Barbarian Invasions":</strong> Peoples seeking new homes due to climate, population pressure<br>
+                    <strong>Integration Attempts:</strong> Romans tried to incorporate Germanic tribes as federates<br>
+                    <strong>Cultural Fusion:</strong> Germanic kingdoms adopted Roman law, administration, Christianity</p>
+                </div>
+                <div class="pattern-box reveal">
+                    <h4>Adaptation vs. Collapse</h4>
+                    <p><strong>East:</strong> Successfully adapted to new conditions<br>
+                    <strong>West:</strong> Failed to adapt quickly enough to survive</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: The Fall of the West -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">476 CE: End of an Era</h2>
+                <div class="central-question reveal">
+                    <h3>Was it collapse or transformation?</h3>
+                </div>
+                <div class="crisis-card reveal">
+                    <h4>💔 Why the West Fell</h4>
+                    <div class="three-columns">
+                        <div>
+                            <h4>Economic</h4>
+                            <p>Tax base collapsed<br>Trade networks failed<br>Cities abandoned</p>
+                        </div>
+                        <div>
+                            <h4>Military</h4>
+                            <p>Army barbarized<br>Frontiers overrun<br>Civil wars constant</p>
+                        </div>
+                        <div>
+                            <h4>Political</h4>
+                            <p>Weak emperors<br>Regional strongmen<br>Lost legitimacy</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="transformation-card reveal">
+                    <h4>🔄 Transformation, Not Destruction</h4>
+                    <p><strong>Continuities:</strong> Roman law, Christianity, administrative practices<br>
+                    <strong>Germanic Kingdoms:</strong> Adopted Roman culture and institutions<br>
+                    <strong>The Church:</strong> Preserved Roman learning and organization<br>
+                    <strong>Language:</strong> Latin evolved into Romance languages</p>
+                </div>
+                <div class="modern-connection reveal">
+                    <h4>🔗 Modern Parallels</h4>
+                    <p><strong>Imperial Overstretch:</strong> When defense costs exceed economic capacity<br>
+                    <strong>Institutional Lag:</strong> Organizations failing to adapt to changed conditions<br>
+                    <strong>Cultural Continuity:</strong> Ideas and institutions outlasting political systems</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Lessons for Today -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">What Rome Teaches Us</h2>
+                <div class="hero-section reveal">
+                    <h3>Patterns That Still Matter</h3>
+                </div>
+                <div class="theme-grid">
+                    <div class="modern-connection reveal">
+                        <h3>🏛️ About Institutions</h3>
+                        <ul>
+                            <li class="reveal"><strong>Adaptation:</strong> Successful institutions must evolve with changing conditions</li>
+                            <li class="reveal"><strong>Legitimacy:</strong> Power requires both effectiveness and acceptance</li>
+                            <li class="reveal"><strong>Succession:</strong> Peaceful leadership transitions are crucial</li>
+                            <li class="reveal"><strong>Balance:</strong> Central authority vs. local autonomy</li>
+                        </ul>
+                    </div>
+                    <div class="modern-connection reveal">
+                        <h3>🌍 About Civilizations</h3>
+                        <ul>
+                            <li class="reveal"><strong>Integration:</strong> Diversity can strengthen if well-managed</li>
+                            <li class="reveal"><strong>Resources:</strong> Sustainable economics matter more than short-term wealth</li>
+                            <li class="reveal"><strong>Defense:</strong> Security costs must not exceed productive capacity</li>
+                            <li class="reveal"><strong>Culture:</strong> Shared values create resilience</li>
+                        </ul>
+                    </div>
+                    <div class="modern-connection reveal">
+                        <h3>🔮 About Change</h3>
+                        <ul>
+                            <li class="reveal"><strong>Crisis:</strong> Challenges can strengthen or destroy systems</li>
+                            <li class="reveal"><strong>Leadership:</strong> Individual decisions shape historical outcomes</li>
+                            <li class="reveal"><strong>Transformation:</strong> "Endings" often become new beginnings</li>
+                            <li class="reveal"><strong>Legacy:</strong> Ideas outlast empires</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="big-picture reveal">
+                    

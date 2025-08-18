@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The End of Empire - Decolonization Strategies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            line-height: 1.6;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        .presentation-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 95%;
+            max-width: 1200px;
+            height: 90vh;
+            padding: 40px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .reveal-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .continue-indicator {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            background: rgba(220, 53, 69, 0.8);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .continue-indicator:hover {
+            background: #dc3545;
+            border-color: white;
+            transform: scale(1.05);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #fbbf24;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #22c55e, #16a34a);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 650;
+            color: #ef4444;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        h4 {
+            font-size: 1.3rem;
+            font-weight: 650;
+            color: #22c55e;
+            margin-bottom: 0.75rem;
+        }
+
+        p, li {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: #e5e7eb;
+            margin-bottom: 1rem;
+            max-width: 65ch;
+        }
+
+        .subtitle {
+            font-size: 1.6rem;
+            color: #9ca3af;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            box-shadow: 0 3px 12px rgba(34, 197, 94, 0.3);
+        }
+
+        .central-question {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #fbbf24;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            font-size: 1.5rem;
+            color: #92400e;
+            font-weight: 600;
+            font-style: italic;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.15);
+        }
+
+        .central-question::before {
+            content: '🌍';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: #fef3c7;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .strategy-card {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .strategy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .strategy-card:hover::before {
+            left: 100%;
+        }
+
+        .strategy-card:hover {
+            border-color: rgba(34, 197, 94, 0.6);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(34, 197, 94, 0.2);
+        }
+
+        .strategy-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .strategy-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #22c55e;
+            margin-bottom: 1rem;
+        }
+
+        .strategy-examples {
+            font-size: 1rem;
+            color: #d1d5db;
+            line-height: 1.6;
+        }
+
+        .timeline-container {
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            border-left: 4px solid #22c55e;
+        }
+
+        .timeline-year {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #fbbf24;
+            min-width: 80px;
+            margin-right: 1.5rem;
+        }
+
+        .timeline-event {
+            font-size: 1.1rem;
+            color: #e5e7eb;
+            flex: 1;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .success-examples {
+            color: #22c55e;
+        }
+
+        .struggle-examples {
+            color: #ef4444;
+        }
+
+        .interactive-prompt {
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid #ef4444;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-size: 1.1rem;
+            color: #fca5a5;
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* Controls styling */
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(34, 197, 94, 0.8);
+            border-color: #22c55e;
+        }
+
+        .image-tab {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .image-tab:hover {
+            background: rgba(34, 197, 94, 0.8);
+            border-color: #22c55e;
+        }
+
+        .image-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .image-overlay.active {
+            display: flex;
+        }
+
+        .image-content {
+            max-width: 90%;
+            max-height: 90%;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            color: black;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .strategy-grid { grid-template-columns: 1fr; }
+            .comparison-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active" data-reveal-count="3">
+            <div class="slide-number">1/15</div>
+            
+            <div class="reveal-item">
+                <h1>The End of Empire</h1>
+                <div class="subtitle">Decolonization Strategies in the Post-War World</div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="central-question">
+                    How did colonies become independent nations, and why did some succeed more than others?
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <p>Welcome to Week 5 of our journey through the 20th century! Today we investigate how WWII's aftermath triggered the largest transfer of power in human history.</p>
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 2: Setting the Stage -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">2/15</div>
+            
+            <div class="reveal-item">
+                <h2>🌍 The World After WWII: Empire in Crisis</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Why 1945 Was a Turning Point</h3>
+                <ul>
+                    <li><strong>European Powers Weakened:</strong> Britain, France, Netherlands devastated by war</li>
+                    <li><strong>New Superpowers:</strong> USA and USSR opposed to traditional colonialism</li>
+                    <li><strong>United Nations Charter:</strong> Self-determination as a fundamental right</li>
+                    <li><strong>Educated Colonial Elites:</strong> Leaders trained in Western universities demanding equality</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Numbers Tell the Story</h3>
+                <div class="timeline-container">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1945</div>
+                        <div class="timeline-event">750 million people lived under colonial rule</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1975</div>
+                        <div class="timeline-event">Less than 3 million remained in traditional colonies</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="interactive-prompt">
+                    What factors would make some independence movements more successful than others?
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 3: Three Pathways to Independence -->
+        <div class="slide" data-reveal-count="2">
+            <div class="slide-number">3/15</div>
+            
+            <div class="reveal-item">
+                <h2>🛤️ Three Pathways to Independence</h2>
+            </div>
+            
+            <div class="strategy-grid reveal-item">
+                <div class="strategy-card">
+                    <div class="strategy-icon">🤝</div>
+                    <div class="strategy-title">Negotiated Transition</div>
+                    <div class="strategy-examples">
+                        <strong>Key Features:</strong> Gradual transfer, constitutional conferences, maintained economic ties<br><br>
+                        <strong>Examples:</strong> India (1947), Ghana (1957), many British colonies<br><br>
+                        <strong>Why It Worked:</strong> War-weary colonial powers, strong local leadership, international pressure
+                    </div>
+                </div>
+                
+                <div class="strategy-card">
+                    <div class="strategy-icon">⚔️</div>
+                    <div class="strategy-title">Revolutionary War</div>
+                    <div class="strategy-examples">
+                        <strong>Key Features:</strong> Armed resistance, guerrilla warfare, complete break<br><br>
+                        <strong>Examples:</strong> Algeria (1962), Vietnam (1954), Angola (1975)<br><br>
+                        <strong>Why Necessary:</strong> Settler colonies, strategic resources, stubborn colonial powers
+                    </div>
+                </div>
+                
+                <div class="strategy-card">
+                    <div class="strategy-icon">📜</div>
+                    <div class="strategy-title">Gradual Autonomy</div>
+                    <div class="strategy-examples">
+                        <strong>Key Features:</strong> Step-by-step self-government, dominion status, peaceful evolution<br><br>
+                        <strong>Examples:</strong> Canada model, Australia, New Zealand<br><br>
+                        <strong>Why Possible:</strong> White settler majority, established institutions, cultural ties
+                    </div>
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 4: Success Stories Overview -->
+        <div class="slide" data-reveal-count="2">
+            <div class="slide-number">4/15</div>
+            
+            <div class="reveal-item">
+                <h2>📊 Decolonization: Success Stories vs. Struggles</h2>
+            </div>
+            
+            <div class="comparison-grid reveal-item">
+                <div class="comparison-card">
+                    <div class="comparison-title success-examples">Successful Transitions</div>
+                    <ul>
+                        <li><strong>India:</strong> Strong leadership, established institutions</li>
+                        <li><strong>Ghana:</strong> Educated elite, gradual preparation</li>
+                        <li><strong>Singapore:</strong> Strategic location, strong governance</li>
+                        <li><strong>Botswana:</strong> Stable institutions, resource management</li>
+                    </ul>
+                    <p><strong>Common Factors:</strong> Unity, strong institutions, economic viability, capable leadership</p>
+                </div>
+                
+                <div class="comparison-card">
+                    <div class="comparison-title struggle-examples">Difficult Transitions</div>
+                    <ul>
+                        <li><strong>Congo:</strong> No preparation, assassinated leader</li>
+                        <li><strong>Algeria:</strong> Brutal war, brain drain</li>
+                        <li><strong>Sudan:</strong> Ethnic divisions, civil war</li>
+                        <li><strong>Cambodia:</strong> Cold War proxy conflict, genocide</li>
+                    </ul>
+                    <p><strong>Common Problems:</strong> Artificial borders, ethnic conflict, weak institutions, resource exploitation</p>
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 5: Success Story - India -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">5/15</div>
+            
+            <div class="reveal-item">
+                <h2>🇮🇳 Success Story: India (1947)</h2>
+                <h3>From Crown Jewel to Independent Democracy</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Why India Succeeded Despite Massive Challenges</h3>
+                <ul>
+                    <li><strong>Exceptional Leadership:</strong> Gandhi's non-violent resistance + Nehru's modern vision</li>
+                    <li><strong>Established Institutions:</strong> British-trained civil service, legal system, railways</li>
+                    <li><strong>Educated Elite:</strong> Thousands of Indians educated in law, administration, engineering</li>
+                    <li><strong>Economic Foundation:</strong> Textile industry, agriculture, emerging industrial base</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Partition Challenge</h3>
+                <p><strong>The Problem:</strong> Religious divisions between Hindus (80%) and Muslims (20%)</p>
+                <p><strong>The Solution:</strong> Create Pakistan as separate Muslim state</p>
+                <p><strong>The Cost:</strong> 14 million refugees, 1 million deaths, ongoing Kashmir conflict</p>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Long-term Success Factors</h3>
+                <ul>
+                    <li><strong>Democratic Institutions:</strong> Parliamentary system, independent judiciary, free press</li>
+                    <li><strong>Unity in Diversity:</strong> Accepted multiple languages, religions, cultures</li>
+                    <li><strong>Economic Planning:</strong> Five-year plans, mixed economy, self-sufficiency focus</li>
+                    <li><strong>Non-Alignment:</strong> Avoided Cold War entanglements, maintained independence</li>
+                </ul>
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 6: Success Story - Ghana -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">6/15</div>
+            
+            <div class="reveal-item">
+                <h2>🇬🇭 Success Story: Ghana (1957)</h2>
+                <h3>First Sub-Saharan African Colony to Gain Independence</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Kwame Nkrumah's Strategic Approach</h3>
+                <ul>
+                    <li><strong>Gradual Preparation:</strong> Won local elections first (1951), proved readiness</li>
+                    <li><strong>Mass Movement:</strong> United diverse ethnic groups under independence goal</li>
+                    <li><strong>Educated Leadership:</strong> Nkrumah studied in USA, understood modern governance</li>
+                    <li><strong>Economic Leverage:</strong> Cocoa exports gave Ghana economic importance to Britain</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>What Made Ghana Different</h3>
+                <p><strong>No Settler Population:</strong> Unlike Kenya/Algeria, few white settlers to resist</p>
+                <p><strong>Unified Territory:</strong> Gold Coast had clear borders, established administration</p>
+                <p><strong>Strategic Timing:</strong> Britain wanted to maintain influence, avoid costly wars</p>
+                <p><strong>International Support:</strong> Pan-African movement, Cold War pressure on Britain</p>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Early Successes and Later Challenges</h3>
+                <ul>
+                    <li><strong>Immediate Success:</strong> Peaceful transition, economic growth, African inspiration</li>
+                    <li><strong>Later Problems:</strong> Nkrumah became authoritarian, economic mismanagement</li>
+                    <li><strong>Legacy:</strong> Proved African self-government possible, inspired continent-wide movements</li>
+                </ul>
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 7: Success Story - Singapore -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">7/15</div>
+            
+            <div class="reveal-item">
+                <h2>🇸🇬 Success Story: Singapore (1965)</h2>
+                <h3>From Reluctant Independence to Economic Miracle</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Unique Path to Independence</h3>
+                <ul>
+                    <li><strong>Expelled from Malaysia:</strong> Kicked out due to racial politics (1965)</li>
+                    <li><strong>No Natural Resources:</strong> Tiny island, no oil, no minerals, limited water</li>
+                    <li><strong>Strategic Location:</strong> Critical shipping route between East and West</li>
+                    <li><strong>Diverse Population:</strong> Chinese majority, Malay and Indian minorities</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Lee Kuan Yew's Development Strategy</h3>
+                <p><strong>Authoritarian Efficiency:</strong> Strong state control, limited political opposition</p>
+                <p><strong>Economic Focus:</strong> Attract foreign investment, become regional financial hub</p>
+                <p><strong>Education Investment:</strong> Mandatory English, technical skills, meritocracy</p>
+                <p><strong>Racial Harmony:</strong> Strict laws against ethnic discrimination, forced integration</p>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Singapore Model</h3>
+                <ul>
+                    <li><strong>Economic Success:</strong> GDP per capita higher than former colonial power (UK)</li>
+                    <li><strong>Social Stability:</strong> Low crime, efficient government, clean environment</li>
+                    <li><strong>Trade-offs:</strong> Limited press freedom, restricted political opposition</li>
+                    <li><strong>Global Influence:</strong> Model for other small developing nations</li>
+                </ul>
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 8: Success Story - Botswana -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">8/15</div>
+            
+            <div class="reveal-item">
+                <h2>🇧🇼 Success Story: Botswana (1966)</h2>
+                <h3>How Africa's Poorest Colony Became a Stable Democracy</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Starting from the Bottom</h3>
+                <ul>
+                    <li><strong>British Neglect:</strong> Bechuanaland was poor, ignored by colonial government</li>
+                    <li><strong>Cattle Economy:</strong> Traditional herding, few modern developments</li>
+                    <li><strong>Tiny Population:</strong> Less than 1 million people in vast desert territory</li>
+                    <li><strong>Strategic Problem:</strong> Surrounded by hostile white-minority regimes</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Seretse Khama's Leadership</h3>
+                <p><strong>Royal Legitimacy:</strong> Traditional chief with modern Oxford education</p>
+                <p><strong>Democratic Vision:</strong> Multi-party system, regular elections, press freedom</p>
+                <p><strong>Pragmatic Policies:</strong> Avoided ideological extremes, focused on development</p>
+                <p><strong>Institution Building:</strong> Professional civil service, independent judiciary</p>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Diamond Transformation</h3>
+                <ul>
+                    <li><strong>1967 Discovery:</strong> Massive diamond deposits found after independence</li>
+                    <li><strong>Smart Management:</strong> Partnership with De Beers, avoided resource curse</li>
+                    <li><strong>Revenue Investment:</strong> Education, healthcare, infrastructure development</li>
+                    <li><strong>Sustained Growth:</strong> Fastest-growing economy in world (1960s-1980s)</li>
+                    <li><strong>Democratic Stability:</strong> Peaceful power transitions, lowest corruption in Africa</li>
+                </ul>
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 9: Struggle Story - Congo -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">9/15</div>
+            
+            <div class="reveal-item">
+                <h2>🇨🇩 Struggle Story: Congo (1960)</h2>
+                <h3>How the "Heart of Darkness" Became a Cautionary Tale</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Belgian Colonial Legacy</h3>
+                <ul>
+                    <li><strong>Brutal Exploitation:</strong> King Leopold's private colony, rubber terror</li>
+                    <li><strong>No Preparation:</strong> Zero Congolese university graduates at independence</li>
+                    <li><strong>Artificial Unity:</strong> 200+ ethnic groups forced into one territory</li>
+                    <li><strong>Resource Extraction:</strong> Copper, diamonds, uranium extracted, no local development</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Lumumba Crisis (1960-1961)</h3>
+                <p><strong>Patrice Lumumba:</strong> Charismatic independence leader, wanted genuine African unity</p>
+                <p><strong>Belgian Intervention:</strong> Troops returned to protect Belgian interests</p>
+                <p><strong>Katanga Secession:</strong> Copper-rich province broke away with Belgian/Western support</p>
+                <p><strong>Cold War Proxy:</strong> USA/CIA supported Lumumba's opponents, feared Soviet influence</p>
+                <p><strong>Assassination:</strong> Lumumba killed (1961), probably with CIA involvement</p>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Decades of Consequences</h3>
+                <ul>
+                    <li><strong>Mobutu Dictatorship:</strong> CIA-backed strongman ruled 32 years (1965-1997)</li>
+                    <li><strong>Systematic Looting:</strong> $5 billion stolen, infrastructure collapsed</li>
+                    <li><strong>Ongoing Wars:</strong> Congo Wars (1996-2003), 5+ million deaths</li>
+                    <li><strong>Resource Curse:</strong> Minerals fund armed groups, perpetuate conflict</li>
+                    <li><strong>Modern Tragedy:</strong> World's poorest country despite incredible natural wealth</li>
+                </ul>
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 10: Struggle Story - Algeria -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">10/15</div>
+            
+            <div class="reveal-item">
+                <h2>🇩🇿 Struggle Story: Algeria (1962)</h2>
+                <h3>The Bloodiest War of Decolonization</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Why Algeria Was Different</h3>
+                <ul>
+                    <li><strong>Settler Colony:</strong> 1 million European colonists (pieds-noirs) vs. 9 million Arabs</li>
+                    <li><strong>Legal Fiction:</strong> Algeria was "part of France," not a colony</li>
+                    <li><strong>Economic Importance:</strong> Agricultural wealth, strategic Mediterranean location</li>
+                    <li><strong>French Pride:</strong> Algeria represented French civilizing mission</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The War for Independence (1954-1962)</h3>
+                <p><strong>FLN Strategy:</strong> National Liberation Front used guerrilla warfare, terrorism</p>
+                <p><strong>French Response:</strong> 500,000 troops, torture, population resettlement</p>
+                <p><strong>International Pressure:</strong> UN, Third World, USA eventually opposed French war</p>
+                <p><strong>French Crisis:</strong> War nearly caused French civil war, brought de Gaulle to power</p>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Bitter Legacy</h3>
+                <ul>
+                    <li><strong>Massive Casualties:</strong> 1 million Algerians dead, 150,000+ French</li>
+                    <li><strong>Brain Drain:</strong> Most educated Europeans fled, taking skills/capital</li>
+                    <li><strong>Economic Collapse:</strong> War destroyed infrastructure, agriculture</li>
+                    <li><strong>Authoritarian State:</strong> Military-dominated government, limited democracy</li>
+                    <li><strong>Ongoing Tensions:</strong> Immigration to France, identity conflicts</li>
+                </ul>
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 11: Struggle Story - Sudan -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">11/15</div>
+            
+            <div class="reveal-item">
+                <h2>🇸🇩 Struggle Story: Sudan (1956)</h2>
+                <h3>How Artificial Borders Created Permanent Civil War</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Geographic Curse</h3>
+                <ul>
+                    <li><strong>North vs. South:</strong> Arab-Muslim north, African-Christian/animist south</li>
+                    <li><strong>Colonial Divide:</strong> British governed as two separate territories until 1946</li>
+                    <li><strong>Economic Imbalance:</strong> Development concentrated in north, south neglected</li>
+                    <li><strong>Cultural Conflict:</strong> Arabic vs. local languages, Islam vs. traditional religions</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Cycles of Civil War</h3>
+                <p><strong>First Civil War (1955-1972):</strong> Southern rebellion, 500,000 deaths</p>
+                <p><strong>Brief Peace (1972-1983):</strong> Addis Ababa Agreement gave south autonomy</p>
+                <p><strong>Second Civil War (1983-2005):</strong> Islamic law imposed, 2 million deaths</p>
+                <p><strong>South Sudan Independence (2011):</strong> Referendum after peace agreement</p>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Ongoing Instability</h3>
+                <ul>
+                    <li><strong>Darfur Genocide (2003-2010):</strong> Government-backed militias, 300,000+ deaths</li>
+                    <li><strong>Economic Collapse:</strong> Wars destroyed agriculture, infrastructure</li>
+                    <li><strong>Authoritarian Rule:</strong> Omar al-Bashir dictatorship (1989-2019)</li>
+                    <li><strong>International Isolation:</strong> Sanctions, war crimes charges</li>
+                    <li><strong>Recent Revolution (2019):</strong> Popular uprising, military transition, uncertain future</li>
+                </ul>
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 12: Struggle Story - Cambodia -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">12/15</div>
+            
+            <div class="reveal-item">
+                <h2>🇰🇭 Struggle Story: Cambodia (1953)</h2>
+                <h3>How Cold War Politics Led to Genocide</h3>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>From Independence to Cold War Proxy</h3>
+                <ul>
+                    <li><strong>French Indochina:</strong> Cambodia gained independence alongside Vietnam, Laos</li>
+                    <li><strong>Prince Sihanouk:</strong> Tried to maintain neutrality in Cold War</li>
+                    <li><strong>Vietnam War Spillover:</strong> US bombing of Cambodia (1969-1973)</li>
+                    <li><strong>Destabilization:</strong> War weakened government, empowered extremists</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Khmer Rouge Nightmare (1975-1979)</h3>
+                <p><strong>Pol Pot's Vision:</strong> Return to pure agrarian communism, eliminate foreign influence</p>
+                <p><strong>Urban Evacuation:</strong> Forced entire population to countryside</p>
+                <p><strong>Systematic Murder:</strong> Killed educated, religious minorities, perceived enemies</p>
+                <p><strong>The Killing Fields:</strong> 1.5-2 million deaths (25% of population)</p>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>International Failure and Recovery</h3>
+                <ul>
+                    <li><strong>Vietnamese Invasion (1979):</strong> Ended genocide but started new conflict</li>
+                    <li><strong>Cold War Politics:</strong> US/China supported Khmer Rouge at UN against Soviet-backed Vietnam</li>
+                    <li><strong>Refugee Crisis:</strong> Hundreds of thousands fled to Thai border camps</li>
+                    <li><strong>UN Intervention (1991):</strong> Massive peacekeeping operation, elections</li>
+                    <li><strong>Slow Recovery:</strong> Gradual rebuilding, delayed justice for genocide</li>
+                </ul>
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 13: Case Study - India's Partition -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">13/15</div>
+            
+            <div class="reveal-item">
+                <h2>🔍 Case Study: India's Independence and Partition (1947)</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Challenge</h3>
+                <p>How do you grant independence to 400 million people divided by religion, language, and culture?</p>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>The Solution That Created New Problems</h3>
+                <div class="timeline-container">
+                    <div class="timeline-item">
+                        <div class="timeline-year">Aug 14</div>
+                        <div class="timeline-event">Pakistan created as Muslim homeland</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">Aug 15</div>
+                        <div class="timeline-event">India independence with Hindu majority</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1947-48</div>
+                        <div class="timeline-event">14 million refugees, 1 million deaths in communal violence</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="central-question">
+                    Primary Source Moment: "At the stroke of the midnight hour, when the world sleeps, India will awake to life and freedom." - Nehru, August 14, 1947
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 14: The Cold War Factor -->
+        <div class="slide" data-reveal-count="3">
+            <div class="slide-number">14/15</div>
+            
+            <div class="reveal-item">
+                <h2>❄️ How the Cold War Complicated Decolonization</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Superpowers as Puppet Masters</h3>
+                <ul>
+                    <li><strong>USA:</strong> Supported anti-communist movements, even authoritarian ones</li>
+                    <li><strong>USSR:</strong> Backed communist independence movements and socialist governments</li>
+                    <li><strong>Result:</strong> Many independence movements became proxy wars</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Examples of Cold War Interference</h3>
+                <div class="strategy-grid">
+                    <div class="strategy-card">
+                        <div class="strategy-icon">🇻🇳</div>
+                        <div class="strategy-title">Vietnam</div>
+                        <div class="strategy-examples">
+                            French withdrawal → American involvement → 20-year war
+                        </div>
+                    </div>
+                    
+                    <div class="strategy-card">
+                        <div class="strategy-icon">🇨🇩</div>
+                        <div class="strategy-title">Congo</div>
+                        <div class="strategy-examples">
+                            CIA-backed assassination of Lumumba → decades of instability
+                        </div>
+                    </div>
+                    
+                    <div class="strategy-card">
+                        <div class="strategy-icon">🇦🇫</div>
+                        <div class="strategy-title">Afghanistan</div>
+                        <div class="strategy-examples">
+                            Soviet invasion → US-backed mujahideen → Taliban emergence
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="continue-indicator">Click or press → to continue</div>
+        </div>
+
+        <!-- Slide 15: Legacy and Modern Connections -->
+        <div class="slide" data-reveal-count="4">
+            <div class="slide-number">15/15</div>
+            
+            <div class="reveal-item">
+                <h2>🌐 Legacy: How Decolonization Patterns Shape Today</h2>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Ongoing Challenges</h3>
+                <ul>
+                    <li><strong>Artificial Borders:</strong> Ethnic conflicts in Africa and Middle East</li>
+                    <li><strong>Resource Curse:</strong> Oil and mineral wealth creating corruption</li>
+                    <li><strong>Neocolonialism:</strong> Economic dependence replacing political control</li>
+                    <li><strong>Brain Drain:</strong> Educated elites migrating to former colonial powers</li>
+                </ul>
+            </div>
+            
+            <div class="reveal-item">
+                <h3>Modern Applications</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <div class="comparison-title success-examples">What We've Learned</div>
+                        <ul>
+                            <li>Institution-building is crucial</li>
+                            <li>Unity matters more than resources</li>
+                            <li>Gradual transitions often work better</li>
+                            <li>International support helps</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card">
+                        <div class="comparison-title struggle-examples">Current Connections</div>
+                        <ul>
+                            <li>Hong Kong and Taiwan situations</li>
+                            <li>Scottish independence debates</li>
+                            <li>Kurdish autonomy movements</li>
+                            <li>Brexit as "reverse integration"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reveal-item">
+                <div class="central-question">
+                    Reflection Question: How do decolonization patterns help us understand current independence movements around the world?
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <button class="control-btn" onclick="previousSlide()">← Previous</button>
+        <button class="control-btn" onclick="nextSlide()">Next →</button>
+        <button class="control-btn" onclick="revealAll()">Reveal All</button>
+    </div>
+
+    <!-- Vocabulary Tab -->
+    <div class="image-tab" onclick="toggleVocabulary()">📚 Vocabulary</div>
+
+    <!-- Vocabulary Overlay -->
+    <div class="image-overlay" id="vocabularyOverlay" onclick="toggleVocabulary()">
+        <div class="image-content" onclick="event.stopPropagation()" style="max-width: 80%; max-height: 80%; overflow-y: auto;">
+            <h3>🔑 Key Terms & Vocabulary</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1rem; text-align: left;">
+                
+                <div style="background: #f0f9ff; padding: 1rem; border-radius: 8px; border-left: 4px solid #0ea5e9;">
+                    <h4 style="color: #0c4a6e; margin: 0 0 0.5rem 0;">Decolonization Terms</h4>
+                    <p><strong>Decolonization:</strong> Process of former colonies gaining independence from European powers</p>
+                    <p><strong>Self-determination:</strong> Right of peoples to choose their own political status</p>
+                    <p><strong>Partition:</strong> Division of territory, especially India's split into India and Pakistan</p>
+                    <p><strong>Neocolonialism:</strong> Economic or cultural influence replacing direct political control</p>
+                </div>
+
+                <div style="background: #f0fdf4; padding: 1rem; border-radius: 8px; border-left: 4px solid #22c55e;">
+                    <h4 style="color: #14532d; margin: 0 0 0.5rem 0;">Political Systems</h4>
+                    <p><strong>Parliamentary System:</strong> Government led by parliament, not directly elected president</p>
+                    <p><strong>Dominion Status:</strong> Self-governing territory within British Empire</p>
+                    <p><strong>Authoritarian:</strong> Government with concentrated power, limited political freedoms</p>
+                    <p><strong>Non-Alignment:</strong> Policy of not joining either Cold War bloc</p>
+                </div>
+
+                <div style="background: #fef3c7; padding: 1rem; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                    <h4 style="color: #92400e; margin: 0 0 0.5rem 0;">Economic Terms</h4>
+                    <p><strong>Resource Curse:</strong> Natural wealth leading to corruption and poor governance</p>
+                    <p><strong>Brain Drain:</strong> Emigration of educated/skilled people from developing countries</p>
+                    <p><strong>Mixed Economy:</strong> Combination of government and private economic control</p>
+                    <p><strong>Import Substitution:</strong> Policy of replacing imports with domestic production</p>
+                </div>
+
+                <div style="background: #fef2f2; padding: 1rem; border-radius: 8px; border-left: 4px solid #ef4444;">
+                    <h4 style="color: #991b1b; margin: 0 0 0.5rem 0;">Conflict & Violence</h4>
+                    <p><strong>Guerrilla Warfare:</strong> Irregular warfare by small groups against larger forces</p>
+                    <p><strong>Proxy War:</strong> Conflict where superpowers support opposing sides</p>
+                    <p><strong>Ethnic Cleansing:</strong> Forced removal of ethnic groups from territory</p>
+                    <p><strong>Genocide:</strong> Systematic killing of a national, ethnic, or religious group</p>
+                </div>
+
+                <div style="background: #f3e8ff; padding: 1rem; border-radius: 8px; border-left: 4px solid #a855f7;">
+                    <h4 style="color: #581c87; margin: 0 0 0.5rem 0;">Geographic Terms</h4>
+                    <p><strong>Artificial Borders:</strong> Boundaries drawn by colonial powers ignoring ethnic/cultural divisions</p>
+                    <p><strong>Settler Colony:</strong> Territory with large population of European immigrants</p>
+                    <p><strong>Landlocked:</strong> Country with no access to ocean or sea</p>
+                    <p><strong>Strategic Location:</strong> Geographically important position for trade or military</p>
+                </div>
+
+                <div style="background: #ecfdf5; padding: 1rem; border-radius: 8px; border-left: 4px solid #10b981;">
+                    <h4 style="color: #047857; margin: 0 0 0.5rem 0;">Key People</h4>
+                    <p><strong>Mahatma Gandhi:</strong> Indian independence leader, non-violent resistance</p>
+                    <p><strong>Jawaharlal Nehru:</strong> First Prime Minister of India</p>
+                    <p><strong>Kwame Nkrumah:</strong> First President of Ghana, Pan-African leader</p>
+                    <p><strong>Patrice Lumumba:</strong> First Prime Minister of Congo, assassinated 1961</p>
+                    <p><strong>Lee Kuan Yew:</strong> First Prime Minister of Singapore</p>
+                    <p><strong>Seretse Khama:</strong> First President of Botswana</p>
+                </div>
+
+                <div style="background: #fdf4ff; padding: 1rem; border-radius: 8px; border-left: 4px solid #d946ef;">
+                    <h4 style="color: #86198f; margin: 0 0 0.5rem 0;">Organizations</h4>
+                    <p><strong>United Nations:</strong> International organization promoting peace, established 1945</p>
+                    <p><strong>FLN:</strong> National Liberation Front, Algerian independence movement</p>
+                    <p><strong>ANC:</strong> African National Congress, South African anti-apartheid organization</p>
+                    <p><strong>Khmer Rouge:</strong> Communist party that ruled Cambodia 1975-1979</p>
+                </div>
+
+                <div style="background: #f0f9ff; padding: 1rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                    <h4 style="color: #1e40af; margin: 0 0 0.5rem 0;">Historical Processes</h4>
+                    <p><strong>Satyagraha:</strong> Gandhi's philosophy of non-violent resistance</p>
+                    <p><strong>Pan-Africanism:</strong> Movement for unity among African peoples</p>
+                    <p><strong>Communal Violence:</strong> Conflict between different religious/ethnic communities</p>
+                    <p><strong>Nation-building:</strong> Process of constructing national identity and institutions</p>
+                </div>
+
+            </div>
+            
+            <button onclick="toggleVocabulary()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 4px; cursor: pointer;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let currentRevealIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            currentRevealIndex = 0;
+            hideAllReveals(index);
+        }
+
+        function hideAllReveals(slideIndex) {
+            const revealItems = slides[slideIndex].querySelectorAll('.reveal-item');
+            revealItems.forEach(item => item.classList.remove('revealed'));
+        }
+
+        function revealNext() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.reveal-item');
+            const maxReveals = parseInt(currentSlideElement.getAttribute('data-reveal-count')) || revealItems.length;
+            
+            if (currentRevealIndex < maxReveals && currentRevealIndex < revealItems.length) {
+                revealItems[currentRevealIndex].classList.add('revealed');
+                currentRevealIndex++;
+                return true;
+            }
+            return false;
+        }
+
+        function revealAll() {
+            const currentSlideElement = slides[currentSlide];
+            const revealItems = currentSlideElement.querySelectorAll('.reveal-item');
+            revealItems.forEach(item => item.classList.add('revealed'));
+            currentRevealIndex = revealItems.length;
+        }
+
+        function nextSlide() {
+            if (!revealNext()) {
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            }
+        }
+
+        function previousSlide() {
+            if (currentRevealIndex === 0) {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                    revealAll();
+                }
+            } else {
+                currentRevealIndex = 0;
+                hideAllReveals(currentSlide);
+            }
+        }
+
+        function toggleVocabulary() {
+            const overlay = document.querySelector('#vocabularyOverlay');
+            overlay.classList.toggle('active');
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(event) {
+            switch(event.key) {
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    previousSlide();
+                    break;
+                case 'Enter':
+                    revealAll();
+                    break;
+                case ',':
+                    if (currentSlide > 0) {
+                        currentSlide--;
+                        showSlide(currentSlide);
+                    }
+                    break;
+                case '.':
+                    if (currentSlide < totalSlides - 1) {
+                        currentSlide++;
+                        showSlide(currentSlide);
+                    }
+                    break;
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

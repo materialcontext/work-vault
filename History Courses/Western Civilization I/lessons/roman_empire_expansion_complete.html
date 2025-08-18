@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building an Empire: Rome's Mediterranean Transformation (201-59 BCE)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        function nextPage() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousPage() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c1810 0%, #3d2817 50%, #1a0f0a 100%);
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            height: 100vh;
+            padding: 2rem;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 5.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #d4af37, #ffd700, #b8860b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 4.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #d4af37;
+            text-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+            line-height: 1.2;
+        }
+
+        h3 {
+            font-size: 3.5rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #ffd700;
+            line-height: 1.3;
+        }
+
+        h4 {
+            font-size: 2.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #daa520;
+            line-height: 1.3;
+        }
+
+        p, li {
+            font-size: 2.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #f5f5dc;
+        }
+
+        .hero-section {
+            margin-bottom: 3rem;
+        }
+
+        .central-question {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid #d4af37;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .central-question h3 {
+            color: #d4af37;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            border-color: #d4af37;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .territorial-card {
+            background: rgba(139, 69, 19, 0.1);
+            border: 1px solid #8b4513;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .infrastructure-card {
+            background: rgba(184, 134, 11, 0.1);
+            border: 1px solid #b8860b;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .economic-card {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid #ffd700;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .military-card {
+            background: rgba(178, 34, 34, 0.1);
+            border: 1px solid #b22222;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .constitutional-crisis {
+            background: rgba(220, 20, 60, 0.1);
+            border: 1px solid #dc143c;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-section {
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .definition-box {
+            background: rgba(75, 0, 130, 0.1);
+            border: 1px solid #4b0082;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .definition-box h4 {
+            color: #9370db;
+            margin-bottom: 1rem;
+        }
+
+        .definition-term {
+            color: #dda0dd;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.8rem;
+        }
+
+        th {
+            background: rgba(212, 175, 55, 0.2);
+            font-weight: 600;
+            font-size: 2rem;
+            color: #d4af37;
+        }
+
+        ul {
+            text-align: left;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 1rem;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: autoReveal 0.8s ease forwards;
+        }
+
+        @keyframes autoReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: rgba(212, 175, 55, 0.2);
+            border: 1px solid #d4af37;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: #d4af37;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(212, 175, 55, 0.3);
+            transform: scale(1.1);
+        }
+
+        .definitions-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(75, 0, 130, 0.2);
+            border: 1px solid #4b0082;
+            border-radius: 10px;
+            padding: 10px 15px;
+            color: #9370db;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .definitions-toggle:hover {
+            background: rgba(75, 0, 130, 0.3);
+        }
+
+        .vocabulary-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vocabulary-content {
+            background: linear-gradient(135deg, #2c1810 0%, #3d2817 50%, #1a0f0a 100%);
+            border: 2px solid #d4af37;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 80%;
+            overflow-y: auto;
+            padding: 2rem;
+            color: #ffffff;
+        }
+
+        .vocabulary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 1rem;
+        }
+
+        .vocabulary-title {
+            font-size: 3rem;
+            color: #d4af37;
+            font-weight: 700;
+        }
+
+        .close-btn {
+            background: rgba(220, 20, 60, 0.2);
+            border: 1px solid #dc143c;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            color: #dc143c;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(220, 20, 60, 0.4);
+            transform: scale(1.1);
+        }
+
+        .vocab-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .vocab-category {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .vocab-category h3 {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #ffd700;
+            padding-bottom: 0.5rem;
+        }
+
+        .vocab-term {
+            margin-bottom: 1rem;
+        }
+
+        .vocab-word {
+            color: #d4af37;
+            font-weight: bold;
+            font-size: 1.3rem;
+            font-style: italic;
+        }
+
+        .vocab-definition {
+            color: #f5f5dc;
+            font-size: 1.1rem;
+            line-height: 1.4;
+            margin-top: 0.3rem;
+        }
+
+        .vocab-search {
+            width: 100%;
+            padding: 0.8rem;
+            font-size: 1.2rem;
+            border: 1px solid #d4af37;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+        }
+
+        .vocab-search::placeholder {
+            color: #cccccc;
+        }
+
+        .narrative-thread {
+            background: rgba(70, 130, 180, 0.1);
+            border-left: 4px solid #4682b4;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+
+        .evidence-box {
+            background: rgba(255, 140, 0, 0.1);
+            border: 1px solid #ff8c00;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .three-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .stats-box {
+            background: rgba(255, 69, 0, 0.1);
+            border: 1px solid #ff4500;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            h1 { font-size: 4.5rem; }
+            h2 { font-size: 3.8rem; }
+            h3 { font-size: 3rem; }
+            h4 { font-size: 2.4rem; }
+            p, li { font-size: 1.9rem; }
+            th, td { font-size: 1.6rem; }
+            th { font-size: 1.8rem; }
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid, .three-columns {
+                grid-template-columns: 1fr;
+            }
+            h1 { font-size: 3.5rem; }
+            h2 { font-size: 3rem; }
+            h3 { font-size: 2.5rem; }
+            h4 { font-size: 2rem; }
+            p, li { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="slide-content">
+                <div class="hero-section">
+                    <h1 class="auto-reveal">Building an Empire</h1>
+                    <h2 class="auto-reveal">Rome's Mediterranean Transformation</h2>
+                    <div class="auto-reveal" style="margin-top: 2rem;">
+                        <h3>From Victory to Dominion</h3>
+                        <p style="font-size: 2.5rem; color: #daa520; margin-top: 2rem;">201-59 BCE</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Central Question -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="central-question">
+                    <h2 class="reveal">Central Question</h2>
+                    <div class="reveal">
+                        <h3>How did Rome transform from a regional Italian power into a Mediterranean empire, and what were the consequences of this success?</h3>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <h4>The Paradox of Imperial Success</h4>
+                    <p>Roman expansion created the world's first Mediterranean-wide empire through military excellence, economic integration, and administrative innovation. Yet these same achievements systematically undermined the republican institutions that made conquest possible.</p>
+                </div>
+                <div class="evidence-box reveal">
+                    <h4>Key Transformation</h4>
+                    <p><strong>201 BCE:</strong> Regional Italian power controlling parts of Spain and Sicily<br>
+                    <strong>59 BCE:</strong> Mediterranean empire from Britain to Mesopotamia with 50+ million subjects</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Systematic Conquest Overview -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">From Victory to Dominion</h2>
+                <div class="hero-section reveal">
+                    <h3>The Logic of Systematic Expansion</h3>
+                </div>
+                <div class="stats-box reveal">
+                    <h4>📊 Scale of Transformation</h4>
+                    <div class="three-columns">
+                        <div>
+                            <h4>Territorial Growth</h4>
+                            <p>15 major provinces acquired</p>
+                        </div>
+                        <div>
+                            <h4>Population</h4>
+                            <p>50+ million new subjects</p>
+                        </div>
+                        <div>
+                            <h4>Revenue</h4>
+                            <p>1,000+ million sesterces annually</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-grid">
+                    <div class="territorial-card reveal">
+                        <h4>🌍 Geographic Strategy</h4>
+                        <ul>
+                            <li class="reveal">Each conquest created security needs requiring further expansion</li>
+                            <li class="reveal">Economic opportunities driving continued campaigns</li>
+                            <li class="reveal">Diplomatic inheritances adding territories peacefully</li>
+                            <li class="reveal">Strategic logic connecting all Mediterranean shores</li>
+                        </ul>
+                    </div>
+                    <div class="territorial-card reveal">
+                        <h4>⚔️ Military Advantages</h4>
+                        <ul>
+                            <li class="reveal">Professional legions superior to any opposition</li>
+                            <li class="reveal">Engineering capabilities enabling complex sieges</li>
+                            <li class="reveal">Logistical systems supporting multi-year campaigns</li>
+                            <li class="reveal">Naval supremacy controlling sea routes</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>Pattern Established:</strong> Victory → Security needs → New campaigns → Greater victory → Expanded security needs → Continuous expansion</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Spanish Provinces -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Spain: Rome's First Major Commitment</h2>
+                <div class="central-question reveal">
+                    <h3>How Spanish silver funded Mediterranean empire</h3>
+                </div>
+                <div class="territorial-card reveal">
+                    <h4>🏛️ Hispania Citerior & Hispania Ulterior (197 BCE)</h4>
+                    <p><strong>Transformation:</strong> From Carthaginian territories to Roman provinces<br>
+                    <strong>Strategic Value:</strong> Buffer against future Carthaginian resurgence<br>
+                    <strong>Economic Impact:</strong> 80 million sesterces annually from mining operations</p>
+                </div>
+                <div class="economic-card reveal">
+                    <h4>💰 The Silver Revolution</h4>
+                    <ul>
+                        <li class="reveal"><strong>Las Médulas Mine:</strong> Produced 5 million Roman pounds of gold over 250 years</li>
+                        <li class="reveal"><strong>Lead Isotope Evidence:</strong> Spanish silver replaced Aegean sources in Roman coinage</li>
+                        <li class="reveal"><strong>Workforce:</strong> 60,000 workers in single mining complex</li>
+                        <li class="reveal"><strong>Political Consequence:</strong> Roman monetary policy became dependent on Iberian production</li>
+                    </ul>
+                </div>
+                <div class="definition-box reveal">
+                    <h4>🏛️ Roman Terms Defined</h4>
+                    <p><span class="definition-term">Provincia:</span> A sphere of command assigned to a magistrate, originally meaning "task" rather than territory<br>
+                    <span class="definition-term">Proconsul:</span> Former consul given extended command (<em>imperium</em>) to govern a province<br>
+                    <span class="definition-term">Praetor:</span> Second-highest magistrate, often assigned provincial commands</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Greek East and Africa -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Dominating the Mediterranean</h2>
+                <div class="hero-section reveal">
+                    <h3>146 BCE - The Year of Destruction</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="territorial-card reveal">
+                        <h3>🏛️ Macedonia & Greece (146 BCE)</h3>
+                        <ul>
+                            <li class="reveal"><strong>Corinth Destroyed:</strong> Complete sack ending Greek independence</li>
+                            <li class="reveal"><strong>Cultural Integration:</strong> Greek learning flowing to Rome</li>
+                            <li class="reveal"><strong>Administrative Model:</strong> Indirect rule through local elites</li>
+                            <li class="reveal"><strong>Strategic Value:</strong> Eastern staging ground for Asian expansion</li>
+                        </ul>
+                    </div>
+                    <div class="territorial-card reveal">
+                        <h3>🌾 Africa Proconsularis (146 BCE)</h3>
+                        <ul>
+                            <li class="reveal"><strong>Carthage Annihilated:</strong> City destroyed, population enslaved</li>
+                            <li class="reveal"><strong>Agricultural Specialization:</strong> Became Rome's "breadbasket"</li>
+                            <li class="reveal"><strong>Urban Supply:</strong> Essential for feeding Rome's growing population</li>
+                            <li class="reveal"><strong>Trade Networks:</strong> Inherited Carthaginian commercial routes</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="economic-card reveal">
+                    <h4>📈 Economic Consequences</h4>
+                    <p><strong>Rome's Population Growth:</strong> 200,000 (2nd century) → 1,000,000 (1st century) - world's first megacity<br>
+                    <strong>Grain Dependencies:</strong> Urban survival requiring provincial stability<br>
+                    <strong>Cultural Transformation:</strong> "Captured Greece capturing Rome" (Horace)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Asian Wealth -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Asia: The Treasure Province</h2>
+                <div class="central-question reveal">
+                    <h3>How peaceful inheritance revolutionized Roman finances</h3>
+                </div>
+                <div class="territorial-card reveal">
+                    <h4>👑 The Pergamene Bequest (129 BCE)</h4>
+                    <p><strong>Peaceful Acquisition:</strong> King Attalus III willed his kingdom to Rome<br>
+                    <strong>Revenue Scale:</strong> 300 million sesterces annually - equivalent to entire Ptolemaic budget<br>
+                    <strong>Strategic Importance:</strong> Gateway to eastern trade and luxury goods</p>
+                </div>
+                <div class="economic-card reveal">
+                    <h4>🏦 Financial Revolution</h4>
+                    <ul>
+                        <li class="reveal"><strong>Banking Center:</strong> Currency exchange facilitating Mediterranean commerce</li>
+                        <li class="reveal"><strong>Luxury Trade Hub:</strong> Silk, spices, precious goods flowing westward</li>
+                        <li class="reveal"><strong>Publicani System:</strong> Tax-farming creating super-wealthy Roman class</li>
+                        <li class="reveal"><strong>Credit Networks:</strong> Sophisticated lending enabling massive public works</li>
+                    </ul>
+                </div>
+                <div class="definition-box reveal">
+                    <h4>💰 Financial Terms</h4>
+                    <p><span class="definition-term">Publicani:</span> Private contractors bidding on provincial tax collection rights<br>
+                    <span class="definition-term">Societates Publicanorum:</span> Joint-stock companies organizing tax farming<br>
+                    <span class="definition-term">Argentarii:</span> Professional bankers offering credit across provinces</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: The Marian Military Revolution -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Military Revolution</h2>
+                <div class="central-question reveal">
+                    <h3>From citizen-soldiers to professional armies</h3>
+                </div>
+                <div class="military-card reveal">
+                    <h4>⚔️ Marian Reforms (107 BCE)</h4>
+                    <p><strong>Property Requirements Eliminated:</strong> Landless masses recruited for military careers<br>
+                    <strong>State Equipment:</strong> Government providing standardized arms and armor<br>
+                    <strong>Service Terms:</strong> 16-25 years creating truly professional soldiers</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="military-card reveal">
+                        <h3>🏛️ Old System</h3>
+                        <ul>
+                            <li class="reveal">Citizen-farmers serving in emergencies</li>
+                            <li class="reveal">Seasonal campaigns returning to farms</li>
+                            <li class="reveal">Self-provided equipment based on wealth</li>
+                            <li class="reveal">Loyalty to state and community</li>
+                        </ul>
+                    </div>
+                    <div class="military-card reveal">
+                        <h3>⚔️ Marian System</h3>
+                        <ul>
+                            <li class="reveal">Urban poor seeking career advancement</li>
+                            <li class="reveal">Multi-year campaigns across continents</li>
+                            <li class="reveal">Standardized state-provided equipment</li>
+                            <li class="reveal">Loyalty to commanders providing benefits</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="military-card reveal">
+                    <h4>🔧 Technological Innovation</h4>
+                    <ul>
+                        <li class="reveal"><strong>Ballista Artillery:</strong> 300-meter range providing field support</li>
+                        <li class="reveal"><strong>Siege Engines:</strong> Catapults and mobile weapons (carroballistae)</li>
+                        <li class="reveal"><strong>Engineering Corps:</strong> Sophisticated fortification and bridge construction</li>
+                        <li class="reveal"><strong>Logistical Systems:</strong> Multi-modal supply chains supporting continental campaigns</li>
+                    </ul>
+                </div>
+                <div class="constitutional-crisis reveal">
+                    <h4>🚨 The Fatal Trade-off</h4>
+                    <p><strong>Military Advantages:</strong> Superior training, equipment, experience enabling conquest<br>
+                    <strong>Political Dangers:</strong> Soldiers loyal to commanders, not state institutions<br>
+                    <strong>Constitutional Impact:</strong> Extended commands necessary for empire undermining annual limitations</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Pompey's Eastern Empire -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Pompey's Eastern Conquests</h2>
+                <div class="hero-section reveal">
+                    <h3>Creating the Eastern Empire (66-62 BCE)</h3>
+                </div>
+                <div class="territorial-card reveal">
+                    <h4>⚔️ The Mithridatic Wars Conclusion</h4>
+                    <p><strong>Extraordinary Command:</strong> Unprecedented authority over entire eastern Mediterranean<br>
+                    <strong>Six New Provinces:</strong> Bithynia et Pontus, Syria, Cilicia, Crete, Cyrenaica<br>
+                    <strong>12.2 Million New Subjects:</strong> Doubling Roman population under direct control</p>
+                </div>
+                <div class="economic-card reveal">
+                    <h4>💎 Mithridates' Treasury</h4>
+                    <ul>
+                        <li class="reveal"><strong>Captured Wealth:</strong> 860 million sesterces from royal treasury</li>
+                        <li class="reveal"><strong>Annual Tribute:</strong> Eastern provinces generating 200+ million sesterces yearly</li>
+                        <li class="reveal"><strong>Trade Control:</strong> Black Sea, Syrian, and Egyptian commerce under Roman authority</li>
+                        <li class="reveal"><strong>Political Consequence:</strong> Pompey's wealth and prestige challenging traditional limits</li>
+                    </ul>
+                </div>
+                <div class="constitutional-crisis reveal">
+                    <h4>🏛️ Constitutional Crisis Preview</h4>
+                    <p><strong>Extraordinary Commands:</strong> Multi-year appointments with unlimited authority<br>
+                    <strong>Senate Bypass:</strong> Popular assemblies granting powers exceeding constitutional precedent<br>
+                    <strong>Precedent Set:</strong> Individual Romans controlling resources rivaling the state itself</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Infrastructure Revolution -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Infrastructure Revolution</h2>
+                <div class="central-question reveal">
+                    <h3>How Rome physically unified the Mediterranean world</h3>
+                </div>
+                <div class="infrastructure-card reveal">
+                    <h4>🛣️ The Road Network</h4>
+                    <p><strong>Scale:</strong> 13,600km (Italy) expanding to 85,000km (empire-wide)<br>
+                    <strong>Engineering:</strong> Concrete from pozzolana ash, cambered surfaces, solid foundations<br>
+                    <strong>Strategic Purpose:</strong> Straight lines prioritizing military over geographic logic</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="infrastructure-card reveal">
+                        <h3>📨 Communication Systems</h3>
+                        <ul>
+                            <li class="reveal"><strong>Relay Stations:</strong> Every 20-30 miles enabling rapid message transmission</li>
+                            <li class="reveal"><strong>Speed:</strong> 800 kilometers in 24 hours using coordinated horse relays</li>
+                            <li class="reveal"><strong>Limitation:</strong> 2-4 month delays with distant provinces</li>
+                            <li class="reveal"><strong>Consequence:</strong> Provincial governors operating with substantial autonomy</li>
+                        </ul>
+                    </div>
+                    <div class="infrastructure-card reveal">
+                        <h3>🏘️ Urban Development</h3>
+                        <ul>
+                            <li class="reveal"><strong>Castra (Military Camps):</strong> Dual function as administrative/commercial hubs</li>
+                            <li class="reveal"><strong>Colonial Settlements:</strong> Standardized layouts replicating Roman organization</li>
+                            <li class="reveal"><strong>Port Systems:</strong> Ostia expansion, strategic harbors integrating transport</li>
+                            <li class="reveal"><strong>Economic Stimulation:</strong> Roman presence creating local commercial activity</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="definition-box reveal">
+                    <h4>🏗️ Infrastructure Terms</h4>
+                    <p><span class="definition-term">Via:</span> Major road built to military specifications for rapid troop movement<br>
+                    <span class="definition-term">Cursus Publicus:</span> Imperial post system with relay stations and official messengers<br>
+                    <span class="definition-term">Castra:</span> Fortified military camp following standardized layout principles</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Economic Integration -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Regional Economic Specialization</h2>
+                <div class="hero-section reveal">
+                    <h3>Creating a Mediterranean Economy</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="economic-card reveal">
+                        <h3>🥖 Agricultural Specialization</h3>
+                        <ul>
+                            <li class="reveal"><strong>Africa:</strong> Grain production feeding Rome's 1 million population</li>
+                            <li class="reveal"><strong>Egypt:</strong> Additional grain security and luxury goods</li>
+                            <li class="reveal"><strong>Gaul:</strong> Manufactured goods including Terra Sigillata pottery</li>
+                            <li class="reveal"><strong>Spain:</strong> Olive oil distributed in standardized amphorae</li>
+                        </ul>
+                    </div>
+                    <div class="economic-card reveal">
+                        <h3>⚒️ Industrial Production</h3>
+                        <ul>
+                            <li class="reveal"><strong>Metallurgy:</strong> Spanish silver, British tin, Gallic iron</li>
+                            <li class="reveal"><strong>Weapons:</strong> Standardized equipment from regional armories</li>
+                            <li class="reveal"><strong>Construction:</strong> Engineering corps building roads, bridges, fortifications</li>
+                            <li class="reveal"><strong>Shipbuilding:</strong> Naval yards supporting Mediterranean control</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="evidence-box reveal">
+                    <h4>🏺 Archaeological Evidence</h4>
+                    <p><strong>Amphora Analysis:</strong> Standardized shipping containers prove Mediterranean-wide distribution networks<br>
+                    <strong>Lead Isotope Studies:</strong> Spanish silver dominance in Roman coinage after 200 BCE<br>
+                    <strong>Terra Sigillata Distribution:</strong> Gallic pottery found from Britain to Egypt</p>
+                </div>
+                <div class="definition-box reveal">
+                    <h4>📦 Economic Terms</h4>
+                    <p><span class="definition-term">Amphora:</span> Standardized clay container for shipping wine, oil, and grain<br>
+                    <span class="definition-term">Terra Sigillata:</span> High-quality red pottery mass-produced in Gaul<br>
+                    <span class="definition-term">Annona:</span> State grain supply system feeding Rome's urban population</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Caesar's Gallic Wars -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Caesar's Gallic Wars: Empire's Apex</h2>
+                <div class="central-question reveal">
+                    <h3>How conquest doubled Roman territories while destroying republican limits</h3>
+                </div>
+                <div class="military-card reveal">
+                    <h4>⚔️ Military Genius Demonstrated (58-50 BCE)</h4>
+                    <p><strong>Scale of Conquest:</strong> Territory larger than existing empire<br>
+                    <strong>Human Cost:</strong> 1 million killed, 1 million enslaved (Plutarch)<br>
+                    <strong>Strategic Value:</strong> Atlantic access, Germanic buffer, British expeditions</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="military-card reveal">
+                        <h3>🔨 Engineering Feats</h3>
+                        <ul>
+                            <li class="reveal"><strong>Rhine Bridge:</strong> 10-day construction demonstrating Roman capabilities to Germanic tribes</li>
+                            <li class="reveal"><strong>Alesia Siege:</strong> Double circumvallation totaling 20km of fortifications</li>
+                            <li class="reveal"><strong>Technical Innovation:</strong> Spikes, traps, artillery positions</li>
+                            <li class="reveal"><strong>Psychological Warfare:</strong> Engineering as demonstration of invincibility</li>
+                        </ul>
+                    </div>
+                    <div class="economic-card reveal">
+                        <h3>💰 Economic Transformation</h3>
+                        <ul>
+                            <li class="reveal"><strong>Gallic Plunder:</strong> Massive wealth funding Caesar's political dominance</li>
+                            <li class="reveal"><strong>Veteran Loyalty:</strong> Personal bonds transcending state allegiance</li>
+                            <li class="reveal"><strong>Resource Control:</strong> Independent financial base challenging constitutional authority</li>
+                            <li class="reveal"><strong>Political Investment:</strong> Using conquest wealth for Roman political competition</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>Geographic Integration:</strong> Gaul provided iron, manufactured goods, and staging grounds for further expansion. Caesar's success proved no limits existed to Roman military capabilities, making further territorial growth appear inevitable rather than extraordinary.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: The Wealth of Nations -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Imperial Wealth Flows</h2>
+                <div class="hero-section reveal">
+                    <h3>How Provincial Resources Transformed Roman Society</h3>
+                </div>
+                <div class="stats-box reveal">
+                    <h4>💎 Revenue Streams (Annual)</h4>
+                    <div class="three-columns">
+                        <div>
+                            <h4>Spanish Mining</h4>
+                            <p>80 million sesterces</p>
+                        </div>
+                        <div>
+                            <h4>Asian Provinces</h4>
+                            <p>300 million sesterces</p>
+                        </div>
+                        <div>
+                            <h4>Eastern Conquests</h4>
+                            <p>200+ million sesterces</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-grid">
+                    <div class="economic-card reveal">
+                        <h3>🏆 Winners: The New Elite</h3>
+                        <ul>
+                            <li class="reveal"><strong>Provincial Governors:</strong> Massive wealth from provincial commands</li>
+                            <li class="reveal"><strong>Publicani:</strong> Tax-farming profits creating super-wealthy class</li>
+                            <li class="reveal"><strong>Successful Generals:</strong> Conquest wealth enabling political dominance</li>
+                            <li class="reveal"><strong>Banking Networks:</strong> Argentarii facilitating Mediterranean commerce</li>
+                        </ul>
+                    </div>
+                    <div class="economic-card reveal">
+                        <h3>📉 Economic Dependencies</h3>
+                        <ul>
+                            <li class="reveal"><strong>Urban Food Security:</strong> Rome's 1 million population dependent on provincial grain</li>
+                            <li class="reveal"><strong>Monetary System:</strong> Spanish silver essential for currency stability</li>
+                            <li class="reveal"><strong>Luxury Markets:</strong> Asian goods creating new consumption patterns</li>
+                            <li class="reveal"><strong>Infrastructure Maintenance:</strong> Continuous investment required for imperial networks</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="evidence-box reveal">
+                    <h4>🏺 Archaeological Evidence of Integration</h4>
+                    <p><strong>Standardized Amphorae:</strong> Mediterranean-wide distribution systems<br>
+                    <strong>Uniform Coinage:</strong> Spanish silver in circulation from Britain to Egypt<br>
+                    <strong>Cultural Artifacts:</strong> Terra Sigillata pottery demonstrating trade networks</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: The Path to Caesar -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Imperial Success Creates Constitutional Crisis</h2>
+                <div class="central-question reveal">
+                    <h3>Why republican institutions couldn't contain imperial power</h3>
+                </div>
+                <div class="constitutional-crisis reveal">
+                    <h4>🏛️ The Scale Problem</h4>
+                    <p><strong>City-State Institutions:</strong> Roman government designed for governing Italy<br>
+                    <strong>Continental Empire:</strong> Territories requiring extraordinary authority and extended commands<br>
+                    <strong>Communication Delays:</strong> 2-4 months with distant provinces necessitating autonomous governors</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="constitutional-crisis reveal">
+                        <h3>⚖️ Institutional Strain</h3>
+                        <ul>
+                            <li class="reveal"><strong>Annual Limitations:</strong> Impossible when provinces required multi-year governance</li>
+                            <li class="reveal"><strong>Collective Authority:</strong> Undermined by individual commands over vast territories</li>
+                            <li class="reveal"><strong>Senate Oversight:</strong> Ineffective over generals with independent resources</li>
+                            <li class="reveal"><strong>Constitutional Precedent:</strong> Each extraordinary command making next violation easier</li>
+                        </ul>
+                    </div>
+                    <div class="constitutional-crisis reveal">
+                        <h3>💥 The Triumvirate Solution (60 BCE)</h3>
+                        <ul>
+                            <li class="reveal"><strong>Secret Alliance:</strong> Caesar, Pompey, Crassus dividing empire privately</li>
+                            <li class="reveal"><strong>Provincial Distribution:</strong> 5-year commands violating constitutional precedent</li>
+                            <li class="reveal"><strong>Elections Controlled:</strong> Private agreements determining public policy</li>
+                            <li class="reveal"><strong>Constitutional Bypass:</strong> Informal empire replacing formal institutions</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>Historical Inevitability:</strong> The First Triumvirate represented the logical outcome of imperial expansion exceeding republican capacity. Each previous crisis had weakened institutional restraints while increasing the resources and authority needed for effective governance.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Caesar's Choice -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Rubicon Decision</h2>
+                <div class="hero-section reveal">
+                    <h3>When Imperial Success Makes Republican Restraints Impossible</h3>
+                </div>
+                <div class="constitutional-crisis reveal">
+                    <h4>🚨 Caesar's Dilemma (50-49 BCE)</h4>
+                    <p><strong>Senate's Ultimatum:</strong> Return to Rome as private citizen facing prosecution<br>
+                    <strong>Caesar's Resources:</strong> Gallic wealth, veteran armies, unprecedented popular support<br>
+                    <strong>Constitutional Inadequacy:</strong> No mechanism for accommodating imperial-scale success</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="military-card reveal">
+                        <h3>⚔️ Military Factors</h3>
+                        <ul>
+                            <li class="reveal"><strong>Veteran Loyalty:</strong> 8 legions personally devoted to Caesar</li>
+                            <li class="reveal"><strong>Combat Experience:</strong> Gallic wars creating elite professional army</li>
+                            <li class="reveal"><strong>Resource Advantage:</strong> Gallic plunder enabling extended campaigns</li>
+                            <li class="reveal"><strong>Strategic Position:</strong> Gaul providing secure base for operations</li>
+                        </ul>
+                    </div>
+                    <div class="constitutional-crisis reveal">
+                        <h3>🏛️ Constitutional Impossibility</h3>
+                        <ul>
+                            <li class="reveal"><strong>Legal Vulnerability:</strong> Prosecution awaiting return as private citizen</li>
+                            <li class="reveal"><strong>Precedent Problem:</strong> No constitutional mechanism for imperial careers</li>
+                            <li class="reveal"><strong>Republican Inadequacy:</strong> Traditional limitations incompatible with imperial reality</li>
+                            <li class="reveal"><strong>Structural Contradiction:</strong> Success requiring abandonment of limiting principles</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="evidence-box reveal">
+                    <h4>⚡ The Crossing (49 BCE)</h4>
+                    <p><strong>"Alea iacta est"</strong> - "The die is cast"<br>
+                    Caesar's decision represents the logical culmination of imperial expansion's incompatibility with republican restraints</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Synthesis - Empire Before Emperor -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Empire Before Emperor</h2>
+                <div class="central-question reveal">
+                    <h3>How imperial success made autocratic solutions inevitable</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>✅ Achievements of Expansion</h3>
+                        <ul>
+                            <li class="reveal"><strong>Territorial Scale:</strong> Mediterranean-wide empire unprecedented in history</li>
+                            <li class="reveal"><strong>Economic Integration:</strong> First global economy connecting three continents</li>
+                            <li class="reveal"><strong>Infrastructure Networks:</strong> Roads, ports, cities enabling rapid communication</li>
+                            <li class="reveal"><strong>Cultural Synthesis:</strong> Greek learning, Roman organization, diverse traditions</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>💥 Republican Breakdown</h3>
+                        <ul>
+                            <li class="reveal"><strong>Scale Incompatibility:</strong> City-state institutions governing continental empire</li>
+                            <li class="reveal"><strong>Military Transformation:</strong> Professional armies loyal to commanders</li>
+                            <li class="reveal"><strong>Wealth Concentration:</strong> Imperial profits enabling constitutional subversion</li>
+                            <li class="reveal"><strong>Constitutional Precedent:</strong> Each crisis weakening traditional restraints</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <h4>🧠 The Central Paradox</h4>
+                    <p>Roman expansion created the world's first Mediterranean-wide empire through republican institutions, yet imperial requirements systematically undermined republican principles. Every adaptation to imperial needs - extended commands, professional armies, extraordinary authority - weakened the constitutional limitations that had enabled Rome's original success.</p>
+                </div>
+                <div class="evidence-box reveal">
+                    <h4>🔮 Looking Forward</h4>
+                    <p><strong>Augustus's Challenge:</strong> How to preserve republican forms while exercising imperial power?<br>
+                    <strong>Historical Question:</strong> Was imperial transformation inevitable, or could alternative solutions have preserved republican government?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Course Connections -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Comparative Analysis</h2>
+                <div class="hero-section reveal">
+                    <h3>How Roman Synthesis Differed from Previous Models</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🏺 vs. Persian Empire</h3>
+                        <ul>
+                            <li class="reveal"><strong>Centralized vs. Delegated:</strong> Roman provincial system vs. Persian satrapies</li>
+                            <li class="reveal"><strong>Cultural Integration:</strong> Roman citizenship paths vs. Persian cultural tolerance</li>
+                            <li class="reveal"><strong>Military Organization:</strong> Professional legions vs. levy system</li>
+                            <li class="reveal"><strong>Infrastructure Focus:</strong> Roman roads vs. Persian administrative centers</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🏛️ vs. Hellenistic Kingdoms</h3>
+                        <ul>
+                            <li class="reveal"><strong>Institutional vs. Personal:</strong> Roman republican adaptation vs. royal legitimacy</li>
+                            <li class="reveal"><strong>Expansion Method:</strong> Systematic conquest vs. inheritance/marriage</li>
+                            <li class="reveal"><strong>Economic Integration:</strong> Provincial specialization vs. royal treasuries</li>
+                            <li class="reveal"><strong>Cultural Approach:</strong> Roman pragmatism vs. Greek cultural supremacy</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🚢 vs. Carthaginian Networks</h3>
+                        <ul>
+                            <li class="reveal"><strong>Territorial vs. Commercial:</strong> Roman provincial control vs. Carthaginian trading posts</li>
+                            <li class="reveal"><strong>Military Integration:</strong> Roman legions vs. mercenary armies</li>
+                            <li class="reveal"><strong>Political Structure:</strong> Republican expansion vs. commercial oligarchy</li>
+                            <li class="reveal"><strong>Cultural Impact:</strong> Romanization vs. cultural adaptation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>Roman Innovation:</strong> Rome combined territorial conquest (Persian model), cultural synthesis (Hellenistic approach), and commercial networks (Carthaginian system) while maintaining republican institutions - until imperial scale made this combination impossible to sustain.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Slide: Transition to Imperial Period -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="hero-section">
+                    <h1 class="auto-reveal">Building an Empire</h1>
+                    <h2 class="auto-reveal">Rome's Mediterranean Transformation</h2>
+                    <div class="auto-reveal" style="margin-top: 3rem;">
+                        <h3>The Republic Created an Empire That Could Only Be Governed by an Emperor</h3>
+                    </div>
+                    <div class="narrative-thread auto-reveal" style="margin-top: 2rem;">
+                        <p><strong>Next Question:</strong> How will Augustus solve the problems that republican expansion created? Can imperial power be exercised through republican institutions, or must the forms of government change to match imperial realities?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()" title="Previous element (←)">←</button>
+        <button class="nav-btn" onclick="nextSlide()" title="Next element (→)">→</button>
+    </div>
+
+    <!-- Definitions Toggle -->
+    <div class="definitions-toggle" onclick="toggleVocabulary()" title="Roman Vocabulary (tab)">📚 Vocabulary</div>
+
+    <!-- Vocabulary Popup -->
+    <div class="vocabulary-popup" id="vocabularyPopup">
+        <div class="vocabulary-content">
+            <div class="vocabulary-header">
+                <h2 class="vocabulary-title">Roman Empire Vocabulary</h2>
+                <button class="close-btn" onclick="closeVocabulary()" title="Close">&times;</button>
+            </div>
+            
+            <input type="text" class="vocab-search" id="vocabSearch" placeholder="Search terms..." onkeyup="searchVocabulary()">
+            
+            <div class="vocab-categories" id="vocabCategories">
+                <div class="vocab-category">
+                    <h3>🏛️ Government & Politics</h3>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Provincia</div>
+                        <div class="vocab-definition">Originally meaning "task" or "sphere of command," later evolved to mean territorial administrative unit governed by a Roman magistrate with imperium.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Imperium</div>
+                        <div class="vocab-definition">Supreme executive power held by consuls and praetors, including military command authority and jurisdiction over life and death in their assigned provinces.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Proconsul</div>
+                        <div class="vocab-definition">Former consul whose imperium was extended (prorogued) to govern a province, often for multiple years, creating powerful independent commands.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Prorogatio</div>
+                        <div class="vocab-definition">Extension of a magistrate's imperium beyond the normal one-year term, necessary for governing distant provinces but undermining republican annual limitations.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Cursus Honorum</div>
+                        <div class="vocab-definition">Traditional sequence of public offices (quaestor, praetor, consul) that Roman politicians followed, increasingly strained by imperial requirements.</div>
+                    </div>
+                </div>
+
+                <div class="vocab-category">
+                    <h3>⚔️ Military Terms</h3>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Legio</div>
+                        <div class="vocab-definition">Standard Roman army unit of approximately 5,000 soldiers, organized into 10 cohorts of 480 men each after Marian reforms.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Cohort</div>
+                        <div class="vocab-definition">Primary tactical unit of the reformed legion, containing 480 soldiers divided into 6 centuries of 80 men each.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Ballista</div>
+                        <div class="vocab-definition">Roman siege engine providing artillery support with 300-meter range, demonstrating Roman technological superiority in warfare.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Castra</div>
+                        <div class="vocab-definition">Fortified military camp following standardized layout, serving dual function as administrative centers and commercial hubs in conquered territories.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Circumvallation</div>
+                        <div class="vocab-definition">Fortified walls built around a besieged city, perfected by Caesar at Alesia with double walls totaling 20 kilometers.</div>
+                    </div>
+                </div>
+
+                <div class="vocab-category">
+                    <h3>💰 Economic Terms</h3>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Publicani</div>
+                        <div class="vocab-definition">Private contractors who bid on tax collection rights in provinces, creating a wealthy class while often exploiting provincial populations.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Societates Publicanorum</div>
+                        <div class="vocab-definition">Joint-stock companies organizing tax farming operations, representing early form of corporate organization for imperial administration.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Argentarii</div>
+                        <div class="vocab-definition">Professional bankers offering currency exchange, credit, and investment services across provincial boundaries, facilitating Mediterranean commerce.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Sestertius (plural: Sesterces)</div>
+                        <div class="vocab-definition">Standard Roman silver coin used for measuring wealth and revenues. Major provincial revenues measured in millions of sesterces annually.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Amphora</div>
+                        <div class="vocab-definition">Standardized clay shipping container for wine, oil, and grain, archaeological evidence of Mediterranean-wide trade networks.</div>
+                    </div>
+                </div>
+
+                <div class="vocab-category">
+                    <h3>🏗️ Infrastructure & Administration</h3>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Via</div>
+                        <div class="vocab-definition">Major road built to military specifications with solid foundations and cambered surfaces, prioritizing straight lines for rapid troop movement.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Cursus Publicus</div>
+                        <div class="vocab-definition">Imperial communication system with relay stations every 20-30 miles, enabling 800-kilometer daily message transmission.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Pozzolana</div>
+                        <div class="vocab-definition">Volcanic ash used in Roman concrete, providing exceptional durability for roads, bridges, and buildings throughout the empire.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Annona</div>
+                        <div class="vocab-definition">State grain supply system feeding Rome's growing urban population, making the city dependent on provincial agricultural production.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Terra Sigillata</div>
+                        <div class="vocab-definition">High-quality red pottery mass-produced in Gaul and distributed throughout the empire, archaeological evidence of standardized manufacturing.</div>
+                    </div>
+                </div>
+
+                <div class="vocab-category">
+                    <h3>🌍 Geographic Terms</h3>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Hispania Citerior</div>
+                        <div class="vocab-definition">"Nearer Spain" - Roman province in eastern Spain established 197 BCE, containing major silver mining operations funding imperial expansion.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Hispania Ulterior</div>
+                        <div class="vocab-definition">"Further Spain" - Roman province in southern/western Spain established 197 BCE, source of agricultural products and additional mining wealth.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Africa Proconsularis</div>
+                        <div class="vocab-definition">Roman province created from Carthaginian territory in 146 BCE, became Rome's primary grain supplier and "breadbasket."</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Asia (Province)</div>
+                        <div class="vocab-definition">Wealthy eastern province inherited from Pergamene Kingdom in 129 BCE, generating 300 million sesterces annually from trade and taxation.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Gallia Narbonensis</div>
+                        <div class="vocab-definition">Roman province in southern France established 120 BCE, serving as staging ground for Caesar's conquest of all Gaul.</div>
+                    </div>
+                </div>
+
+                <div class="vocab-category">
+                    <h3>🏛️ Key Historical Figures</h3>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Gaius Marius</div>
+                        <div class="vocab-definition">Roman general who reformed the army in 107 BCE, eliminating property requirements and creating professional soldiers loyal to commanders rather than state.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Pompey (Gnaeus Pompeius Magnus)</div>
+                        <div class="vocab-definition">Roman general who conquered the eastern Mediterranean (66-62 BCE), creating six new provinces and demonstrating extraordinary command powers.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Mithridates VI</div>
+                        <div class="vocab-definition">King of Pontus whose resistance to Rome lasted decades, final defeat by Pompey yielding 860 million sesterces and eastern territorial control.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Vercingetorix</div>
+                        <div class="vocab-definition">Gallic chieftain who led final resistance against Caesar, defeated at Alesia in 52 BCE after Caesar's engineering masterpiece siege.</div>
+                    </div>
+                    <div class="vocab-term">
+                        <div class="vocab-word">Attalus III</div>
+                        <div class="vocab-definition">Last king of Pergamon who willed his wealthy kingdom to Rome in 133 BCE, creating the province of Asia peacefully.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        let revealIndex = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            revealIndex = 0;
+            resetReveals();
+        }
+
+        function nextPage() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function nextSlide() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal:not(.show)');
+            if (reveals.length > 0) {
+                revealNext();
+            } else if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal.show');
+            if (reveals.length > 0) {
+                hideReveal();
+            } else if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+                revealAll();
+            }
+        }
+
+        function revealNext() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            if (revealIndex < reveals.length) {
+                reveals[revealIndex].classList.add('show');
+                revealIndex++;
+            }
+        }
+
+        function hideReveal() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            if (revealIndex > 0) {
+                revealIndex--;
+                reveals[revealIndex].classList.remove('show');
+            }
+        }
+
+        function revealAll() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            reveals.forEach(reveal => reveal.classList.add('show'));
+            revealIndex = reveals.length;
+        }
+
+        function resetReveals() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            reveals.forEach(reveal => reveal.classList.remove('show'));
+        }
+
+        function nextPage() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousPage() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        function toggleVocabulary() {
+            const popup = document.getElementById('vocabularyPopup');
+            popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function closeVocabulary() {
+            document.getElementById('vocabularyPopup').style.display = 'none';
+        }
+
+        function searchVocabulary() {
+            const searchTerm = document.getElementById('vocabSearch').value.toLowerCase();
+            const categories = document.querySelectorAll('.vocab-category');
+            
+            categories.forEach(category => {
+                const terms = category.querySelectorAll('.vocab-term');
+                let hasVisibleTerms = false;
+                
+                terms.forEach(term => {
+                    const word = term.querySelector('.vocab-word').textContent.toLowerCase();
+                    const definition = term.querySelector('.vocab-definition').textContent.toLowerCase();
+                    
+                    if (word.includes(searchTerm) || definition.includes(searchTerm) || searchTerm === '') {
+                        term.style.display = 'block';
+                        hasVisibleTerms = true;
+                    } else {
+                        term.style.display = 'none';
+                    }
+                });
+                
+                // Hide category if no terms match
+                category.style.display = hasVisibleTerms ? 'block' : 'none';
+            });
+        }
+
+        function toggleDefinitions() {
+            // Toggle visibility of definition boxes in slides
+            const definitionBoxes = document.querySelectorAll('.definition-box');
+            definitionBoxes.forEach(box => {
+                box.style.display = box.style.display === 'none' ? 'block' : 'none';
+            });
+        }
+
+        // Close vocabulary popup when clicking outside
+        document.addEventListener('click', function(event) {
+            const popup = document.getElementById('vocabularyPopup');
+            const toggle = document.querySelector('.definitions-toggle');
+            
+            if (popup.style.display === 'flex' && 
+                !popup.contains(event.target) && 
+                !toggle.contains(event.target)) {
+                closeVocabulary();
+            }
+        });
+
+        // Close vocabulary popup with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeVocabulary();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    previousSlide();
+                    break;
+                case '.':
+                    e.preventDefault();
+                    nextPage();
+                    break;
+                case ',':
+                    e.preventDefault();
+                    previousPage();
+                    break;
+                case 'Enter':
+                    e.preventDefault();
+                    revealAll();
+                    break;
+                case 'Tab':
+                    e.preventDefault();
+                    toggleVocabulary();
+                    break;
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
+                        

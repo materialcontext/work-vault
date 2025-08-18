@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Republic to Empire: The Roman Revolution (49-14 BCE)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            height: 100vh;
+            padding: 2rem;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 5.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #e74c3c, #f39c12, #3498db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 4.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #e74c3c;
+            text-shadow: 0 2px 8px rgba(231, 76, 60, 0.4);
+            line-height: 1.2;
+        }
+
+        h3 {
+            font-size: 3.5rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #f39c12;
+            line-height: 1.3;
+        }
+
+        h4 {
+            font-size: 2.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #3498db;
+            line-height: 1.3;
+        }
+
+        p, li {
+            font-size: 2.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #ecf0f1;
+        }
+
+        .hero-section {
+            margin-bottom: 3rem;
+        }
+
+        .central-question {
+            background: rgba(231, 76, 60, 0.1);
+            border: 2px solid #e74c3c;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .central-question h3 {
+            color: #e74c3c;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            border-color: #e74c3c;
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.2);
+        }
+
+        .biography-card {
+            background: rgba(52, 152, 219, 0.1);
+            border: 1px solid #3498db;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .military-card {
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid #e74c3c;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .political-card {
+            background: rgba(243, 156, 18, 0.1);
+            border: 1px solid #f39c12;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .timeline-section {
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .timeline-card {
+            background: rgba(155, 89, 182, 0.1);
+            border: 1px solid #9b59b6;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .imperial-card {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid #d4af37;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .narrative-thread {
+            background: rgba(70, 130, 180, 0.1);
+            border-left: 4px solid #4682b4;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+
+        .evidence-box {
+            background: rgba(255, 140, 0, 0.1);
+            border: 1px solid #ff8c00;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .three-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .stats-box {
+            background: rgba(155, 89, 182, 0.1);
+            border: 1px solid #9b59b6;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        ul {
+            text-align: left;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 1rem;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .auto-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: autoReveal 0.8s ease forwards;
+        }
+
+        @keyframes autoReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: rgba(231, 76, 60, 0.2);
+            border: 1px solid #e74c3c;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: #e74c3c;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(231, 76, 60, 0.3);
+            transform: scale(1.1);
+        }
+
+        .vocabulary-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(52, 152, 219, 0.2);
+            border: 1px solid #3498db;
+            border-radius: 10px;
+            padding: 10px 15px;
+            color: #3498db;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .vocabulary-toggle:hover {
+            background: rgba(52, 152, 219, 0.3);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            h1 { font-size: 4.5rem; }
+            h2 { font-size: 3.8rem; }
+            h3 { font-size: 3rem; }
+            h4 { font-size: 2.4rem; }
+            p, li { font-size: 1.9rem; }
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid, .three-columns {
+                grid-template-columns: 1fr;
+            }
+            h1 { font-size: 3.5rem; }
+            h2 { font-size: 3rem; }
+            h3 { font-size: 2.5rem; }
+            h4 { font-size: 2rem; }
+            p, li { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="slide-content">
+                <div class="hero-section">
+                    <h1 class="auto-reveal">From Republic to Empire</h1>
+                    <h2 class="auto-reveal">The Roman Revolution</h2>
+                    <div class="auto-reveal" style="margin-top: 2rem;">
+                        <h3>How Success Destroyed the System That Created It</h3>
+                        <p style="font-size: 2.5rem; color: #f39c12; margin-top: 2rem;">49-14 BCE</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Central Question -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="central-question">
+                    <h2 class="reveal">Central Question</h2>
+                    <div class="reveal">
+                        <h3>How did ambitious generals transform Roman civil war into permanent autocracy while claiming to restore republican traditions?</h3>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <h4>The Revolutionary Paradox</h4>
+                    <p>The destruction of the Roman Republic required preserving its appearance. Through civil war, constitutional innovation, and masterful propaganda, extraordinary individuals permanently altered Mediterranean civilization while claiming to defend ancient values.</p>
+                </div>
+                <div class="evidence-box reveal">
+                    <h4>Historical Transformation</h4>
+                    <p><strong>49 BCE:</strong> Caesar crosses the Rubicon - Civil war begins<br>
+                    <strong>14 CE:</strong> Augustus dies - Imperial system established<br>
+                    <strong>63 years:</strong> From Republic to Empire through "restoration"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Caesar Biography -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Gaius Julius Caesar: The Revolutionary</h2>
+                <div class="hero-section reveal">
+                    <h3>The Man Who Crossed the Rubicon</h3>
+                </div>
+                <div class="biography-card reveal">
+                    <h4>🏛️ Early Life and Ambition (100-69 BCE)</h4>
+                    <p><strong>Patrician Origins:</strong> Born into ancient but impoverished noble family<br>
+                    <strong>Early Controversy:</strong> Married Cornelia (Cinna's daughter) defying Sulla<br>
+                    <strong>Military Service:</strong> Served in Asia Minor, captured by pirates (ransom: 50 talents)<br>
+                    <strong>Political Debut:</strong> Quaestor in Spain (69 BCE) - witnessed Alexander's statue</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="biography-card reveal">
+                        <h3>⚔️ Military Genius</h3>
+                        <ul>
+                            <li class="reveal"><strong>Gallic Wars (58-50 BCE):</strong> Conquered territory larger than existing empire</li>
+                            <li class="reveal"><strong>Engineering Mastery:</strong> Rhine bridge in 10 days, Alesia circumvallation</li>
+                            <li class="reveal"><strong>Strategic Innovation:</strong> Combined speed, surprise, and psychological warfare</li>
+                            <li class="reveal"><strong>Veteran Loyalty:</strong> Personal bonds transcending state allegiance</li>
+                        </ul>
+                    </div>
+                    <div class="biography-card reveal">
+                        <h3>🎭 Political Revolutionary</h3>
+                        <ul>
+                            <li class="reveal"><strong>First Triumvirate (60 BCE):</strong> Secret alliance controlling Roman politics</li>
+                            <li class="reveal"><strong>Consulship (59 BCE):</strong> Ignored colleague's veto, used violence</li>
+                            <li class="reveal"><strong>Constitutional Challenge:</strong> Extended commands violating precedent</li>
+                            <li class="reveal"><strong>Popular Appeal:</strong> Land distributions, debt relief, citizenship grants</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>Caesar's Fatal Contradiction:</strong> Brilliant at winning power, naive about keeping it. His achievements made him indispensable, but his methods made him intolerable to republican institutions.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Pompey Biography -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Gnaeus Pompeius Magnus: The Great</h2>
+                <div class="hero-section reveal">
+                    <h3>Rome's Greatest General Before Caesar</h3>
+                </div>
+                <div class="biography-card reveal">
+                    <h4>⭐ Rise to Prominence (106-70 BCE)</h4>
+                    <p><strong>Early Success:</strong> Raised private army for Sulla at age 23<br>
+                    <strong>African Command:</strong> Defeated Marian forces, earned title "Magnus"<br>
+                    <strong>Spanish Campaign:</strong> Defeated Sertorius (77-72 BCE)<br>
+                    <strong>Spartacus:</strong> Arrived to claim credit for Crassus's victory</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="biography-card reveal">
+                        <h3>🌍 Eastern Conqueror</h3>
+                        <ul>
+                            <li class="reveal"><strong>Pirate War (67 BCE):</strong> Cleared Mediterranean in 3 months with extraordinary command</li>
+                            <li class="reveal"><strong>Mithridatic Wars (66-62 BCE):</strong> Created 6 new provinces</li>
+                            <li class="reveal"><strong>Eastern Settlement:</strong> 12.2 million new subjects, 860 million sesterces captured</li>
+                            <li class="reveal"><strong>Organizational Genius:</strong> Transformed eastern Mediterranean permanently</li>
+                        </ul>
+                    </div>
+                    <div class="biography-card reveal">
+                        <h3>🏛️ Political Limitations</h3>
+                        <ul>
+                            <li class="reveal"><strong>Senate Relations:</strong> Struggled with traditional politics after military success</li>
+                            <li class="reveal"><strong>Land Bill Crisis:</strong> Veteran settlements blocked by senatorial opposition</li>
+                            <li class="reveal"><strong>Alliance Necessity:</strong> Joined First Triumvirate for political survival</li>
+                            <li class="reveal"><strong>Growing Rivalry:</strong> Caesar's Gallic victories threatening his supremacy</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="evidence-box reveal">
+                    <h4>Pompey's Dilemma</h4>
+                    <p><strong>Military Success vs. Political Failure:</strong> Conquered the East but couldn't navigate Roman politics<br>
+                    <strong>Constitutional Precedent:</strong> His extraordinary commands paved the way for Caesar's</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: The Breakdown of the First Triumvirate -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Alliance Fractures</h2>
+                <div class="central-question reveal">
+                    <h3>How personal ambition destroyed political cooperation</h3>
+                </div>
+                <div class="timeline-section">
+                    <div class="timeline-card reveal">
+                        <h4>📅 The First Triumvirate (60-54 BCE)</h4>
+                        <p><strong>Secret Alliance:</strong> Caesar, Pompey, Crassus dividing power privately<br>
+                        <strong>Mutual Benefits:</strong> Caesar gets consulship, Pompey gets land for veterans, Crassus gets tax concessions<br>
+                        <strong>Conference of Luca (56 BCE):</strong> Renewed alliance, extended Caesar's command</p>
+                    </div>
+                    <div class="timeline-card reveal">
+                        <h4>💀 Crassus Dies at Carrhae (53 BCE)</h4>
+                        <p><strong>Parthian Disaster:</strong> Crassus and son killed, eagles captured<br>
+                        <strong>Political Consequence:</strong> Two-way rivalry replaces three-way balance<br>
+                        <strong>Escalating Tension:</strong> Caesar and Pompey no longer need each other</p>
+                    </div>
+                    <div class="timeline-card reveal">
+                        <h4>👥 Julia's Death (54 BCE)</h4>
+                        <p><strong>Personal Bond Broken:</strong> Caesar's daughter/Pompey's wife dies in childbirth<br>
+                        <strong>Political Impact:</strong> Family alliance dissolves<br>
+                        <strong>Pompey's Choice:</strong> Aligns with Senate against Caesar</p>
+                    </div>
+                </div>
+                <div class="military-card reveal">
+                    <h4>🚨 The Point of No Return (50 BCE)</h4>
+                    <p><strong>Senate's Ultimatum:</strong> Caesar must disband armies and return as private citizen<br>
+                    <strong>Caesar's Dilemma:</strong> Face prosecution or cross the Rubicon<br>
+                    <strong>Pompey's Confidence:</strong> "I have only to stamp my foot and Italy will fill with legions"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Caesar's Civil War -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Rubicon: Point of No Return</h2>
+                <div class="hero-section reveal">
+                    <h3>"Alea Iacta Est" - The Die is Cast</h3>
+                </div>
+                <div class="military-card reveal">
+                    <h4>⚔️ Opening Moves (49 BCE)</h4>
+                    <p><strong>January 10:</strong> Caesar crosses Rubicon with 13th Legion<br>
+                    <strong>Strategic Surprise:</strong> Rapid advance catches Pompey unprepared<br>
+                    <strong>Italian Campaign:</strong> Cities surrender without fighting<br>
+                    <strong>Pompey's Withdrawal:</strong> Strategic retreat to build forces in East</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="military-card reveal">
+                        <h3>🏃‍♂️ Caesar's Advantages</h3>
+                        <ul>
+                            <li class="reveal"><strong>Veteran Troops:</strong> Battle-tested Gallic War legions</li>
+                            <li class="reveal"><strong>Speed & Decisiveness:</strong> Rapid movement preventing enemy preparation</li>
+                            <li class="reveal"><strong>Popular Support:</strong> Debt relief and land promises</li>
+                            <li class="reveal"><strong>Military Genius:</strong> Tactical innovation and battlefield leadership</li>
+                        </ul>
+                    </div>
+                    <div class="military-card reveal">
+                        <h3>🛡️ Pompey's Strategy</h3>
+                        <ul>
+                            <li class="reveal"><strong>Numerical Superiority:</strong> Time to recruit larger forces</li>
+                            <li class="reveal"><strong>Eastern Resources:</strong> Wealthy client kingdoms and provinces</li>
+                            <li class="reveal"><strong>Naval Control:</strong> Dominance of Mediterranean sea routes</li>
+                            <li class="reveal"><strong>Senatorial Legitimacy:</strong> Legal authority of the state</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="evidence-box reveal">
+                    <h4>Strategic Miscalculation</h4>
+                    <p><strong>Pompey's Error:</strong> Underestimated Caesar's speed and Italian loyalty<br>
+                    <strong>Caesar's Risk:</strong> Attacked before Pompey could fully mobilize</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: The Battle of Pharsalus -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Pharsalus: The Republic Dies</h2>
+                <div class="central-question reveal">
+                    <h3>August 9, 48 BCE - The decisive battle</h3>
+                </div>
+                <div class="stats-box reveal">
+                    <h4>⚔️ Forces Engaged</h4>
+                    <div class="three-columns">
+                        <div>
+                            <h4>Caesar's Army</h4>
+                            <p>22,000 infantry<br>1,000 cavalry</p>
+                        </div>
+                        <div>
+                            <h4>Pompey's Army</h4>
+                            <p>45,000 infantry<br>7,000 cavalry</p>
+                        </div>
+                        <div>
+                            <h4>Result</h4>
+                            <p>Caesar: 230 casualties<br>Pompey: 15,000 dead</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="military-card reveal">
+                    <h4>🧠 Caesar's Tactical Brilliance</h4>
+                    <p><strong>Fourth Line Innovation:</strong> Hidden reserve of 6-8 cohorts behind cavalry<br>
+                    <strong>Anti-Cavalry Tactics:</strong> Soldiers instructed to target riders' faces<br>
+                    <strong>Decisive Moment:</strong> Reserve attack routed Pompey's cavalry, exposed his flank<br>
+                    <strong>Pursuit:</strong> Caesar's clemency to captured senators vs. traditional execution</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="military-card reveal">
+                        <h3>🎯 Why Caesar Won</h3>
+                        <ul>
+                            <li class="reveal">Superior tactical innovation overcoming numerical disadvantage</li>
+                            <li class="reveal">Veteran discipline vs. hastily recruited troops</li>
+                            <li class="reveal">Unified command vs. senatorial committee leadership</li>
+                            <li class="reveal">Adaptability vs. rigid traditional tactics</li>
+                        </ul>
+                    </div>
+                    <div class="military-card reveal">
+                        <h3>📉 Pompey's Failures</h3>
+                        <ul>
+                            <li class="reveal">Overconfidence in numerical superiority</li>
+                            <li class="reveal">Pressure from senators to fight prematurely</li>
+                            <li class="reveal">Failure to adapt to Caesar's innovations</li>
+                            <li class="reveal">Loss of nerve during critical moments</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>The Republic's Death:</strong> Pharsalus ended meaningful resistance to Caesar. Pompey's flight to Egypt and assassination marked the end of constitutional government and beginning of autocracy.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Caesar in Egypt and Cleopatra -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Caesar and Cleopatra: Power and Alliance</h2>
+                <div class="hero-section reveal">
+                    <h3>Strategic Partnership in Alexandria</h3>
+                </div>
+                <div class="biography-card reveal">
+                    <h4>👑 Cleopatra VII: The Last Pharaoh</h4>
+                    <p><strong>Political Genius:</strong> Sole Ptolemy to learn Egyptian, maintained independence for 20 years<br>
+                    <strong>Intellectual Achievement:</strong> Spoke 9 languages, studied mathematics and philosophy<br>
+                    <strong>Strategic Vision:</strong> Understood Roman power while preserving Egyptian sovereignty<br>
+                    <strong>Economic Control:</strong> Egypt produced 1/3 of Mediterranean's grain supply</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="biography-card reveal">
+                        <h3>🤝 Strategic Alliance</h3>
+                        <ul>
+                            <li class="reveal"><strong>Mutual Necessity:</strong> Caesar needed grain/gold, Cleopatra needed protection</li>
+                            <li class="reveal"><strong>Political Legitimacy:</strong> Roman backing vs Egyptian resources</li>
+                            <li class="reveal"><strong>Alexandrian War:</strong> Joint campaign against Ptolemy XIII</li>
+                            <li class="reveal"><strong>Caesarion:</strong> Son born 47 BCE, potential heir to both realms</li>
+                        </ul>
+                    </div>
+                    <div class="biography-card reveal">
+                        <h3>🎭 Propaganda vs Reality</h3>
+                        <ul>
+                            <li class="reveal"><strong>Roman Prejudice:</strong> "Eastern luxury" corrupting Roman virtue</li>
+                            <li class="reveal"><strong>Gender Bias:</strong> Female ruler seen as unnatural</li>
+                            <li class="reveal"><strong>Modern Scholarship:</strong> Sophisticated political partnership</li>
+                            <li class="reveal"><strong>Augustan Myth-Making:</strong> Dangerous seductress narrative</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="evidence-box reveal">
+                    <h4>Historical Reassessment</h4>
+                    <p><strong>Recent Scholarship:</strong> Cleopatra as accomplished ruler, not decorative consort<br>
+                    <strong>Political Acumen:</strong> Managed complex Mediterranean diplomacy for two decades</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Mark Antony Biography -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Marcus Antonius: Caesar's Lieutenant</h2>
+                <div class="hero-section reveal">
+                    <h3>The Man Who Nearly Inherited the World</h3>
+                </div>
+                <div class="biography-card reveal">
+                    <h4>⚔️ Military Career and Caesar's Right Hand</h4>
+                    <p><strong>Early Service:</strong> Military tribune under Gabinius in Syria<br>
+                    <strong>Gallic Wars:</strong> Caesar's cavalry commander and trusted lieutenant<br>
+                    <strong>Consul (44 BCE):</strong> Caesar's colleague during dictatorship<br>
+                    <strong>Personal Bond:</strong> Distant relative, absolute loyalty to Caesar</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="biography-card reveal">
+                        <h3>💪 Strengths</h3>
+                        <ul>
+                            <li class="reveal"><strong>Military Brilliance:</strong> "Brilliant commander" in multiple campaigns</li>
+                            <li class="reveal"><strong>Administrative Ability:</strong> Governed eastern territories effectively for 11 years</li>
+                            <li class="reveal"><strong>Popular Appeal:</strong> Soldiers' general, charismatic personality</li>
+                            <li class="reveal"><strong>Cultural Adaptation:</strong> Understood eastern politics and customs</li>
+                        </ul>
+                    </div>
+                    <div class="biography-card reveal">
+                        <h3>⚠️ Vulnerabilities</h3>
+                        <ul>
+                            <li class="reveal"><strong>Political Naïveté:</strong> Less skilled at Roman constitutional manipulation</li>
+                            <li class="reveal"><strong>Propaganda Target:</strong> "Eastern luxury" accusations</li>
+                            <li class="reveal"><strong>Parthian Failure:</strong> Disastrous campaign damaged reputation (36 BCE)</li>
+                            <li class="reveal"><strong>Octavian's Cunning:</strong> Outmaneuvered by more subtle opponent</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>Antony's Tragedy:</strong> Genuinely capable ruler undermined by Augustan propaganda that portrayed him as weak and foreign-dominated. Modern historians recognize his substantial achievements.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: The Ides of March -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Ides of March: Death of a Dictator</h2>
+                <div class="central-question reveal">
+                    <h3>March 15, 44 BCE - Republican idealism meets political reality</h3>
+                </div>
+                <div class="political-card reveal">
+                    <h4>🗡️ The Conspiracy</h4>
+                    <p><strong>60-70 Senators Involved:</strong> Led by Brutus, Cassius, and Decimus<br>
+                    <strong>Philosophical Motivation:</strong> Genuine commitment to republican principles<br>
+                    <strong>Strategic Failures:</strong> No post-assassination plan, failed to kill Antony<br>
+                    <strong>23 Wounds:</strong> Symbolic of collective senatorial responsibility</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="political-card reveal">
+                        <h3>⚖️ The Conspirators</h3>
+                        <ul>
+                            <li class="reveal"><strong>Marcus Brutus:</strong> Caesar's protégé, Stoic philosopher, descendant of Republic's founder</li>
+                            <li class="reveal"><strong>Gaius Cassius:</strong> Epicurean, practical politician, organized conspiracy</li>
+                            <li class="reveal"><strong>Decimus Brutus:</strong> Caesar's lieutenant, lured him to Senate</li>
+                            <li class="reveal"><strong>Collective Guilt:</strong> Shared responsibility preventing individual blame</li>
+                        </ul>
+                    </div>
+                    <div class="political-card reveal">
+                        <h3>💀 Fatal Mistakes</h3>
+                        <ul>
+                            <li class="reveal">Assassinated Caesar but left Mark Antony alive</li>
+                            <li class="reveal">No military support secured in advance</li>
+                            <li class="reveal">Failed to control Caesar's papers and will</li>
+                            <li class="reveal">Underestimated popular support for Caesar</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>Republican Idealism Meets Reality:</strong> The conspirators acted from genuine constitutional principles but revealed fatal political incompetence. They killed the man but not the system that created him.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Antony's Response and the Power Vacuum -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Antony Seizes the Moment</h2>
+                <div class="hero-section reveal">
+                    <h3>Political Genius in Crisis</h3>
+                </div>
+                <div class="political-card reveal">
+                    <h4>🎭 The Funeral Oration</h4>
+                    <p><strong>Masterful Theater:</strong> Displayed Caesar's bloody toga, read his will<br>
+                    <strong>Popular Rage:</strong> Mob attacked conspirators' houses, burned Senate house<br>
+                    <strong>Political Balance:</strong> Negotiated compromise - no tyranny declaration, no punishment<br>
+                    <strong>Strategic Goal:</strong> Control transition while eliminating rivals</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="political-card reveal">
+                        <h3>🧠 Antony's Advantages</h3>
+                        <ul>
+                            <li class="reveal">Caesar's consul and closest lieutenant</li>
+                            <li class="reveal">Control of Caesar's papers and treasury</li>
+                            <li class="reveal">Popular support from plebs and veterans</li>
+                            <li class="reveal">Military experience and connections</li>
+                        </ul>
+                    </div>
+                    <div class="political-card reveal">
+                        <h3>⚡ Unexpected Challenge</h3>
+                        <ul>
+                            <li class="reveal"><strong>Octavian's Arrival:</strong> 18-year-old heir claims inheritance</li>
+                            <li class="reveal"><strong>Caesar's Will:</strong> Adopted son trumps lieutenant</li>
+                            <li class="reveal"><strong>Three-Way Struggle:</strong> Antony vs. Octavian vs. Liberators</li>
+                            <li class="reveal"><strong>Constitutional Vacuum:</strong> No clear succession mechanism</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="evidence-box reveal">
+                    <h4>The Power Triangle</h4>
+                    <p><strong>Antony:</strong> Immediate control, military support<br>
+                    <strong>Octavian:</strong> Legal inheritance, Caesar's name<br>
+                    <strong>Liberators:</strong> Constitutional legitimacy, no power</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Augustus Biography - The Heir -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Gaius Octavius: The Unlikely Heir</h2>
+                <div class="hero-section reveal">
+                    <h3>From Sickly Youth to Master of the World</h3>
+                </div>
+                <div class="biography-card reveal">
+                    <h4>👶 Early Life and Caesar's Choice</h4>
+                    <p><strong>Born 63 BCE:</strong> Grandson of Caesar's sister Julia<br>
+                    <strong>Weak Constitution:</strong> Sickly child, frequent illnesses<br>
+                    <strong>Caesar's Protégé:</strong> Included in triumphs, designated heir<br>
+                    <strong>Education:</strong> Studying in Apollonia when Caesar assassinated</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="biography-card reveal">
+                        <h3>🧠 Political Genius</h3>
+                        <ul>
+                            <li class="reveal"><strong>Strategic Patience:</strong> Long-term planning over immediate gratification</li>
+                            <li class="reveal"><strong>Propaganda Master:</strong> Controlled narrative and public image</li>
+                            <li class="reveal"><strong>Coalition Building:</strong> Pragmatic alliances across political spectrum</li>
+                            <li class="reveal"><strong>Constitutional Innovation:</strong> Preserved forms while accumulating power</li>
+                        </ul>
+                    </div>
+                    <div class="biography-card reveal">
+                        <h3>⚔️ Military Development</h3>
+                        <ul>
+                            <li class="reveal"><strong>Early Weakness:</strong> No military experience at Caesar's death</li>
+                            <li class="reveal"><strong>Agrippa Alliance:</strong> Brilliant general as lifelong partner</li>
+                            <li class="reveal"><strong>Learning Process:</strong> Defeats at Philippi taught valuable lessons</li>
+                            <li class="reveal"><strong>Actium Victory:</strong> Naval superiority defeating Antony</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>Transformation:</strong> Octavian evolved from inexperienced teenager to Augustus, history's most successful autocrat. His achievement was creating sustainable imperial government while maintaining republican appearance.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: The Second Triumvirate -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Second Triumvirate: Legalized Terror</h2>
+                <div class="central-question reveal">
+                    <h3>How three men divided the Roman world</h3>
+                </div>
+                <div class="timeline-card reveal">
+                    <h4>📋 The Lex Titia (November 27, 43 BCE)</h4>
+                    <p><strong>Legal Foundation:</strong> Unlike secret First Triumvirate, this had law behind it<br>
+                    <strong>Five-Year Grant:</strong> Authority to make legislation, appoint magistrates<br>
+                    <strong>Geographic Division:</strong> Octavian (West), Antony (East), Lepidus (Africa)<br>
+                    <strong>Unlimited Power:</strong> Judicial punishment without appeal</p>
+                </div>
+                <div class="military-card reveal">
+                    <h4>💀 The Proscriptions: State Terror</h4>
+                    <div class="three-columns">
+                        <div>
+                            <h4>Senators Killed</h4>
+                            <p>~300 executed</p>
+                        </div>
+                        <div>
+                            <h4>Equites Killed</h4>
+                            <p>~2,000 executed</p>
+                        </div>
+                        <div>
+                            <h4>Most Famous</h4>
+                            <p>Cicero - head displayed</p>
+                        </div>
+                    </div>
+                    <p><strong>Method:</strong> Names posted publicly, rewards for assassination<br>
+                    <strong>Economic Motive:</strong> Property confiscations funding armies<br>
+                    <strong>Political Goal:</strong> Eliminate opposition through systematic murder</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="political-card reveal">
+                        <h3>🎯 Why It Worked</h3>
+                        <ul>
+                            <li class="reveal">Legal authority preventing constitutional challenge</li>
+                            <li class="reveal">Systematic elimination of organized opposition</li>
+                            <li class="reveal">Economic resources from confiscated property</li>
+                            <li class="reveal">Terror ensuring compliance from survivors</li>
+                        </ul>
+                    </div>
+                    <div class="political-card reveal">
+                        <h3>💔 Republican Death</h3>
+                        <ul>
+                            <li class="reveal">Constitutional government replaced by personal rule</li>
+                            <li class="reveal">Law became tool of political murder</li>
+                            <li class="reveal">Senate reduced to rubber stamp</li>
+                            <li class="reveal">Republic survived in name only</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Philippi - End of the Republic -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Philippi: The Republic's Last Stand</h2>
+                <div class="hero-section reveal">
+                    <h3>October 42 BCE - Brutus vs. the Future</h3>
+                </div>
+                <div class="stats-box reveal">
+                    <h4>⚔️ The Final Battle</h4>
+                    <div class="three-columns">
+                        <div>
+                            <h4>Republican Forces</h4>
+                            <p>19 legions<br>~100,000 men</p>
+                        </div>
+                        <div>
+                            <h4>Triumvir Forces</h4>
+                            <p>28 legions<br>~120,000 men</p>
+                        </div>
+                        <div>
+                            <h4>Decisive Factor</h4>
+                            <p>Supply lines<br>Naval control</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="military-card reveal">
+                    <h4>⚡ The Two Battles</h4>
+                    <p><strong>First Battle (October 3):</strong> Mixed results - Brutus defeated Octavian, Antony defeated Cassius<br>
+                    <strong>Cassius's Suicide:</strong> Mistakenly thought Brutus lost, killed himself<br>
+                    <strong>Three Week Pause:</strong> Pressure mounted on remaining Republicans<br>
+                    <strong>Second Battle (October 23):</strong> Brutus forced to attack, overwhelmed, committed suicide</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="military-card reveal">
+                        <h3>🏛️ Why Republicans Lost</h3>
+                        <ul>
+                            <li class="reveal">Inferior supply lines and naval support</li>
+                            <li class="reveal">Pressure from officers to fight prematurely</li>
+                            <li class="reveal">Cassius's premature suicide weakened morale</li>
+                            <li class="reveal">Triumvirs' superior resources and coordination</li>
+                        </ul>
+                    </div>
+                    <div class="military-card reveal">
+                        <h3>⚰️ End of an Era</h3>
+                        <ul>
+                            <li class="reveal">Last organized resistance to autocracy eliminated</li>
+                            <li class="reveal">Republican ideals died with Brutus</li>
+                            <li class="reveal">Future belonged to strongman competition</li>
+                            <li class="reveal">Constitutional government never seriously attempted again</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>Historical Turning Point:</strong> Philippi ended the Roman Republic as a viable political system. After this, the only question was which autocrat would rule, not whether autocracy would exist.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Division of the World -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Dividing the Mediterranean</h2>
+                <div class="central-question reveal">
+                    <h3>When two strongmen control one world</h3>
+                </div>
+                <div class="timeline-card reveal">
+                    <h4>🤝 Treaty of Brundisium (40 BCE)</h4>
+                    <p><strong>Geographic Division:</strong> Antony (East), Octavian (West), Lepidus (Africa)<br>
+                    <strong>Marriage Alliance:</strong> Antony marries Octavian's sister Octavia<br>
+                    <strong>Veteran Settlement:</strong> Both need land for demobilized soldiers<br>
+                    <strong>Temporary Peace:</strong> Neither ready for final confrontation</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="political-card reveal">
+                        <h3>🌅 Antony's Eastern Empire</h3>
+                        <ul>
+                            <li class="reveal"><strong>Wealthy Provinces:</strong> Greece, Asia, Syria, Egypt</li>
+                            <li class="reveal"><strong>Cultural Adaptation:</strong> Hellenistic royal traditions</li>
+                            <li class="reveal"><strong>Cleopatra Alliance:</strong> Political and personal partnership</li>
+                            <li class="reveal"><strong>Parthian Plans:</strong> Dreams of conquering Rome's greatest enemy</li>
+                        </ul>
+                    </div>
+                    <div class="political-card reveal">
+                        <h3>🌄 Octavian's Western Control</h3>
+                        <ul>
+                            <li class="reveal"><strong>Italy's Heart:</strong> Control of Rome and traditional center</li>
+                            <li class="reveal"><strong>Gallic Resources:</strong> Veterans and wealth from Caesar's conquests</li>
+                            <li class="reveal"><strong>Propaganda Advantage:</strong> Defender of Roman traditions</li>
+                            <li class="reveal"><strong>Administrative Building:</strong> Creating sustainable institutions</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="evidence-box reveal">
+                    <h4>Structural Instability</h4>
+                    <p><strong>Fundamental Problem:</strong> Rome could only have one master<br>
+                    <strong>Geographic Logic:</strong> East vs. West division logical but temporary<br>
+                    <strong>Personal Ambition:</strong> Both men destined for collision</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: The Path to Actium -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Final Confrontation</h2>
+                <div class="hero-section reveal">
+                    <h3>How Propaganda War Became Actual War</h3>
+                </div>
+                <div class="political-card reveal">
+                    <h4>📰 Octavian's Propaganda Campaign</h4>
+                    <p><strong>"Eastern Corruption":</strong> Antony dominated by foreign queen<br>
+                    <strong>"Roman Traditions":</strong> Octavian as defender of ancestral values<br>
+                    <strong>Legal Pretext:</strong> War declared on Cleopatra, not Roman citizen<br>
+                    <strong>Antony's Will:</strong> Published donations to Cleopatra's children</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="political-card reveal">
+                        <h3>💪 Antony's Strengths</h3>
+                        <ul>
+                            <li class="reveal">Experienced general with proven record</li>
+                            <li class="reveal">Wealthy eastern provinces and Egyptian treasury</li>
+                            <li class="reveal">Large fleet and experienced crews</li>
+                            <li class="reveal">Cleopatra's political and military support</li>
+                        </ul>
+                    </div>
+                    <div class="political-card reveal">
+                        <h3>⚠️ Critical Weaknesses</h3>
+                        <ul>
+                            <li class="reveal">Parthian disaster damaged military reputation</li>
+                            <li class="reveal">Propaganda painted him as un-Roman</li>
+                            <li class="reveal">Defections reduced his forces significantly</li>
+                            <li class="reveal">Strategic position forced desperate gamble</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>Propaganda's Power:</strong> Octavian's genius lay in making the civil war appear as foreign war - Romans vs. foreigners rather than Romans vs. Romans. This framing proved decisive.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 17: The Battle of Actium -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Actium: The World Decides</h2>
+                <div class="central-question reveal">
+                    <h3>September 2, 31 BCE - Naval battle shapes history</h3>
+                </div>
+                <div class="stats-box reveal">
+                    <h4>🚢 Naval Forces</h4>
+                    <div class="three-columns">
+                        <div>
+                            <h4>Antony's Fleet</h4>
+                            <p>500 ships<br>Heavy quinqueremes</p>
+                        </div>
+                        <div>
+                            <h4>Octavian's Fleet</h4>
+                            <p>400 ships<br>Light Liburnians</p>
+                        </div>
+                        <div>
+                            <h4>Key Factor</h4>
+                            <p>Agrippa's<br>naval genius</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="military-card reveal">
+                    <h4>⚓ The Battle Unfolds</h4>
+                    <p><strong>Strategic Situation:</strong> Agrippa cut Antony's supply lines, forced desperate breakout<br>
+                    <strong>Tactical Innovation:</strong> Smaller ships vs. larger - mobility vs. power<br>
+                    <strong>Cleopatra's Breakout:</strong> Egyptian squadron escapes with royal treasury<br>
+                    <strong>Antony's Choice:</strong> Followed Cleopatra - tactical withdrawal or personal weakness?</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="military-card reveal">
+                        <h3>🎯 Why Octavian Won</h3>
+                        <ul>
+                            <li class="reveal">Superior naval tactics under Agrippa's command</li>
+                            <li class="reveal">Better supply lines and strategic position</li>
+                            <li class="reveal">Enemy defections including battle plans</li>
+                            <li class="reveal">Coordinated strategy and unified command</li>
+                        </ul>
+                    </div>
+                    <div class="military-card reveal">
+                        <h3>💔 Antony's Collapse</h3>
+                        <ul>
+                            <li class="reveal">Fleet surrendered immediately after his departure</li>
+                            <li class="reveal">Land forces defected one week later</li>
+                            <li class="reveal">Lost naval power and reliable troops</li>
+                            <li class="reveal">Position in Egypt became untenable</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="evidence-box reveal">
+                    <h4>Modern Reassessment</h4>
+                    <p><strong>Cleopatra's "Flight":</strong> Likely planned contingency, not panic<br>
+                    <strong>Battle's Aftermath:</strong> More decisive than engagement itself</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 18: Death of Antony and Cleopatra -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Last Pharaoh</h2>
+                <div class="hero-section reveal">
+                    <h3>August 30, 30 BCE - End of an Era</h3>
+                </div>
+                <div class="timeline-card reveal">
+                    <h4>⚰️ The Final Act</h4>
+                    <p><strong>Octavian's Pursuit:</strong> Followed to Alexandria, rejected negotiations<br>
+                    <strong>Antony's Death:</strong> Suicide believing Cleopatra dead<br>
+                    <strong>Cleopatra's Choice:</strong> Refused to be paraded in triumph<br>
+                    <strong>Caesarion's Execution:</strong> Eliminated rival claim to Caesar's legacy</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="political-card reveal">
+                        <h3>👑 Cleopatra's Final Strategy</h3>
+                        <ul>
+                            <li class="reveal">Attempted to negotiate with Octavian directly</li>
+                            <li class="reveal">Sought to preserve Egyptian independence</li>
+                            <li class="reveal">Refused humiliation of Roman triumph</li>
+                            <li class="reveal">Chose death over defeat and disgrace</li>
+                        </ul>
+                    </div>
+                    <div class="political-card reveal">
+                        <h3>🏺 Historical Legacy</h3>
+                        <ul>
+                            <li class="reveal">Last independent ruler of Egypt for 2,000 years</li>
+                            <li class="reveal">End of Ptolemaic dynasty (300+ years)</li>
+                            <li class="reveal">Egypt becomes Roman province and treasury</li>
+                            <li class="reveal">Mediterranean becomes "Roman Lake"</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>The Price of Ambition:</strong> Antony and Cleopatra's deaths ended the last serious challenge to Octavian's supremacy. Their suicides eliminated both romantic partnership and political alliance that might have created alternative Mediterranean order.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 19: Augustus's Constitutional Settlement -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">The Augustan Settlement</h2>
+                <div class="central-question reveal">
+                    <h3>How to exercise autocratic power through republican institutions</h3>
+                </div>
+                <div class="imperial-card reveal">
+                    <h4>🏛️ The Fiction of Restoration (27 BCE)</h4>
+                    <p><strong>Theatrical Gesture:</strong> "Transferred the State to the free disposal of the Senate and people"<br>
+                    <strong>Real Power:</strong> Ten-year command over Spain, Gaul, Syria (where the armies were)<br>
+                    <strong>New Title:</strong> "Augustus" (revered one) - not king, but more than citizen<br>
+                    <strong>Strategic Genius:</strong> Republican forms hiding monarchical substance</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="imperial-card reveal">
+                        <h3>🎭 The First Settlement</h3>
+                        <ul>
+                            <li class="reveal">Consul annually but controlled provinces with armies</li>
+                            <li class="reveal">Senate maintained dignity but lost real power</li>
+                            <li class="reveal">Traditional magistrates continued but under imperial oversight</li>
+                            <li class="reveal">Republican vocabulary preserved imperial innovation</li>
+                        </ul>
+                    </div>
+                    <div class="imperial-card reveal">
+                        <h3>⚡ The Second Settlement (23 BCE)</h3>
+                        <ul>
+                            <li class="reveal">Resigned consulship to reduce visible dominance</li>
+                            <li class="reveal">Tribunician power for life - legislative supremacy</li>
+                            <li class="reveal">Greater proconsular power over all provinces</li>
+                            <li class="reveal">Perfect balance: maximum power, minimum offense</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="evidence-box reveal">
+                    <h4>Constitutional Genius</h4>
+                    <p><strong>Augustus's Achievement:</strong> Created sustainable autocracy through republican terminology<br>
+                    <strong>Historical Model:</strong> Influenced constitutional monarchies for centuries</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 20: Imperial Innovations -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Building the Imperial System</h2>
+                <div class="hero-section reveal">
+                    <h3>Institutional Innovations That Lasted Centuries</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="imperial-card reveal">
+                        <h3>🛡️ Military Reforms</h3>
+                        <ul>
+                            <li class="reveal"><strong>28 Professional Legions:</strong> Reduced from 60 post-civil war</li>
+                            <li class="reveal"><strong>Praetorian Guard:</strong> Imperial protection in Rome</li>
+                            <li class="reveal"><strong>Aerarium Militare:</strong> Military treasury for veteran pensions</li>
+                            <li class="reveal"><strong>25-Year Service:</strong> Professional soldiers with imperial loyalty</li>
+                        </ul>
+                    </div>
+                    <div class="imperial-card reveal">
+                        <h3>🏛️ Administrative System</h3>
+                        <ul>
+                            <li class="reveal"><strong>Dual Provinces:</strong> Imperial (with armies) vs. Senatorial</li>
+                            <li class="reveal"><strong>Imperial Bureaucracy:</strong> Knights and freedmen as administrators</li>
+                            <li class="reveal"><strong>Regular Census:</strong> Systematic population and resource tracking</li>
+                            <li class="reveal"><strong>Fixed Taxation:</strong> Replaced corrupt publicani with imperial collectors</li>
+                        </ul>
+                    </div>
+                    <div class="imperial-card reveal">
+                        <h3>⚖️ Legal and Social</h3>
+                        <ul>
+                            <li class="reveal"><strong>Leges Iuliae:</strong> Marriage and moral legislation</li>
+                            <li class="reveal"><strong>Imperial Court:</strong> Justice system under emperor's authority</li>
+                            <li class="reveal"><strong>Citizenship Expansion:</strong> Gradual extension throughout empire</li>
+                            <li class="reveal"><strong>Cultural Integration:</strong> Local traditions within Roman framework</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>Systematic Solution:</strong> Augustus addressed every structural problem that had destroyed the Republic while maintaining constitutional continuity. His innovations created governmental framework lasting centuries.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 21: The Revolutionary Paradox -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Revolution Disguised as Restoration</h2>
+                <div class="central-question reveal">
+                    <h3>How Augustus preserved republicanism by destroying it</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🔥 Revolutionary Changes</h3>
+                        <ul>
+                            <li class="reveal">Personal rule replaced collective government</li>
+                            <li class="reveal">Professional army loyal to emperor, not state</li>
+                            <li class="reveal">Imperial bureaucracy superseded senatorial administration</li>
+                            <li class="reveal">Dynastic succession planned through adoption</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🏛️ Conservative Preservation</h3>
+                        <ul>
+                            <li class="reveal">Senate continued with ceremonial dignity</li>
+                            <li class="reveal">Traditional magistrates maintained their offices</li>
+                            <li class="reveal">Republican vocabulary preserved imperial innovation</li>
+                            <li class="reveal">Constitutional forms adapted rather than abolished</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="political-card reveal">
+                    <h4>🧠 Augustus's Genius</h4>
+                    <p><strong>Psychological Insight:</strong> Romans needed to believe Republic continued<br>
+                    <strong>Political Innovation:</strong> Monarchical power through republican institutions<br>
+                    <strong>Historical Model:</strong> Template for constitutional monarchy<br>
+                    <strong>Lasting Success:</strong> System survived three centuries of challenges</p>
+                </div>
+                <div class="evidence-box reveal">
+                    <h4>Tacitus's Observation</h4>
+                    <p><strong>By 14 CE:</strong> "Younger generations had never known any form of government other than the principate"<br>
+                    <strong>Revolutionary Success:</strong> New system became traditional</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 22: Historical Significance -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Why This Transformation Matters</h2>
+                <div class="hero-section reveal">
+                    <h3>Lessons for Understanding Political Change</h3>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card reveal">
+                        <h3>🏛️ Institutional Lessons</h3>
+                        <ul>
+                            <li class="reveal">Democratic institutions vulnerable to extreme inequality</li>
+                            <li class="reveal">Professional armies create political instability</li>
+                            <li class="reveal">Constitutional forms can survive while substance changes</li>
+                            <li class="reveal">Successful autocracy requires legitimate appearance</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🧠 Leadership Insights</h3>
+                        <ul>
+                            <li class="reveal">Individual decisions shape historical outcomes</li>
+                            <li class="reveal">Political genius combines vision with pragmatism</li>
+                            <li class="reveal">Propaganda as powerful as military force</li>
+                            <li class="reveal">Long-term thinking defeats short-term advantages</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card reveal">
+                        <h3>🌍 Civilizational Impact</h3>
+                        <ul>
+                            <li class="reveal">Mediterranean unity under single authority</li>
+                            <li class="reveal">Legal and administrative innovations</li>
+                            <li class="reveal">Cultural synthesis of Greek, Roman, Eastern traditions</li>
+                            <li class="reveal">Model for subsequent European development</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="narrative-thread reveal">
+                    <p><strong>Enduring Relevance:</strong> The Roman transformation demonstrates how republican institutions can be subverted by ambitious leaders exploiting structural vulnerabilities, while showing that successful political change requires both revolutionary substance and conservative packaging.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 23: The Narrative Threads -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="reveal">Connecting the Threads</h2>
+                <div class="central-question reveal">
+                    <h3>How individual ambition and structural pressure created inevitable transformation</h3>
+                </div>
+                <div class="timeline-section">
+                    <div class="timeline-card reveal">
+                        <h4>📈 Economic Foundation</h4>
+                        <p><strong>Wealth Inequality:</strong> Conquest created unprecedented disparity<br>
+                        <strong>Military Professionalization:</strong> Armies loyal to commanders, not state<br>
+                        <strong>Administrative Overstretch:</strong> City-state institutions governing continental empire</p>
+                    </div>
+                    <div class="timeline-card reveal">
+                        <h4>⚔️ Military Revolution</h4>
+                        <p><strong>Marian Reforms:</strong> Professional soldiers dependent on generals<br>
+                        <strong>Extended Commands:</strong> Territorial requirements violating constitutional limits<br>
+                        <strong>Civil War Precedent:</strong> Roman armies fighting Roman armies</p>
+                    </div>
+                    <div class="timeline-card reveal">
+                        <h4>👑 Political Innovation</h4>
+                        <p><strong>Individual Genius:</strong> Caesar, Antony, Augustus adapting to opportunities<br>
+                        <strong>Constitutional Adaptation:</strong> New problems requiring new solutions<br>
+                        <strong>Sustainable Autocracy:</strong> Imperial power through republican forms</p>
+                    </div>
+                </div>
+                <div class="evidence-box reveal">
+                    <h4>Historical Synthesis</h4>
+                    <p><strong>Structural + Individual:</strong> Problems created opportunities, exceptional leaders seized them<br>
+                    <strong>Revolution + Restoration:</strong> Radical change through conservative vocabulary</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Slide: Conclusion -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="hero-section">
+                    <h1 class="auto-reveal">From Republic to Empire</h1>
+                    <h2 class="auto-reveal">The Roman Revolution</h2>
+                    <div class="auto-reveal" style="margin-top: 3rem;">
+                        <h3>Success created the problems that only autocracy could solve</h3>
+                    </div>
+                    <div class="narrative-thread auto-reveal" style="margin-top: 2rem;">
+                        <p><strong>The Roman Achievement:</strong> Created governmental system that preserved republican traditions while exercising imperial power - a model that influenced Western civilization for millennia and continues to shape our understanding of political transformation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()" title="Previous element (←)">←</button>
+        <button class="nav-btn" onclick="nextSlide()" title="Next element (→)">→</button>
+    </div>
+
+    <!-- Vocabulary Toggle -->
+    <div class="vocabulary-toggle" onclick="toggleVocabulary()" title="Vocabulary (tab)">📚 Terms</div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        let revealIndex = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            revealIndex = 0;
+            resetReveals();
+        }
+
+        function nextSlide() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal:not(.show)');
+            if (reveals.length > 0) {
+                revealNext();
+            } else if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal.show');
+            if (reveals.length > 0) {
+                hideReveal();
+            } else if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+                revealAll();
+            }
+        }
+
+        function nextPage() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousPage() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        function revealNext() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            if (revealIndex < reveals.length) {
+                reveals[revealIndex].classList.add('show');
+                revealIndex++;
+            }
+        }
+
+        function hideReveal() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            if (revealIndex > 0) {
+                revealIndex--;
+                reveals[revealIndex].classList.remove('show');
+            }
+        }
+
+        function revealAll() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            reveals.forEach(reveal => reveal.classList.add('show'));
+            revealIndex = reveals.length;
+        }
+
+        function resetReveals() {
+            const reveals = slides[currentSlide].querySelectorAll('.reveal');
+            reveals.forEach(reveal => reveal.classList.remove('show'));
+        }
+
+        function toggleVocabulary() {
+            // Placeholder for vocabulary functionality
+            console.log('Vocabulary toggle functionality would be implemented here');
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    previousSlide();
+                    break;
+                case '.':
+                    e.preventDefault();
+                    nextPage();
+                    break;
+                case ',':
+                    e.preventDefault();
+                    previousPage();
+                    break;
+                case 'Enter':
+                    e.preventDefault();
+                    revealAll();
+                    break;
+                case 'Tab':
+                    e.preventDefault();
+                    toggleVocabulary();
+                    break;
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

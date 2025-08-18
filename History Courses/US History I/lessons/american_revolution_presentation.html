@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4: The American Revolution (1775-1783)</title>
+    <style>
+        /* Using the project's presentation framework CSS with American Revolution theme */
+        :root {
+            --hue: 210;
+            --sat: 45%;
+            --light: 35%;
+            
+            --primary: hsl(var(--hue) var(--sat) var(--light));
+            --secondary: hsl(calc(var(--hue) + 40) var(--sat) calc(var(--light) + 15%));
+            --accent: hsl(calc(var(--hue) + 80) calc(var(--sat) + 20%) calc(var(--light) + 25%));
+            --highlight: hsl(calc(var(--hue) + 120) calc(var(--sat) + 30%) calc(var(--light) + 35%));
+            --text: white;
+            
+            --success: hsl(120 50% 45%);
+            --warning: hsl(45 80% 55%);
+            --danger: hsl(0 70% 50%);
+            --info: hsl(210 70% 55%);
+            
+            --s: 0.5rem; --m: 1rem; --l: 2rem; --xl: 4rem;
+            
+            --font-base: 20px;
+            --font-xs: 0.8rem; --font-sm: 0.9rem; --font-md: 1rem;
+            --font-lg: 1.2rem; --font-xl: 2rem; --font-xxl: 3rem;
+            
+            --radius: 15px;
+            --shadow: 0 10px 30px hsl(0 0% 0% / 0.3);
+            --blur: blur(10px);
+            --transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            --glass: hsl(255 255 255 / 0.1);
+            --border: 1px solid hsl(255 255 255 / 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { font-size: var(--font-base); }
+        body { 
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        .presentation {
+            min-block-size: 100vh;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            overflow-x: hidden;
+        }
+
+        .slide {
+            min-block-size: 100vh;
+            padding: var(--xl);
+            display: none;
+            
+            &.active { display: block; }
+        }
+
+        .slide.active { display: block; }
+
+        .slide-content {
+            max-inline-size: 1200px;
+            margin-inline: auto;
+            text-align: center;
+        }
+
+        .t-1 { font-size: var(--font-xxl); font-weight: 700; }
+        .t-2 { font-size: var(--font-xl); font-weight: 600; }
+        .t-3 { font-size: var(--font-lg); font-weight: 600; }
+        .t-4 { font-size: var(--font-md); font-weight: 500; }
+
+        .t-grad {
+            background: linear-gradient(45deg, var(--highlight), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .t-shadow { text-shadow: 2px 2px 4px hsl(0 0% 0% / 0.3); }
+        .t-center { text-align: center; }
+        .t-left { text-align: start; }
+        .t-muted { opacity: 0.8; }
+
+        .grid {
+            display: grid;
+            gap: var(--l);
+            margin-block: var(--l);
+        }
+
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-auto { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+        .flex {
+            display: flex;
+            gap: var(--m);
+        }
+
+        .flex-center { justify-content: center; align-items: center; }
+        .flex-between { justify-content: space-between; }
+        .flex-col { flex-direction: column; }
+        .flex-wrap { flex-wrap: wrap; }
+
+        .stack > * + * { margin-block-start: var(--m); }
+
+        .box {
+            padding: var(--l);
+            border-radius: var(--radius);
+            margin-block: var(--l);
+            background: var(--glass);
+            backdrop-filter: var(--blur);
+            border: var(--border);
+        }
+
+        .box.solid { background: var(--primary); box-shadow: var(--shadow); }
+        .box.gradient { background: linear-gradient(45deg, var(--info), var(--primary)); }
+        .box.success { background: hsl(120 50% 45% / 0.2); border-color: var(--success); }
+        .box.warning { background: hsl(45 80% 55% / 0.2); border-color: var(--warning); }
+        .box.danger { background: hsl(0 70% 50% / 0.2); border-color: var(--danger); }
+        .box.info { background: hsl(210 70% 55% / 0.2); border-color: var(--info); }
+
+        .box.quote {
+            border-left: 4px solid var(--accent);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            font-style: italic;
+            background: hsl(var(--hue) var(--sat) calc(var(--light) + 10%) / 0.3);
+        }
+
+        .box.timeline {
+            background: linear-gradient(45deg, hsl(200 20% 25%), hsl(200 20% 40%));
+            color: var(--text);
+        }
+
+        .card {
+            padding: var(--l);
+            border-radius: var(--radius);
+            margin-block: var(--l);
+            background: var(--glass);
+            backdrop-filter: var(--blur);
+            border: var(--border);
+            text-align: start;
+        }
+
+        .card-title {
+            font-size: var(--font-lg);
+            color: var(--highlight);
+            margin-block-end: var(--m);
+            text-align: center;
+        }
+
+        .card ul { list-style: none; }
+
+        .card li {
+            margin-block: var(--s);
+            padding-inline-start: 1.5rem;
+            position: relative;
+            font-size: var(--font-sm);
+        }
+
+        .card li::before {
+            content: "▶";
+            position: absolute;
+            inset-inline-start: 0;
+            color: var(--accent);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .reveal.shown {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn {
+            padding: var(--s) var(--m);
+            border: none;
+            border-radius: calc(var(--radius) / 2);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: var(--font-sm);
+        }
+
+        .btn.primary {
+            background: var(--highlight);
+            color: var(--primary);
+        }
+
+        .btn.primary:hover { transform: scale(1.05); }
+
+        .btn.ghost {
+            background: transparent;
+            border: 2px solid var(--highlight);
+            color: var(--highlight);
+        }
+
+        .btn.ghost:hover { background: var(--highlight); color: var(--primary); }
+
+        .ui {
+            position: fixed;
+            z-index: 1000;
+            background: hsl(0 0% 0% / 0.5);
+            backdrop-filter: var(--blur);
+            border-radius: calc(var(--radius) / 2);
+            padding: var(--s);
+            font-size: var(--font-xs);
+            transition: opacity 0.3s ease;
+        }
+
+        .ui.hidden { opacity: 0; pointer-events: none; }
+
+        .ui-controls { 
+            inset-block-end: var(--m); 
+            inset-inline-end: var(--m); 
+            display: none; /* Hide controls */
+        }
+        .ui-status { inset-block-start: var(--m); inset-inline-end: var(--m); }
+        .ui-nav { inset-block-end: var(--m); inset-inline-start: 50%; transform: translateX(-50%); }
+        .ui-vocab { 
+            inset-block-start: var(--m); 
+            inset-inline-start: var(--m); /* Move to top left */
+        }
+
+        .dots {
+            display: flex;
+            gap: var(--s);
+        }
+
+        .dots-dot {
+            inline-size: 12px;
+            block-size: 12px;
+            border-radius: 50%;
+            background: hsl(255 255 255 / 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .dots-dot.active {
+            background: var(--highlight);
+            transform: scale(1.2);
+        }
+
+        .popup {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: none;
+        }
+
+        .popup.visible { display: flex; }
+
+        .popup-overlay {
+            position: absolute;
+            inset: 0;
+            background: hsl(0 0% 0% / 0.5);
+        }
+
+        .popup-content {
+            position: relative;
+            margin: auto;
+            max-inline-size: 600px;
+            max-block-size: 80vh;
+            overflow-y: auto;
+            background: var(--primary);
+            border: 2px solid var(--highlight);
+            border-radius: var(--radius);
+            padding: var(--l);
+            box-shadow: var(--shadow);
+        }
+
+        .vocab-term {
+            margin-block-end: var(--m);
+            padding-block-end: var(--m);
+            border-block-end: 1px solid hsl(255 255 255 / 0.2);
+        }
+
+        .vocab-term:last-child { border-block-end: none; }
+
+        .vocab-word {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: var(--font-md);
+        }
+
+        .vocab-def {
+            margin-block-start: var(--s);
+        }
+
+        .sr-only {
+            position: absolute;
+            inline-size: 1px;
+            block-size: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .mb-0 { margin-block-end: 0; }
+        .mb-s { margin-block-end: var(--s); }
+        .mb-m { margin-block-end: var(--m); }
+        .mb-l { margin-block-end: var(--l); }
+
+        .mt-0 { margin-block-start: 0; }
+        .mt-s { margin-block-start: var(--s); }
+        .mt-m { margin-block-start: var(--m); }
+        .mt-l { margin-block-start: var(--l); }
+
+        /* Custom styles for Revolutionary War content */
+        .battle-card {
+            background: linear-gradient(45deg, hsl(200 30% 30%), hsl(200 30% 45%));
+            border: 2px solid var(--accent);
+            padding: var(--m);
+            border-radius: var(--radius);
+            margin: var(--s);
+        }
+
+        .battle-name {
+            font-weight: 700;
+            color: var(--highlight);
+            font-size: var(--font-lg);
+        }
+
+        .battle-date {
+            color: var(--accent);
+            font-size: var(--font-sm);
+            font-style: italic;
+        }
+
+        .battle-outcome {
+            margin-top: var(--s);
+            font-size: var(--font-sm);
+        }
+
+        .phase-timeline {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--l);
+            margin: var(--l) 0;
+        }
+
+        .phase-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: 2px solid var(--highlight);
+            padding: var(--l);
+            border-radius: var(--radius);
+            text-align: center;
+        }
+
+        .phase-title {
+            font-size: var(--font-lg);
+            font-weight: 700;
+            color: var(--highlight);
+            margin-bottom: var(--m);
+        }
+
+        .phase-years {
+            font-size: var(--font-md);
+            color: var(--accent);
+            font-style: italic;
+            margin-bottom: var(--m);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--m);
+            margin: var(--l) 0;
+        }
+
+        .stat-card {
+            background: var(--glass);
+            border: var(--border);
+            padding: var(--l);
+            border-radius: var(--radius);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: var(--font-xl);
+            font-weight: 700;
+            color: var(--highlight);
+        }
+
+        .stat-label {
+            color: var(--accent);
+            font-size: var(--font-sm);
+            margin-top: var(--s);
+        }
+
+        @media (max-width: 768px) {
+            .grid-3, .grid-2 { grid-template-columns: 1fr; }
+            .phase-timeline { grid-template-columns: 1fr; }
+            .slide { padding: var(--l); }
+            .t-1 { font-size: var(--font-xl); }
+            .t-2 { font-size: var(--font-lg); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        @media print {
+            .ui, .popup { display: none !important; }
+            .slide { display: block !important; page-break-after: always; }
+            .reveal { opacity: 1 !important; transform: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="slide-content">
+                <h1 class="t-1 t-grad t-shadow">Chapter 4: The American Revolution</h1>
+                <h2 class="t-2 t-center mt-l">1775-1783: From Colonial Rebellion to Independent Nation</h2>
+                <div class="box gradient mt-l">
+                    <p class="t-3">Essential Question: How did thirteen separate colonies successfully fight the world's most powerful empire and create a new nation?</p>
+                </div>
+                <div class="reveal">
+                    <div class="stat-grid mt-l">
+                        <div class="stat-card">
+                            <div class="stat-number">8</div>
+                            <div class="stat-label">Years of War</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">~25,000</div>
+                            <div class="stat-label">American Deaths</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">4</div>
+                            <div class="stat-label">Major European Powers</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">13</div>
+                            <div class="stat-label">Colonies Gained Independence</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Road to War -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="t-2 t-center">The Road to War: From Protest to Armed Conflict</h2>
+                <div class="reveal">
+                    <div class="box timeline mt-l">
+                        <h3 class="t-3 mb-m">Key Events Leading to War</h3>
+                        <div class="grid-2">
+                            <div class="card">
+                                <div class="card-title">1773-1774</div>
+                                <ul>
+                                    <li>Boston Tea Party (December 1773)</li>
+                                    <li>Intolerable Acts punish Massachusetts</li>
+                                    <li>First Continental Congress meets</li>
+                                    <li>Colonial boycotts increase</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <div class="card-title">1774-1775</div>
+                                <ul>
+                                    <li>Militias prepare in New England</li>
+                                    <li>British troops sent to Boston</li>
+                                    <li>Patrick Henry: "Give me liberty or give me death!"</li>
+                                    <li>Lexington and Concord (April 19, 1775)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box quote mt-l">
+                        <p class="t-3">"The shot heard 'round the world" - Ralph Waldo Emerson describing Lexington and Concord</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Three Phases Overview -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="t-2 t-center">Three Phases of the Revolutionary War</h2>
+                <div class="reveal">
+                    <div class="phase-timeline">
+                        <div class="phase-card">
+                            <div class="phase-title">Phase 1: New England Focus</div>
+                            <div class="phase-years">(1775-1776)</div>
+                            <p>War begins around Boston; British try to crush rebellion quickly; Americans struggle to organize Continental Army</p>
+                        </div>
+                        <div class="phase-card">
+                            <div class="phase-title">Phase 2: Middle Colonies</div>
+                            <div class="phase-years">(1776-1778)</div>
+                            <p>British focus on New York and Philadelphia; Washington's survival strategy; French alliance transforms conflict</p>
+                        </div>
+                        <div class="phase-card">
+                            <div class="phase-title">Phase 3: Southern Strategy</div>
+                            <div class="phase-years">(1778-1781)</div>
+                            <p>British shift to South seeking Loyalist support; guerrilla warfare intensifies; French naval power enables victory</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box info mt-l">
+                        <h3 class="t-3 t-center">Key Strategic Turning Point</h3>
+                        <p class="t-center">French entry in 1778 transforms colonial rebellion into global conflict, forcing Britain to defend empire worldwide</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Phase 1 - New England -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="t-2 t-center">Phase 1: New England Focus (1775-1776)</h2>
+                <div class="reveal">
+                    <div class="grid-2 mt-l">
+                        <div class="battle-card">
+                            <div class="battle-name">Bunker Hill</div>
+                            <div class="battle-date">June 17, 1775</div>
+                            <div class="battle-outcome">
+                                <p><strong>Outcome:</strong> British victory but massive casualties</p>
+                                <p><strong>Significance:</strong> Proved Americans could fight; "Don't fire until you see the whites of their eyes"</p>
+                            </div>
+                        </div>
+                        <div class="battle-card">
+                            <div class="battle-name">Siege of Boston</div>
+                            <div class="battle-date">April 1775 - March 1776</div>
+                            <div class="battle-outcome">
+                                <p><strong>Outcome:</strong> British evacuation of Boston</p>
+                                <p><strong>Significance:</strong> First major American strategic victory; Washington proves leadership</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box success mt-l">
+                        <h3 class="t-3 t-center">Continental Army Formation</h3>
+                        <p class="t-center">George Washington appointed Commander-in-Chief; creates professional army from militia volunteers</p>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box gradient mt-l">
+                        <h3 class="t-3 t-center">Declaration of Independence (July 4, 1776)</h3>
+                        <p class="t-center">Transforms military rebellion into war for independence; enables diplomatic efforts for international support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Declaration Analysis -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="t-2 t-center">The Declaration of Independence: Revolutionary Ideas</h2>
+                <div class="reveal">
+                    <div class="box quote mt-l">
+                        <p class="t-3">"We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness."</p>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="grid-3 mt-l">
+                        <div class="card">
+                            <div class="card-title">Natural Rights Theory</div>
+                            <ul>
+                                <li>Rights come from God/nature, not government</li>
+                                <li>Government exists to protect rights</li>
+                                <li>People can change government if it fails</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">List of Grievances</div>
+                            <ul>
+                                <li>Taxation without representation</li>
+                                <li>Cutting off trade with other nations</li>
+                                <li>Imposing taxes without consent</li>
+                                <li>Keeping standing armies in peacetime</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">Global Impact</div>
+                            <ul>
+                                <li>Inspired French Revolution</li>
+                                <li>Model for Latin American independence</li>
+                                <li>Challenged monarchy worldwide</li>
+                                <li>Foundation of human rights thinking</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Phase 2 - Middle Colonies -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="t-2 t-center">Phase 2: Fight for Middle Colonies (1776-1778)</h2>
+                <div class="reveal">
+                    <div class="grid-2 mt-l">
+                        <div class="battle-card">
+                            <div class="battle-name">New York Campaign</div>
+                            <div class="battle-date">Summer-Fall 1776</div>
+                            <div class="battle-outcome">
+                                <p><strong>Battle of Long Island:</strong> Massive British victory</p>
+                                <p><strong>Result:</strong> Washington retreats across New Jersey</p>
+                                <p><strong>Significance:</strong> Shows British conventional military superiority</p>
+                            </div>
+                        </div>
+                        <div class="battle-card">
+                            <div class="battle-name">Trenton & Princeton</div>
+                            <div class="battle-date">December 1776 - January 1777</div>
+                            <div class="battle-outcome">
+                                <p><strong>Washington Crosses Delaware</strong></p>
+                                <p><strong>Result:</strong> Surprise victories boost morale</p>
+                                <p><strong>Significance:</strong> Saves Revolution from collapse</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box warning mt-l">
+                        <h3 class="t-3 t-center">Crisis of Winter 1776</h3>
+                        <p class="t-center">Continental Army nearly dissolves; Thomas Paine writes "The Crisis": "These are the times that try men's souls"</p>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box success mt-l">
+                        <h3 class="t-3 t-center">Battle of Saratoga (October 1777)</h3>
+                        <p class="t-center">American victory captures entire British army under Burgoyne; convinces France to join the war</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: French Alliance -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="t-2 t-center">The French Alliance: Game Changer</h2>
+                <div class="reveal">
+                    <div class="box info mt-l">
+                        <h3 class="t-3 t-center">Treaty of Alliance (February 6, 1778)</h3>
+                        <p class="t-center">France officially recognizes American independence and declares war on Britain</p>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="grid-2 mt-l">
+                        <div class="card">
+                            <div class="card-title">Why France Helped</div>
+                            <ul>
+                                <li>Revenge for Seven Years' War losses</li>
+                                <li>Weaken British global power</li>
+                                <li>Philosophical support for liberty</li>
+                                <li>Economic opportunity in America</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">French Contributions</div>
+                            <ul>
+                                <li>Navy to challenge British control of seas</li>
+                                <li>Military supplies and weapons</li>
+                                <li>Experienced officers like Lafayette</li>
+                                <li>Financial loans and support</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box gradient mt-l">
+                        <h3 class="t-3 t-center">Valley Forge Winter (1777-1778)</h3>
+                        <p class="t-center">Continental Army survives brutal winter; Baron von Steuben provides military training; emerges as disciplined force</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Phase 3 - Southern Strategy -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="t-2 t-center">Phase 3: Southern Campaign (1778-1781)</h2>
+                <div class="reveal">
+                    <div class="box info mt-l">
+                        <h3 class="t-3 t-center">British Southern Strategy</h3>
+                        <p class="t-center">British believe Southern colonies have more Loyalist support and can be conquered more easily</p>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="grid-2 mt-l">
+                        <div class="battle-card">
+                            <div class="battle-name">Charleston Falls</div>
+                            <div class="battle-date">May 12, 1780</div>
+                            <div class="battle-outcome">
+                                <p><strong>Result:</strong> Patriot militia destroys Loyalist force</p>
+                                <p><strong>Impact:</strong> Turns tide in South Carolina</p>
+                                <p><strong>Significance:</strong> Shows effectiveness of guerrilla warfare</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box success mt-l">
+                        <h3 class="t-3 t-center">Guerrilla Warfare in the South</h3>
+                        <p class="t-center">Francis Marion ("Swamp Fox") and other leaders use hit-and-run tactics against British forces</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Battle of Cowpens -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="t-2 t-center">Battle of Cowpens: Tactical Masterpiece</h2>
+                <div class="reveal">
+                    <div class="box timeline mt-l">
+                        <h3 class="t-3 t-center">January 17, 1781</h3>
+                        <p class="t-center">Daniel Morgan's brilliant tactical plan defeats British force under Banastre Tarleton</p>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="grid-3 mt-l">
+                        <div class="card">
+                            <div class="card-title">Morgan's Strategy</div>
+                            <ul>
+                                <li>Three lines of defense</li>
+                                <li>Militia fires two volleys, then retreats</li>
+                                <li>Continental regulars hold center</li>
+                                <li>Cavalry flanks British at key moment</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">British Mistakes</div>
+                            <ul>
+                                <li>Tarleton attacks without reconnaissance</li>
+                                <li>Assumes militia retreat means victory</li>
+                                <li>Pursues into trap</li>
+                                <li>Loses discipline in pursuit</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">Results</div>
+                            <ul>
+                                <li>British force nearly destroyed</li>
+                                <li>Boosts American morale in South</li>
+                                <li>Shows effective use of militia</li>
+                                <li>Forces Cornwallis to pursue Greene</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box quote mt-l">
+                        <p class="t-3">"The Battle of Cowpens was the turning point of the war in the South" - Historian John Buchanan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Road to Yorktown -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="t-2 t-center">The Road to Yorktown</h2>
+                <div class="reveal">
+                    <div class="box timeline mt-l">
+                        <h3 class="t-3 t-center">Cornwallis's Fatal Decision</h3>
+                        <p class="t-center">After costly victories in North Carolina, Cornwallis moves to Virginia seeking decisive battle</p>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="grid-2 mt-l">
+                        <div class="card">
+                            <div class="card-title">American Strategy</div>
+                            <ul>
+                                <li>Washington and Rochambeau coordinate</li>
+                                <li>French fleet controls Chesapeake Bay</li>
+                                <li>American and French armies converge</li>
+                                <li>Siege tactics force British surrender</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">British Problems</div>
+                            <ul>
+                                <li>Cornwallis isolated at Yorktown</li>
+                                <li>British fleet defeated at sea</li>
+                                <li>No reinforcements can arrive</li>
+                                <li>Siege weapons destroy defenses</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box warning mt-l">
+                        <h3 class="t-3 t-center">The Siege Begins</h3>
+                        <p class="t-center">September 28, 1781: Combined American-French force of 17,000 surrounds 8,000 British troops</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Victory at Yorktown -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="t-2 t-center">Victory at Yorktown: October 19, 1781</h2>
+                <div class="reveal">
+                    <div class="box success mt-l">
+                        <h3 class="t-3 t-center">Cornwallis Surrenders</h3>
+                        <p class="t-center">British General Cornwallis surrenders entire army; effectively ends major fighting in Revolutionary War</p>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="stat-grid mt-l">
+                        <div class="stat-card">
+                            <div class="stat-number">17,000</div>
+                            <div class="stat-label">Allied Troops</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">8,000</div>
+                            <div class="stat-label">British Troops Captured</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">19</div>
+                            <div class="stat-label">Days of Siege</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">1</div>
+                            <div class="stat-label">War Effectively Ended</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box quote mt-l">
+                        <p class="t-3">"The World Turned Upside Down" - Song reportedly played as British troops marched out to surrender</p>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box info mt-l">
+                        <h3 class="t-3 t-center">International Cooperation</h3>
+                        <p class="t-center">Victory shows successful cooperation between American Continental Army, French regulars, and French naval forces</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Why Americans Won -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="t-2 t-center">Why Did the Americans Win?</h2>
+                <div class="reveal">
+                    <div class="grid-2 mt-l">
+                        <div class="card">
+                            <div class="card-title">American Advantages</div>
+                            <ul>
+                                <li><strong>Home field advantage:</strong> Fighting on familiar territory</li>
+                                <li><strong>Motivation:</strong> Fighting for independence and liberty</li>
+                                <li><strong>Leadership:</strong> Washington's strategic patience</li>
+                                <li><strong>Geography:</strong> Vast territory hard to control</li>
+                                <li><strong>Guerrilla tactics:</strong> Effective irregular warfare</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">British Disadvantages</div>
+                            <ul>
+                                <li><strong>Distance:</strong> 3,000 miles from home base</li>
+                                <li><strong>Cost:</strong> Expensive to maintain large army</li>
+                                <li><strong>Multiple enemies:</strong> France, Spain, Netherlands</li>
+                                <li><strong>Public opinion:</strong> War unpopular in Britain</li>
+                                <li><strong>Strategy:</strong> No clear plan for victory</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box gradient mt-l">
+                        <h3 class="t-3 t-center">French Alliance: The Decisive Factor</h3>
+                        <p class="t-center">French naval power, military supplies, and financial support transformed colonial rebellion into winnable war</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Treaty of Paris 1783 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="t-2 t-center">Treaty of Paris 1783: Peace and Independence</h2>
+                <div class="reveal">
+                    <div class="box success mt-l">
+                        <h3 class="t-3 t-center">Signed September 3, 1783</h3>
+                        <p class="t-center">Formal end to Revolutionary War; Britain recognizes American independence</p>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="grid-3 mt-l">
+                        <div class="card">
+                            <div class="card-title">American Gains</div>
+                            <ul>
+                                <li>Independence officially recognized</li>
+                                <li>Territory from Atlantic to Mississippi River</li>
+                                <li>Fishing rights off Newfoundland</li>
+                                <li>British troops withdraw from America</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">American Obligations</div>
+                            <ul>
+                                <li>Pay debts to British merchants</li>
+                                <li>Return Loyalist property</li>
+                                <li>No persecution of Loyalists</li>
+                                <li>Restore civil rights to Loyalists</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">Unresolved Issues</div>
+                            <ul>
+                                <li>Native American land rights ignored</li>
+                                <li>Slavery continues unchanged</li>
+                                <li>Western boundary disputes</li>
+                                <li>British forts remain in Northwest</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box warning mt-l">
+                        <h3 class="t-3 t-center">Challenges Ahead</h3>
+                        <p class="t-center">Independence achieved, but new nation must now create effective government and deal with massive war debts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Social Impact of the Revolution -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="t-2 t-center">Social Impact: Who Won and Lost?</h2>
+                <div class="reveal">
+                    <div class="grid-2 mt-l">
+                        <div class="card">
+                            <div class="card-title">Winners</div>
+                            <ul>
+                                <li><strong>White male property owners:</strong> Political power and representation</li>
+                                <li><strong>Merchants and traders:</strong> New economic opportunities</li>
+                                <li><strong>Some women:</strong> Temporary expanded roles during war</li>
+                                <li><strong>Some free blacks:</strong> Fought for freedom, gained respect</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">Losers</div>
+                            <ul>
+                                <li><strong>Native Americans:</strong> Lost land and British protection</li>
+                                <li><strong>Enslaved people:</strong> Slavery continued and expanded</li>
+                                <li><strong>Loyalists:</strong> Property confiscated, forced to leave</li>
+                                <li><strong>Women:</strong> Lost wartime roles, remained without political rights</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box info mt-l">
+                        <h3 class="t-3 t-center">Revolutionary Ideals vs. Reality</h3>
+                        <p class="t-center">Declaration's promise of equality conflicts with continued slavery, limited women's rights, and Native American displacement</p>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box quote mt-l">
+                        <p class="t-3">"All men are created equal" - but this equality was initially limited to white male property owners</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: African Americans in the Revolution -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="t-2 t-center">African Americans and the Revolution</h2>
+                <div class="reveal">
+                    <div class="grid-2 mt-l">
+                        <div class="card">
+                            <div class="card-title">Fighting for Freedom</div>
+                            <ul>
+                                <li>5,000 African Americans served in Continental Army</li>
+                                <li>Crispus Attucks killed in Boston Massacre</li>
+                                <li>Salem Poor cited for bravery at Bunker Hill</li>
+                                <li>Some gained freedom through military service</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">British Promises</div>
+                            <ul>
+                                <li>Lord Dunmore's Proclamation (1775)</li>
+                                <li>Freedom promised to slaves who joined British</li>
+                                <li>Thousands escaped to British lines</li>
+                                <li>Many evacuated to Canada or Britain</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box warning mt-l">
+                        <h3 class="t-3 t-center">The Contradiction</h3>
+                        <p class="t-center">While fighting for "liberty," most Americans continued to hold other humans in slavery</p>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box info mt-l">
+                        <h3 class="t-3 t-center">Northern Gradual Emancipation</h3>
+                        <p class="t-center">Some Northern states begin gradual emancipation after the war, but slavery expands in the South</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Native Americans and the Revolution -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="t-2 t-center">Native Americans: Caught in the Middle</h2>
+                <div class="reveal">
+                    <div class="box warning mt-l">
+                        <h3 class="t-3 t-center">An Impossible Choice</h3>
+                        <p class="t-center">Native American tribes forced to choose sides in a war between two groups who wanted their land</p>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="grid-2 mt-l">
+                        <div class="card">
+                            <div class="card-title">Why Many Chose Britain</div>
+                            <ul>
+                                <li>British tried to limit westward expansion</li>
+                                <li>Proclamation of 1763 protected Native lands</li>
+                                <li>Americans constantly moving onto Native territory</li>
+                                <li>British seemed less threatening long-term</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">Consequences of American Victory</div>
+                            <ul>
+                                <li>Lost British protection and support</li>
+                                <li>Treaty of Paris ignored their rights</li>
+                                <li>Massive westward migration begins</li>
+                                <li>Forced to cede lands in defeat</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box danger mt-l">
+                        <h3 class="t-3 t-center">Long-term Impact</h3>
+                        <p class="t-center">American victory accelerates westward expansion and displacement of Native American peoples</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 17: Economic and Political Legacy -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="t-2 t-center">Legacy of the Revolution</h2>
+                <div class="reveal">
+                    <div class="grid-3 mt-l">
+                        <div class="card">
+                            <div class="card-title">Political Legacy</div>
+                            <ul>
+                                <li>Popular sovereignty and consent of governed</li>
+                                <li>Written constitutions and bills of rights</li>
+                                <li>Separation of powers</li>
+                                <li>Democratic ideals spread globally</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">Economic Changes</div>
+                            <ul>
+                                <li>Free trade with other nations</li>
+                                <li>Development of American manufacturing</li>
+                                <li>Westward expansion opportunities</li>
+                                <li>Massive war debt to pay off</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">Social Transformation</div>
+                            <ul>
+                                <li>Increased social mobility</li>
+                                <li>Decline of aristocratic ideals</li>
+                                <li>Growth of religious freedom</li>
+                                <li>Beginning of women's rights movement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box gradient mt-l">
+                        <h3 class="t-3 t-center">Global Inspiration</h3>
+                        <p class="t-center">American Revolution inspires democratic movements worldwide: French Revolution, Latin American independence, and beyond</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 18: Conclusion -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2 class="t-2 t-center">From Revolution to Nation-Building</h2>
+                <div class="reveal">
+                    <div class="box success mt-l">
+                        <h3 class="t-3 t-center">Military Victory Achieved</h3>
+                        <p class="t-center">Through strategic patience, international alliances, and effective leadership, Americans won independence from world's strongest empire</p>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box info mt-l">
+                        <h3 class="t-3 t-center">The Real Challenge Begins</h3>
+                        <p class="t-center">Independence is only the beginning - new nation must create effective government, manage debt, and fulfill revolutionary promises</p>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box quote mt-l">
+                        <p class="t-3">"The Revolution was in the minds and hearts of the people... This radical change in the principles, opinions, sentiments, and affections of the people was the real American Revolution." - John Adams</p>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="box gradient mt-l">
+                        <h3 class="t-3 t-center">Essential Question Answered</h3>
+                        <p class="t-center">Thirteen colonies became an independent nation through military perseverance, international diplomacy, effective leadership, and revolutionary ideals that continue to shape America today</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vocabulary Button -->
+    <div class="ui ui-vocab">
+        <button class="btn primary" onclick="toggleVocab()">Vocabulary</button>
+    </div>
+
+    <!-- UI Controls (Hidden) -->
+    <div class="ui ui-controls">
+        <div>
+            <button class="btn ghost" onclick="previousSlide()">← Previous</button>
+            <button class="btn ghost" onclick="nextSlide()">Next →</button>
+        </div>
+    </div>
+
+    <!-- Slide Status -->
+    <div class="ui ui-status">
+        <span id="slideCounter">1 / 18</span>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div class="ui ui-nav">
+        <div class="dots" id="navigationDots">
+            <!-- Generated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Vocabulary Popup -->
+    <div class="popup" id="vocabPopup">
+        <div class="popup-overlay" onclick="closeVocab()"></div>
+        <div class="popup-content">
+            <h3 class="t-3 t-center mb-l">Chapter 4 Vocabulary</h3>
+            <div class="vocab-term">
+                <div class="vocab-word">Continental Army</div>
+                <div class="vocab-def">Professional military force created by Continental Congress with George Washington as commander-in-chief</div>
+            </div>
+            <div class="vocab-term">
+                <div class="vocab-word">Loyalists</div>
+                <div class="vocab-def">American colonists who remained loyal to Britain during the Revolutionary War</div>
+            </div>
+            <div class="vocab-term">
+                <div class="vocab-word">Patriots</div>
+                <div class="vocab-def">American colonists who supported independence from Britain</div>
+            </div>
+            <div class="vocab-term">
+                <div class="vocab-word">Natural Rights</div>
+                <div class="vocab-def">Rights that come from nature or God, not from government; life, liberty, and pursuit of happiness</div>
+            </div>
+            <div class="vocab-term">
+                <div class="vocab-word">Guerrilla Warfare</div>
+                <div class="vocab-def">Fighting style using small groups, surprise attacks, and hit-and-run tactics</div>
+            </div>
+            <div class="vocab-term">
+                <div class="vocab-word">Alliance</div>
+                <div class="vocab-def">Formal agreement between nations to cooperate in war or diplomacy</div>
+            </div>
+            <div class="vocab-term">
+                <div class="vocab-word">Siege</div>
+                <div class="vocab-def">Military strategy of surrounding and isolating an enemy position to force surrender</div>
+            </div>
+            <div class="vocab-term">
+                <div class="vocab-word">Treaty</div>
+                <div class="vocab-def">Formal written agreement between nations, especially to end a war</div>
+            </div>
+            <button class="btn primary mt-l" onclick="closeVocab()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let revealIndex = 0;
+
+        // Initialize navigation dots
+        function initializeDots() {
+            const dotsContainer = document.getElementById('navigationDots');
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dots-dot';
+                if (i === 0) dot.classList.add('active');
+                dot.onclick = () => goToSlide(i);
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        // Update slide counter and dots
+        function updateSlideIndicators() {
+            document.getElementById('slideCounter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            const dots = document.querySelectorAll('.dots-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        // Show slide
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            revealIndex = 0;
+            updateSlideIndicators();
+        }
+
+        // Navigation functions
+        function nextSlide() {
+            const currentSlideElement = slides[currentSlide];
+            const revealElements = currentSlideElement.querySelectorAll('.reveal');
+            
+            if (revealIndex < revealElements.length) {
+                revealElements[revealIndex].classList.add('shown');
+                revealIndex++;
+            } else if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (revealIndex > 0) {
+                revealIndex--;
+                const currentSlideElement = slides[currentSlide];
+                const revealElements = currentSlideElement.querySelectorAll('.reveal');
+                revealElements[revealIndex].classList.remove('shown');
+            } else if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+                // Show all reveals on previous slide
+                const prevSlideElement = slides[currentSlide];
+                const prevRevealElements = prevSlideElement.querySelectorAll('.reveal');
+                prevRevealElements.forEach(el => el.classList.add('shown'));
+                revealIndex = prevRevealElements.length;
+            }
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            showSlide(currentSlide);
+        }
+
+        // Vocabulary popup
+        function toggleVocab() {
+            const popup = document.getElementById('vocabPopup');
+            popup.classList.toggle('visible');
+        }
+
+        function closeVocab() {
+            document.getElementById('vocabPopup').classList.remove('visible');
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(event) {
+            switch(event.key) {
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    previousSlide();
+                    break;
+                case ',':
+                    if (currentSlide > 0) {
+                        currentSlide--;
+                        showSlide(currentSlide);
+                    }
+                    break;
+                case '.':
+                    if (currentSlide < totalSlides - 1) {
+                        currentSlide++;
+                        showSlide(currentSlide);
+                    }
+                    break;
+                case 'Enter':
+                    const currentSlideElement = slides[currentSlide];
+                    const revealElements = currentSlideElement.querySelectorAll('.reveal');
+                    revealElements.forEach(el => el.classList.add('shown'));
+                    revealIndex = revealElements.length;
+                    break;
+            }
+        });
+
+        // Initialize presentation
+        initializeDots();
+        updateSlideIndicators();
+    </script>
+</body>
+</html> Largest American surrender of the war</p>
+                                <p><strong>Impact:</strong> 5,000 American troops captured</p>
+                                <p><strong>Significance:</strong> British control most of South Carolina</p>
+                            </div>
+                        </div>
+                        <div class="battle-card">
+                            <div class="battle-name">Kings Mountain</div>
+                            <div class="battle-date">October 7, 1780</div>
+                            <div class="battle-outcome">
+                                <p><strong>Result:
